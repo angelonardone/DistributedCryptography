@@ -1,11 +1,14 @@
 
+Please go to our WIKI for instructions in how to build and use our product
 
 
 
 
-*Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (Customized)
 
-**Copyright 2022-2024 Distributed Cryptography Inc
+
+<H2>Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (Customized)</H2>
+
+<H3>Copyright 2022-2024 Distributed Cryptography Inc</H3>
 
 This license lets others view and audit this work, build and use it for personal or commercial purposes, but not modify it in any way or use it for commercial purposes.
 
