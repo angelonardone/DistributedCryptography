@@ -372,7 +372,7 @@ namespace GeneXus.Programs.qrcoder {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+imgavImage_Internalname+"\"", "", "div");
+            GxWebStd.gx_div_start( context, "", imgavImage_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+imgavImage_Internalname+"\"", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Static Bitmap Variable */
@@ -380,9 +380,17 @@ namespace GeneXus.Programs.qrcoder {
             StyleString = "";
             AV6image_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV6image))&&String.IsNullOrEmpty(StringUtil.RTrim( AV11Image_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV6image)));
             sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV6image)) ? AV11Image_GXI : context.PathToRelativeUrl( AV6image));
-            GxWebStd.gx_bitmap( context, imgavImage_Internalname, sImgUrl, "", "", "", context.GetTheme( ), 1, 0, "", "", 0, 1, 250, "px", 0, "px", 0, 0, 0, "", "", StyleString, ClassString, "", "", "", "", "", "", "", 1, AV6image_IsBlob, false, context.GetImageSrcSet( sImgUrl), "HLP_QRCoder/CreateQRCode.htm");
+            GxWebStd.gx_bitmap( context, imgavImage_Internalname, sImgUrl, "", "", "", context.GetTheme( ), imgavImage_Visible, 0, "", "", 0, 1, 250, "px", 0, "px", 0, 0, 0, "", "", StyleString, ClassString, "", "", "", "", "", "", "", 1, AV6image_IsBlob, false, context.GetImageSrcSet( sImgUrl), "HLP_QRCoder/CreateQRCode.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblSalida_Internalname, lblSalida_Caption, "", "", lblSalida_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 1, "HLP_QRCoder/CreateQRCode.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -628,15 +636,13 @@ namespace GeneXus.Programs.qrcoder {
       {
          /* 'generate' Routine */
          returnInSub = false;
-         GXt_char1 = AV8url;
-         new GeneXus.Programs.qrcoder.generateqrcode(context ).execute(  AV10text, out  GXt_char1) ;
-         AV8url = GXt_char1;
-         AV6image = AV8url;
-         AssignProp("", false, imgavImage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV6image)) ? AV11Image_GXI : context.convertURL( context.PathToRelativeUrl( AV6image))), true);
-         AssignProp("", false, imgavImage_Internalname, "SrcSet", context.GetImageSrcSet( AV6image), true);
-         AV11Image_GXI = GXDbFile.PathToUrl( AV8url, context);
-         AssignProp("", false, imgavImage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV6image)) ? AV11Image_GXI : context.convertURL( context.PathToRelativeUrl( AV6image))), true);
-         AssignProp("", false, imgavImage_Internalname, "SrcSet", context.GetImageSrcSet( AV6image), true);
+         imgavImage_Visible = 0;
+         AssignProp("", false, imgavImage_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(imgavImage_Visible), 5, 0), true);
+         GXt_char1 = AV5salida;
+         new GeneXus.Programs.qrcoder.generateqrcodestring(context ).execute(  AV10text, out  GXt_char1) ;
+         AV5salida = GXt_char1;
+         lblSalida_Caption = "<img src=\"data:image/png;base64, "+AV5salida+"   \" style=\"width: 250px\" />";
+         AssignProp("", false, lblSalida_Internalname, "Caption", lblSalida_Caption, true);
          /*  Sending Event outputs  */
       }
 
@@ -689,7 +695,7 @@ namespace GeneXus.Programs.qrcoder {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202461814263415", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20246211701020", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -705,7 +711,7 @@ namespace GeneXus.Programs.qrcoder {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("qrcoder/createqrcode.js", "?202461814263415", false, true);
+         context.AddJavascriptSource("qrcoder/createqrcode.js", "?20246211701020", false, true);
          /* End function include_jscripts */
       }
 
@@ -719,6 +725,7 @@ namespace GeneXus.Programs.qrcoder {
          edtavText_Internalname = "vTEXT";
          bttGenerate_Internalname = "GENERATE";
          imgavImage_Internalname = "vIMAGE";
+         lblSalida_Internalname = "SALIDA";
          divMaintable_Internalname = "MAINTABLE";
          Form.Internalname = "FORM";
       }
@@ -731,7 +738,9 @@ namespace GeneXus.Programs.qrcoder {
             disableJsOutput();
          }
          init_default_properties( ) ;
+         lblSalida_Caption = "";
          imgavImage_gximage = "";
+         imgavImage_Visible = 1;
          edtavText_Enabled = 1;
          Form.Headerrawhtml = "";
          Form.Background = "";
@@ -753,7 +762,7 @@ namespace GeneXus.Programs.qrcoder {
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
          setEventMetadata("'GENERATE'","""{"handler":"E111Q2","iparms":[{"av":"AV10text","fld":"vTEXT"}]""");
-         setEventMetadata("'GENERATE'",""","oparms":[{"av":"AV6image","fld":"vIMAGE"}]}""");
+         setEventMetadata("'GENERATE'",""","oparms":[{"av":"imgavImage_Visible","ctrl":"vIMAGE","prop":"Visible"},{"av":"lblSalida_Caption","ctrl":"SALIDA","prop":"Caption"}]}""");
          return  ;
       }
 
@@ -785,11 +794,12 @@ namespace GeneXus.Programs.qrcoder {
          AV6image = "";
          AV11Image_GXI = "";
          sImgUrl = "";
+         lblSalida_Jsonclick = "";
          sEvt = "";
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
-         AV8url = "";
+         AV5salida = "";
          GXt_char1 = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
@@ -805,6 +815,7 @@ namespace GeneXus.Programs.qrcoder {
       private short gxcookieaux ;
       private short nGXWrapped ;
       private int edtavText_Enabled ;
+      private int imgavImage_Visible ;
       private int idxLst ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
@@ -825,6 +836,9 @@ namespace GeneXus.Programs.qrcoder {
       private string imgavImage_Internalname ;
       private string imgavImage_gximage ;
       private string sImgUrl ;
+      private string lblSalida_Internalname ;
+      private string lblSalida_Caption ;
+      private string lblSalida_Jsonclick ;
       private string sEvt ;
       private string EvtGridId ;
       private string EvtRowId ;
@@ -838,8 +852,8 @@ namespace GeneXus.Programs.qrcoder {
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
+      private string AV5salida ;
       private string AV11Image_GXI ;
-      private string AV8url ;
       private string AV6image ;
       private IGxDataStore dsDefault ;
       private msglist BackMsgLst ;

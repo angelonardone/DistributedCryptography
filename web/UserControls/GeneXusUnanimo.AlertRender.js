@@ -1,1 +1,100 @@
-function GeneXusUnanimo_Alert(n){var i='<div id="alert{{id}}" class="alert alert-{{Type}}" aria-live="assertive"> \t<div class="inline-left-xxxl inline-right-xxl" style="flex-grow: 1">\t\t<div class="row"> <span class="alert-title">{{Title}}<\/span> <\/div>\t\t<div class="row"> <span class="alert-message">{{Message}}<\/span> <\/div>\t<\/div>\t<div class="inline-left-xl inline-right-xl" style="flex-grow: 0">\t\t<button type="button" class="alert-close" data-dismiss="alert" aria-label="Close" id="alert{{id}}close"  data-event="Close" ><span aria-hidden="true">&times;<\/span><\/button>\t<\/div>\t{{#ShowMultiple}}\t<div class="alert-badge">\t\t<span class="alert-badge-text">{{Count}}<\/span>\t<\/div>\t{{/ShowMultiple}}<\/div>',f={},r,u,t;Mustache.parse(i);r=0;this.show=function(){u=n(this.getContainerControl());r=0;this.setHtml(Mustache.render(i,this,f));this.renderChildContainers();n(this.getContainerControl()).find("[data-event='Close']").on("click",this.onCloseHandler.closure(this)).each(function(n){this.setAttribute("data-items-index",n+1)});this.Init()};this.Scripts=[];this.Init=function(){const t=this,i="alert"+t.id,n=document.getElementById(i);t.Position==="Fixed to bottom"&&(n.classList.contains("alert-fixed")||n.classList.add("alert-fixed"));t.ShowMultiple===!0&&(n.classList.contains("alert-multiple")||n.classList.add("alert-multiple"))};this.onCloseHandler=function(n){if(n){var t=n.currentTarget;n.preventDefault()}this.Close&&this.Close()};this.autoToggleVisibility=!0;t={};this.renderChildContainers=function(){u.find("[data-slot][data-parent='"+this.ContainerName+"']").each(function(i,r){var e=n(r),f=e.attr("data-slot"),u;u=t[f];u||(u=this.getChildContainer(f),t[f]=u,u.parentNode.removeChild(u));e.append(u);n(u).show()}.closure(this))}}
+function GeneXusUnanimo_Alert($) {
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+
+	var template = '<div id=\"alert{{id}}\" class=\"alert alert-{{Type}}\" aria-live=\"assertive\"> 	<div class=\"inline-left-xxxl inline-right-xxl\" style=\"flex-grow: 1\">		<div class=\"row\"> <span class=\"alert-title\">{{Title}}</span> </div>		<div class=\"row\"> <span class=\"alert-message\">{{Message}}</span> </div>	</div>	<div class=\"inline-left-xl inline-right-xl\" style=\"flex-grow: 0\">		<button type=\"button\" class=\"alert-close\" data-dismiss=\"alert\" aria-label=\"Close\" id=\"alert{{id}}close\"  data-event=\"Close\" ><span aria-hidden=\"true\">&times;</span></button>	</div>	{{#ShowMultiple}}	<div class=\"alert-badge\">		<span class=\"alert-badge-text\">{{Count}}</span>	</div>	{{/ShowMultiple}}</div>';
+	var partials = {  }; 
+	Mustache.parse(template);
+	var _iOnClose = 0; 
+	var $container;
+	this.show = function() {
+			$container = $(this.getContainerControl());
+
+			// Raise before show scripts
+
+			_iOnClose = 0; 
+
+			//if (this.IsPostBack)
+				this.setHtml(Mustache.render(template, this, partials));
+			this.renderChildContainers();
+
+			$(this.getContainerControl())
+				.find("[data-event='Close']")
+				.on('click', this.onCloseHandler.closure(this))
+				.each(function (i) {
+					this.setAttribute("data-items-index", i + 1);
+				}); 
+
+			// Raise after show scripts
+			this.Init(); 
+	}
+
+	this.Scripts = [];
+
+		this.Init = function() {
+
+			  	const UC = this;
+				const elId = "alert" + UC.id;
+				const el = document.getElementById(elId);
+					
+				if (UC.Position === "Fixed to bottom") {
+					if (!el.classList.contains("alert-fixed")) {
+						el.classList.add("alert-fixed");
+					}
+				}
+
+				if (UC.ShowMultiple === true) {
+					if (!el.classList.contains("alert-multiple")) {
+						el.classList.add("alert-multiple");
+					}
+				}
+			  
+		}
+
+
+		this.onCloseHandler = function (e) {
+			if (e) {
+				var target = e.currentTarget;
+				e.preventDefault();
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+			}
+
+			if (this.Close) {
+				this.Close();
+			}
+		} 
+
+	this.autoToggleVisibility = true;
+
+	var childContainers = {};
+	this.renderChildContainers = function () {
+		$container
+			.find("[data-slot][data-parent='" + this.ContainerName + "']")
+			.each((function (i, slot) {
+				var $slot = $(slot),
+					slotName = $slot.attr('data-slot'),
+					slotContentEl;
+
+				slotContentEl = childContainers[slotName];
+				if (!slotContentEl) {				
+					slotContentEl = this.getChildContainer(slotName)
+					childContainers[slotName] = slotContentEl;
+					slotContentEl.parentNode.removeChild(slotContentEl);
+				}
+				$slot.append(slotContentEl);
+				$(slotContentEl).show();
+			}).closure(this));
+	};
+
+}

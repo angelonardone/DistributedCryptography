@@ -38,7 +38,7 @@
 
 	<ItemGroup>
 		<Compile Include = "$(WebDirectory)\qrcoder\createqrcode.cs" />
-		<Compile Include = "$(WebDirectory)\qrcoder\generateqrcode.cs" />
+		<Compile Include = "$(WebDirectory)\qrcoder\generateqrcodestring.cs" />
 
 	</ItemGroup>
 	<ItemGroup Condition="'$(PostgresqlSupport)'=='true'">

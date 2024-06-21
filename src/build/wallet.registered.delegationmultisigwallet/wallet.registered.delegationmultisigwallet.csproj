@@ -49,6 +49,7 @@
 		<Compile Include = "$(WebDirectory)\wallet\searchinalladdress.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\loadhistoryfromtransactions.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\deriveaddresssfordelegationmusig.cs" />
+		<Compile Include = "$(WebDirectory)\qrcoder\generateqrcodestring.cs" />
 		<Compile Include = "$(WebDirectory)\readrestconfigfile.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getalladdress.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
@@ -57,7 +58,6 @@
 		<Compile Include = "$(WebDirectory)\distributedcrypto\aesdecryptstring.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setalladdress.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\pulloneaddress.cs" />
-		<Compile Include = "$(WebDirectory)\qrcoder\generateqrcode.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getextkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\deriveoneaddressfordelegationmusig.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\processserver.cs" />
