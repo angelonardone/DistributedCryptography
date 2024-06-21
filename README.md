@@ -3,9 +3,9 @@
 
 
 
-Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (Customized)
+*Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (Customized)
 
-Copyright 2022-2024 Distributed Cryptography Inc
+**Copyright 2022-2024 Distributed Cryptography Inc
 
 This license lets others view and audit this work, build and use it for personal or commercial purposes, but not modify it in any way or use it for commercial purposes.
 
