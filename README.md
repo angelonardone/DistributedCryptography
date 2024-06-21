@@ -24,3 +24,9 @@ The wallet sopport the following Bitcoin standards:
 * Multy spending paths (address and script)
 * K of N multisignature (using Huffman TapTrees)
 
+# Some external projects we realy on (thanks :-D)
+
+* [NBitcoin](https://github.com/MetacoSA/NBitcoin)
+* [SecretSharingDotNet](https://github.com/shinji-san/SecretSharingDotNet)
+* [GoogleAuthenticator](https://github.com/BrandonPotter/GoogleAuthenticator)
+* [QRCoder](https://github.com/codebude/QRCoder)
