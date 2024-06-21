@@ -1,0 +1,274 @@
+/*
+				   File: type_SdtsendMesage__postInput
+			Description: sendMesage__postInput
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.8.180599
+		   Program type: Callable routine
+			  Main DBMS: 
+*/
+using System;
+using System.Collections;
+using GeneXus.Utils;
+using GeneXus.Resources;
+using GeneXus.Application;
+using GeneXus.Metadata;
+using GeneXus.Cryptography;
+using GeneXus.Encryption;
+using GeneXus.Http.Client;
+using GeneXus.Http.Server;
+using System.Reflection;
+using System.Xml.Serialization;
+using System.Runtime.Serialization;
+
+
+namespace GeneXus.Programs
+{
+	[XmlRoot(ElementName="sendMesage__postInput")]
+	[XmlType(TypeName="sendMesage__postInput" , Namespace="distributedcryptography" )]
+	[Serializable]
+	public class SdtsendMesage__postInput : GxUserType
+	{
+		public SdtsendMesage__postInput( )
+		{
+			/* Constructor for serialization */
+			gxTv_SdtsendMesage__postInput_Username = "";
+
+			gxTv_SdtsendMesage__postInput_Messageencryptedkey = "";
+
+			gxTv_SdtsendMesage__postInput_Messageiv = "";
+
+			gxTv_SdtsendMesage__postInput_Messageencrypted = "";
+
+		}
+
+		public SdtsendMesage__postInput(IGxContext context)
+		{
+			this.context = context;	
+			initialize();
+		}
+
+		#region Json
+		private static Hashtable mapper;
+		public override string JsonMap(string value)
+		{
+			if (mapper == null)
+			{
+				mapper = new Hashtable();
+			}
+			return (string)mapper[value]; ;
+		}
+
+		public override void ToJSON()
+		{
+			ToJSON(true) ;
+			return;
+		}
+
+		public override void ToJSON(bool includeState)
+		{
+			AddObjectProperty("UserName", gxTpr_Username, false);
+
+
+			AddObjectProperty("MessageEncryptedKey", gxTpr_Messageencryptedkey, false);
+
+
+			AddObjectProperty("MessageIV", gxTpr_Messageiv, false);
+
+
+			AddObjectProperty("MessageEncrypted", gxTpr_Messageencrypted, false);
+
+			return;
+		}
+		#endregion
+
+		#region Properties
+
+		[SoapElement(ElementName="UserName")]
+		[XmlElement(ElementName="UserName")]
+		public string gxTpr_Username
+		{
+			get {
+				return gxTv_SdtsendMesage__postInput_Username; 
+			}
+			set {
+				gxTv_SdtsendMesage__postInput_Username = value;
+				SetDirty("Username");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="MessageEncryptedKey")]
+		[XmlElement(ElementName="MessageEncryptedKey")]
+		public string gxTpr_Messageencryptedkey
+		{
+			get {
+				return gxTv_SdtsendMesage__postInput_Messageencryptedkey; 
+			}
+			set {
+				gxTv_SdtsendMesage__postInput_Messageencryptedkey = value;
+				SetDirty("Messageencryptedkey");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="MessageIV")]
+		[XmlElement(ElementName="MessageIV")]
+		public string gxTpr_Messageiv
+		{
+			get {
+				return gxTv_SdtsendMesage__postInput_Messageiv; 
+			}
+			set {
+				gxTv_SdtsendMesage__postInput_Messageiv = value;
+				SetDirty("Messageiv");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="MessageEncrypted")]
+		[XmlElement(ElementName="MessageEncrypted")]
+		public string gxTpr_Messageencrypted
+		{
+			get {
+				return gxTv_SdtsendMesage__postInput_Messageencrypted; 
+			}
+			set {
+				gxTv_SdtsendMesage__postInput_Messageencrypted = value;
+				SetDirty("Messageencrypted");
+			}
+		}
+
+
+
+		public override bool ShouldSerializeSdtJson()
+		{
+			return true;
+		}
+
+
+
+		#endregion
+
+		#region Initialization
+
+		public void initialize( )
+		{
+			gxTv_SdtsendMesage__postInput_Username = "";
+			gxTv_SdtsendMesage__postInput_Messageencryptedkey = "";
+			gxTv_SdtsendMesage__postInput_Messageiv = "";
+			gxTv_SdtsendMesage__postInput_Messageencrypted = "";
+			return  ;
+		}
+
+
+
+		#endregion
+
+		#region Declaration
+
+		protected string gxTv_SdtsendMesage__postInput_Username;
+		 
+
+		protected string gxTv_SdtsendMesage__postInput_Messageencryptedkey;
+		 
+
+		protected string gxTv_SdtsendMesage__postInput_Messageiv;
+		 
+
+		protected string gxTv_SdtsendMesage__postInput_Messageencrypted;
+		 
+
+
+		#endregion
+	}
+	#region Rest interface
+	[GxUnWrappedJson()]
+	[DataContract(Name=@"sendMesage__postInput", Namespace="distributedcryptography")]
+	public class SdtsendMesage__postInput_RESTInterface : GxGenericCollectionItem<SdtsendMesage__postInput>, System.Web.SessionState.IRequiresSessionState
+	{
+		public SdtsendMesage__postInput_RESTInterface( ) : base()
+		{	
+		}
+
+		public SdtsendMesage__postInput_RESTInterface( SdtsendMesage__postInput psdt ) : base(psdt)
+		{	
+		}
+
+		#region Rest Properties
+		[DataMember(Name="UserName", Order=0)]
+		public  string gxTpr_Username
+		{
+			get { 
+				return sdt.gxTpr_Username;
+
+			}
+			set { 
+				 sdt.gxTpr_Username = value;
+			}
+		}
+
+		[DataMember(Name="MessageEncryptedKey", Order=1)]
+		public  string gxTpr_Messageencryptedkey
+		{
+			get { 
+				return sdt.gxTpr_Messageencryptedkey;
+
+			}
+			set { 
+				 sdt.gxTpr_Messageencryptedkey = value;
+			}
+		}
+
+		[DataMember(Name="MessageIV", Order=2)]
+		public  string gxTpr_Messageiv
+		{
+			get { 
+				return sdt.gxTpr_Messageiv;
+
+			}
+			set { 
+				 sdt.gxTpr_Messageiv = value;
+			}
+		}
+
+		[DataMember(Name="MessageEncrypted", Order=3)]
+		public  string gxTpr_Messageencrypted
+		{
+			get { 
+				return sdt.gxTpr_Messageencrypted;
+
+			}
+			set { 
+				 sdt.gxTpr_Messageencrypted = value;
+			}
+		}
+
+
+		#endregion
+
+		public SdtsendMesage__postInput sdt
+		{
+			get { 
+				return (SdtsendMesage__postInput)Sdt;
+			}
+			set { 
+				Sdt = value;
+			}
+		}
+
+		[OnDeserializing]
+		void checkSdt( StreamingContext ctx )
+		{
+			if ( sdt == null )
+			{
+				sdt = new SdtsendMesage__postInput() ;
+			}
+		}
+	}
+	#endregion
+}

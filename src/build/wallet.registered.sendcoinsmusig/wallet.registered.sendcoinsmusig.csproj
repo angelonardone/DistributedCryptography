@@ -1,0 +1,110 @@
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
+	
+	
+	<PropertyGroup>
+		<AssemblyName>wallet.registered.sendcoinsmusig</AssemblyName>
+		<TargetFramework>$(TargetFramework)</TargetFramework>
+		<OutputType>Library</OutputType>
+		<GenerateDependencyFile>false</GenerateDependencyFile>
+		<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+		<PostgresqlSupport>false</PostgresqlSupport>
+		<OfficeSupport>false</OfficeSupport>
+		<MailSupport>false</MailSupport>
+		<GrpcClientSupport>false</GrpcClientSupport>
+		<PdfLibrary></PdfLibrary>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<ProjectReference Include=".\..\GeneXus.Programs.Common\GeneXus.Programs.Common.csproj" />
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="WebExtensionToolkit.dll" > 
+			<HintPath>$(WebBinDirectory)\WebExtensionToolkit.dll</HintPath>
+		</Reference>
+		<Reference Include="GeneXus.dll" > 
+			<HintPath>$(WebBinDirectory)\GeneXus.dll</HintPath>
+		</Reference>
+		<Reference Include="Google.Authenticator.dll" > 
+			<HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
+		</Reference>
+		<Reference Include="GxNostrLib.dll" > 
+			<HintPath>$(WebBinDirectory)\GxNostrLib.dll</HintPath>
+		</Reference>
+
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include = "$(WebDirectory)\wallet\getprivatekeyfromaddresshistory.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluser.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\sendcoinsmusig.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\selectcoinstosend.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getalladdress.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\addmusigdatatohistory.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\iscombinationsneeded.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\getunixtimemilisecondsutc.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\updategroup.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\updatetransactionsaftercoinsent.cs" />
+		<Compile Include = "$(WebDirectory)\getrestparameters.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getestimatesmartfee.cs" />
+		<Compile Include = "$(WebDirectory)\math\generatecombinations.cs" />
+		<Compile Include = "$(WebDirectory)\apibaseurlauth.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
+		<Compile Include = "$(WebDirectory)\readrestconfigfile.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\setexternaluser.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\eccsignmsg.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\aesencryptstring.cs" />
+		<Compile Include = "$(WebDirectory)\apibaseurllocalhost.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\sendmessage.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\isaddressvalid.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\aesdecryptstring.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\gethistorywithbalance.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\setalladdress.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\createkey.cs" />
+		<Compile Include = "$(WebDirectory)\openapicommon\varchartojsonformat.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\parse_serialized_extended_key.cs" />
+		<Compile Include = "$(WebDirectory)\gxexplorerservicesrestgetrawtransactionget.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\encryptjsonto.cs" />
+		<Compile Include = "$(WebDirectory)\openapicommon\numerictojsonformat.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\pulloneaddress.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\getec_pubkeysfrommusigdata.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getrawtransfromcoinstosend.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getextkey.cs" />
+		<Compile Include = "$(WebDirectory)\openapicommon\processserver.cs" />
+		<Compile Include = "$(WebDirectory)\gxexplorerservicesrestsendrawtransactionpost.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\cleanextkey.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\createextkey.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\decryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\createexpubtkey.cs" />
+		<Compile Include = "$(WebDirectory)\openapicommon\callapi.cs" />
+		<Compile Include = "$(WebDirectory)\defaultrestparameters.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\doesaddressbelongtowallet.cs" />
+		<Compile Include = "$(WebDirectory)\desktopappservicesrestupdategrouppost.cs" />
+		<Compile Include = "$(WebDirectory)\desktopappservicesrestsendmesagepost.cs" />
+		<Compile Include = "$(WebDirectory)\gxexplorerservicesrestestimatesmartfeeget.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\iscombinationsneededforsignature.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\encryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\sendrawtransaction.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\derivekeysfromextkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\buildtransactionmusig.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\updategroupandsendsignature.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getbalancefromhistorywithbalance.cs" />
+
+	</ItemGroup>
+	<ItemGroup Condition="'$(PostgresqlSupport)'=='true'">
+		<PackageReference Include="Npgsql" Version="3.2.7" PrivateAssets="All"/>
+	</ItemGroup>
+
+	<Import Project="..\DotNetCoreBaseProject.targets"/>	
+</Project>
+

@@ -1,0 +1,197 @@
+/*
+				   File: type_SdtsendMesage__postOutput
+			Description: sendMesage__postOutput
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.8.180599
+		   Program type: Callable routine
+			  Main DBMS: 
+*/
+using System;
+using System.Collections;
+using GeneXus.Utils;
+using GeneXus.Resources;
+using GeneXus.Application;
+using GeneXus.Metadata;
+using GeneXus.Cryptography;
+using GeneXus.Encryption;
+using GeneXus.Http.Client;
+using GeneXus.Http.Server;
+using System.Reflection;
+using System.Xml.Serialization;
+using System.Runtime.Serialization;
+
+
+namespace GeneXus.Programs
+{
+	[XmlRoot(ElementName="sendMesage__postOutput")]
+	[XmlType(TypeName="sendMesage__postOutput" , Namespace="distributedcryptography" )]
+	[Serializable]
+	public class SdtsendMesage__postOutput : GxUserType
+	{
+		public SdtsendMesage__postOutput( )
+		{
+			/* Constructor for serialization */
+			gxTv_SdtsendMesage__postOutput_Error = "";
+
+		}
+
+		public SdtsendMesage__postOutput(IGxContext context)
+		{
+			this.context = context;	
+			initialize();
+		}
+
+		#region Json
+		private static Hashtable mapper;
+		public override string JsonMap(string value)
+		{
+			if (mapper == null)
+			{
+				mapper = new Hashtable();
+			}
+			return (string)mapper[value]; ;
+		}
+
+		public override void ToJSON()
+		{
+			ToJSON(true) ;
+			return;
+		}
+
+		public override void ToJSON(bool includeState)
+		{
+			AddObjectProperty("MessageId", gxTpr_Messageid, false);
+
+
+			AddObjectProperty("error", gxTpr_Error, false);
+
+			return;
+		}
+		#endregion
+
+		#region Properties
+
+		[SoapElement(ElementName="MessageId")]
+		[XmlElement(ElementName="MessageId")]
+		public Guid gxTpr_Messageid
+		{
+			get {
+				return gxTv_SdtsendMesage__postOutput_Messageid; 
+			}
+			set {
+				gxTv_SdtsendMesage__postOutput_Messageid = value;
+				SetDirty("Messageid");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="error")]
+		[XmlElement(ElementName="error")]
+		public string gxTpr_Error
+		{
+			get {
+				return gxTv_SdtsendMesage__postOutput_Error; 
+			}
+			set {
+				gxTv_SdtsendMesage__postOutput_Error = value;
+				SetDirty("Error");
+			}
+		}
+
+
+
+		public override bool ShouldSerializeSdtJson()
+		{
+			return true;
+		}
+
+
+
+		#endregion
+
+		#region Initialization
+
+		public void initialize( )
+		{
+			gxTv_SdtsendMesage__postOutput_Error = "";
+			return  ;
+		}
+
+
+
+		#endregion
+
+		#region Declaration
+
+		protected Guid gxTv_SdtsendMesage__postOutput_Messageid;
+		 
+
+		protected string gxTv_SdtsendMesage__postOutput_Error;
+		 
+
+
+		#endregion
+	}
+	#region Rest interface
+	[GxUnWrappedJson()]
+	[DataContract(Name=@"sendMesage__postOutput", Namespace="distributedcryptography")]
+	public class SdtsendMesage__postOutput_RESTInterface : GxGenericCollectionItem<SdtsendMesage__postOutput>, System.Web.SessionState.IRequiresSessionState
+	{
+		public SdtsendMesage__postOutput_RESTInterface( ) : base()
+		{	
+		}
+
+		public SdtsendMesage__postOutput_RESTInterface( SdtsendMesage__postOutput psdt ) : base(psdt)
+		{	
+		}
+
+		#region Rest Properties
+		[DataMember(Name="MessageId", Order=0)]
+		public Guid gxTpr_Messageid
+		{
+			get { 
+				return sdt.gxTpr_Messageid;
+
+			}
+			set { 
+				sdt.gxTpr_Messageid = value;
+			}
+		}
+
+		[DataMember(Name="error", Order=1)]
+		public  string gxTpr_Error
+		{
+			get { 
+				return sdt.gxTpr_Error;
+
+			}
+			set { 
+				 sdt.gxTpr_Error = value;
+			}
+		}
+
+
+		#endregion
+
+		public SdtsendMesage__postOutput sdt
+		{
+			get { 
+				return (SdtsendMesage__postOutput)Sdt;
+			}
+			set { 
+				Sdt = value;
+			}
+		}
+
+		[OnDeserializing]
+		void checkSdt( StreamingContext ctx )
+		{
+			if ( sdt == null )
+			{
+				sdt = new SdtsendMesage__postOutput() ;
+			}
+		}
+	}
+	#endregion
+}

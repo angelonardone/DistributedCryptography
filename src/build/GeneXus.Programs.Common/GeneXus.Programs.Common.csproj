@@ -1,0 +1,76 @@
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
+	<Import Project="..\..\web\GeneXus.Programs.Common.sdts.targets" Condition="Exists('..\..\web\GeneXus.Programs.Common.sdts.targets')"/>
+
+	
+	<PropertyGroup>
+		<AssemblyName>GeneXus.Programs.Common</AssemblyName>
+		<TargetFramework>$(TargetFramework)</TargetFramework>
+		<OutputType>Library</OutputType>
+		<GenerateDependencyFile>false</GenerateDependencyFile>
+		<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+		<PostgresqlSupport>false</PostgresqlSupport>
+		<OfficeSupport>false</OfficeSupport>
+		<MailSupport>false</MailSupport>
+		<GrpcClientSupport>false</GrpcClientSupport>
+		<PdfLibrary></PdfLibrary>
+	</PropertyGroup>
+	
+	<ItemGroup>
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="Google.Authenticator.dll" > 
+			<HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
+		</Reference>
+		<Reference Include="GxNostrLib.dll" > 
+			<HintPath>$(WebBinDirectory)\GxNostrLib.dll</HintPath>
+		</Reference>
+
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include = "$(WebDirectory)\wallet\gxdomainconstants.cs" />
+		<Compile Include = "$(WebDirectory)\nostr\gxdomainconstants.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainnetworktype.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\gxdomainestimatesmartfeetype.cs" />
+		<Compile Include = "$(WebDirectory)\nostr\gxdomainkindtype.cs" />
+		<Compile Include = "$(WebDirectory)\nostr\type_SdtWebSocketOperationResult.cs" />
+		<Compile Include = "$(WebDirectory)\gxdomaingamerrormessages.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomaincreatekeytype.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainmnemonicnumberwords.cs" />
+		<Compile Include = "$(WebDirectory)\gxdomainswipedirection.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomaincreateextkeytype.cs" />
+		<Compile Include = "$(WebDirectory)\gxdomaintoastrposition.cs" />
+		<Compile Include = "$(WebDirectory)\gxdomainfckeditorobjectinterface.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainkeypaths.cs" />
+		<Compile Include = "$(WebDirectory)\gxdomaingamusergender.cs" />
+		<Compile Include = "$(WebDirectory)\nostr\type_SdtGxNostrLib.cs" />
+		<Compile Include = "$(WebDirectory)\gxdomaintoastrtype.cs" />
+		<Compile Include = "$(WebDirectory)\GxFullTextSearchReindexer.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainaddresstype.cs" />
+		<Compile Include = "$(WebDirectory)\GxModelInfoProvider.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\gxdomainconstants.cs" />
+		<Compile Include = "$(WebDirectory)\googleauthenticator\type_SdtBase32Encoding.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\gxdomainwallettype.cs" />
+		<Compile Include = "$(WebDirectory)\GxWebStd.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\gxdomaingrouptype.cs" />
+		<Compile Include = "$(WebDirectory)\SoapParm.cs" />
+		<Compile Include = "$(WebDirectory)\googleauthenticator\type_SdtSetupCode.cs" />
+		<Compile Include = "$(WebDirectory)\nostr\gxdomainmessagetype.cs" />
+		<Compile Include = "$(WebDirectory)\nostr\gxdomainresponsetype.cs" />
+		<Compile Include = "$(WebDirectory)\googleauthenticator\type_SdtTwoFactorAuthenticator.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainextendedkeytype.cs" />
+		<Compile Include = "$(WebDirectory)\GxWebServicesConfig.cs" />
+		<Compile Include = "$(WebDirectory)\gxdomainfckeditormodes.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainmnemoniclanguage.cs" />
+
+	</ItemGroup>
+	<ItemGroup Condition="'$(PostgresqlSupport)'=='true'">
+		<PackageReference Include="Npgsql" Version="3.2.7" PrivateAssets="All"/>
+	</ItemGroup>
+
+	<Import Project="..\DotNetCoreBaseProject.targets"/>	
+</Project>
+

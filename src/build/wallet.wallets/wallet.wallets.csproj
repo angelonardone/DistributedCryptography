@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
+	
+	
+	<PropertyGroup>
+		<AssemblyName>wallet.wallets</AssemblyName>
+		<TargetFramework>$(TargetFramework)</TargetFramework>
+		<OutputType>Library</OutputType>
+		<GenerateDependencyFile>false</GenerateDependencyFile>
+		<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+		<PostgresqlSupport>false</PostgresqlSupport>
+		<OfficeSupport>false</OfficeSupport>
+		<MailSupport>false</MailSupport>
+		<GrpcClientSupport>false</GrpcClientSupport>
+		<PdfLibrary></PdfLibrary>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<ProjectReference Include=".\..\GeneXus.Programs.Common\GeneXus.Programs.Common.csproj" />
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="GeneXus.dll" > 
+			<HintPath>$(WebBinDirectory)\GeneXus.dll</HintPath>
+		</Reference>
+		<Reference Include="Google.Authenticator.dll" > 
+			<HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
+		</Reference>
+		<Reference Include="GxNostrLib.dll" > 
+			<HintPath>$(WebBinDirectory)\GxNostrLib.dll</HintPath>
+		</Reference>
+
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include = "$(WebDirectory)\wallet\wallets.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\readallwallets.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\readwallet.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\initempstorages.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\setwallet.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
+
+	</ItemGroup>
+	<ItemGroup Condition="'$(PostgresqlSupport)'=='true'">
+		<PackageReference Include="Npgsql" Version="3.2.7" PrivateAssets="All"/>
+	</ItemGroup>
+
+	<Import Project="..\DotNetCoreBaseProject.targets"/>	
+</Project>
+

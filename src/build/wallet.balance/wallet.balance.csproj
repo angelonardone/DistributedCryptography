@@ -1,0 +1,83 @@
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
+	
+	
+	<PropertyGroup>
+		<AssemblyName>wallet.balance</AssemblyName>
+		<TargetFramework>$(TargetFramework)</TargetFramework>
+		<OutputType>Library</OutputType>
+		<GenerateDependencyFile>false</GenerateDependencyFile>
+		<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+		<PostgresqlSupport>false</PostgresqlSupport>
+		<OfficeSupport>false</OfficeSupport>
+		<MailSupport>false</MailSupport>
+		<GrpcClientSupport>false</GrpcClientSupport>
+		<PdfLibrary></PdfLibrary>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<ProjectReference Include=".\..\GeneXus.Programs.Common\GeneXus.Programs.Common.csproj" />
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="GeneXus.dll" > 
+			<HintPath>$(WebBinDirectory)\GeneXus.dll</HintPath>
+		</Reference>
+		<Reference Include="Google.Authenticator.dll" > 
+			<HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
+		</Reference>
+		<Reference Include="GxNostrLib.dll" > 
+			<HintPath>$(WebBinDirectory)\GxNostrLib.dll</HintPath>
+		</Reference>
+
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluser.cs" />
+		<Compile Include = "$(WebDirectory)\nostr\settnostrconnectionid.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\setextkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\readwallet.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\aesdecryptstring.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
+		<Compile Include = "$(WebDirectory)\receivefromnoster.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\createkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\setexternaluser.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\balance.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\aesencryptstring.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\getlastchattime.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\setwallet.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\derivekeysfromextkey.cs" />
+		<Compile Include = "$(WebDirectory)\nostr\connect.cs" />
+		<Compile Include = "$(WebDirectory)\nostr\startconnection.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\setkey.cs" />
+		<Compile Include = "$(WebDirectory)\nostr\getnostrconnectionid.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getextkey.cs" />
+		<Compile Include = "$(WebDirectory)\nostr\startsubscription.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\cleanextkey.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\createextkey.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\decryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\sso\createandsaveexternaluser.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\setdefaultjasonkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\readcontactchat.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\setlogindistcrypt.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\setfileenckey.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\encryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\parse_serialized_extended_key.cs" />
+
+	</ItemGroup>
+	<ItemGroup Condition="'$(PostgresqlSupport)'=='true'">
+		<PackageReference Include="Npgsql" Version="3.2.7" PrivateAssets="All"/>
+	</ItemGroup>
+
+	<Import Project="..\DotNetCoreBaseProject.targets"/>	
+</Project>
+

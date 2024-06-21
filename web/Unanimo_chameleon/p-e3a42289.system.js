@@ -1,0 +1,1 @@
+System.register(["@genexus/chameleon"],(function(){"use strict";return{setters:[function(){}],execute:function(){}}}));

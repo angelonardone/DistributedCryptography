@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+<ItemGroup>
+	<Reference Include="GeneXus.dll">
+		<HintPath>$(WebBinDirectory)\GeneXus.dll</HintPath>
+	</Reference>
+
+</ItemGroup>
+
+<ItemGroup>
+ 	<Compile Include="$(WebDirectory)\type_SdtcreateContact__postInput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtcreateContact__postOutput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtcreateGroup__postInput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtcreateGroup__postOutput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtdeleteContact__postInput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtdeleteContact__postOutput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtdeleteGroup__postInput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtdeleteGroup__postOutput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtdeleteMesage__postInput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtdeleteMesage__postOutput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtDesktopApp_services_SDT_Contacts.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtDesktopApp_services_SDT_Contacts_Contact_ContactItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtDesktopApp_services_SDT_Groups.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtDesktopApp_services_SDT_Groups_Group_GroupItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtDesktopApp_services_SDT_Messages.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtDesktopApp_services_SDT_Messages_Message_MessageItem.cs" />
+ 	<Compile Include="$(WebDirectory)\distcrypt\type_SdtExternalUser.cs" />
+ 	<Compile Include="$(WebDirectory)\distcrypt\type_SdtParametersSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\distcrypt\type_SdtRetrunParametersSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\distcrypt\sso\type_SdtGAMGAMRemoteErrorSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\distcrypt\sso\type_SdtGAMGAMRemoteTokenSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\distcrypt\sso\type_SdtGAMGAMRemoteUserSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\distcrypt\sso\type_SdtGAMWSLoginOutUserAttMVSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\distcrypt\sso\type_SdtGAMWSLoginOutUserAttSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\distcrypt\sso\type_SdtSDT_IdentityProvider.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtEstimateSmartFee__getOutput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtFileUploadData.cs" />
+ 	<Compile Include="$(WebDirectory)\general\ui\type_SdtProgramNames_ProgramName.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtgetGroup__getOutput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtgetMesssages__getOutput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtGetTransactions__postInput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtgetUserContacts__getOutput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtgetUserGroups__getOutput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtgetUserPubKey__getOutput.cs" />
+ 	<Compile Include="$(WebDirectory)\googleauthenticator\type_SdtSDT_Authenticators_Authenticator.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtGxExplorer_SDT_estimateSmartFee_result.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtGxExplorer_SDT_estimateSmartFee_result_result.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtGxExplorer_SDT_sendBlock_result.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtGxExplorer_SDT_sendBlock_result_error.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtGxExplorer_services_resultGetRawTransaction.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtGxExplorer_services_TxoutFromAddresses.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtGxExplorer_services_TxoutFromAddresses_Transaction_Used.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtGxExplorer_services_TxoutFromAddresses_Transaction_Used_UsedTo_Item.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtLinkList_LinkItem.cs" />
+ 	<Compile Include="$(WebDirectory)\math\type_SdtfinalCombination.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_SdtCreateExPubtKeyUnitTestSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_SdtCreateExtKeyUnitTestSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_SdtCreateKeyUnitTestSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_SdtderiveAddressFromExtPubKeyUnitTestSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_SdtderiveKeysFromExtKeyUnitTestSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_SdtECCsignMsgUnitTestSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_SdtECCverifyMsgUnitTestSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_SdtExtKeyCreate.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_SdtExtKeyInfo.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_SdtExtKeyInfo_Extended.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_SdtExtPubKeyInfo.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_SdtFromPassphraseCode.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_SdtisAddressValidUnitTestSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_SdtKeyCreate.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_SdtKeyInfo.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_Sdtparse_serialized_extended_keyUnitTestSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_Sdtrpc_ScanTxOutSet_response.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_Sdtrpc_ScanTxOutSet_response_addressSubTotalItem.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_SdtSDT_Addressess_SDT_AddressessItem.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_SdtSDT_rpc.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_SdttestBIP32UnitTestSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_SdttestECCencryptANDdecryptUnitTestSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_SdttestSLIP0132UnitTestSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_Sdttest_BIP32_in.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_Sdttest_BIP32_out.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_Sdttest_SLIP0132_in.cs" />
+ 	<Compile Include="$(WebDirectory)\nbitcoin\type_Sdttest_SLIP0132_out.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtNBitcoin_SDT_Addressess.cs" />
+ 	<Compile Include="$(WebDirectory)\nostr\type_SdtEvent.cs" />
+ 	<Compile Include="$(WebDirectory)\nostr\type_SdtRecFromNostr.cs" />
+ 	<Compile Include="$(WebDirectory)\nostr\type_SdtSDT_Chat.cs" />
+ 	<Compile Include="$(WebDirectory)\nostr\type_SdtSDT_message.cs" />
+ 	<Compile Include="$(WebDirectory)\nostr\type_SdtSDT_receive_msg.cs" />
+ 	<Compile Include="$(WebDirectory)\nostr\type_SdtserializeEventUnitTestSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\nostr\type_SdtTagsOfTags.cs" />
+ 	<Compile Include="$(WebDirectory)\openapicommon\type_SdtApiResponse.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtprocessRecivedFromNostrTestSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_Rest_Parameters_Item.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtsendMesage__postInput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtsendMesage__postOutput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSendRawTransaction__postInput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSendRawTransaction__postOutput.cs" />
+ 	<Compile Include="$(WebDirectory)\shamirss\type_SdtShamir_input_SDT.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtupdateContact__postInput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtupdateContact__postOutput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtupdateGroup__postInput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtupdateGroup__postOutput.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtEncryptedFile.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtMultiSigSignatureData.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtMultiSigSignatureData_DataItem.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtNote.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtNoteRead.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtContact_SDT.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroup_SDT.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroup_SDT_ContactItem.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroup_SDT_otherGroup.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtMessage_signature.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtMuSigSignatures.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtresultSendRawTransaction.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtSDTAddressHistory.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtSDT_Json_Enc.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtSDT_ReturnAddresses_SDT_ReturnAddressesItem.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtStoredTransactions.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtStoredTransactions_TransactionItem.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtStoredTransactions_TransactionItem_UsedIn.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtStoredTransactions_TransactionItem_UsedIn_UsedToItem.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtWallet.cs" />
+
+</ItemGroup>
+
+</Project>

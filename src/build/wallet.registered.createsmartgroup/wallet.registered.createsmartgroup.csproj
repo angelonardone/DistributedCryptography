@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
+	
+	
+	<PropertyGroup>
+		<AssemblyName>wallet.registered.createsmartgroup</AssemblyName>
+		<TargetFramework>$(TargetFramework)</TargetFramework>
+		<OutputType>Library</OutputType>
+		<GenerateDependencyFile>false</GenerateDependencyFile>
+		<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+		<PostgresqlSupport>false</PostgresqlSupport>
+		<OfficeSupport>false</OfficeSupport>
+		<MailSupport>false</MailSupport>
+		<GrpcClientSupport>false</GrpcClientSupport>
+		<PdfLibrary></PdfLibrary>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<ProjectReference Include=".\..\GeneXus.Programs.Common\GeneXus.Programs.Common.csproj" />
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="GeneXus.dll" > 
+			<HintPath>$(WebBinDirectory)\GeneXus.dll</HintPath>
+		</Reference>
+		<Reference Include="Google.Authenticator.dll" > 
+			<HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
+		</Reference>
+		<Reference Include="GxNostrLib.dll" > 
+			<HintPath>$(WebBinDirectory)\GxNostrLib.dll</HintPath>
+		</Reference>
+
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
+		<Compile Include = "$(WebDirectory)\apibaseurlauth.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\aesencryptstring.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\encryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\creategroup.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\aesdecryptstring.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getlastjasonencritionkey.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\decryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\desktopappservicesrestcreategrouppost.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluser.cs" />
+		<Compile Include = "$(WebDirectory)\openapicommon\callapi.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\createsmartgroup.cs" />
+		<Compile Include = "$(WebDirectory)\openapicommon\varchartojsonformat.cs" />
+		<Compile Include = "$(WebDirectory)\openapicommon\processserver.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\setexternaluser.cs" />
+
+	</ItemGroup>
+	<ItemGroup Condition="'$(PostgresqlSupport)'=='true'">
+		<PackageReference Include="Npgsql" Version="3.2.7" PrivateAssets="All"/>
+	</ItemGroup>
+
+	<Import Project="..\DotNetCoreBaseProject.targets"/>	
+</Project>
+

@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <GenStdVersion>[1.28.4]</GenStdVersion>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+</Project>
