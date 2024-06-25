@@ -159,7 +159,7 @@ namespace GeneXus.Programs.general.ui {
          context.AddJavascriptSource("Toastr/ToastrRender.js", "", false, true);
          context.AddJavascriptSource("Unanimo_chameleon/chameleon.js", "", false, true);
          context.AddJavascriptSource("UserControls/GeneXusUnanimo.SidebarRender.js", "", false, true);
-         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?202461814262672", false, true);
+         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?202462512534492", false, true);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -840,7 +840,7 @@ namespace GeneXus.Programs.general.ui {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?20246181426276", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?202462512534522", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -855,7 +855,7 @@ namespace GeneXus.Programs.general.ui {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?20246181426276", false, true);
+         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?202462512534524", false, true);
          context.AddJavascriptSource("Unanimo_chameleon/chameleon.js", "", false, true);
          context.AddJavascriptSource("UserControls/GeneXusUnanimo.IconRender.js", "", false, true);
          context.AddJavascriptSource("Toastr/toastr.min.js", "", false, true);

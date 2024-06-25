@@ -21,9 +21,9 @@ namespace GeneXus.Programs.nbitcoin {
       private static Hashtable domainMap;
       static gxdomainnetworktype ()
       {
-         domain["Main"] = "Main";
-         domain["TestNet"] = "TestNet";
-         domain["RegTest"] = "RegTest";
+         domain["Main"] = "MainNet";
+         domain["TestNet"] = "TestNet (for testing only)";
+         domain["RegTest"] = "RegTest (for testing only)";
       }
 
       public static string getDescription( IGxContext context ,

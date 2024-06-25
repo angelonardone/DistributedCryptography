@@ -1025,7 +1025,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202461814262451", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202462512534367", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1041,7 +1041,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/createwallet.js", "?202461814262451", false, true);
+         context.AddJavascriptSource("wallet/createwallet.js", "?202462512534367", false, true);
          /* End function include_jscripts */
       }
 
@@ -1049,9 +1049,9 @@ namespace GeneXus.Programs.wallet {
       {
          cmbavNetworktype.Name = "vNETWORKTYPE";
          cmbavNetworktype.WebTags = "";
-         cmbavNetworktype.addItem("Main", "Main", 0);
-         cmbavNetworktype.addItem("TestNet", "TestNet", 0);
-         cmbavNetworktype.addItem("RegTest", "RegTest", 0);
+         cmbavNetworktype.addItem("Main", "MainNet", 0);
+         cmbavNetworktype.addItem("TestNet", "TestNet (for testing only)", 0);
+         cmbavNetworktype.addItem("RegTest", "RegTest (for testing only)", 0);
          if ( cmbavNetworktype.ItemCount > 0 )
          {
             AV15networkType = cmbavNetworktype.getValidValue(AV15networkType);

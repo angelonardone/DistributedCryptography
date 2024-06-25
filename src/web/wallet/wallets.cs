@@ -980,7 +980,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202461814262262", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202462512534312", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -996,7 +996,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/wallets.js", "?202461814262262", false, true);
+         context.AddJavascriptSource("wallet/wallets.js", "?202462512534312", false, true);
          /* End function include_jscripts */
       }
 
@@ -1095,9 +1095,9 @@ namespace GeneXus.Programs.wallet {
             GXCCtl = "CTLNETWORKTYPE_" + sGXsfl_14_idx;
             cmbavCtlnetworktype.Name = GXCCtl;
             cmbavCtlnetworktype.WebTags = "";
-            cmbavCtlnetworktype.addItem("Main", "Main", 0);
-            cmbavCtlnetworktype.addItem("TestNet", "TestNet", 0);
-            cmbavCtlnetworktype.addItem("RegTest", "RegTest", 0);
+            cmbavCtlnetworktype.addItem("Main", "MainNet", 0);
+            cmbavCtlnetworktype.addItem("TestNet", "TestNet (for testing only)", 0);
+            cmbavCtlnetworktype.addItem("RegTest", "RegTest (for testing only)", 0);
             if ( cmbavCtlnetworktype.ItemCount > 0 )
             {
                if ( ( AV9GXV1 > 0 ) && ( AV6wallets.Count >= AV9GXV1 ) && String.IsNullOrEmpty(StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV9GXV1)).gxTpr_Networktype)) )
@@ -1152,9 +1152,9 @@ namespace GeneXus.Programs.wallet {
          GXCCtl = "CTLNETWORKTYPE_" + sGXsfl_14_idx;
          cmbavCtlnetworktype.Name = GXCCtl;
          cmbavCtlnetworktype.WebTags = "";
-         cmbavCtlnetworktype.addItem("Main", "Main", 0);
-         cmbavCtlnetworktype.addItem("TestNet", "TestNet", 0);
-         cmbavCtlnetworktype.addItem("RegTest", "RegTest", 0);
+         cmbavCtlnetworktype.addItem("Main", "MainNet", 0);
+         cmbavCtlnetworktype.addItem("TestNet", "TestNet (for testing only)", 0);
+         cmbavCtlnetworktype.addItem("RegTest", "RegTest (for testing only)", 0);
          if ( cmbavCtlnetworktype.ItemCount > 0 )
          {
             if ( ( AV9GXV1 > 0 ) && ( AV6wallets.Count >= AV9GXV1 ) && String.IsNullOrEmpty(StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV9GXV1)).gxTpr_Networktype)) )
