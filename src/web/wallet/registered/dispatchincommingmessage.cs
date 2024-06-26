@@ -788,7 +788,9 @@ namespace GeneXus.Programs.wallet.registered {
             new GeneXus.Programs.nostr.processrecivedfromnostr(context ).execute(  AV12notificationInfo, out  AV26recFromNostr) ;
             if ( ( StringUtil.StrCmp(AV26recFromNostr.gxTpr_Responsetype, "EVENT") == 0 ) && ( AV26recFromNostr.gxTpr_Event.gxTpr_Kind == 4 ) )
             {
-               AV28encText = AV27HexaEncoder.fromhexa(StringUtil.Trim( AV26recFromNostr.gxTpr_Event.gxTpr_Content));
+               GXt_char3 = AV28encText;
+               new GeneXus.Programs.distcrypt.hextotext(context ).execute(  StringUtil.Trim( AV26recFromNostr.gxTpr_Event.gxTpr_Content), out  GXt_char3) ;
+               AV28encText = GXt_char3;
                AV13json_enc.FromJSonString(AV28encText, null);
                /* Execute user subroutine: 'DISPATCH ONE MESSAGE' */
                S112 ();
@@ -1368,7 +1370,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202461814255270", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202462613151998", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1384,7 +1386,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/dispatchincommingmessage.js", "?202461814255271", false, true);
+         context.AddJavascriptSource("wallet/registered/dispatchincommingmessage.js", "?202462613151999", false, true);
          /* End function include_jscripts */
       }
 
@@ -1474,7 +1476,6 @@ namespace GeneXus.Programs.wallet.registered {
          AV6queueFile = new GxFile(context.GetPhysicalPath());
          AV26recFromNostr = new GeneXus.Programs.nostr.SdtRecFromNostr(context);
          AV28encText = "";
-         AV27HexaEncoder = new GeneXus.Programs.securityapicommons.SdtHexaEncoder(context);
          AV14error = "";
          AV19messages = new SdtDesktopApp_services_SDT_Messages(context);
          AV15clearText = "";
@@ -1541,7 +1542,6 @@ namespace GeneXus.Programs.wallet.registered {
       private Guid AV17contactId ;
       private Guid GXt_guid4 ;
       private GXWebForm Form ;
-      private GeneXus.Programs.securityapicommons.SdtHexaEncoder AV27HexaEncoder ;
       private IGxDataStore dsDefault ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;

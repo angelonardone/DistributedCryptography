@@ -84,7 +84,9 @@ namespace GeneXus.Programs.nostr {
             AV18tagsoftags.gxTpr_Tag.Add("p", 0);
             AV18tagsoftags.gxTpr_Tag.Add(StringUtil.Trim( AV11topic), 0);
             AV17nostrEvent.gxTpr_Tags.Add(AV18tagsoftags, 0);
-            AV17nostrEvent.gxTpr_Content = AV24HexaEncoder.tohexa(AV13message);
+            GXt_char3 = "";
+            new GeneXus.Programs.distcrypt.texttohex(context ).execute(  StringUtil.Trim( AV13message), out  GXt_char3) ;
+            AV17nostrEvent.gxTpr_Content = GXt_char3;
             GXt_char3 = AV8error;
             new GeneXus.Programs.nostr.serializeevent(context ).execute( ref  AV17nostrEvent,  AV19externalUser.gxTpr_Keyinfo.gxTpr_Privatekey, out  AV20messageSend, out  GXt_char3) ;
             AV8error = GXt_char3;
@@ -128,7 +130,6 @@ namespace GeneXus.Programs.nostr {
          GXt_SdtExternalUser1 = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
          AV17nostrEvent = new GeneXus.Programs.nostr.SdtEvent(context);
          AV18tagsoftags = new GeneXus.Programs.nostr.SdtTagsOfTags(context);
-         AV24HexaEncoder = new GeneXus.Programs.securityapicommons.SdtHexaEncoder(context);
          GXt_char3 = "";
          AV20messageSend = "";
          AV12Key = Guid.Empty;
@@ -147,7 +148,6 @@ namespace GeneXus.Programs.nostr {
       private Guid AV12Key ;
       private Guid GXt_guid4 ;
       private GeneXus.Programs.nostr.SdtGxNostrLib GxNostrLib ;
-      private GeneXus.Programs.securityapicommons.SdtHexaEncoder AV24HexaEncoder ;
       private string aP2_error ;
       private GeneXus.Programs.distcrypt.SdtExternalUser AV19externalUser ;
       private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;

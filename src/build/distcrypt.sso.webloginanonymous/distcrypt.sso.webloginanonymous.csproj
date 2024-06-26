@@ -20,9 +20,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Reference Include="SecurityAPICommons.dll" > 
-			<HintPath>$(WebBinDirectory)\SecurityAPICommons.dll</HintPath>
-		</Reference>
 		<Reference Include="Google.Authenticator.dll" > 
 			<HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
 		</Reference>
@@ -48,11 +45,13 @@
 		<Compile Include = "$(WebDirectory)\nbitcoin\schnorrsignmsg.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getdistcryptpublickey.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getlogindistcrypt.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\hextotext.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\anonymousdesktopappip.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluser.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccsignmsg.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\texttohex.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getlogindistcrypt.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\sso\webloginanonymous.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\setexternaluser.cs" />
