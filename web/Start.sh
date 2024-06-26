@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 # Function to kill process using a specific port
 kill_port() {
     local PORT=$1
