@@ -78,16 +78,18 @@ namespace GeneXus.Programs.wallet {
          /* GeneXus formulas */
          /* Output device settings */
          AV16StoredTransactions.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  AV19transactionFileName, out  AV8error), null);
+         AV20sentDateTime = DateTimeUtil.Now( context);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
          {
-            AV20GXV1 = 1;
-            while ( AV20GXV1 <= AV16StoredTransactions.gxTpr_Transaction.Count )
+            AV21GXV1 = 1;
+            while ( AV21GXV1 <= AV16StoredTransactions.gxTpr_Transaction.Count )
             {
-               AV17oneStoredTransaction = ((GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem)AV16StoredTransactions.gxTpr_Transaction.Item(AV20GXV1));
-               AV21GXV2 = 1;
-               while ( AV21GXV2 <= AV14transactionsToSend.Count )
+               AV17oneStoredTransaction = ((GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem)AV16StoredTransactions.gxTpr_Transaction.Item(AV21GXV1));
+               AV22GXV2 = 1;
+               while ( AV22GXV2 <= AV14transactionsToSend.Count )
                {
-                  AV15oneTransaction = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14transactionsToSend.Item(AV21GXV2));
+                  AV15oneTransaction = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14transactionsToSend.Item(AV22GXV2));
+                  AV15oneTransaction.gxTpr_Sentdatetime = AV20sentDateTime;
                   if ( ( StringUtil.StrCmp(AV17oneStoredTransaction.gxTpr_Transactionid, AV15oneTransaction.gxTpr_Receivedtransactionid) == 0 ) && ( StringUtil.StrCmp(AV17oneStoredTransaction.gxTpr_Scriptpubkey_address, AV15oneTransaction.gxTpr_Receivedaddress) == 0 ) )
                   {
                      AV17oneStoredTransaction.gxTpr_Usedin.gxTpr_Datetime = AV15oneTransaction.gxTpr_Sentdatetime;
@@ -95,9 +97,9 @@ namespace GeneXus.Programs.wallet {
                      AV17oneStoredTransaction.gxTpr_Description = StringUtil.Trim( AV15oneTransaction.gxTpr_Description);
                      AV15oneTransaction.gxTpr_Senttransactionid = StringUtil.Trim( AV18TransactionId);
                   }
-                  AV21GXV2 = (int)(AV21GXV2+1);
+                  AV22GXV2 = (int)(AV22GXV2+1);
                }
-               AV20GXV1 = (int)(AV20GXV1+1);
+               AV21GXV1 = (int)(AV21GXV1+1);
             }
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
             {
@@ -123,18 +125,20 @@ namespace GeneXus.Programs.wallet {
       {
          AV8error = "";
          AV16StoredTransactions = new GeneXus.Programs.wallet.SdtStoredTransactions(context);
+         AV20sentDateTime = (DateTime)(DateTime.MinValue);
          AV17oneStoredTransaction = new GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem(context);
          AV15oneTransaction = new GeneXus.Programs.wallet.SdtSDTAddressHistory(context);
          GXt_char1 = "";
          /* GeneXus formulas. */
       }
 
-      private int AV20GXV1 ;
-      private int AV21GXV2 ;
+      private int AV21GXV1 ;
+      private int AV22GXV2 ;
       private string AV19transactionFileName ;
       private string AV18TransactionId ;
       private string AV8error ;
       private string GXt_char1 ;
+      private DateTime AV20sentDateTime ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP2_transactionsToSend ;
       private string aP3_error ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV14transactionsToSend ;

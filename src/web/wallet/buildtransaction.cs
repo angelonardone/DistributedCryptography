@@ -40,7 +40,7 @@ namespace GeneXus.Programs.wallet {
                            decimal aP1_transactionFee ,
                            string aP2_networkType ,
                            GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP3_transactionsToSend ,
-                           decimal aP4_sendCoins ,
+                           decimal aP4_inSendCoins ,
                            string aP5_sendTo ,
                            string aP6_returnTo ,
                            out long aP7_virtualSize ,
@@ -51,7 +51,7 @@ namespace GeneXus.Programs.wallet {
          this.AV12transactionFee = aP1_transactionFee;
          this.AV10networkType = aP2_networkType;
          this.AV13transactionsToSend = aP3_transactionsToSend;
-         this.AV22sendCoins = aP4_sendCoins;
+         this.AV29inSendCoins = aP4_inSendCoins;
          this.AV21sendTo = aP5_sendTo;
          this.AV23returnTo = aP6_returnTo;
          this.AV14virtualSize = 0 ;
@@ -68,13 +68,13 @@ namespace GeneXus.Programs.wallet {
                                 decimal aP1_transactionFee ,
                                 string aP2_networkType ,
                                 GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP3_transactionsToSend ,
-                                decimal aP4_sendCoins ,
+                                decimal aP4_inSendCoins ,
                                 string aP5_sendTo ,
                                 string aP6_returnTo ,
                                 out long aP7_virtualSize ,
                                 out string aP8_hexTransaction )
       {
-         execute(aP0_sendAllCoins, aP1_transactionFee, aP2_networkType, aP3_transactionsToSend, aP4_sendCoins, aP5_sendTo, aP6_returnTo, out aP7_virtualSize, out aP8_hexTransaction, out aP9_error);
+         execute(aP0_sendAllCoins, aP1_transactionFee, aP2_networkType, aP3_transactionsToSend, aP4_inSendCoins, aP5_sendTo, aP6_returnTo, out aP7_virtualSize, out aP8_hexTransaction, out aP9_error);
          return AV8error ;
       }
 
@@ -82,7 +82,7 @@ namespace GeneXus.Programs.wallet {
                                  decimal aP1_transactionFee ,
                                  string aP2_networkType ,
                                  GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP3_transactionsToSend ,
-                                 decimal aP4_sendCoins ,
+                                 decimal aP4_inSendCoins ,
                                  string aP5_sendTo ,
                                  string aP6_returnTo ,
                                  out long aP7_virtualSize ,
@@ -93,7 +93,7 @@ namespace GeneXus.Programs.wallet {
          this.AV12transactionFee = aP1_transactionFee;
          this.AV10networkType = aP2_networkType;
          this.AV13transactionsToSend = aP3_transactionsToSend;
-         this.AV22sendCoins = aP4_sendCoins;
+         this.AV29inSendCoins = aP4_inSendCoins;
          this.AV21sendTo = aP5_sendTo;
          this.AV23returnTo = aP6_returnTo;
          this.AV14virtualSize = 0 ;
@@ -129,7 +129,11 @@ namespace GeneXus.Programs.wallet {
           var all_keys = new System.Collections.Generic.List<NBitcoin.Key>();
          if ( AV28sendAllCoins )
          {
-            AV22sendCoins = (decimal)(AV22sendCoins-AV12transactionFee);
+            AV22sendCoins = (decimal)(AV29inSendCoins-AV12transactionFee);
+         }
+         else
+         {
+            AV22sendCoins = AV29inSendCoins;
          }
          /* User Code */
           try
@@ -160,10 +164,10 @@ namespace GeneXus.Programs.wallet {
           var returnto = NBitcoin.BitcoinAddress.Create(AV23returnTo, network);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
          {
-            AV29GXV1 = 1;
-            while ( AV29GXV1 <= AV13transactionsToSend.Count )
+            AV30GXV1 = 1;
+            while ( AV30GXV1 <= AV13transactionsToSend.Count )
             {
-               AV15oneAddressHistory = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV13transactionsToSend.Item(AV29GXV1));
+               AV15oneAddressHistory = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV13transactionsToSend.Item(AV30GXV1));
                GXt_char1 = AV20privateKey;
                new GeneXus.Programs.wallet.getprivatekeyfromaddresshistory(context ).execute(  AV15oneAddressHistory, out  GXt_char1) ;
                AV20privateKey = GXt_char1;
@@ -195,7 +199,7 @@ namespace GeneXus.Programs.wallet {
                AV26receivedIn = (long)(AV26receivedIn+1);
                /* User Code */
                 }
-               AV29GXV1 = (int)(AV29GXV1+1);
+               AV30GXV1 = (int)(AV30GXV1+1);
             }
             /* User Code */
              var allkeysarray = all_keys.ToArray();
@@ -289,10 +293,11 @@ namespace GeneXus.Programs.wallet {
          /* GeneXus formulas. */
       }
 
-      private int AV29GXV1 ;
+      private int AV30GXV1 ;
       private long AV14virtualSize ;
       private long AV26receivedIn ;
       private decimal AV12transactionFee ;
+      private decimal AV29inSendCoins ;
       private decimal AV22sendCoins ;
       private string AV10networkType ;
       private string AV21sendTo ;

@@ -297,7 +297,6 @@ namespace GeneXus.Programs.wallet.registered {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vGROUP_SDT", AV31group_sdt);
          }
          GxWebStd.gx_hidden_field( context, "gxhash_vGROUP_SDT", GetSecureSignedToken( "", AV31group_sdt, context));
-         GxWebStd.gx_hidden_field( context, "vTRANSACTIONFEE", StringUtil.LTrim( StringUtil.NToC( AV24transactionFee, 16, 8, ".", "")));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vTRANSACTIONSTOSEND", AV25transactionsToSend);
@@ -977,7 +976,7 @@ namespace GeneXus.Programs.wallet.registered {
          if ( ! (Convert.ToDecimal(0)==AV26userFee) )
          {
             GXt_char5 = AV10error;
-            new GeneXus.Programs.wallet.buildtransactionmusig(context ).execute(  true,  AV31group_sdt,  AV17sendAllCoins,  AV24transactionFee,  AV28wallet.gxTpr_Networktype, ref  AV25transactionsToSend,  AV18sendCoins,  AV19sendTo,  AV7changeTo, out  AV27virtualSize, out  AV13hexTransaction, out  AV34verified, out  GXt_char5) ;
+            new GeneXus.Programs.wallet.buildtransactionmusig(context ).execute(  true,  AV31group_sdt,  AV17sendAllCoins,  AV26userFee,  AV28wallet.gxTpr_Networktype, ref  AV25transactionsToSend,  AV18sendCoins,  AV19sendTo,  AV7changeTo, out  AV27virtualSize, out  AV13hexTransaction, out  AV34verified, out  GXt_char5) ;
             AV10error = GXt_char5;
             AssignAttri("", false, "AV10error", AV10error);
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV10error)) )
@@ -1121,7 +1120,6 @@ namespace GeneXus.Programs.wallet.registered {
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV10error)) )
                {
                   AV24transactionFee = NumberUtil.Val( "0.00001000", ".");
-                  AssignAttri("", false, "AV24transactionFee", StringUtil.LTrimStr( AV24transactionFee, 16, 8));
                   GXt_char5 = AV10error;
                   new GeneXus.Programs.wallet.buildtransactionmusig(context ).execute(  false,  AV31group_sdt,  AV17sendAllCoins,  AV24transactionFee,  AV28wallet.gxTpr_Networktype, ref  AV25transactionsToSend,  AV18sendCoins,  AV19sendTo,  AV7changeTo, out  AV27virtualSize, out  AV13hexTransaction, out  AV34verified, out  GXt_char5) ;
                   AV10error = GXt_char5;
@@ -1267,7 +1265,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20246261316946", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202462712313052", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1284,7 +1282,7 @@ namespace GeneXus.Programs.wallet.registered {
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
          context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("wallet/registered/sendcoinsmusig.js", "?20246261316946", false, true);
+         context.AddJavascriptSource("wallet/registered/sendcoinsmusig.js", "?202462712313053", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -1360,11 +1358,11 @@ namespace GeneXus.Programs.wallet.registered {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV17sendAllCoins","fld":"vSENDALLCOINS"},{"av":"AV28wallet","fld":"vWALLET","hsh":true},{"av":"AV31group_sdt","fld":"vGROUP_SDT","hsh":true},{"av":"AV35oneMuSigSignatures","fld":"vONEMUSIGSIGNATURES","hsh":true},{"av":"AV23totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZ9.99999999","hsh":true}]}""");
          setEventMetadata("'NEXT'","""{"handler":"E121W2","iparms":[{"av":"AV18sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999"},{"av":"AV23totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZ9.99999999","hsh":true},{"av":"AV17sendAllCoins","fld":"vSENDALLCOINS"},{"av":"AV10error","fld":"vERROR"},{"av":"AV19sendTo","fld":"vSENDTO"},{"av":"AV28wallet","fld":"vWALLET","hsh":true},{"av":"AV31group_sdt","fld":"vGROUP_SDT","hsh":true},{"av":"AV33description","fld":"vDESCRIPTION"}]""");
          setEventMetadata("'NEXT'",""","oparms":[{"av":"AV10error","fld":"vERROR"}]}""");
-         setEventMetadata("'SEND COINS'","""{"handler":"E131W2","iparms":[{"av":"cmbavUserfee"},{"av":"AV26userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999"},{"av":"AV31group_sdt","fld":"vGROUP_SDT","hsh":true},{"av":"AV17sendAllCoins","fld":"vSENDALLCOINS"},{"av":"AV24transactionFee","fld":"vTRANSACTIONFEE","pic":"ZZZZZZ9.99999999"},{"av":"AV28wallet","fld":"vWALLET","hsh":true},{"av":"AV25transactionsToSend","fld":"vTRANSACTIONSTOSEND"},{"av":"AV18sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999"},{"av":"AV19sendTo","fld":"vSENDTO"},{"av":"AV7changeTo","fld":"vCHANGETO"},{"av":"AV35oneMuSigSignatures","fld":"vONEMUSIGSIGNATURES","hsh":true},{"av":"AV10error","fld":"vERROR"}]""");
+         setEventMetadata("'SEND COINS'","""{"handler":"E131W2","iparms":[{"av":"cmbavUserfee"},{"av":"AV26userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999"},{"av":"AV31group_sdt","fld":"vGROUP_SDT","hsh":true},{"av":"AV17sendAllCoins","fld":"vSENDALLCOINS"},{"av":"AV28wallet","fld":"vWALLET","hsh":true},{"av":"AV25transactionsToSend","fld":"vTRANSACTIONSTOSEND"},{"av":"AV18sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999"},{"av":"AV19sendTo","fld":"vSENDTO"},{"av":"AV7changeTo","fld":"vCHANGETO"},{"av":"AV35oneMuSigSignatures","fld":"vONEMUSIGSIGNATURES","hsh":true},{"av":"AV10error","fld":"vERROR"}]""");
          setEventMetadata("'SEND COINS'",""","oparms":[{"av":"AV10error","fld":"vERROR"},{"av":"AV25transactionsToSend","fld":"vTRANSACTIONSTOSEND"},{"ctrl":"SENDCOINS","prop":"Visible"},{"av":"cmbavUserfee"}]}""");
          setEventMetadata("'CANCEL'","""{"handler":"E141W2","iparms":[]}""");
          setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E151W2","iparms":[{"av":"AV16PopupName","fld":"vPOPUPNAME"},{"av":"AV35oneMuSigSignatures","fld":"vONEMUSIGSIGNATURES","hsh":true},{"av":"AV33description","fld":"vDESCRIPTION"},{"av":"AV18sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999"},{"av":"AV7changeTo","fld":"vCHANGETO"},{"av":"AV10error","fld":"vERROR"},{"av":"AV31group_sdt","fld":"vGROUP_SDT","hsh":true},{"av":"AV17sendAllCoins","fld":"vSENDALLCOINS"},{"av":"AV28wallet","fld":"vWALLET","hsh":true},{"av":"AV25transactionsToSend","fld":"vTRANSACTIONSTOSEND"},{"av":"AV19sendTo","fld":"vSENDTO"},{"av":"cmbavUserfee"},{"av":"AV26userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999"}]""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"edtavSendcoins_Enabled","ctrl":"vSENDCOINS","prop":"Enabled"},{"av":"edtavSendto_Enabled","ctrl":"vSENDTO","prop":"Enabled"},{"av":"edtavDescription_Enabled","ctrl":"vDESCRIPTION","prop":"Enabled"},{"ctrl":"NEXT","prop":"Visible"},{"ctrl":"SENDCOINS","prop":"Visible"},{"av":"AV25transactionsToSend","fld":"vTRANSACTIONSTOSEND"},{"av":"AV10error","fld":"vERROR"},{"av":"AV7changeTo","fld":"vCHANGETO"},{"av":"AV24transactionFee","fld":"vTRANSACTIONFEE","pic":"ZZZZZZ9.99999999"},{"av":"cmbavUserfee"},{"av":"AV26userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999"}]}""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"edtavSendcoins_Enabled","ctrl":"vSENDCOINS","prop":"Enabled"},{"av":"edtavSendto_Enabled","ctrl":"vSENDTO","prop":"Enabled"},{"av":"edtavDescription_Enabled","ctrl":"vDESCRIPTION","prop":"Enabled"},{"ctrl":"NEXT","prop":"Visible"},{"ctrl":"SENDCOINS","prop":"Visible"},{"av":"AV25transactionsToSend","fld":"vTRANSACTIONSTOSEND"},{"av":"AV10error","fld":"vERROR"},{"av":"AV7changeTo","fld":"vCHANGETO"},{"av":"cmbavUserfee"},{"av":"AV26userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999"}]}""");
          return  ;
       }
 
@@ -1448,10 +1446,10 @@ namespace GeneXus.Programs.wallet.registered {
       private int idxLst ;
       private long AV27virtualSize ;
       private decimal AV23totalBalance ;
-      private decimal AV24transactionFee ;
       private decimal AV18sendCoins ;
       private decimal AV26userFee ;
       private decimal GXt_decimal4 ;
+      private decimal AV24transactionFee ;
       private decimal AV9economicalFee ;
       private decimal AV21standardFee ;
       private decimal AV12fastestFee ;
