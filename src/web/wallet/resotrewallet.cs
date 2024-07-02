@@ -1069,7 +1069,7 @@ namespace GeneXus.Programs.wallet {
          AV7extKeyCreate.gxTpr_Createextkeytype = 30;
          AV7extKeyCreate.gxTpr_Mnemoniclanguage = 10;
          AV7extKeyCreate.gxTpr_Createtext = AV11MnemonicText;
-         if ( StringUtil.StrCmp(AV12networkType, "Main") == 0 )
+         if ( StringUtil.StrCmp(AV12networkType, "MainNet") == 0 )
          {
             AV7extKeyCreate.gxTpr_Keypath = "m/44'/0'/0'";
          }
@@ -1131,7 +1131,7 @@ namespace GeneXus.Programs.wallet {
          AV7extKeyCreate.gxTpr_Createextkeytype = 30;
          AV7extKeyCreate.gxTpr_Mnemoniclanguage = 10;
          AV7extKeyCreate.gxTpr_Createtext = AV11MnemonicText;
-         if ( StringUtil.StrCmp(AV12networkType, "Main") == 0 )
+         if ( StringUtil.StrCmp(AV12networkType, "MainNet") == 0 )
          {
             AV7extKeyCreate.gxTpr_Keypath = "m/49'/0'/0'";
          }
@@ -1193,7 +1193,7 @@ namespace GeneXus.Programs.wallet {
          AV7extKeyCreate.gxTpr_Createextkeytype = 30;
          AV7extKeyCreate.gxTpr_Mnemoniclanguage = 10;
          AV7extKeyCreate.gxTpr_Createtext = AV11MnemonicText;
-         if ( StringUtil.StrCmp(AV12networkType, "Main") == 0 )
+         if ( StringUtil.StrCmp(AV12networkType, "MainNet") == 0 )
          {
             AV7extKeyCreate.gxTpr_Keypath = "m/84'/0'/0'";
          }
@@ -1262,7 +1262,7 @@ namespace GeneXus.Programs.wallet {
          AV7extKeyCreate.gxTpr_Createextkeytype = 30;
          AV7extKeyCreate.gxTpr_Mnemoniclanguage = 10;
          AV7extKeyCreate.gxTpr_Createtext = AV11MnemonicText;
-         if ( StringUtil.StrCmp(AV12networkType, "Main") == 0 )
+         if ( StringUtil.StrCmp(AV12networkType, "MainNet") == 0 )
          {
             AV7extKeyCreate.gxTpr_Keypath = "m/86'/0'/0'";
          }
@@ -1384,7 +1384,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202462613155756", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202471164618", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1400,7 +1400,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/resotrewallet.js", "?202462613155756", false, true);
+         context.AddJavascriptSource("wallet/resotrewallet.js", "?202471164618", false, true);
          /* End function include_jscripts */
       }
 
@@ -1408,7 +1408,7 @@ namespace GeneXus.Programs.wallet {
       {
          cmbavNetworktype.Name = "vNETWORKTYPE";
          cmbavNetworktype.WebTags = "";
-         cmbavNetworktype.addItem("Main", "MainNet", 0);
+         cmbavNetworktype.addItem("MainNet", "MainNet", 0);
          cmbavNetworktype.addItem("TestNet", "TestNet (for testing only)", 0);
          cmbavNetworktype.addItem("RegTest", "RegTest (for testing only)", 0);
          if ( cmbavNetworktype.ItemCount > 0 )

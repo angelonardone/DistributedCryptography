@@ -67,7 +67,7 @@ namespace GeneXus.Programs.nbitcoin {
          /* Output device settings */
          if ( StringUtil.StartsWith( AV9address, "bc1") )
          {
-            AV8networkType = "Main";
+            AV8networkType = "MainNet";
          }
          else if ( StringUtil.StartsWith( AV9address, "tb1") )
          {
@@ -79,7 +79,7 @@ namespace GeneXus.Programs.nbitcoin {
          }
          else
          {
-            AV8networkType = "Main";
+            AV8networkType = "MainNet";
          }
          this.cleanup();
       }

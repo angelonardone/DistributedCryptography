@@ -1310,7 +1310,7 @@ namespace GeneXus.Programs.wallet {
          new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet2) ;
          AV23wallet = GXt_SdtWallet2;
          AV28StoredTransactions.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "transactions.trn", out  AV5error), null);
-         if ( StringUtil.StrCmp(AV23wallet.gxTpr_Networktype, "Main") == 0 )
+         if ( StringUtil.StrCmp(AV23wallet.gxTpr_Networktype, "MainNet") == 0 )
          {
             AV12mainAddress = StringUtil.Trim( AV11keyInfo.gxTpr_Address);
             AssignAttri(sPrefix, false, "AV12mainAddress", AV12mainAddress);
@@ -1369,7 +1369,7 @@ namespace GeneXus.Programs.wallet {
          while ( AV31GXV1 <= AV14SDTAddressHistory.Count )
          {
             AV14SDTAddressHistory.CurrentItem = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV31GXV1));
-            if ( StringUtil.StrCmp(AV23wallet.gxTpr_Networktype, "Main") == 0 )
+            if ( StringUtil.StrCmp(AV23wallet.gxTpr_Networktype, "MainNet") == 0 )
             {
                edtavFirstlink_Link = "https://blockstream.info/tx/"+StringUtil.Trim( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)(AV14SDTAddressHistory.CurrentItem)).gxTpr_Receivedtransactionid);
                edtavSecondlink_Link = "https://blockstream.info/tx/"+StringUtil.Trim( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)(AV14SDTAddressHistory.CurrentItem)).gxTpr_Senttransactionid);
@@ -1720,7 +1720,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202462613152690", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024711634327", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1736,7 +1736,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/oneaddress.js", "?202462613152690", false, true);
+         context.AddJavascriptSource("wallet/oneaddress.js", "?2024711634329", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }

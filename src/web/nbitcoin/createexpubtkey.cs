@@ -85,7 +85,7 @@ namespace GeneXus.Programs.nbitcoin {
          AV10keyInfo.gxTpr_Keypath = AV11keyPath;
          /* User Code */
           NBitcoin.Network network;
-         if ( StringUtil.StrCmp(AV12networkType, "Main") == 0 )
+         if ( StringUtil.StrCmp(AV12networkType, "MainNet") == 0 )
          {
             /* User Code */
              network = NBitcoin.Network.Main;

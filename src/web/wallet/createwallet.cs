@@ -852,7 +852,7 @@ namespace GeneXus.Programs.wallet {
          AV8extKeyCreate.gxTpr_Createextkeytype = 20;
          AV8extKeyCreate.gxTpr_Mnemonicnumberwords = AV13mnemonicNumberWords;
          AV8extKeyCreate.gxTpr_Mnemoniclanguage = AV12mnemonicLanguage;
-         if ( StringUtil.StrCmp(AV15networkType, "Main") == 0 )
+         if ( StringUtil.StrCmp(AV15networkType, "MainNet") == 0 )
          {
             AV8extKeyCreate.gxTpr_Keypath = "m/86'/0'/0'";
          }
@@ -1025,7 +1025,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202462613155573", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202471164521", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1041,7 +1041,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/createwallet.js", "?202462613155574", false, true);
+         context.AddJavascriptSource("wallet/createwallet.js", "?202471164521", false, true);
          /* End function include_jscripts */
       }
 
@@ -1049,7 +1049,7 @@ namespace GeneXus.Programs.wallet {
       {
          cmbavNetworktype.Name = "vNETWORKTYPE";
          cmbavNetworktype.WebTags = "";
-         cmbavNetworktype.addItem("Main", "MainNet", 0);
+         cmbavNetworktype.addItem("MainNet", "MainNet", 0);
          cmbavNetworktype.addItem("TestNet", "TestNet (for testing only)", 0);
          cmbavNetworktype.addItem("RegTest", "RegTest (for testing only)", 0);
          if ( cmbavNetworktype.ItemCount > 0 )

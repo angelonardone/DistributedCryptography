@@ -1550,7 +1550,7 @@ namespace GeneXus.Programs.wallet.registered {
          while ( AV71GXV1 <= AV25SDTAddressHistory.Count )
          {
             AV25SDTAddressHistory.CurrentItem = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV25SDTAddressHistory.Item(AV71GXV1));
-            if ( StringUtil.StrCmp(AV34wallet.gxTpr_Networktype, "Main") == 0 )
+            if ( StringUtil.StrCmp(AV34wallet.gxTpr_Networktype, "MainNet") == 0 )
             {
                edtavFirstlink_Link = "https://blockstream.info/tx/"+StringUtil.Trim( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)(AV25SDTAddressHistory.CurrentItem)).gxTpr_Receivedtransactionid);
                edtavSecondlink_Link = "https://blockstream.info/tx/"+StringUtil.Trim( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)(AV25SDTAddressHistory.CurrentItem)).gxTpr_Senttransactionid);
@@ -1980,7 +1980,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202462613151173", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024711633070", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1996,7 +1996,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/delegationmultisigwallet.js", "?202462613151174", false, true);
+         context.AddJavascriptSource("wallet/registered/delegationmultisigwallet.js", "?2024711633070", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }

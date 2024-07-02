@@ -82,7 +82,7 @@ namespace GeneXus.Programs.nbitcoin {
          AV15networkType = AV11extKeyCreate.gxTpr_Networktype;
          /* User Code */
           NBitcoin.Network network;
-         if ( StringUtil.StrCmp(AV15networkType, "Main") == 0 )
+         if ( StringUtil.StrCmp(AV15networkType, "MainNet") == 0 )
          {
             /* User Code */
              network = NBitcoin.Network.Main;

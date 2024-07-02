@@ -980,7 +980,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202462613155414", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202471164456", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -996,7 +996,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/wallets.js", "?202462613155415", false, true);
+         context.AddJavascriptSource("wallet/wallets.js", "?202471164456", false, true);
          /* End function include_jscripts */
       }
 
@@ -1095,7 +1095,7 @@ namespace GeneXus.Programs.wallet {
             GXCCtl = "CTLNETWORKTYPE_" + sGXsfl_14_idx;
             cmbavCtlnetworktype.Name = GXCCtl;
             cmbavCtlnetworktype.WebTags = "";
-            cmbavCtlnetworktype.addItem("Main", "MainNet", 0);
+            cmbavCtlnetworktype.addItem("MainNet", "MainNet", 0);
             cmbavCtlnetworktype.addItem("TestNet", "TestNet (for testing only)", 0);
             cmbavCtlnetworktype.addItem("RegTest", "RegTest (for testing only)", 0);
             if ( cmbavCtlnetworktype.ItemCount > 0 )
@@ -1152,7 +1152,7 @@ namespace GeneXus.Programs.wallet {
          GXCCtl = "CTLNETWORKTYPE_" + sGXsfl_14_idx;
          cmbavCtlnetworktype.Name = GXCCtl;
          cmbavCtlnetworktype.WebTags = "";
-         cmbavCtlnetworktype.addItem("Main", "MainNet", 0);
+         cmbavCtlnetworktype.addItem("MainNet", "MainNet", 0);
          cmbavCtlnetworktype.addItem("TestNet", "TestNet (for testing only)", 0);
          cmbavCtlnetworktype.addItem("RegTest", "RegTest (for testing only)", 0);
          if ( cmbavCtlnetworktype.ItemCount > 0 )

@@ -166,7 +166,7 @@ namespace GeneXus.Programs.wallet {
           try
          /* User Code */
           {
-         if ( StringUtil.StrCmp(AV13networkType, "Main") == 0 )
+         if ( StringUtil.StrCmp(AV13networkType, "MainNet") == 0 )
          {
             /* User Code */
              network = NBitcoin.Network.Main;

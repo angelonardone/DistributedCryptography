@@ -98,7 +98,7 @@ namespace GeneXus.Programs.wallet.registered {
          }
          /* User Code */
           NBitcoin.Network network;
-         if ( StringUtil.StrCmp(AV17networkType, "Main") == 0 )
+         if ( StringUtil.StrCmp(AV17networkType, "MainNet") == 0 )
          {
             /* User Code */
              network = NBitcoin.Network.Main;

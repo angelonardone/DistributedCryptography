@@ -67,7 +67,7 @@ namespace GeneXus.Programs {
          Gxm1sdt_rest_parameters.gxTpr_Port = 0;
          Gxm1sdt_rest_parameters.gxTpr_Secure = true;
          Gxm1sdt_rest_parameters.gxTpr_Restpath = "/GxExplorer/services/rest";
-         Gxm1sdt_rest_parameters.gxTpr_Networktype = "Main";
+         Gxm1sdt_rest_parameters.gxTpr_Networktype = "MainNet";
          Gxm1sdt_rest_parameters = new SdtSDT_Rest_Parameters_Item(context);
          Gxm2rootcol.Add(Gxm1sdt_rest_parameters, 0);
          Gxm1sdt_rest_parameters.gxTpr_Hostname = "explorer-testnet.distributedcryptography.com";

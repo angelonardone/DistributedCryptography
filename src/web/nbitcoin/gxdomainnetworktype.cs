@@ -21,7 +21,7 @@ namespace GeneXus.Programs.nbitcoin {
       private static Hashtable domainMap;
       static gxdomainnetworktype ()
       {
-         domain["Main"] = "MainNet";
+         domain["MainNet"] = "MainNet";
          domain["TestNet"] = "TestNet (for testing only)";
          domain["RegTest"] = "RegTest (for testing only)";
       }
@@ -53,7 +53,7 @@ namespace GeneXus.Programs.nbitcoin {
          if(domainMap == null)
          {
             domainMap = new Hashtable();
-            domainMap["MainNet"] = "Main";
+            domainMap["MainNet"] = "MainNet";
             domainMap["TestNet"] = "TestNet";
             domainMap["RegTest"] = "RegTest";
          }

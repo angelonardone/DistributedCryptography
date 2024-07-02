@@ -81,7 +81,7 @@ namespace GeneXus.Programs.nbitcoin {
           NBitcoin.Network network;
          /* User Code */
           network = NBitcoin.Network.Main;
-         if ( StringUtil.StrCmp(AV10networkType, "Main") == 0 )
+         if ( StringUtil.StrCmp(AV10networkType, "MainNet") == 0 )
          {
             /* User Code */
              network = NBitcoin.Network.Main;

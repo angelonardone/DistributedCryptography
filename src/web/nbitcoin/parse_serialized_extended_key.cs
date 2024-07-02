@@ -90,7 +90,7 @@ namespace GeneXus.Programs.nbitcoin {
           NBitcoin.Network network;
          if ( GxRegex.IsMatch(AV10in_extended_key,"^xprv") || GxRegex.IsMatch(AV10in_extended_key,"^yprv") || GxRegex.IsMatch(AV10in_extended_key,"^zprv") || GxRegex.IsMatch(AV10in_extended_key,"^xpub") || GxRegex.IsMatch(AV10in_extended_key,"^ypub") || GxRegex.IsMatch(AV10in_extended_key,"^zpub") )
          {
-            AV11networkType = "Main";
+            AV11networkType = "MainNet";
             /* User Code */
              network = NBitcoin.Network.Main;
          }
