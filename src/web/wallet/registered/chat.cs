@@ -1072,6 +1072,8 @@ namespace GeneXus.Programs.wallet.registered {
             gx_BV14 = true;
             AV26GXV5 = (int)(AV26GXV5+1);
          }
+         AV10receive_msgs.Sort("(dateTime)");
+         gx_BV14 = true;
       }
 
       protected void E11182( )
@@ -1297,7 +1299,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024711641378", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202472517575288", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1314,7 +1316,7 @@ namespace GeneXus.Programs.wallet.registered {
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
          context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("wallet/registered/chat.js", "?2024711641378", false, true);
+         context.AddJavascriptSource("wallet/registered/chat.js", "?202472517575289", false, true);
          /* End function include_jscripts */
       }
 

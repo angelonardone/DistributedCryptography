@@ -67,15 +67,15 @@ namespace GeneXus.Programs.nostr {
          GXt_guid2 = AV8Key;
          new GeneXus.Programs.nostr.getnostrconnectionid(context ).execute( out  GXt_guid2) ;
          AV8Key = GXt_guid2;
-         AV15WebSocketOperationResult = GxNostrLib.disconnectasync(AV8Key);
-         if ( AV15WebSocketOperationResult.gxTpr_Success )
+         AV15OperationResult = GxInternetLibWs.disconnect(AV8Key);
+         if ( AV15OperationResult.gxTpr_Success )
          {
             AV8Key = Guid.Empty;
             new GeneXus.Programs.nostr.settnostrconnectionid(context ).execute(  AV8Key) ;
          }
          else
          {
-            AV11error = AV15WebSocketOperationResult.gxTpr_Errormessage;
+            AV11error = AV15OperationResult.gxTpr_Errormessage;
          }
          this.cleanup();
       }
@@ -96,8 +96,8 @@ namespace GeneXus.Programs.nostr {
          GXt_char1 = "";
          AV8Key = Guid.Empty;
          GXt_guid2 = Guid.Empty;
-         AV15WebSocketOperationResult = new GeneXus.Programs.nostr.SdtWebSocketOperationResult(context);
-         GxNostrLib = new GeneXus.Programs.nostr.SdtGxNostrLib(context);
+         AV15OperationResult = new GeneXus.Programs.gxinternetlib.SdtOperationResult(context);
+         GxInternetLibWs = new GeneXus.Programs.gxinternetlib.SdtGxInternetLibWs(context);
          /* GeneXus formulas. */
       }
 
@@ -105,9 +105,9 @@ namespace GeneXus.Programs.nostr {
       private string GXt_char1 ;
       private Guid AV8Key ;
       private Guid GXt_guid2 ;
-      private GeneXus.Programs.nostr.SdtGxNostrLib GxNostrLib ;
+      private GeneXus.Programs.gxinternetlib.SdtGxInternetLibWs GxInternetLibWs ;
       private string aP0_error ;
-      private GeneXus.Programs.nostr.SdtWebSocketOperationResult AV15WebSocketOperationResult ;
+      private GeneXus.Programs.gxinternetlib.SdtOperationResult AV15OperationResult ;
    }
 
 }

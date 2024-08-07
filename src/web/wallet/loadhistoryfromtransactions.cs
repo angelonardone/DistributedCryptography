@@ -88,6 +88,11 @@ namespace GeneXus.Programs.wallet {
             AV11oneAddressHistory.gxTpr_Sentdatetime = AV14TransactionItem.gxTpr_Usedin.gxTpr_Datetime;
             AV11oneAddressHistory.gxTpr_Senttransactionid = AV14TransactionItem.gxTpr_Usedin.gxTpr_Transactionid;
             AV11oneAddressHistory.gxTpr_Description = AV14TransactionItem.gxTpr_Description;
+            AV11oneAddressHistory.gxTpr_Confirmations = AV14TransactionItem.gxTpr_Confirmations;
+            if ( AV11oneAddressHistory.gxTpr_Confirmations == 0 )
+            {
+               AV11oneAddressHistory.gxTpr_Receiveddatetime = DateTimeUtil.Now( context);
+            }
             if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV11oneAddressHistory.gxTpr_Description)) )
             {
                AV11oneAddressHistory.gxTpr_Receivedaddress = AV11oneAddressHistory.gxTpr_Description;

@@ -95,10 +95,10 @@ namespace GeneXus.Programs.nostr {
                GXt_guid4 = AV12Key;
                new GeneXus.Programs.nostr.getnostrconnectionid(context ).execute( out  GXt_guid4) ;
                AV12Key = GXt_guid4;
-               AV22WebSocketOperationResult = GxNostrLib.sendmessageasync(AV12Key, AV20messageSend);
-               if ( ! AV22WebSocketOperationResult.gxTpr_Success )
+               AV26OperationResult = GxInternetLibWs.sendmessage(AV12Key, AV20messageSend);
+               if ( ! AV26OperationResult.gxTpr_Success )
                {
-                  GX_msglist.addItem("error sending message: "+AV22WebSocketOperationResult.gxTpr_Errormessage);
+                  GX_msglist.addItem("error sending message: "+AV26OperationResult.gxTpr_Errormessage);
                }
             }
             else
@@ -134,8 +134,8 @@ namespace GeneXus.Programs.nostr {
          AV20messageSend = "";
          AV12Key = Guid.Empty;
          GXt_guid4 = Guid.Empty;
-         AV22WebSocketOperationResult = new GeneXus.Programs.nostr.SdtWebSocketOperationResult(context);
-         GxNostrLib = new GeneXus.Programs.nostr.SdtGxNostrLib(context);
+         AV26OperationResult = new GeneXus.Programs.gxinternetlib.SdtOperationResult(context);
+         GxInternetLibWs = new GeneXus.Programs.gxinternetlib.SdtGxInternetLibWs(context);
          /* GeneXus formulas. */
       }
 
@@ -147,13 +147,13 @@ namespace GeneXus.Programs.nostr {
       private string AV20messageSend ;
       private Guid AV12Key ;
       private Guid GXt_guid4 ;
-      private GeneXus.Programs.nostr.SdtGxNostrLib GxNostrLib ;
+      private GeneXus.Programs.gxinternetlib.SdtGxInternetLibWs GxInternetLibWs ;
       private string aP2_error ;
       private GeneXus.Programs.distcrypt.SdtExternalUser AV19externalUser ;
       private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
-      private GeneXus.Programs.nostr.SdtWebSocketOperationResult AV22WebSocketOperationResult ;
       private GeneXus.Programs.nostr.SdtEvent AV17nostrEvent ;
       private GeneXus.Programs.nostr.SdtTagsOfTags AV18tagsoftags ;
+      private GeneXus.Programs.gxinternetlib.SdtOperationResult AV26OperationResult ;
    }
 
 }

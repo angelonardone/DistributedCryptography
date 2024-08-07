@@ -64,20 +64,41 @@ namespace GeneXus.Programs.nostr {
          GXt_SdtExternalUser1 = AV13externalUser;
          new GeneXus.Programs.distcrypt.getexternaluser(context ).execute( out  GXt_SdtExternalUser1) ;
          AV13externalUser = GXt_SdtExternalUser1;
-         GXt_guid2 = AV17key;
-         new GeneXus.Programs.nostr.getnostrconnectionid(context ).execute( out  GXt_guid2) ;
-         AV17key = GXt_guid2;
+         GXt_SdtWallet2 = AV27wallet;
+         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet2) ;
+         AV27wallet = GXt_SdtWallet2;
+         GXt_guid3 = AV17key;
+         new GeneXus.Programs.nostr.getnostrconnectionid(context ).execute( out  GXt_guid3) ;
+         AV17key = GXt_guid3;
          if ( (Guid.Empty==AV17key) )
          {
-            AV21WebSocketOperationResult = GxNostrLib.connectasync("ws://192.168.10.21:4848", "receiveFromNoster", 15000);
-            if ( AV21WebSocketOperationResult.gxTpr_Success )
+            if ( StringUtil.StrCmp(AV27wallet.gxTpr_Networktype, "MainNet") == 0 )
             {
-               AV17key = AV21WebSocketOperationResult.gxTpr_Connectionid;
-               new GeneXus.Programs.nostr.settnostrconnectionid(context ).execute(  AV17key) ;
+               AV26OperationResult = GxInternetLibWs.connect("ws://nostr-mainnet.distributedcryptography.com:4848", "receiveFromNoster", 15000);
+            }
+            else if ( StringUtil.StrCmp(AV27wallet.gxTpr_Networktype, "TestNet") == 0 )
+            {
+               AV26OperationResult = GxInternetLibWs.connect("ws://nostr-testnet.distributedcryptography.com:4848", "receiveFromNoster", 15000);
+            }
+            else if ( StringUtil.StrCmp(AV27wallet.gxTpr_Networktype, "RegTest") == 0 )
+            {
+               AV26OperationResult = GxInternetLibWs.connect("ws://nostr-regtest.distributedcryptography.com:4848", "receiveFromNoster", 15000);
             }
             else
             {
-               AV11error = AV21WebSocketOperationResult.gxTpr_Errormessage;
+               AV11error = "We couldn't find a Nostr connection associated with the Netwrok Type";
+            }
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
+            {
+               if ( AV26OperationResult.gxTpr_Success )
+               {
+                  AV17key = AV26OperationResult.gxTpr_Connectionid;
+                  new GeneXus.Programs.nostr.settnostrconnectionid(context ).execute(  AV17key) ;
+               }
+               else
+               {
+                  AV11error = "Chat server error (Nstr): " + AV26OperationResult.gxTpr_Errormessage;
+               }
             }
          }
          this.cleanup();
@@ -98,21 +119,25 @@ namespace GeneXus.Programs.nostr {
          AV11error = "";
          AV13externalUser = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
          GXt_SdtExternalUser1 = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
+         AV27wallet = new GeneXus.Programs.wallet.SdtWallet(context);
+         GXt_SdtWallet2 = new GeneXus.Programs.wallet.SdtWallet(context);
          AV17key = Guid.Empty;
-         GXt_guid2 = Guid.Empty;
-         AV21WebSocketOperationResult = new GeneXus.Programs.nostr.SdtWebSocketOperationResult(context);
-         GxNostrLib = new GeneXus.Programs.nostr.SdtGxNostrLib(context);
+         GXt_guid3 = Guid.Empty;
+         AV26OperationResult = new GeneXus.Programs.gxinternetlib.SdtOperationResult(context);
+         GxInternetLibWs = new GeneXus.Programs.gxinternetlib.SdtGxInternetLibWs(context);
          /* GeneXus formulas. */
       }
 
       private string AV11error ;
       private Guid AV17key ;
-      private Guid GXt_guid2 ;
-      private GeneXus.Programs.nostr.SdtGxNostrLib GxNostrLib ;
+      private Guid GXt_guid3 ;
+      private GeneXus.Programs.gxinternetlib.SdtGxInternetLibWs GxInternetLibWs ;
       private string aP0_error ;
-      private GeneXus.Programs.nostr.SdtWebSocketOperationResult AV21WebSocketOperationResult ;
       private GeneXus.Programs.distcrypt.SdtExternalUser AV13externalUser ;
       private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
+      private GeneXus.Programs.gxinternetlib.SdtOperationResult AV26OperationResult ;
+      private GeneXus.Programs.wallet.SdtWallet AV27wallet ;
+      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet2 ;
    }
 
 }

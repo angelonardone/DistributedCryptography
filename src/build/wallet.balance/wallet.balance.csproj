@@ -26,8 +26,8 @@
 		<Reference Include="Google.Authenticator.dll" > 
 			<HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
 		</Reference>
-		<Reference Include="GxNostrLib.dll" > 
-			<HintPath>$(WebBinDirectory)\GxNostrLib.dll</HintPath>
+		<Reference Include="GxInternetLib.dll" > 
+			<HintPath>$(WebBinDirectory)\GxInternetLib.dll</HintPath>
 		</Reference>
 
 
@@ -42,18 +42,24 @@
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\aesdecryptstring.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getkey.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\getelectrumconfig.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\connect.cs" />
 		<Compile Include = "$(WebDirectory)\receivefromnoster.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\createkey.cs" />
+		<Compile Include = "$(WebDirectory)\receivefromelectrum.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\getelectrumconnid.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\setexternaluser.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\balance.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\aesencryptstring.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\setelectrumconnid.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\getlastchattime.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setwallet.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\defaultparameters.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\derivekeysfromextkey.cs" />
 		<Compile Include = "$(WebDirectory)\nostr\connect.cs" />
 		<Compile Include = "$(WebDirectory)\nostr\startconnection.cs" />

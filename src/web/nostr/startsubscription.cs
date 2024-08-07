@@ -73,10 +73,10 @@ namespace GeneXus.Programs.nostr {
             new GeneXus.Programs.wallet.registered.getlastchattime(context ).execute( out  GXt_int3) ;
             AV20lastChatTimeInSeconds = GXt_int3;
             AV18message = "[\"REQ\", \"" + AV13externalUser.gxTpr_Keyinfo.gxTpr_Address + "\" , " + "{" + "\"kinds\": [4]," + "\"#p\": [\"" + StringUtil.Trim( AV13externalUser.gxTpr_Keyinfo.gxTpr_Taprootpubkey) + "\"]," + "\"since\": " + StringUtil.Trim( StringUtil.Str( (decimal)(AV20lastChatTimeInSeconds), 18, 0)) + "}" + "]";
-            AV17WebSocketOperationResult = GxNostrLib.sendmessageasync(AV12Key, AV18message);
-            if ( ! AV17WebSocketOperationResult.gxTpr_Success )
+            AV23OperationResult = GxInternetLibWs.sendmessage(AV12Key, AV18message);
+            if ( ! AV23OperationResult.gxTpr_Success )
             {
-               GX_msglist.addItem("error sending message: "+AV17WebSocketOperationResult.gxTpr_Errormessage);
+               GX_msglist.addItem("error sending message: "+AV23OperationResult.gxTpr_Errormessage);
             }
          }
          else
@@ -104,8 +104,8 @@ namespace GeneXus.Programs.nostr {
          AV13externalUser = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
          GXt_SdtExternalUser2 = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
          AV18message = "";
-         AV17WebSocketOperationResult = new GeneXus.Programs.nostr.SdtWebSocketOperationResult(context);
-         GxNostrLib = new GeneXus.Programs.nostr.SdtGxNostrLib(context);
+         AV23OperationResult = new GeneXus.Programs.gxinternetlib.SdtOperationResult(context);
+         GxInternetLibWs = new GeneXus.Programs.gxinternetlib.SdtGxInternetLibWs(context);
          /* GeneXus formulas. */
       }
 
@@ -115,11 +115,11 @@ namespace GeneXus.Programs.nostr {
       private string AV18message ;
       private Guid AV12Key ;
       private Guid GXt_guid1 ;
-      private GeneXus.Programs.nostr.SdtGxNostrLib GxNostrLib ;
+      private GeneXus.Programs.gxinternetlib.SdtGxInternetLibWs GxInternetLibWs ;
       private string aP0_error ;
-      private GeneXus.Programs.nostr.SdtWebSocketOperationResult AV17WebSocketOperationResult ;
       private GeneXus.Programs.distcrypt.SdtExternalUser AV13externalUser ;
       private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser2 ;
+      private GeneXus.Programs.gxinternetlib.SdtOperationResult AV23OperationResult ;
    }
 
 }

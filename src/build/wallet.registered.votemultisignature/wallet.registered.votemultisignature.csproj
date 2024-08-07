@@ -29,8 +29,8 @@
 		<Reference Include="Google.Authenticator.dll" > 
 			<HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
 		</Reference>
-		<Reference Include="GxNostrLib.dll" > 
-			<HintPath>$(WebBinDirectory)\GxNostrLib.dll</HintPath>
+		<Reference Include="GxInternetLib.dll" > 
+			<HintPath>$(WebBinDirectory)\GxInternetLib.dll</HintPath>
 		</Reference>
 
 

@@ -146,6 +146,9 @@ namespace GeneXus.Programs.wallet
 
 			AddObjectProperty("Description", gxTpr_Description, false);
 
+
+			AddObjectProperty("Confirmations", gxTpr_Confirmations, false);
+
 			if (gxTv_SdtSDTAddressHistory_Multisignaturedata != null)
 			{
 				AddObjectProperty("MultisignatureData", gxTv_SdtSDTAddressHistory_Multisignaturedata, false);
@@ -389,6 +392,22 @@ namespace GeneXus.Programs.wallet
 
 
 
+		[SoapElement(ElementName="Confirmations")]
+		[XmlElement(ElementName="Confirmations")]
+		public short gxTpr_Confirmations
+		{
+			get {
+				return gxTv_SdtSDTAddressHistory_Confirmations; 
+			}
+			set {
+				gxTv_SdtSDTAddressHistory_Confirmations = value;
+				SetDirty("Confirmations");
+			}
+		}
+
+
+
+
 		[SoapElement(ElementName="MultisignatureData" )]
 		[XmlArray(ElementName="MultisignatureData"  )]
 		[XmlArrayItemAttribute(ElementName="Item" , IsNullable=false )]
@@ -467,6 +486,7 @@ namespace GeneXus.Programs.wallet
 
 			gxTv_SdtSDTAddressHistory_Description = "";
 
+
 			gxTv_SdtSDTAddressHistory_Multisignaturedata_N = true;
 
 			datetime_STZ = (DateTime)(DateTime.MinValue);
@@ -519,6 +539,9 @@ namespace GeneXus.Programs.wallet
 		 
 
 		protected string gxTv_SdtSDTAddressHistory_Description;
+		 
+
+		protected short gxTv_SdtSDTAddressHistory_Confirmations;
 		 
 		protected bool gxTv_SdtSDTAddressHistory_Multisignaturedata_N;
 		protected GXBaseCollection<GeneXus.Programs.wallet.SdtMultiSigSignatureData> gxTv_SdtSDTAddressHistory_Multisignaturedata = null;  
@@ -684,7 +707,19 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
-		[DataMember(Name="MultisignatureData", Order=12, EmitDefaultValue=false)]
+		[DataMember(Name="Confirmations", Order=12)]
+		public short gxTpr_Confirmations
+		{
+			get { 
+				return sdt.gxTpr_Confirmations;
+
+			}
+			set { 
+				sdt.gxTpr_Confirmations = value;
+			}
+		}
+
+		[DataMember(Name="MultisignatureData", Order=13, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.wallet.SdtMultiSigSignatureData_RESTInterface> gxTpr_Multisignaturedata
 		{
 			get { 

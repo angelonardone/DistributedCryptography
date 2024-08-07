@@ -97,6 +97,9 @@ namespace GeneXus.Programs
 			AddObjectProperty("datetime", sDateCnv, false);
 
 
+
+			AddObjectProperty("Confirmations", gxTpr_Confirmations, false);
+
 			if (gxTv_SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem_Used != null)
 			{
 				AddObjectProperty("Used", gxTv_SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem_Used, false);
@@ -206,6 +209,22 @@ namespace GeneXus.Programs
 		}
 
 
+
+		[SoapElement(ElementName="Confirmations")]
+		[XmlElement(ElementName="Confirmations")]
+		public short gxTpr_Confirmations
+		{
+			get {
+				return gxTv_SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem_Confirmations; 
+			}
+			set {
+				gxTv_SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem_Confirmations = value;
+				SetDirty("Confirmations");
+			}
+		}
+
+
+
 		[SoapElement(ElementName="Used")]
 		[XmlElement(ElementName="Used")]
 		public GeneXus.Programs.SdtGxExplorer_services_TxoutFromAddresses_Transaction_Used gxTpr_Used
@@ -257,6 +276,7 @@ namespace GeneXus.Programs
 			gxTv_SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem_Scriptpubkey_address = "";
 			gxTv_SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem_Datetime = (DateTime)(DateTime.MinValue);
 
+
 			gxTv_SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem_Used_N = true;
 
 			datetime_STZ = (DateTime)(DateTime.MinValue);
@@ -288,6 +308,9 @@ namespace GeneXus.Programs
 		 
 
 		protected DateTime gxTv_SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem_Datetime;
+		 
+
+		protected short gxTv_SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem_Confirmations;
 		 
 
 		protected GeneXus.Programs.SdtGxExplorer_services_TxoutFromAddresses_Transaction_Used gxTv_SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem_Used = null;
@@ -371,7 +394,19 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="Used", Order=5, EmitDefaultValue=false)]
+		[DataMember(Name="Confirmations", Order=5)]
+		public short gxTpr_Confirmations
+		{
+			get { 
+				return sdt.gxTpr_Confirmations;
+
+			}
+			set { 
+				sdt.gxTpr_Confirmations = value;
+			}
+		}
+
+		[DataMember(Name="Used", Order=6, EmitDefaultValue=false)]
 		public GeneXus.Programs.SdtGxExplorer_services_TxoutFromAddresses_Transaction_Used_RESTInterface gxTpr_Used
 		{
 			get { 

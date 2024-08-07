@@ -39,7 +39,7 @@ namespace GeneXus.Programs.distributedcrypto {
       public void execute( long aP0_miliseconds ,
                            out DateTime aP1_localDateTime )
       {
-         this.AV9miliseconds = aP0_miliseconds;
+         this.AV11miliseconds = aP0_miliseconds;
          this.AV8localDateTime = DateTime.MinValue ;
          initialize();
          ExecuteImpl();
@@ -55,7 +55,7 @@ namespace GeneXus.Programs.distributedcrypto {
       public void executeSubmit( long aP0_miliseconds ,
                                  out DateTime aP1_localDateTime )
       {
-         this.AV9miliseconds = aP0_miliseconds;
+         this.AV11miliseconds = aP0_miliseconds;
          this.AV8localDateTime = DateTime.MinValue ;
          SubmitImpl();
          aP1_localDateTime=this.AV8localDateTime;
@@ -66,7 +66,7 @@ namespace GeneXus.Programs.distributedcrypto {
          /* GeneXus formulas */
          /* Output device settings */
          /* User Code */
-          long miliseconds = AV9miliseconds;
+          long miliseconds = AV11miliseconds;
          /* User Code */
           DateTimeOffset dateTimeOffset = DateTimeOffset.FromUnixTimeMilliseconds(miliseconds);
          /* User Code */
@@ -92,7 +92,7 @@ namespace GeneXus.Programs.distributedcrypto {
          /* GeneXus formulas. */
       }
 
-      private long AV9miliseconds ;
+      private long AV11miliseconds ;
       private DateTime AV8localDateTime ;
       private DateTime aP1_localDateTime ;
    }

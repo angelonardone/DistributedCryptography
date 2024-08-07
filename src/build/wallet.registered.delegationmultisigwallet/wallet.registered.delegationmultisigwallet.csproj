@@ -29,48 +29,54 @@
 		<Reference Include="Google.Authenticator.dll" > 
 			<HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
 		</Reference>
-		<Reference Include="GxNostrLib.dll" > 
-			<HintPath>$(WebBinDirectory)\GxNostrLib.dll</HintPath>
+		<Reference Include="GxInternetLib.dll" > 
+			<HintPath>$(WebBinDirectory)\GxInternetLib.dll</HintPath>
 		</Reference>
 
 
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\aesencryptstring.cs" />
+		<Compile Include = "$(WebDirectory)\sudodb\savetolocaldb.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\get_transaction.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\getelectrumconnid.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\delegationmultisigwallet.cs" />
-		<Compile Include = "$(WebDirectory)\getrestparameters.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\unixtimetolocaldatetimeseconds.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\aesdecryptstring.cs" />
 		<Compile Include = "$(WebDirectory)\math\generatecombinations.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\reversehexstring.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\registered\getlocalgroupbyid.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\setalladdress.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\searchinalladdress.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\loadhistoryfromtransactions.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\registered\deriveaddresssfordelegationmusig.cs" />
 		<Compile Include = "$(WebDirectory)\qrcoder\generateqrcodestring.cs" />
-		<Compile Include = "$(WebDirectory)\readrestconfigfile.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getalladdress.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
-		<Compile Include = "$(WebDirectory)\apibaseurllocalhost.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\aesdecryptstring.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\setalladdress.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\createexpubtkey.cs" />
+		<Compile Include = "$(WebDirectory)\sudodb\savetransaction.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\retaddresselectrumformat.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\get_history.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\pulloneaddress.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getextkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\deriveoneaddressfordelegationmusig.cs" />
-		<Compile Include = "$(WebDirectory)\openapicommon\processserver.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getalladdress.cs" />
+		<Compile Include = "$(WebDirectory)\sudodb\savevins.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\decryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\createexpubtkey.cs" />
-		<Compile Include = "$(WebDirectory)\openapicommon\callapi.cs" />
-		<Compile Include = "$(WebDirectory)\defaultrestparameters.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\deriveaddresssfordelegationmusig.cs" />
+		<Compile Include = "$(WebDirectory)\sudodb\savevouts.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\sethistorywithbalance.cs" />
-		<Compile Include = "$(WebDirectory)\gxexplorerservicesrestgettransactionspost.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\sendmessage.cs" />
+		<Compile Include = "$(WebDirectory)\sudodb\gettransactionsfromaddress.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\getlocalgroupbyid.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\encryptjson.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gettransactionsfromservice.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\gettransctionsfromlocaldb.cs" />
 
 	</ItemGroup>
 	<ItemGroup Condition="'$(PostgresqlSupport)'=='true'">

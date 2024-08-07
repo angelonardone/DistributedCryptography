@@ -59,6 +59,7 @@ namespace GeneXus.Programs.wallet {
          domain["MULTISIGNATURE IN PROGRESS"] = "Temp Mul Sig In Progress";
          domain["PublicTempStorage"] = "PublicTempStorage";
          domain["PrivateTempStorage"] = "PrivateTempStorage";
+         domain["electrum.conf"] = "Electrum Config File";
       }
 
       public static string getDescription( IGxContext context ,
@@ -126,6 +127,7 @@ namespace GeneXus.Programs.wallet {
             domainMap["TempMulSigInProgress"] = "MULTISIGNATURE IN PROGRESS";
             domainMap["PublicTempStorage"] = "PublicTempStorage";
             domainMap["PrivateTempStorage"] = "PrivateTempStorage";
+            domainMap["ElectrumConfigFile"] = "electrum.conf";
          }
          return (string)domainMap[key] ;
       }

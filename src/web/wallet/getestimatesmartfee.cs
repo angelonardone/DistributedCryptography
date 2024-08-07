@@ -89,9 +89,10 @@ namespace GeneXus.Programs.wallet {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new gxexplorerservicesrestestimatesmartfeeget(context ).execute(  AV11ServerUrlTemplatingVar,  AV14numBlocks,  StringUtil.Trim( AV12estimateSmartFeeType), out  AV13EstimateSmartFee__getOutputOUT, out  AV9HttpMessage, out  AV10IsSuccess) ;
-         AV16feeRate = AV13EstimateSmartFee__getOutputOUT.gxTpr_Sdt_estimatesmartfee_result.gxTpr_Result.gxTpr_Feerate;
-         AV17returnNumBlocks = (short)(AV13EstimateSmartFee__getOutputOUT.gxTpr_Sdt_estimatesmartfee_result.gxTpr_Result.gxTpr_Blocks);
+         GXt_char1 = AV8error;
+         new GeneXus.Programs.electrum.get_estimatefee(context ).execute(  AV14numBlocks, out  AV16feeRate, out  GXt_char1) ;
+         AV8error = GXt_char1;
+         AV17returnNumBlocks = AV14numBlocks;
          if ( ( AV16feeRate == Convert.ToDecimal( 0 )) )
          {
             AV16feeRate = NumberUtil.Val( "0.00001000", ".");
@@ -113,9 +114,7 @@ namespace GeneXus.Programs.wallet {
       public override void initialize( )
       {
          AV8error = "";
-         AV11ServerUrlTemplatingVar = new GXProperties();
-         AV13EstimateSmartFee__getOutputOUT = new SdtEstimateSmartFee__getOutput(context);
-         AV9HttpMessage = new GeneXus.Utils.SdtMessages_Message(context);
+         GXt_char1 = "";
          /* GeneXus formulas. */
       }
 
@@ -126,13 +125,10 @@ namespace GeneXus.Programs.wallet {
       private decimal AV16feeRate ;
       private string AV12estimateSmartFeeType ;
       private string AV8error ;
-      private bool AV10IsSuccess ;
+      private string GXt_char1 ;
       private decimal aP3_estimatedFee ;
       private short aP4_returnNumBlocks ;
       private string aP5_error ;
-      private GXProperties AV11ServerUrlTemplatingVar ;
-      private GeneXus.Utils.SdtMessages_Message AV9HttpMessage ;
-      private SdtEstimateSmartFee__getOutput AV13EstimateSmartFee__getOutputOUT ;
    }
 
 }

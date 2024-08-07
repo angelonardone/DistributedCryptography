@@ -108,6 +108,9 @@ namespace GeneXus.Programs.wallet
 
 			AddObjectProperty("Description", gxTpr_Description, false);
 
+
+			AddObjectProperty("Confirmations", gxTpr_Confirmations, false);
+
 			if (gxTv_SdtStoredTransactions_TransactionItem_Usedin != null)
 			{
 				AddObjectProperty("UsedIn", gxTv_SdtStoredTransactions_TransactionItem_Usedin, false);
@@ -265,6 +268,22 @@ namespace GeneXus.Programs.wallet
 
 
 
+
+		[SoapElement(ElementName="Confirmations")]
+		[XmlElement(ElementName="Confirmations")]
+		public short gxTpr_Confirmations
+		{
+			get {
+				return gxTv_SdtStoredTransactions_TransactionItem_Confirmations; 
+			}
+			set {
+				gxTv_SdtStoredTransactions_TransactionItem_Confirmations = value;
+				SetDirty("Confirmations");
+			}
+		}
+
+
+
 		[SoapElement(ElementName="UsedIn" )]
 		[XmlElement(ElementName="UsedIn" )]
 		public SdtStoredTransactions_TransactionItem_UsedIn gxTpr_Usedin
@@ -324,6 +343,7 @@ namespace GeneXus.Programs.wallet
 
 			gxTv_SdtStoredTransactions_TransactionItem_Description = "";
 
+
 			gxTv_SdtStoredTransactions_TransactionItem_Usedin_N = true;
 
 			datetime_STZ = (DateTime)(DateTime.MinValue);
@@ -364,6 +384,9 @@ namespace GeneXus.Programs.wallet
 		 
 
 		protected string gxTv_SdtStoredTransactions_TransactionItem_Description;
+		 
+
+		protected short gxTv_SdtStoredTransactions_TransactionItem_Confirmations;
 		 
 		protected bool gxTv_SdtStoredTransactions_TransactionItem_Usedin_N;
 		protected SdtStoredTransactions_TransactionItem_UsedIn gxTv_SdtStoredTransactions_TransactionItem_Usedin = null; 
@@ -481,7 +504,19 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
-		[DataMember(Name="UsedIn", Order=8, EmitDefaultValue=false)]
+		[DataMember(Name="Confirmations", Order=8)]
+		public short gxTpr_Confirmations
+		{
+			get { 
+				return sdt.gxTpr_Confirmations;
+
+			}
+			set { 
+				sdt.gxTpr_Confirmations = value;
+			}
+		}
+
+		[DataMember(Name="UsedIn", Order=9, EmitDefaultValue=false)]
 		public SdtStoredTransactions_TransactionItem_UsedIn_RESTInterface gxTpr_Usedin
 		{
 			get {
