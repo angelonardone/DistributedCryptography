@@ -42,7 +42,7 @@
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\aesdecryptstring.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getkey.cs" />
-		<Compile Include = "$(WebDirectory)\electrum\getelectrumconfig.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\getelectrumconfigservers.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\connect.cs" />
 		<Compile Include = "$(WebDirectory)\receivefromnoster.cs" />
@@ -76,6 +76,7 @@
 		<Compile Include = "$(WebDirectory)\wallet\registered\readcontactchat.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setlogindistcrypt.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setfileenckey.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\getelectrumconfigfornetworktype.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\encryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\parse_serialized_extended_key.cs" />
 

@@ -103,6 +103,10 @@ namespace GeneXus.Programs.electrum {
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV10error)) )
          {
             /* User Code */
+             try
+            /* User Code */
+             {
+            /* User Code */
              string strAddress = AV8address;
             /* User Code */
              var netAddress = NBitcoin.BitcoinAddress.Create(strAddress, network);
@@ -111,6 +115,17 @@ namespace GeneXus.Programs.electrum {
             GXt_char1 = AV10error;
             new GeneXus.Programs.electrum.reversehexstring(context ).execute(  AV12netAddress, out  AV9electrumAddress, out  GXt_char1) ;
             AV10error = GXt_char1;
+            /* User Code */
+            	}
+            /* User Code */
+            	catch (Exception ex)
+            /* User Code */
+            	{
+            /* User Code */
+            		AV10error = ex.Message.ToString();
+            AV10error += ":" + AV8address;
+            /* User Code */
+            	}
          }
          this.cleanup();
       }

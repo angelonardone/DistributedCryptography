@@ -80,8 +80,8 @@ namespace GeneXus.Programs.electrum {
          Gxm1connectionparameters = new GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem(context);
          Gxm2rootcol.Add(Gxm1connectionparameters, 0);
          Gxm1connectionparameters.gxTpr_Connectiontype = "tcp";
-         Gxm1connectionparameters.gxTpr_Hostname = "electrs-regtest.distributedcryptography.com";
-         Gxm1connectionparameters.gxTpr_Port = 50100;
+         Gxm1connectionparameters.gxTpr_Hostname = "localhost";
+         Gxm1connectionparameters.gxTpr_Port = 50001;
          Gxm1connectionparameters.gxTpr_Secure = false;
          Gxm1connectionparameters.gxTpr_Networktype = "RegTest";
          Gxm1connectionparameters.gxTpr_Timeoutmiliseconds = 5000;

@@ -414,14 +414,14 @@ namespace GeneXus.Programs.wallet {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 6,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttRestorewallet_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(14), 2, 0)+","+"null"+");", "Restore Wallet", bttRestorewallet_Jsonclick, 7, "Restore Wallet", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"e110i1_client"+"'", TempTags, "", 2, "HLP_Wallet/Wallets.htm");
+            GxWebStd.gx_button_ctrl( context, bttCreateanewwallet_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(14), 2, 0)+","+"null"+");", "Create a new Wallet", bttCreateanewwallet_Jsonclick, 7, "Create a new Wallet", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"e110i1_client"+"'", TempTags, "", 2, "HLP_Wallet/Wallets.htm");
             GxWebStd.gx_div_end( context, "end", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "end", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 8,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttCreateanewwallet_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(14), 2, 0)+","+"null"+");", "Create a new Wallet", bttCreateanewwallet_Jsonclick, 7, "Create a new Wallet", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"e120i1_client"+"'", TempTags, "", 2, "HLP_Wallet/Wallets.htm");
+            GxWebStd.gx_button_ctrl( context, bttRestorewallet_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(14), 2, 0)+","+"null"+");", "Restore Wallet", bttRestorewallet_Jsonclick, 7, "Restore Wallet", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"e120i1_client"+"'", TempTags, "", 2, "HLP_Wallet/Wallets.htm");
             GxWebStd.gx_div_end( context, "end", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -468,6 +468,16 @@ namespace GeneXus.Programs.wallet {
                   context.WriteHtmlText( "<input type=\"hidden\" "+"name=\""+"Grid1ContainerData"+"V"+"\" value='"+Grid1Container.GridValuesHidden()+"'/>") ;
                }
             }
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 20,'',false,'',0)\"";
+            ClassString = "Button";
+            StyleString = "";
+            GxWebStd.gx_button_ctrl( context, bttConfiguration_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(14), 2, 0)+","+"null"+");", "Configuration", bttConfiguration_Jsonclick, 7, "Configuration", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"e130i1_client"+"'", TempTags, "", 2, "HLP_Wallet/Wallets.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -593,21 +603,21 @@ namespace GeneXus.Programs.wallet {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: Start */
-                                    E130I2 ();
+                                    E140I2 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "'OPEN SELECTED WALLET'") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: 'Open Selected Wallet' */
-                                    E140I2 ();
+                                    E150I2 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "GRID1.LOAD") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: Grid1.Load */
-                                    E150I2 ();
+                                    E160I2 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                                  {
@@ -784,7 +794,7 @@ namespace GeneXus.Programs.wallet {
          {
             SubsflControlProps_142( ) ;
             /* Execute user event: Grid1.Load */
-            E150I2 ();
+            E160I2 ();
             wbEnd = 14;
             WB0I0( ) ;
          }
@@ -842,7 +852,7 @@ namespace GeneXus.Programs.wallet {
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E130I2 ();
+         E140I2 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
@@ -886,11 +896,11 @@ namespace GeneXus.Programs.wallet {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E130I2 ();
+         E140I2 ();
          if (returnInSub) return;
       }
 
-      protected void E130I2( )
+      protected void E140I2( )
       {
          /* Start Routine */
          returnInSub = false;
@@ -905,7 +915,7 @@ namespace GeneXus.Programs.wallet {
          AssignProp("", false, lblTbdirectory_Internalname, "Caption", lblTbdirectory_Caption, true);
       }
 
-      protected void E140I2( )
+      protected void E150I2( )
       {
          AV9GXV1 = nGXsfl_14_idx;
          if ( ( AV9GXV1 > 0 ) && ( AV6wallets.Count >= AV9GXV1 ) )
@@ -919,7 +929,7 @@ namespace GeneXus.Programs.wallet {
          context.wjLocDisableFrm = 1;
       }
 
-      private void E150I2( )
+      private void E160I2( )
       {
          /* Grid1_Load Routine */
          returnInSub = false;
@@ -980,7 +990,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20248612185453", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024881025445", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -996,7 +1006,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/wallets.js", "?20248612185453", false, true);
+         context.AddJavascriptSource("wallet/wallets.js", "?2024881025445", false, true);
          /* End function include_jscripts */
       }
 
@@ -1263,12 +1273,13 @@ namespace GeneXus.Programs.wallet {
 
       protected void init_default_properties( )
       {
-         bttRestorewallet_Internalname = "RESTOREWALLET";
          bttCreateanewwallet_Internalname = "CREATEANEWWALLET";
+         bttRestorewallet_Internalname = "RESTOREWALLET";
          lblTbdirectory_Internalname = "TBDIRECTORY";
          edtavCtlwalletname_Internalname = "CTLWALLETNAME";
          cmbavCtlnetworktype_Internalname = "CTLNETWORKTYPE";
          cmbavCtlwallettype_Internalname = "CTLWALLETTYPE";
+         bttConfiguration_Internalname = "CONFIGURATION";
          divMaintable_Internalname = "MAINTABLE";
          Form.Internalname = "FORM";
          subGrid1_Internalname = "GRID1";
@@ -1317,9 +1328,10 @@ namespace GeneXus.Programs.wallet {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID1_nFirstRecordOnPage"},{"av":"GRID1_nEOF"},{"av":"AV6wallets","fld":"vWALLETS","grid":14,"hsh":true},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"GRID1","prop":"GridRC","grid":14}]}""");
-         setEventMetadata("'OPEN SELECTED WALLET'","""{"handler":"E140I2","iparms":[{"av":"AV6wallets","fld":"vWALLETS","grid":14,"hsh":true},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRID1_nFirstRecordOnPage"},{"av":"nRC_GXsfl_14","ctrl":"GRID1","prop":"GridRC","grid":14}]}""");
-         setEventMetadata("'CREATE A NEW WALLET'","""{"handler":"E120I1","iparms":[]}""");
-         setEventMetadata("'RESTORE WALLET'","""{"handler":"E110I1","iparms":[]}""");
+         setEventMetadata("'OPEN SELECTED WALLET'","""{"handler":"E150I2","iparms":[{"av":"AV6wallets","fld":"vWALLETS","grid":14,"hsh":true},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRID1_nFirstRecordOnPage"},{"av":"nRC_GXsfl_14","ctrl":"GRID1","prop":"GridRC","grid":14}]}""");
+         setEventMetadata("'CREATE A NEW WALLET'","""{"handler":"E110I1","iparms":[]}""");
+         setEventMetadata("'RESTORE WALLET'","""{"handler":"E120I1","iparms":[]}""");
+         setEventMetadata("'CONFIGURATION'","""{"handler":"E130I1","iparms":[]}""");
          setEventMetadata("VALIDV_GXV3","""{"handler":"Validv_Gxv3","iparms":[]}""");
          setEventMetadata("VALIDV_GXV4","""{"handler":"Validv_Gxv4","iparms":[]}""");
          return  ;
@@ -1349,11 +1361,12 @@ namespace GeneXus.Programs.wallet {
          TempTags = "";
          ClassString = "";
          StyleString = "";
-         bttRestorewallet_Jsonclick = "";
          bttCreateanewwallet_Jsonclick = "";
+         bttRestorewallet_Jsonclick = "";
          lblTbdirectory_Jsonclick = "";
          Grid1Container = new GXWebGrid( context);
          sStyleString = "";
+         bttConfiguration_Jsonclick = "";
          sEvt = "";
          EvtGridId = "";
          EvtRowId = "";
@@ -1418,15 +1431,17 @@ namespace GeneXus.Programs.wallet {
       private string TempTags ;
       private string ClassString ;
       private string StyleString ;
-      private string bttRestorewallet_Internalname ;
-      private string bttRestorewallet_Jsonclick ;
       private string bttCreateanewwallet_Internalname ;
       private string bttCreateanewwallet_Jsonclick ;
+      private string bttRestorewallet_Internalname ;
+      private string bttRestorewallet_Jsonclick ;
       private string lblTbdirectory_Internalname ;
       private string lblTbdirectory_Caption ;
       private string lblTbdirectory_Jsonclick ;
       private string sStyleString ;
       private string subGrid1_Internalname ;
+      private string bttConfiguration_Internalname ;
+      private string bttConfiguration_Jsonclick ;
       private string sEvt ;
       private string EvtGridId ;
       private string EvtRowId ;

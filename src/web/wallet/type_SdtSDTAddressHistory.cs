@@ -394,7 +394,7 @@ namespace GeneXus.Programs.wallet
 
 		[SoapElement(ElementName="Confirmations")]
 		[XmlElement(ElementName="Confirmations")]
-		public short gxTpr_Confirmations
+		public long gxTpr_Confirmations
 		{
 			get {
 				return gxTv_SdtSDTAddressHistory_Confirmations; 
@@ -541,7 +541,7 @@ namespace GeneXus.Programs.wallet
 		protected string gxTv_SdtSDTAddressHistory_Description;
 		 
 
-		protected short gxTv_SdtSDTAddressHistory_Confirmations;
+		protected long gxTv_SdtSDTAddressHistory_Confirmations;
 		 
 		protected bool gxTv_SdtSDTAddressHistory_Multisignaturedata_N;
 		protected GXBaseCollection<GeneXus.Programs.wallet.SdtMultiSigSignatureData> gxTv_SdtSDTAddressHistory_Multisignaturedata = null;  
@@ -708,14 +708,14 @@ namespace GeneXus.Programs.wallet
 		}
 
 		[DataMember(Name="Confirmations", Order=12)]
-		public short gxTpr_Confirmations
+		public  string gxTpr_Confirmations
 		{
 			get { 
-				return sdt.gxTpr_Confirmations;
+				return StringUtil.LTrim( StringUtil.Str( (decimal) sdt.gxTpr_Confirmations, 10, 0));
 
 			}
 			set { 
-				sdt.gxTpr_Confirmations = value;
+				sdt.gxTpr_Confirmations = (long) NumberUtil.Val( value, ".");
 			}
 		}
 

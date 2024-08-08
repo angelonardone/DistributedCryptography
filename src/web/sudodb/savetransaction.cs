@@ -67,7 +67,7 @@ namespace GeneXus.Programs.sudodb {
          /* Output device settings */
          AV11transaction.gxTpr_Transactionid = StringUtil.Trim( AV8electrumRespGetTransactionId.gxTpr_Result.gxTpr_Txid);
          AV11transaction.gxTpr_Blockid = StringUtil.Trim( AV8electrumRespGetTransactionId.gxTpr_Result.gxTpr_Blockhash);
-         AV11transaction.gxTpr_Confirmations = (short)(Math.Round(AV8electrumRespGetTransactionId.gxTpr_Result.gxTpr_Confirmations, 18, MidpointRounding.ToEven));
+         AV11transaction.gxTpr_Confirmations = (long)(Math.Round(AV8electrumRespGetTransactionId.gxTpr_Result.gxTpr_Confirmations, 18, MidpointRounding.ToEven));
          GXt_dtime1 = (DateTime)(DateTime.MinValue);
          new GeneXus.Programs.distributedcrypto.unixtimetolocaldatetimeseconds(context ).execute(  (long)(Math.Round(AV8electrumRespGetTransactionId.gxTpr_Result.gxTpr_Blocktime, 18, MidpointRounding.ToEven)), out  GXt_dtime1) ;
          AV11transaction.gxTpr_Blockdatetime = GXt_dtime1;

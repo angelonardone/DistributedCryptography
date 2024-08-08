@@ -212,7 +212,7 @@ namespace GeneXus.Programs
 
 		[SoapElement(ElementName="Confirmations")]
 		[XmlElement(ElementName="Confirmations")]
-		public short gxTpr_Confirmations
+		public long gxTpr_Confirmations
 		{
 			get {
 				return gxTv_SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem_Confirmations; 
@@ -310,7 +310,7 @@ namespace GeneXus.Programs
 		protected DateTime gxTv_SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem_Datetime;
 		 
 
-		protected short gxTv_SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem_Confirmations;
+		protected long gxTv_SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem_Confirmations;
 		 
 
 		protected GeneXus.Programs.SdtGxExplorer_services_TxoutFromAddresses_Transaction_Used gxTv_SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem_Used = null;
@@ -395,14 +395,14 @@ namespace GeneXus.Programs
 		}
 
 		[DataMember(Name="Confirmations", Order=5)]
-		public short gxTpr_Confirmations
+		public  string gxTpr_Confirmations
 		{
 			get { 
-				return sdt.gxTpr_Confirmations;
+				return StringUtil.LTrim( StringUtil.Str( (decimal) sdt.gxTpr_Confirmations, 10, 0));
 
 			}
 			set { 
-				sdt.gxTpr_Confirmations = value;
+				sdt.gxTpr_Confirmations = (long) NumberUtil.Val( value, ".");
 			}
 		}
 

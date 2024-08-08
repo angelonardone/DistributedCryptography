@@ -67,7 +67,7 @@ namespace GeneXus.Programs.electrum {
          if ( (Guid.Empty==AV15Connection.gxTpr_Connectionid) )
          {
             GXt_SdtConnectionParameters_ConnectionParametersItem2 = AV16walletConnParameter;
-            new GeneXus.Programs.electrum.getelectrumconfig(context ).execute( out  GXt_SdtConnectionParameters_ConnectionParametersItem2) ;
+            new GeneXus.Programs.electrum.getelectrumconfigfornetworktype(context ).execute( out  GXt_SdtConnectionParameters_ConnectionParametersItem2) ;
             AV16walletConnParameter = GXt_SdtConnectionParameters_ConnectionParametersItem2;
             if ( ( StringUtil.StrCmp(AV16walletConnParameter.gxTpr_Connectiontype, "ws") == 0 ) && ! AV16walletConnParameter.gxTpr_Secure )
             {

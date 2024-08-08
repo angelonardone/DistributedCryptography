@@ -139,7 +139,7 @@ namespace GeneXus.Programs.sudodb
 
 		[SoapElement(ElementName="Confirmations")]
 		[XmlElement(ElementName="Confirmations")]
-		public short gxTpr_Confirmations
+		public long gxTpr_Confirmations
 		{
 			get {
 				return gxTv_SdtTransaction_Confirmations; 
@@ -235,7 +235,7 @@ namespace GeneXus.Programs.sudodb
 		protected string gxTv_SdtTransaction_Blockid;
 		 
 
-		protected short gxTv_SdtTransaction_Confirmations;
+		protected long gxTv_SdtTransaction_Confirmations;
 		 
 
 		protected DateTime gxTv_SdtTransaction_Blockdatetime;
@@ -286,14 +286,14 @@ namespace GeneXus.Programs.sudodb
 		}
 
 		[DataMember(Name="Confirmations", Order=2)]
-		public short gxTpr_Confirmations
+		public  string gxTpr_Confirmations
 		{
 			get { 
-				return sdt.gxTpr_Confirmations;
+				return StringUtil.LTrim( StringUtil.Str( (decimal) sdt.gxTpr_Confirmations, 10, 0));
 
 			}
 			set { 
-				sdt.gxTpr_Confirmations = value;
+				sdt.gxTpr_Confirmations = (long) NumberUtil.Val( value, ".");
 			}
 		}
 

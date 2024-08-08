@@ -271,7 +271,7 @@ namespace GeneXus.Programs.wallet
 
 		[SoapElement(ElementName="Confirmations")]
 		[XmlElement(ElementName="Confirmations")]
-		public short gxTpr_Confirmations
+		public long gxTpr_Confirmations
 		{
 			get {
 				return gxTv_SdtStoredTransactions_TransactionItem_Confirmations; 
@@ -386,7 +386,7 @@ namespace GeneXus.Programs.wallet
 		protected string gxTv_SdtStoredTransactions_TransactionItem_Description;
 		 
 
-		protected short gxTv_SdtStoredTransactions_TransactionItem_Confirmations;
+		protected long gxTv_SdtStoredTransactions_TransactionItem_Confirmations;
 		 
 		protected bool gxTv_SdtStoredTransactions_TransactionItem_Usedin_N;
 		protected SdtStoredTransactions_TransactionItem_UsedIn gxTv_SdtStoredTransactions_TransactionItem_Usedin = null; 
@@ -505,14 +505,14 @@ namespace GeneXus.Programs.wallet
 		}
 
 		[DataMember(Name="Confirmations", Order=8)]
-		public short gxTpr_Confirmations
+		public  string gxTpr_Confirmations
 		{
 			get { 
-				return sdt.gxTpr_Confirmations;
+				return StringUtil.LTrim( StringUtil.Str( (decimal) sdt.gxTpr_Confirmations, 10, 0));
 
 			}
 			set { 
-				sdt.gxTpr_Confirmations = value;
+				sdt.gxTpr_Confirmations = (long) NumberUtil.Val( value, ".");
 			}
 		}
 

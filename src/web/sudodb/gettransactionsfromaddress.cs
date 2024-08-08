@@ -182,11 +182,11 @@ namespace GeneXus.Programs.sudodb {
          /* GeneXus formulas. */
       }
 
-      private short AV23confirmations ;
       private int AV24GXV1 ;
       private int AV25GXV2 ;
       private int AV26GXV3 ;
       private int AV27GXV4 ;
+      private long AV23confirmations ;
       private string AV8address ;
       private string AV11error ;
       private string AV20TransactionId ;
