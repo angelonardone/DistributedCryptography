@@ -108,7 +108,7 @@ namespace GeneXus.Programs.wallet.registered {
                AV18GXV1 = (int)(AV18GXV1+1);
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -139,11 +139,11 @@ namespace GeneXus.Programs.wallet.registered {
       private DateTime GXt_dtime2 ;
       private bool AV13isOk ;
       private Guid AV11contactId ;
-      private string aP1_error ;
+      private GeneXus.Programs.nostr.SdtSDT_message AV15sdt_message ;
+      private GeneXus.Programs.wallet.registered.SdtMessage_signature AV14message_signature ;
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> AV8allContacts ;
       private GeneXus.Programs.wallet.registered.SdtContact_SDT AV9contact ;
-      private GeneXus.Programs.wallet.registered.SdtMessage_signature AV14message_signature ;
-      private GeneXus.Programs.nostr.SdtSDT_message AV15sdt_message ;
+      private string aP1_error ;
    }
 
 }

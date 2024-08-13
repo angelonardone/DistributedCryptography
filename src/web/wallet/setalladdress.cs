@@ -54,7 +54,7 @@ namespace GeneXus.Programs.wallet {
          /* GeneXus formulas */
          /* Output device settings */
          AV9WebSession.Set("AllAdresssess", AV11sdt_Addresses.ToJSonString(false));
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

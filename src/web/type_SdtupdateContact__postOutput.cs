@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtupdateContact__postOutput
 			Description: updateContact__postOutput
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.8.180599
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -110,6 +110,14 @@ namespace GeneXus.Programs
 
 		#endregion
 
+		#region Static Type Properties
+
+		[XmlIgnore]
+		private static GXTypeInfo _typeProps;
+		protected override GXTypeInfo TypeInfo { get { return _typeProps; } set { _typeProps = value; } }
+
+		#endregion
+
 		#region Initialization
 
 		public void initialize( )
@@ -134,7 +142,7 @@ namespace GeneXus.Programs
 		#endregion
 	}
 	#region Rest interface
-	[GxUnWrappedJson()]
+	[GxJsonSerialization("default")]
 	[DataContract(Name=@"updateContact__postOutput", Namespace="distributedcryptography")]
 	public class SdtupdateContact__postOutput_RESTInterface : GxGenericCollectionItem<SdtupdateContact__postOutput>, System.Web.SessionState.IRequiresSessionState
 	{

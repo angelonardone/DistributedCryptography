@@ -126,14 +126,14 @@ namespace GeneXus.Programs.wallet.registered {
                   AV9isNeeded = true;
                   AV14returnDataItem = (GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem)(AV13oneDataItem.Clone());
                   AV15returnMultiSigSignatureData.gxTpr_Data.Add(AV14returnDataItem, 0);
-                  this.cleanup();
+                  cleanup();
                   if (true) return;
                }
                AV25GXV3 = (int)(AV25GXV3+1);
             }
             AV24GXV2 = (int)(AV24GXV2+1);
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -169,16 +169,16 @@ namespace GeneXus.Programs.wallet.registered {
       private string AV12oneItem ;
       private string AV19oneItem1 ;
       private bool AV9isNeeded ;
-      private GeneXus.Programs.wallet.SdtMultiSigSignatureData aP2_returnMultiSigSignatureData ;
-      private bool aP3_isNeeded ;
-      private GeneXus.Programs.math.SdtfinalCombination AV8finalOneCombination ;
-      private GeneXus.Programs.math.SdtfinalCombination AV18finalOneCombination1 ;
       private GeneXus.Programs.wallet.SdtSDTAddressHistory AV10oneAddressHistory ;
+      private GeneXus.Programs.math.SdtfinalCombination AV8finalOneCombination ;
       private GeneXus.Programs.wallet.SdtMultiSigSignatureData AV15returnMultiSigSignatureData ;
       private GeneXus.Programs.wallet.SdtMultiSigSignatureData AV22selecteMultiSigSignatureData ;
       private GeneXus.Programs.wallet.SdtMultiSigSignatureData AV11oneMultiSigSignatureData ;
       private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem AV13oneDataItem ;
+      private GeneXus.Programs.math.SdtfinalCombination AV18finalOneCombination1 ;
       private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem AV14returnDataItem ;
+      private GeneXus.Programs.wallet.SdtMultiSigSignatureData aP2_returnMultiSigSignatureData ;
+      private bool aP3_isNeeded ;
    }
 
 }

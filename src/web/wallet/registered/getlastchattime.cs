@@ -94,7 +94,7 @@ namespace GeneXus.Programs.wallet.registered {
             AV19GXV2 = (int)(AV19GXV2+1);
          }
          AV8lastChatTimeInSeconds = (long)(AV8lastChatTimeInSeconds/ (decimal)(1000));
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -124,13 +124,13 @@ namespace GeneXus.Programs.wallet.registered {
       private int AV20GXV3 ;
       private long AV8lastChatTimeInSeconds ;
       private string AV17error ;
-      private long aP0_lastChatTimeInSeconds ;
-      private GXBaseCollection<GeneXus.Programs.nostr.SdtSDT_Chat> AV10sdt_all_chats ;
-      private GXBaseCollection<GeneXus.Programs.nostr.SdtSDT_Chat> GXt_objcol_SdtSDT_Chat1 ;
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> AV12allContacts ;
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> AV13allContacts_temp ;
-      private GeneXus.Programs.nostr.SdtSDT_Chat AV11sdt_chat ;
       private GeneXus.Programs.wallet.registered.SdtContact_SDT AV15contact ;
+      private GXBaseCollection<GeneXus.Programs.nostr.SdtSDT_Chat> AV10sdt_all_chats ;
+      private GXBaseCollection<GeneXus.Programs.nostr.SdtSDT_Chat> GXt_objcol_SdtSDT_Chat1 ;
+      private GeneXus.Programs.nostr.SdtSDT_Chat AV11sdt_chat ;
+      private long aP0_lastChatTimeInSeconds ;
    }
 
 }

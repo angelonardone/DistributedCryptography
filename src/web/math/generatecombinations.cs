@@ -107,7 +107,7 @@ namespace GeneXus.Programs.math {
             AV8currentCombination.RemoveItem(AV8currentCombination.Count);
             AV10i = (short)(AV10i+1);
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -134,11 +134,11 @@ namespace GeneXus.Programs.math {
       private short AV13newIndex ;
       private int AV18GXV1 ;
       private string AV17oneItem ;
-      private GxSimpleCollection<string> aP3_currentCombination ;
-      private GXBaseCollection<GeneXus.Programs.math.SdtfinalCombination> aP4_finalCombinations ;
       private GxSimpleCollection<string> AV11items ;
       private GxSimpleCollection<string> AV8currentCombination ;
+      private GxSimpleCollection<string> aP3_currentCombination ;
       private GXBaseCollection<GeneXus.Programs.math.SdtfinalCombination> AV15finalCombinations ;
+      private GXBaseCollection<GeneXus.Programs.math.SdtfinalCombination> aP4_finalCombinations ;
       private GeneXus.Programs.math.SdtfinalCombination AV16finalCombination ;
    }
 

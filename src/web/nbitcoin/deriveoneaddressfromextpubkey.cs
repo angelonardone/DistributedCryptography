@@ -119,7 +119,7 @@ namespace GeneXus.Programs.nbitcoin {
                AV19one_address.gxTpr_Isused = false;
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -154,10 +154,10 @@ namespace GeneXus.Programs.nbitcoin {
       private string AV15extendedKeyType ;
       private string AV10base_char ;
       private string GXt_char1 ;
+      private GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem AV19one_address ;
+      private GeneXus.Programs.nbitcoin.SdtExtPubKeyInfo AV17extPubKeyInfo ;
       private GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem aP3_one_address ;
       private string aP4_error ;
-      private GeneXus.Programs.nbitcoin.SdtExtPubKeyInfo AV17extPubKeyInfo ;
-      private GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem AV19one_address ;
    }
 
 }

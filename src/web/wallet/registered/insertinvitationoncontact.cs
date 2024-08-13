@@ -109,7 +109,7 @@ namespace GeneXus.Programs.wallet.registered {
                AV12error = GXt_char1;
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -142,12 +142,12 @@ namespace GeneXus.Programs.wallet.registered {
       private bool AV16isOk ;
       private bool AV13contactFound ;
       private Guid AV8contactId ;
-      private bool aP1_isContactDeclined ;
-      private string aP2_error ;
+      private GeneXus.Programs.nostr.SdtSDT_message AV14sdt_message ;
+      private GeneXus.Programs.wallet.registered.SdtMessage_signature AV15message_signature ;
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> AV10allContacts ;
       private GeneXus.Programs.wallet.registered.SdtContact_SDT AV11contact ;
-      private GeneXus.Programs.wallet.registered.SdtMessage_signature AV15message_signature ;
-      private GeneXus.Programs.nostr.SdtSDT_message AV14sdt_message ;
+      private bool aP1_isContactDeclined ;
+      private string aP2_error ;
    }
 
 }

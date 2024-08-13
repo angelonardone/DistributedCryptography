@@ -192,7 +192,7 @@ namespace GeneXus.Programs.wallet {
                }
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override short ExecuteStartEvent( )
@@ -236,18 +236,18 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2014200), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2014200), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 2014200), false, true);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1218140), false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -539,7 +539,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_8-180599", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
          Form.Meta.addItem("description", "Encrypted Notes", 0) ;
@@ -807,9 +807,7 @@ namespace GeneXus.Programs.wallet {
       {
          /* GeneXus formulas. */
          edtavCtldescription1_Enabled = 0;
-         AssignProp("", false, edtavCtldescription1_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtldescription1_Enabled), 5, 0), !bGXsfl_9_Refreshing);
          edtavCtlcreated1_Enabled = 0;
-         AssignProp("", false, edtavCtlcreated1_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlcreated1_Enabled), 5, 0), !bGXsfl_9_Refreshing);
       }
 
       protected void RF102( )
@@ -885,9 +883,7 @@ namespace GeneXus.Programs.wallet {
       protected void before_start_formulas( )
       {
          edtavCtldescription1_Enabled = 0;
-         AssignProp("", false, edtavCtldescription1_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtldescription1_Enabled), 5, 0), !bGXsfl_9_Refreshing);
          edtavCtlcreated1_Enabled = 0;
-         AssignProp("", false, edtavCtlcreated1_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlcreated1_Enabled), 5, 0), !bGXsfl_9_Refreshing);
          fix_multi_value_controls( ) ;
       }
 
@@ -1109,7 +1105,7 @@ namespace GeneXus.Programs.wallet {
          PA102( ) ;
          WS102( ) ;
          WE102( ) ;
-         this.cleanup();
+         cleanup();
          context.SetWrapped(false);
          context.GX_msglist = BackMsgLst;
          return "";
@@ -1138,7 +1134,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202472512525984", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202481313335945", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1154,7 +1150,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/encryptednotes.js", "?202472512525984", false, true);
+         context.AddJavascriptSource("wallet/encryptednotes.js", "?202481313335945", false, true);
          /* End function include_jscripts */
       }
 
@@ -1172,6 +1168,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void sendrow_92( )
       {
+         sGXsfl_9_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_idx), 4, 0), 4, "0");
          SubsflControlProps_92( ) ;
          WB100( ) ;
          GridnotesRow = GXWebRow.GetNew(context,GridnotesContainer);
@@ -1237,16 +1234,18 @@ namespace GeneXus.Programs.wallet {
             context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
          }
          /* Single line edit */
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 10,'',false,'" + sGXsfl_9_idx + "',9)\"";
          ROClassString = "Attribute";
-         GridnotesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtldescription1_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV9GXV1)).gxTpr_Description),(string)"",(string)"","'"+""+"'"+",false,"+"'"+"E\\'OPEN NOTE\\'."+sGXsfl_9_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtldescription1_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtldescription1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)80,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         GridnotesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtldescription1_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV9GXV1)).gxTpr_Description),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,10);\"","'"+""+"'"+",false,"+"'"+"E\\'OPEN NOTE\\'."+sGXsfl_9_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtldescription1_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtldescription1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)80,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          if ( GridnotesContainer.GetWrapped() == 1 )
          {
             context.WriteHtmlText( "<td valign=\"middle\" align=\""+"end"+"\""+" style=\""+""+"\">") ;
          }
          /* Single line edit */
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 11,'',false,'" + sGXsfl_9_idx + "',9)\"";
          ROClassString = "Attribute";
-         GridnotesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlcreated1_Internalname,context.localUtil.TToC( ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV9GXV1)).gxTpr_Created, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV9GXV1)).gxTpr_Created, "99/99/99 99:99"),(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlcreated1_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlcreated1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)17,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         GridnotesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlcreated1_Internalname,context.localUtil.TToC( ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV9GXV1)).gxTpr_Created, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV9GXV1)).gxTpr_Created, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onblur(this,11);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlcreated1_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlcreated1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)17,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          send_integrity_lvl_hashes102( ) ;
          GridnotesContainer.AddRow(GridnotesRow);
          nGXsfl_9_idx = ((subGridnotes_Islastpage==1)&&(nGXsfl_9_idx+1>subGridnotes_fnc_Recordsperpage( )) ? 1 : nGXsfl_9_idx+1);
@@ -1505,9 +1504,9 @@ namespace GeneXus.Programs.wallet {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
+      private string sGXsfl_9_fel_idx="0001" ;
       private string edtavCtldescription1_Internalname ;
       private string edtavCtlcreated1_Internalname ;
-      private string sGXsfl_9_fel_idx="0001" ;
       private string subGridnotes_Class ;
       private string subGridnotes_Linesclass ;
       private string ROClassString ;
@@ -1528,12 +1527,12 @@ namespace GeneXus.Programs.wallet {
       private GXWebGrid GridnotesContainer ;
       private GXWebRow GridnotesRow ;
       private GXWebColumn GridnotesColumn ;
+      private GXWebForm Form ;
       private IGxDataStore dsDefault ;
-      private msglist BackMsgLst ;
-      private msglist LclMsgLst ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtNoteRead> AV8notesRead ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtNoteRead> GXt_objcol_SdtNoteRead1 ;
-      private GXWebForm Form ;
+      private msglist BackMsgLst ;
+      private msglist LclMsgLst ;
    }
 
 }

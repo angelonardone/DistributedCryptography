@@ -124,7 +124,7 @@ namespace GeneXus.Programs {
             AV21HttpMessage.gxTpr_Description = AV15localVarResponse.gxTpr_Errormessage;
             AV21HttpMessage.gxTpr_Id = StringUtil.Str( (decimal)(AV16localVarStatusCode), 4, 0);
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -160,9 +160,6 @@ namespace GeneXus.Programs {
       private string GXt_char2 ;
       private string GXt_char3 ;
       private bool AV20IsSuccess ;
-      private SdtdeleteMesage__postOutput aP3_deleteMesage__postOutputOUT ;
-      private GeneXus.Utils.SdtMessages_Message aP4_HttpMessage ;
-      private bool aP5_IsSuccess ;
       private GXProperties AV11ServerUrlTemplatingVar ;
       private GXProperties AV19localVarHeaders ;
       private GXProperties AV13localVarPathParams ;
@@ -171,9 +168,12 @@ namespace GeneXus.Programs {
       private GXProperties AV17localVarFormParams ;
       private SdtdeleteMesage__postInput AV8body ;
       private SdtdeleteMesage__postOutput AV10deleteMesage__postOutputOUT ;
+      private GeneXus.Utils.SdtMessages_Message AV21HttpMessage ;
       private GeneXus.Programs.openapicommon.SdtApiResponse AV15localVarResponse ;
       private GeneXus.Programs.openapicommon.SdtApiResponse GXt_SdtApiResponse1 ;
-      private GeneXus.Utils.SdtMessages_Message AV21HttpMessage ;
+      private SdtdeleteMesage__postOutput aP3_deleteMesage__postOutputOUT ;
+      private GeneXus.Utils.SdtMessages_Message aP4_HttpMessage ;
+      private bool aP5_IsSuccess ;
    }
 
 }

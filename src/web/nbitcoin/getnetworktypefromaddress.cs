@@ -81,7 +81,7 @@ namespace GeneXus.Programs.nbitcoin {
          {
             AV8networkType = "MainNet";
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

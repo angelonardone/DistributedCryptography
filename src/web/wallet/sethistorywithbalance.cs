@@ -54,7 +54,7 @@ namespace GeneXus.Programs.wallet {
          /* GeneXus formulas */
          /* Output device settings */
          AV8WebSession.Set("HistoryWithBalance", AV9historyWithBalance.ToJSonString(false));
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

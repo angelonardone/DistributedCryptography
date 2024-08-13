@@ -1,7 +1,7 @@
 /*
 				   File: type_SdttestBIP32UnitTestSDT
 			Description: testBIP32UnitTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.8.180599
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -283,6 +283,14 @@ namespace GeneXus.Programs.nbitcoin
 
 		#endregion
 
+		#region Static Type Properties
+
+		[XmlIgnore]
+		private static GXTypeInfo _typeProps;
+		protected override GXTypeInfo TypeInfo { get { return _typeProps; } set { _typeProps = value; } }
+
+		#endregion
+
 		#region Initialization
 
 		public void initialize( )
@@ -341,7 +349,7 @@ namespace GeneXus.Programs.nbitcoin
 		#endregion
 	}
 	#region Rest interface
-	[GxUnWrappedJson()]
+	[GxJsonSerialization("default")]
 	[DataContract(Name=@"testBIP32UnitTestSDT", Namespace="distributedcryptography")]
 	public class SdttestBIP32UnitTestSDT_RESTInterface : GxGenericCollectionItem<SdttestBIP32UnitTestSDT>, System.Web.SessionState.IRequiresSessionState
 	{

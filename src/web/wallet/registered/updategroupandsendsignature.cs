@@ -230,7 +230,7 @@ namespace GeneXus.Programs.wallet.registered {
                }
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -286,20 +286,20 @@ namespace GeneXus.Programs.wallet.registered {
       private string AV11description ;
       private Guid AV71signatureID ;
       private Guid GXt_guid5 ;
-      private string aP8_error ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV32transactionsToSend ;
-      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT> AV38all_groups_sdt ;
-      private GeneXus.Programs.wallet.SdtSDTAddressHistory AV66oneTransaction ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV17group_sdt ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV46group_sdt_delete ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV32transactionsToSend ;
+      private GeneXus.Programs.wallet.SdtSDTAddressHistory AV66oneTransaction ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV55oneGroupContact ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV48groupContact ;
       private GeneXus.Programs.wallet.registered.SdtMuSigSignatures AV65muSigSignatures ;
-      private GeneXus.Programs.wallet.registered.SdtContact_SDT AV40contact ;
       private GeneXus.Programs.distcrypt.SdtExternalUser AV70externalUser ;
       private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
       private GeneXus.Programs.wallet.registered.SdtMessage_signature AV54message_signature ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV48groupContact ;
       private GeneXus.Programs.nostr.SdtSDT_message AV59sdt_message ;
+      private GeneXus.Programs.wallet.registered.SdtContact_SDT AV40contact ;
+      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT> AV38all_groups_sdt ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV46group_sdt_delete ;
+      private string aP8_error ;
    }
 
 }

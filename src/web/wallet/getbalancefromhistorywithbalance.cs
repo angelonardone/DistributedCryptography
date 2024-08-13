@@ -71,7 +71,7 @@ namespace GeneXus.Programs.wallet {
             AV8totalBalance = (decimal)(AV8totalBalance+(AV9oneAddressHistory.gxTpr_Balance));
             AV11GXV1 = (int)(AV11GXV1+1);
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -94,10 +94,10 @@ namespace GeneXus.Programs.wallet {
 
       private int AV11GXV1 ;
       private decimal AV8totalBalance ;
-      private decimal aP0_totalBalance ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV10historyWithBalance ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> GXt_objcol_SdtSDTAddressHistory1 ;
       private GeneXus.Programs.wallet.SdtSDTAddressHistory AV9oneAddressHistory ;
+      private decimal aP0_totalBalance ;
    }
 
 }

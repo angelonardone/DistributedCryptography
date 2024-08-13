@@ -82,7 +82,7 @@ namespace GeneXus.Programs {
             }
             AV8websession.Set(AV12Pgmname, AV9restParameters.ToJSonString(false, true));
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -112,12 +112,12 @@ namespace GeneXus.Programs {
       private int AV13GXV1 ;
       private string AV12Pgmname ;
       private IGxSession AV8websession ;
-      private SdtSDT_Rest_Parameters_Item aP0_restParameters ;
+      private SdtSDT_Rest_Parameters_Item AV9restParameters ;
       private GXBaseCollection<SdtSDT_Rest_Parameters_Item> AV10rest_parameters ;
       private GXBaseCollection<SdtSDT_Rest_Parameters_Item> GXt_objcol_SdtSDT_Rest_Parameters_Item1 ;
-      private SdtSDT_Rest_Parameters_Item AV9restParameters ;
       private GeneXus.Programs.wallet.SdtWallet AV11wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet2 ;
+      private SdtSDT_Rest_Parameters_Item aP0_restParameters ;
    }
 
 }

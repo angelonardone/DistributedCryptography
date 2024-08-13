@@ -203,7 +203,7 @@ namespace GeneXus.Programs.wallet.registered {
                }
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       protected void RenderHtmlHeaders( )
@@ -234,10 +234,10 @@ namespace GeneXus.Programs.wallet.registered {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2014200), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2014200), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -462,7 +462,7 @@ namespace GeneXus.Programs.wallet.registered {
             {
                if ( context.ExposeMetadata( ) )
                {
-                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_8-180599", 0) ;
+                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
             Form.Meta.addItem("description", "dispatch Incomming Message", 0) ;
@@ -808,7 +808,7 @@ namespace GeneXus.Programs.wallet.registered {
                   }
                   else
                   {
-                     this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"Nost response: ",AV26recFromNostr.ToJSonString(false, true)}, true);
+                     this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"Nostr response: ",AV26recFromNostr.ToJSonString(false, true)}, true);
                   }
                }
             }
@@ -1194,7 +1194,7 @@ namespace GeneXus.Programs.wallet.registered {
          PA192( ) ;
          WS192( ) ;
          WE192( ) ;
-         this.cleanup();
+         cleanup();
          context.SetWrapped(false);
          SaveComponentMsgList(sPrefix);
          context.GX_msglist = BackMsgLst;
@@ -1370,7 +1370,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20248612184255", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202481313332639", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1386,7 +1386,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/dispatchincommingmessage.js", "?20248612184255", false, true);
+         context.AddJavascriptSource("wallet/registered/dispatchincommingmessage.js", "?202481313332640", false, true);
          /* End function include_jscripts */
       }
 
@@ -1542,25 +1542,25 @@ namespace GeneXus.Programs.wallet.registered {
       private Guid AV17contactId ;
       private Guid GXt_guid4 ;
       private GXWebForm Form ;
-      private IGxDataStore dsDefault ;
-      private msglist BackMsgLst ;
-      private msglist LclMsgLst ;
       private GxFile AV6queueFile ;
       private GxDirectory AV5queueDirectory ;
       private GxFileCollection AV29GXV1 ;
-      private GeneXus.Programs.wallet.registered.SdtContact_SDT AV18contact ;
-      private GeneXus.Programs.wallet.registered.SdtContact_SDT GXt_SdtContact_SDT5 ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser AV16externalUser ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser2 ;
-      private GeneXus.Programs.wallet.SdtSDT_Json_Enc AV13json_enc ;
-      private SdtDesktopApp_services_SDT_Messages_Message_MessageItem AV21message ;
-      private SdtDesktopApp_services_SDT_Messages AV19messages ;
+      private IGxDataStore dsDefault ;
       private GeneXus.Core.genexus.server.SdtNotificationInfo AV12notificationInfo ;
-      private GeneXus.Programs.nostr.SdtRecFromNostr AV26recFromNostr ;
-      private GeneXus.Programs.nostr.SdtSDT_Chat AV11sdt_chat ;
-      private GeneXus.Programs.nostr.SdtSDT_message AV10sdt_message ;
+      private GeneXus.Programs.wallet.SdtSDT_Json_Enc AV13json_enc ;
+      private GeneXus.Programs.distcrypt.SdtExternalUser AV16externalUser ;
+      private SdtDesktopApp_services_SDT_Messages_Message_MessageItem AV21message ;
       private GeneXus.Programs.wallet.SdtWallet AV7wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
+      private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser2 ;
+      private GeneXus.Programs.nostr.SdtRecFromNostr AV26recFromNostr ;
+      private SdtDesktopApp_services_SDT_Messages AV19messages ;
+      private GeneXus.Programs.nostr.SdtSDT_message AV10sdt_message ;
+      private GeneXus.Programs.nostr.SdtSDT_Chat AV11sdt_chat ;
+      private GeneXus.Programs.wallet.registered.SdtContact_SDT AV18contact ;
+      private GeneXus.Programs.wallet.registered.SdtContact_SDT GXt_SdtContact_SDT5 ;
+      private msglist BackMsgLst ;
+      private msglist LclMsgLst ;
    }
 
 }

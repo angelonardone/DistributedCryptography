@@ -91,7 +91,7 @@ namespace GeneXus.Programs.wallet {
             }
             AV15GXV1 = (int)(AV15GXV1+1);
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -118,13 +118,13 @@ namespace GeneXus.Programs.wallet {
       private int AV16GXV2 ;
       private int AV17GXV3 ;
       private DateTime AV14currentDateTime ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP1_transactionsToSend ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtMultiSigSignatureData> AV8signatureContacts ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV9transactionsToSend ;
-      private GeneXus.Programs.wallet.SdtMultiSigSignatureData AV11signatureContact ;
-      private GeneXus.Programs.wallet.SdtMultiSigSignatureData AV12oneSignatureContact ;
-      private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem AV13muSigDataItem ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP1_transactionsToSend ;
       private GeneXus.Programs.wallet.SdtSDTAddressHistory AV10oneTransaction ;
+      private GeneXus.Programs.wallet.SdtMultiSigSignatureData AV11signatureContact ;
+      private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem AV13muSigDataItem ;
+      private GeneXus.Programs.wallet.SdtMultiSigSignatureData AV12oneSignatureContact ;
    }
 
 }

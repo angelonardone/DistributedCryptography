@@ -124,7 +124,7 @@ namespace GeneXus.Programs {
             AV12notificationInfo.gxTpr_Message = AV11message;
             AV13ServerSocket.broadcast( AV12notificationInfo);
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -149,9 +149,9 @@ namespace GeneXus.Programs {
       private DateTime AV8datetime ;
       private string AV11message ;
       private Guid AV10key ;
+      private GeneXus.Programs.electrum.SdtelectrumResponse AV15electrumResponse ;
       private GeneXus.Core.genexus.server.SdtNotificationInfo AV12notificationInfo ;
       private GeneXus.Core.genexus.server.SdtSocket AV13ServerSocket ;
-      private GeneXus.Programs.electrum.SdtelectrumResponse AV15electrumResponse ;
    }
 
 }

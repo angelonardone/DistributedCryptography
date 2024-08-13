@@ -29,31 +29,20 @@
 		},
 		
 		_defineDropZone: function () {
-			var dropZone = this.options.dropZone;
 			$(document).bind('dragover', function (e) {
-				var timeout = window.dropZoneTimeout;
-				if (!timeout) {
-					dropZone.addClass('in');
-				} else {
-					clearTimeout(timeout);
-				}
-				var found = false,
-					node = e.target;
-				do {
-					if (node === dropZone[0]) {
-						found = true;
-						break;
-					}
-					node = node.parentNode;
-				} while (node);
-				if (found) {
-					dropZone.addClass('hover');
-				} else {
-					dropZone.removeClass('hover');
-				}
-				window.dropZoneTimeout = setTimeout(function () {
+			var dropZones = $('.dropzone'),
+				timeout = window.dropZoneTimeout;
+			if (timeout) {
+				clearTimeout(timeout);
+			} else {
+				dropZones.addClass('in');
+			}
+			var hoveredDropZone = $(e.target).closest(dropZones);
+			dropZones.not(hoveredDropZone).removeClass('hover');
+			hoveredDropZone.addClass('hover');
+			window.dropZoneTimeout = setTimeout(function () {
 					window.dropZoneTimeout = null;
-					dropZone.removeClass('in hover');
+					dropZones.removeClass('in hover');
 				}, 100);
 			});
 		},

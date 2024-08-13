@@ -122,7 +122,7 @@ namespace GeneXus.Programs.wallet.registered {
             }
             AV47sequence = (long)(AV47sequence+1);
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -154,13 +154,13 @@ namespace GeneXus.Programs.wallet.registered {
       private string AV18error ;
       private string GXt_char1 ;
       private bool AV44found ;
+      private GeneXus.Programs.wallet.SdtStoredTransactions AV32StoredTransactions ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV22group_sdt ;
+      private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem> AV45sdt_addressess ;
+      private GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem AV42oneAddress ;
+      private GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem AV36TransactionItem ;
       private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem> aP5_sdt_addressess ;
       private string aP6_error ;
-      private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem> AV45sdt_addressess ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV22group_sdt ;
-      private GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem AV42oneAddress ;
-      private GeneXus.Programs.wallet.SdtStoredTransactions AV32StoredTransactions ;
-      private GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem AV36TransactionItem ;
    }
 
 }

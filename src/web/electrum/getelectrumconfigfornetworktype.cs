@@ -78,7 +78,7 @@ namespace GeneXus.Programs.electrum {
             }
             AV14GXV1 = (int)(AV14GXV1+1);
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -103,13 +103,13 @@ namespace GeneXus.Programs.electrum {
       }
 
       private int AV14GXV1 ;
-      private GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem aP0_walletConnParameter ;
+      private GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem AV13walletConnParameter ;
       private GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem> AV9ConnectionParameters ;
       private GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem> GXt_objcol_SdtConnectionParameters_ConnectionParametersItem1 ;
-      private GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem AV13walletConnParameter ;
-      private GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem AV11oneConnParameter ;
       private GeneXus.Programs.wallet.SdtWallet AV12wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet2 ;
+      private GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem AV11oneConnParameter ;
+      private GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem aP0_walletConnParameter ;
    }
 
 }

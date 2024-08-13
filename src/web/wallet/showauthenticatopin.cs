@@ -154,7 +154,7 @@ namespace GeneXus.Programs.wallet {
                }
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override short ExecuteStartEvent( )
@@ -198,10 +198,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2014200), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2014200), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -371,7 +371,8 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            GxWebStd.gx_single_line_edit( context, edtavCtlissuer1_Internalname, StringUtil.RTrim( AV5authenticator.gxTpr_Issuer), StringUtil.RTrim( context.localUtil.Format( AV5authenticator.gxTpr_Issuer, "")), "", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtlissuer1_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtlissuer1_Enabled, 0, "text", "", 60, "chr", 1, "row", 60, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Wallet/ShowAuthenticatoPin.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 8,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavCtlissuer1_Internalname, StringUtil.RTrim( AV5authenticator.gxTpr_Issuer), StringUtil.RTrim( context.localUtil.Format( AV5authenticator.gxTpr_Issuer, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,8);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtlissuer1_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtlissuer1_Enabled, 0, "text", "", 60, "chr", 1, "row", 60, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Wallet/ShowAuthenticatoPin.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -387,7 +388,8 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            GxWebStd.gx_single_line_edit( context, edtavCtlaccounttitle1_Internalname, StringUtil.RTrim( AV5authenticator.gxTpr_Accounttitle), StringUtil.RTrim( context.localUtil.Format( AV5authenticator.gxTpr_Accounttitle, "")), "", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtlaccounttitle1_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtlaccounttitle1_Enabled, 0, "text", "", 60, "chr", 1, "row", 60, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Wallet/ShowAuthenticatoPin.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 13,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavCtlaccounttitle1_Internalname, StringUtil.RTrim( AV5authenticator.gxTpr_Accounttitle), StringUtil.RTrim( context.localUtil.Format( AV5authenticator.gxTpr_Accounttitle, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,13);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtlaccounttitle1_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtlaccounttitle1_Enabled, 0, "text", "", 60, "chr", 1, "row", 60, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Wallet/ShowAuthenticatoPin.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -459,7 +461,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_8-180599", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
          Form.Meta.addItem("description", "Show Authenticato Pin", 0) ;
@@ -814,7 +816,7 @@ namespace GeneXus.Programs.wallet {
          PA0U2( ) ;
          WS0U2( ) ;
          WE0U2( ) ;
-         this.cleanup();
+         cleanup();
          context.SetWrapped(false);
          context.GX_msglist = BackMsgLst;
          return "";
@@ -835,7 +837,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202472512525926", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202481313335893", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -851,7 +853,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/showauthenticatopin.js", "?202472512525926", false, true);
+         context.AddJavascriptSource("wallet/showauthenticatopin.js", "?202481313335893", false, true);
          /* End function include_jscripts */
       }
 
@@ -936,12 +938,12 @@ namespace GeneXus.Programs.wallet {
          GX_FocusControl = "";
          Form = new GXWebForm();
          sPrefix = "";
+         TempTags = "";
          ClassString = "";
          StyleString = "";
          AV10qrcode = "";
          AV15Qrcode_GXI = "";
          sImgUrl = "";
-         TempTags = "";
          AV8generatedPIN = "";
          bttRefreshpin_Jsonclick = "";
          bttClose_Jsonclick = "";
@@ -985,6 +987,7 @@ namespace GeneXus.Programs.wallet {
       private string sPrefix ;
       private string divMaintable_Internalname ;
       private string edtavCtlissuer1_Internalname ;
+      private string TempTags ;
       private string edtavCtlissuer1_Jsonclick ;
       private string edtavCtlaccounttitle1_Internalname ;
       private string edtavCtlaccounttitle1_Jsonclick ;
@@ -994,7 +997,6 @@ namespace GeneXus.Programs.wallet {
       private string StyleString ;
       private string sImgUrl ;
       private string edtavGeneratedpin_Internalname ;
-      private string TempTags ;
       private string AV8generatedPIN ;
       private string edtavGeneratedpin_Jsonclick ;
       private string bttRefreshpin_Internalname ;
@@ -1019,14 +1021,14 @@ namespace GeneXus.Programs.wallet {
       private string AV15Qrcode_GXI ;
       private string AV10qrcode ;
       private GXProperties forbiddenHiddens ;
-      private IGxDataStore dsDefault ;
-      private msglist BackMsgLst ;
-      private msglist LclMsgLst ;
       private GXWebForm Form ;
+      private IGxDataStore dsDefault ;
       private GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator AV5authenticator ;
       private GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator GXt_SdtSDT_Authenticators_Authenticator1 ;
-      private GeneXus.Programs.googleauthenticator.SdtSetupCode AV11SetupCode ;
       private GeneXus.Programs.googleauthenticator.SdtTwoFactorAuthenticator AV12TwoFactorAuthenticator ;
+      private GeneXus.Programs.googleauthenticator.SdtSetupCode AV11SetupCode ;
+      private msglist BackMsgLst ;
+      private msglist LclMsgLst ;
    }
 
 }

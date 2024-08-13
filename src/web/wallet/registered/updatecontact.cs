@@ -103,7 +103,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             AV13error = "You are not logged into Distributed Cryptography main site";
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -141,14 +141,14 @@ namespace GeneXus.Programs.wallet.registered {
       private bool AV17IsSuccess ;
       private Guid AV8ContactId ;
       private Guid AV47Outcontactid ;
-      private string aP2_error ;
       private GXProperties AV45ServerUrlTemplatingVar ;
-      private SdtupdateContact__postInput AV24body ;
       private GeneXus.Programs.wallet.registered.SdtContact_SDT AV23contact ;
       private GeneXus.Programs.distcrypt.SdtExternalUser AV14externalUser ;
       private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
-      private GeneXus.Utils.SdtMessages_Message AV16HttpMessage ;
+      private SdtupdateContact__postInput AV24body ;
       private SdtupdateContact__postOutput AV46updateContact__postOutputOUT ;
+      private GeneXus.Utils.SdtMessages_Message AV16HttpMessage ;
+      private string aP2_error ;
    }
 
 }

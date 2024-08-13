@@ -88,7 +88,7 @@ namespace GeneXus.Programs.wallet {
          new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean7) ;
          AV18file.Source = AV17wallet.gxTpr_Walletbasedirectory+(GXt_boolean7 ? "/" : "\\")+StringUtil.Trim( AV9fileName);
          AV18file.WriteAllText(AV16json_enc.ToJSonString(false, true), "");
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -124,11 +124,11 @@ namespace GeneXus.Programs.wallet {
       private bool GXt_boolean6 ;
       private bool GXt_boolean7 ;
       private string AV8clearText ;
-      private string aP2_error ;
       private GxFile AV18file ;
-      private GeneXus.Programs.wallet.SdtSDT_Json_Enc AV16json_enc ;
       private GeneXus.Programs.wallet.SdtWallet AV17wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
+      private GeneXus.Programs.wallet.SdtSDT_Json_Enc AV16json_enc ;
+      private string aP2_error ;
    }
 
 }

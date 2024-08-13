@@ -110,7 +110,7 @@ namespace GeneXus.Programs.nostr {
          {
             AV8error = "You are not legged in";
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -147,13 +147,13 @@ namespace GeneXus.Programs.nostr {
       private string AV20messageSend ;
       private Guid AV12Key ;
       private Guid GXt_guid4 ;
-      private GeneXus.Programs.gxinternetlib.SdtGxInternetLibWs GxInternetLibWs ;
-      private string aP2_error ;
       private GeneXus.Programs.distcrypt.SdtExternalUser AV19externalUser ;
       private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
       private GeneXus.Programs.nostr.SdtEvent AV17nostrEvent ;
       private GeneXus.Programs.nostr.SdtTagsOfTags AV18tagsoftags ;
       private GeneXus.Programs.gxinternetlib.SdtOperationResult AV26OperationResult ;
+      private GeneXus.Programs.gxinternetlib.SdtGxInternetLibWs GxInternetLibWs ;
+      private string aP2_error ;
    }
 
 }

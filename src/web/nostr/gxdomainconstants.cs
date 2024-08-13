@@ -22,6 +22,7 @@ namespace GeneXus.Programs.nostr {
       static gxdomainconstants ()
       {
          domain["ConnectionID"] = "Connection ID";
+         domain["NOSTR_CONFIG_CONNECTION"] = "Configed Connection";
       }
 
       public static string getDescription( IGxContext context ,
@@ -52,6 +53,7 @@ namespace GeneXus.Programs.nostr {
          {
             domainMap = new Hashtable();
             domainMap["ConnectionID"] = "ConnectionID";
+            domainMap["ConfigedConnection"] = "NOSTR_CONFIG_CONNECTION";
          }
          return (string)domainMap[key] ;
       }

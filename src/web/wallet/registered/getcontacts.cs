@@ -99,7 +99,7 @@ namespace GeneXus.Programs.wallet.registered {
                      }
                      else
                      {
-                        this.cleanup();
+                        cleanup();
                         if (true) return;
                      }
                      AV33GXV1 = (int)(AV33GXV1+1);
@@ -111,7 +111,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             AV9error = "You are not logged into Distributed Cryptography main site";
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -146,17 +146,17 @@ namespace GeneXus.Programs.wallet.registered {
       private string GXt_char2 ;
       private bool AV12IsSuccess ;
       private string AV27clearText ;
-      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> aP0_allContacts ;
-      private string aP1_error ;
-      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> AV30allContacts ;
       private GXProperties AV13properties ;
-      private GeneXus.Programs.wallet.registered.SdtContact_SDT AV29oneContact ;
-      private SdtDesktopApp_services_SDT_Contacts_Contact_ContactItem AV26contact ;
-      private SdtDesktopApp_services_SDT_Contacts AV25contacts ;
+      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> AV30allContacts ;
       private GeneXus.Programs.distcrypt.SdtExternalUser AV10externalUser ;
       private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
       private SdtgetUserContacts__getOutput AV32getUserContacts__getOutput ;
       private GeneXus.Utils.SdtMessages_Message AV11HttpMessage ;
+      private SdtDesktopApp_services_SDT_Contacts AV25contacts ;
+      private SdtDesktopApp_services_SDT_Contacts_Contact_ContactItem AV26contact ;
+      private GeneXus.Programs.wallet.registered.SdtContact_SDT AV29oneContact ;
+      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> aP0_allContacts ;
+      private string aP1_error ;
    }
 
 }

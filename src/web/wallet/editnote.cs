@@ -203,7 +203,7 @@ namespace GeneXus.Programs.wallet {
                }
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       protected void RenderHtmlHeaders( )
@@ -234,10 +234,10 @@ namespace GeneXus.Programs.wallet {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2014200), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2014200), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -492,7 +492,7 @@ namespace GeneXus.Programs.wallet {
             {
                if ( context.ExposeMetadata( ) )
                {
-                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_8-180599", 0) ;
+                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
             Form.Meta.addItem("description", "Edit Note", 0) ;
@@ -951,7 +951,7 @@ namespace GeneXus.Programs.wallet {
          PA0D2( ) ;
          WS0D2( ) ;
          WE0D2( ) ;
-         this.cleanup();
+         cleanup();
          context.SetWrapped(false);
          SaveComponentMsgList(sPrefix);
          context.GX_msglist = BackMsgLst;
@@ -1127,7 +1127,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20248612184292", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202481313332464", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1143,7 +1143,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/editnote.js", "?20248612184292", false, true);
+         context.AddJavascriptSource("wallet/editnote.js", "?202481313332465", false, true);
          context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true);
          context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true);
          /* End function include_jscripts */
@@ -1322,14 +1322,14 @@ namespace GeneXus.Programs.wallet {
       private string wcpOAV8fileName ;
       private GXUserControl ucText ;
       private GXWebForm Form ;
-      private IGxDataStore dsDefault ;
-      private msglist BackMsgLst ;
-      private msglist LclMsgLst ;
       private GxDirectory AV16directory ;
       private GxDirectory AV17noteDirectory ;
+      private IGxDataStore dsDefault ;
+      private GeneXus.Programs.wallet.SdtNote AV10note ;
       private GeneXus.Programs.wallet.SdtWallet AV15wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet2 ;
-      private GeneXus.Programs.wallet.SdtNote AV10note ;
+      private msglist BackMsgLst ;
+      private msglist LclMsgLst ;
    }
 
 }

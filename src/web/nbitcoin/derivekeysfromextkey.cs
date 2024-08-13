@@ -154,7 +154,7 @@ namespace GeneXus.Programs.nbitcoin {
                AV27start = (long)(AV27start+1);
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -194,13 +194,13 @@ namespace GeneXus.Programs.nbitcoin {
       private string AV15extendedKeyType ;
       private string AV11base_char ;
       private string GXt_char1 ;
-      private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtKeyInfo> aP4_allKeyInfo ;
-      private string aP5_error ;
       private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtKeyInfo> AV28allKeyInfo ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyCreate AV17extKeyCreate ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV18extKeyInfo ;
       private GeneXus.Programs.nbitcoin.SdtKeyCreate AV20keyCreate ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo AV21keyInfo ;
+      private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtKeyInfo> aP4_allKeyInfo ;
+      private string aP5_error ;
    }
 
 }

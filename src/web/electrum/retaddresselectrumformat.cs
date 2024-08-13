@@ -127,7 +127,7 @@ namespace GeneXus.Programs.electrum {
             /* User Code */
             	}
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

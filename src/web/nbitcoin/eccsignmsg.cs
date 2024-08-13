@@ -108,7 +108,7 @@ namespace GeneXus.Programs.nbitcoin {
               AV8error = ex.Message.ToString();
          /* User Code */
              }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

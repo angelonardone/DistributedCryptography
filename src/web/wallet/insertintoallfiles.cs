@@ -83,7 +83,7 @@ namespace GeneXus.Programs.wallet {
          GXt_char4 = AV15error;
          new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  AV14all_file_name,  AV13encryptedFiles.ToJSonString(false), out  GXt_char4) ;
          AV15error = GXt_char4;
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -113,12 +113,12 @@ namespace GeneXus.Programs.wallet {
       private string GXt_char4 ;
       private bool GXt_boolean2 ;
       private bool GXt_boolean3 ;
-      private string aP1_error ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtEncryptedFile> AV13encryptedFiles ;
       private GxDirectory AV9directory ;
+      private GeneXus.Programs.wallet.SdtEncryptedFile AV12encryptedFile ;
       private GeneXus.Programs.wallet.SdtWallet AV11wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
-      private GeneXus.Programs.wallet.SdtEncryptedFile AV12encryptedFile ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtEncryptedFile> AV13encryptedFiles ;
+      private string aP1_error ;
    }
 
 }

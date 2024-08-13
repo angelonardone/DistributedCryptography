@@ -108,7 +108,7 @@ namespace GeneXus.Programs.wallet {
                AV8error = GXt_char1;
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -139,12 +139,12 @@ namespace GeneXus.Programs.wallet {
       private string AV8error ;
       private string GXt_char1 ;
       private DateTime AV20sentDateTime ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP2_transactionsToSend ;
-      private string aP3_error ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV14transactionsToSend ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP2_transactionsToSend ;
       private GeneXus.Programs.wallet.SdtStoredTransactions AV16StoredTransactions ;
       private GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem AV17oneStoredTransaction ;
       private GeneXus.Programs.wallet.SdtSDTAddressHistory AV15oneTransaction ;
+      private string aP3_error ;
    }
 
 }

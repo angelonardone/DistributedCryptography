@@ -1,1 +1,2 @@
-import"@genexus/chameleon";
+
+//# sourceMappingURL=index.esm.js.map

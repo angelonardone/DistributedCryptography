@@ -154,7 +154,7 @@ namespace GeneXus.Programs.wallet.registered {
                }
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override short ExecuteStartEvent( )
@@ -198,10 +198,10 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2014200), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2014200), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -428,7 +428,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_8-180599", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
          Form.Meta.addItem("description", "Contact", 0) ;
@@ -840,7 +840,7 @@ namespace GeneXus.Programs.wallet.registered {
          PA172( ) ;
          WS172( ) ;
          WE172( ) ;
-         this.cleanup();
+         cleanup();
          context.SetWrapped(false);
          context.GX_msglist = BackMsgLst;
          return "";
@@ -861,7 +861,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20247251253217", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20248131334066", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -877,7 +877,7 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/registered/contact.js", "?20247251253217", false, true);
+         context.AddJavascriptSource("wallet/registered/contact.js", "?20248131334066", false, true);
          /* End function include_jscripts */
       }
 
@@ -1021,12 +1021,12 @@ namespace GeneXus.Programs.wallet.registered {
       private string AV5ContactUserName ;
       private string AV6ContactName ;
       private IGxSession AV10websession ;
-      private IGxDataStore dsDefault ;
-      private msglist BackMsgLst ;
-      private msglist LclMsgLst ;
       private GXWebForm Form ;
+      private IGxDataStore dsDefault ;
       private GeneXus.Programs.wallet.registered.SdtContact_SDT AV13contact_accept ;
       private GeneXus.Programs.wallet.registered.SdtContact_SDT AV11contact ;
+      private msglist BackMsgLst ;
+      private msglist LclMsgLst ;
    }
 
 }

@@ -99,7 +99,7 @@ namespace GeneXus.Programs.distributedcrypto {
             {
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

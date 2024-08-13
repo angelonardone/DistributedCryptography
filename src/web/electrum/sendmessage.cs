@@ -133,7 +133,7 @@ namespace GeneXus.Programs.electrum {
                AV8error = "We didn't recognize the Conection Type";
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -162,13 +162,13 @@ namespace GeneXus.Programs.electrum {
       private string AV8error ;
       private string AV11message ;
       private string AV14sendResponse ;
+      private GeneXus.Programs.electrum.SdtConnection AV16Connection ;
+      private GeneXus.Programs.electrum.SdtConnection GXt_SdtConnection1 ;
+      private GeneXus.Programs.gxinternetlib.SdtOperationResult AV18OperationResult ;
       private GeneXus.Programs.gxinternetlib.SdtGxInternetLibTcp GxInternetLibTcp ;
       private GeneXus.Programs.gxinternetlib.SdtGxInternetLibWs GxInternetLibWs ;
       private string aP2_sendResponse ;
       private string aP3_error ;
-      private GeneXus.Programs.gxinternetlib.SdtOperationResult AV18OperationResult ;
-      private GeneXus.Programs.electrum.SdtConnection AV16Connection ;
-      private GeneXus.Programs.electrum.SdtConnection GXt_SdtConnection1 ;
    }
 
 }

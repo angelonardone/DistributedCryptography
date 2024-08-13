@@ -69,7 +69,7 @@ namespace GeneXus.Programs.wallet {
          new GeneXus.Programs.nbitcoin.eccdecrypt(context ).execute(  AV15keyInfo.gxTpr_Privatekey,  AV9encryptedKey, out  AV12encryptionKey, out  GXt_char2) ;
          AV13error = GXt_char2;
          AV8websession.Set("LastJasonEncKey", "");
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -99,9 +99,9 @@ namespace GeneXus.Programs.wallet {
       private string AV13error ;
       private string GXt_char2 ;
       private IGxSession AV8websession ;
-      private string aP0_encryptionKey ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo AV15keyInfo ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo GXt_SdtKeyInfo1 ;
+      private string aP0_encryptionKey ;
    }
 
 }

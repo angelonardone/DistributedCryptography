@@ -174,7 +174,7 @@ namespace GeneXus.Programs.openapicommon {
          AV8ApiResponse.gxTpr_Statuscode = AV9httpClient.StatusCode;
          AV8ApiResponse.gxTpr_Errorcode = AV9httpClient.ErrCode;
          AV8ApiResponse.gxTpr_Errormessage = AV9httpClient.ReasonLine;
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -216,7 +216,6 @@ namespace GeneXus.Programs.openapicommon {
       private string AV14PostData ;
       private string AV21UrlWithParms ;
       private GXProperties AV15EmptyPostData ;
-      private GeneXus.Programs.openapicommon.SdtApiResponse aP11_ApiResponse ;
       private GxHttpClient AV9httpClient ;
       private GXProperties AV28VarHeaders ;
       private GXProperties AV22VarPathParams ;
@@ -229,6 +228,7 @@ namespace GeneXus.Programs.openapicommon {
       private GxRegexMatch AV10RegExMatch ;
       private GxUnknownObjectCollection AV16RegExMatchCollection ;
       private GeneXus.Programs.openapicommon.SdtApiResponse AV8ApiResponse ;
+      private GeneXus.Programs.openapicommon.SdtApiResponse aP11_ApiResponse ;
    }
 
 }

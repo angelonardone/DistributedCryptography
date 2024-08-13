@@ -81,7 +81,7 @@ namespace GeneXus.Programs.electrum {
          GXt_char1 = AV8error;
          new GeneXus.Programs.electrum.sendmessage(context ).execute(  AV9sendMessage,  AV11messageType, out  AV12messageResponse, out  GXt_char1) ;
          AV8error = GXt_char1;
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

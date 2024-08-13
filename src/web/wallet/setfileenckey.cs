@@ -66,7 +66,7 @@ namespace GeneXus.Programs.wallet {
          {
             AV9WebSession.Set("FileEncKey", "");
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -94,10 +94,10 @@ namespace GeneXus.Programs.wallet {
       private string AV11error ;
       private string GXt_char2 ;
       private IGxSession AV9WebSession ;
-      private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtKeyInfo> AV10allKeyInfo ;
-      private GeneXus.Programs.nbitcoin.SdtKeyInfo AV8keyInfo ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV12extKeyInfo ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo GXt_SdtExtKeyInfo1 ;
+      private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtKeyInfo> AV10allKeyInfo ;
+      private GeneXus.Programs.nbitcoin.SdtKeyInfo AV8keyInfo ;
    }
 
 }

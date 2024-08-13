@@ -54,7 +54,7 @@ namespace GeneXus.Programs.nostr {
          /* GeneXus formulas */
          /* Output device settings */
          AV9WebSession.Set("ConnectionID", AV8connectionID.ToString());
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

@@ -66,7 +66,7 @@ namespace GeneXus.Programs.openapicommon {
          /* GeneXus formulas */
          /* Output device settings */
          AV9JsonString = StringUtil.Trim( AV8GUID.ToString());
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

@@ -85,7 +85,7 @@ namespace GeneXus.Programs.sudodb {
                S111 ();
                if ( returnInSub )
                {
-                  this.cleanup();
+                  cleanup();
                   if (true) return;
                }
                AV16oneTransactionFromService.gxTpr_Datetime = AV17transactionDateTime;
@@ -104,7 +104,7 @@ namespace GeneXus.Programs.sudodb {
                      S111 ();
                      if ( returnInSub )
                      {
-                        this.cleanup();
+                        cleanup();
                         if (true) return;
                      }
                      AV18transactionFromServiceUsed.gxTpr_Useddatetime = AV17transactionDateTime;
@@ -130,7 +130,7 @@ namespace GeneXus.Programs.sudodb {
             }
             AV24GXV1 = (int)(AV24GXV1+1);
          }
-         this.cleanup();
+         cleanup();
       }
 
       protected void S111( )
@@ -192,18 +192,18 @@ namespace GeneXus.Programs.sudodb {
       private string AV20TransactionId ;
       private DateTime AV17transactionDateTime ;
       private bool returnInSub ;
-      private SdtGxExplorer_services_TxoutFromAddresses aP1_transactionsFromService ;
-      private GXBaseCollection<GeneXus.Programs.sudodb.SdtvIN> AV9DBvINs ;
-      private GXBaseCollection<GeneXus.Programs.sudodb.SdtvOUT> AV10DBvOUTs ;
-      private GXBaseCollection<GeneXus.Programs.sudodb.SdtTransaction> AV21transactions ;
-      private GeneXus.Programs.sudodb.SdtvIN AV12oneDBvIN ;
-      private GeneXus.Programs.sudodb.SdtvOUT AV13oneDBvOUT ;
-      private GeneXus.Programs.sudodb.SdtvOUT AV14oneDBvOUT1 ;
-      private GeneXus.Programs.sudodb.SdtTransaction AV15oneTransaction ;
-      private SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem AV16oneTransactionFromService ;
-      private SdtGxExplorer_services_TxoutFromAddresses_Transaction_Used AV18transactionFromServiceUsed ;
-      private SdtGxExplorer_services_TxoutFromAddresses_Transaction_Used_UsedTo_Item AV19transactionFromServiceUsedItem ;
       private SdtGxExplorer_services_TxoutFromAddresses AV22transactionsFromService ;
+      private SdtGxExplorer_services_TxoutFromAddresses aP1_transactionsFromService ;
+      private GXBaseCollection<GeneXus.Programs.sudodb.SdtTransaction> AV21transactions ;
+      private GXBaseCollection<GeneXus.Programs.sudodb.SdtvOUT> AV10DBvOUTs ;
+      private GXBaseCollection<GeneXus.Programs.sudodb.SdtvIN> AV9DBvINs ;
+      private GeneXus.Programs.sudodb.SdtvOUT AV13oneDBvOUT ;
+      private SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem AV16oneTransactionFromService ;
+      private GeneXus.Programs.sudodb.SdtvIN AV12oneDBvIN ;
+      private SdtGxExplorer_services_TxoutFromAddresses_Transaction_Used AV18transactionFromServiceUsed ;
+      private GeneXus.Programs.sudodb.SdtvOUT AV14oneDBvOUT1 ;
+      private SdtGxExplorer_services_TxoutFromAddresses_Transaction_Used_UsedTo_Item AV19transactionFromServiceUsedItem ;
+      private GeneXus.Programs.sudodb.SdtTransaction AV15oneTransaction ;
    }
 
 }

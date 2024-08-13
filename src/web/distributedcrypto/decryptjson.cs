@@ -97,7 +97,7 @@ namespace GeneXus.Programs.distributedcrypto {
             {
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -128,10 +128,10 @@ namespace GeneXus.Programs.distributedcrypto {
       private string GXt_char2 ;
       private string AV13encryptedText ;
       private string AV12clearText ;
-      private string aP3_clearText ;
-      private string aP4_error ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo AV15keyInfo ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo GXt_SdtKeyInfo1 ;
+      private string aP3_clearText ;
+      private string aP4_error ;
    }
 
 }

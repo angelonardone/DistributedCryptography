@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtGroup_SDT_ContactItem
 			Description: Contact
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.8.180599
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -575,6 +575,14 @@ namespace GeneXus.Programs.wallet.registered
 
 		#endregion
 
+		#region Static Type Properties
+
+		[XmlIgnore]
+		private static GXTypeInfo _typeProps;
+		protected override GXTypeInfo TypeInfo { get { return _typeProps; } set { _typeProps = value; } }
+
+		#endregion
+
 		#region Initialization
 
 		public void initialize( )
@@ -678,6 +686,7 @@ namespace GeneXus.Programs.wallet.registered
 		#endregion
 	}
 	#region Rest interface
+	[GxJsonSerialization("wrapped")]
 	[DataContract(Name=@"Group_SDT.ContactItem", Namespace="distributedcryptography")]
 	public class SdtGroup_SDT_ContactItem_RESTInterface : GxGenericCollectionItem<SdtGroup_SDT_ContactItem>, System.Web.SessionState.IRequiresSessionState
 	{

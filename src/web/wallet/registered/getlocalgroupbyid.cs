@@ -77,7 +77,7 @@ namespace GeneXus.Programs.wallet.registered {
             }
             AV13GXV1 = (int)(AV13GXV1+1);
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -102,10 +102,10 @@ namespace GeneXus.Programs.wallet.registered {
       private int AV13GXV1 ;
       private string AV12error ;
       private Guid AV10groupId ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT aP1_group_sdt ;
-      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT> AV8all_groups_sdt ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV11group_sdt ;
+      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT> AV8all_groups_sdt ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV9group_sdt_temp ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT aP1_group_sdt ;
    }
 
 }

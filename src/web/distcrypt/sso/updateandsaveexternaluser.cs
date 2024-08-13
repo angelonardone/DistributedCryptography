@@ -69,7 +69,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          GXt_char1 = AV9error;
          new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  "distcrypt.conf",  AV10externalUser.ToJSonString(false, true), out  GXt_char1) ;
          AV9error = GXt_char1;
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -91,8 +91,8 @@ namespace GeneXus.Programs.distcrypt.sso {
 
       private string AV9error ;
       private string GXt_char1 ;
-      private string aP1_error ;
       private GeneXus.Programs.distcrypt.SdtExternalUser AV10externalUser ;
+      private string aP1_error ;
    }
 
 }

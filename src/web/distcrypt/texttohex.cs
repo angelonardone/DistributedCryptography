@@ -81,7 +81,7 @@ namespace GeneXus.Programs.distcrypt {
           }
          /* User Code */
           AV9textHex = hexString.ToString();
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

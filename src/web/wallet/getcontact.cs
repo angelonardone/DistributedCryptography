@@ -62,7 +62,7 @@ namespace GeneXus.Programs.wallet {
          /* GeneXus formulas */
          /* Output device settings */
          AV10contact.FromJSonString(AV9WebSession.Get("Contact_Session"), null);
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -83,8 +83,8 @@ namespace GeneXus.Programs.wallet {
       }
 
       private IGxSession AV9WebSession ;
-      private GeneXus.Programs.wallet.registered.SdtContact_SDT aP0_contact ;
       private GeneXus.Programs.wallet.registered.SdtContact_SDT AV10contact ;
+      private GeneXus.Programs.wallet.registered.SdtContact_SDT aP0_contact ;
    }
 
 }

@@ -98,7 +98,7 @@ namespace GeneXus.Programs.wallet {
             AV16feeRate = NumberUtil.Val( "0.00001000", ".");
          }
          AV18estimatedFee = (decimal)(AV16feeRate/ (decimal)(1000)*AV15virtualSize);
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

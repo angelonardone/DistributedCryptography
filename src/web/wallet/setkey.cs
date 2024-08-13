@@ -54,7 +54,7 @@ namespace GeneXus.Programs.wallet {
          /* GeneXus formulas */
          /* Output device settings */
          AV9WebSession.Set("Key", AV8keyInfo.ToJSonString(false, true));
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

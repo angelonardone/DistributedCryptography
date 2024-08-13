@@ -155,7 +155,7 @@ namespace GeneXus.Programs.wallet {
                }
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override short ExecuteStartEvent( )
@@ -199,10 +199,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2014200), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2014200), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -387,7 +387,8 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            GxWebStd.gx_single_line_edit( context, edtavCtlfingerprint_Internalname, StringUtil.RTrim( AV5extKeyInfo.gxTpr_Extended.gxTpr_Fingerprint), StringUtil.RTrim( context.localUtil.Format( AV5extKeyInfo.gxTpr_Extended.gxTpr_Fingerprint, "")), "", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtlfingerprint_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtlfingerprint_Enabled, 0, "text", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Wallet/ShowExtendedKey.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 13,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavCtlfingerprint_Internalname, StringUtil.RTrim( AV5extKeyInfo.gxTpr_Extended.gxTpr_Fingerprint), StringUtil.RTrim( context.localUtil.Format( AV5extKeyInfo.gxTpr_Extended.gxTpr_Fingerprint, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,13);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtlfingerprint_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtlfingerprint_Enabled, 0, "text", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Wallet/ShowExtendedKey.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -403,7 +404,8 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            GxWebStd.gx_single_line_edit( context, edtavCtlparentfingerprint_Internalname, StringUtil.RTrim( AV5extKeyInfo.gxTpr_Extended.gxTpr_Parentfingerprint), StringUtil.RTrim( context.localUtil.Format( AV5extKeyInfo.gxTpr_Extended.gxTpr_Parentfingerprint, "")), "", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtlparentfingerprint_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtlparentfingerprint_Enabled, 0, "text", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Wallet/ShowExtendedKey.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 18,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavCtlparentfingerprint_Internalname, StringUtil.RTrim( AV5extKeyInfo.gxTpr_Extended.gxTpr_Parentfingerprint), StringUtil.RTrim( context.localUtil.Format( AV5extKeyInfo.gxTpr_Extended.gxTpr_Parentfingerprint, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,18);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtlparentfingerprint_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtlparentfingerprint_Enabled, 0, "text", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Wallet/ShowExtendedKey.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -419,7 +421,8 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            GxWebStd.gx_single_line_edit( context, edtavCtldepth_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV5extKeyInfo.gxTpr_Extended.gxTpr_Depth), 4, 0, ".", "")), StringUtil.LTrim( ((edtavCtldepth_Enabled!=0) ? context.localUtil.Format( (decimal)(AV5extKeyInfo.gxTpr_Extended.gxTpr_Depth), "ZZZ9") : context.localUtil.Format( (decimal)(AV5extKeyInfo.gxTpr_Extended.gxTpr_Depth), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtldepth_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtldepth_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Wallet/ShowExtendedKey.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 23,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavCtldepth_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV5extKeyInfo.gxTpr_Extended.gxTpr_Depth), 4, 0, ".", "")), StringUtil.LTrim( ((edtavCtldepth_Enabled!=0) ? context.localUtil.Format( (decimal)(AV5extKeyInfo.gxTpr_Extended.gxTpr_Depth), "ZZZ9") : context.localUtil.Format( (decimal)(AV5extKeyInfo.gxTpr_Extended.gxTpr_Depth), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,23);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtldepth_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtldepth_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Wallet/ShowExtendedKey.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -435,7 +438,8 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            GxWebStd.gx_single_line_edit( context, edtavCtlchild_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV5extKeyInfo.gxTpr_Extended.gxTpr_Child), 10, 0, ".", "")), StringUtil.LTrim( ((edtavCtlchild_Enabled!=0) ? context.localUtil.Format( (decimal)(AV5extKeyInfo.gxTpr_Extended.gxTpr_Child), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(AV5extKeyInfo.gxTpr_Extended.gxTpr_Child), "ZZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtlchild_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtlchild_Enabled, 0, "text", "1", 10, "chr", 1, "row", 10, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Wallet/ShowExtendedKey.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 28,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavCtlchild_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV5extKeyInfo.gxTpr_Extended.gxTpr_Child), 10, 0, ".", "")), StringUtil.LTrim( ((edtavCtlchild_Enabled!=0) ? context.localUtil.Format( (decimal)(AV5extKeyInfo.gxTpr_Extended.gxTpr_Child), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(AV5extKeyInfo.gxTpr_Extended.gxTpr_Child), "ZZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,28);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtlchild_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtlchild_Enabled, 0, "text", "1", 10, "chr", 1, "row", 10, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Wallet/ShowExtendedKey.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -451,9 +455,10 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Check box */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 33,'',false,'',0)\"";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavCtlishardended_Internalname, StringUtil.BoolToStr( AV5extKeyInfo.gxTpr_Extended.gxTpr_Ishardended), "", "is Hardended", 1, chkavCtlishardended.Enabled, "true", "", StyleString, ClassString, "", "", "");
+            GxWebStd.gx_checkbox_ctrl( context, chkavCtlishardended_Internalname, StringUtil.BoolToStr( AV5extKeyInfo.gxTpr_Extended.gxTpr_Ishardended), "", "is Hardended", 1, chkavCtlishardended.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(33, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,33);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -483,7 +488,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_8-180599", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
          Form.Meta.addItem("description", "Show Extended Key", 0) ;
@@ -853,7 +858,7 @@ namespace GeneXus.Programs.wallet {
          PA0O2( ) ;
          WS0O2( ) ;
          WE0O2( ) ;
-         this.cleanup();
+         cleanup();
          context.SetWrapped(false);
          context.GX_msglist = BackMsgLst;
          return "";
@@ -874,7 +879,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20247251252580", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202481313335787", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -890,7 +895,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/showextendedkey.js", "?20247251252580", false, true);
+         context.AddJavascriptSource("wallet/showextendedkey.js", "?202481313335787", false, true);
          /* End function include_jscripts */
       }
 
@@ -898,7 +903,7 @@ namespace GeneXus.Programs.wallet {
       {
          chkavCtlishardended.Name = "CTLISHARDENDED";
          chkavCtlishardended.WebTags = "";
-         chkavCtlishardended.Caption = "";
+         chkavCtlishardended.Caption = "is Hardended";
          AssignProp("", false, chkavCtlishardended_Internalname, "TitleCaption", chkavCtlishardended.Caption, true);
          chkavCtlishardended.CheckedValue = "false";
          /* End function init_web_controls */
@@ -1058,15 +1063,15 @@ namespace GeneXus.Programs.wallet {
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
+      private GXWebForm Form ;
       private IGxDataStore dsDefault ;
       private GXCheckbox chkavCtlishardended ;
-      private msglist BackMsgLst ;
-      private msglist LclMsgLst ;
-      private GXWebForm Form ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV5extKeyInfo ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo GXt_SdtExtKeyInfo1 ;
       private GeneXus.Programs.wallet.SdtWallet AV6wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet2 ;
+      private msglist BackMsgLst ;
+      private msglist LclMsgLst ;
    }
 
 }

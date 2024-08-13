@@ -93,7 +93,7 @@ namespace GeneXus.Programs.wallet.registered {
          if ( AV22numPeers < 2 )
          {
             AV13error = "There are not enough contacts on the group";
-            this.cleanup();
+            cleanup();
             if (true) return;
          }
          /* User Code */
@@ -151,7 +151,7 @@ namespace GeneXus.Programs.wallet.registered {
                   }
                   else
                   {
-                     this.cleanup();
+                     cleanup();
                      if (true) return;
                   }
                }
@@ -253,7 +253,7 @@ namespace GeneXus.Programs.wallet.registered {
             }
             else
             {
-               this.cleanup();
+               cleanup();
                if (true) return;
             }
             /* User Code */
@@ -267,7 +267,7 @@ namespace GeneXus.Programs.wallet.registered {
             /* User Code */
             	}
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -317,16 +317,16 @@ namespace GeneXus.Programs.wallet.registered {
       private string AV31oneItem ;
       private string GXt_char1 ;
       private string AV18one_address ;
-      private GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem aP4_sdt_oneAddress ;
-      private string aP5_error ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV21group_sdt ;
+      private GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem AV39sdt_oneAddress ;
       private GxSimpleCollection<string> AV27items ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV24oneContact ;
+      private GeneXus.Programs.nbitcoin.SdtExtPubKeyInfo AV16extPubKeyInfo ;
       private GxSimpleCollection<string> AV29currentCombination ;
       private GXBaseCollection<GeneXus.Programs.math.SdtfinalCombination> AV28finalCombinations ;
-      private GeneXus.Programs.nbitcoin.SdtExtPubKeyInfo AV16extPubKeyInfo ;
       private GeneXus.Programs.math.SdtfinalCombination AV30finalOneCombination ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV21group_sdt ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV24oneContact ;
-      private GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem AV39sdt_oneAddress ;
+      private GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem aP4_sdt_oneAddress ;
+      private string aP5_error ;
    }
 
 }

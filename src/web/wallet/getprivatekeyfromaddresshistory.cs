@@ -116,14 +116,14 @@ namespace GeneXus.Programs.wallet {
                   {
                      AV30oneKeyInfo = ((GeneXus.Programs.nbitcoin.SdtKeyInfo)AV32recAllKeyInfo.Item(AV76GXV1));
                      AV9privateKey = AV30oneKeyInfo.gxTpr_Privatekey;
-                     this.cleanup();
+                     cleanup();
                      if (true) return;
                      AV76GXV1 = (int)(AV76GXV1+1);
                   }
                }
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -160,16 +160,16 @@ namespace GeneXus.Programs.wallet {
       private string AV18deserializedExtKey ;
       private string AV10error ;
       private string GXt_char4 ;
-      private string aP1_privateKey ;
-      private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtKeyInfo> AV32recAllKeyInfo ;
       private GeneXus.Programs.wallet.SdtSDTAddressHistory AV8oneAddressHistory ;
-      private GeneXus.Programs.nbitcoin.SdtKeyInfo AV46keyInfo ;
-      private GeneXus.Programs.nbitcoin.SdtKeyInfo GXt_SdtKeyInfo3 ;
-      private GeneXus.Programs.nbitcoin.SdtKeyInfo AV30oneKeyInfo ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV21extKeyInfoRoot ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo GXt_SdtExtKeyInfo1 ;
       private GeneXus.Programs.wallet.SdtWallet AV45wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet2 ;
+      private GeneXus.Programs.nbitcoin.SdtKeyInfo AV46keyInfo ;
+      private GeneXus.Programs.nbitcoin.SdtKeyInfo GXt_SdtKeyInfo3 ;
+      private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtKeyInfo> AV32recAllKeyInfo ;
+      private GeneXus.Programs.nbitcoin.SdtKeyInfo AV30oneKeyInfo ;
+      private string aP1_privateKey ;
    }
 
 }

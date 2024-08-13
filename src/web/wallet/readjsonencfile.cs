@@ -104,7 +104,7 @@ namespace GeneXus.Programs.wallet {
             AV13error = GXt_char4;
             AV18file.WriteAllText(AV16json_enc.ToJSonString(false, true), "");
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -141,12 +141,12 @@ namespace GeneXus.Programs.wallet {
       private bool GXt_boolean2 ;
       private bool GXt_boolean3 ;
       private string AV8clearText ;
-      private string aP1_error ;
-      private string aP2_clearText ;
       private GxFile AV18file ;
-      private GeneXus.Programs.wallet.SdtSDT_Json_Enc AV16json_enc ;
       private GeneXus.Programs.wallet.SdtWallet AV17wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
+      private GeneXus.Programs.wallet.SdtSDT_Json_Enc AV16json_enc ;
+      private string aP1_error ;
+      private string aP2_clearText ;
    }
 
 }

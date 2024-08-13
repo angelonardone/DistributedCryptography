@@ -130,7 +130,7 @@ namespace GeneXus.Programs.wallet {
                AV22GXV3 = (int)(AV22GXV3+1);
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -166,16 +166,16 @@ namespace GeneXus.Programs.wallet {
       private string AV14one_address ;
       private string GXt_char2 ;
       private string AV13message ;
-      private SdtGxExplorer_services_TxoutFromAddresses aP1_transactionsFromService ;
-      private string aP2_error ;
-      private GeneXus.Programs.electrum.SdtelectrumRespGetHistory AV9electrumRespGetHistory ;
-      private GeneXus.Programs.electrum.SdtelectrumRespGetHistory_resultItem AV8elecrumOneHistory ;
-      private GeneXus.Programs.electrum.SdtelectrumRespGetTransactionId AV10electrumRespGetTransactionId ;
-      private GeneXus.Programs.electrum.SdtelectrumResponse AV11electrumResponse ;
       private SdtGetTransactions__postInput AV16transactions__postInput ;
       private SdtGxExplorer_services_TxoutFromAddresses AV17transactionsFromService ;
       private GeneXus.Programs.wallet.SdtWallet AV19wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
+      private GeneXus.Programs.electrum.SdtelectrumResponse AV11electrumResponse ;
+      private GeneXus.Programs.electrum.SdtelectrumRespGetHistory AV9electrumRespGetHistory ;
+      private GeneXus.Programs.electrum.SdtelectrumRespGetHistory_resultItem AV8elecrumOneHistory ;
+      private GeneXus.Programs.electrum.SdtelectrumRespGetTransactionId AV10electrumRespGetTransactionId ;
+      private SdtGxExplorer_services_TxoutFromAddresses aP1_transactionsFromService ;
+      private string aP2_error ;
    }
 
 }

@@ -85,7 +85,7 @@ namespace GeneXus.Programs.electrum {
          Gxm1connectionparameters.gxTpr_Secure = false;
          Gxm1connectionparameters.gxTpr_Networktype = "RegTest";
          Gxm1connectionparameters.gxTpr_Timeoutmiliseconds = 5000;
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -104,9 +104,9 @@ namespace GeneXus.Programs.electrum {
          /* GeneXus formulas. */
       }
 
-      private GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem> aP0_Gxm2rootcol ;
       private GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem> Gxm2rootcol ;
       private GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem Gxm1connectionparameters ;
+      private GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem> aP0_Gxm2rootcol ;
    }
 
 }

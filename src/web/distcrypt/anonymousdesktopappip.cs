@@ -73,7 +73,7 @@ namespace GeneXus.Programs.distcrypt {
          Gxm1sdt_identityprovider.gxTpr_Identityproviderencryptparameter = false;
          Gxm1sdt_identityprovider.gxTpr_Identityproviderrepository = "";
          Gxm1sdt_identityprovider.gxTpr_Identityproviderencryptionkey = "";
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -91,8 +91,8 @@ namespace GeneXus.Programs.distcrypt {
          /* GeneXus formulas. */
       }
 
-      private GeneXus.Programs.distcrypt.sso.SdtSDT_IdentityProvider aP0_Gxm1sdt_identityprovider ;
       private GeneXus.Programs.distcrypt.sso.SdtSDT_IdentityProvider Gxm1sdt_identityprovider ;
+      private GeneXus.Programs.distcrypt.sso.SdtSDT_IdentityProvider aP0_Gxm1sdt_identityprovider ;
    }
 
 }

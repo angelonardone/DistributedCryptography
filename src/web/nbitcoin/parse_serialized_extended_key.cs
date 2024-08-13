@@ -266,7 +266,7 @@ namespace GeneXus.Programs.nbitcoin {
             /* User Code */
                 }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -299,12 +299,12 @@ namespace GeneXus.Programs.nbitcoin {
       private bool AV14isInputPublic ;
       private bool AV15isOutputPrivate ;
       private bool AV16isOutputPublic ;
+      private GeneXus.Programs.wallet.SdtWallet AV17wallet ;
+      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
       private string aP1_out_extended_key ;
       private string aP2_networkType ;
       private string aP3_extendedKeyType ;
       private string aP4_error ;
-      private GeneXus.Programs.wallet.SdtWallet AV17wallet ;
-      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
    }
 
 }

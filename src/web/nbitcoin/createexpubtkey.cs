@@ -240,7 +240,7 @@ namespace GeneXus.Programs.nbitcoin {
             /* User Code */
                 }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -266,9 +266,9 @@ namespace GeneXus.Programs.nbitcoin {
       private string AV11keyPath ;
       private string AV8error ;
       private string AV13val ;
+      private GeneXus.Programs.nbitcoin.SdtExtPubKeyInfo AV10keyInfo ;
       private GeneXus.Programs.nbitcoin.SdtExtPubKeyInfo aP3_keyInfo ;
       private string aP4_error ;
-      private GeneXus.Programs.nbitcoin.SdtExtPubKeyInfo AV10keyInfo ;
    }
 
 }

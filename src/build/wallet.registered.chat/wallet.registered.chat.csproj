@@ -15,7 +15,9 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<ProjectReference Include=".\..\GeneXus.Programs.Common\GeneXus.Programs.Common.csproj" />
+		<ProjectReference Include=".\..\GeneXus.Programs.Common\GeneXus.Programs.Common.csproj" >
+			<OutputItemType>$(CommonOutputItemType)</OutputItemType>
+		</ProjectReference>
 
 	</ItemGroup>
 
@@ -64,7 +66,7 @@
 
 	</ItemGroup>
 	<ItemGroup Condition="'$(PostgresqlSupport)'=='true'">
-		<PackageReference Include="Npgsql" Version="3.2.7" PrivateAssets="All"/>
+		<PackageReference Include="Npgsql" Version="8.0.3" PrivateAssets="All"/>
 	</ItemGroup>
 
 	<Import Project="..\DotNetCoreBaseProject.targets"/>	

@@ -82,7 +82,7 @@ namespace GeneXus.Programs {
          Gxm1sdt_rest_parameters.gxTpr_Secure = false;
          Gxm1sdt_rest_parameters.gxTpr_Restpath = "/GxExplorer/services/rest";
          Gxm1sdt_rest_parameters.gxTpr_Networktype = "RegTest";
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -101,9 +101,9 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private GXBaseCollection<SdtSDT_Rest_Parameters_Item> aP0_Gxm2rootcol ;
       private GXBaseCollection<SdtSDT_Rest_Parameters_Item> Gxm2rootcol ;
       private SdtSDT_Rest_Parameters_Item Gxm1sdt_rest_parameters ;
+      private GXBaseCollection<SdtSDT_Rest_Parameters_Item> aP0_Gxm2rootcol ;
    }
 
 }

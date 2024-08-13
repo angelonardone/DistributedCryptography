@@ -143,7 +143,7 @@ namespace GeneXus.Programs.general.ui {
          AV16SidebarItem.gxTpr_Title = "Return to Wallets";
          AV16SidebarItem.gxTpr_Target = formatLink("wallet.returntowallets.aspx") ;
          AV15SidebarItems.Add(AV16SidebarItem, 0);
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -168,7 +168,6 @@ namespace GeneXus.Programs.general.ui {
          /* GeneXus formulas. */
       }
 
-      private GXBaseCollection<GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem> aP0_SidebarItems ;
       private GXBaseCollection<GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem> AV15SidebarItems ;
       private GeneXus.Programs.distcrypt.SdtExternalUser AV13externalUser ;
       private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
@@ -176,6 +175,7 @@ namespace GeneXus.Programs.general.ui {
       private GeneXus.Programs.nbitcoin.SdtKeyInfo GXt_SdtKeyInfo2 ;
       private GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem AV16SidebarItem ;
       private GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem_SubItem AV18SubItem ;
+      private GXBaseCollection<GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem> aP0_SidebarItems ;
    }
 
 }

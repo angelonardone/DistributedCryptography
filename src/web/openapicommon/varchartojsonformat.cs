@@ -66,7 +66,7 @@ namespace GeneXus.Programs.openapicommon {
          /* GeneXus formulas */
          /* Output device settings */
          AV9JsonString = AV8Character;
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

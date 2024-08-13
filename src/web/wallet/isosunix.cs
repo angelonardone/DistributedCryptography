@@ -69,7 +69,7 @@ namespace GeneXus.Programs.wallet {
           bool isUnix = pid == PlatformID.Unix;
          /* User Code */
           AV8isUnix = isUnix;
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

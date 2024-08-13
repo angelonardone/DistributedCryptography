@@ -94,7 +94,7 @@ namespace GeneXus.Programs.electrum {
                AV8dest = StringUtil.Trim( AV12ReversedHexString);
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

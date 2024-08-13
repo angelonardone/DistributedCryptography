@@ -62,7 +62,7 @@ namespace GeneXus.Programs.distcrypt {
          /* GeneXus formulas */
          /* Output device settings */
          AV8PublicKey = "024684c047eed7b4e5e7a2f91b9886eeea2975062cc46c94680de427c9f5f0996d";
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

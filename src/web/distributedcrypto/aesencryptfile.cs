@@ -158,7 +158,7 @@ namespace GeneXus.Programs.distributedcrypto {
          {
             AV8error = "Input File does not exist";
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -185,10 +185,10 @@ namespace GeneXus.Programs.distributedcrypto {
       private string AV10inputFile ;
       private string AV12outputFile ;
       private string AV8error ;
+      private GxFile AV9file ;
       private string aP2_encryptionKey ;
       private string aP3_IV ;
       private string aP4_error ;
-      private GxFile AV9file ;
    }
 
 }

@@ -75,7 +75,7 @@ namespace GeneXus.Programs.wallet.registered {
          GXt_char4 = AV9error;
          new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  AV10contac_file_name,  AV12sdt_all_chats.ToJSonString(false), out  GXt_char4) ;
          AV9error = GXt_char4;
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -106,11 +106,11 @@ namespace GeneXus.Programs.wallet.registered {
       private bool GXt_boolean2 ;
       private bool GXt_boolean3 ;
       private Guid AV8contactId ;
-      private GXBaseCollection<GeneXus.Programs.nostr.SdtSDT_Chat> AV12sdt_all_chats ;
       private GxDirectory AV13directory ;
       private GeneXus.Programs.nostr.SdtSDT_Chat AV11sdt_chat ;
       private GeneXus.Programs.wallet.SdtWallet AV14wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
+      private GXBaseCollection<GeneXus.Programs.nostr.SdtSDT_Chat> AV12sdt_all_chats ;
    }
 
 }

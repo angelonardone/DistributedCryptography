@@ -86,7 +86,7 @@ namespace GeneXus.Programs.wallet.registered {
             }
             AV14GXV1 = (int)(AV14GXV1+1);
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -114,10 +114,10 @@ namespace GeneXus.Programs.wallet.registered {
       private string AV13userPrivateName ;
       private string AV12error ;
       private Guid AV8contactId ;
-      private string aP1_userPrivateName ;
-      private Guid aP2_contactId ;
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> AV10allContacts ;
       private GeneXus.Programs.wallet.registered.SdtContact_SDT AV11contact ;
+      private string aP1_userPrivateName ;
+      private Guid aP2_contactId ;
    }
 
 }

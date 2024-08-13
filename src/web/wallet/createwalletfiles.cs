@@ -95,7 +95,7 @@ namespace GeneXus.Programs.wallet {
          {
             AV10walletFile.WriteAllText(AV9wallet.ToJSonString(false, true), "");
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

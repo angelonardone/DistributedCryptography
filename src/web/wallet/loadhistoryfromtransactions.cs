@@ -109,7 +109,7 @@ namespace GeneXus.Programs.wallet {
          AV12SDTAddressHistory.Sort("[ReceivedDateTime]");
          AV9historyWithBalance.Sort("Balance");
          new GeneXus.Programs.wallet.sethistorywithbalance(context ).execute(  AV9historyWithBalance) ;
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -133,13 +133,13 @@ namespace GeneXus.Programs.wallet {
 
       private int AV21GXV1 ;
       private decimal AV13totalBalance ;
+      private GeneXus.Programs.wallet.SdtStoredTransactions AV20StoredTransactions ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV12SDTAddressHistory ;
+      private GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem AV14TransactionItem ;
+      private GeneXus.Programs.wallet.SdtSDTAddressHistory AV11oneAddressHistory ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV9historyWithBalance ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP1_SDTAddressHistory ;
       private decimal aP2_totalBalance ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV12SDTAddressHistory ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV9historyWithBalance ;
-      private GeneXus.Programs.wallet.SdtSDTAddressHistory AV11oneAddressHistory ;
-      private GeneXus.Programs.wallet.SdtStoredTransactions AV20StoredTransactions ;
-      private GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem AV14TransactionItem ;
    }
 
 }

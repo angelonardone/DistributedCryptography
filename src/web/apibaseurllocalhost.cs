@@ -74,7 +74,7 @@ namespace GeneXus.Programs {
             AV13port = ((AV11restParameters.gxTpr_Port==0) ? "" : ":"+StringUtil.Trim( StringUtil.Str( (decimal)(AV11restParameters.gxTpr_Port), 4, 0)));
             AV8BaseURL = StringUtil.Trim( AV12protocole) + StringUtil.Trim( AV11restParameters.gxTpr_Hostname) + StringUtil.Trim( AV13port) + StringUtil.Trim( AV11restParameters.gxTpr_Restpath);
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -101,9 +101,9 @@ namespace GeneXus.Programs {
       private string AV12protocole ;
       private string AV13port ;
       private string AV8BaseURL ;
-      private string aP1_BaseURL ;
       private SdtSDT_Rest_Parameters_Item AV11restParameters ;
       private SdtSDT_Rest_Parameters_Item GXt_SdtSDT_Rest_Parameters_Item1 ;
+      private string aP1_BaseURL ;
    }
 
 }

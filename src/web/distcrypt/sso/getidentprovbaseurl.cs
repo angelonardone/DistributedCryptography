@@ -79,7 +79,7 @@ namespace GeneXus.Programs.distcrypt.sso {
             AV8BaseUrl += ":" + StringUtil.Trim( StringUtil.Str( (decimal)(AV9IdentityProvider.gxTpr_Identityproviderport), 4, 0));
          }
          AV8BaseUrl += "/" + StringUtil.Trim( AV9IdentityProvider.gxTpr_Identityproviderapplication);
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -99,8 +99,8 @@ namespace GeneXus.Programs.distcrypt.sso {
       }
 
       private string AV8BaseUrl ;
-      private string aP1_BaseUrl ;
       private GeneXus.Programs.distcrypt.sso.SdtSDT_IdentityProvider AV9IdentityProvider ;
+      private string aP1_BaseUrl ;
    }
 
 }

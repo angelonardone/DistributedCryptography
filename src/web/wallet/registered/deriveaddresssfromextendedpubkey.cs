@@ -117,7 +117,7 @@ namespace GeneXus.Programs.wallet.registered {
             }
             AV17sequence = (long)(AV17sequence+1);
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -149,12 +149,12 @@ namespace GeneXus.Programs.wallet.registered {
       private string AV10error ;
       private string GXt_char1 ;
       private bool AV11found ;
-      private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem> aP4_sdt_addressess ;
-      private string aP5_error ;
+      private GeneXus.Programs.wallet.SdtStoredTransactions AV18StoredTransactions ;
       private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem> AV16sdt_addressess ;
       private GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem AV15oneAddress ;
-      private GeneXus.Programs.wallet.SdtStoredTransactions AV18StoredTransactions ;
       private GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem AV19TransactionItem ;
+      private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem> aP4_sdt_addressess ;
+      private string aP5_error ;
    }
 
 }

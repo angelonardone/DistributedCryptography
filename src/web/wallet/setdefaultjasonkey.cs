@@ -76,7 +76,7 @@ namespace GeneXus.Programs.wallet {
                AV13WebSession.Set("DefaultJasonKey", "");
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -104,11 +104,11 @@ namespace GeneXus.Programs.wallet {
       private string AV9error ;
       private string GXt_char2 ;
       private IGxSession AV13WebSession ;
-      private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtKeyInfo> AV8allKeyInfo ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo AV11InKeyInfo ;
-      private GeneXus.Programs.nbitcoin.SdtKeyInfo AV12keyInfo ;
+      private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtKeyInfo> AV8allKeyInfo ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV10extKeyInfo ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo GXt_SdtExtKeyInfo1 ;
+      private GeneXus.Programs.nbitcoin.SdtKeyInfo AV12keyInfo ;
    }
 
 }

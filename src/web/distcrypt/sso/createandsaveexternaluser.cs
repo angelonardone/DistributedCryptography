@@ -97,7 +97,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          {
             GX_msglist.addItem("Error creating Key for chat");
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -125,13 +125,13 @@ namespace GeneXus.Programs.distcrypt.sso {
 
       private string AV9error ;
       private string GXt_char3 ;
-      private string aP0_error ;
-      private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtKeyInfo> AV8allKeyInfo ;
-      private GeneXus.Programs.nbitcoin.SdtKeyInfo AV12keyInfo ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser AV10externalUser ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser2 ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV11extKeyInfo ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo GXt_SdtExtKeyInfo1 ;
+      private GeneXus.Programs.distcrypt.SdtExternalUser AV10externalUser ;
+      private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser2 ;
+      private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtKeyInfo> AV8allKeyInfo ;
+      private GeneXus.Programs.nbitcoin.SdtKeyInfo AV12keyInfo ;
+      private string aP0_error ;
    }
 
 }

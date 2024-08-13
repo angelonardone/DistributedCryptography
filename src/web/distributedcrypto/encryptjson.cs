@@ -107,7 +107,7 @@ namespace GeneXus.Programs.distributedcrypto {
                new GeneXus.Programs.wallet.setlastjasonencritpedkey(context ).execute(  StringUtil.Trim( AV25encryptedKey)) ;
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -141,12 +141,12 @@ namespace GeneXus.Programs.distributedcrypto {
       private string GXt_char2 ;
       private string AV23clearText ;
       private string AV24encryptedText ;
+      private GeneXus.Programs.nbitcoin.SdtKeyInfo AV26keyInfo ;
+      private GeneXus.Programs.nbitcoin.SdtKeyInfo GXt_SdtKeyInfo1 ;
       private string aP2_encryptedKey ;
       private string aP3_IV ;
       private string aP4_encryptedText ;
       private string aP5_error ;
-      private GeneXus.Programs.nbitcoin.SdtKeyInfo AV26keyInfo ;
-      private GeneXus.Programs.nbitcoin.SdtKeyInfo GXt_SdtKeyInfo1 ;
    }
 
 }

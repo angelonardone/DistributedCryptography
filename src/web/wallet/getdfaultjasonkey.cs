@@ -62,7 +62,7 @@ namespace GeneXus.Programs.wallet {
          /* GeneXus formulas */
          /* Output device settings */
          AV9keyInfo.FromJSonString(AV8WebSession.Get("DefaultJasonKey"), null);
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -83,8 +83,8 @@ namespace GeneXus.Programs.wallet {
       }
 
       private IGxSession AV8WebSession ;
-      private GeneXus.Programs.nbitcoin.SdtKeyInfo aP0_keyInfo ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo AV9keyInfo ;
+      private GeneXus.Programs.nbitcoin.SdtKeyInfo aP0_keyInfo ;
    }
 
 }

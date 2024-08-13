@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtelectrumRespGetTransactionId_result_voutItem
 			Description: vout
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.8.180599
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -168,6 +168,14 @@ namespace GeneXus.Programs.electrum
 
 		#endregion
 
+		#region Static Type Properties
+
+		[XmlIgnore]
+		private static GXTypeInfo _typeProps;
+		protected override GXTypeInfo TypeInfo { get { return _typeProps; } set { _typeProps = value; } }
+
+		#endregion
+
 		#region Initialization
 
 		public void initialize( )
@@ -197,6 +205,7 @@ namespace GeneXus.Programs.electrum
 		#endregion
 	}
 	#region Rest interface
+	[GxJsonSerialization("wrapped")]
 	[DataContract(Name=@"electrumRespGetTransactionId.result.voutItem", Namespace="distributedcryptography")]
 	public class SdtelectrumRespGetTransactionId_result_voutItem_RESTInterface : GxGenericCollectionItem<SdtelectrumRespGetTransactionId_result_voutItem>, System.Web.SessionState.IRequiresSessionState
 	{

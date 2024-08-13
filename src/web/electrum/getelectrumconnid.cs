@@ -62,7 +62,7 @@ namespace GeneXus.Programs.electrum {
          /* GeneXus formulas */
          /* Output device settings */
          AV10Connection.FromJSonString(AV8WebSession.Get("ELECTRUM_CONNECTION_ID"), null);
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -83,8 +83,8 @@ namespace GeneXus.Programs.electrum {
       }
 
       private IGxSession AV8WebSession ;
-      private GeneXus.Programs.electrum.SdtConnection aP0_Connection ;
       private GeneXus.Programs.electrum.SdtConnection AV10Connection ;
+      private GeneXus.Programs.electrum.SdtConnection aP0_Connection ;
    }
 
 }

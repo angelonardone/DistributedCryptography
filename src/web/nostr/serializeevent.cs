@@ -219,7 +219,7 @@ namespace GeneXus.Programs.nostr {
           var json = System.Text.Json.JsonSerializer.Serialize(new object[] { "EVENT", eventData });
          /* User Code */
           AV14serialized = json;
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -257,11 +257,11 @@ namespace GeneXus.Programs.nostr {
       private string AV19sig ;
       private string AV14serialized ;
       private string AV8content ;
+      private GeneXus.Programs.nostr.SdtEvent AV12nostrEvent ;
       private GeneXus.Programs.nostr.SdtEvent aP0_nostrEvent ;
+      private GeneXus.Programs.nostr.SdtTagsOfTags AV16tagsoftags ;
       private string aP2_serialized ;
       private string aP3_error ;
-      private GeneXus.Programs.nostr.SdtEvent AV12nostrEvent ;
-      private GeneXus.Programs.nostr.SdtTagsOfTags AV16tagsoftags ;
    }
 
 }

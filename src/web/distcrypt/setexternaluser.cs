@@ -54,7 +54,7 @@ namespace GeneXus.Programs.distcrypt {
          /* GeneXus formulas */
          /* Output device settings */
          AV8WebSession.Set("DistCryptExternalUser", AV9externalUser.ToJSonString(false, true));
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

@@ -100,7 +100,7 @@ namespace GeneXus.Programs.wallet.registered {
                      else
                      {
                         AV16error = "There was an error unencrypting the group information: " + AV16error;
-                        this.cleanup();
+                        cleanup();
                         if (true) return;
                      }
                      AV19GXV1 = (int)(AV19GXV1+1);
@@ -112,7 +112,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             AV16error = "You are not logged into Distributed Cryptography main site";
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -147,17 +147,17 @@ namespace GeneXus.Programs.wallet.registered {
       private string GXt_char2 ;
       private bool AV12IsSuccess ;
       private string AV17group_sdt_chart ;
-      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT> aP0_all_groups_sdt ;
-      private string aP1_error ;
-      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT> AV8all_groups_sdt ;
       private GXProperties AV13properties ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV18group_sdt ;
+      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT> AV8all_groups_sdt ;
       private GeneXus.Programs.distcrypt.SdtExternalUser AV9externalUser ;
       private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
       private SdtgetUserGroups__getOutput AV10getUserGroups__getOutputOUT ;
+      private GeneXus.Utils.SdtMessages_Message AV11HttpMessage ;
       private SdtDesktopApp_services_SDT_Groups AV14encriptedGroups ;
       private SdtDesktopApp_services_SDT_Groups_Group_GroupItem AV15oneEncGroup ;
-      private GeneXus.Utils.SdtMessages_Message AV11HttpMessage ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV18group_sdt ;
+      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT> aP0_all_groups_sdt ;
+      private string aP1_error ;
    }
 
 }

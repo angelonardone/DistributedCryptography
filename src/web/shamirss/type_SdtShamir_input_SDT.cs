@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtShamir_input_SDT
 			Description: Shamir_input_SDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.8.180599
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -112,6 +112,14 @@ namespace GeneXus.Programs.shamirss
 
 		#endregion
 
+		#region Static Type Properties
+
+		[XmlIgnore]
+		private static GXTypeInfo _typeProps;
+		protected override GXTypeInfo TypeInfo { get { return _typeProps; } set { _typeProps = value; } }
+
+		#endregion
+
 		#region Initialization
 
 		public void initialize( )
@@ -137,7 +145,7 @@ namespace GeneXus.Programs.shamirss
 		#endregion
 	}
 	#region Rest interface
-	[GxUnWrappedJson()]
+	[GxJsonSerialization("default")]
 	[DataContract(Name=@"Shamir_input_SDT", Namespace="distributedcryptography")]
 	public class SdtShamir_input_SDT_RESTInterface : GxGenericCollectionItem<SdtShamir_input_SDT>, System.Web.SessionState.IRequiresSessionState
 	{

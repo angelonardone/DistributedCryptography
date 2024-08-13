@@ -93,7 +93,7 @@ namespace GeneXus.Programs.wallet {
          {
             AV9directory.Create();
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -125,15 +125,15 @@ namespace GeneXus.Programs.wallet {
       private bool GXt_boolean1 ;
       private bool GXt_boolean2 ;
       private string AV13fileName ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtWallet> aP0_wallets ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtWallet> AV11wallets ;
       private GxFile AV8auxFile ;
       private GxDirectory AV9directory ;
       private GxDirectory AV12walletDirectory ;
       private GxFileCollection AV16GXV3 ;
       private GxDirectoryCollection AV14GXV1 ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtWallet> AV11wallets ;
       private GeneXus.Programs.wallet.SdtWallet AV10wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet3 ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtWallet> aP0_wallets ;
    }
 
 }

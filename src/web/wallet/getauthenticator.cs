@@ -62,7 +62,7 @@ namespace GeneXus.Programs.wallet {
          /* GeneXus formulas */
          /* Output device settings */
          AV10authenticator.FromJSonString(AV8WebSession.Get("AuthenticatorSession"), null);
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -83,8 +83,8 @@ namespace GeneXus.Programs.wallet {
       }
 
       private IGxSession AV8WebSession ;
-      private GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator aP0_authenticator ;
       private GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator AV10authenticator ;
+      private GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator aP0_authenticator ;
    }
 
 }

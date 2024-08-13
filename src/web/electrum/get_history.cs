@@ -92,7 +92,7 @@ namespace GeneXus.Programs.electrum {
             new GeneXus.Programs.electrum.sendmessage(context ).execute(  AV12sendMessage,  AV13messageType, out  AV14messageResponse, out  GXt_char1) ;
             AV9error = GXt_char1;
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

@@ -15,7 +15,9 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<ProjectReference Include=".\..\GeneXus.Programs.Common\GeneXus.Programs.Common.csproj" />
+		<ProjectReference Include=".\..\GeneXus.Programs.Common\GeneXus.Programs.Common.csproj" >
+			<OutputItemType>$(CommonOutputItemType)</OutputItemType>
+		</ProjectReference>
 
 	</ItemGroup>
 
@@ -42,24 +44,19 @@
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\aesdecryptstring.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getkey.cs" />
-		<Compile Include = "$(WebDirectory)\electrum\getelectrumconfigservers.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
-		<Compile Include = "$(WebDirectory)\electrum\connect.cs" />
 		<Compile Include = "$(WebDirectory)\receivefromnoster.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\createkey.cs" />
-		<Compile Include = "$(WebDirectory)\receivefromelectrum.cs" />
-		<Compile Include = "$(WebDirectory)\electrum\getelectrumconnid.cs" />
+		<Compile Include = "$(WebDirectory)\nostr\getnostrconfigservers.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\setexternaluser.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\balance.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\aesencryptstring.cs" />
-		<Compile Include = "$(WebDirectory)\electrum\setelectrumconnid.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\getlastchattime.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setwallet.cs" />
-		<Compile Include = "$(WebDirectory)\electrum\defaultparameters.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\derivekeysfromextkey.cs" />
 		<Compile Include = "$(WebDirectory)\nostr\connect.cs" />
 		<Compile Include = "$(WebDirectory)\nostr\startconnection.cs" />
@@ -76,13 +73,12 @@
 		<Compile Include = "$(WebDirectory)\wallet\registered\readcontactchat.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setlogindistcrypt.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setfileenckey.cs" />
-		<Compile Include = "$(WebDirectory)\electrum\getelectrumconfigfornetworktype.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\encryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\parse_serialized_extended_key.cs" />
 
 	</ItemGroup>
 	<ItemGroup Condition="'$(PostgresqlSupport)'=='true'">
-		<PackageReference Include="Npgsql" Version="3.2.7" PrivateAssets="All"/>
+		<PackageReference Include="Npgsql" Version="8.0.3" PrivateAssets="All"/>
 	</ItemGroup>
 
 	<Import Project="..\DotNetCoreBaseProject.targets"/>	

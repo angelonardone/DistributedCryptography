@@ -61,7 +61,7 @@ namespace GeneXus.Programs.wallet {
          {
             AV9directory.Create();
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

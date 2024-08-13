@@ -134,7 +134,7 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
          AV32queueFile.Source = AV31queueDirectory.GetAbsoluteName()+(GXt_boolean3 ? "/" : "\\")+StringUtil.Trim( StringUtil.Str( (decimal)(AV29miliseconds), 18, 0))+".queue";
          AV32queueFile.WriteAllText(AV12NotificationInfo.ToJSonString(false, true), "");
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

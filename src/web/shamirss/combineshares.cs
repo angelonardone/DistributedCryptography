@@ -123,7 +123,7 @@ namespace GeneXus.Programs.shamirss {
          		AV11error = ex.Message.ToString();
          /* User Code */
          	}
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -155,10 +155,10 @@ namespace GeneXus.Programs.shamirss {
       private string AV8secret ;
       private string AV12share ;
       private string AV16updatedSecret ;
-      private string aP1_secret ;
-      private string aP2_error ;
       private GxSimpleCollection<string> AV13shares ;
       private GeneXus.Programs.shamirss.SdtShamir_input_SDT AV15shamir_input ;
+      private string aP1_secret ;
+      private string aP2_error ;
    }
 
 }

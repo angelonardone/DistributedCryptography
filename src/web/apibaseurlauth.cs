@@ -69,7 +69,7 @@ namespace GeneXus.Programs {
          {
             AV8BaseURL = "http://auth.distributedcryptography.com//DesktopApp/services/rest";
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

@@ -54,7 +54,7 @@ namespace GeneXus.Programs.electrum {
          /* GeneXus formulas */
          /* Output device settings */
          AV8WebSession.Set("ELECTRUM_CONNECTION_ID", AV10Connection.ToJSonString(false, true));
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

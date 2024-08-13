@@ -75,7 +75,7 @@ namespace GeneXus.Programs.general.ui {
                }
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       protected void RenderHtmlHeaders( )
@@ -153,13 +153,13 @@ namespace GeneXus.Programs.general.ui {
          {
             WebComp_Comp_message_dispatcher.componentjscripts();
          }
-         context.AddJavascriptSource("Unanimo_chameleon/chameleon.js", "", false, true);
+         context.AddJavascriptSource("Unanimo_chameleon/chameleon-loader.js", "", false, true);
          context.AddJavascriptSource("UserControls/GeneXusUnanimo.IconRender.js", "", false, true);
          context.AddJavascriptSource("Toastr/toastr.min.js", "", false, true);
          context.AddJavascriptSource("Toastr/ToastrRender.js", "", false, true);
-         context.AddJavascriptSource("Unanimo_chameleon/chameleon.js", "", false, true);
+         context.AddJavascriptSource("Unanimo_chameleon/chameleon-loader.js", "", false, true);
          context.AddJavascriptSource("UserControls/GeneXusUnanimo.SidebarRender.js", "", false, true);
-         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?202472512525950", false, true);
+         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?202481315121920", false, true);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -423,25 +423,18 @@ namespace GeneXus.Programs.general.ui {
                            /* Execute user event: Icon1.Click */
                            E120W2 ();
                         }
-                        else if ( StringUtil.StrCmp(sEvt, "START_MPAGE") == 0 )
-                        {
-                           context.wbHandled = 1;
-                           dynload_actions( ) ;
-                           /* Execute user event: Start */
-                           E130W2 ();
-                        }
                         else if ( StringUtil.StrCmp(sEvt, "LOAD_MPAGE") == 0 )
                         {
                            context.wbHandled = 1;
                            dynload_actions( ) ;
                            /* Execute user event: Load */
-                           E140W2 ();
+                           E130W2 ();
                         }
                         else if ( StringUtil.StrCmp(sEvt, "GLOBALEVENTS_MPAGE.REFRESHMASTERPAGE_MPAGE") == 0 )
                         {
                            context.wbHandled = 1;
                            dynload_actions( ) ;
-                           E150W2 ();
+                           E140W2 ();
                         }
                         else if ( StringUtil.StrCmp(sEvt, "ENTER_MPAGE") == 0 )
                         {
@@ -601,7 +594,7 @@ namespace GeneXus.Programs.general.ui {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E140W2 ();
+            E130W2 ();
             WB0W0( ) ;
             if ( context.isSpaRequest( ) )
             {
@@ -623,10 +616,6 @@ namespace GeneXus.Programs.general.ui {
       {
          /* Before Start, stand alone formulas. */
          before_start_formulas( ) ;
-         /* Execute Start event if defined. */
-         context.wbGlbDoneStart = 0;
-         /* Execute user event: Start */
-         E130W2 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
@@ -657,31 +646,18 @@ namespace GeneXus.Programs.general.ui {
          }
       }
 
-      protected void GXStart( )
-      {
-         /* Execute user event: Start */
-         E130W2 ();
-         if (returnInSub) return;
-      }
-
-      protected void E130W2( )
-      {
-         /* Start Routine */
-         returnInSub = false;
-      }
-
       protected void nextLoad( )
       {
       }
 
-      protected void E140W2( )
+      protected void E130W2( )
       {
          /* Load Routine */
          returnInSub = false;
          GXt_SdtWallet1 = AV14wallet;
          new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet1) ;
          AV14wallet = GXt_SdtWallet1;
-         Sidebarmenu_Footertext = "version 0.915 - © 2022-2024 Distributed Cryptography";
+         Sidebarmenu_Footertext = "version 0.916 - © 2022-2024 Distributed Cryptography";
          ucSidebarmenu.SendProperty(context, "", true, Sidebarmenu_Internalname, "FooterText", Sidebarmenu_Footertext);
          Sidebarmenu_Distancetotop = 60;
          ucSidebarmenu.SendProperty(context, "", true, Sidebarmenu_Internalname, "DistanceToTop", StringUtil.LTrimStr( (decimal)(Sidebarmenu_Distancetotop), 9, 0));
@@ -689,8 +665,8 @@ namespace GeneXus.Programs.general.ui {
          {
             Icon1_Visible = true;
             ucIcon1.SendProperty(context, "", true, Icon1_Internalname, "Visible", StringUtil.BoolToStr( Icon1_Visible));
-            AV20Designcolorschema = AV19websession.Get("DESIGN_COLOR_SCHEMA");
-            if ( StringUtil.StrCmp(AV20Designcolorschema, "DESIGN_COLOR_SCHEMA_DARK") == 0 )
+            AV20designColorSchema = AV19websession.Get("DESIGN_COLOR_SCHEMA");
+            if ( StringUtil.StrCmp(AV20designColorSchema, "DESIGN_COLOR_SCHEMA_DARK") == 0 )
             {
                Icon1_Source = context.convertURL( (string)(context.GetImagePath( "7ece5bb1-6e7a-4624-ad0e-af27758acc23", "", context.GetTheme( ))));
                ucIcon1.SendProperty(context, "", true, Icon1_Internalname, "source", Icon1_Source);
@@ -720,6 +696,30 @@ namespace GeneXus.Programs.general.ui {
                new GeneXus.Programs.general.ui.sidebaritemsoneaddressdp(context ).execute( out  GXt_objcol_SdtSidebarItems_SidebarItem2) ;
                AV5sidebarItems = GXt_objcol_SdtSidebarItems_SidebarItem2;
             }
+            /* Object Property */
+            if ( true )
+            {
+               bDynCreated_Comp_message_dispatcher = true;
+            }
+            if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_message_dispatcher_Component), StringUtil.Lower( "Wallet.registered.dispatchIncommingMessage")) != 0 )
+            {
+               WebComp_Comp_message_dispatcher = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.dispatchincommingmessage", new Object[] {context} );
+               WebComp_Comp_message_dispatcher.ComponentInit();
+               WebComp_Comp_message_dispatcher.Name = "Wallet.registered.dispatchIncommingMessage";
+               WebComp_Comp_message_dispatcher_Component = "Wallet.registered.dispatchIncommingMessage";
+            }
+            if ( StringUtil.Len( WebComp_Comp_message_dispatcher_Component) != 0 )
+            {
+               WebComp_Comp_message_dispatcher.setjustcreated();
+               WebComp_Comp_message_dispatcher.componentprepare(new Object[] {(string)"MPW0030",(string)"",Contentholder.Pgmname});
+               WebComp_Comp_message_dispatcher.componentbind(new Object[] {(string)""});
+            }
+            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_message_dispatcher )
+            {
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpMPW0030"+"");
+               WebComp_Comp_message_dispatcher.componentdraw();
+               context.httpAjaxContext.ajax_rspEndCmp();
+            }
          }
          else
          {
@@ -728,33 +728,9 @@ namespace GeneXus.Programs.general.ui {
             Icon1_Visible = false;
             ucIcon1.SendProperty(context, "", true, Icon1_Internalname, "Visible", StringUtil.BoolToStr( Icon1_Visible));
          }
-         /* Object Property */
-         if ( true )
-         {
-            bDynCreated_Comp_message_dispatcher = true;
-         }
-         if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_message_dispatcher_Component), StringUtil.Lower( "Wallet.registered.dispatchIncommingMessage")) != 0 )
-         {
-            WebComp_Comp_message_dispatcher = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.dispatchincommingmessage", new Object[] {context} );
-            WebComp_Comp_message_dispatcher.ComponentInit();
-            WebComp_Comp_message_dispatcher.Name = "Wallet.registered.dispatchIncommingMessage";
-            WebComp_Comp_message_dispatcher_Component = "Wallet.registered.dispatchIncommingMessage";
-         }
-         if ( StringUtil.Len( WebComp_Comp_message_dispatcher_Component) != 0 )
-         {
-            WebComp_Comp_message_dispatcher.setjustcreated();
-            WebComp_Comp_message_dispatcher.componentprepare(new Object[] {(string)"MPW0030",(string)"",Contentholder.Pgmname});
-            WebComp_Comp_message_dispatcher.componentbind(new Object[] {(string)""});
-         }
-         if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_message_dispatcher )
-         {
-            context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpMPW0030"+"");
-            WebComp_Comp_message_dispatcher.componentdraw();
-            context.httpAjaxContext.ajax_rspEndCmp();
-         }
       }
 
-      protected void E150W2( )
+      protected void E140W2( )
       {
          /* GlobalEvents_Refreshmasterpage Routine */
          returnInSub = false;
@@ -804,7 +780,7 @@ namespace GeneXus.Programs.general.ui {
          PA0W2( ) ;
          WS0W2( ) ;
          WE0W2( ) ;
-         this.cleanup();
+         cleanup();
          context.SetWrapped(false);
          context.GX_msglist = BackMsgLst;
          return "";
@@ -821,9 +797,7 @@ namespace GeneXus.Programs.general.ui {
 
       protected void define_styles( )
       {
-         AddStyleSheetFile("Unanimo_chameleon/chameleon.css", "");
          AddStyleSheetFile("Toastr/toastr.min.css", "");
-         AddStyleSheetFile("Unanimo_chameleon/chameleon.css", "");
          AddThemeStyleSheetFile("", context.GetTheme( )+".css", "?"+GetCacheInvalidationToken( ));
          if ( ! ( WebComp_Comp_message_dispatcher == null ) )
          {
@@ -840,7 +814,7 @@ namespace GeneXus.Programs.general.ui {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?202472512525983", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?202481315121953", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -855,12 +829,12 @@ namespace GeneXus.Programs.general.ui {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?202472512525984", false, true);
-         context.AddJavascriptSource("Unanimo_chameleon/chameleon.js", "", false, true);
+         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?202481315121953", false, true);
+         context.AddJavascriptSource("Unanimo_chameleon/chameleon-loader.js", "", false, true);
          context.AddJavascriptSource("UserControls/GeneXusUnanimo.IconRender.js", "", false, true);
          context.AddJavascriptSource("Toastr/toastr.min.js", "", false, true);
          context.AddJavascriptSource("Toastr/ToastrRender.js", "", false, true);
-         context.AddJavascriptSource("Unanimo_chameleon/chameleon.js", "", false, true);
+         context.AddJavascriptSource("Unanimo_chameleon/chameleon-loader.js", "", false, true);
          context.AddJavascriptSource("UserControls/GeneXusUnanimo.SidebarRender.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -918,7 +892,7 @@ namespace GeneXus.Programs.general.ui {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH_MPAGE","""{"handler":"Refresh","iparms":[]}""");
-         setEventMetadata("GLOBALEVENTS_MPAGE.REFRESHMASTERPAGE_MPAGE","""{"handler":"E150W2","iparms":[]}""");
+         setEventMetadata("GLOBALEVENTS_MPAGE.REFRESHMASTERPAGE_MPAGE","""{"handler":"E140W2","iparms":[]}""");
          setEventMetadata("GO HOME_MPAGE","""{"handler":"E110W1","iparms":[]}""");
          setEventMetadata("ICON1_MPAGE.CLICK_MPAGE","""{"handler":"E120W2","iparms":[{"av":"Icon1_Source","ctrl":"ICON1_MPAGE","prop":"source"}]""");
          setEventMetadata("ICON1_MPAGE.CLICK_MPAGE",""","oparms":[{"av":"Icon1_Source","ctrl":"ICON1_MPAGE","prop":"source"},{"av":"Icon1_Color","ctrl":"ICON1_MPAGE","prop":"color"}]}""");
@@ -964,7 +938,7 @@ namespace GeneXus.Programs.general.ui {
          sEvtType = "";
          AV14wallet = new GeneXus.Programs.wallet.SdtWallet(context);
          GXt_SdtWallet1 = new GeneXus.Programs.wallet.SdtWallet(context);
-         AV20Designcolorschema = "";
+         AV20designColorSchema = "";
          AV19websession = context.GetSession();
          GXt_objcol_SdtSidebarItems_SidebarItem2 = new GXBaseCollection<GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem>( context, "SidebarItem", "GeneXusUnanimo");
          BackMsgLst = new msglist();
@@ -1019,7 +993,7 @@ namespace GeneXus.Programs.general.ui {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
-      private string AV20Designcolorschema ;
+      private string AV20designColorSchema ;
       private string sDynURL ;
       private bool Sidebarmenu_Iscollapsed ;
       private bool Icon1_Visible ;
@@ -1039,16 +1013,16 @@ namespace GeneXus.Programs.general.ui {
       private GXUserControl ucIcon1 ;
       private GXUserControl ucToastr1 ;
       private GXUserControl ucSidebarmenu ;
+      private GXWebForm Form ;
       private IGxDataStore dsDefault ;
       private GXDataAreaControl Contentholder ;
-      private msglist BackMsgLst ;
-      private msglist LclMsgLst ;
       private GXBaseCollection<GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem> AV5sidebarItems ;
-      private GXBaseCollection<GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem> GXt_objcol_SdtSidebarItems_SidebarItem2 ;
-      private GXWebForm Form ;
       private GeneXus.Core.genexus.server.SdtNotificationInfo AV9notificationInfo ;
       private GeneXus.Programs.wallet.SdtWallet AV14wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
+      private GXBaseCollection<GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem> GXt_objcol_SdtSidebarItems_SidebarItem2 ;
+      private msglist BackMsgLst ;
+      private msglist LclMsgLst ;
    }
 
 }

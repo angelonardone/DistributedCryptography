@@ -168,7 +168,7 @@ namespace GeneXus.Programs.distcrypt.sso {
                }
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       protected void RenderHtmlHeaders( )
@@ -197,10 +197,10 @@ namespace GeneXus.Programs.distcrypt.sso {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2014200), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2014200), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -321,7 +321,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_8-180599", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
          Form.Meta.addItem("description", "Web Login Anonymous", 0) ;
@@ -671,7 +671,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          PA142( ) ;
          WS142( ) ;
          WE142( ) ;
-         this.cleanup();
+         cleanup();
          context.SetWrapped(false);
          context.GX_msglist = BackMsgLst;
          return "";
@@ -692,7 +692,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20247251253176", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20248131334039", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -710,7 +710,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("distcrypt/sso/webloginanonymous.js", "?20247251253176", false, true);
+            context.AddJavascriptSource("distcrypt/sso/webloginanonymous.js", "?20248131334040", false, true);
          }
          /* End function include_jscripts */
       }
@@ -839,16 +839,16 @@ namespace GeneXus.Programs.distcrypt.sso {
       private IGxSession AV21WebSession ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
-      private msglist BackMsgLst ;
-      private msglist LclMsgLst ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser AV12externalUser ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser5 ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo AV16keyInfo ;
-      private GeneXus.Programs.nbitcoin.SdtKeyInfo GXt_SdtKeyInfo1 ;
+      private GeneXus.Programs.distcrypt.SdtParametersSDT AV17parametersSDT ;
       private GeneXus.Programs.distcrypt.sso.SdtSDT_IdentityProvider AV15IdentityProvider ;
       private GeneXus.Programs.distcrypt.sso.SdtSDT_IdentityProvider GXt_SdtSDT_IdentityProvider4 ;
-      private GeneXus.Programs.distcrypt.SdtParametersSDT AV17parametersSDT ;
+      private GeneXus.Programs.distcrypt.SdtExternalUser AV12externalUser ;
+      private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser5 ;
+      private GeneXus.Programs.nbitcoin.SdtKeyInfo GXt_SdtKeyInfo1 ;
       private GeneXus.Programs.distcrypt.SdtRetrunParametersSDT AV22retParameters ;
+      private msglist BackMsgLst ;
+      private msglist LclMsgLst ;
    }
 
 }

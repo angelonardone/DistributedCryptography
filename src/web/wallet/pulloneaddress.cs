@@ -81,7 +81,7 @@ namespace GeneXus.Programs.wallet {
             AV17GXV1 = (int)(AV17GXV1+1);
          }
          new GeneXus.Programs.wallet.setalladdress(context ).execute(  AV14sdt_Addresses) ;
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -106,10 +106,10 @@ namespace GeneXus.Programs.wallet {
       private short AV13GeneratedType ;
       private int AV17GXV1 ;
       private string AV9oneAddress ;
-      private string aP1_oneAddress ;
       private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem> AV14sdt_Addresses ;
       private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem> GXt_objcol_SdtSDT_Addressess_SDT_AddressessItem1 ;
       private GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem AV16one_sdt_address ;
+      private string aP1_oneAddress ;
    }
 
 }

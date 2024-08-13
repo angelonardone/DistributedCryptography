@@ -65,7 +65,7 @@ namespace GeneXus.Programs.distributedcrypto {
           long seconds = (long)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds * 1000);
          /* User Code */
           AV8miliseconds = seconds;
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

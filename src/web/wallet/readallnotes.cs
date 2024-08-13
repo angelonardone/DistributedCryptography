@@ -87,7 +87,7 @@ namespace GeneXus.Programs.wallet {
             AV22notesRead.Add(AV21noteRead, 0);
             AV24GXV2 = (int)(AV24GXV2+1);
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -120,15 +120,15 @@ namespace GeneXus.Programs.wallet {
       private bool GXt_boolean2 ;
       private bool GXt_boolean3 ;
       private string AV10fileName ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtNoteRead> aP0_notesRead ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtNoteRead> AV22notesRead ;
       private GxFile AV8auxFile ;
       private GxDirectory AV18noteDirectory ;
       private GxFileCollection AV23GXV1 ;
-      private GeneXus.Programs.wallet.SdtNote AV14note ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtNoteRead> AV22notesRead ;
       private GeneXus.Programs.wallet.SdtWallet AV11wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
+      private GeneXus.Programs.wallet.SdtNote AV14note ;
       private GeneXus.Programs.wallet.SdtNoteRead AV21noteRead ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtNoteRead> aP0_notesRead ;
    }
 
 }

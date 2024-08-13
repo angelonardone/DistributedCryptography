@@ -154,7 +154,7 @@ namespace GeneXus.Programs.wallet {
                }
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override short ExecuteStartEvent( )
@@ -198,10 +198,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2014200), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2014200), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -445,7 +445,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_8-180599", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
          Form.Meta.addItem("description", "New Authenticator", 0) ;
@@ -803,7 +803,7 @@ namespace GeneXus.Programs.wallet {
          PA0T2( ) ;
          WS0T2( ) ;
          WE0T2( ) ;
-         this.cleanup();
+         cleanup();
          context.SetWrapped(false);
          context.GX_msglist = BackMsgLst;
          return "";
@@ -824,7 +824,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20248612185487", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202481313335857", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -840,7 +840,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/newauthenticator.js", "?20248612185487", false, true);
+         context.AddJavascriptSource("wallet/newauthenticator.js", "?202481313335857", false, true);
          /* End function include_jscripts */
       }
 
@@ -986,12 +986,12 @@ namespace GeneXus.Programs.wallet {
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
+      private GXWebForm Form ;
       private IGxDataStore dsDefault ;
+      private GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator AV8authenticator ;
+      private GXBaseCollection<GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator> AV6authenticators ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
-      private GXBaseCollection<GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator> AV6authenticators ;
-      private GXWebForm Form ;
-      private GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator AV8authenticator ;
    }
 
 }

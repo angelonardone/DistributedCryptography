@@ -92,7 +92,7 @@ namespace GeneXus.Programs.sudodb {
          {
             AV9error = "Transactions " + AV9error;
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -114,8 +114,8 @@ namespace GeneXus.Programs.sudodb {
 
       private string AV9error ;
       private string GXt_char1 ;
-      private string aP1_error ;
       private GeneXus.Programs.electrum.SdtelectrumRespGetTransactionId AV8electrumRespGetTransactionId ;
+      private string aP1_error ;
    }
 
 }

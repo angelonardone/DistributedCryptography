@@ -193,7 +193,7 @@ namespace GeneXus.Programs.shamirss {
                }
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override short ExecuteStartEvent( )
@@ -237,10 +237,10 @@ namespace GeneXus.Programs.shamirss {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2014200), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2014200), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -599,7 +599,7 @@ namespace GeneXus.Programs.shamirss {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_8-180599", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
          Form.Meta.addItem("description", "Shamir Secret Sharing", 0) ;
@@ -838,7 +838,6 @@ namespace GeneXus.Programs.shamirss {
       {
          /* GeneXus formulas. */
          edtavSharesonscreen_Enabled = 0;
-         AssignProp("", false, edtavSharesonscreen_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavSharesonscreen_Enabled), 5, 0), !bGXsfl_23_Refreshing);
          edtavRecoveredsecret_Enabled = 0;
          AssignProp("", false, edtavRecoveredsecret_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavRecoveredsecret_Enabled), 5, 0), true);
       }
@@ -911,7 +910,6 @@ namespace GeneXus.Programs.shamirss {
       protected void before_start_formulas( )
       {
          edtavSharesonscreen_Enabled = 0;
-         AssignProp("", false, edtavSharesonscreen_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavSharesonscreen_Enabled), 5, 0), !bGXsfl_23_Refreshing);
          edtavRecoveredsecret_Enabled = 0;
          AssignProp("", false, edtavRecoveredsecret_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavRecoveredsecret_Enabled), 5, 0), true);
          fix_multi_value_controls( ) ;
@@ -1081,7 +1079,7 @@ namespace GeneXus.Programs.shamirss {
          PA1H2( ) ;
          WS1H2( ) ;
          WE1H2( ) ;
-         this.cleanup();
+         cleanup();
          context.SetWrapped(false);
          context.GX_msglist = BackMsgLst;
          return "";
@@ -1102,7 +1100,7 @@ namespace GeneXus.Programs.shamirss {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20247251253552", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20248131334343", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1120,7 +1118,7 @@ namespace GeneXus.Programs.shamirss {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("shamirss/shamirsecretsharing.js", "?20247251253552", false, true);
+            context.AddJavascriptSource("shamirss/shamirsecretsharing.js", "?20248131334343", false, true);
          }
          /* End function include_jscripts */
       }
@@ -1137,6 +1135,7 @@ namespace GeneXus.Programs.shamirss {
 
       protected void sendrow_232( )
       {
+         sGXsfl_23_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_23_idx), 4, 0), 4, "0");
          SubsflControlProps_232( ) ;
          WB1H0( ) ;
          Grid1Row = GXWebRow.GetNew(context,Grid1Container);
@@ -1202,8 +1201,9 @@ namespace GeneXus.Programs.shamirss {
             context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
          }
          /* Single line edit */
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 24,'',false,'" + sGXsfl_23_idx + "',23)\"";
          ROClassString = "Attribute";
-         Grid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSharesonscreen_Internalname,(string)AV17sharesOnScreen,(string)AV17sharesOnScreen,(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSharesonscreen_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavSharesonscreen_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(int)2097152,(short)0,(short)0,(short)23,(short)0,(short)0,(short)-1,(bool)true,(string)"",(string)"start",(bool)false,(string)""});
+         Grid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSharesonscreen_Internalname,(string)AV17sharesOnScreen,(string)AV17sharesOnScreen,TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,24);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSharesonscreen_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavSharesonscreen_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(int)2097152,(short)0,(short)0,(short)23,(short)0,(short)0,(short)-1,(bool)true,(string)"",(string)"start",(bool)false,(string)""});
          send_integrity_lvl_hashes1H2( ) ;
          Grid1Container.AddRow(Grid1Row);
          nGXsfl_23_idx = ((subGrid1_Islastpage==1)&&(nGXsfl_23_idx+1>subGrid1_fnc_Recordsperpage( )) ? 1 : nGXsfl_23_idx+1);
@@ -1494,12 +1494,12 @@ namespace GeneXus.Programs.shamirss {
       private GXWebGrid Grid1Container ;
       private GXWebRow Grid1Row ;
       private GXWebColumn Grid1Column ;
+      private GXWebForm Form ;
       private IGxDataStore dsDefault ;
-      private msglist BackMsgLst ;
-      private msglist LclMsgLst ;
       private GxSimpleCollection<string> AV10shares ;
       private GxSimpleCollection<string> AV12sharesToRecover ;
-      private GXWebForm Form ;
+      private msglist BackMsgLst ;
+      private msglist LclMsgLst ;
    }
 
 }

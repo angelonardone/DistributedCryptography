@@ -6,6 +6,7 @@
 	<PublishIISAssets>false</PublishIISAssets>
 	<PublishDir>$(WebDirectory)\bin</PublishDir>
 	<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+	<Configuration>Release</Configuration>
   </PropertyGroup>
 	<ItemGroup>
 	<PackageReference Include="GeneXus.NetCoreStartup" Version="$(GenStdVersion)" />

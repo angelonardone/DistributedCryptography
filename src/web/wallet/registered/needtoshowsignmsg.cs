@@ -114,7 +114,7 @@ namespace GeneXus.Programs.wallet.registered {
             }
             AV16GXV3 = (int)(AV16GXV3+1);
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -137,12 +137,12 @@ namespace GeneXus.Programs.wallet.registered {
       private int AV15GXV2 ;
       private int AV16GXV3 ;
       private bool AV10isCompleated ;
-      private bool aP4_isCompleated ;
+      private GeneXus.Programs.wallet.registered.SdtMuSigSignatures AV9oneMuSigSignatures ;
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtMuSigSignatures> AV8CompleatedMuSigSignatures ;
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtMuSigSignatures> AV12alreadySignedByMeMuSigSignatures ;
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtMuSigSignatures> AV13alreadyShownMeMuSigSignatures ;
-      private GeneXus.Programs.wallet.registered.SdtMuSigSignatures AV9oneMuSigSignatures ;
       private GeneXus.Programs.wallet.registered.SdtMuSigSignatures AV11oneCompMuSigSignatures ;
+      private bool aP4_isCompleated ;
    }
 
 }

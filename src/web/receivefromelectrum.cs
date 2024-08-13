@@ -73,7 +73,7 @@ namespace GeneXus.Programs {
          if ( ( args != null ) && ( args.Length == 4 ) )
          {
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

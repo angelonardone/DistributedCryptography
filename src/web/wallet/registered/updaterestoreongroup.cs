@@ -166,7 +166,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             AV11error = "We could not find the ContactId on the Group Invitation";
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -204,16 +204,16 @@ namespace GeneXus.Programs.wallet.registered {
       private bool AV21contactNotFound ;
       private bool AV15isOk ;
       private Guid AV14grpupId ;
-      private string aP1_error ;
-      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT> AV8all_groups_sdt ;
+      private GeneXus.Programs.nostr.SdtSDT_message AV18sdt_message ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV12group_sdt ;
+      private GeneXus.Programs.wallet.registered.SdtMessage_signature AV16message_signature ;
+      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT> AV8all_groups_sdt ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV19group_sdt_temp ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV20group_sdt_found ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV17oneGroup ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV13groupContact ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV17oneGroup ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV22oneContact ;
-      private GeneXus.Programs.wallet.registered.SdtMessage_signature AV16message_signature ;
-      private GeneXus.Programs.nostr.SdtSDT_message AV18sdt_message ;
+      private string aP1_error ;
    }
 
 }

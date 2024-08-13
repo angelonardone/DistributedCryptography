@@ -269,7 +269,7 @@ namespace GeneXus.Programs.wallet.registered {
                }
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       protected void RenderHtmlHeaders( )
@@ -300,18 +300,18 @@ namespace GeneXus.Programs.wallet.registered {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2014200), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2014200), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 2014200), false, true);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1218140), false, true);
          if ( StringUtil.Len( sPrefix) == 0 )
          {
             context.CloseHtmlHeader();
@@ -668,7 +668,7 @@ namespace GeneXus.Programs.wallet.registered {
             {
                if ( context.ExposeMetadata( ) )
                {
-                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_8-180599", 0) ;
+                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
             Form.Meta.addItem("description", "Delegation Mylti Sig All Signatures", 0) ;
@@ -1045,21 +1045,13 @@ namespace GeneXus.Programs.wallet.registered {
       {
          /* GeneXus formulas. */
          edtavCtlid_Enabled = 0;
-         AssignProp(sPrefix, false, edtavCtlid_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlid_Enabled), 5, 0), !bGXsfl_6_Refreshing);
          edtavCtldescription_Enabled = 0;
-         AssignProp(sPrefix, false, edtavCtldescription_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtldescription_Enabled), 5, 0), !bGXsfl_6_Refreshing);
          edtavCtlsigneddatetime_Enabled = 0;
-         AssignProp(sPrefix, false, edtavCtlsigneddatetime_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlsigneddatetime_Enabled), 5, 0), !bGXsfl_6_Refreshing);
          edtavCtlsenderusername_Enabled = 0;
-         AssignProp(sPrefix, false, edtavCtlsenderusername_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlsenderusername_Enabled), 5, 0), !bGXsfl_6_Refreshing);
          chkavCtlcompleated.Enabled = 0;
-         AssignProp(sPrefix, false, chkavCtlcompleated_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(chkavCtlcompleated.Enabled), 5, 0), !bGXsfl_6_Refreshing);
          edtavCtlsendcoins_Enabled = 0;
-         AssignProp(sPrefix, false, edtavCtlsendcoins_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlsendcoins_Enabled), 5, 0), !bGXsfl_6_Refreshing);
          edtavCtlsendto_Enabled = 0;
-         AssignProp(sPrefix, false, edtavCtlsendto_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlsendto_Enabled), 5, 0), !bGXsfl_6_Refreshing);
          edtavSign_Enabled = 0;
-         AssignProp(sPrefix, false, edtavSign_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavSign_Enabled), 5, 0), !bGXsfl_6_Refreshing);
       }
 
       protected void RF1Y2( )
@@ -1284,21 +1276,13 @@ namespace GeneXus.Programs.wallet.registered {
       protected void before_start_formulas( )
       {
          edtavCtlid_Enabled = 0;
-         AssignProp(sPrefix, false, edtavCtlid_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlid_Enabled), 5, 0), !bGXsfl_6_Refreshing);
          edtavCtldescription_Enabled = 0;
-         AssignProp(sPrefix, false, edtavCtldescription_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtldescription_Enabled), 5, 0), !bGXsfl_6_Refreshing);
          edtavCtlsigneddatetime_Enabled = 0;
-         AssignProp(sPrefix, false, edtavCtlsigneddatetime_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlsigneddatetime_Enabled), 5, 0), !bGXsfl_6_Refreshing);
          edtavCtlsenderusername_Enabled = 0;
-         AssignProp(sPrefix, false, edtavCtlsenderusername_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlsenderusername_Enabled), 5, 0), !bGXsfl_6_Refreshing);
          chkavCtlcompleated.Enabled = 0;
-         AssignProp(sPrefix, false, chkavCtlcompleated_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(chkavCtlcompleated.Enabled), 5, 0), !bGXsfl_6_Refreshing);
          edtavCtlsendcoins_Enabled = 0;
-         AssignProp(sPrefix, false, edtavCtlsendcoins_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlsendcoins_Enabled), 5, 0), !bGXsfl_6_Refreshing);
          edtavCtlsendto_Enabled = 0;
-         AssignProp(sPrefix, false, edtavCtlsendto_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlsendto_Enabled), 5, 0), !bGXsfl_6_Refreshing);
          edtavSign_Enabled = 0;
-         AssignProp(sPrefix, false, edtavSign_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavSign_Enabled), 5, 0), !bGXsfl_6_Refreshing);
          fix_multi_value_controls( ) ;
       }
 
@@ -1520,7 +1504,7 @@ namespace GeneXus.Programs.wallet.registered {
          PA1Y2( ) ;
          WS1Y2( ) ;
          WE1Y2( ) ;
-         this.cleanup();
+         cleanup();
          context.SetWrapped(false);
          SaveComponentMsgList(sPrefix);
          context.GX_msglist = BackMsgLst;
@@ -1697,7 +1681,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024881311824", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20248131333526", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1713,7 +1697,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/delegationmyltisigallsignatures.js", "?2024881311824", false, true);
+         context.AddJavascriptSource("wallet/registered/delegationmyltisigallsignatures.js", "?20248131333526", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -1744,6 +1728,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void sendrow_62( )
       {
+         sGXsfl_6_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_6_idx), 4, 0), 4, "0");
          SubsflControlProps_62( ) ;
          WB1Y0( ) ;
          if ( ( 20 * 1 == 0 ) || ( nGXsfl_6_idx <= subGridsignatures_fnc_Recordsperpage( ) * 1 ) )
@@ -1812,37 +1797,41 @@ namespace GeneXus.Programs.wallet.registered {
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridsignaturesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlid_Internalname,((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Id.ToString(),((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Id.ToString(),(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)0,(int)edtavCtlid_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)6,(short)0,(short)0,(short)0,(bool)true,(string)"",(string)"",(bool)false,(string)""});
+            GridsignaturesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlid_Internalname,((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Id.ToString(),((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Id.ToString(),""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)0,(int)edtavCtlid_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)6,(short)0,(short)0,(short)0,(bool)true,(string)"",(string)"",(bool)false,(string)""});
             /* Subfile cell */
             if ( GridsignaturesContainer.GetWrapped() == 1 )
             {
                context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
             }
             /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 8,'" + sPrefix + "',false,'" + sGXsfl_6_idx + "',6)\"";
             ROClassString = "Attribute";
-            GridsignaturesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtldescription_Internalname,((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Description,(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtldescription_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtldescription_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridsignaturesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtldescription_Internalname,((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Description,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,8);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtldescription_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtldescription_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridsignaturesContainer.GetWrapped() == 1 )
             {
                context.WriteHtmlText( "<td valign=\"middle\" align=\""+"end"+"\""+" style=\""+""+"\">") ;
             }
             /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 9,'" + sPrefix + "',false,'" + sGXsfl_6_idx + "',6)\"";
             ROClassString = "Attribute";
-            GridsignaturesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlsigneddatetime_Internalname,context.localUtil.TToC( ((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Signeddatetime, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Signeddatetime, "99/99/99 99:99:99"),(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlsigneddatetime_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlsigneddatetime_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+            GridsignaturesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlsigneddatetime_Internalname,context.localUtil.TToC( ((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Signeddatetime, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Signeddatetime, "99/99/99 99:99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',8,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',8,12,'eng',false,0);"+";gx.evt.onblur(this,9);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlsigneddatetime_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlsigneddatetime_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
             /* Subfile cell */
             if ( GridsignaturesContainer.GetWrapped() == 1 )
             {
                context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
             }
             /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 10,'" + sPrefix + "',false,'" + sGXsfl_6_idx + "',6)\"";
             ROClassString = "Attribute";
-            GridsignaturesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlsenderusername_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Senderusername),(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlsenderusername_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlsenderusername_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridsignaturesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlsenderusername_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Senderusername),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,10);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlsenderusername_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlsenderusername_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridsignaturesContainer.GetWrapped() == 1 )
             {
                context.WriteHtmlText( "<td valign=\"middle\" align=\""+""+"\""+" style=\""+""+"\">") ;
             }
             /* Check box */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 11,'" + sPrefix + "',false,'" + sGXsfl_6_idx + "',6)\"";
             ClassString = "Attribute";
             StyleString = "";
             GXCCtl = "CTLCOMPLEATED_" + sGXsfl_6_idx;
@@ -1851,32 +1840,34 @@ namespace GeneXus.Programs.wallet.registered {
             chkavCtlcompleated.Caption = "";
             AssignProp(sPrefix, false, chkavCtlcompleated_Internalname, "TitleCaption", chkavCtlcompleated.Caption, !bGXsfl_6_Refreshing);
             chkavCtlcompleated.CheckedValue = "false";
-            GridsignaturesRow.AddColumnProperties("checkbox", 1, isAjaxCallMode( ), new Object[] {(string)chkavCtlcompleated_Internalname,StringUtil.BoolToStr( ((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Compleated),(string)"",(string)"",(short)-1,chkavCtlcompleated.Enabled,(string)"true",(string)"",(string)StyleString,(string)ClassString,(string)"",(string)"",(string)""});
+            GridsignaturesRow.AddColumnProperties("checkbox", 1, isAjaxCallMode( ), new Object[] {(string)chkavCtlcompleated_Internalname,StringUtil.BoolToStr( ((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Compleated),(string)"",(string)"",(short)-1,chkavCtlcompleated.Enabled,(string)"true",(string)"",(string)StyleString,(string)ClassString,(string)"",(string)"",TempTags+" onclick="+"\"gx.fn.checkboxClick(11, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,11);\""});
             /* Subfile cell */
             if ( GridsignaturesContainer.GetWrapped() == 1 )
             {
                context.WriteHtmlText( "<td valign=\"middle\" align=\""+"end"+"\""+" style=\""+""+"\">") ;
             }
             /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 12,'" + sPrefix + "',false,'" + sGXsfl_6_idx + "',6)\"";
             ROClassString = "Attribute";
-            GridsignaturesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlsendcoins_Internalname,StringUtil.LTrim( StringUtil.NToC( ((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Sendcoins, 16, 8, ".", "")),StringUtil.LTrim( ((edtavCtlsendcoins_Enabled!=0) ? context.localUtil.Format( ((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Sendcoins, "ZZZZZZ9.99999999") : context.localUtil.Format( ((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Sendcoins, "ZZZZZZ9.99999999"))),(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlsendcoins_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlsendcoins_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)16,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+            GridsignaturesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlsendcoins_Internalname,StringUtil.LTrim( StringUtil.NToC( ((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Sendcoins, 16, 8, ".", "")),StringUtil.LTrim( ((edtavCtlsendcoins_Enabled!=0) ? context.localUtil.Format( ((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Sendcoins, "ZZZZZZ9.99999999") : context.localUtil.Format( ((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Sendcoins, "ZZZZZZ9.99999999"))),TempTags+" onchange=\""+"gx.num.valid_decimal( this, ',','.','8');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_decimal( this, ',','.','8');"+";gx.evt.onblur(this,12);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlsendcoins_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlsendcoins_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)16,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
             /* Subfile cell */
             if ( GridsignaturesContainer.GetWrapped() == 1 )
             {
                context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
             }
             /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 13,'" + sPrefix + "',false,'" + sGXsfl_6_idx + "',6)\"";
             ROClassString = "Attribute";
-            GridsignaturesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlsendto_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Sendto),(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlsendto_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlsendto_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridsignaturesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlsendto_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)AV7muSigSignatures.Item(AV26GXV1)).gxTpr_Sendto),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,13);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlsendto_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlsendto_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridsignaturesContainer.GetWrapped() == 1 )
             {
                context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
             }
             /* Single line edit */
-            TempTags = " " + ((edtavSign_Enabled!=0)&&(edtavSign_Visible!=0) ? " onfocus=\"gx.evt.onfocus(this, 14,'"+sPrefix+"',false,'"+sGXsfl_6_idx+"',6)\"" : " ");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 14,'" + sPrefix + "',false,'" + sGXsfl_6_idx + "',6)\"";
             ROClassString = "Attribute";
-            GridsignaturesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSign_Internalname,StringUtil.RTrim( AV11sign),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+((edtavSign_Enabled!=0)&&(edtavSign_Visible!=0) ? " onblur=\""+""+";gx.evt.onblur(this,14);\"" : " "),"'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'SIGN TRANSACTION\\'."+sGXsfl_6_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSign_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavSign_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridsignaturesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSign_Internalname,StringUtil.RTrim( AV11sign),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,14);\"","'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'SIGN TRANSACTION\\'."+sGXsfl_6_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSign_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavSign_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             send_integrity_lvl_hashes1Y2( ) ;
             GridsignaturesContainer.AddRow(GridsignaturesRow);
             nGXsfl_6_idx = ((subGridsignatures_Islastpage==1)&&(nGXsfl_6_idx+1>subGridsignatures_fnc_Recordsperpage( )) ? 1 : nGXsfl_6_idx+1);
@@ -2039,7 +2030,6 @@ namespace GeneXus.Programs.wallet.registered {
          subGridsignatures_Allowselection = 0;
          subGridsignatures_Header = "";
          edtavSign_Jsonclick = "";
-         edtavSign_Visible = -1;
          edtavSign_Enabled = 1;
          edtavCtlsendto_Jsonclick = "";
          edtavCtlsendto_Enabled = 0;
@@ -2150,10 +2140,10 @@ namespace GeneXus.Programs.wallet.registered {
          sCtrlAV22groupId = "";
          subGridsignatures_Linesclass = "";
          ROClassString = "";
+         TempTags = "";
          ClassString = "";
          StyleString = "";
          GXCCtl = "";
-         TempTags = "";
          GridsignaturesColumn = new GXWebColumn();
          /* GeneXus formulas. */
          edtavCtlid_Enabled = 0;
@@ -2206,7 +2196,6 @@ namespace GeneXus.Programs.wallet.registered {
       private int idxLst ;
       private int subGridsignatures_Backcolor ;
       private int subGridsignatures_Allbackcolor ;
-      private int edtavSign_Visible ;
       private int subGridsignatures_Titlebackcolor ;
       private int subGridsignatures_Selectedindex ;
       private int subGridsignatures_Selectioncolor ;
@@ -2250,6 +2239,7 @@ namespace GeneXus.Programs.wallet.registered {
       private string subGridsignatures_Linesclass ;
       private string ROClassString ;
       private string edtavCtlid_Jsonclick ;
+      private string TempTags ;
       private string edtavCtldescription_Jsonclick ;
       private string edtavCtlsigneddatetime_Jsonclick ;
       private string edtavCtlsenderusername_Jsonclick ;
@@ -2258,7 +2248,6 @@ namespace GeneXus.Programs.wallet.registered {
       private string GXCCtl ;
       private string edtavCtlsendcoins_Jsonclick ;
       private string edtavCtlsendto_Jsonclick ;
-      private string TempTags ;
       private string edtavSign_Jsonclick ;
       private string subGridsignatures_Header ;
       private bool entryPointCalled ;
@@ -2278,21 +2267,21 @@ namespace GeneXus.Programs.wallet.registered {
       private GXWebRow GridsignaturesRow ;
       private GXWebColumn GridsignaturesColumn ;
       private GXWebForm Form ;
+      private IGxSession AV6websession ;
       private IGxDataStore dsDefault ;
       private GXCheckbox chkavCtlcompleated ;
-      private msglist BackMsgLst ;
-      private msglist LclMsgLst ;
-      private IGxSession AV6websession ;
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtMuSigSignatures> AV23alreadySignedByMeMuSigSignatures ;
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtMuSigSignatures> AV25alreadyShownMeMuSigSignatures ;
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtMuSigSignatures> AV18compleatedMuSigSignatures ;
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtMuSigSignatures> AV7muSigSignatures ;
+      private GeneXus.Programs.distcrypt.SdtExternalUser AV14externalUser ;
+      private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV5group_sdt ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT GXt_SdtGroup_SDT2 ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV10oneContact ;
       private GeneXus.Programs.wallet.registered.SdtMuSigSignatures AV8oneMuSigSignatures ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser AV14externalUser ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
+      private msglist BackMsgLst ;
+      private msglist LclMsgLst ;
    }
 
 }

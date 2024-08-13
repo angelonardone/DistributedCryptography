@@ -96,7 +96,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             AV11isNeeded = false;
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -122,9 +122,9 @@ namespace GeneXus.Programs.wallet.registered {
       private string AV16one_EC_PublicKey ;
       private string AV13oneItem ;
       private bool AV11isNeeded ;
-      private bool aP2_isNeeded ;
       private GxSimpleCollection<string> AV15all_EC_PublicKey ;
       private GeneXus.Programs.math.SdtfinalCombination AV9finalOneCombination ;
+      private bool aP2_isNeeded ;
    }
 
 }

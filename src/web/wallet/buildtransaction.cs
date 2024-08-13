@@ -270,7 +270,7 @@ namespace GeneXus.Programs.wallet {
          		AV8error = ex.Message.ToString();
          /* User Code */
          	}
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -308,11 +308,11 @@ namespace GeneXus.Programs.wallet {
       private bool AV28sendAllCoins ;
       private bool AV25verified ;
       private string AV9hexTransaction ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV13transactionsToSend ;
+      private GeneXus.Programs.wallet.SdtSDTAddressHistory AV15oneAddressHistory ;
       private long aP7_virtualSize ;
       private string aP8_hexTransaction ;
       private string aP9_error ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV13transactionsToSend ;
-      private GeneXus.Programs.wallet.SdtSDTAddressHistory AV15oneAddressHistory ;
    }
 
 }

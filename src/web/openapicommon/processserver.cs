@@ -86,7 +86,7 @@ namespace GeneXus.Programs.openapicommon {
             AV16GXV1 = (int)(AV16GXV1+1);
          }
          AV10serverTemplated = AV9serverPart;
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -116,10 +116,10 @@ namespace GeneXus.Programs.openapicommon {
       private string AV8server ;
       private string AV10serverTemplated ;
       private string AV9serverPart ;
-      private string aP2_serverTemplated ;
       private GXProperties AV11varServerParams ;
       private GxRegexMatch AV15RegExMatch ;
       private GxUnknownObjectCollection AV14RegExMatchCollection ;
+      private string aP2_serverTemplated ;
    }
 
 }

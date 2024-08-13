@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtcreateContact__postInput
 			Description: createContact__postInput
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.8.180599
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -133,6 +133,14 @@ namespace GeneXus.Programs
 
 		#endregion
 
+		#region Static Type Properties
+
+		[XmlIgnore]
+		private static GXTypeInfo _typeProps;
+		protected override GXTypeInfo TypeInfo { get { return _typeProps; } set { _typeProps = value; } }
+
+		#endregion
+
 		#region Initialization
 
 		public void initialize( )
@@ -162,7 +170,7 @@ namespace GeneXus.Programs
 		#endregion
 	}
 	#region Rest interface
-	[GxUnWrappedJson()]
+	[GxJsonSerialization("default")]
 	[DataContract(Name=@"createContact__postInput", Namespace="distributedcryptography")]
 	public class SdtcreateContact__postInput_RESTInterface : GxGenericCollectionItem<SdtcreateContact__postInput>, System.Web.SessionState.IRequiresSessionState
 	{

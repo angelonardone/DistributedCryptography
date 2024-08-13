@@ -194,7 +194,7 @@ namespace GeneXus.Programs.wallet.registered {
                }
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override short ExecuteStartEvent( )
@@ -238,18 +238,18 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2014200), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2014200), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 2014200), false, true);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1218140), false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -537,7 +537,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_8-180599", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
          Form.Meta.addItem("description", "Contacts", 0) ;
@@ -828,23 +828,14 @@ namespace GeneXus.Programs.wallet.registered {
       {
          /* GeneXus formulas. */
          edtavCtluserprivatename1_Enabled = 0;
-         AssignProp("", false, edtavCtluserprivatename1_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtluserprivatename1_Enabled), 5, 0), !bGXsfl_11_Refreshing);
          edtavCtlusername1_Enabled = 0;
-         AssignProp("", false, edtavCtlusername1_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlusername1_Enabled), 5, 0), !bGXsfl_11_Refreshing);
          edtavCtlinvitationsent_Enabled = 0;
-         AssignProp("", false, edtavCtlinvitationsent_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlinvitationsent_Enabled), 5, 0), !bGXsfl_11_Refreshing);
          edtavCtlinvitacionaccepted_Enabled = 0;
-         AssignProp("", false, edtavCtlinvitacionaccepted_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlinvitacionaccepted_Enabled), 5, 0), !bGXsfl_11_Refreshing);
          edtavEditcontact_Enabled = 0;
-         AssignProp("", false, edtavEditcontact_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavEditcontact_Enabled), 5, 0), !bGXsfl_11_Refreshing);
          edtavAcceptinvitation_Enabled = 0;
-         AssignProp("", false, edtavAcceptinvitation_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavAcceptinvitation_Enabled), 5, 0), !bGXsfl_11_Refreshing);
          edtavDeclineinvitation_Enabled = 0;
-         AssignProp("", false, edtavDeclineinvitation_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavDeclineinvitation_Enabled), 5, 0), !bGXsfl_11_Refreshing);
          edtavChatwith_Enabled = 0;
-         AssignProp("", false, edtavChatwith_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavChatwith_Enabled), 5, 0), !bGXsfl_11_Refreshing);
          edtavDeletecontact_Enabled = 0;
-         AssignProp("", false, edtavDeletecontact_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavDeletecontact_Enabled), 5, 0), !bGXsfl_11_Refreshing);
       }
 
       protected void RF162( )
@@ -918,23 +909,14 @@ namespace GeneXus.Programs.wallet.registered {
       protected void before_start_formulas( )
       {
          edtavCtluserprivatename1_Enabled = 0;
-         AssignProp("", false, edtavCtluserprivatename1_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtluserprivatename1_Enabled), 5, 0), !bGXsfl_11_Refreshing);
          edtavCtlusername1_Enabled = 0;
-         AssignProp("", false, edtavCtlusername1_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlusername1_Enabled), 5, 0), !bGXsfl_11_Refreshing);
          edtavCtlinvitationsent_Enabled = 0;
-         AssignProp("", false, edtavCtlinvitationsent_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlinvitationsent_Enabled), 5, 0), !bGXsfl_11_Refreshing);
          edtavCtlinvitacionaccepted_Enabled = 0;
-         AssignProp("", false, edtavCtlinvitacionaccepted_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlinvitacionaccepted_Enabled), 5, 0), !bGXsfl_11_Refreshing);
          edtavEditcontact_Enabled = 0;
-         AssignProp("", false, edtavEditcontact_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavEditcontact_Enabled), 5, 0), !bGXsfl_11_Refreshing);
          edtavAcceptinvitation_Enabled = 0;
-         AssignProp("", false, edtavAcceptinvitation_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavAcceptinvitation_Enabled), 5, 0), !bGXsfl_11_Refreshing);
          edtavDeclineinvitation_Enabled = 0;
-         AssignProp("", false, edtavDeclineinvitation_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavDeclineinvitation_Enabled), 5, 0), !bGXsfl_11_Refreshing);
          edtavChatwith_Enabled = 0;
-         AssignProp("", false, edtavChatwith_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavChatwith_Enabled), 5, 0), !bGXsfl_11_Refreshing);
          edtavDeletecontact_Enabled = 0;
-         AssignProp("", false, edtavDeletecontact_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavDeletecontact_Enabled), 5, 0), !bGXsfl_11_Refreshing);
          fix_multi_value_controls( ) ;
       }
 
@@ -1542,7 +1524,7 @@ namespace GeneXus.Programs.wallet.registered {
          PA162( ) ;
          WS162( ) ;
          WE162( ) ;
-         this.cleanup();
+         cleanup();
          context.SetWrapped(false);
          context.GX_msglist = BackMsgLst;
          return "";
@@ -1564,7 +1546,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20248612185780", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024813133429", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1580,8 +1562,8 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("wallet/registered/contacts.js", "?20248612185780", false, true);
+         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("wallet/registered/contacts.js", "?2024813133429", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
@@ -1615,6 +1597,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void sendrow_112( )
       {
+         sGXsfl_11_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_11_idx), 4, 0), 4, "0");
          SubsflControlProps_112( ) ;
          WB160( ) ;
          ContactgridRow = GXWebRow.GetNew(context,ContactgridContainer);
@@ -1680,77 +1663,81 @@ namespace GeneXus.Programs.wallet.registered {
             context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
          }
          /* Single line edit */
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 12,'',false,'" + sGXsfl_11_idx + "',11)\"";
          ROClassString = "Attribute";
-         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtluserprivatename1_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV17allContacts.Item(AV36GXV1)).gxTpr_Userprivatename),(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtluserprivatename1_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtluserprivatename1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtluserprivatename1_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV17allContacts.Item(AV36GXV1)).gxTpr_Userprivatename),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,12);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtluserprivatename1_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtluserprivatename1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          if ( ContactgridContainer.GetWrapped() == 1 )
          {
             context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
          }
          /* Single line edit */
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 13,'',false,'" + sGXsfl_11_idx + "',11)\"";
          ROClassString = "Attribute";
-         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlusername1_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV17allContacts.Item(AV36GXV1)).gxTpr_Username),(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlusername1_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlusername1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlusername1_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV17allContacts.Item(AV36GXV1)).gxTpr_Username),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,13);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlusername1_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlusername1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          if ( ContactgridContainer.GetWrapped() == 1 )
          {
             context.WriteHtmlText( "<td valign=\"middle\" align=\""+"end"+"\""+" style=\""+""+"\">") ;
          }
          /* Single line edit */
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 14,'',false,'" + sGXsfl_11_idx + "',11)\"";
          ROClassString = "Attribute";
-         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlinvitationsent_Internalname,context.localUtil.TToC( ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV17allContacts.Item(AV36GXV1)).gxTpr_Invitationsent, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV17allContacts.Item(AV36GXV1)).gxTpr_Invitationsent, "99/99/99 99:99"),(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlinvitationsent_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlinvitationsent_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)17,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlinvitationsent_Internalname,context.localUtil.TToC( ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV17allContacts.Item(AV36GXV1)).gxTpr_Invitationsent, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV17allContacts.Item(AV36GXV1)).gxTpr_Invitationsent, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onblur(this,14);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlinvitationsent_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlinvitationsent_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)17,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          /* Subfile cell */
          if ( ContactgridContainer.GetWrapped() == 1 )
          {
             context.WriteHtmlText( "<td valign=\"middle\" align=\""+"end"+"\""+" style=\""+""+"\">") ;
          }
          /* Single line edit */
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 15,'',false,'" + sGXsfl_11_idx + "',11)\"";
          ROClassString = "Attribute";
-         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlinvitacionaccepted_Internalname,context.localUtil.TToC( ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV17allContacts.Item(AV36GXV1)).gxTpr_Invitacionaccepted, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV17allContacts.Item(AV36GXV1)).gxTpr_Invitacionaccepted, "99/99/99 99:99"),(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlinvitacionaccepted_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlinvitacionaccepted_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)17,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlinvitacionaccepted_Internalname,context.localUtil.TToC( ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV17allContacts.Item(AV36GXV1)).gxTpr_Invitacionaccepted, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV17allContacts.Item(AV36GXV1)).gxTpr_Invitacionaccepted, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onblur(this,15);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlinvitacionaccepted_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlinvitacionaccepted_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)17,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          /* Subfile cell */
          if ( ContactgridContainer.GetWrapped() == 1 )
          {
             context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+((edtavEditcontact_Visible==0) ? "display:none;" : "")+"\">") ;
          }
          /* Single line edit */
-         TempTags = " " + ((edtavEditcontact_Enabled!=0)&&(edtavEditcontact_Visible!=0) ? " onfocus=\"gx.evt.onfocus(this, 16,'',false,'"+sGXsfl_11_idx+"',11)\"" : " ");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 16,'',false,'" + sGXsfl_11_idx + "',11)\"";
          ROClassString = "Attribute";
-         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavEditcontact_Internalname,StringUtil.RTrim( AV35editContact),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+((edtavEditcontact_Enabled!=0)&&(edtavEditcontact_Visible!=0) ? " onblur=\""+""+";gx.evt.onblur(this,16);\"" : " "),"'"+""+"'"+",false,"+"'"+"E\\'EDIT CONTACT\\'."+sGXsfl_11_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavEditcontact_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtavEditcontact_Visible,(int)edtavEditcontact_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavEditcontact_Internalname,StringUtil.RTrim( AV35editContact),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,16);\"","'"+""+"'"+",false,"+"'"+"E\\'EDIT CONTACT\\'."+sGXsfl_11_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavEditcontact_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtavEditcontact_Visible,(int)edtavEditcontact_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          if ( ContactgridContainer.GetWrapped() == 1 )
          {
             context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+((edtavAcceptinvitation_Visible==0) ? "display:none;" : "")+"\">") ;
          }
          /* Single line edit */
-         TempTags = " " + ((edtavAcceptinvitation_Enabled!=0)&&(edtavAcceptinvitation_Visible!=0) ? " onfocus=\"gx.evt.onfocus(this, 17,'',false,'"+sGXsfl_11_idx+"',11)\"" : " ");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 17,'',false,'" + sGXsfl_11_idx + "',11)\"";
          ROClassString = "Attribute";
-         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavAcceptinvitation_Internalname,StringUtil.RTrim( AV29acceptInvitation),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+((edtavAcceptinvitation_Enabled!=0)&&(edtavAcceptinvitation_Visible!=0) ? " onblur=\""+""+";gx.evt.onblur(this,17);\"" : " "),"'"+""+"'"+",false,"+"'"+"E\\'ACCEPT INVITATION\\'."+sGXsfl_11_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavAcceptinvitation_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtavAcceptinvitation_Visible,(int)edtavAcceptinvitation_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavAcceptinvitation_Internalname,StringUtil.RTrim( AV29acceptInvitation),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,17);\"","'"+""+"'"+",false,"+"'"+"E\\'ACCEPT INVITATION\\'."+sGXsfl_11_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavAcceptinvitation_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtavAcceptinvitation_Visible,(int)edtavAcceptinvitation_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          if ( ContactgridContainer.GetWrapped() == 1 )
          {
             context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+((edtavDeclineinvitation_Visible==0) ? "display:none;" : "")+"\">") ;
          }
          /* Single line edit */
-         TempTags = " " + ((edtavDeclineinvitation_Enabled!=0)&&(edtavDeclineinvitation_Visible!=0) ? " onfocus=\"gx.evt.onfocus(this, 18,'',false,'"+sGXsfl_11_idx+"',11)\"" : " ");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 18,'',false,'" + sGXsfl_11_idx + "',11)\"";
          ROClassString = "Attribute";
-         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavDeclineinvitation_Internalname,StringUtil.RTrim( AV32declineInvitation),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+((edtavDeclineinvitation_Enabled!=0)&&(edtavDeclineinvitation_Visible!=0) ? " onblur=\""+""+";gx.evt.onblur(this,18);\"" : " "),"'"+""+"'"+",false,"+"'"+"E\\'DECLINE INVITATION\\'."+sGXsfl_11_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavDeclineinvitation_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtavDeclineinvitation_Visible,(int)edtavDeclineinvitation_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavDeclineinvitation_Internalname,StringUtil.RTrim( AV32declineInvitation),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,18);\"","'"+""+"'"+",false,"+"'"+"E\\'DECLINE INVITATION\\'."+sGXsfl_11_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavDeclineinvitation_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtavDeclineinvitation_Visible,(int)edtavDeclineinvitation_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          if ( ContactgridContainer.GetWrapped() == 1 )
          {
             context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+((edtavChatwith_Visible==0) ? "display:none;" : "")+"\">") ;
          }
          /* Single line edit */
-         TempTags = " " + ((edtavChatwith_Enabled!=0)&&(edtavChatwith_Visible!=0) ? " onfocus=\"gx.evt.onfocus(this, 19,'',false,'"+sGXsfl_11_idx+"',11)\"" : " ");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 19,'',false,'" + sGXsfl_11_idx + "',11)\"";
          ROClassString = "Attribute";
-         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavChatwith_Internalname,StringUtil.RTrim( AV25chatWith),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+((edtavChatwith_Enabled!=0)&&(edtavChatwith_Visible!=0) ? " onblur=\""+""+";gx.evt.onblur(this,19);\"" : " "),"'"+""+"'"+",false,"+"'"+"E\\'CHAT\\'."+sGXsfl_11_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavChatwith_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtavChatwith_Visible,(int)edtavChatwith_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavChatwith_Internalname,StringUtil.RTrim( AV25chatWith),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,19);\"","'"+""+"'"+",false,"+"'"+"E\\'CHAT\\'."+sGXsfl_11_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavChatwith_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtavChatwith_Visible,(int)edtavChatwith_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          if ( ContactgridContainer.GetWrapped() == 1 )
          {
             context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+((edtavDeletecontact_Visible==0) ? "display:none;" : "")+"\">") ;
          }
          /* Single line edit */
-         TempTags = " " + ((edtavDeletecontact_Enabled!=0)&&(edtavDeletecontact_Visible!=0) ? " onfocus=\"gx.evt.onfocus(this, 20,'',false,'"+sGXsfl_11_idx+"',11)\"" : " ");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 20,'',false,'" + sGXsfl_11_idx + "',11)\"";
          ROClassString = "Attribute";
-         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavDeletecontact_Internalname,StringUtil.RTrim( AV18deleteContact),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+((edtavDeletecontact_Enabled!=0)&&(edtavDeletecontact_Visible!=0) ? " onblur=\""+""+";gx.evt.onblur(this,20);\"" : " "),"'"+""+"'"+",false,"+"'"+"E\\'DELETE CONTACT\\'."+sGXsfl_11_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavDeletecontact_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtavDeletecontact_Visible,(int)edtavDeletecontact_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavDeletecontact_Internalname,StringUtil.RTrim( AV18deleteContact),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,20);\"","'"+""+"'"+",false,"+"'"+"E\\'DELETE CONTACT\\'."+sGXsfl_11_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavDeletecontact_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtavDeletecontact_Visible,(int)edtavDeletecontact_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          send_integrity_lvl_hashes162( ) ;
          ContactgridContainer.AddRow(ContactgridRow);
          nGXsfl_11_idx = ((subContactgrid_Islastpage==1)&&(nGXsfl_11_idx+1>subContactgrid_fnc_Recordsperpage( )) ? 1 : nGXsfl_11_idx+1);
@@ -2143,15 +2130,15 @@ namespace GeneXus.Programs.wallet.registered {
       private string edtavChatwith_Internalname ;
       private string AV18deleteContact ;
       private string edtavDeletecontact_Internalname ;
-      private string edtavCtluserprivatename1_Internalname ;
-      private string edtavCtlusername1_Internalname ;
-      private string edtavCtlinvitationsent_Internalname ;
-      private string edtavCtlinvitacionaccepted_Internalname ;
       private string sGXsfl_11_fel_idx="0001" ;
       private string AV11expectedPopupName ;
       private string GXt_char2 ;
       private string AV34UserName ;
       private string GXt_char4 ;
+      private string edtavCtluserprivatename1_Internalname ;
+      private string edtavCtlusername1_Internalname ;
+      private string edtavCtlinvitationsent_Internalname ;
+      private string edtavCtlinvitacionaccepted_Internalname ;
       private string subContactgrid_Class ;
       private string subContactgrid_Linesclass ;
       private string ROClassString ;
@@ -2180,19 +2167,19 @@ namespace GeneXus.Programs.wallet.registered {
       private GXWebGrid ContactgridContainer ;
       private GXWebRow ContactgridRow ;
       private GXWebColumn ContactgridColumn ;
-      private IGxDataStore dsDefault ;
-      private msglist BackMsgLst ;
-      private msglist LclMsgLst ;
       private IGxSession AV13websession ;
-      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> AV17allContacts ;
-      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> AV33allContacts_temp ;
       private GXWebForm Form ;
+      private IGxDataStore dsDefault ;
+      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> AV17allContacts ;
+      private GeneXus.Programs.distcrypt.SdtExternalUser AV27externalUser ;
+      private GeneXus.Programs.nostr.SdtSDT_message AV26sdt_message ;
+      private GeneXus.Programs.wallet.registered.SdtMessage_signature AV28message_signature ;
+      private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
       private GeneXus.Programs.wallet.registered.SdtContact_SDT AV24contact ;
       private GeneXus.Programs.wallet.registered.SdtContact_SDT AV30contact_temp ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser AV27externalUser ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
-      private GeneXus.Programs.wallet.registered.SdtMessage_signature AV28message_signature ;
-      private GeneXus.Programs.nostr.SdtSDT_message AV26sdt_message ;
+      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> AV33allContacts_temp ;
+      private msglist BackMsgLst ;
+      private msglist LclMsgLst ;
    }
 
 }

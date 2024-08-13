@@ -75,7 +75,7 @@ namespace GeneXus.Programs.qrcoder {
           QRCoder.Base64QRCode qrCode = new QRCoder.Base64QRCode(qrCodeData);
          /* User Code */
           AV13base64text = qrCode.GetGraphic(20);
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

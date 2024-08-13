@@ -206,7 +206,7 @@ namespace GeneXus.Programs.wallet {
                if ( AV44numPeers < 2 )
                {
                   AV8error = "There are not enough contacts on the group";
-                  this.cleanup();
+                  cleanup();
                   if (true) return;
                }
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
@@ -252,7 +252,7 @@ namespace GeneXus.Programs.wallet {
                         }
                         else
                         {
-                           this.cleanup();
+                           cleanup();
                            if (true) return;
                         }
                      }
@@ -555,7 +555,7 @@ namespace GeneXus.Programs.wallet {
                                     if ( ! ( AV42numMinSignatures == AV59signatureData.gxTpr_Finalcombination.gxTpr_Items.Count ) )
                                     {
                                        AV8error = "Combination does not much amount of Signatures";
-                                       this.cleanup();
+                                       cleanup();
                                        if (true) return;
                                     }
                                     else
@@ -698,7 +698,7 @@ namespace GeneXus.Programs.wallet {
          		AV8error = ex.Message.ToString();
          /* User Code */
          	}
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -796,27 +796,27 @@ namespace GeneXus.Programs.wallet {
       private bool GXt_boolean3 ;
       private string AV9hexTransaction ;
       private string AV77receivedTransactionHex ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV39group_sdt ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV24transactionsToSend ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP5_transactionsToSend ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtMultiSigSignatureData> AV64signatureContacts ;
+      private GeneXus.Programs.wallet.SdtSDTAddressHistory AV14oneAddressHistory ;
+      private GxSimpleCollection<string> AV41items ;
+      private GeneXus.Programs.wallet.SdtMultiSigSignatureData AV58signatureContact ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV46oneContact ;
+      private GeneXus.Programs.nbitcoin.SdtExtPubKeyInfo AV35extPubKeyInfo ;
+      private GxSimpleCollection<string> AV33currentCombination ;
+      private GXBaseCollection<GeneXus.Programs.math.SdtfinalCombination> AV36finalCombinations ;
+      private GxSimpleCollection<string> AV79all_EC_PublicKey ;
+      private GxSimpleCollection<string> GXt_objcol_char2 ;
+      private GeneXus.Programs.math.SdtfinalCombination AV37finalOneCombination ;
+      private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem AV59signatureData ;
+      private GeneXus.Programs.wallet.SdtMultiSigSignatureData AV74returnMultiSigSignatureData ;
+      private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem AV73returnDataItem ;
       private long aP9_virtualSize ;
       private string aP10_hexTransaction ;
       private bool aP11_verified ;
       private string aP12_error ;
-      private GxSimpleCollection<string> AV41items ;
-      private GxSimpleCollection<string> AV33currentCombination ;
-      private GxSimpleCollection<string> AV79all_EC_PublicKey ;
-      private GxSimpleCollection<string> GXt_objcol_char2 ;
-      private GXBaseCollection<GeneXus.Programs.math.SdtfinalCombination> AV36finalCombinations ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV24transactionsToSend ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtMultiSigSignatureData> AV64signatureContacts ;
-      private GeneXus.Programs.nbitcoin.SdtExtPubKeyInfo AV35extPubKeyInfo ;
-      private GeneXus.Programs.math.SdtfinalCombination AV37finalOneCombination ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV39group_sdt ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV46oneContact ;
-      private GeneXus.Programs.wallet.SdtSDTAddressHistory AV14oneAddressHistory ;
-      private GeneXus.Programs.wallet.SdtMultiSigSignatureData AV58signatureContact ;
-      private GeneXus.Programs.wallet.SdtMultiSigSignatureData AV74returnMultiSigSignatureData ;
-      private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem AV59signatureData ;
-      private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem AV73returnDataItem ;
    }
 
 }

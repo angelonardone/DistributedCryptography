@@ -165,7 +165,7 @@ namespace GeneXus.Programs.wallet.registered {
                }
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       protected void RenderHtmlHeaders( )
@@ -194,10 +194,10 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2014200), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2014200), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -526,7 +526,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_8-180599", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
          Form.Meta.addItem("description", "Send Coins using Multisignature", 0) ;
@@ -1244,7 +1244,7 @@ namespace GeneXus.Programs.wallet.registered {
          PA1W2( ) ;
          WS1W2( ) ;
          WE1W2( ) ;
-         this.cleanup();
+         cleanup();
          context.SetWrapped(false);
          context.GX_msglist = BackMsgLst;
          return "";
@@ -1265,7 +1265,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20248813113386", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20248131334741", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1281,8 +1281,8 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("wallet/registered/sendcoinsmusig.js", "?20248813113387", false, true);
+         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("wallet/registered/sendcoinsmusig.js", "?20248131334741", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -1291,7 +1291,7 @@ namespace GeneXus.Programs.wallet.registered {
       {
          chkavSendallcoins.Name = "vSENDALLCOINS";
          chkavSendallcoins.WebTags = "";
-         chkavSendallcoins.Caption = "";
+         chkavSendallcoins.Caption = "Send total balance";
          AssignProp("", false, chkavSendallcoins_Internalname, "TitleCaption", chkavSendallcoins.Caption, true);
          chkavSendallcoins.CheckedValue = "false";
          AV17sendAllCoins = StringUtil.StrToBool( StringUtil.BoolToStr( AV17sendAllCoins));
@@ -1511,19 +1511,19 @@ namespace GeneXus.Programs.wallet.registered {
       private IGxDataStore dsDefault ;
       private GXCheckbox chkavSendallcoins ;
       private GXCombobox cmbavUserfee ;
-      private msglist BackMsgLst ;
-      private msglist LclMsgLst ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV25transactionsToSend ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV14historyWithBalance ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> GXt_objcol_SdtSDTAddressHistory3 ;
-      private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV5extKeyInfo ;
-      private GeneXus.Programs.nbitcoin.SdtExtKeyInfo GXt_SdtExtKeyInfo6 ;
+      private GeneXus.Programs.wallet.SdtWallet AV28wallet ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV31group_sdt ;
       private GeneXus.Programs.wallet.registered.SdtMuSigSignatures AV35oneMuSigSignatures ;
-      private GeneXus.Programs.nbitcoin.SdtKeyInfo AV15keyInfo ;
-      private GeneXus.Programs.nbitcoin.SdtKeyInfo GXt_SdtKeyInfo2 ;
-      private GeneXus.Programs.wallet.SdtWallet AV28wallet ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV25transactionsToSend ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
+      private GeneXus.Programs.nbitcoin.SdtKeyInfo AV15keyInfo ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV14historyWithBalance ;
+      private GeneXus.Programs.nbitcoin.SdtKeyInfo GXt_SdtKeyInfo2 ;
+      private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV5extKeyInfo ;
+      private GeneXus.Programs.nbitcoin.SdtExtKeyInfo GXt_SdtExtKeyInfo6 ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> GXt_objcol_SdtSDTAddressHistory3 ;
+      private msglist BackMsgLst ;
+      private msglist LclMsgLst ;
    }
 
 }

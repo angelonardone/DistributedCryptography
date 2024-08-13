@@ -164,7 +164,7 @@ namespace GeneXus.Programs.wallet.registered {
                }
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override short ExecuteStartEvent( )
@@ -208,10 +208,10 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2014200), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2014200), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2014200), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -398,8 +398,9 @@ namespace GeneXus.Programs.wallet.registered {
             GxWebStd.gx_label_element( context, cmbavCtlgrouptype_Internalname, "Group Type", "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 8,'',false,'',0)\"";
             /* ComboBox */
-            GxWebStd.gx_combobox_ctrl1( context, cmbavCtlgrouptype, cmbavCtlgrouptype_Internalname, StringUtil.Trim( StringUtil.Str( (decimal)(AV8group_sdt.gxTpr_Grouptype), 4, 0)), 1, cmbavCtlgrouptype_Jsonclick, 0, "'"+""+"'"+",false,"+"'"+""+"'", "int", "", 1, cmbavCtlgrouptype.Enabled, 0, 0, 0, "em", 0, "", "", "Attribute", "", "", "", "", true, 0, "HLP_Wallet/registered/SmartGroup.htm");
+            GxWebStd.gx_combobox_ctrl1( context, cmbavCtlgrouptype, cmbavCtlgrouptype_Internalname, StringUtil.Trim( StringUtil.Str( (decimal)(AV8group_sdt.gxTpr_Grouptype), 4, 0)), 1, cmbavCtlgrouptype_Jsonclick, 0, "'"+""+"'"+",false,"+"'"+""+"'", "int", "", 1, cmbavCtlgrouptype.Enabled, 0, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,8);\"", "", true, 0, "HLP_Wallet/registered/SmartGroup.htm");
             cmbavCtlgrouptype.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(AV8group_sdt.gxTpr_Grouptype), 4, 0));
             AssignProp("", false, cmbavCtlgrouptype_Internalname, "Values", (string)(cmbavCtlgrouptype.ToJavascriptSource()), true);
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -414,7 +415,8 @@ namespace GeneXus.Programs.wallet.registered {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            GxWebStd.gx_single_line_edit( context, edtavCtlgroupname_Internalname, StringUtil.RTrim( AV8group_sdt.gxTpr_Groupname), StringUtil.RTrim( context.localUtil.Format( AV8group_sdt.gxTpr_Groupname, "")), "", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtlgroupname_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtlgroupname_Enabled, 0, "text", "", 80, "chr", 1, "row", 80, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Wallet/registered/SmartGroup.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 12,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavCtlgroupname_Internalname, StringUtil.RTrim( AV8group_sdt.gxTpr_Groupname), StringUtil.RTrim( context.localUtil.Format( AV8group_sdt.gxTpr_Groupname, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,12);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtlgroupname_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtlgroupname_Enabled, 0, "text", "", 80, "chr", 1, "row", 80, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Wallet/registered/SmartGroup.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -430,9 +432,10 @@ namespace GeneXus.Programs.wallet.registered {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Check box */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 17,'',false,'',0)\"";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavCtlamigroupowner_Internalname, StringUtil.BoolToStr( AV8group_sdt.gxTpr_Amigroupowner), "", "I am group Owner", 1, chkavCtlamigroupowner.Enabled, "true", "", StyleString, ClassString, "", "", "");
+            GxWebStd.gx_checkbox_ctrl( context, chkavCtlamigroupowner_Internalname, StringUtil.BoolToStr( AV8group_sdt.gxTpr_Amigroupowner), "", "I am group Owner", 1, chkavCtlamigroupowner.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(17, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,17);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -445,9 +448,10 @@ namespace GeneXus.Programs.wallet.registered {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Check box */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 21,'',false,'',0)\"";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavCtlisactive_Internalname, StringUtil.BoolToStr( AV8group_sdt.gxTpr_Isactive), "", "is Active", 1, chkavCtlisactive.Enabled, "true", "", StyleString, ClassString, "", "", "");
+            GxWebStd.gx_checkbox_ctrl( context, chkavCtlisactive_Internalname, StringUtil.BoolToStr( AV8group_sdt.gxTpr_Isactive), "", "is Active", 1, chkavCtlisactive.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(21, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,21);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -601,7 +605,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_8-180599", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
          Form.Meta.addItem("description", "Smart Group", 0) ;
@@ -1216,7 +1220,7 @@ namespace GeneXus.Programs.wallet.registered {
          PA1G2( ) ;
          WS1G2( ) ;
          WE1G2( ) ;
-         this.cleanup();
+         cleanup();
          context.SetWrapped(false);
          context.GX_msglist = BackMsgLst;
          return "";
@@ -1259,7 +1263,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20248813113260", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024813133446", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1275,7 +1279,7 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/registered/smartgroup.js", "?20248813113260", false, true);
+         context.AddJavascriptSource("wallet/registered/smartgroup.js", "?2024813133447", false, true);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);
@@ -1301,12 +1305,12 @@ namespace GeneXus.Programs.wallet.registered {
          }
          chkavCtlamigroupowner.Name = "CTLAMIGROUPOWNER";
          chkavCtlamigroupowner.WebTags = "";
-         chkavCtlamigroupowner.Caption = "";
+         chkavCtlamigroupowner.Caption = "I am group Owner";
          AssignProp("", false, chkavCtlamigroupowner_Internalname, "TitleCaption", chkavCtlamigroupowner.Caption, true);
          chkavCtlamigroupowner.CheckedValue = "false";
          chkavCtlisactive.Name = "CTLISACTIVE";
          chkavCtlisactive.WebTags = "";
-         chkavCtlisactive.Caption = "";
+         chkavCtlisactive.Caption = "is Active";
          AssignProp("", false, chkavCtlisactive_Internalname, "TitleCaption", chkavCtlisactive.Caption, true);
          chkavCtlisactive.CheckedValue = "false";
          /* End function init_web_controls */
@@ -1397,6 +1401,7 @@ namespace GeneXus.Programs.wallet.registered {
          GX_FocusControl = "";
          Form = new GXWebForm();
          sPrefix = "";
+         TempTags = "";
          ClassString = "";
          StyleString = "";
          ucTabs = new GXUserControl();
@@ -1449,6 +1454,7 @@ namespace GeneXus.Programs.wallet.registered {
       private string sPrefix ;
       private string divMaintable_Internalname ;
       private string cmbavCtlgrouptype_Internalname ;
+      private string TempTags ;
       private string cmbavCtlgrouptype_Jsonclick ;
       private string edtavCtlgroupname_Internalname ;
       private string edtavCtlgroupname_Jsonclick ;
@@ -1494,14 +1500,14 @@ namespace GeneXus.Programs.wallet.registered {
       private GXWebComponent WebComp_Comp_walletbalance ;
       private GXWebComponent WebComp_Comp_signatures ;
       private GXUserControl ucTabs ;
+      private GXWebForm Form ;
       private IGxDataStore dsDefault ;
       private GXCombobox cmbavCtlgrouptype ;
       private GXCheckbox chkavCtlamigroupowner ;
       private GXCheckbox chkavCtlisactive ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV8group_sdt ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
-      private GXWebForm Form ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV8group_sdt ;
    }
 
 }

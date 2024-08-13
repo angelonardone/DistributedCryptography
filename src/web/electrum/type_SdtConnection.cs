@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtConnection
 			Description: Connection
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.8.180599
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -110,6 +110,14 @@ namespace GeneXus.Programs.electrum
 
 		#endregion
 
+		#region Static Type Properties
+
+		[XmlIgnore]
+		private static GXTypeInfo _typeProps;
+		protected override GXTypeInfo TypeInfo { get { return _typeProps; } set { _typeProps = value; } }
+
+		#endregion
+
 		#region Initialization
 
 		public void initialize( )
@@ -134,7 +142,7 @@ namespace GeneXus.Programs.electrum
 		#endregion
 	}
 	#region Rest interface
-	[GxUnWrappedJson()]
+	[GxJsonSerialization("default")]
 	[DataContract(Name=@"Connection", Namespace="distributedcryptography")]
 	public class SdtConnection_RESTInterface : GxGenericCollectionItem<SdtConnection>, System.Web.SessionState.IRequiresSessionState
 	{

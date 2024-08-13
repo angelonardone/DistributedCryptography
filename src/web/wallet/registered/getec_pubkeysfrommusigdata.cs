@@ -80,7 +80,7 @@ namespace GeneXus.Programs.wallet.registered {
             }
             AV20GXV1 = (int)(AV20GXV1+1);
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -103,11 +103,11 @@ namespace GeneXus.Programs.wallet.registered {
 
       private int AV20GXV1 ;
       private int AV21GXV2 ;
-      private GxSimpleCollection<string> aP1_all_EC_PublicKey ;
-      private GxSimpleCollection<string> AV19all_EC_PublicKey ;
       private GeneXus.Programs.wallet.SdtSDTAddressHistory AV10oneAddressHistory ;
+      private GxSimpleCollection<string> AV19all_EC_PublicKey ;
       private GeneXus.Programs.wallet.SdtMultiSigSignatureData AV13oneMultiSigSignatureData ;
       private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem AV11oneDataItem ;
+      private GxSimpleCollection<string> aP1_all_EC_PublicKey ;
    }
 
 }

@@ -92,7 +92,7 @@ namespace GeneXus.Programs.wallet {
             }
             AV14GXV1 = (int)(AV14GXV1+1);
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -119,10 +119,10 @@ namespace GeneXus.Programs.wallet {
       private bool AV12isUsed ;
       private bool AV13doesBelong ;
       private bool aP2_isUsed ;
-      private bool aP3_doesBelong ;
       private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem> AV10sdt_Addresses ;
       private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem> GXt_objcol_SdtSDT_Addressess_SDT_AddressessItem1 ;
       private GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem AV11one_sdt_address ;
+      private bool aP3_doesBelong ;
    }
 
 }

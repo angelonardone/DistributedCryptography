@@ -75,7 +75,7 @@ namespace GeneXus.Programs {
                }
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       protected void RenderHtmlHeaders( )
@@ -119,7 +119,7 @@ namespace GeneXus.Programs {
          {
             disableOutput();
          }
-         context.AddJavascriptSource("rwdmasterpage.js", "?202472512525131", false, true);
+         context.AddJavascriptSource("rwdmasterpage.js", "?202481313335333", false, true);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -554,7 +554,7 @@ namespace GeneXus.Programs {
          PA042( ) ;
          WS042( ) ;
          WE042( ) ;
-         this.cleanup();
+         cleanup();
          context.SetWrapped(false);
          context.GX_msglist = BackMsgLst;
          return "";
@@ -580,7 +580,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?202472512525136", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?202481313335337", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -597,7 +597,7 @@ namespace GeneXus.Programs {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("rwdmasterpage.js", "?202472512525136", false, true);
+            context.AddJavascriptSource("rwdmasterpage.js", "?202481313335337", false, true);
          }
          /* End function include_jscripts */
       }
@@ -695,11 +695,11 @@ namespace GeneXus.Programs {
       private bool toggleJsOutput ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
+      private GXWebForm Form ;
       private IGxDataStore dsDefault ;
       private GXDataAreaControl Contentholder ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
-      private GXWebForm Form ;
    }
 
 }

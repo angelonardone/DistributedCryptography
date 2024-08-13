@@ -68,10 +68,10 @@ namespace GeneXus.Programs.general.ui {
          S111 ();
          if ( returnInSub )
          {
-            this.cleanup();
+            cleanup();
             if (true) return;
          }
-         this.cleanup();
+         cleanup();
       }
 
       protected void S111( )
@@ -109,9 +109,9 @@ namespace GeneXus.Programs.general.ui {
       private string AV13Link ;
       private bool returnInSub ;
       private string AV10description ;
-      private GXBaseCollection<GeneXus.Programs.general.ui.SdtProgramNames_ProgramName> aP0_ProgramNames ;
       private GXBaseCollection<GeneXus.Programs.general.ui.SdtProgramNames_ProgramName> AV8ProgramNames ;
       private GeneXus.Programs.general.ui.SdtProgramNames_ProgramName AV9ProgramName ;
+      private GXBaseCollection<GeneXus.Programs.general.ui.SdtProgramNames_ProgramName> aP0_ProgramNames ;
    }
 
 }

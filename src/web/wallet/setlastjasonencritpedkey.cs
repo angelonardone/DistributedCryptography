@@ -54,7 +54,7 @@ namespace GeneXus.Programs.wallet {
          /* GeneXus formulas */
          /* Output device settings */
          AV9websession.Set("LastJasonEncKey", StringUtil.Trim( AV10encryptedKey));
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

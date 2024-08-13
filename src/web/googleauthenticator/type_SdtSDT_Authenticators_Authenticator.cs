@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtSDT_Authenticators_Authenticator
 			Description: SDT_Authenticators
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.8.180599
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -185,6 +185,14 @@ namespace GeneXus.Programs.googleauthenticator
 
 		#endregion
 
+		#region Static Type Properties
+
+		[XmlIgnore]
+		private static GXTypeInfo _typeProps;
+		protected override GXTypeInfo TypeInfo { get { return _typeProps; } set { _typeProps = value; } }
+
+		#endregion
+
 		#region Initialization
 
 		public void initialize( )
@@ -225,6 +233,7 @@ namespace GeneXus.Programs.googleauthenticator
 		#endregion
 	}
 	#region Rest interface
+	[GxJsonSerialization("wrapped")]
 	[DataContract(Name=@"Authenticator", Namespace="distributedcryptography")]
 	public class SdtSDT_Authenticators_Authenticator_RESTInterface : GxGenericCollectionItem<SdtSDT_Authenticators_Authenticator>, System.Web.SessionState.IRequiresSessionState
 	{

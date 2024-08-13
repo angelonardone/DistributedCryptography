@@ -60,6 +60,7 @@ namespace GeneXus.Programs.wallet {
          domain["PublicTempStorage"] = "PublicTempStorage";
          domain["PrivateTempStorage"] = "PrivateTempStorage";
          domain["electrum.conf"] = "Electrum Config File";
+         domain["nostr.conf"] = "Nostr Config File";
       }
 
       public static string getDescription( IGxContext context ,
@@ -128,6 +129,7 @@ namespace GeneXus.Programs.wallet {
             domainMap["PublicTempStorage"] = "PublicTempStorage";
             domainMap["PrivateTempStorage"] = "PrivateTempStorage";
             domainMap["ElectrumConfigFile"] = "electrum.conf";
+            domainMap["NostrConfigFile"] = "nostr.conf";
          }
          return (string)domainMap[key] ;
       }

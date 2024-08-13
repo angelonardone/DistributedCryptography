@@ -93,7 +93,7 @@ namespace GeneXus.Programs.sudodb {
          GXt_char1 = AV10error;
          new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  "DBvIN.db",  AV8DBvINs.ToJSonString(false), out  GXt_char1) ;
          AV10error = GXt_char1;
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -123,12 +123,12 @@ namespace GeneXus.Programs.sudodb {
       private string AV10error ;
       private string AV13transactionId ;
       private string GXt_char1 ;
-      private string aP1_error ;
+      private GeneXus.Programs.electrum.SdtelectrumRespGetTransactionId AV9electrumRespGetTransactionId ;
       private GXBaseCollection<GeneXus.Programs.sudodb.SdtvIN> AV8DBvINs ;
+      private GeneXus.Programs.electrum.SdtelectrumRespGetTransactionId_result_vinItem AV12oneVin ;
       private GeneXus.Programs.sudodb.SdtvIN AV11oneDBvIN ;
       private GeneXus.Programs.sudodb.SdtvIN AV14tempDBvIN ;
-      private GeneXus.Programs.electrum.SdtelectrumRespGetTransactionId AV9electrumRespGetTransactionId ;
-      private GeneXus.Programs.electrum.SdtelectrumRespGetTransactionId_result_vinItem AV12oneVin ;
+      private string aP1_error ;
    }
 
 }

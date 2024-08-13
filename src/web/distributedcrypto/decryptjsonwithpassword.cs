@@ -88,7 +88,7 @@ namespace GeneXus.Programs.distributedcrypto {
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV12error)) )
          {
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

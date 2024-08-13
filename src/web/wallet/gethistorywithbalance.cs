@@ -62,7 +62,7 @@ namespace GeneXus.Programs.wallet {
          /* GeneXus formulas */
          /* Output device settings */
          AV9historyWithBalance.FromJSonString(AV8WebSession.Get("HistoryWithBalance"), null);
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -83,8 +83,8 @@ namespace GeneXus.Programs.wallet {
       }
 
       private IGxSession AV8WebSession ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP0_historyWithBalance ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV9historyWithBalance ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP0_historyWithBalance ;
    }
 
 }

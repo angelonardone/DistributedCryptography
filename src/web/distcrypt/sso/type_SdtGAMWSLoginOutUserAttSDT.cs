@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtGAMWSLoginOutUserAttSDT
 			Description: GAMWSLoginOutUserAttSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.8.180599
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -189,6 +189,14 @@ namespace GeneXus.Programs.distcrypt.sso
 
 		#endregion
 
+		#region Static Type Properties
+
+		[XmlIgnore]
+		private static GXTypeInfo _typeProps;
+		protected override GXTypeInfo TypeInfo { get { return _typeProps; } set { _typeProps = value; } }
+
+		#endregion
+
 		#region Initialization
 
 		public void initialize( )
@@ -223,7 +231,7 @@ namespace GeneXus.Programs.distcrypt.sso
 		#endregion
 	}
 	#region Rest interface
-	[GxUnWrappedJson()]
+	[GxJsonSerialization("default")]
 	[DataContract(Name=@"GAMWSLoginOutUserAttSDT", Namespace="GAM")]
 	public class SdtGAMWSLoginOutUserAttSDT_RESTInterface : GxGenericCollectionItem<SdtGAMWSLoginOutUserAttSDT>, System.Web.SessionState.IRequiresSessionState
 	{

@@ -70,7 +70,7 @@ namespace GeneXus.Programs.distcrypt {
                new GeneXus.Programs.distcrypt.setexternaluser(context ).execute(  AV9externalUser) ;
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -93,8 +93,8 @@ namespace GeneXus.Programs.distcrypt {
 
       private string AV10error ;
       private IGxSession AV8WebSession ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser aP0_externalUser ;
       private GeneXus.Programs.distcrypt.SdtExternalUser AV9externalUser ;
+      private GeneXus.Programs.distcrypt.SdtExternalUser aP0_externalUser ;
    }
 
 }

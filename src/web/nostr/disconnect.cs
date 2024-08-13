@@ -77,7 +77,7 @@ namespace GeneXus.Programs.nostr {
          {
             AV11error = AV15OperationResult.gxTpr_Errormessage;
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -105,9 +105,9 @@ namespace GeneXus.Programs.nostr {
       private string GXt_char1 ;
       private Guid AV8Key ;
       private Guid GXt_guid2 ;
+      private GeneXus.Programs.gxinternetlib.SdtOperationResult AV15OperationResult ;
       private GeneXus.Programs.gxinternetlib.SdtGxInternetLibWs GxInternetLibWs ;
       private string aP0_error ;
-      private GeneXus.Programs.gxinternetlib.SdtOperationResult AV15OperationResult ;
    }
 
 }

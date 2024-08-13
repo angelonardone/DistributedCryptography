@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtSDT_receive_msg
 			Description: SDT_receive_msg
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.8.180599
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -164,6 +164,14 @@ namespace GeneXus.Programs.nostr
 
 		#endregion
 
+		#region Static Type Properties
+
+		[XmlIgnore]
+		private static GXTypeInfo _typeProps;
+		protected override GXTypeInfo TypeInfo { get { return _typeProps; } set { _typeProps = value; } }
+
+		#endregion
+
 		#region Initialization
 
 		public void initialize( )
@@ -200,7 +208,7 @@ namespace GeneXus.Programs.nostr
 		#endregion
 	}
 	#region Rest interface
-	[GxUnWrappedJson()]
+	[GxJsonSerialization("default")]
 	[DataContract(Name=@"SDT_receive_msg", Namespace="distributedcryptography")]
 	public class SdtSDT_receive_msg_RESTInterface : GxGenericCollectionItem<SdtSDT_receive_msg>, System.Web.SessionState.IRequiresSessionState
 	{

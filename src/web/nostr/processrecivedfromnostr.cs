@@ -173,7 +173,7 @@ namespace GeneXus.Programs.nostr {
                }
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -221,13 +221,13 @@ namespace GeneXus.Programs.nostr {
       private string AV21stringToWorkWith ;
       private string AV23tags ;
       private string AV9afterTags ;
-      private GeneXus.Programs.nostr.SdtRecFromNostr aP1_recFromNostr ;
-      private GxSimpleCollection<string> AV19retSplit ;
-      private GxSimpleCollection<string> AV20retSplit2 ;
-      private GeneXus.Programs.nostr.SdtEvent AV16nostrEvent ;
-      private GeneXus.Programs.nostr.SdtTagsOfTags AV24tagsoftags ;
       private GeneXus.Core.genexus.server.SdtNotificationInfo AV17NotificationInfo ;
       private GeneXus.Programs.nostr.SdtRecFromNostr AV25recFromNostr ;
+      private GxSimpleCollection<string> AV19retSplit ;
+      private GeneXus.Programs.nostr.SdtEvent AV16nostrEvent ;
+      private GxSimpleCollection<string> AV20retSplit2 ;
+      private GeneXus.Programs.nostr.SdtTagsOfTags AV24tagsoftags ;
+      private GeneXus.Programs.nostr.SdtRecFromNostr aP1_recFromNostr ;
    }
 
 }

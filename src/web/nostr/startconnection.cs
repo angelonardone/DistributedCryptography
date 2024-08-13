@@ -88,7 +88,7 @@ namespace GeneXus.Programs.nostr {
                new GeneXus.Programs.nostr.settnostrconnectionid(context ).execute(  AV10key) ;
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

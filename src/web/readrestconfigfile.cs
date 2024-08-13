@@ -82,7 +82,7 @@ namespace GeneXus.Programs {
             AV8rest_parameters = GXt_objcol_SdtSDT_Rest_Parameters_Item3;
             AV10configFile.WriteAllText(AV8rest_parameters.ToJSonString(false), "");
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -106,11 +106,11 @@ namespace GeneXus.Programs {
 
       private bool GXt_boolean1 ;
       private bool GXt_boolean2 ;
-      private GXBaseCollection<SdtSDT_Rest_Parameters_Item> aP0_rest_parameters ;
-      private GXBaseCollection<SdtSDT_Rest_Parameters_Item> AV8rest_parameters ;
-      private GXBaseCollection<SdtSDT_Rest_Parameters_Item> GXt_objcol_SdtSDT_Rest_Parameters_Item3 ;
       private GxFile AV10configFile ;
       private GxDirectory AV9directory ;
+      private GXBaseCollection<SdtSDT_Rest_Parameters_Item> AV8rest_parameters ;
+      private GXBaseCollection<SdtSDT_Rest_Parameters_Item> GXt_objcol_SdtSDT_Rest_Parameters_Item3 ;
+      private GXBaseCollection<SdtSDT_Rest_Parameters_Item> aP0_rest_parameters ;
    }
 
 }

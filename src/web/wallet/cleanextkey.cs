@@ -62,7 +62,7 @@ namespace GeneXus.Programs.wallet {
          AV8extKeyInfo.gxTpr_Extended.gxTpr_Privatekeysegwitp2sh = "";
          AV8extKeyInfo.gxTpr_Extended.gxTpr_Privatekeytaproot = "";
          AV9WebSession.Set("ExtendedKey", AV8extKeyInfo.ToJSonString(false, true));
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

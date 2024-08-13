@@ -101,7 +101,7 @@ namespace GeneXus.Programs.electrum {
                }
             }
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -130,14 +130,14 @@ namespace GeneXus.Programs.electrum {
 
       private string AV11error ;
       private string AV17wsUrl ;
-      private GeneXus.Programs.gxinternetlib.SdtGxInternetLibTcp GxInternetLibTcp ;
-      private GeneXus.Programs.gxinternetlib.SdtGxInternetLibWs GxInternetLibWs ;
-      private string aP0_error ;
-      private GeneXus.Programs.gxinternetlib.SdtOperationResult AV13OperationResult ;
       private GeneXus.Programs.electrum.SdtConnection AV15Connection ;
       private GeneXus.Programs.electrum.SdtConnection GXt_SdtConnection1 ;
       private GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem AV16walletConnParameter ;
       private GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem GXt_SdtConnectionParameters_ConnectionParametersItem2 ;
+      private GeneXus.Programs.gxinternetlib.SdtOperationResult AV13OperationResult ;
+      private GeneXus.Programs.gxinternetlib.SdtGxInternetLibWs GxInternetLibWs ;
+      private GeneXus.Programs.gxinternetlib.SdtGxInternetLibTcp GxInternetLibTcp ;
+      private string aP0_error ;
    }
 
 }

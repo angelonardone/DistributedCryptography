@@ -151,7 +151,7 @@ namespace GeneXus.Programs.distributedcrypto {
          {
             AV9error = "Input String cannot be empty";
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

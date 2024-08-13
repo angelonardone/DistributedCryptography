@@ -75,7 +75,7 @@ namespace GeneXus.Programs.wallet {
          GXt_char1 = AV14error;
          new GeneXus.Programs.electrum.broadcast_transaction(context ).execute(  AV13hexTransaction, out  AV16TransactionId, out  GXt_char1) ;
          AV14error = GXt_char1;
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

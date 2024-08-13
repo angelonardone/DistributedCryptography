@@ -73,7 +73,7 @@ namespace GeneXus.Programs.distributedcrypto {
           DateTime dateTime = dateTimeOffset.UtcDateTime.ToLocalTime();
          /* User Code */
           AV8localDateTime = dateTime;
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

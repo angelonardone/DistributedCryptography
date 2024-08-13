@@ -121,8 +121,14 @@
 				autoUpload: toBoolean(this.AutoUpload)
 			});
 
-			$fileUpload.bind('fileuploadadded', (function () {
+			$fileUpload.bind('fileuploadadded', (function (e, data) {
 				filesToUploadCount++;
+				var $container = $(this.getContainerControl()),
+				  table = $container.find('.table.table-striped');
+                var lastRow = table[0].rows[table[0].rows.length - 1];
+                //item 1 corresponds to size 
+                var p = lastRow.getElementsByTagName('p')[1];
+                p.textContent = formatFileSize(data.files[0].size);
 			}).closure(this));
 
 			$fileUpload.bind('fileuploaddestroyed', function (e, data) {
@@ -209,6 +215,21 @@
 	this.StartUpload = function () {
 		$fileUpload.find(".start").click();
 	};
+}
+
+//Custom helper function for calculation of file size
+//(native function divides by 1000 instead of 1024)
+formatFileSize = function (bytes) {
+    if (typeof bytes !== 'number') {
+        return '';
+    }
+    if (bytes >= 1073741824) {
+        return (bytes / 1073741824).toFixed(2) + ' GB';
+    }
+    if (bytes >= 1048576) {
+        return (bytes / 1048576).toFixed(2) + ' MB';
+    }
+    return (bytes / 1024).toFixed(2) + ' KB';
 }
 
 gx.uc.FileUpload.initTemplates = function () {

@@ -89,7 +89,7 @@ namespace GeneXus.Programs.electrum {
             AV10electrumRespEstimateFee.FromJSonString(AV13messageResponse, null);
             AV8estimateFee = AV10electrumRespEstimateFee.gxTpr_Result;
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -119,9 +119,9 @@ namespace GeneXus.Programs.electrum {
       private string GXt_char1 ;
       private string AV11sendMessage ;
       private string AV13messageResponse ;
+      private GeneXus.Programs.electrum.SdtelectrumRespEstimateFee AV10electrumRespEstimateFee ;
       private decimal aP1_estimateFee ;
       private string aP2_error ;
-      private GeneXus.Programs.electrum.SdtelectrumRespEstimateFee AV10electrumRespEstimateFee ;
    }
 
 }

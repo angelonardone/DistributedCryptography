@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtelectrumRespGetTransactionId_result_vinItem
 			Description: vin
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.8.180599
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -247,6 +247,14 @@ namespace GeneXus.Programs.electrum
 
 		#endregion
 
+		#region Static Type Properties
+
+		[XmlIgnore]
+		private static GXTypeInfo _typeProps;
+		protected override GXTypeInfo TypeInfo { get { return _typeProps; } set { _typeProps = value; } }
+
+		#endregion
+
 		#region Initialization
 
 		public void initialize( )
@@ -287,6 +295,7 @@ namespace GeneXus.Programs.electrum
 		#endregion
 	}
 	#region Rest interface
+	[GxJsonSerialization("wrapped")]
 	[DataContract(Name=@"electrumRespGetTransactionId.result.vinItem", Namespace="distributedcryptography")]
 	public class SdtelectrumRespGetTransactionId_result_vinItem_RESTInterface : GxGenericCollectionItem<SdtelectrumRespGetTransactionId_result_vinItem>, System.Web.SessionState.IRequiresSessionState
 	{

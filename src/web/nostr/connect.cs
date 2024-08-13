@@ -67,41 +67,66 @@ namespace GeneXus.Programs.nostr {
          GXt_SdtWallet2 = AV27wallet;
          new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet2) ;
          AV27wallet = GXt_SdtWallet2;
-         GXt_guid3 = AV17key;
-         new GeneXus.Programs.nostr.getnostrconnectionid(context ).execute( out  GXt_guid3) ;
-         AV17key = GXt_guid3;
-         if ( (Guid.Empty==AV17key) )
+         GXt_char3 = AV11error;
+         new GeneXus.Programs.nostr.getnostrconfigservers(context ).execute( out  AV28ConnectionParameters, out  GXt_char3) ;
+         AV11error = GXt_char3;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
          {
-            if ( StringUtil.StrCmp(AV27wallet.gxTpr_Networktype, "MainNet") == 0 )
+            GXt_guid4 = AV17key;
+            new GeneXus.Programs.nostr.getnostrconnectionid(context ).execute( out  GXt_guid4) ;
+            AV17key = GXt_guid4;
+            if ( (Guid.Empty==AV17key) )
             {
-               AV26OperationResult = GxInternetLibWs.connect("ws://nostr-mainnet.distributedcryptography.com:4848", "receiveFromNoster", 15000);
-            }
-            else if ( StringUtil.StrCmp(AV27wallet.gxTpr_Networktype, "TestNet") == 0 )
-            {
-               AV26OperationResult = GxInternetLibWs.connect("ws://nostr-testnet.distributedcryptography.com:4848", "receiveFromNoster", 15000);
-            }
-            else if ( StringUtil.StrCmp(AV27wallet.gxTpr_Networktype, "RegTest") == 0 )
-            {
-               AV26OperationResult = GxInternetLibWs.connect("ws://nostr-regtest.distributedcryptography.com:4848", "receiveFromNoster", 15000);
-            }
-            else
-            {
-               AV11error = "We couldn't find a Nostr connection associated with the Netwrok Type";
-            }
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
-            {
-               if ( AV26OperationResult.gxTpr_Success )
+               if ( AV28ConnectionParameters.Count == 0 )
                {
-                  AV17key = AV26OperationResult.gxTpr_Connectionid;
-                  new GeneXus.Programs.nostr.settnostrconnectionid(context ).execute(  AV17key) ;
+                  if ( StringUtil.StrCmp(AV27wallet.gxTpr_Networktype, "MainNet") == 0 )
+                  {
+                     AV26OperationResult = GxInternetLibWs.connect("ws://nostr-mainnet.distributedcryptography.com:4848", "receiveFromNoster", 5000);
+                  }
+                  else if ( StringUtil.StrCmp(AV27wallet.gxTpr_Networktype, "TestNet") == 0 )
+                  {
+                     AV26OperationResult = GxInternetLibWs.connect("ws://nostr-testnet.distributedcryptography.com:4848", "receiveFromNoster", 5000);
+                  }
+                  else if ( StringUtil.StrCmp(AV27wallet.gxTpr_Networktype, "RegTest") == 0 )
+                  {
+                     AV26OperationResult = GxInternetLibWs.connect("ws://nostr-regtest.distributedcryptography.com:4848", "receiveFromNoster", 5000);
+                  }
+                  else
+                  {
+                     AV11error = "We couldn't find a Nostr connection associated with the Netwrok Type";
+                  }
                }
                else
                {
-                  AV11error = "Chat server error (Nstr): " + AV26OperationResult.gxTpr_Errormessage;
+                  AV29oneConnParameter = (GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)(((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV28ConnectionParameters.Item(1)).Clone());
+                  if ( AV29oneConnParameter.gxTpr_Secure )
+                  {
+                     AV26OperationResult = GxInternetLibWs.connect("wss://"+StringUtil.Trim( AV29oneConnParameter.gxTpr_Hostname)+":"+StringUtil.Trim( StringUtil.Str( (decimal)(AV29oneConnParameter.gxTpr_Port), 6, 0)), "receiveFromNoster", AV29oneConnParameter.gxTpr_Timeoutmiliseconds);
+                  }
+                  else
+                  {
+                     AV26OperationResult = GxInternetLibWs.connect("ws://"+StringUtil.Trim( AV29oneConnParameter.gxTpr_Hostname)+":"+StringUtil.Trim( StringUtil.Str( (decimal)(AV29oneConnParameter.gxTpr_Port), 6, 0)), "receiveFromNoster", AV29oneConnParameter.gxTpr_Timeoutmiliseconds);
+                  }
+               }
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
+               {
+                  if ( AV26OperationResult.gxTpr_Success )
+                  {
+                     AV17key = AV26OperationResult.gxTpr_Connectionid;
+                     new GeneXus.Programs.nostr.settnostrconnectionid(context ).execute(  AV17key) ;
+                  }
+                  else
+                  {
+                     AV11error = "Chat server error (Nostr): " + AV26OperationResult.gxTpr_Errormessage;
+                  }
                }
             }
          }
-         this.cleanup();
+         else
+         {
+            AV11error = "There was a problem reading Nostr configuration: " + AV11error;
+         }
+         cleanup();
       }
 
       public override void cleanup( )
@@ -121,23 +146,29 @@ namespace GeneXus.Programs.nostr {
          GXt_SdtExternalUser1 = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
          AV27wallet = new GeneXus.Programs.wallet.SdtWallet(context);
          GXt_SdtWallet2 = new GeneXus.Programs.wallet.SdtWallet(context);
+         GXt_char3 = "";
+         AV28ConnectionParameters = new GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem>( context, "ConnectionParametersItem", "distributedcryptography");
          AV17key = Guid.Empty;
-         GXt_guid3 = Guid.Empty;
+         GXt_guid4 = Guid.Empty;
          AV26OperationResult = new GeneXus.Programs.gxinternetlib.SdtOperationResult(context);
          GxInternetLibWs = new GeneXus.Programs.gxinternetlib.SdtGxInternetLibWs(context);
+         AV29oneConnParameter = new GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem(context);
          /* GeneXus formulas. */
       }
 
       private string AV11error ;
+      private string GXt_char3 ;
       private Guid AV17key ;
-      private Guid GXt_guid3 ;
-      private GeneXus.Programs.gxinternetlib.SdtGxInternetLibWs GxInternetLibWs ;
-      private string aP0_error ;
+      private Guid GXt_guid4 ;
       private GeneXus.Programs.distcrypt.SdtExternalUser AV13externalUser ;
       private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
-      private GeneXus.Programs.gxinternetlib.SdtOperationResult AV26OperationResult ;
       private GeneXus.Programs.wallet.SdtWallet AV27wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet2 ;
+      private GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem> AV28ConnectionParameters ;
+      private GeneXus.Programs.gxinternetlib.SdtOperationResult AV26OperationResult ;
+      private GeneXus.Programs.gxinternetlib.SdtGxInternetLibWs GxInternetLibWs ;
+      private GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem AV29oneConnParameter ;
+      private string aP0_error ;
    }
 
 }

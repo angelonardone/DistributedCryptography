@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtelectrumRespGetHistory_resultItem
 			Description: result
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.8.180599
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -129,6 +129,14 @@ namespace GeneXus.Programs.electrum
 
 		#endregion
 
+		#region Static Type Properties
+
+		[XmlIgnore]
+		private static GXTypeInfo _typeProps;
+		protected override GXTypeInfo TypeInfo { get { return _typeProps; } set { _typeProps = value; } }
+
+		#endregion
+
 		#region Initialization
 
 		public void initialize( )
@@ -157,6 +165,7 @@ namespace GeneXus.Programs.electrum
 		#endregion
 	}
 	#region Rest interface
+	[GxJsonSerialization("wrapped")]
 	[DataContract(Name=@"electrumRespGetHistory.resultItem", Namespace="distributedcryptography")]
 	public class SdtelectrumRespGetHistory_resultItem_RESTInterface : GxGenericCollectionItem<SdtelectrumRespGetHistory_resultItem>, System.Web.SessionState.IRequiresSessionState
 	{

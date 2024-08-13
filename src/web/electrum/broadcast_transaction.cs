@@ -78,7 +78,7 @@ namespace GeneXus.Programs.electrum {
          AV8error = GXt_char1;
          AV14electrumRespBroadcastTran.FromJSonString(AV9messageResponse, null);
          AV12transactionId = StringUtil.Trim( AV14electrumRespBroadcastTran.gxTpr_Result);
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -108,9 +108,9 @@ namespace GeneXus.Programs.electrum {
       private string AV13hex ;
       private string AV11sendMessage ;
       private string AV9messageResponse ;
+      private GeneXus.Programs.electrum.SdtelectrumRespBroadcastTran AV14electrumRespBroadcastTran ;
       private string aP1_transactionId ;
       private string aP2_error ;
-      private GeneXus.Programs.electrum.SdtelectrumRespBroadcastTran AV14electrumRespBroadcastTran ;
    }
 
 }

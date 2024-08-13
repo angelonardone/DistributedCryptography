@@ -119,7 +119,7 @@ namespace GeneXus.Programs {
             AV20HttpMessage.gxTpr_Description = AV14localVarResponse.gxTpr_Errormessage;
             AV20HttpMessage.gxTpr_Id = StringUtil.Str( (decimal)(AV15localVarStatusCode), 4, 0);
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -155,9 +155,6 @@ namespace GeneXus.Programs {
       private string GXt_char3 ;
       private bool AV19IsSuccess ;
       private string AV8Transactionid ;
-      private SdtGxExplorer_services_resultGetRawTransaction aP2_GxExplorer_services_resultGetRawTransactionOUT ;
-      private GeneXus.Utils.SdtMessages_Message aP3_HttpMessage ;
-      private bool aP4_IsSuccess ;
       private GXProperties AV10ServerUrlTemplatingVar ;
       private GXProperties AV13localVarQueryParams ;
       private GXProperties AV18localVarHeaders ;
@@ -165,9 +162,12 @@ namespace GeneXus.Programs {
       private GXProperties AV17localFileFormParams ;
       private GXProperties AV16localVarFormParams ;
       private SdtGxExplorer_services_resultGetRawTransaction GxExplorer_services_resultGetRawTransactionOUT ;
+      private GeneXus.Utils.SdtMessages_Message AV20HttpMessage ;
       private GeneXus.Programs.openapicommon.SdtApiResponse AV14localVarResponse ;
       private GeneXus.Programs.openapicommon.SdtApiResponse GXt_SdtApiResponse1 ;
-      private GeneXus.Utils.SdtMessages_Message AV20HttpMessage ;
+      private SdtGxExplorer_services_resultGetRawTransaction aP2_GxExplorer_services_resultGetRawTransactionOUT ;
+      private GeneXus.Utils.SdtMessages_Message aP3_HttpMessage ;
+      private bool aP4_IsSuccess ;
    }
 
 }

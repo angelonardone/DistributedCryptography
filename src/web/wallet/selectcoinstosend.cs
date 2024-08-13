@@ -88,7 +88,7 @@ namespace GeneXus.Programs.wallet {
             }
             AV15GXV1 = (int)(AV15GXV1+1);
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -115,11 +115,11 @@ namespace GeneXus.Programs.wallet {
       private decimal AV13feeUsedForEstimate ;
       private decimal AV11totalBalance ;
       private string AV14description ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP2_transactionsToSend ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV12transactionsToSend ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV9historyWithBalance ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> GXt_objcol_SdtSDTAddressHistory1 ;
       private GeneXus.Programs.wallet.SdtSDTAddressHistory AV10oneAddressHistory ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP2_transactionsToSend ;
    }
 
 }

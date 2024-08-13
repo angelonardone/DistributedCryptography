@@ -62,7 +62,7 @@ namespace GeneXus.Programs.nostr {
          /* GeneXus formulas */
          /* Output device settings */
          AV9connectionID = StringUtil.StrToGuid( AV8WebSession.Get("ConnectionID"));
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

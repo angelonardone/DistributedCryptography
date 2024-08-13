@@ -52,7 +52,7 @@ namespace GeneXus.Programs.wallet {
          /* GeneXus formulas */
          /* Output device settings */
          AV9WebSession.Remove("Contact_Session");
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

@@ -57,7 +57,7 @@ namespace GeneXus.Programs.wallet {
           System.Threading.Thread.Sleep(5000);
          AV8file.Source = AV9fileName;
          AV8file.Delete();
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

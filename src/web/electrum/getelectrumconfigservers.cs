@@ -82,7 +82,7 @@ namespace GeneXus.Programs.electrum {
             AV9ConnectionParameters = GXt_objcol_SdtConnectionParameters_ConnectionParametersItem3;
             AV8configFile.WriteAllText(AV9ConnectionParameters.ToJSonString(false), "");
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -106,11 +106,11 @@ namespace GeneXus.Programs.electrum {
 
       private bool GXt_boolean1 ;
       private bool GXt_boolean2 ;
-      private GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem> aP0_ConnectionParameters ;
-      private GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem> AV9ConnectionParameters ;
-      private GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem> GXt_objcol_SdtConnectionParameters_ConnectionParametersItem3 ;
       private GxFile AV8configFile ;
       private GxDirectory AV10directory ;
+      private GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem> AV9ConnectionParameters ;
+      private GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem> GXt_objcol_SdtConnectionParameters_ConnectionParametersItem3 ;
+      private GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem> aP0_ConnectionParameters ;
    }
 
 }

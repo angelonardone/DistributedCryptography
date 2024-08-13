@@ -83,7 +83,7 @@ namespace GeneXus.Programs.distcrypt {
           string originalString = System.Text.Encoding.UTF8.GetString(byteArray);
          /* User Code */
           AV8text = originalString;
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )

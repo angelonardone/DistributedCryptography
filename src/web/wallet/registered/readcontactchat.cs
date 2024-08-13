@@ -79,7 +79,7 @@ namespace GeneXus.Programs.wallet.registered {
          new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
          AV10contac_file_name = "Chat" + (GXt_boolean3 ? "/" : "\\") + StringUtil.Trim( AV8contactId.ToString()) + ".json";
          AV12sdt_all_chats.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  AV10contac_file_name, out  AV9error), null);
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -108,11 +108,11 @@ namespace GeneXus.Programs.wallet.registered {
       private bool GXt_boolean2 ;
       private bool GXt_boolean3 ;
       private Guid AV8contactId ;
-      private GXBaseCollection<GeneXus.Programs.nostr.SdtSDT_Chat> aP1_sdt_all_chats ;
-      private GXBaseCollection<GeneXus.Programs.nostr.SdtSDT_Chat> AV12sdt_all_chats ;
       private GxDirectory AV13directory ;
+      private GXBaseCollection<GeneXus.Programs.nostr.SdtSDT_Chat> AV12sdt_all_chats ;
       private GeneXus.Programs.wallet.SdtWallet AV14wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
+      private GXBaseCollection<GeneXus.Programs.nostr.SdtSDT_Chat> aP1_sdt_all_chats ;
    }
 
 }

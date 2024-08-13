@@ -77,7 +77,7 @@ namespace GeneXus.Programs.wallet {
          {
             GX_msglist.addItem("Wallet does not exist");
          }
-         this.cleanup();
+         cleanup();
       }
 
       public override void cleanup( )
@@ -99,10 +99,10 @@ namespace GeneXus.Programs.wallet {
       }
 
       private string AV12walletFile_source ;
-      private GeneXus.Programs.wallet.SdtWallet aP1_wallet ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV9messages ;
       private GxFile AV11walletFile ;
       private GeneXus.Programs.wallet.SdtWallet AV10wallet ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV9messages ;
+      private GeneXus.Programs.wallet.SdtWallet aP1_wallet ;
    }
 
 }
