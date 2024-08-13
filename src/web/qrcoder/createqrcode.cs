@@ -352,7 +352,7 @@ namespace GeneXus.Programs.qrcoder {
             StyleString = "";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_html_textarea( context, edtavText_Internalname, StringUtil.RTrim( AV10text), "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,8);\"", 0, 1, edtavText_Enabled, 0, 80, "chr", 4, "row", 0, StyleString, ClassString, "", "", "250", -1, 0, "", "Enter here the text to Create the QRCode", -1, true, "", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_QRCoder/CreateQRCode.htm");
+            GxWebStd.gx_html_textarea( context, edtavText_Internalname, AV10text, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,8);\"", 0, 1, edtavText_Enabled, 0, 80, "chr", 10, "row", 0, StyleString, ClassString, "", "", "2097152", -1, 0, "", "Enter here the text to Create the QRCode", -1, true, "", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_QRCoder/CreateQRCode.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -695,7 +695,7 @@ namespace GeneXus.Programs.qrcoder {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20248131334487", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202481315421722", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -711,7 +711,7 @@ namespace GeneXus.Programs.qrcoder {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("qrcoder/createqrcode.js", "?20248131334487", false, true);
+         context.AddJavascriptSource("qrcoder/createqrcode.js", "?202481315421723", false, true);
          /* End function include_jscripts */
       }
 
@@ -830,7 +830,6 @@ namespace GeneXus.Programs.qrcoder {
       private string TempTags ;
       private string ClassString ;
       private string StyleString ;
-      private string AV10text ;
       private string bttGenerate_Internalname ;
       private string bttGenerate_Jsonclick ;
       private string imgavImage_Internalname ;
@@ -852,6 +851,7 @@ namespace GeneXus.Programs.qrcoder {
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
+      private string AV10text ;
       private string AV5salida ;
       private string AV11Image_GXI ;
       private string AV6image ;

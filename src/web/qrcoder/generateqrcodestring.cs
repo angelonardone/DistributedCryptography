@@ -65,16 +65,41 @@ namespace GeneXus.Programs.qrcoder {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         /* User Code */
-          string texto = AV11textForQRcode;
-         /* User Code */
-          QRCoder.QRCodeGenerator qrGenerator = new QRCoder.QRCodeGenerator();
-         /* User Code */
-          QRCoder.QRCodeData qrCodeData = qrGenerator.CreateQrCode(texto, QRCoder.QRCodeGenerator.ECCLevel.Q);
-         /* User Code */
-          QRCoder.Base64QRCode qrCode = new QRCoder.Base64QRCode(qrCodeData);
-         /* User Code */
-          AV13base64text = qrCode.GetGraphic(20);
+         if ( StringUtil.Len( AV11textForQRcode) > 1663 )
+         {
+            AV14error = "The maximum number of characters is 1663, and you've used " + StringUtil.Str( (decimal)(StringUtil.Len( AV11textForQRcode)), 10, 0);
+         }
+         else
+         {
+            /* User Code */
+             try
+            /* User Code */
+             {
+            /* User Code */
+             string texto = AV11textForQRcode;
+            /* User Code */
+             QRCoder.QRCodeGenerator qrGenerator = new QRCoder.QRCodeGenerator();
+            /* User Code */
+             QRCoder.QRCodeData qrCodeData = qrGenerator.CreateQrCode(texto, QRCoder.QRCodeGenerator.ECCLevel.Q);
+            /* User Code */
+             QRCoder.Base64QRCode qrCode = new QRCoder.Base64QRCode(qrCodeData);
+            /* User Code */
+             AV13base64text = qrCode.GetGraphic(20);
+            /* User Code */
+            	}
+            /* User Code */
+            	catch (Exception ex)
+            /* User Code */
+            	{
+            /* User Code */
+            		AV14error = ex.Message.ToString();
+            /* User Code */
+            	}
+         }
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
+         {
+            GX_msglist.addItem(AV14error);
+         }
          cleanup();
       }
 
@@ -91,9 +116,11 @@ namespace GeneXus.Programs.qrcoder {
       public override void initialize( )
       {
          AV13base64text = "";
+         AV14error = "";
          /* GeneXus formulas. */
       }
 
+      private string AV14error ;
       private string AV11textForQRcode ;
       private string AV13base64text ;
       private string aP1_base64text ;
