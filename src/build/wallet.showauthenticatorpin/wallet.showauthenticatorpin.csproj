@@ -2,7 +2,7 @@
 	
 	
 	<PropertyGroup>
-		<AssemblyName>wallet.encryptednotes</AssemblyName>
+		<AssemblyName>wallet.showauthenticatorpin</AssemblyName>
 		<TargetFramework>$(TargetFramework)</TargetFramework>
 		<OutputType>Library</OutputType>
 		<GenerateDependencyFile>false</GenerateDependencyFile>
@@ -22,9 +22,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Reference Include="WebExtensionToolkit.dll" > 
-			<HintPath>$(WebBinDirectory)\WebExtensionToolkit.dll</HintPath>
-		</Reference>
 		<Reference Include="Google.Authenticator.dll" > 
 			<HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
 		</Reference>
@@ -36,19 +33,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\aesencryptstring.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\encryptjson.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\decryptjson.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\readallnotes.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\aesdecryptstring.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\encryptednotes.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\showauthenticatorpin.cs" />
+		<Compile Include = "$(WebDirectory)\googleauthenticator\getcurrentpin.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getauthenticator.cs" />
 
 	</ItemGroup>
 	<ItemGroup Condition="'$(PostgresqlSupport)'=='true'">

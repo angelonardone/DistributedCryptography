@@ -135,6 +135,7 @@ namespace GeneXus.Programs.wallet {
          nRC_GXsfl_9 = (int)(Math.Round(NumberUtil.Val( GetPar( "nRC_GXsfl_9"), "."), 18, MidpointRounding.ToEven));
          nGXsfl_9_idx = (int)(Math.Round(NumberUtil.Val( GetPar( "nGXsfl_9_idx"), "."), 18, MidpointRounding.ToEven));
          sGXsfl_9_idx = GetPar( "sGXsfl_9_idx");
+         AV10delete = GetPar( "delete");
          setAjaxCallMode();
          if ( ! IsValidAjaxCall( true) )
          {
@@ -147,14 +148,14 @@ namespace GeneXus.Programs.wallet {
 
       protected void gxgrGridauthenticators_refresh_invoke( )
       {
-         AV6error = GetPar( "error");
+         AV10delete = GetPar( "delete");
          setAjaxCallMode();
          if ( ! IsValidAjaxCall( true) )
          {
             GxWebError = 1;
             return  ;
          }
-         gxgrGridauthenticators_refresh( AV6error) ;
+         gxgrGridauthenticators_refresh( AV10delete) ;
          AddString( context.getJSONResponse( )) ;
          /* End function gxgrGridauthenticators_refresh_invoke */
       }
@@ -288,8 +289,6 @@ namespace GeneXus.Programs.wallet {
 
       protected void send_integrity_footer_hashes( )
       {
-         GxWebStd.gx_hidden_field( context, "vERROR", StringUtil.RTrim( AV6error));
-         GxWebStd.gx_hidden_field( context, "gxhash_vERROR", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV6error, "")), context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -309,7 +308,6 @@ namespace GeneXus.Programs.wallet {
          GxWebStd.gx_hidden_field( context, "nRC_GXsfl_9", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_9), 8, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "vPOPUPNAME", StringUtil.RTrim( AV8PopupName));
          GxWebStd.gx_hidden_field( context, "vERROR", StringUtil.RTrim( AV6error));
-         GxWebStd.gx_hidden_field( context, "gxhash_vERROR", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV6error, "")), context));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vAUTHENTICATORS", AV5authenticators);
@@ -318,6 +316,7 @@ namespace GeneXus.Programs.wallet {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vAUTHENTICATORS", AV5authenticators);
          }
+         GxWebStd.gx_boolean_hidden_field( context, "vUSERRESPONSE", AV12UserResponse);
       }
 
       public override void RenderHtmlCloseForm( )
@@ -431,7 +430,7 @@ namespace GeneXus.Programs.wallet {
             }
             else
             {
-               AV10GXV1 = nGXsfl_9_idx;
+               AV14GXV1 = nGXsfl_9_idx;
                sStyleString = "";
                context.WriteHtmlText( "<div id=\""+"GridauthenticatorsContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Gridauthenticators", GridauthenticatorsContainer, subGridauthenticators_Internalname);
@@ -465,7 +464,7 @@ namespace GeneXus.Programs.wallet {
                }
                else
                {
-                  AV10GXV1 = nGXsfl_9_idx;
+                  AV14GXV1 = nGXsfl_9_idx;
                   sStyleString = "";
                   context.WriteHtmlText( "<div id=\""+"GridauthenticatorsContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                   context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Gridauthenticators", GridauthenticatorsContainer, subGridauthenticators_Internalname);
@@ -549,6 +548,12 @@ namespace GeneXus.Programs.wallet {
                               dynload_actions( ) ;
                               E12122 ();
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              E13122 ();
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "LSCR") == 0 )
                            {
                               context.wbHandled = 1;
@@ -560,15 +565,17 @@ namespace GeneXus.Programs.wallet {
                         {
                            sEvtType = StringUtil.Right( sEvt, 4);
                            sEvt = StringUtil.Left( sEvt, (short)(StringUtil.Len( sEvt)-4));
-                           if ( ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "START") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 9), "'GET PIN'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 23), "GRIDAUTHENTICATORS.LOAD") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "ENTER") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 6), "CANCEL") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 9), "'GET PIN'") == 0 ) )
+                           if ( ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "START") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 9), "'GET PIN'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 22), "'DELETE AUTHENTICATOR'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 23), "GRIDAUTHENTICATORS.LOAD") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "ENTER") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 6), "CANCEL") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 9), "'GET PIN'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 22), "'DELETE AUTHENTICATOR'") == 0 ) )
                            {
                               nGXsfl_9_idx = (int)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
                               sGXsfl_9_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_idx), 4, 0), 4, "0");
                               SubsflControlProps_92( ) ;
-                              AV10GXV1 = nGXsfl_9_idx;
-                              if ( ( AV5authenticators.Count >= AV10GXV1 ) && ( AV10GXV1 > 0 ) )
+                              AV14GXV1 = nGXsfl_9_idx;
+                              if ( ( AV5authenticators.Count >= AV14GXV1 ) && ( AV14GXV1 > 0 ) )
                               {
-                                 AV5authenticators.CurrentItem = ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)AV5authenticators.Item(AV10GXV1));
+                                 AV5authenticators.CurrentItem = ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)AV5authenticators.Item(AV14GXV1));
+                                 AV10delete = cgiGet( edtavDelete_Internalname);
+                                 AssignAttri("", false, edtavDelete_Internalname, AV10delete);
                               }
                               sEvtType = StringUtil.Right( sEvt, 1);
                               if ( StringUtil.StrCmp(sEvtType, ".") == 0 )
@@ -579,21 +586,28 @@ namespace GeneXus.Programs.wallet {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: Start */
-                                    E13122 ();
+                                    E14122 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "'GET PIN'") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: 'Get Pin' */
-                                    E14122 ();
+                                    E15122 ();
+                                 }
+                                 else if ( StringUtil.StrCmp(sEvt, "'DELETE AUTHENTICATOR'") == 0 )
+                                 {
+                                    context.wbHandled = 1;
+                                    dynload_actions( ) ;
+                                    /* Execute user event: 'Delete Authenticator' */
+                                    E16122 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "GRIDAUTHENTICATORS.LOAD") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: Gridauthenticators.Load */
-                                    E15122 ();
+                                    E17122 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                                  {
@@ -692,7 +706,7 @@ namespace GeneXus.Programs.wallet {
          /* End function gxnrGridauthenticators_newrow */
       }
 
-      protected void gxgrGridauthenticators_refresh( string AV6error )
+      protected void gxgrGridauthenticators_refresh( string AV10delete )
       {
          initialize_formulas( ) ;
          GxWebStd.set_html_headers( context, 0, "", "");
@@ -737,6 +751,7 @@ namespace GeneXus.Programs.wallet {
          edtavCtlissuer_Enabled = 0;
          edtavCtlaccounttitle_Enabled = 0;
          edtavCtlaccounttitle1_Enabled = 0;
+         edtavDelete_Enabled = 0;
       }
 
       protected void RF122( )
@@ -767,7 +782,7 @@ namespace GeneXus.Programs.wallet {
          {
             SubsflControlProps_92( ) ;
             /* Execute user event: Gridauthenticators.Load */
-            E15122 ();
+            E17122 ();
             wbEnd = 9;
             WB120( ) ;
          }
@@ -776,8 +791,6 @@ namespace GeneXus.Programs.wallet {
 
       protected void send_integrity_lvl_hashes122( )
       {
-         GxWebStd.gx_hidden_field( context, "vERROR", StringUtil.RTrim( AV6error));
-         GxWebStd.gx_hidden_field( context, "gxhash_vERROR", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV6error, "")), context));
       }
 
       protected int subGridauthenticators_fnc_Pagecount( )
@@ -805,6 +818,7 @@ namespace GeneXus.Programs.wallet {
          edtavCtlissuer_Enabled = 0;
          edtavCtlaccounttitle_Enabled = 0;
          edtavCtlaccounttitle1_Enabled = 0;
+         edtavDelete_Enabled = 0;
          fix_multi_value_controls( ) ;
       }
 
@@ -815,7 +829,7 @@ namespace GeneXus.Programs.wallet {
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E13122 ();
+         E14122 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
@@ -832,10 +846,11 @@ namespace GeneXus.Programs.wallet {
                nGXsfl_9_fel_idx = ((subGridauthenticators_Islastpage==1)&&(nGXsfl_9_fel_idx+1>subGridauthenticators_fnc_Recordsperpage( )) ? 1 : nGXsfl_9_fel_idx+1);
                sGXsfl_9_fel_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_fel_idx), 4, 0), 4, "0");
                SubsflControlProps_fel_92( ) ;
-               AV10GXV1 = nGXsfl_9_fel_idx;
-               if ( ( AV5authenticators.Count >= AV10GXV1 ) && ( AV10GXV1 > 0 ) )
+               AV14GXV1 = nGXsfl_9_fel_idx;
+               if ( ( AV5authenticators.Count >= AV14GXV1 ) && ( AV14GXV1 > 0 ) )
                {
-                  AV5authenticators.CurrentItem = ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)AV5authenticators.Item(AV10GXV1));
+                  AV5authenticators.CurrentItem = ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)AV5authenticators.Item(AV14GXV1));
+                  AV10delete = cgiGet( edtavDelete_Internalname);
                }
             }
             if ( nGXsfl_9_fel_idx == 0 )
@@ -859,24 +874,26 @@ namespace GeneXus.Programs.wallet {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E13122 ();
+         E14122 ();
          if (returnInSub) return;
       }
 
-      protected void E13122( )
+      protected void E14122( )
       {
          /* Start Routine */
          returnInSub = false;
          AV5authenticators.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "authenticators.auth", out  AV6error), null);
          gx_BV9 = true;
+         AV10delete = "Delete";
+         AssignAttri("", false, edtavDelete_Internalname, AV10delete);
       }
 
       protected void E12122( )
       {
-         AV10GXV1 = nGXsfl_9_idx;
-         if ( ( AV10GXV1 > 0 ) && ( AV5authenticators.Count >= AV10GXV1 ) )
+         AV14GXV1 = nGXsfl_9_idx;
+         if ( ( AV14GXV1 > 0 ) && ( AV5authenticators.Count >= AV14GXV1 ) )
          {
-            AV5authenticators.CurrentItem = ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)AV5authenticators.Item(AV10GXV1));
+            AV5authenticators.CurrentItem = ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)AV5authenticators.Item(AV14GXV1));
          }
          /* Extensions\Web\Popup_Onpopupclosed Routine */
          returnInSub = false;
@@ -892,34 +909,91 @@ namespace GeneXus.Programs.wallet {
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV5authenticators", AV5authenticators);
             nGXsfl_9_bak_idx = nGXsfl_9_idx;
-            gxgrGridauthenticators_refresh( AV6error) ;
+            gxgrGridauthenticators_refresh( AV10delete) ;
             nGXsfl_9_idx = nGXsfl_9_bak_idx;
             sGXsfl_9_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_idx), 4, 0), 4, "0");
             SubsflControlProps_92( ) ;
          }
       }
 
-      protected void E14122( )
+      protected void E15122( )
       {
-         AV10GXV1 = nGXsfl_9_idx;
-         if ( ( AV10GXV1 > 0 ) && ( AV5authenticators.Count >= AV10GXV1 ) )
+         AV14GXV1 = nGXsfl_9_idx;
+         if ( ( AV14GXV1 > 0 ) && ( AV5authenticators.Count >= AV14GXV1 ) )
          {
-            AV5authenticators.CurrentItem = ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)AV5authenticators.Item(AV10GXV1));
+            AV5authenticators.CurrentItem = ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)AV5authenticators.Item(AV14GXV1));
          }
          /* 'Get Pin' Routine */
          returnInSub = false;
          new GeneXus.Programs.wallet.setauthenticator(context ).execute(  ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)(AV5authenticators.CurrentItem))) ;
-         context.PopUp(formatLink("wallet.showauthenticatopin.aspx") , new Object[] {});
+         context.PopUp(formatLink("wallet.showauthenticatorpin.aspx") , new Object[] {});
       }
 
-      private void E15122( )
+      protected void E16122( )
+      {
+         AV14GXV1 = nGXsfl_9_idx;
+         if ( ( AV14GXV1 > 0 ) && ( AV5authenticators.Count >= AV14GXV1 ) )
+         {
+            AV5authenticators.CurrentItem = ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)AV5authenticators.Item(AV14GXV1));
+         }
+         /* 'Delete Authenticator' Routine */
+         returnInSub = false;
+         this.executeExternalObjectMethod("", false, "gx.extensions.web.dialogs", "showConfirm", new Object[] {"Are you sure you want to Delete "+((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)(AV5authenticators.CurrentItem)).gxTpr_Accounttitle+" Authenticator?"}, false);
+      }
+
+      protected void E13122( )
+      {
+         AV14GXV1 = nGXsfl_9_idx;
+         if ( ( AV14GXV1 > 0 ) && ( AV5authenticators.Count >= AV14GXV1 ) )
+         {
+            AV5authenticators.CurrentItem = ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)AV5authenticators.Item(AV14GXV1));
+         }
+         /* Extensions\Web\Dialog_Onconfirmclosed Routine */
+         returnInSub = false;
+         if ( AV12UserResponse )
+         {
+            AV18GXV5 = 1;
+            while ( AV18GXV5 <= AV5authenticators.Count )
+            {
+               AV13oneAuthenticator = ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)AV5authenticators.Item(AV18GXV5));
+               if ( StringUtil.StrCmp(StringUtil.Trim( AV13oneAuthenticator.gxTpr_Based32key), StringUtil.Trim( ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)(AV5authenticators.CurrentItem)).gxTpr_Based32key)) == 0 )
+               {
+                  AV5authenticators.RemoveItem(AV5authenticators.IndexOf(AV13oneAuthenticator));
+                  gx_BV9 = true;
+                  GXt_char1 = AV6error;
+                  new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  "authenticators.auth",  AV5authenticators.ToJSonString(false), out  GXt_char1) ;
+                  AV6error = GXt_char1;
+                  AssignAttri("", false, "AV6error", AV6error);
+                  if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
+                  {
+                     AV5authenticators.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "authenticators.auth", out  AV6error), null);
+                     gx_BV9 = true;
+                  }
+                  else
+                  {
+                     GX_msglist.addItem("Error saving encrypted file: "+AV6error);
+                  }
+               }
+               AV18GXV5 = (int)(AV18GXV5+1);
+            }
+         }
+         /*  Sending Event outputs  */
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV5authenticators", AV5authenticators);
+         nGXsfl_9_bak_idx = nGXsfl_9_idx;
+         gxgrGridauthenticators_refresh( AV10delete) ;
+         nGXsfl_9_idx = nGXsfl_9_bak_idx;
+         sGXsfl_9_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_idx), 4, 0), 4, "0");
+         SubsflControlProps_92( ) ;
+      }
+
+      private void E17122( )
       {
          /* Gridauthenticators_Load Routine */
          returnInSub = false;
-         AV10GXV1 = 1;
-         while ( AV10GXV1 <= AV5authenticators.Count )
+         AV14GXV1 = 1;
+         while ( AV14GXV1 <= AV5authenticators.Count )
          {
-            AV5authenticators.CurrentItem = ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)AV5authenticators.Item(AV10GXV1));
+            AV5authenticators.CurrentItem = ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)AV5authenticators.Item(AV14GXV1));
             /* Load Method */
             if ( wbStart != -1 )
             {
@@ -930,7 +1004,7 @@ namespace GeneXus.Programs.wallet {
             {
                DoAjaxLoad(9, GridauthenticatorsRow);
             }
-            AV10GXV1 = (int)(AV10GXV1+1);
+            AV14GXV1 = (int)(AV14GXV1+1);
          }
       }
 
@@ -974,7 +1048,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202481313335997", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20248211617211", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -990,7 +1064,8 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/autheticators.js", "?202481313335997", false, true);
+         context.AddJavascriptSource("wallet/autheticators.js", "?20248211617211", false, true);
+         context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -1000,6 +1075,7 @@ namespace GeneXus.Programs.wallet {
          edtavCtlissuer_Internalname = "CTLISSUER_"+sGXsfl_9_idx;
          edtavCtlaccounttitle_Internalname = "CTLACCOUNTTITLE_"+sGXsfl_9_idx;
          edtavCtlaccounttitle1_Internalname = "CTLACCOUNTTITLE1_"+sGXsfl_9_idx;
+         edtavDelete_Internalname = "vDELETE_"+sGXsfl_9_idx;
       }
 
       protected void SubsflControlProps_fel_92( )
@@ -1007,6 +1083,7 @@ namespace GeneXus.Programs.wallet {
          edtavCtlissuer_Internalname = "CTLISSUER_"+sGXsfl_9_fel_idx;
          edtavCtlaccounttitle_Internalname = "CTLACCOUNTTITLE_"+sGXsfl_9_fel_idx;
          edtavCtlaccounttitle1_Internalname = "CTLACCOUNTTITLE1_"+sGXsfl_9_fel_idx;
+         edtavDelete_Internalname = "vDELETE_"+sGXsfl_9_fel_idx;
       }
 
       protected void sendrow_92( )
@@ -1079,7 +1156,7 @@ namespace GeneXus.Programs.wallet {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 10,'',false,'" + sGXsfl_9_idx + "',9)\"";
          ROClassString = "Attribute";
-         GridauthenticatorsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlissuer_Internalname,StringUtil.RTrim( ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)AV5authenticators.Item(AV10GXV1)).gxTpr_Issuer),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,10);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlissuer_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlissuer_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)60,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         GridauthenticatorsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlissuer_Internalname,StringUtil.RTrim( ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)AV5authenticators.Item(AV14GXV1)).gxTpr_Issuer),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,10);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlissuer_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlissuer_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)60,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          if ( GridauthenticatorsContainer.GetWrapped() == 1 )
          {
@@ -1088,7 +1165,7 @@ namespace GeneXus.Programs.wallet {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 11,'',false,'" + sGXsfl_9_idx + "',9)\"";
          ROClassString = "Attribute";
-         GridauthenticatorsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlaccounttitle_Internalname,StringUtil.RTrim( ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)AV5authenticators.Item(AV10GXV1)).gxTpr_Accounttitle),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,11);\"","'"+""+"'"+",false,"+"'"+"E\\'GET PIN\\'."+sGXsfl_9_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlaccounttitle_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlaccounttitle_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)60,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         GridauthenticatorsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlaccounttitle_Internalname,StringUtil.RTrim( ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)AV5authenticators.Item(AV14GXV1)).gxTpr_Accounttitle),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,11);\"","'"+""+"'"+",false,"+"'"+"E\\'GET PIN\\'."+sGXsfl_9_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlaccounttitle_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlaccounttitle_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)60,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          if ( GridauthenticatorsContainer.GetWrapped() == 1 )
          {
@@ -1097,7 +1174,16 @@ namespace GeneXus.Programs.wallet {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 12,'',false,'" + sGXsfl_9_idx + "',9)\"";
          ROClassString = "Attribute";
-         GridauthenticatorsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlaccounttitle1_Internalname,context.localUtil.TToC( ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)AV5authenticators.Item(AV10GXV1)).gxTpr_Createddatetime, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)AV5authenticators.Item(AV10GXV1)).gxTpr_Createddatetime, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onblur(this,12);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlaccounttitle1_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlaccounttitle1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)17,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         GridauthenticatorsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlaccounttitle1_Internalname,context.localUtil.TToC( ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)AV5authenticators.Item(AV14GXV1)).gxTpr_Createddatetime, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator)AV5authenticators.Item(AV14GXV1)).gxTpr_Createddatetime, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onblur(this,12);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlaccounttitle1_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlaccounttitle1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)17,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         /* Subfile cell */
+         if ( GridauthenticatorsContainer.GetWrapped() == 1 )
+         {
+            context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
+         }
+         /* Single line edit */
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 13,'',false,'" + sGXsfl_9_idx + "',9)\"";
+         ROClassString = "Attribute";
+         GridauthenticatorsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavDelete_Internalname,StringUtil.RTrim( AV10delete),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,13);\"","'"+""+"'"+",false,"+"'"+"E\\'DELETE AUTHENTICATOR\\'."+sGXsfl_9_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavDelete_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavDelete_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          send_integrity_lvl_hashes122( ) ;
          GridauthenticatorsContainer.AddRow(GridauthenticatorsRow);
          nGXsfl_9_idx = ((subGridauthenticators_Islastpage==1)&&(nGXsfl_9_idx+1>subGridauthenticators_fnc_Recordsperpage( )) ? 1 : nGXsfl_9_idx+1);
@@ -1152,10 +1238,13 @@ namespace GeneXus.Programs.wallet {
             context.SendWebValue( "Issuer") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "account Title") ;
+            context.SendWebValue( "Account Title") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"end"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
             context.SendWebValue( "Created") ;
+            context.WriteHtmlTextNl( "</th>") ;
+            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
+            context.SendWebValue( "") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlTextNl( "</tr>") ;
             GridauthenticatorsContainer.AddObjectProperty("GridName", "Gridauthenticators");
@@ -1179,6 +1268,10 @@ namespace GeneXus.Programs.wallet {
             GridauthenticatorsColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridauthenticatorsColumn.AddObjectProperty("Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtavCtlaccounttitle1_Enabled), 5, 0, ".", "")));
             GridauthenticatorsContainer.AddColumnProperties(GridauthenticatorsColumn);
+            GridauthenticatorsColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
+            GridauthenticatorsColumn.AddObjectProperty("Value", GXUtil.ValueEncode( StringUtil.RTrim( AV10delete)));
+            GridauthenticatorsColumn.AddObjectProperty("Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtavDelete_Enabled), 5, 0, ".", "")));
+            GridauthenticatorsContainer.AddColumnProperties(GridauthenticatorsColumn);
             GridauthenticatorsContainer.AddObjectProperty("Selectedindex", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridauthenticators_Selectedindex), 4, 0, ".", "")));
             GridauthenticatorsContainer.AddObjectProperty("Allowselection", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridauthenticators_Allowselection), 1, 0, ".", "")));
             GridauthenticatorsContainer.AddObjectProperty("Selectioncolor", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridauthenticators_Selectioncolor), 9, 0, ".", "")));
@@ -1195,6 +1288,7 @@ namespace GeneXus.Programs.wallet {
          edtavCtlissuer_Internalname = "CTLISSUER";
          edtavCtlaccounttitle_Internalname = "CTLACCOUNTTITLE";
          edtavCtlaccounttitle1_Internalname = "CTLACCOUNTTITLE1";
+         edtavDelete_Internalname = "vDELETE";
          divMaintable_Internalname = "MAINTABLE";
          Form.Internalname = "FORM";
          subGridauthenticators_Internalname = "GRIDAUTHENTICATORS";
@@ -1211,6 +1305,8 @@ namespace GeneXus.Programs.wallet {
          subGridauthenticators_Allowcollapsing = 0;
          subGridauthenticators_Allowselection = 0;
          subGridauthenticators_Header = "";
+         edtavDelete_Jsonclick = "";
+         edtavDelete_Enabled = 1;
          edtavCtlaccounttitle1_Jsonclick = "";
          edtavCtlaccounttitle1_Enabled = 0;
          edtavCtlaccounttitle_Jsonclick = "";
@@ -1240,12 +1336,15 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDAUTHENTICATORS_nFirstRecordOnPage"},{"av":"GRIDAUTHENTICATORS_nEOF"},{"av":"AV5authenticators","fld":"vAUTHENTICATORS","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDAUTHENTICATORS","prop":"GridRC","grid":9},{"av":"AV6error","fld":"vERROR","hsh":true}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDAUTHENTICATORS_nFirstRecordOnPage"},{"av":"GRIDAUTHENTICATORS_nEOF"},{"av":"AV5authenticators","fld":"vAUTHENTICATORS","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDAUTHENTICATORS","prop":"GridRC","grid":9},{"av":"AV10delete","fld":"vDELETE"}]}""");
          setEventMetadata("'IMPORT A NEW AUTHENTICATOR CODE'","""{"handler":"E11121","iparms":[]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E12122","iparms":[{"av":"AV8PopupName","fld":"vPOPUPNAME"},{"av":"AV6error","fld":"vERROR","hsh":true},{"av":"AV5authenticators","fld":"vAUTHENTICATORS","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDAUTHENTICATORS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDAUTHENTICATORS","prop":"GridRC","grid":9},{"av":"GRIDAUTHENTICATORS_nEOF"}]""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E12122","iparms":[{"av":"AV8PopupName","fld":"vPOPUPNAME"},{"av":"AV6error","fld":"vERROR"},{"av":"AV5authenticators","fld":"vAUTHENTICATORS","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDAUTHENTICATORS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDAUTHENTICATORS","prop":"GridRC","grid":9},{"av":"GRIDAUTHENTICATORS_nEOF"},{"av":"AV10delete","fld":"vDELETE"}]""");
          setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV5authenticators","fld":"vAUTHENTICATORS","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDAUTHENTICATORS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDAUTHENTICATORS","prop":"GridRC","grid":9}]}""");
-         setEventMetadata("'GET PIN'","""{"handler":"E14122","iparms":[{"av":"AV5authenticators","fld":"vAUTHENTICATORS","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDAUTHENTICATORS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDAUTHENTICATORS","prop":"GridRC","grid":9}]}""");
-         setEventMetadata("NULL","""{"handler":"Validv_Gxv4","iparms":[]}""");
+         setEventMetadata("'GET PIN'","""{"handler":"E15122","iparms":[{"av":"AV5authenticators","fld":"vAUTHENTICATORS","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDAUTHENTICATORS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDAUTHENTICATORS","prop":"GridRC","grid":9}]}""");
+         setEventMetadata("'DELETE AUTHENTICATOR'","""{"handler":"E16122","iparms":[{"av":"AV5authenticators","fld":"vAUTHENTICATORS","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDAUTHENTICATORS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDAUTHENTICATORS","prop":"GridRC","grid":9}]}""");
+         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED","""{"handler":"E13122","iparms":[{"av":"AV12UserResponse","fld":"vUSERRESPONSE"},{"av":"AV5authenticators","fld":"vAUTHENTICATORS","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDAUTHENTICATORS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDAUTHENTICATORS","prop":"GridRC","grid":9},{"av":"GRIDAUTHENTICATORS_nEOF"},{"av":"AV10delete","fld":"vDELETE"}]""");
+         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED",""","oparms":[{"av":"AV5authenticators","fld":"vAUTHENTICATORS","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDAUTHENTICATORS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDAUTHENTICATORS","prop":"GridRC","grid":9},{"av":"AV6error","fld":"vERROR"}]}""");
+         setEventMetadata("NULL","""{"handler":"Validv_Delete","iparms":[]}""");
          return  ;
       }
 
@@ -1262,13 +1361,14 @@ namespace GeneXus.Programs.wallet {
       {
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
-         AV6error = "";
+         AV10delete = "";
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
          AV5authenticators = new GXBaseCollection<GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator>( context, "Authenticator", "distributedcryptography");
          AV8PopupName = "";
+         AV6error = "";
          GX_FocusControl = "";
          Form = new GXWebForm();
          sPrefix = "";
@@ -1283,6 +1383,8 @@ namespace GeneXus.Programs.wallet {
          EvtRowId = "";
          sEvtType = "";
          AV7PopupAuthenticatorName = "";
+         AV13oneAuthenticator = new GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator(context);
+         GXt_char1 = "";
          GridauthenticatorsRow = new GXWebRow();
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
@@ -1293,6 +1395,7 @@ namespace GeneXus.Programs.wallet {
          edtavCtlissuer_Enabled = 0;
          edtavCtlaccounttitle_Enabled = 0;
          edtavCtlaccounttitle1_Enabled = 0;
+         edtavDelete_Enabled = 0;
       }
 
       private short nGotPars ;
@@ -1314,13 +1417,15 @@ namespace GeneXus.Programs.wallet {
       private short subGridauthenticators_Collapsed ;
       private int nRC_GXsfl_9 ;
       private int nGXsfl_9_idx=1 ;
-      private int AV10GXV1 ;
+      private int AV14GXV1 ;
       private int subGridauthenticators_Islastpage ;
       private int edtavCtlissuer_Enabled ;
       private int edtavCtlaccounttitle_Enabled ;
       private int edtavCtlaccounttitle1_Enabled ;
+      private int edtavDelete_Enabled ;
       private int nGXsfl_9_fel_idx=1 ;
       private int nGXsfl_9_bak_idx=1 ;
+      private int AV18GXV5 ;
       private int idxLst ;
       private int subGridauthenticators_Backcolor ;
       private int subGridauthenticators_Allbackcolor ;
@@ -1333,12 +1438,13 @@ namespace GeneXus.Programs.wallet {
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
       private string sGXsfl_9_idx="0001" ;
-      private string AV6error ;
+      private string AV10delete ;
       private string sDynURL ;
       private string FormProcess ;
       private string bodyStyle ;
       private string GXKey ;
       private string AV8PopupName ;
+      private string AV6error ;
       private string GX_FocusControl ;
       private string sPrefix ;
       private string divMaintable_Internalname ;
@@ -1353,8 +1459,10 @@ namespace GeneXus.Programs.wallet {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
+      private string edtavDelete_Internalname ;
       private string sGXsfl_9_fel_idx="0001" ;
       private string AV7PopupAuthenticatorName ;
+      private string GXt_char1 ;
       private string edtavCtlissuer_Internalname ;
       private string edtavCtlaccounttitle_Internalname ;
       private string edtavCtlaccounttitle1_Internalname ;
@@ -1364,9 +1472,11 @@ namespace GeneXus.Programs.wallet {
       private string edtavCtlissuer_Jsonclick ;
       private string edtavCtlaccounttitle_Jsonclick ;
       private string edtavCtlaccounttitle1_Jsonclick ;
+      private string edtavDelete_Jsonclick ;
       private string subGridauthenticators_Header ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
+      private bool AV12UserResponse ;
       private bool wbLoad ;
       private bool Rfr0gs ;
       private bool wbErr ;
@@ -1380,6 +1490,7 @@ namespace GeneXus.Programs.wallet {
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
       private GXBaseCollection<GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator> AV5authenticators ;
+      private GeneXus.Programs.googleauthenticator.SdtSDT_Authenticators_Authenticator AV13oneAuthenticator ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

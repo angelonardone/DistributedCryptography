@@ -754,10 +754,6 @@ namespace GeneXus.Programs.wallet {
          GXt_SdtExtKeyInfo3 = AV10extKeyInfo;
          new GeneXus.Programs.wallet.getextkey(context ).execute( out  GXt_SdtExtKeyInfo3) ;
          AV10extKeyInfo = GXt_SdtExtKeyInfo3;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
-         {
-            GX_msglist.addItem("Electrum server error :"+AV8error);
-         }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV12keyInfo.gxTpr_Publickey)) && String.IsNullOrEmpty(StringUtil.RTrim( AV10extKeyInfo.gxTpr_Publickey)) )
          {
             GXt_SdtWallet1 = AV14wallet;
@@ -777,7 +773,6 @@ namespace GeneXus.Programs.wallet {
                   GXt_char4 = AV8error;
                   new GeneXus.Programs.nbitcoin.createkey(context ).execute(  AV11keyCreate,  AV13password, out  AV12keyInfo, out  GXt_char4) ;
                   AV8error = GXt_char4;
-                  AssignAttri("", false, "AV8error", AV8error);
                   if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) || String.IsNullOrEmpty(StringUtil.RTrim( AV12keyInfo.gxTpr_Privatekey)) )
                   {
                      bttGetwalletinfo_Visible = 0;
@@ -819,18 +814,15 @@ namespace GeneXus.Programs.wallet {
                   GXt_char4 = AV8error;
                   new GeneXus.Programs.nbitcoin.createkey(context ).execute(  AV11keyCreate,  AV13password, out  AV12keyInfo, out  GXt_char4) ;
                   AV8error = GXt_char4;
-                  AssignAttri("", false, "AV8error", AV8error);
                   AV9extKeyCreate.gxTpr_Createextkeytype = 70;
                   GXt_char4 = AV8error;
                   new GeneXus.Programs.nbitcoin.eccdecrypt(context ).execute(  AV12keyInfo.gxTpr_Privatekey,  AV14wallet.gxTpr_Extencryptedsecret, out  AV6clearText, out  GXt_char4) ;
                   AV8error = GXt_char4;
-                  AssignAttri("", false, "AV8error", AV8error);
                   AV9extKeyCreate.gxTpr_Extendedprivatekey = AV6clearText;
                   AV9extKeyCreate.gxTpr_Networktype = AV14wallet.gxTpr_Networktype;
                   GXt_char4 = AV8error;
                   new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV9extKeyCreate,  AV13password, out  AV10extKeyInfo, out  GXt_char4) ;
                   AV8error = GXt_char4;
-                  AssignAttri("", false, "AV8error", AV8error);
                   if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) || String.IsNullOrEmpty(StringUtil.RTrim( AV10extKeyInfo.gxTpr_Privatekey)) )
                   {
                      bttGetwalletinfo_Visible = 0;
@@ -850,7 +842,6 @@ namespace GeneXus.Programs.wallet {
                      GXt_char4 = AV8error;
                      new GeneXus.Programs.distcrypt.sso.createandsaveexternaluser(context ).execute( out  GXt_char4) ;
                      AV8error = GXt_char4;
-                     AssignAttri("", false, "AV8error", AV8error);
                      new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
                      GXt_SdtExternalUser5 = AV16externalUser;
                      new GeneXus.Programs.distcrypt.getexternaluser(context ).execute( out  GXt_SdtExternalUser5) ;
@@ -860,7 +851,6 @@ namespace GeneXus.Programs.wallet {
                         GXt_char4 = AV8error;
                         new GeneXus.Programs.nostr.startconnection(context ).execute( out  GXt_char4) ;
                         AV8error = GXt_char4;
-                        AssignAttri("", false, "AV8error", AV8error);
                         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
                         {
                            GX_msglist.addItem(AV8error);
@@ -1015,7 +1005,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202481313335962", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024821160119", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1031,7 +1021,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/balance.js", "?202481313335962", false, true);
+         context.AddJavascriptSource("wallet/balance.js", "?2024821160119", false, true);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);
@@ -1132,11 +1122,11 @@ namespace GeneXus.Programs.wallet {
          GXt_SdtKeyInfo2 = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
          AV10extKeyInfo = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
          GXt_SdtExtKeyInfo3 = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
-         AV8error = "";
          GXt_SdtWallet1 = new GeneXus.Programs.wallet.SdtWallet(context);
          AV13password = "";
          AV15webSession = context.GetSession();
          AV11keyCreate = new GeneXus.Programs.nbitcoin.SdtKeyCreate(context);
+         AV8error = "";
          AV9extKeyCreate = new GeneXus.Programs.nbitcoin.SdtExtKeyCreate(context);
          AV6clearText = "";
          AV17emptyKeyInfo = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
@@ -1189,8 +1179,8 @@ namespace GeneXus.Programs.wallet {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
-      private string AV8error ;
       private string AV13password ;
+      private string AV8error ;
       private string GXt_char4 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
