@@ -61,22 +61,7 @@ EOF
     echo "Closed localhost:5000 tab in Google Chrome"
 }
 
-# Function to close the specific tab with localhost:5000 in FireFox
-close_firefox_tab() {
-    osascript <<EOF
-tell application "FireFox"
-    set windowList to every window
-    repeat with aWindow in windowList
-        set tabList to every tab of aWindow
-            if (URL of aTab contains "localhost:5000") then
-                close aTab
-            end if
-        end repeat
-    end repeat
-end tell
-EOF
-    echo "Closed localhost:5000 tab in Google Chrome"
-}
+
 
 # Function to check if an application is running
 is_app_running() {
@@ -97,7 +82,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 # Ensure the executable has the correct permissions
-#chmod +x ./bin/GxWebStartup
+chmod +x ./bin/GxWebStartup
 #sudo chown $(whoami) ./bin/GxWebStartup
 
 
@@ -129,9 +114,3 @@ else
     echo "Google Chrome is not running"
 fi
 
-# Close the specific tab with localhost:5000 in Google Chrome if it's running
-if is_app_running "FireFox"; then
-    close_firefox_tab
-else
-    echo "FireFox is not running"
-fi
