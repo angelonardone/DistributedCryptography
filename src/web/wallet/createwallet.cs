@@ -1117,7 +1117,7 @@ namespace GeneXus.Programs.wallet {
             AssignAttri("", false, "AV27base32String", AV27base32String);
             AV7error = GXt_char1;
             AssignAttri("", false, "AV7error", AV7error);
-            AV25SetupCode = AV26TwoFactorAuthenticator.generatesetupcode("Distributed Cryptography", AV20walletName, StringUtil.Trim( AV27base32String), false, 3);
+            AV25SetupCode = AV26TwoFactorAuthenticator.generatesetupcode("Distributed Cryptography", AV20walletName, StringUtil.Trim( AV27base32String), true, 3);
             AV24qrcode = AV25SetupCode.gxTpr_Qrcodesetupimageurl;
             AssignProp("", false, imgavQrcode_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV24qrcode)) ? AV30Qrcode_GXI : context.convertURL( context.PathToRelativeUrl( AV24qrcode))), true);
             AssignProp("", false, imgavQrcode_Internalname, "SrcSet", context.GetImageSrcSet( AV24qrcode), true);
@@ -1186,7 +1186,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20249514184866", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024951544249", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1202,7 +1202,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/createwallet.js", "?20249514184867", false, true);
+         context.AddJavascriptSource("wallet/createwallet.js", "?2024951544249", false, true);
          /* End function include_jscripts */
       }
 
