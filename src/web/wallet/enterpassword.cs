@@ -384,7 +384,24 @@ namespace GeneXus.Programs.wallet {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 11,'',false,'',0)\"";
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", edtavCode_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavCode_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, edtavCode_Internalname, "Enter Authenticator 6 digits code", "col-sm-3 AttributeLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
+            /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 13,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavCode_Internalname, StringUtil.RTrim( AV9code), StringUtil.RTrim( context.localUtil.Format( AV9code, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,13);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCode_Jsonclick, 0, "Attribute", "", "", "", "", edtavCode_Visible, edtavCode_Enabled, 0, "text", "", 6, "chr", 1, "row", 6, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Wallet/EnterPassword.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 16,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttEnter_Internalname, "", "Confirm", bttEnter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Wallet/EnterPassword.htm");
@@ -633,6 +650,8 @@ namespace GeneXus.Programs.wallet {
             /* Read variables values. */
             AV5password = cgiGet( edtavPassword_Internalname);
             AssignAttri("", false, "AV5password", AV5password);
+            AV9code = cgiGet( edtavCode_Internalname);
+            AssignAttri("", false, "AV9code", AV9code);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -657,6 +676,8 @@ namespace GeneXus.Programs.wallet {
          GXt_SdtWallet1 = AV8wallet;
          new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet1) ;
          AV8wallet = GXt_SdtWallet1;
+         edtavCode_Visible = (AV8wallet.gxTpr_Useauthenticator ? 1 : 0);
+         AssignProp("", false, edtavCode_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavCode_Visible), 5, 0), true);
          AV7webSession.Destroy();
       }
 
@@ -672,6 +693,7 @@ namespace GeneXus.Programs.wallet {
          /* Enter Routine */
          returnInSub = false;
          AV7webSession.Set("TempPassword", AV5password);
+         AV7webSession.Set("TempPINAuthenticator", AV9code);
          new GeneXus.Programs.wallet.setwallet(context ).execute(  AV8wallet) ;
          CallWebObject(formatLink("wallet.balance.aspx") );
          context.wjLocDisableFrm = 1;
@@ -729,7 +751,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202481313335498", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20249514535922", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -745,7 +767,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/enterpassword.js", "?202481313335498", false, true);
+         context.AddJavascriptSource("wallet/enterpassword.js", "?20249514535922", false, true);
          /* End function include_jscripts */
       }
 
@@ -757,6 +779,7 @@ namespace GeneXus.Programs.wallet {
       protected void init_default_properties( )
       {
          edtavPassword_Internalname = "vPASSWORD";
+         edtavCode_Internalname = "vCODE";
          bttEnter_Internalname = "ENTER";
          divMaintable_Internalname = "MAINTABLE";
          Form.Internalname = "FORM";
@@ -770,6 +793,9 @@ namespace GeneXus.Programs.wallet {
             disableJsOutput();
          }
          init_default_properties( ) ;
+         edtavCode_Jsonclick = "";
+         edtavCode_Enabled = 1;
+         edtavCode_Visible = 1;
          edtavPassword_Jsonclick = "";
          edtavPassword_Enabled = 1;
          Form.Headerrawhtml = "";
@@ -791,7 +817,7 @@ namespace GeneXus.Programs.wallet {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV8wallet","fld":"vWALLET","hsh":true}]}""");
-         setEventMetadata("ENTER","""{"handler":"E120J2","iparms":[{"av":"AV5password","fld":"vPASSWORD"},{"av":"AV8wallet","fld":"vWALLET","hsh":true}]}""");
+         setEventMetadata("ENTER","""{"handler":"E120J2","iparms":[{"av":"AV5password","fld":"vPASSWORD"},{"av":"AV9code","fld":"vCODE"},{"av":"AV8wallet","fld":"vWALLET","hsh":true}]}""");
          return  ;
       }
 
@@ -819,6 +845,7 @@ namespace GeneXus.Programs.wallet {
          sPrefix = "";
          TempTags = "";
          AV5password = "";
+         AV9code = "";
          ClassString = "";
          StyleString = "";
          bttEnter_Jsonclick = "";
@@ -842,6 +869,8 @@ namespace GeneXus.Programs.wallet {
       private short gxcookieaux ;
       private short nGXWrapped ;
       private int edtavPassword_Enabled ;
+      private int edtavCode_Visible ;
+      private int edtavCode_Enabled ;
       private int idxLst ;
       private string AV6walletName ;
       private string wcpOAV6walletName ;
@@ -858,6 +887,9 @@ namespace GeneXus.Programs.wallet {
       private string TempTags ;
       private string AV5password ;
       private string edtavPassword_Jsonclick ;
+      private string edtavCode_Internalname ;
+      private string AV9code ;
+      private string edtavCode_Jsonclick ;
       private string ClassString ;
       private string StyleString ;
       private string bttEnter_Internalname ;

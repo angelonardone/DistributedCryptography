@@ -82,31 +82,32 @@ namespace GeneXus.Programs.shamirss {
           var combine = new SecretSharingDotNet.Cryptography.ShamirsSecretSharing<System.Numerics.BigInteger>(gcd);
          /* User Code */
           string shares = "";
-         AV17GXV1 = 1;
-         while ( AV17GXV1 <= AV13shares.Count )
+         AV18GXV1 = 1;
+         while ( AV18GXV1 <= AV13shares.Count )
          {
-            AV12share = ((string)AV13shares.Item(AV17GXV1));
+            AV12share = ((string)AV13shares.Item(AV18GXV1));
             /* User Code */
              shares += AV12share + System.Environment.NewLine;
-            AV17GXV1 = (int)(AV17GXV1+1);
+            AV18GXV1 = (int)(AV18GXV1+1);
          }
          /* User Code */
           var recoveredSecret = combine.Reconstruction(shares);
          /* User Code */
           AV16updatedSecret = recoveredSecret.ToString();
-         AV15shamir_input.FromJSonString(AV16updatedSecret, null);
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV15shamir_input.gxTpr_Secret)) )
+         AV17shaFirst4 = StringUtil.Substring( AV16updatedSecret, 1, 4);
+         AV16updatedSecret = StringUtil.Substring( AV16updatedSecret, 5, StringUtil.Len( AV16updatedSecret));
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV16updatedSecret)) )
          {
             AV8secret = "";
          }
          else
          {
             GXt_char1 = AV11error;
-            new GeneXus.Programs.nbitcoin.sha256(context ).execute(  StringUtil.Trim( AV15shamir_input.gxTpr_Secret), out  AV14sha, out  GXt_char1) ;
+            new GeneXus.Programs.nbitcoin.sha256(context ).execute(  StringUtil.Trim( AV16updatedSecret), out  AV14sha, out  GXt_char1) ;
             AV11error = GXt_char1;
-            if ( StringUtil.StrCmp(AV15shamir_input.gxTpr_Sha256, StringUtil.Trim( AV14sha)) == 0 )
+            if ( StringUtil.StrCmp(StringUtil.Substring( AV14sha, 1, 4), AV17shaFirst4) == 0 )
             {
-               AV8secret = StringUtil.Trim( AV15shamir_input.gxTpr_Secret);
+               AV8secret = AV16updatedSecret;
             }
             else
             {
@@ -142,21 +143,21 @@ namespace GeneXus.Programs.shamirss {
          AV11error = "";
          AV12share = "";
          AV16updatedSecret = "";
-         AV15shamir_input = new GeneXus.Programs.shamirss.SdtShamir_input_SDT(context);
+         AV17shaFirst4 = "";
          GXt_char1 = "";
          AV14sha = "";
          /* GeneXus formulas. */
       }
 
-      private int AV17GXV1 ;
+      private int AV18GXV1 ;
       private string AV11error ;
+      private string AV17shaFirst4 ;
       private string GXt_char1 ;
       private string AV14sha ;
       private string AV8secret ;
       private string AV12share ;
       private string AV16updatedSecret ;
       private GxSimpleCollection<string> AV13shares ;
-      private GeneXus.Programs.shamirss.SdtShamir_input_SDT AV15shamir_input ;
       private string aP1_secret ;
       private string aP2_error ;
    }

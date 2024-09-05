@@ -83,6 +83,9 @@ namespace GeneXus.Programs.wallet
 			AddObjectProperty("ExtEncryptedSecret", gxTpr_Extencryptedsecret, false);
 
 
+			AddObjectProperty("useAuthenticator", gxTpr_Useauthenticator, false);
+
+
 			AddObjectProperty("NetworkType", gxTpr_Networktype, false);
 
 
@@ -158,6 +161,22 @@ namespace GeneXus.Programs.wallet
 			set {
 				gxTv_SdtWallet_Extencryptedsecret = value;
 				SetDirty("Extencryptedsecret");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="useAuthenticator")]
+		[XmlElement(ElementName="useAuthenticator")]
+		public bool gxTpr_Useauthenticator
+		{
+			get {
+				return gxTv_SdtWallet_Useauthenticator; 
+			}
+			set {
+				gxTv_SdtWallet_Useauthenticator = value;
+				SetDirty("Useauthenticator");
 			}
 		}
 
@@ -252,6 +271,7 @@ namespace GeneXus.Programs.wallet
 			gxTv_SdtWallet_Wallettype = "";
 			gxTv_SdtWallet_Encryptedsecret = "";
 			gxTv_SdtWallet_Extencryptedsecret = "";
+
 			gxTv_SdtWallet_Networktype = "";
 			gxTv_SdtWallet_Walletfilename = "";
 			gxTv_SdtWallet_Walletbasedirectory = "";
@@ -275,6 +295,9 @@ namespace GeneXus.Programs.wallet
 		 
 
 		protected string gxTv_SdtWallet_Extencryptedsecret;
+		 
+
+		protected bool gxTv_SdtWallet_Useauthenticator;
 		 
 
 		protected string gxTv_SdtWallet_Networktype;
@@ -346,7 +369,7 @@ namespace GeneXus.Programs.wallet
 		public  string gxTpr_Extencryptedsecret
 		{
 			get { 
-				return StringUtil.RTrim( sdt.gxTpr_Extencryptedsecret);
+				return sdt.gxTpr_Extencryptedsecret;
 
 			}
 			set { 
@@ -354,7 +377,19 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
-		[DataMember(Name="NetworkType", Order=4)]
+		[DataMember(Name="useAuthenticator", Order=4)]
+		public bool gxTpr_Useauthenticator
+		{
+			get { 
+				return sdt.gxTpr_Useauthenticator;
+
+			}
+			set { 
+				sdt.gxTpr_Useauthenticator = value;
+			}
+		}
+
+		[DataMember(Name="NetworkType", Order=5)]
 		public  string gxTpr_Networktype
 		{
 			get { 
@@ -366,7 +401,7 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
-		[DataMember(Name="WalletFileName", Order=5)]
+		[DataMember(Name="WalletFileName", Order=6)]
 		public  string gxTpr_Walletfilename
 		{
 			get { 
@@ -378,7 +413,7 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
-		[DataMember(Name="WalletBaseDirectory", Order=6)]
+		[DataMember(Name="WalletBaseDirectory", Order=7)]
 		public  string gxTpr_Walletbasedirectory
 		{
 			get { 
@@ -390,7 +425,7 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
-		[DataMember(Name="WalletReadBalanceOnStart", Order=7)]
+		[DataMember(Name="WalletReadBalanceOnStart", Order=8)]
 		public bool gxTpr_Walletreadbalanceonstart
 		{
 			get { 

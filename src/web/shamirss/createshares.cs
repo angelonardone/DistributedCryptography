@@ -89,9 +89,7 @@ namespace GeneXus.Programs.shamirss {
          GXt_char1 = AV11error;
          new GeneXus.Programs.nbitcoin.sha256(context ).execute(  StringUtil.Trim( AV8secret), out  AV16sha, out  GXt_char1) ;
          AV11error = GXt_char1;
-         AV14shamir_input.gxTpr_Secret = StringUtil.Trim( AV8secret);
-         AV14shamir_input.gxTpr_Sha256 = StringUtil.Trim( AV16sha);
-         AV15updatedSecret = AV14shamir_input.ToJSonString(false, true);
+         AV15updatedSecret = StringUtil.Substring( AV16sha, 1, 4) + StringUtil.Trim( AV8secret);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
          {
             /* User Code */
@@ -144,7 +142,6 @@ namespace GeneXus.Programs.shamirss {
          AV13shares = new GxSimpleCollection<string>();
          GXt_char1 = "";
          AV16sha = "";
-         AV14shamir_input = new GeneXus.Programs.shamirss.SdtShamir_input_SDT(context);
          AV15updatedSecret = "";
          AV12share = "";
          /* GeneXus formulas. */
@@ -160,7 +157,6 @@ namespace GeneXus.Programs.shamirss {
       private string AV12share ;
       private GxSimpleCollection<string> AV13shares ;
       private string aP4_error ;
-      private GeneXus.Programs.shamirss.SdtShamir_input_SDT AV14shamir_input ;
       private GxSimpleCollection<string> aP3_shares ;
    }
 

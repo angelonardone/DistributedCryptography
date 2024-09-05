@@ -22,6 +22,7 @@ namespace GeneXus.Programs.wallet {
       static gxdomainconstants ()
       {
          domain["TempPassword"] = "Temp Password";
+         domain["TempPINAuthenticator"] = "Temp PIN";
          domain["Wallet"] = "Wallet";
          domain["Key"] = "Key";
          domain["ExtendedKey"] = "Extended Key";
@@ -91,6 +92,7 @@ namespace GeneXus.Programs.wallet {
          {
             domainMap = new Hashtable();
             domainMap["TempPassword"] = "TempPassword";
+            domainMap["TempPIN"] = "TempPINAuthenticator";
             domainMap["Wallet"] = "Wallet";
             domainMap["Key"] = "Key";
             domainMap["ExtendedKey"] = "ExtendedKey";
