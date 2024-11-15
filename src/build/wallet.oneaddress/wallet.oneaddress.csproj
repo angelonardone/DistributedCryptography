@@ -49,9 +49,9 @@
 		<Compile Include = "$(WebDirectory)\electrum\retaddresselectrumformat.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\aesdecryptstring.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getkey.cs" />
-		<Compile Include = "$(WebDirectory)\electrum\getelectrumconfigservers.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\oneaddress.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
-		<Compile Include = "$(WebDirectory)\electrum\reversehexstring.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\getelectrumconfigservers.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setalladdress.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\searchinalladdress.cs" />
@@ -64,7 +64,7 @@
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gettransactionsfromservice.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\defaultparameters.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\oneaddress.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\reversehexstring.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\get_history.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\connect.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\unixtimetolocaldatetimeseconds.cs" />

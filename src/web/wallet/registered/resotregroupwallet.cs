@@ -198,10 +198,10 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1118140), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1118140), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1118140), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -779,6 +779,7 @@ namespace GeneXus.Programs.wallet.registered {
                AV6error = GXt_char2;
                AssignAttri("", false, "AV6error", AV6error);
                AV16wallet.gxTpr_Extencryptedsecret = AV20cypherText;
+               AV16wallet.gxTpr_Useauthenticator = false;
                AV16wallet.gxTpr_Walletname = AV17walletName;
                new GeneXus.Programs.wallet.createwalletfiles(context ).execute(  AV16wallet) ;
                AV26walletRestored = true;
@@ -864,7 +865,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20249514185231", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024111513324413", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -880,7 +881,7 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/registered/resotregroupwallet.js", "?20249514185231", false, true);
+         context.AddJavascriptSource("wallet/registered/resotregroupwallet.js", "?2024111513324413", false, true);
          /* End function include_jscripts */
       }
 

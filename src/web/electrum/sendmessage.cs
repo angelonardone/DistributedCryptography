@@ -77,9 +77,12 @@ namespace GeneXus.Programs.electrum {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         GXt_SdtConnection1 = AV16Connection;
-         new GeneXus.Programs.electrum.getelectrumconnid(context ).execute( out  GXt_SdtConnection1) ;
-         AV16Connection = GXt_SdtConnection1;
+         GXt_char1 = AV8error;
+         new GeneXus.Programs.electrum.connect(context ).execute( out  GXt_char1) ;
+         AV8error = GXt_char1;
+         GXt_SdtConnection2 = AV16Connection;
+         new GeneXus.Programs.electrum.getelectrumconnid(context ).execute( out  GXt_SdtConnection2) ;
+         AV16Connection = GXt_SdtConnection2;
          if ( StringUtil.StrCmp(AV16Connection.gxTpr_Connectiontype, "tcp") == 0 )
          {
             if ( AV13messageType == 20 )
@@ -150,8 +153,9 @@ namespace GeneXus.Programs.electrum {
       {
          AV14sendResponse = "";
          AV8error = "";
+         GXt_char1 = "";
          AV16Connection = new GeneXus.Programs.electrum.SdtConnection(context);
-         GXt_SdtConnection1 = new GeneXus.Programs.electrum.SdtConnection(context);
+         GXt_SdtConnection2 = new GeneXus.Programs.electrum.SdtConnection(context);
          AV18OperationResult = new GeneXus.Programs.gxinternetlib.SdtOperationResult(context);
          GxInternetLibTcp = new GeneXus.Programs.gxinternetlib.SdtGxInternetLibTcp(context);
          GxInternetLibWs = new GeneXus.Programs.gxinternetlib.SdtGxInternetLibWs(context);
@@ -160,10 +164,11 @@ namespace GeneXus.Programs.electrum {
 
       private short AV13messageType ;
       private string AV8error ;
+      private string GXt_char1 ;
       private string AV11message ;
       private string AV14sendResponse ;
       private GeneXus.Programs.electrum.SdtConnection AV16Connection ;
-      private GeneXus.Programs.electrum.SdtConnection GXt_SdtConnection1 ;
+      private GeneXus.Programs.electrum.SdtConnection GXt_SdtConnection2 ;
       private GeneXus.Programs.gxinternetlib.SdtOperationResult AV18OperationResult ;
       private GeneXus.Programs.gxinternetlib.SdtGxInternetLibTcp GxInternetLibTcp ;
       private GeneXus.Programs.gxinternetlib.SdtGxInternetLibWs GxInternetLibWs ;

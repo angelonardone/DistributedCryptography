@@ -71,6 +71,10 @@ namespace GeneXus.Programs.electrum
 
 			AddObjectProperty("result", gxTpr_Result, false);
 
+			if (gxTv_SdtelectrumRespBroadcastTran_Error != null)
+			{
+				AddObjectProperty("error", gxTv_SdtelectrumRespBroadcastTran_Error, false);
+			}
 			return;
 		}
 		#endregion
@@ -124,6 +128,43 @@ namespace GeneXus.Programs.electrum
 
 
 
+		[SoapElement(ElementName="error" )]
+		[XmlElement(ElementName="error" )]
+		public SdtelectrumRespBroadcastTran_error gxTpr_Error
+		{
+			get {
+				if ( gxTv_SdtelectrumRespBroadcastTran_Error == null )
+				{
+					gxTv_SdtelectrumRespBroadcastTran_Error = new SdtelectrumRespBroadcastTran_error(context);
+				}
+				gxTv_SdtelectrumRespBroadcastTran_Error_N = false;
+				return gxTv_SdtelectrumRespBroadcastTran_Error;
+			}
+			set {
+				gxTv_SdtelectrumRespBroadcastTran_Error_N = false;
+				gxTv_SdtelectrumRespBroadcastTran_Error = value;
+				SetDirty("Error");
+			}
+
+		}
+
+		public void gxTv_SdtelectrumRespBroadcastTran_Error_SetNull()
+		{
+			gxTv_SdtelectrumRespBroadcastTran_Error_N = true;
+			gxTv_SdtelectrumRespBroadcastTran_Error = null;
+		}
+
+		public bool gxTv_SdtelectrumRespBroadcastTran_Error_IsNull()
+		{
+			return gxTv_SdtelectrumRespBroadcastTran_Error == null;
+		}
+		public bool ShouldSerializegxTpr_Error_Json()
+		{
+				return (gxTv_SdtelectrumRespBroadcastTran_Error != null && gxTv_SdtelectrumRespBroadcastTran_Error.ShouldSerializeSdtJson());
+
+		}
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -148,6 +189,9 @@ namespace GeneXus.Programs.electrum
 			gxTv_SdtelectrumRespBroadcastTran_Id = "";
 			gxTv_SdtelectrumRespBroadcastTran_Jsonrpc = "";
 			gxTv_SdtelectrumRespBroadcastTran_Result = "";
+
+			gxTv_SdtelectrumRespBroadcastTran_Error_N = true;
+
 			return  ;
 		}
 
@@ -165,6 +209,9 @@ namespace GeneXus.Programs.electrum
 
 		protected string gxTv_SdtelectrumRespBroadcastTran_Result;
 		 
+		protected bool gxTv_SdtelectrumRespBroadcastTran_Error_N;
+		protected SdtelectrumRespBroadcastTran_error gxTv_SdtelectrumRespBroadcastTran_Error = null; 
+
 
 
 		#endregion
@@ -217,6 +264,23 @@ namespace GeneXus.Programs.electrum
 			set { 
 				 sdt.gxTpr_Result = value;
 			}
+		}
+
+		[DataMember(Name="error", Order=3, EmitDefaultValue=false)]
+		public SdtelectrumRespBroadcastTran_error_RESTInterface gxTpr_Error
+		{
+			get {
+				if (sdt.ShouldSerializegxTpr_Error_Json())
+					return new SdtelectrumRespBroadcastTran_error_RESTInterface(sdt.gxTpr_Error);
+				else
+					return null;
+
+			}
+
+			set {
+				sdt.gxTpr_Error = value.sdt;
+			}
+
 		}
 
 

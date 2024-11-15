@@ -108,6 +108,9 @@ namespace GeneXus.Programs.wallet.registered
 			AddObjectProperty("sendCoins", StringUtil.LTrim( StringUtil.Str( (decimal)gxTpr_Sendcoins, 16, 8)), false);
 
 
+			AddObjectProperty("transactionFee", StringUtil.LTrim( StringUtil.Str( (decimal)gxTpr_Transactionfee, 16, 8)), false);
+
+
 			AddObjectProperty("sendTo", gxTpr_Sendto, false);
 
 
@@ -242,6 +245,31 @@ namespace GeneXus.Programs.wallet.registered
 			set {
 				gxTv_SdtMuSigSignatures_Sendcoins = value;
 				SetDirty("Sendcoins");
+			}
+		}
+
+
+
+		[SoapElement(ElementName="transactionFee")]
+		[XmlElement(ElementName="transactionFee")]
+		public string gxTpr_Transactionfee_double
+		{
+			get {
+				return Convert.ToString(gxTv_SdtMuSigSignatures_Transactionfee, System.Globalization.CultureInfo.InvariantCulture);
+			}
+			set {
+				gxTv_SdtMuSigSignatures_Transactionfee = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+			}
+		}
+		[XmlIgnore]
+		public decimal gxTpr_Transactionfee
+		{
+			get {
+				return gxTv_SdtMuSigSignatures_Transactionfee; 
+			}
+			set {
+				gxTv_SdtMuSigSignatures_Transactionfee = value;
+				SetDirty("Transactionfee");
 			}
 		}
 
@@ -406,6 +434,7 @@ namespace GeneXus.Programs.wallet.registered
 
 
 
+
 			gxTv_SdtMuSigSignatures_Sendto = "";
 			gxTv_SdtMuSigSignatures_Changeto = "";
 
@@ -446,6 +475,9 @@ namespace GeneXus.Programs.wallet.registered
 		 
 
 		protected decimal gxTv_SdtMuSigSignatures_Sendcoins;
+		 
+
+		protected decimal gxTv_SdtMuSigSignatures_Transactionfee;
 		 
 
 		protected string gxTv_SdtMuSigSignatures_Sendto;
@@ -554,7 +586,19 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
-		[DataMember(Name="sendTo", Order=6)]
+		[DataMember(Name="transactionFee", Order=6)]
+		public  string gxTpr_Transactionfee
+		{
+			get { 
+				return StringUtil.LTrim( StringUtil.Str(  sdt.gxTpr_Transactionfee, 16, 8));
+
+			}
+			set { 
+				sdt.gxTpr_Transactionfee =  NumberUtil.Val( value, ".");
+			}
+		}
+
+		[DataMember(Name="sendTo", Order=7)]
 		public  string gxTpr_Sendto
 		{
 			get { 
@@ -566,7 +610,7 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
-		[DataMember(Name="changeTo", Order=7)]
+		[DataMember(Name="changeTo", Order=8)]
 		public  string gxTpr_Changeto
 		{
 			get { 
@@ -578,7 +622,7 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
-		[DataMember(Name="referenceGroupId", Order=8)]
+		[DataMember(Name="referenceGroupId", Order=9)]
 		public Guid gxTpr_Referencegroupid
 		{
 			get { 
@@ -590,7 +634,7 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
-		[DataMember(Name="senderUserName", Order=9)]
+		[DataMember(Name="senderUserName", Order=10)]
 		public  string gxTpr_Senderusername
 		{
 			get { 
@@ -602,7 +646,7 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
-		[DataMember(Name="senderSignature", Order=10)]
+		[DataMember(Name="senderSignature", Order=11)]
 		public  string gxTpr_Sendersignature
 		{
 			get { 
@@ -614,7 +658,7 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
-		[DataMember(Name="transactions", Order=11, EmitDefaultValue=false)]
+		[DataMember(Name="transactions", Order=12, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory_RESTInterface> gxTpr_Transactions
 		{
 			get { 

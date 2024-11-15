@@ -197,10 +197,10 @@ namespace GeneXus.Programs.distcrypt.sso {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1118140), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1118140), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1118140), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -692,7 +692,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20248131334039", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024111513323888", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -710,7 +710,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("distcrypt/sso/webloginanonymous.js", "?20248131334040", false, true);
+            context.AddJavascriptSource("distcrypt/sso/webloginanonymous.js", "?2024111513323888", false, true);
          }
          /* End function include_jscripts */
       }

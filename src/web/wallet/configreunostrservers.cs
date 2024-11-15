@@ -200,10 +200,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1118140), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1118140), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1118140), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -940,7 +940,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20248131334744", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024111513324821", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -956,7 +956,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/configreunostrservers.js", "?20248131334745", false, true);
+         context.AddJavascriptSource("wallet/configreunostrservers.js", "?2024111513324821", false, true);
          /* End function include_jscripts */
       }
 

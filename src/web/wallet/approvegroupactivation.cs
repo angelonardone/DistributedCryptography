@@ -198,10 +198,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1118140), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1118140), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1118140), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -641,7 +641,15 @@ namespace GeneXus.Programs.wallet {
          GXt_char2 = AV7error;
          new GeneXus.Programs.nbitcoin.eccdecrypt(context ).execute(  AV12keyInfo.gxTpr_Privatekey,  AV14wallet.gxTpr_Extencryptedsecret, out  AV5clearText, out  GXt_char2) ;
          AV7error = GXt_char2;
-         AV9extKeyCreate.gxTpr_Extendedprivatekey = AV5clearText;
+         if ( AV14wallet.gxTpr_Useauthenticator )
+         {
+            AV15extendeSecretAndAuthenticator.FromJSonString(AV5clearText, null);
+            AV9extKeyCreate.gxTpr_Extendedprivatekey = AV15extendeSecretAndAuthenticator.gxTpr_Extencryptedsecret;
+         }
+         else
+         {
+            AV9extKeyCreate.gxTpr_Extendedprivatekey = AV5clearText;
+         }
          AV9extKeyCreate.gxTpr_Networktype = AV14wallet.gxTpr_Networktype;
          GXt_char2 = AV7error;
          new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV9extKeyCreate,  AV13password, out  AV10extKeyInfo, out  GXt_char2) ;
@@ -714,7 +722,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20249514185311", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024111513324638", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -730,7 +738,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/approvegroupactivation.js", "?20249514185311", false, true);
+         context.AddJavascriptSource("wallet/approvegroupactivation.js", "?2024111513324638", false, true);
          /* End function include_jscripts */
       }
 
@@ -817,6 +825,7 @@ namespace GeneXus.Programs.wallet {
          AV7error = "";
          AV12keyInfo = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
          AV5clearText = "";
+         AV15extendeSecretAndAuthenticator = new GeneXus.Programs.wallet.SdtExtendeSecretAndAuthenticator(context);
          GXt_char2 = "";
          AV10extKeyInfo = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
          BackMsgLst = new msglist();
@@ -872,6 +881,7 @@ namespace GeneXus.Programs.wallet {
       private GeneXus.Programs.wallet.SdtWallet AV14wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo AV12keyInfo ;
+      private GeneXus.Programs.wallet.SdtExtendeSecretAndAuthenticator AV15extendeSecretAndAuthenticator ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV10extKeyInfo ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;

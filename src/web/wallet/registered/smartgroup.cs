@@ -114,7 +114,6 @@ namespace GeneXus.Programs.wallet.registered {
             {
                AV9groupId = StringUtil.StrToGuid( gxfirstwebparm);
                AssignAttri("", false, "AV9groupId", AV9groupId.ToString());
-               GxWebStd.gx_hidden_field( context, "gxhash_vGROUPID", GetSecureSignedToken( "", AV9groupId, context));
             }
             if ( toggleJsOutput )
             {
@@ -208,10 +207,10 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1118140), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1118140), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1118140), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -261,8 +260,6 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void send_integrity_footer_hashes( )
       {
-         GxWebStd.gx_hidden_field( context, "vGROUPID", AV9groupId.ToString());
-         GxWebStd.gx_hidden_field( context, "gxhash_vGROUPID", GetSecureSignedToken( "", AV9groupId, context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -280,7 +277,6 @@ namespace GeneXus.Programs.wallet.registered {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("Group_sdt", AV8group_sdt);
          }
          GxWebStd.gx_hidden_field( context, "vGROUPID", AV9groupId.ToString());
-         GxWebStd.gx_hidden_field( context, "gxhash_vGROUPID", GetSecureSignedToken( "", AV9groupId, context));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vGROUP_SDT", AV8group_sdt);
@@ -529,17 +525,14 @@ namespace GeneXus.Programs.wallet.registered {
                GxWebStd.ClassAttribute( context, "gxwebcomponent");
                context.WriteHtmlText( " id=\""+"gxHTMLWrpW0040"+""+"\""+"") ;
                context.WriteHtmlText( ">") ;
-               if ( StringUtil.Len( WebComp_Comp_walletbalance_Component) != 0 )
+               if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_walletbalance), StringUtil.Lower( WebComp_Comp_walletbalance_Component)) != 0 )
                {
-                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_walletbalance), StringUtil.Lower( WebComp_Comp_walletbalance_Component)) != 0 )
-                  {
-                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0040"+"");
-                  }
-                  WebComp_Comp_walletbalance.componentdraw();
-                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_walletbalance), StringUtil.Lower( WebComp_Comp_walletbalance_Component)) != 0 )
-                  {
-                     context.httpAjaxContext.ajax_rspEndCmp();
-                  }
+                  context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0040"+"");
+               }
+               WebComp_Comp_walletbalance.componentdraw();
+               if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_walletbalance), StringUtil.Lower( WebComp_Comp_walletbalance_Component)) != 0 )
+               {
+                  context.httpAjaxContext.ajax_rspEndCmp();
                }
                context.WriteHtmlText( "</div>") ;
             }
@@ -570,17 +563,14 @@ namespace GeneXus.Programs.wallet.registered {
                GxWebStd.ClassAttribute( context, "gxwebcomponent");
                context.WriteHtmlText( " id=\""+"gxHTMLWrpW0048"+""+"\""+"") ;
                context.WriteHtmlText( ">") ;
-               if ( StringUtil.Len( WebComp_Comp_signatures_Component) != 0 )
+               if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_signatures), StringUtil.Lower( WebComp_Comp_signatures_Component)) != 0 )
                {
-                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_signatures), StringUtil.Lower( WebComp_Comp_signatures_Component)) != 0 )
-                  {
-                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0048"+"");
-                  }
-                  WebComp_Comp_signatures.componentdraw();
-                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_signatures), StringUtil.Lower( WebComp_Comp_signatures_Component)) != 0 )
-                  {
-                     context.httpAjaxContext.ajax_rspEndCmp();
-                  }
+                  context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0048"+"");
+               }
+               WebComp_Comp_signatures.componentdraw();
+               if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_signatures), StringUtil.Lower( WebComp_Comp_signatures_Component)) != 0 )
+               {
+                  context.httpAjaxContext.ajax_rspEndCmp();
                }
                context.WriteHtmlText( "</div>") ;
             }
@@ -721,10 +711,7 @@ namespace GeneXus.Programs.wallet.registered {
                               WebComp_Comp_walletbalance.Name = "OldComp_walletbalance";
                               WebComp_Comp_walletbalance_Component = OldComp_walletbalance;
                            }
-                           if ( StringUtil.Len( WebComp_Comp_walletbalance_Component) != 0 )
-                           {
-                              WebComp_Comp_walletbalance.componentprocess("W0040", "", sEvt);
-                           }
+                           WebComp_Comp_walletbalance.componentprocess("W0040", "", sEvt);
                            WebComp_Comp_walletbalance_Component = OldComp_walletbalance;
                         }
                         else if ( nCmpId == 48 )
@@ -737,10 +724,7 @@ namespace GeneXus.Programs.wallet.registered {
                               WebComp_Comp_signatures.Name = "OldComp_signatures";
                               WebComp_Comp_signatures_Component = OldComp_signatures;
                            }
-                           if ( StringUtil.Len( WebComp_Comp_signatures_Component) != 0 )
-                           {
-                              WebComp_Comp_signatures.componentprocess("W0048", "", sEvt);
-                           }
+                           WebComp_Comp_signatures.componentprocess("W0048", "", sEvt);
                            WebComp_Comp_signatures_Component = OldComp_signatures;
                         }
                      }
@@ -870,20 +854,14 @@ namespace GeneXus.Programs.wallet.registered {
          {
             if ( 1 != 0 )
             {
-               if ( StringUtil.Len( WebComp_Comp_walletbalance_Component) != 0 )
-               {
-                  WebComp_Comp_walletbalance.componentstart();
-               }
+               WebComp_Comp_walletbalance.componentstart();
             }
          }
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             if ( 1 != 0 )
             {
-               if ( StringUtil.Len( WebComp_Comp_signatures_Component) != 0 )
-               {
-                  WebComp_Comp_signatures.componentstart();
-               }
+               WebComp_Comp_signatures.componentstart();
             }
          }
          gxdyncontrolsrefreshing = true;
@@ -1007,182 +985,6 @@ namespace GeneXus.Programs.wallet.registered {
             this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)2});
             this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)3});
          }
-         else if ( ( AV8group_sdt.gxTpr_Grouptype == 200 ) && AV8group_sdt.gxTpr_Amigroupowner )
-         {
-            /* Object Property */
-            if ( true )
-            {
-               bDynCreated_Comp_grouptype = true;
-            }
-            if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_grouptype_Component), StringUtil.Lower( "Wallet.registered.DelegationMultiSignature")) != 0 )
-            {
-               WebComp_Comp_grouptype = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.delegationmultisignature", new Object[] {context} );
-               WebComp_Comp_grouptype.ComponentInit();
-               WebComp_Comp_grouptype.Name = "Wallet.registered.DelegationMultiSignature";
-               WebComp_Comp_grouptype_Component = "Wallet.registered.DelegationMultiSignature";
-            }
-            if ( StringUtil.Len( WebComp_Comp_grouptype_Component) != 0 )
-            {
-               WebComp_Comp_grouptype.setjustcreated();
-               WebComp_Comp_grouptype.componentprepare(new Object[] {(string)"W0032",(string)""});
-               WebComp_Comp_grouptype.componentbind(new Object[] {});
-            }
-            if ( ! AV8group_sdt.gxTpr_Isactive )
-            {
-               this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)2});
-               this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)3});
-            }
-            else
-            {
-               /* Object Property */
-               if ( true )
-               {
-                  bDynCreated_Comp_walletbalance = true;
-               }
-               if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_walletbalance_Component), StringUtil.Lower( "Wallet.registered.DelegationMultiSigWallet")) != 0 )
-               {
-                  WebComp_Comp_walletbalance = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.delegationmultisigwallet", new Object[] {context} );
-                  WebComp_Comp_walletbalance.ComponentInit();
-                  WebComp_Comp_walletbalance.Name = "Wallet.registered.DelegationMultiSigWallet";
-                  WebComp_Comp_walletbalance_Component = "Wallet.registered.DelegationMultiSigWallet";
-               }
-               if ( StringUtil.Len( WebComp_Comp_walletbalance_Component) != 0 )
-               {
-                  WebComp_Comp_walletbalance.setjustcreated();
-                  WebComp_Comp_walletbalance.componentprepare(new Object[] {(string)"W0040",(string)"",(Guid)AV9groupId});
-                  WebComp_Comp_walletbalance.componentbind(new Object[] {(string)""});
-               }
-               /* Object Property */
-               if ( true )
-               {
-                  bDynCreated_Comp_signatures = true;
-               }
-               if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_signatures_Component), StringUtil.Lower( "Wallet.registered.DelegationMyltiSigAllSignatures")) != 0 )
-               {
-                  WebComp_Comp_signatures = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.delegationmyltisigallsignatures", new Object[] {context} );
-                  WebComp_Comp_signatures.ComponentInit();
-                  WebComp_Comp_signatures.Name = "Wallet.registered.DelegationMyltiSigAllSignatures";
-                  WebComp_Comp_signatures_Component = "Wallet.registered.DelegationMyltiSigAllSignatures";
-               }
-               if ( StringUtil.Len( WebComp_Comp_signatures_Component) != 0 )
-               {
-                  WebComp_Comp_signatures.setjustcreated();
-                  WebComp_Comp_signatures.componentprepare(new Object[] {(string)"W0048",(string)"",(Guid)AV9groupId});
-                  WebComp_Comp_signatures.componentbind(new Object[] {(string)""});
-               }
-            }
-         }
-         else if ( ( AV8group_sdt.gxTpr_Grouptype == 200 ) && ! AV8group_sdt.gxTpr_Amigroupowner )
-         {
-            /* Object Property */
-            if ( true )
-            {
-               bDynCreated_Comp_grouptype = true;
-            }
-            if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_grouptype_Component), StringUtil.Lower( "Wallet.registered.DelegationMultiSignatureNotOwner")) != 0 )
-            {
-               WebComp_Comp_grouptype = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.delegationmultisignaturenotowner", new Object[] {context} );
-               WebComp_Comp_grouptype.ComponentInit();
-               WebComp_Comp_grouptype.Name = "Wallet.registered.DelegationMultiSignatureNotOwner";
-               WebComp_Comp_grouptype_Component = "Wallet.registered.DelegationMultiSignatureNotOwner";
-            }
-            if ( StringUtil.Len( WebComp_Comp_grouptype_Component) != 0 )
-            {
-               WebComp_Comp_grouptype.setjustcreated();
-               WebComp_Comp_grouptype.componentprepare(new Object[] {(string)"W0032",(string)""});
-               WebComp_Comp_grouptype.componentbind(new Object[] {});
-            }
-            if ( ! AV8group_sdt.gxTpr_Isactive )
-            {
-               this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)2});
-               this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)3});
-            }
-            else
-            {
-               /* Object Property */
-               if ( true )
-               {
-                  bDynCreated_Comp_walletbalance = true;
-               }
-               if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_walletbalance_Component), StringUtil.Lower( "Wallet.registered.DelegationMultiSigWallet")) != 0 )
-               {
-                  WebComp_Comp_walletbalance = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.delegationmultisigwallet", new Object[] {context} );
-                  WebComp_Comp_walletbalance.ComponentInit();
-                  WebComp_Comp_walletbalance.Name = "Wallet.registered.DelegationMultiSigWallet";
-                  WebComp_Comp_walletbalance_Component = "Wallet.registered.DelegationMultiSigWallet";
-               }
-               if ( StringUtil.Len( WebComp_Comp_walletbalance_Component) != 0 )
-               {
-                  WebComp_Comp_walletbalance.setjustcreated();
-                  WebComp_Comp_walletbalance.componentprepare(new Object[] {(string)"W0040",(string)"",(Guid)AV9groupId});
-                  WebComp_Comp_walletbalance.componentbind(new Object[] {(string)""});
-               }
-               /* Object Property */
-               if ( true )
-               {
-                  bDynCreated_Comp_signatures = true;
-               }
-               if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_signatures_Component), StringUtil.Lower( "Wallet.registered.DelegationMyltiSigAllSignatures")) != 0 )
-               {
-                  WebComp_Comp_signatures = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.delegationmyltisigallsignatures", new Object[] {context} );
-                  WebComp_Comp_signatures.ComponentInit();
-                  WebComp_Comp_signatures.Name = "Wallet.registered.DelegationMyltiSigAllSignatures";
-                  WebComp_Comp_signatures_Component = "Wallet.registered.DelegationMyltiSigAllSignatures";
-               }
-               if ( StringUtil.Len( WebComp_Comp_signatures_Component) != 0 )
-               {
-                  WebComp_Comp_signatures.setjustcreated();
-                  WebComp_Comp_signatures.componentprepare(new Object[] {(string)"W0048",(string)"",(Guid)AV9groupId});
-                  WebComp_Comp_signatures.componentbind(new Object[] {(string)""});
-               }
-            }
-         }
-         else if ( ( AV8group_sdt.gxTpr_Grouptype == 300 ) && AV8group_sdt.gxTpr_Amigroupowner )
-         {
-            /* Object Property */
-            if ( true )
-            {
-               bDynCreated_Comp_grouptype = true;
-            }
-            if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_grouptype_Component), StringUtil.Lower( "Wallet.registered.VoteMultiSignature")) != 0 )
-            {
-               WebComp_Comp_grouptype = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.votemultisignature", new Object[] {context} );
-               WebComp_Comp_grouptype.ComponentInit();
-               WebComp_Comp_grouptype.Name = "Wallet.registered.VoteMultiSignature";
-               WebComp_Comp_grouptype_Component = "Wallet.registered.VoteMultiSignature";
-            }
-            if ( StringUtil.Len( WebComp_Comp_grouptype_Component) != 0 )
-            {
-               WebComp_Comp_grouptype.setjustcreated();
-               WebComp_Comp_grouptype.componentprepare(new Object[] {(string)"W0032",(string)""});
-               WebComp_Comp_grouptype.componentbind(new Object[] {});
-            }
-            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)2});
-            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)3});
-         }
-         else if ( ( AV8group_sdt.gxTpr_Grouptype == 100 ) && AV8group_sdt.gxTpr_Amigroupowner )
-         {
-            /* Object Property */
-            if ( true )
-            {
-               bDynCreated_Comp_grouptype = true;
-            }
-            if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_grouptype_Component), StringUtil.Lower( "Wallet.registered.MultiSignature")) != 0 )
-            {
-               WebComp_Comp_grouptype = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.multisignature", new Object[] {context} );
-               WebComp_Comp_grouptype.ComponentInit();
-               WebComp_Comp_grouptype.Name = "Wallet.registered.MultiSignature";
-               WebComp_Comp_grouptype_Component = "Wallet.registered.MultiSignature";
-            }
-            if ( StringUtil.Len( WebComp_Comp_grouptype_Component) != 0 )
-            {
-               WebComp_Comp_grouptype.setjustcreated();
-               WebComp_Comp_grouptype.componentprepare(new Object[] {(string)"W0032",(string)""});
-               WebComp_Comp_grouptype.componentbind(new Object[] {});
-            }
-            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)2});
-            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)3});
-         }
          else
          {
             GX_msglist.addItem("This type of group is not implemented yet");
@@ -1205,7 +1007,6 @@ namespace GeneXus.Programs.wallet.registered {
          initialize();
          AV9groupId = (Guid)getParm(obj,0);
          AssignAttri("", false, "AV9groupId", AV9groupId.ToString());
-         GxWebStd.gx_hidden_field( context, "gxhash_vGROUPID", GetSecureSignedToken( "", AV9groupId, context));
       }
 
       public override string getresponse( string sGXDynURL )
@@ -1243,17 +1044,11 @@ namespace GeneXus.Programs.wallet.registered {
          }
          if ( ! ( WebComp_Comp_walletbalance == null ) )
          {
-            if ( StringUtil.Len( WebComp_Comp_walletbalance_Component) != 0 )
-            {
-               WebComp_Comp_walletbalance.componentthemes();
-            }
+            WebComp_Comp_walletbalance.componentthemes();
          }
          if ( ! ( WebComp_Comp_signatures == null ) )
          {
-            if ( StringUtil.Len( WebComp_Comp_signatures_Component) != 0 )
-            {
-               WebComp_Comp_signatures.componentthemes();
-            }
+            WebComp_Comp_signatures.componentthemes();
          }
          bool outputEnabled = isOutputEnabled( );
          if ( context.isSpaRequest( ) )
@@ -1263,7 +1058,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024813133446", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411151454164", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1279,7 +1074,7 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/registered/smartgroup.js", "?2024813133447", false, true);
+         context.AddJavascriptSource("wallet/registered/smartgroup.js", "?202411151454164", false, true);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);
@@ -1294,8 +1089,9 @@ namespace GeneXus.Programs.wallet.registered {
          cmbavCtlgrouptype.WebTags = "";
          cmbavCtlgrouptype.addItem("0", "Select Group Type", 0);
          cmbavCtlgrouptype.addItem("10", "Wallet Backup", 0);
-         cmbavCtlgrouptype.addItem("200", "Delegation Multi Signature Wallet", 0);
-         cmbavCtlgrouptype.addItem("100", "Multi Signature Wallet", 0);
+         cmbavCtlgrouptype.addItem("100", "Mult-Signature Wallet", 0);
+         cmbavCtlgrouptype.addItem("200", "Delegation Multi-Signature Wallet", 0);
+         cmbavCtlgrouptype.addItem("800", "Delegation Multi Signature2", 0);
          cmbavCtlgrouptype.addItem("600", "Concensus File Vault", 0);
          cmbavCtlgrouptype.addItem("700", "Concensus Timed File Vault", 0);
          cmbavCtlgrouptype.addItem("300", "Vote based wallet", 0);
@@ -1374,7 +1170,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GXV3","fld":"CTLAMIGROUPOWNER"},{"av":"GXV4","fld":"CTLISACTIVE"},{"av":"AV9groupId","fld":"vGROUPID","hsh":true}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GXV3","fld":"CTLAMIGROUPOWNER"},{"av":"GXV4","fld":"CTLISACTIVE"}]}""");
          setEventMetadata("VALIDV_GXV1","""{"handler":"Validv_Gxv1","iparms":[]}""");
          return  ;
       }
@@ -1491,8 +1287,6 @@ namespace GeneXus.Programs.wallet.registered {
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private bool bDynCreated_Comp_grouptype ;
-      private bool bDynCreated_Comp_walletbalance ;
-      private bool bDynCreated_Comp_signatures ;
       private Guid AV9groupId ;
       private Guid wcpOAV9groupId ;
       private IGxSession AV5websession ;

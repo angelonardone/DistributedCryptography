@@ -242,10 +242,10 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1118140), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1118140), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1118140), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -1261,16 +1261,19 @@ namespace GeneXus.Programs.wallet.registered {
          AssignAttri("", false, "AV17grpupId", AV17grpupId.ToString());
          AV7error = GXt_char3;
          AssignAttri("", false, "AV7error", AV7error);
+         AV5group_sdt.gxTpr_Groupid = AV17grpupId;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV7error)) )
          {
-            GXt_char3 = AV25encryptionKey;
-            new GeneXus.Programs.wallet.getlastjasonencritionkey(context ).execute( out  GXt_char3) ;
-            AV25encryptionKey = GXt_char3;
-            AV5group_sdt.gxTpr_Groupid = AV17grpupId;
-            AV5group_sdt.gxTpr_Encpassword = AV25encryptionKey;
             AV15group_sdt_temp.gxTpr_Groupid = AV17grpupId;
-            AV15group_sdt_temp.gxTpr_Encpassword = AV25encryptionKey;
-            if ( AV5group_sdt.gxTpr_Grouptype == 200 )
+            if ( AV5group_sdt.gxTpr_Grouptype == 10 )
+            {
+               GXt_char3 = AV25encryptionKey;
+               new GeneXus.Programs.wallet.getlastjasonencritionkey(context ).execute( out  GXt_char3) ;
+               AV25encryptionKey = GXt_char3;
+               AV5group_sdt.gxTpr_Encpassword = AV25encryptionKey;
+               AV15group_sdt_temp.gxTpr_Encpassword = AV25encryptionKey;
+            }
+            if ( ( AV5group_sdt.gxTpr_Grouptype == 200 ) || ( AV5group_sdt.gxTpr_Grouptype == 800 ) )
             {
                GXt_char3 = AV7error;
                new GeneXus.Programs.nbitcoin.createexpubtkey(context ).execute(  AV32extKeyInfoRoot.gxTpr_Extended.gxTpr_Nuterpublickeytaproot,  AV33wallet.gxTpr_Networktype,  "2", out  AV35extPubKeyInfo, out  GXt_char3) ;
@@ -1358,7 +1361,7 @@ namespace GeneXus.Programs.wallet.registered {
                               {
                                  AV15group_sdt_temp.gxTpr_Groupid = AV5group_sdt.gxTpr_Groupid;
                                  AV15group_sdt_temp.gxTpr_Encpassword = AV5group_sdt.gxTpr_Encpassword;
-                                 if ( AV5group_sdt.gxTpr_Grouptype == 200 )
+                                 if ( ( AV5group_sdt.gxTpr_Grouptype == 200 ) || ( AV5group_sdt.gxTpr_Grouptype == 800 ) )
                                  {
                                     AV15group_sdt_temp.gxTpr_Extpubkeymultisigreceiving = AV5group_sdt.gxTpr_Extpubkeymultisigreceiving;
                                     AV15group_sdt_temp.gxTpr_Extpubkeymultisigchange = AV5group_sdt.gxTpr_Extpubkeymultisigchange;
@@ -1458,7 +1461,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20249514185464", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024111513324664", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1474,8 +1477,8 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("wallet/registered/smartgroups.js", "?20249514185464", false, true);
+         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1118140), false, true);
+         context.AddJavascriptSource("wallet/registered/smartgroups.js", "?2024111513324665", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -1598,8 +1601,9 @@ namespace GeneXus.Programs.wallet.registered {
             cmbavCtlgrouptype.WebTags = "";
             cmbavCtlgrouptype.addItem("0", "Select Group Type", 0);
             cmbavCtlgrouptype.addItem("10", "Wallet Backup", 0);
-            cmbavCtlgrouptype.addItem("200", "Delegation Multi Signature Wallet", 0);
-            cmbavCtlgrouptype.addItem("100", "Multi Signature Wallet", 0);
+            cmbavCtlgrouptype.addItem("100", "Mult-Signature Wallet", 0);
+            cmbavCtlgrouptype.addItem("200", "Delegation Multi-Signature Wallet", 0);
+            cmbavCtlgrouptype.addItem("800", "Delegation Multi Signature2", 0);
             cmbavCtlgrouptype.addItem("600", "Concensus File Vault", 0);
             cmbavCtlgrouptype.addItem("700", "Concensus Timed File Vault", 0);
             cmbavCtlgrouptype.addItem("300", "Vote based wallet", 0);
@@ -1689,8 +1693,9 @@ namespace GeneXus.Programs.wallet.registered {
          cmbavCtlgrouptype.WebTags = "";
          cmbavCtlgrouptype.addItem("0", "Select Group Type", 0);
          cmbavCtlgrouptype.addItem("10", "Wallet Backup", 0);
-         cmbavCtlgrouptype.addItem("200", "Delegation Multi Signature Wallet", 0);
-         cmbavCtlgrouptype.addItem("100", "Multi Signature Wallet", 0);
+         cmbavCtlgrouptype.addItem("100", "Mult-Signature Wallet", 0);
+         cmbavCtlgrouptype.addItem("200", "Delegation Multi-Signature Wallet", 0);
+         cmbavCtlgrouptype.addItem("800", "Delegation Multi Signature2", 0);
          cmbavCtlgrouptype.addItem("600", "Concensus File Vault", 0);
          cmbavCtlgrouptype.addItem("700", "Concensus Timed File Vault", 0);
          cmbavCtlgrouptype.addItem("300", "Vote based wallet", 0);

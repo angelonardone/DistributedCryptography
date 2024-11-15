@@ -97,7 +97,7 @@ namespace GeneXus.Programs.wallet.registered {
                   {
                      AV17oneGroup.gxTpr_Isactive = true;
                      AV17oneGroup.gxTpr_Minimumshares = AV12group_sdt.gxTpr_Minimumshares;
-                     if ( AV17oneGroup.gxTpr_Grouptype == 200 )
+                     if ( ( AV17oneGroup.gxTpr_Grouptype == 200 ) || ( AV17oneGroup.gxTpr_Grouptype == 800 ) )
                      {
                         AV26GXV3 = 1;
                         while ( AV26GXV3 <= AV12group_sdt.gxTpr_Contact.Count )

@@ -238,18 +238,18 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1118140), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1118140), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1118140), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1118140), false, true);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1118140), false, true);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1118140), false, true);
          context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
@@ -1283,7 +1283,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20249514185098", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024111513323832", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1299,7 +1299,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/encryptedfiles.js", "?20249514185098", false, true);
+         context.AddJavascriptSource("wallet/encryptedfiles.js", "?2024111513323834", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);

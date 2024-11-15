@@ -37,6 +37,7 @@
  	<Compile Include="$(WebDirectory)\electrum\type_SdtConnection.cs" />
  	<Compile Include="$(WebDirectory)\electrum\type_SdtConnectionParameters_ConnectionParametersItem.cs" />
  	<Compile Include="$(WebDirectory)\electrum\type_SdtelectrumRespBroadcastTran.cs" />
+ 	<Compile Include="$(WebDirectory)\electrum\type_SdtelectrumRespBroadcastTran_error.cs" />
  	<Compile Include="$(WebDirectory)\electrum\type_SdtelectrumRespEstimateFee.cs" />
  	<Compile Include="$(WebDirectory)\electrum\type_SdtelectrumRespGetHistory.cs" />
  	<Compile Include="$(WebDirectory)\electrum\type_SdtelectrumRespGetHistory_resultItem.cs" />
@@ -103,9 +104,6 @@
  	<Compile Include="$(WebDirectory)\nostr\type_SdtTagsOfTags.cs" />
  	<Compile Include="$(WebDirectory)\openapicommon\type_SdtApiResponse.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtprocessRecivedFromNostrTestSDT.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtSdtChosen_SdtChosenItem.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtSdtChosenResult.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtSdtChosenResultItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Rest_Parameters_Item.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtsendMesage__postInput.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtsendMesage__postOutput.cs" />

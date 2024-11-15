@@ -106,7 +106,7 @@ namespace GeneXus.Programs.wallet.registered {
                            AV19groupContact.gxTpr_Contactinvrec = true;
                            AV19groupContact.gxTpr_Contactgroupid = AV12group_sdt.gxTpr_Groupid;
                            AV19groupContact.gxTpr_Contactgroupencpassword = AV12group_sdt.gxTpr_Encpassword;
-                           if ( AV17oneGroup.gxTpr_Grouptype == 200 )
+                           if ( ( AV17oneGroup.gxTpr_Grouptype == 200 ) || ( AV17oneGroup.gxTpr_Grouptype == 800 ) )
                            {
                               AV19groupContact.gxTpr_Extpubkeymultisigreceiving = AV12group_sdt.gxTpr_Extpubkeymultisigreceiving;
                               AV19groupContact.gxTpr_Extpubkeymultisigchange = AV12group_sdt.gxTpr_Extpubkeymultisigchange;

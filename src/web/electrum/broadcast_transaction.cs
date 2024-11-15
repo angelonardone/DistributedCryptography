@@ -76,8 +76,12 @@ namespace GeneXus.Programs.electrum {
          GXt_char1 = AV8error;
          new GeneXus.Programs.electrum.sendmessage(context ).execute(  AV11sendMessage,  20, out  AV9messageResponse, out  GXt_char1) ;
          AV8error = GXt_char1;
-         AV14electrumRespBroadcastTran.FromJSonString(AV9messageResponse, null);
-         AV12transactionId = StringUtil.Trim( AV14electrumRespBroadcastTran.gxTpr_Result);
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
+         {
+            AV14electrumRespBroadcastTran.FromJSonString(AV9messageResponse, null);
+            AV8error = AV14electrumRespBroadcastTran.gxTpr_Error.gxTpr_Message;
+            AV12transactionId = StringUtil.Trim( AV14electrumRespBroadcastTran.gxTpr_Result);
+         }
          cleanup();
       }
 

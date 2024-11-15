@@ -93,10 +93,6 @@ namespace GeneXus.Programs.wallet {
             {
                AV11oneAddressHistory.gxTpr_Receiveddatetime = DateTimeUtil.Now( context);
             }
-            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV11oneAddressHistory.gxTpr_Description)) )
-            {
-               AV11oneAddressHistory.gxTpr_Receivedaddress = AV11oneAddressHistory.gxTpr_Description;
-            }
             AV11oneAddressHistory.gxTpr_Balance = ((DateTime.MinValue==AV11oneAddressHistory.gxTpr_Sentdatetime) ? AV11oneAddressHistory.gxTpr_Receivedamount : (decimal)(0));
             AV12SDTAddressHistory.Add(AV11oneAddressHistory, 0);
             AV13totalBalance = (decimal)(AV13totalBalance+(AV11oneAddressHistory.gxTpr_Balance));
