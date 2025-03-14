@@ -186,10 +186,10 @@ namespace GeneXus.Programs.wallet.registered {
             /* User Code */
              var spender = network.CreateTransaction();
             AV56signatureContacts = new GXBaseCollection<GeneXus.Programs.wallet.SdtMultiSigSignatureData>( context, "MultiSigSignatureData", "distributedcryptography");
-            AV78GXV1 = 1;
-            while ( AV78GXV1 <= AV61transactionsToSend.Count )
+            AV80GXV1 = 1;
+            while ( AV80GXV1 <= AV61transactionsToSend.Count )
             {
-               AV33oneAddressHistory = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV61transactionsToSend.Item(AV78GXV1));
+               AV33oneAddressHistory = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV61transactionsToSend.Item(AV80GXV1));
                AV16generatedType = AV33oneAddressHistory.gxTpr_Addressgeneratedtype;
                AV53sequence = AV33oneAddressHistory.gxTpr_Addresscreationsequence;
                AV30numPeers = (short)(AV17group_sdt.gxTpr_Contact.Count);
@@ -209,10 +209,10 @@ namespace GeneXus.Programs.wallet.registered {
                }
                AV23items = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
                AV55signatureContact = new GeneXus.Programs.wallet.SdtMultiSigSignatureData(context);
-               AV79GXV2 = 1;
-               while ( AV79GXV2 <= AV17group_sdt.gxTpr_Contact.Count )
+               AV81GXV2 = 1;
+               while ( AV81GXV2 <= AV17group_sdt.gxTpr_Contact.Count )
                {
-                  AV34oneContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV17group_sdt.gxTpr_Contact.Item(AV79GXV2));
+                  AV34oneContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV17group_sdt.gxTpr_Contact.Item(AV81GXV2));
                   if ( ( AV17group_sdt.gxTpr_Grouptype == 200 ) && ! ( AV34oneContact.gxTpr_Contactid == AV34oneContact.gxTpr_Contactgroupid ) )
                   {
                      if ( (Convert.ToDecimal( AV16generatedType ) == NumberUtil.Val( "2", ".") ) )
@@ -252,7 +252,7 @@ namespace GeneXus.Programs.wallet.registered {
                         if (true) return;
                      }
                   }
-                  AV79GXV2 = (int)(AV79GXV2+1);
+                  AV81GXV2 = (int)(AV81GXV2+1);
                }
                AV23items.Sort("");
                AV10currentCombination = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
@@ -279,10 +279,10 @@ namespace GeneXus.Programs.wallet.registered {
                GXt_objcol_char2 = AV8all_EC_PublicKey;
                new GeneXus.Programs.wallet.registered.getec_pubkeysfrommusigdata(context ).execute(  AV33oneAddressHistory, out  GXt_objcol_char2) ;
                AV8all_EC_PublicKey = GXt_objcol_char2;
-               AV80GXV3 = 1;
-               while ( AV80GXV3 <= AV14finalCombinations.Count )
+               AV82GXV3 = 1;
+               while ( AV82GXV3 <= AV14finalCombinations.Count )
                {
-                  AV15finalOneCombination = ((GeneXus.Programs.math.SdtfinalCombination)AV14finalCombinations.Item(AV80GXV3));
+                  AV15finalOneCombination = ((GeneXus.Programs.math.SdtfinalCombination)AV14finalCombinations.Item(AV82GXV3));
                   if ( AV33oneAddressHistory.gxTpr_Multisignaturedata.Count > 0 )
                   {
                      GXt_boolean3 = AV21isCombNeeded;
@@ -296,10 +296,10 @@ namespace GeneXus.Programs.wallet.registered {
                   AV38p = 0;
                   /* User Code */
                    ops.Clear();
-                  AV81GXV4 = 1;
-                  while ( AV81GXV4 <= AV15finalOneCombination.gxTpr_Items.Count )
+                  AV83GXV4 = 1;
+                  while ( AV83GXV4 <= AV15finalOneCombination.gxTpr_Items.Count )
                   {
-                     AV35oneItem = AV15finalOneCombination.gxTpr_Items.GetString(AV81GXV4);
+                     AV35oneItem = AV15finalOneCombination.gxTpr_Items.GetString(AV83GXV4);
                      /* User Code */
                       p = AV38p;
                      /* User Code */
@@ -330,7 +330,7 @@ namespace GeneXus.Programs.wallet.registered {
                         AV55signatureContact.gxTpr_Data.Add(AV57signatureData, 0);
                      }
                      AV38p = (int)(AV38p+1);
-                     AV81GXV4 = (int)(AV81GXV4+1);
+                     AV83GXV4 = (int)(AV83GXV4+1);
                   }
                   if ( AV28numMinSignatures == 2 )
                   {
@@ -422,7 +422,7 @@ namespace GeneXus.Programs.wallet.registered {
                   /* User Code */
                    scriptWeightsList.Add((probability, Scripts[i]));
                   AV19i = (int)(AV19i+1);
-                  AV80GXV3 = (int)(AV80GXV3+1);
+                  AV82GXV3 = (int)(AV82GXV3+1);
                }
                /* User Code */
                 var scriptWeights = scriptWeightsList.ToArray();
@@ -501,19 +501,19 @@ namespace GeneXus.Programs.wallet.registered {
                 	}
                AV59totalInUTXOs = (decimal)(AV59totalInUTXOs+(AV33oneAddressHistory.gxTpr_Balance));
                AV56signatureContacts.Add(AV55signatureContact, 0);
-               AV78GXV1 = (int)(AV78GXV1+1);
+               AV80GXV1 = (int)(AV80GXV1+1);
             }
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
             {
                if ( AV68estimateFeeOnly )
                {
-                  AV76signatureContactFeeOnly.FromJSonString(AV55signatureContact.ToJSonString(false, true), null);
-                  AV82GXV5 = 1;
-                  while ( AV82GXV5 <= AV55signatureContact.gxTpr_Data.Count )
+                  AV78signatureContactFeeOnly.FromJSonString(AV55signatureContact.ToJSonString(false, true), null);
+                  AV84GXV5 = 1;
+                  while ( AV84GXV5 <= AV55signatureContact.gxTpr_Data.Count )
                   {
-                     AV57signatureData = ((GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem)AV55signatureContact.gxTpr_Data.Item(AV82GXV5));
+                     AV57signatureData = ((GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem)AV55signatureContact.gxTpr_Data.Item(AV84GXV5));
                      AV71scriptIndexes.Add(AV57signatureData.gxTpr_I, 0);
-                     AV82GXV5 = (int)(AV82GXV5+1);
+                     AV84GXV5 = (int)(AV84GXV5+1);
                   }
                }
                AV70conditionDoWhile = true;
@@ -521,7 +521,7 @@ namespace GeneXus.Programs.wallet.registered {
                {
                   if ( AV68estimateFeeOnly )
                   {
-                     AV55signatureContact.FromJSonString(AV76signatureContactFeeOnly.ToJSonString(false, true), null);
+                     AV55signatureContact.FromJSonString(AV78signatureContactFeeOnly.ToJSonString(false, true), null);
                   }
                   /* User Code */
                    var destination = NBitcoin.BitcoinAddress.Create(AV51sendTo, network);
@@ -531,7 +531,7 @@ namespace GeneXus.Programs.wallet.registered {
                    NBitcoin.TxOut[] spentOutputsIn = spentAllOutputsIn.ToArray();
                   if ( AV68estimateFeeOnly )
                   {
-                     if ( ! AV77outputsAdded )
+                     if ( ! AV79outputsAdded )
                      {
                         if ( AV49sendAllCoins )
                         {
@@ -547,7 +547,7 @@ namespace GeneXus.Programs.wallet.registered {
                            /* User Code */
                             spender.Outputs.Add(NBitcoin.Money.Coins((decimal)AV47returnTotal), returnto);
                         }
-                        AV77outputsAdded = true;
+                        AV79outputsAdded = true;
                      }
                   }
                   else
@@ -601,20 +601,20 @@ namespace GeneXus.Programs.wallet.registered {
                   else
                   {
                      AV19i = 0;
-                     AV83GXV6 = 1;
-                     while ( AV83GXV6 <= AV61transactionsToSend.Count )
+                     AV85GXV6 = 1;
+                     while ( AV85GXV6 <= AV61transactionsToSend.Count )
                      {
-                        AV33oneAddressHistory = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV61transactionsToSend.Item(AV83GXV6));
+                        AV33oneAddressHistory = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV61transactionsToSend.Item(AV85GXV6));
                         /* User Code */
                          var i = AV19i;
-                        AV84GXV7 = 1;
-                        while ( AV84GXV7 <= AV56signatureContacts.Count )
+                        AV86GXV7 = 1;
+                        while ( AV86GXV7 <= AV56signatureContacts.Count )
                         {
-                           AV55signatureContact = ((GeneXus.Programs.wallet.SdtMultiSigSignatureData)AV56signatureContacts.Item(AV84GXV7));
-                           AV85GXV8 = 1;
-                           while ( AV85GXV8 <= AV55signatureContact.gxTpr_Data.Count )
+                           AV55signatureContact = ((GeneXus.Programs.wallet.SdtMultiSigSignatureData)AV56signatureContacts.Item(AV86GXV7));
+                           AV87GXV8 = 1;
+                           while ( AV87GXV8 <= AV55signatureContact.gxTpr_Data.Count )
                            {
-                              AV57signatureData = ((GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem)AV55signatureContact.gxTpr_Data.Item(AV85GXV8));
+                              AV57signatureData = ((GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem)AV55signatureContact.gxTpr_Data.Item(AV87GXV8));
                               if ( ( StringUtil.StrCmp(AV57signatureData.gxTpr_Transactionid, AV33oneAddressHistory.gxTpr_Receivedtransactionid) == 0 ) && ( AV57signatureData.gxTpr_N == AV33oneAddressHistory.gxTpr_Recivedn ) )
                               {
                                  AV48s = AV57signatureData.gxTpr_I;
@@ -632,18 +632,18 @@ namespace GeneXus.Programs.wallet.registered {
                                  /* User Code */
                                   var oneXonly = allXonlyPubKeys[i];
                                  /* User Code */
-                                  AV74oneXonlyPubKey = NBitcoin.DataEncoders.Encoders.Hex.EncodeData(oneXonly.ToBytes());
+                                  AV76oneXonlyPubKey = NBitcoin.DataEncoders.Encoders.Hex.EncodeData(oneXonly.ToBytes());
                                  /* User Code */
-                                  AV73oneSignatureTxt = NBitcoin.DataEncoders.Encoders.Hex.EncodeData(sig.ToBytes());
+                                  AV75oneSignatureTxt = NBitcoin.DataEncoders.Encoders.Hex.EncodeData(sig.ToBytes());
                                  if ( AV68estimateFeeOnly )
                                  {
-                                    GXt_char1 = AV73oneSignatureTxt;
+                                    GXt_char1 = AV75oneSignatureTxt;
                                     new GeneXus.Programs.wallet.registered.getdummysignature(context ).execute( out  GXt_char1) ;
-                                    AV73oneSignatureTxt = GXt_char1;
+                                    AV75oneSignatureTxt = GXt_char1;
                                  }
                                  AV36oneSignature = new GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem_signaturesItem(context);
-                                 AV36oneSignature.gxTpr_Signature = StringUtil.Trim( AV73oneSignatureTxt);
-                                 AV36oneSignature.gxTpr_Xonlypubkey = AV74oneXonlyPubKey;
+                                 AV36oneSignature.gxTpr_Signature = StringUtil.Trim( AV75oneSignatureTxt);
+                                 AV36oneSignature.gxTpr_Xonlypubkey = AV76oneXonlyPubKey;
                                  AV57signatureData.gxTpr_Signatures.Add(AV36oneSignature, 0);
                                  if ( AV68estimateFeeOnly )
                                  {
@@ -666,18 +666,18 @@ namespace GeneXus.Programs.wallet.registered {
                                        }
                                        else
                                        {
-                                          AV86GXV9 = 1;
-                                          while ( AV86GXV9 <= AV45returnMultiSigSignatureData.gxTpr_Data.Count )
+                                          AV88GXV9 = 1;
+                                          while ( AV88GXV9 <= AV45returnMultiSigSignatureData.gxTpr_Data.Count )
                                           {
-                                             AV44returnDataItem = ((GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem)AV45returnMultiSigSignatureData.gxTpr_Data.Item(AV86GXV9));
-                                             AV87GXV10 = 1;
-                                             while ( AV87GXV10 <= AV44returnDataItem.gxTpr_Signatures.Count )
+                                             AV44returnDataItem = ((GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem)AV45returnMultiSigSignatureData.gxTpr_Data.Item(AV88GXV9));
+                                             AV89GXV10 = 1;
+                                             while ( AV89GXV10 <= AV44returnDataItem.gxTpr_Signatures.Count )
                                              {
-                                                AV36oneSignature = ((GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem_signaturesItem)AV44returnDataItem.gxTpr_Signatures.Item(AV87GXV10));
+                                                AV36oneSignature = ((GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem_signaturesItem)AV44returnDataItem.gxTpr_Signatures.Item(AV89GXV10));
                                                 AV57signatureData.gxTpr_Signatures.Add(AV36oneSignature, 0);
-                                                AV87GXV10 = (int)(AV87GXV10+1);
+                                                AV89GXV10 = (int)(AV89GXV10+1);
                                              }
-                                             AV86GXV9 = (int)(AV86GXV9+1);
+                                             AV88GXV9 = (int)(AV88GXV9+1);
                                           }
                                           AV27numberSignatures = (short)(AV57signatureData.gxTpr_Signatures.Count);
                                           /* User Code */
@@ -690,25 +690,25 @@ namespace GeneXus.Programs.wallet.registered {
                                               var strScript = allScriptsArray[s].Script.ToString();
                                              /* User Code */
                                               AV67strScript = strScript;
-                                             new GeneXus.Programs.wallet.registered.ordersignaturestomatchscript(context ).execute(  AV68estimateFeeOnly,  AV67strScript,  AV57signatureData, out  AV75orderedSignatureData) ;
+                                             new GeneXus.Programs.wallet.registered.ordersignaturestomatchscript(context ).execute(  AV68estimateFeeOnly,  AV67strScript,  AV57signatureData, out  AV77orderedSignatureData) ;
                                              /* User Code */
                                               var countSignatures = 0;
                                              /* User Code */
                                               string sigString;
                                              /* User Code */
                                               var sigs = new NBitcoin.TaprootSignature[numberSignatures];
-                                             AV88GXV11 = 1;
-                                             while ( AV88GXV11 <= AV75orderedSignatureData.gxTpr_Signatures.Count )
+                                             AV90GXV11 = 1;
+                                             while ( AV90GXV11 <= AV77orderedSignatureData.gxTpr_Signatures.Count )
                                              {
-                                                AV36oneSignature = ((GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem_signaturesItem)AV75orderedSignatureData.gxTpr_Signatures.Item(AV88GXV11));
-                                                AV73oneSignatureTxt = AV36oneSignature.gxTpr_Signature;
+                                                AV36oneSignature = ((GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem_signaturesItem)AV77orderedSignatureData.gxTpr_Signatures.Item(AV90GXV11));
+                                                AV75oneSignatureTxt = AV36oneSignature.gxTpr_Signature;
                                                 /* User Code */
-                                                 sigString = AV73oneSignatureTxt;
+                                                 sigString = AV75oneSignatureTxt;
                                                 /* User Code */
                                                  sigs[countSignatures] = NBitcoin.TaprootSignature.Parse(sigString);
                                                 /* User Code */
                                                  countSignatures += 1;
-                                                AV88GXV11 = (int)(AV88GXV11+1);
+                                                AV90GXV11 = (int)(AV90GXV11+1);
                                              }
                                              /* User Code */
                                               for (var r = numberSignatures-1; r >= 0; r--)
@@ -729,12 +729,12 @@ namespace GeneXus.Programs.wallet.registered {
                                     }
                                  }
                               }
-                              AV85GXV8 = (int)(AV85GXV8+1);
+                              AV87GXV8 = (int)(AV87GXV8+1);
                            }
-                           AV84GXV7 = (int)(AV84GXV7+1);
+                           AV86GXV7 = (int)(AV86GXV7+1);
                         }
                         AV19i = (int)(AV19i+1);
-                        AV83GXV6 = (int)(AV83GXV6+1);
+                        AV85GXV6 = (int)(AV85GXV6+1);
                      }
                   }
                   /* User Code */
@@ -842,16 +842,16 @@ namespace GeneXus.Programs.wallet.registered {
          AV65sdt_oneAddress = new GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem(context);
          AV39privateKey = "";
          AV43receivedTransactionHex = "";
-         AV76signatureContactFeeOnly = new GeneXus.Programs.wallet.SdtMultiSigSignatureData(context);
+         AV78signatureContactFeeOnly = new GeneXus.Programs.wallet.SdtMultiSigSignatureData(context);
          AV71scriptIndexes = new GxSimpleCollection<int>();
-         AV74oneXonlyPubKey = "";
-         AV73oneSignatureTxt = "";
+         AV76oneXonlyPubKey = "";
+         AV75oneSignatureTxt = "";
          GXt_char1 = "";
          AV36oneSignature = new GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem_signaturesItem(context);
          AV45returnMultiSigSignatureData = new GeneXus.Programs.wallet.SdtMultiSigSignatureData(context);
          AV44returnDataItem = new GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem(context);
          AV67strScript = "";
-         AV75orderedSignatureData = new GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem(context);
+         AV77orderedSignatureData = new GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem(context);
          AV72virtualSizes = new GxSimpleCollection<long>();
          /* GeneXus formulas. */
       }
@@ -862,21 +862,21 @@ namespace GeneXus.Programs.wallet.registered {
       private short AV29numOfScripts ;
       private short AV69numDumySignatures ;
       private short AV27numberSignatures ;
-      private int AV78GXV1 ;
-      private int AV79GXV2 ;
+      private int AV80GXV1 ;
+      private int AV81GXV2 ;
       private int AV19i ;
-      private int AV80GXV3 ;
+      private int AV82GXV3 ;
       private int AV38p ;
-      private int AV81GXV4 ;
-      private int AV82GXV5 ;
-      private int AV83GXV6 ;
-      private int AV84GXV7 ;
-      private int AV85GXV8 ;
+      private int AV83GXV4 ;
+      private int AV84GXV5 ;
+      private int AV85GXV6 ;
+      private int AV86GXV7 ;
+      private int AV87GXV8 ;
       private int AV48s ;
       private int AV66t ;
-      private int AV86GXV9 ;
-      private int AV87GXV10 ;
-      private int AV88GXV11 ;
+      private int AV88GXV9 ;
+      private int AV89GXV10 ;
+      private int AV90GXV11 ;
       private long AV63virtualSize ;
       private long AV53sequence ;
       private long AV42receivedIn ;
@@ -898,8 +898,8 @@ namespace GeneXus.Programs.wallet.registered {
       private string AV35oneItem ;
       private string AV31one_address ;
       private string AV39privateKey ;
-      private string AV74oneXonlyPubKey ;
-      private string AV73oneSignatureTxt ;
+      private string AV76oneXonlyPubKey ;
+      private string AV75oneSignatureTxt ;
       private string GXt_char1 ;
       private bool AV68estimateFeeOnly ;
       private bool AV49sendAllCoins ;
@@ -907,7 +907,7 @@ namespace GeneXus.Programs.wallet.registered {
       private bool AV21isCombNeeded ;
       private bool GXt_boolean3 ;
       private bool AV70conditionDoWhile ;
-      private bool AV77outputsAdded ;
+      private bool AV79outputsAdded ;
       private string AV18hexTransaction ;
       private string AV43receivedTransactionHex ;
       private string AV67strScript ;
@@ -927,12 +927,12 @@ namespace GeneXus.Programs.wallet.registered {
       private GeneXus.Programs.math.SdtfinalCombination AV15finalOneCombination ;
       private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem AV57signatureData ;
       private GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem AV65sdt_oneAddress ;
-      private GeneXus.Programs.wallet.SdtMultiSigSignatureData AV76signatureContactFeeOnly ;
+      private GeneXus.Programs.wallet.SdtMultiSigSignatureData AV78signatureContactFeeOnly ;
       private GxSimpleCollection<int> AV71scriptIndexes ;
       private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem_signaturesItem AV36oneSignature ;
       private GeneXus.Programs.wallet.SdtMultiSigSignatureData AV45returnMultiSigSignatureData ;
       private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem AV44returnDataItem ;
-      private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem AV75orderedSignatureData ;
+      private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem AV77orderedSignatureData ;
       private GxSimpleCollection<long> AV72virtualSizes ;
       private long aP9_virtualSize ;
       private string aP10_hexTransaction ;

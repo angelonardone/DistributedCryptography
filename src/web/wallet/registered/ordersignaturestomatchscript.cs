@@ -41,9 +41,9 @@ namespace GeneXus.Programs.wallet.registered {
                            GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem aP2_signatureData ,
                            out GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem aP3_signatureDataOut )
       {
-         this.AV22estimateFeeOnly = aP0_estimateFeeOnly;
-         this.AV10script = aP1_script;
-         this.AV11signatureData = aP2_signatureData;
+         this.AV17estimateFeeOnly = aP0_estimateFeeOnly;
+         this.AV12script = aP1_script;
+         this.AV14signatureData = aP2_signatureData;
          this.AV15signatureDataOut = new GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem(context) ;
          initialize();
          ExecuteImpl();
@@ -63,9 +63,9 @@ namespace GeneXus.Programs.wallet.registered {
                                  GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem aP2_signatureData ,
                                  out GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem aP3_signatureDataOut )
       {
-         this.AV22estimateFeeOnly = aP0_estimateFeeOnly;
-         this.AV10script = aP1_script;
-         this.AV11signatureData = aP2_signatureData;
+         this.AV17estimateFeeOnly = aP0_estimateFeeOnly;
+         this.AV12script = aP1_script;
+         this.AV14signatureData = aP2_signatureData;
          this.AV15signatureDataOut = new GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem(context) ;
          SubmitImpl();
          aP3_signatureDataOut=this.AV15signatureDataOut;
@@ -75,44 +75,44 @@ namespace GeneXus.Programs.wallet.registered {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV15signatureDataOut.FromJSonString(AV11signatureData.ToJSonString(false, true), null);
-         if ( AV22estimateFeeOnly )
+         AV15signatureDataOut.FromJSonString(AV14signatureData.ToJSonString(false, true), null);
+         if ( AV17estimateFeeOnly )
          {
             cleanup();
             if (true) return;
          }
          AV15signatureDataOut.gxTpr_Signatures.Clear();
-         AV16retSplit = (GxSimpleCollection<string>)(GxRegex.Split(AV10script,"\\s\\d+\\sOP_NUMEQUAL"));
-         AV17filtered = ((string)AV16retSplit.Item(1));
-         AV16retSplit = (GxSimpleCollection<string>)(GxRegex.Split(AV17filtered," OP_CHECKSIG "));
-         AV17filtered = ((string)AV16retSplit.Item(2));
-         AV23orderedSignatures.Add(((string)AV16retSplit.Item(1)), 0);
-         AV16retSplit = (GxSimpleCollection<string>)(GxRegex.Split(AV17filtered," OP_CHECKSIGADD"));
-         AV24I = 1;
-         while ( AV24I <= AV16retSplit.Count )
+         AV11retSplit = (GxSimpleCollection<string>)(GxRegex.Split(AV12script,"\\s\\d+\\sOP_NUMEQUAL"));
+         AV8filtered = ((string)AV11retSplit.Item(1));
+         AV11retSplit = (GxSimpleCollection<string>)(GxRegex.Split(AV8filtered," OP_CHECKSIG "));
+         AV8filtered = ((string)AV11retSplit.Item(2));
+         AV18orderedSignatures.Add(((string)AV11retSplit.Item(1)), 0);
+         AV11retSplit = (GxSimpleCollection<string>)(GxRegex.Split(AV8filtered," OP_CHECKSIGADD"));
+         AV19I = 1;
+         while ( AV19I <= AV11retSplit.Count )
          {
-            AV23orderedSignatures.Add(((string)AV16retSplit.Item(AV24I)), 0);
-            AV24I = (short)(AV24I+1);
+            AV18orderedSignatures.Add(((string)AV11retSplit.Item(AV19I)), 0);
+            AV19I = (short)(AV19I+1);
          }
-         AV19totalSignatures = (short)(AV16retSplit.Count+1);
-         AV18signatureCount = 1;
-         while ( AV18signatureCount <= AV19totalSignatures )
+         AV16totalSignatures = (short)(AV11retSplit.Count+1);
+         AV13signatureCount = 1;
+         while ( AV13signatureCount <= AV16totalSignatures )
          {
-            AV25GXV1 = 1;
-            while ( AV25GXV1 <= AV11signatureData.gxTpr_Signatures.Count )
+            AV20GXV1 = 1;
+            while ( AV20GXV1 <= AV14signatureData.gxTpr_Signatures.Count )
             {
-               AV20oneSignature = ((GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem_signaturesItem)AV11signatureData.gxTpr_Signatures.Item(AV25GXV1));
-               if ( StringUtil.StrCmp(StringUtil.Trim( AV20oneSignature.gxTpr_Xonlypubkey), StringUtil.Trim( ((string)AV23orderedSignatures.Item(AV18signatureCount)))) == 0 )
+               AV10oneSignature = ((GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem_signaturesItem)AV14signatureData.gxTpr_Signatures.Item(AV20GXV1));
+               if ( StringUtil.StrCmp(StringUtil.Trim( AV10oneSignature.gxTpr_Xonlypubkey), StringUtil.Trim( ((string)AV18orderedSignatures.Item(AV13signatureCount)))) == 0 )
                {
-                  AV21newOneSignature = new GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem_signaturesItem(context);
-                  AV21newOneSignature.gxTpr_Signature = StringUtil.Trim( AV20oneSignature.gxTpr_Signature);
-                  AV21newOneSignature.gxTpr_Xonlypubkey = StringUtil.Trim( AV20oneSignature.gxTpr_Xonlypubkey);
-                  AV15signatureDataOut.gxTpr_Signatures.Add(AV21newOneSignature, 0);
+                  AV9newOneSignature = new GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem_signaturesItem(context);
+                  AV9newOneSignature.gxTpr_Signature = StringUtil.Trim( AV10oneSignature.gxTpr_Signature);
+                  AV9newOneSignature.gxTpr_Xonlypubkey = StringUtil.Trim( AV10oneSignature.gxTpr_Xonlypubkey);
+                  AV15signatureDataOut.gxTpr_Signatures.Add(AV9newOneSignature, 0);
                   if (true) break;
                }
-               AV25GXV1 = (int)(AV25GXV1+1);
+               AV20GXV1 = (int)(AV20GXV1+1);
             }
-            AV18signatureCount = (short)(AV18signatureCount+1);
+            AV13signatureCount = (short)(AV13signatureCount+1);
          }
          cleanup();
       }
@@ -130,27 +130,27 @@ namespace GeneXus.Programs.wallet.registered {
       public override void initialize( )
       {
          AV15signatureDataOut = new GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem(context);
-         AV16retSplit = new GxSimpleCollection<string>();
-         AV17filtered = "";
-         AV23orderedSignatures = new GxSimpleCollection<string>();
-         AV20oneSignature = new GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem_signaturesItem(context);
-         AV21newOneSignature = new GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem_signaturesItem(context);
+         AV11retSplit = new GxSimpleCollection<string>();
+         AV8filtered = "";
+         AV18orderedSignatures = new GxSimpleCollection<string>();
+         AV10oneSignature = new GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem_signaturesItem(context);
+         AV9newOneSignature = new GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem_signaturesItem(context);
          /* GeneXus formulas. */
       }
 
-      private short AV24I ;
-      private short AV19totalSignatures ;
-      private short AV18signatureCount ;
-      private int AV25GXV1 ;
-      private bool AV22estimateFeeOnly ;
-      private string AV10script ;
-      private string AV17filtered ;
-      private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem AV11signatureData ;
+      private short AV19I ;
+      private short AV16totalSignatures ;
+      private short AV13signatureCount ;
+      private int AV20GXV1 ;
+      private bool AV17estimateFeeOnly ;
+      private string AV12script ;
+      private string AV8filtered ;
+      private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem AV14signatureData ;
       private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem AV15signatureDataOut ;
-      private GxSimpleCollection<string> AV16retSplit ;
-      private GxSimpleCollection<string> AV23orderedSignatures ;
-      private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem_signaturesItem AV20oneSignature ;
-      private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem_signaturesItem AV21newOneSignature ;
+      private GxSimpleCollection<string> AV11retSplit ;
+      private GxSimpleCollection<string> AV18orderedSignatures ;
+      private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem_signaturesItem AV10oneSignature ;
+      private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem_signaturesItem AV9newOneSignature ;
       private GeneXus.Programs.wallet.SdtMultiSigSignatureData_DataItem aP3_signatureDataOut ;
    }
 
