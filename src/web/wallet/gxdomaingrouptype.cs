@@ -23,12 +23,11 @@ namespace GeneXus.Programs.wallet {
       {
          domain[(short)0] = "Select Group Type";
          domain[(short)10] = "Wallet Backup";
-         domain[(short)100] = "Mult-Signature Wallet";
          domain[(short)200] = "Delegation Multi-Signature Wallet";
-         domain[(short)800] = "Delegation Multi Signature2";
+         domain[(short)300] = "Shared based Multi-Signature Wallet";
+         domain[(short)800] = "Synchronous Delegation Mult-Signature Wallet";
          domain[(short)600] = "Concensus File Vault";
          domain[(short)700] = "Concensus Timed File Vault";
-         domain[(short)300] = "Vote based wallet";
       }
 
       public static string getDescription( IGxContext context ,
@@ -58,12 +57,11 @@ namespace GeneXus.Programs.wallet {
             domainMap = new Hashtable();
             domainMap["SelectGroupType"] = (short)0;
             domainMap["WalletBackup"] = (short)10;
-            domainMap["MultiSignature"] = (short)100;
             domainMap["DelegationMultiSignature"] = (short)200;
+            domainMap["SharedMultiSignature"] = (short)300;
             domainMap["DelegationMultiSignature2"] = (short)800;
             domainMap["ConcensusFileVault"] = (short)600;
             domainMap["ConcensusTimedFileVault"] = (short)700;
-            domainMap["VoteMultiSignature"] = (short)300;
          }
          return (short)domainMap[key] ;
       }

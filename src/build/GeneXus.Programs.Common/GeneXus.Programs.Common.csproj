@@ -26,6 +26,9 @@
 		<Reference Include="GxInternetLib.dll" > 
 			<HintPath>$(WebBinDirectory)\GxInternetLib.dll</HintPath>
 		</Reference>
+		<Reference Include="MultiSignature.dll" > 
+			<HintPath>$(WebBinDirectory)\MultiSignature.dll</HintPath>
+		</Reference>
 
 
 	</ItemGroup>
@@ -33,7 +36,7 @@
 	<ItemGroup>
 		<Compile Include = "$(WebDirectory)\electrum\gxdomainmessagetype.cs" />
 		<Compile Include = "$(WebDirectory)\nostr\gxdomainconstants.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainnetworktype.cs" />
+		<Compile Include = "$(WebDirectory)\testmusig\type_SdtContactItem.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gxdomainmessagetype.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\gxdomainconnectiontype.cs" />
 		<Compile Include = "$(WebDirectory)\nostr\gxdomainkindtype.cs" />
@@ -43,8 +46,10 @@
 		<Compile Include = "$(WebDirectory)\gxinternetlib\type_SdtGxInternetLibTcp.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gxdomainestimatesmartfeetype.cs" />
 		<Compile Include = "$(WebDirectory)\sudodb\gxdomainconstants.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\gxdomainconstants.cs" />
 		<Compile Include = "$(WebDirectory)\gxdomainswipedirection.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomaincreateextkeytype.cs" />
+		<Compile Include = "$(WebDirectory)\testmusig\type_SdtGroupSDT.cs" />
 		<Compile Include = "$(WebDirectory)\GxWebServicesConfig.cs" />
 		<Compile Include = "$(WebDirectory)\gxdomaintoastrposition.cs" />
 		<Compile Include = "$(WebDirectory)\gxdomainfckeditorobjectinterface.cs" />
@@ -56,16 +61,19 @@
 		<Compile Include = "$(WebDirectory)\wallet\gxdomainintconstants.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainaddresstype.cs" />
 		<Compile Include = "$(WebDirectory)\GxModelInfoProvider.cs" />
-		<Compile Include = "$(WebDirectory)\distcrypt\gxdomainconstants.cs" />
+		<Compile Include = "$(WebDirectory)\testmusig\type_SdtMuSigSignaturesItem.cs" />
 		<Compile Include = "$(WebDirectory)\googleauthenticator\type_SdtBase32Encoding.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gxdomainwallettype.cs" />
 		<Compile Include = "$(WebDirectory)\GxWebStd.cs" />
+		<Compile Include = "$(WebDirectory)\testmusig\type_SdtGroupProcessor.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gxdomaingrouptype.cs" />
 		<Compile Include = "$(WebDirectory)\SoapParm.cs" />
 		<Compile Include = "$(WebDirectory)\googleauthenticator\type_SdtSetupCode.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainmnemoniclanguage.cs" />
-		<Compile Include = "$(WebDirectory)\nostr\gxdomainresponsetype.cs" />
+		<Compile Include = "$(WebDirectory)\testmusig\type_SdtOtherGroup.cs" />
 		<Compile Include = "$(WebDirectory)\googleauthenticator\type_SdtTwoFactorAuthenticator.cs" />
+		<Compile Include = "$(WebDirectory)\nostr\gxdomainresponsetype.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainnetworktype.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainextendedkeytype.cs" />
 		<Compile Include = "$(WebDirectory)\gxinternetlib\type_SdtOperationResult.cs" />
 		<Compile Include = "$(WebDirectory)\gxinternetlib\type_SdtGxInternetLibWs.cs" />

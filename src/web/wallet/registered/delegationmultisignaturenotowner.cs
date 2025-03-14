@@ -1125,93 +1125,19 @@ namespace GeneXus.Programs.wallet.registered {
          GXt_SdtExternalUser1 = AV13externalUser;
          new GeneXus.Programs.distcrypt.getexternaluser(context ).execute( out  GXt_SdtExternalUser1) ;
          AV13externalUser = GXt_SdtExternalUser1;
-         AV17group_sdt_my.FromJSonString(AV6websession.Get("Group_EDIT"), null);
-         if ( AV17group_sdt_my.gxTpr_Isactive )
+         AV15group_sdt.FromJSonString(AV6websession.Get("Group_EDIT"), null);
+         AV21groupContacts.Clear();
+         gx_BV14 = true;
+         AV50GXV8 = 1;
+         while ( AV50GXV8 <= AV15group_sdt.gxTpr_Contact.Count )
          {
-            AV15group_sdt = AV17group_sdt_my;
-         }
-         else
-         {
-            GXt_char2 = AV11error;
-            new GeneXus.Programs.wallet.registered.getgroupbyid(context ).execute(  AV17group_sdt_my.gxTpr_Othergroup.gxTpr_Referencegroupid,  AV17group_sdt_my.gxTpr_Othergroup.gxTpr_Encpassword, out  AV15group_sdt, out  GXt_char2) ;
-            AV11error = GXt_char2;
-            AssignAttri(sPrefix, false, "AV11error", AV11error);
-            if ( ! AV17group_sdt_my.gxTpr_Isactive && AV15group_sdt.gxTpr_Isactive )
+            AV5groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV15group_sdt.gxTpr_Contact.Item(AV50GXV8));
+            if ( ! ( AV5groupContact.gxTpr_Contactid == AV5groupContact.gxTpr_Contactgroupid ) )
             {
-               AV17group_sdt_my.gxTpr_Isactive = true;
-               AV17group_sdt_my.gxTpr_Minimumshares = AV15group_sdt.gxTpr_Minimumshares;
-               AV50GXV8 = 1;
-               while ( AV50GXV8 <= AV17group_sdt_my.gxTpr_Contact.Count )
-               {
-                  AV42oneContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV17group_sdt_my.gxTpr_Contact.Item(AV50GXV8));
-                  AV17group_sdt_my.gxTpr_Contact.RemoveItem(AV17group_sdt_my.gxTpr_Contact.IndexOf(AV42oneContact));
-                  AV50GXV8 = (int)(AV50GXV8+1);
-               }
-               AV51GXV9 = 1;
-               while ( AV51GXV9 <= AV15group_sdt.gxTpr_Contact.Count )
-               {
-                  AV42oneContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV15group_sdt.gxTpr_Contact.Item(AV51GXV9));
-                  AV17group_sdt_my.gxTpr_Contact.Add(AV42oneContact, 0);
-                  AV51GXV9 = (int)(AV51GXV9+1);
-               }
-               AV17group_sdt_my.gxTpr_Othergroup.gxTpr_Extpubkeymultisigreceiving = AV15group_sdt.gxTpr_Extpubkeymultisigreceiving;
-               AV17group_sdt_my.gxTpr_Othergroup.gxTpr_Extpubkeymultisigchange = AV15group_sdt.gxTpr_Extpubkeymultisigchange;
-               GXt_char2 = AV11error;
-               new GeneXus.Programs.wallet.registered.updategroup(context ).execute(  AV17group_sdt_my,  StringUtil.Trim( AV17group_sdt_my.gxTpr_Othergroup.gxTpr_Encpassword), out  AV22grpupId, out  GXt_char2) ;
-               AV11error = GXt_char2;
-               AssignAttri(sPrefix, false, "AV11error", AV11error);
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
-               {
-                  AV7all_groups_sdt.Clear();
-                  AV7all_groups_sdt.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "gropus.enc", out  AV11error), null);
-                  AV52GXV10 = 1;
-                  while ( AV52GXV10 <= AV7all_groups_sdt.Count )
-                  {
-                     AV16group_sdt_delete = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV7all_groups_sdt.Item(AV52GXV10));
-                     if ( AV16group_sdt_delete.gxTpr_Groupid == AV17group_sdt_my.gxTpr_Groupid )
-                     {
-                        AV7all_groups_sdt.RemoveItem(AV7all_groups_sdt.IndexOf(AV16group_sdt_delete));
-                     }
-                     AV52GXV10 = (int)(AV52GXV10+1);
-                  }
-                  AV7all_groups_sdt.Add(AV17group_sdt_my, 0);
-                  new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  "gropus.enc",  AV7all_groups_sdt.ToJSonString(false), out  AV11error) ;
-                  AssignAttri(sPrefix, false, "AV11error", AV11error);
-                  if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
-                  {
-                     this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"success",(string)"Group Activation",(string)"This group has been activated"}, true);
-                  }
-                  else
-                  {
-                     GX_msglist.addItem(AV11error);
-                  }
-               }
-               else
-               {
-                  GX_msglist.addItem(AV11error);
-               }
-               AV15group_sdt = AV17group_sdt_my;
+               AV21groupContacts.Add(AV5groupContact, 0);
+               gx_BV14 = true;
             }
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
-         {
-            AV21groupContacts.Clear();
-            gx_BV14 = true;
-            AV53GXV11 = 1;
-            while ( AV53GXV11 <= AV15group_sdt.gxTpr_Contact.Count )
-            {
-               AV5groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV15group_sdt.gxTpr_Contact.Item(AV53GXV11));
-               if ( ( AV15group_sdt.gxTpr_Grouptype == 200 ) && ! ( AV5groupContact.gxTpr_Contactid == AV5groupContact.gxTpr_Contactgroupid ) )
-               {
-                  AV21groupContacts.Add(AV5groupContact, 0);
-                  gx_BV14 = true;
-               }
-               AV53GXV11 = (int)(AV53GXV11+1);
-            }
-         }
-         else
-         {
-            GX_msglist.addItem(AV11error);
+            AV50GXV8 = (int)(AV50GXV8+1);
          }
       }
 
@@ -1433,7 +1359,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20249513571233", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531412511182", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1449,7 +1375,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/delegationmultisignaturenotowner.js", "?20249513571234", false, true);
+         context.AddJavascriptSource("wallet/registered/delegationmultisignaturenotowner.js", "?202531412511182", false, true);
          /* End function include_jscripts */
       }
 
@@ -1800,12 +1726,6 @@ namespace GeneXus.Programs.wallet.registered {
          AV13externalUser = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
          GXt_SdtExternalUser1 = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
          AV6websession = context.GetSession();
-         AV11error = "";
-         AV42oneContact = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem(context);
-         GXt_char2 = "";
-         AV22grpupId = Guid.Empty;
-         AV7all_groups_sdt = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT>( context, "Group_SDT", "distributedcryptography");
-         AV16group_sdt_delete = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
          AV5groupContact = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem(context);
          GridcontactsRow = new GXWebRow();
          BackMsgLst = new msglist();
@@ -1852,9 +1772,6 @@ namespace GeneXus.Programs.wallet.registered {
       private int subGridcontacts_Islastpage ;
       private int nGXsfl_14_fel_idx=1 ;
       private int AV50GXV8 ;
-      private int AV51GXV9 ;
-      private int AV52GXV10 ;
-      private int AV53GXV11 ;
       private int edtavCtlcontactprivatename_Visible ;
       private int edtavCtlcontactusername_Visible ;
       private int idxLst ;
@@ -1901,8 +1818,6 @@ namespace GeneXus.Programs.wallet.registered {
       private string EvtRowId ;
       private string sEvtType ;
       private string sGXsfl_14_fel_idx="0001" ;
-      private string AV11error ;
-      private string GXt_char2 ;
       private string subGridcontacts_Class ;
       private string subGridcontacts_Linesclass ;
       private string ROClassString ;
@@ -1921,7 +1836,6 @@ namespace GeneXus.Programs.wallet.registered {
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private bool gx_BV14 ;
-      private Guid AV22grpupId ;
       private IGxSession AV6websession ;
       private GXWebGrid GridcontactsContainer ;
       private GXWebRow GridcontactsRow ;
@@ -1933,9 +1847,6 @@ namespace GeneXus.Programs.wallet.registered {
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem> AV21groupContacts ;
       private GeneXus.Programs.distcrypt.SdtExternalUser AV13externalUser ;
       private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV42oneContact ;
-      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT> AV7all_groups_sdt ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV16group_sdt_delete ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV5groupContact ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;

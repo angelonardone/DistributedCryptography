@@ -42,9 +42,10 @@ namespace GeneXus.Programs.wallet.registered {
                            decimal aP3_sendCoins ,
                            string aP4_sendTo ,
                            string aP5_changeTo ,
-                           Guid aP6_signatureID ,
-                           bool aP7_muSigCompleated ,
-                           out string aP8_error )
+                           decimal aP6_transactionFee ,
+                           Guid aP7_signatureID ,
+                           bool aP8_muSigCompleated ,
+                           out string aP9_error )
       {
          this.AV17group_sdt = aP0_group_sdt;
          this.AV22sendAllCoins = aP1_sendAllCoins;
@@ -52,12 +53,13 @@ namespace GeneXus.Programs.wallet.registered {
          this.AV23sendCoins = aP3_sendCoins;
          this.AV24sendTo = aP4_sendTo;
          this.AV10changeTo = aP5_changeTo;
-         this.AV71signatureID = aP6_signatureID;
-         this.AV68muSigCompleated = aP7_muSigCompleated;
+         this.AV76transactionFee = aP6_transactionFee;
+         this.AV71signatureID = aP7_signatureID;
+         this.AV68muSigCompleated = aP8_muSigCompleated;
          this.AV14error = "" ;
          initialize();
          ExecuteImpl();
-         aP8_error=this.AV14error;
+         aP9_error=this.AV14error;
       }
 
       public string executeUdp( GeneXus.Programs.wallet.registered.SdtGroup_SDT aP0_group_sdt ,
@@ -66,10 +68,11 @@ namespace GeneXus.Programs.wallet.registered {
                                 decimal aP3_sendCoins ,
                                 string aP4_sendTo ,
                                 string aP5_changeTo ,
-                                Guid aP6_signatureID ,
-                                bool aP7_muSigCompleated )
+                                decimal aP6_transactionFee ,
+                                Guid aP7_signatureID ,
+                                bool aP8_muSigCompleated )
       {
-         execute(aP0_group_sdt, aP1_sendAllCoins, aP2_transactionsToSend, aP3_sendCoins, aP4_sendTo, aP5_changeTo, aP6_signatureID, aP7_muSigCompleated, out aP8_error);
+         execute(aP0_group_sdt, aP1_sendAllCoins, aP2_transactionsToSend, aP3_sendCoins, aP4_sendTo, aP5_changeTo, aP6_transactionFee, aP7_signatureID, aP8_muSigCompleated, out aP9_error);
          return AV14error ;
       }
 
@@ -79,9 +82,10 @@ namespace GeneXus.Programs.wallet.registered {
                                  decimal aP3_sendCoins ,
                                  string aP4_sendTo ,
                                  string aP5_changeTo ,
-                                 Guid aP6_signatureID ,
-                                 bool aP7_muSigCompleated ,
-                                 out string aP8_error )
+                                 decimal aP6_transactionFee ,
+                                 Guid aP7_signatureID ,
+                                 bool aP8_muSigCompleated ,
+                                 out string aP9_error )
       {
          this.AV17group_sdt = aP0_group_sdt;
          this.AV22sendAllCoins = aP1_sendAllCoins;
@@ -89,29 +93,30 @@ namespace GeneXus.Programs.wallet.registered {
          this.AV23sendCoins = aP3_sendCoins;
          this.AV24sendTo = aP4_sendTo;
          this.AV10changeTo = aP5_changeTo;
-         this.AV71signatureID = aP6_signatureID;
-         this.AV68muSigCompleated = aP7_muSigCompleated;
+         this.AV76transactionFee = aP6_transactionFee;
+         this.AV71signatureID = aP7_signatureID;
+         this.AV68muSigCompleated = aP8_muSigCompleated;
          this.AV14error = "" ;
          SubmitImpl();
-         aP8_error=this.AV14error;
+         aP9_error=this.AV14error;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV76GXV1 = 1;
-         while ( AV76GXV1 <= AV32transactionsToSend.Count )
+         AV77GXV1 = 1;
+         while ( AV77GXV1 <= AV32transactionsToSend.Count )
          {
-            AV66oneTransaction = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV32transactionsToSend.Item(AV76GXV1));
+            AV66oneTransaction = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV32transactionsToSend.Item(AV77GXV1));
             AV11description = StringUtil.Trim( AV66oneTransaction.gxTpr_Description);
             AV67signedDateTime = AV66oneTransaction.gxTpr_Sentdatetime;
-            AV76GXV1 = (int)(AV76GXV1+1);
+            AV77GXV1 = (int)(AV77GXV1+1);
          }
-         AV77GXV2 = 1;
-         while ( AV77GXV2 <= AV17group_sdt.gxTpr_Contact.Count )
+         AV78GXV2 = 1;
+         while ( AV78GXV2 <= AV17group_sdt.gxTpr_Contact.Count )
          {
-            AV55oneGroupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV17group_sdt.gxTpr_Contact.Item(AV77GXV2));
+            AV55oneGroupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV17group_sdt.gxTpr_Contact.Item(AV78GXV2));
             if ( AV55oneGroupContact.gxTpr_Contactgroupid == AV17group_sdt.gxTpr_Groupid )
             {
                if ( (Guid.Empty==AV71signatureID) )
@@ -131,12 +136,13 @@ namespace GeneXus.Programs.wallet.registered {
                AV65muSigSignatures.gxTpr_Sendcoins = AV23sendCoins;
                AV65muSigSignatures.gxTpr_Sendto = StringUtil.Trim( AV24sendTo);
                AV65muSigSignatures.gxTpr_Changeto = StringUtil.Trim( AV10changeTo);
+               AV65muSigSignatures.gxTpr_Transactionfee = AV76transactionFee;
                AV65muSigSignatures.gxTpr_Referencegroupid = AV17group_sdt.gxTpr_Othergroup.gxTpr_Referencegroupid;
                AV65muSigSignatures.gxTpr_Senderusername = StringUtil.Trim( AV55oneGroupContact.gxTpr_Contactusername);
                AV55oneGroupContact.gxTpr_Musigsignatures.Add(AV65muSigSignatures, 0);
                if (true) break;
             }
-            AV77GXV2 = (int)(AV77GXV2+1);
+            AV78GXV2 = (int)(AV78GXV2+1);
          }
          GXt_SdtExternalUser1 = AV70externalUser;
          new GeneXus.Programs.distcrypt.getexternaluser(context ).execute( out  GXt_SdtExternalUser1) ;
@@ -151,10 +157,10 @@ namespace GeneXus.Programs.wallet.registered {
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
          {
             AV65muSigSignatures.gxTpr_Sendersignature = StringUtil.Trim( AV54message_signature.gxTpr_Signature);
-            AV78GXV3 = 1;
-            while ( AV78GXV3 <= AV17group_sdt.gxTpr_Contact.Count )
+            AV79GXV3 = 1;
+            while ( AV79GXV3 <= AV17group_sdt.gxTpr_Contact.Count )
             {
-               AV48groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV17group_sdt.gxTpr_Contact.Item(AV78GXV3));
+               AV48groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV17group_sdt.gxTpr_Contact.Item(AV79GXV3));
                if ( ! ( StringUtil.StrCmp(StringUtil.Trim( AV48groupContact.gxTpr_Contactusername), StringUtil.Trim( AV65muSigSignatures.gxTpr_Senderusername)) == 0 ) )
                {
                   AV59sdt_message.gxTpr_Id = Guid.NewGuid( );
@@ -182,7 +188,7 @@ namespace GeneXus.Programs.wallet.registered {
                      if (true) break;
                   }
                }
-               AV78GXV3 = (int)(AV78GXV3+1);
+               AV79GXV3 = (int)(AV79GXV3+1);
             }
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
@@ -196,16 +202,16 @@ namespace GeneXus.Programs.wallet.registered {
             {
                AV38all_groups_sdt.Clear();
                AV38all_groups_sdt.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "gropus.enc", out  AV14error), null);
-               AV79GXV4 = 1;
-               while ( AV79GXV4 <= AV38all_groups_sdt.Count )
+               AV80GXV4 = 1;
+               while ( AV80GXV4 <= AV38all_groups_sdt.Count )
                {
-                  AV46group_sdt_delete = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV38all_groups_sdt.Item(AV79GXV4));
+                  AV46group_sdt_delete = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV38all_groups_sdt.Item(AV80GXV4));
                   if ( AV46group_sdt_delete.gxTpr_Groupid == AV17group_sdt.gxTpr_Groupid )
                   {
                      AV38all_groups_sdt.RemoveItem(AV38all_groups_sdt.IndexOf(AV46group_sdt_delete));
                      if (true) break;
                   }
-                  AV79GXV4 = (int)(AV79GXV4+1);
+                  AV80GXV4 = (int)(AV80GXV4+1);
                }
                AV38all_groups_sdt.Add(AV17group_sdt, 0);
                new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  "gropus.enc",  AV38all_groups_sdt.ToJSonString(false), out  AV14error) ;
@@ -267,12 +273,13 @@ namespace GeneXus.Programs.wallet.registered {
          /* GeneXus formulas. */
       }
 
-      private int AV76GXV1 ;
-      private int AV77GXV2 ;
-      private int AV78GXV3 ;
-      private int AV79GXV4 ;
+      private int AV77GXV1 ;
+      private int AV78GXV2 ;
+      private int AV79GXV3 ;
+      private int AV80GXV4 ;
       private long GXt_int4 ;
       private decimal AV23sendCoins ;
+      private decimal AV76transactionFee ;
       private string AV24sendTo ;
       private string AV10changeTo ;
       private string AV14error ;
@@ -299,7 +306,7 @@ namespace GeneXus.Programs.wallet.registered {
       private GeneXus.Programs.wallet.registered.SdtContact_SDT AV40contact ;
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT> AV38all_groups_sdt ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV46group_sdt_delete ;
-      private string aP8_error ;
+      private string aP9_error ;
    }
 
 }

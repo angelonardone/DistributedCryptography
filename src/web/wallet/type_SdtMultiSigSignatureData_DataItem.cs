@@ -70,10 +70,6 @@ namespace GeneXus.Programs.wallet
 			{
 				AddObjectProperty("pubNonces", gxTv_SdtMultiSigSignatureData_DataItem_Pubnonces, false);
 			}
-			if (gxTv_SdtMultiSigSignatureData_DataItem_Signatures != null)
-			{
-				AddObjectProperty("signatures", gxTv_SdtMultiSigSignatureData_DataItem_Signatures, false);
-			}
 
 			AddObjectProperty("transactionId", gxTpr_Transactionid, false);
 
@@ -86,6 +82,10 @@ namespace GeneXus.Programs.wallet
 			if (gxTv_SdtMultiSigSignatureData_DataItem_Finalcombination != null)
 			{
 				AddObjectProperty("finalCombination", gxTv_SdtMultiSigSignatureData_DataItem_Finalcombination, false);
+			}
+			if (gxTv_SdtMultiSigSignatureData_DataItem_Signatures != null)
+			{
+				AddObjectProperty("signatures", gxTv_SdtMultiSigSignatureData_DataItem_Signatures, false);
 			}
 			return;
 		}
@@ -178,59 +178,6 @@ namespace GeneXus.Programs.wallet
 		}
 
 
-		[SoapElement(ElementName="signatures" )]
-		[XmlArray(ElementName="signatures"  )]
-		[XmlArrayItemAttribute(ElementName="Item" , IsNullable=false )]
-		public GxSimpleCollection<string> gxTpr_Signatures_GxSimpleCollection
-		{
-			get {
-				if ( gxTv_SdtMultiSigSignatureData_DataItem_Signatures == null )
-				{
-					gxTv_SdtMultiSigSignatureData_DataItem_Signatures = new GxSimpleCollection<string>( );
-				}
-				return gxTv_SdtMultiSigSignatureData_DataItem_Signatures;
-			}
-			set {
-				gxTv_SdtMultiSigSignatureData_DataItem_Signatures_N = false;
-				gxTv_SdtMultiSigSignatureData_DataItem_Signatures = value;
-			}
-		}
-
-		[XmlIgnore]
-		public GxSimpleCollection<string> gxTpr_Signatures
-		{
-			get {
-				if ( gxTv_SdtMultiSigSignatureData_DataItem_Signatures == null )
-				{
-					gxTv_SdtMultiSigSignatureData_DataItem_Signatures = new GxSimpleCollection<string>();
-				}
-				gxTv_SdtMultiSigSignatureData_DataItem_Signatures_N = false;
-				return gxTv_SdtMultiSigSignatureData_DataItem_Signatures ;
-			}
-			set {
-				gxTv_SdtMultiSigSignatureData_DataItem_Signatures_N = false;
-				gxTv_SdtMultiSigSignatureData_DataItem_Signatures = value;
-				SetDirty("Signatures");
-			}
-		}
-
-		public void gxTv_SdtMultiSigSignatureData_DataItem_Signatures_SetNull()
-		{
-			gxTv_SdtMultiSigSignatureData_DataItem_Signatures_N = true;
-			gxTv_SdtMultiSigSignatureData_DataItem_Signatures = null;
-		}
-
-		public bool gxTv_SdtMultiSigSignatureData_DataItem_Signatures_IsNull()
-		{
-			return gxTv_SdtMultiSigSignatureData_DataItem_Signatures == null;
-		}
-		public bool ShouldSerializegxTpr_Signatures_GxSimpleCollection_Json()
-		{
-			return gxTv_SdtMultiSigSignatureData_DataItem_Signatures != null && gxTv_SdtMultiSigSignatureData_DataItem_Signatures.Count > 0;
-
-		}
-
-
 		[SoapElement(ElementName="transactionId")]
 		[XmlElement(ElementName="transactionId")]
 		public string gxTpr_Transactionid
@@ -310,6 +257,43 @@ namespace GeneXus.Programs.wallet
 
 		}
 
+
+		[SoapElement(ElementName="signatures" )]
+		[XmlArray(ElementName="signatures"  )]
+		[XmlArrayItemAttribute(ElementName="signaturesItem" , IsNullable=false )]
+		public GXBaseCollection<SdtMultiSigSignatureData_DataItem_signaturesItem> gxTpr_Signatures
+		{
+			get {
+				if ( gxTv_SdtMultiSigSignatureData_DataItem_Signatures == null )
+				{
+					gxTv_SdtMultiSigSignatureData_DataItem_Signatures = new GXBaseCollection<SdtMultiSigSignatureData_DataItem_signaturesItem>( context, "MultiSigSignatureData.DataItem.signaturesItem", "");
+				}
+				return gxTv_SdtMultiSigSignatureData_DataItem_Signatures;
+			}
+			set {
+				gxTv_SdtMultiSigSignatureData_DataItem_Signatures_N = false;
+				gxTv_SdtMultiSigSignatureData_DataItem_Signatures = value;
+				SetDirty("Signatures");
+			}
+		}
+
+		public void gxTv_SdtMultiSigSignatureData_DataItem_Signatures_SetNull()
+		{
+			gxTv_SdtMultiSigSignatureData_DataItem_Signatures_N = true;
+			gxTv_SdtMultiSigSignatureData_DataItem_Signatures = null;
+		}
+
+		public bool gxTv_SdtMultiSigSignatureData_DataItem_Signatures_IsNull()
+		{
+			return gxTv_SdtMultiSigSignatureData_DataItem_Signatures == null;
+		}
+		public bool ShouldSerializegxTpr_Signatures_GxSimpleCollection_Json()
+		{
+			return gxTv_SdtMultiSigSignatureData_DataItem_Signatures != null && gxTv_SdtMultiSigSignatureData_DataItem_Signatures.Count > 0;
+
+		}
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -333,14 +317,14 @@ namespace GeneXus.Programs.wallet
 		{
 			gxTv_SdtMultiSigSignatureData_DataItem_Pubnonces_N = true;
 
-
-			gxTv_SdtMultiSigSignatureData_DataItem_Signatures_N = true;
-
 			gxTv_SdtMultiSigSignatureData_DataItem_Transactionid = "";
 
 			gxTv_SdtMultiSigSignatureData_DataItem_Ec_pubkey = "";
 
 			gxTv_SdtMultiSigSignatureData_DataItem_Finalcombination_N = true;
+
+
+			gxTv_SdtMultiSigSignatureData_DataItem_Signatures_N = true;
 
 			return  ;
 		}
@@ -358,8 +342,6 @@ namespace GeneXus.Programs.wallet
 		 
 		protected bool gxTv_SdtMultiSigSignatureData_DataItem_Pubnonces_N;
 		protected GxSimpleCollection<string> gxTv_SdtMultiSigSignatureData_DataItem_Pubnonces = null;  
-		protected bool gxTv_SdtMultiSigSignatureData_DataItem_Signatures_N;
-		protected GxSimpleCollection<string> gxTv_SdtMultiSigSignatureData_DataItem_Signatures = null;  
 
 		protected string gxTv_SdtMultiSigSignatureData_DataItem_Transactionid;
 		 
@@ -373,6 +355,9 @@ namespace GeneXus.Programs.wallet
 		protected GeneXus.Programs.math.SdtfinalCombination gxTv_SdtMultiSigSignatureData_DataItem_Finalcombination = null;
 		protected bool gxTv_SdtMultiSigSignatureData_DataItem_Finalcombination_N;
 		 
+		protected bool gxTv_SdtMultiSigSignatureData_DataItem_Signatures_N;
+		protected GXBaseCollection<SdtMultiSigSignatureData_DataItem_signaturesItem> gxTv_SdtMultiSigSignatureData_DataItem_Signatures = null; 
+
 
 
 		#endregion
@@ -430,22 +415,7 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
-		[DataMember(Name="signatures", Order=3, EmitDefaultValue=false)]
-		public  GxSimpleCollection<string> gxTpr_Signatures
-		{
-			get { 
-				if (sdt.ShouldSerializegxTpr_Signatures_GxSimpleCollection_Json())
-					return sdt.gxTpr_Signatures;
-				else
-					return null;
-
-			}
-			set { 
-				sdt.gxTpr_Signatures = value ;
-			}
-		}
-
-		[DataMember(Name="transactionId", Order=4)]
+		[DataMember(Name="transactionId", Order=3)]
 		public  string gxTpr_Transactionid
 		{
 			get { 
@@ -457,7 +427,7 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
-		[DataMember(Name="n", Order=5)]
+		[DataMember(Name="n", Order=4)]
 		public  string gxTpr_N
 		{
 			get { 
@@ -469,7 +439,7 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
-		[DataMember(Name="Ec_pubKey", Order=6)]
+		[DataMember(Name="Ec_pubKey", Order=5)]
 		public  string gxTpr_Ec_pubkey
 		{
 			get { 
@@ -481,7 +451,7 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
-		[DataMember(Name="finalCombination", Order=7, EmitDefaultValue=false)]
+		[DataMember(Name="finalCombination", Order=6, EmitDefaultValue=false)]
 		public GeneXus.Programs.math.SdtfinalCombination_RESTInterface gxTpr_Finalcombination
 		{
 			get { 
@@ -493,6 +463,21 @@ namespace GeneXus.Programs.wallet
 			}
 			set { 
 				sdt.gxTpr_Finalcombination = value.sdt;
+			}
+		}
+
+		[DataMember(Name="signatures", Order=7, EmitDefaultValue=false)]
+		public GxGenericCollection<SdtMultiSigSignatureData_DataItem_signaturesItem_RESTInterface> gxTpr_Signatures
+		{
+			get {
+				if (sdt.ShouldSerializegxTpr_Signatures_GxSimpleCollection_Json())
+					return new GxGenericCollection<SdtMultiSigSignatureData_DataItem_signaturesItem_RESTInterface>(sdt.gxTpr_Signatures);
+				else
+					return null;
+
+			}
+			set {
+				value.LoadCollection(sdt.gxTpr_Signatures);
 			}
 		}
 

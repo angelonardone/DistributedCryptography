@@ -70,6 +70,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtGxExplorer_services_TxoutFromAddresses_Transaction_Used_UsedTo_Item.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtLinkList_LinkItem.cs" />
  	<Compile Include="$(WebDirectory)\math\type_SdtfinalCombination.cs" />
+ 	<Compile Include="$(WebDirectory)\math\type_SdttestCombinationsSDT.cs" />
  	<Compile Include="$(WebDirectory)\nbitcoin\type_SdtCreateExPubtKeyUnitTestSDT.cs" />
  	<Compile Include="$(WebDirectory)\nbitcoin\type_SdtCreateExtKeyUnitTestSDT.cs" />
  	<Compile Include="$(WebDirectory)\nbitcoin\type_SdtCreateKeyUnitTestSDT.cs" />
@@ -120,9 +121,11 @@
  	<Compile Include="$(WebDirectory)\wallet\type_SdtExtendeSecretAndAuthenticator.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtMultiSigSignatureData.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtMultiSigSignatureData_DataItem.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtMultiSigSignatureData_DataItem_signaturesItem.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtNote.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtNoteRead.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtContact_SDT.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtderiveAddresssForDelegationMuSig1TestSDT.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroup_SDT.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroup_SDT_ContactItem.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroup_SDT_otherGroup.cs" />

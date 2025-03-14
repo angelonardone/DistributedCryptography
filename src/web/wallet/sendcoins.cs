@@ -194,10 +194,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1118140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1118140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1118140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -877,6 +877,8 @@ namespace GeneXus.Programs.wallet {
                }
                else
                {
+                  chkavSendallcoins.Enabled = 0;
+                  AssignProp("", false, chkavSendallcoins_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(chkavSendallcoins.Enabled), 5, 0), true);
                   context.PopUp(formatLink("wallet.approvespending.aspx") , new Object[] {});
                }
             }
@@ -1109,7 +1111,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024111513322928", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531412513859", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1125,8 +1127,8 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1118140), false, true);
-         context.AddJavascriptSource("wallet/sendcoins.js", "?2024111513322928", false, true);
+         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("wallet/sendcoins.js", "?202531412513859", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -1201,7 +1203,7 @@ namespace GeneXus.Programs.wallet {
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV24sendAllCoins","fld":"vSENDALLCOINS"},{"av":"AV23wallet","fld":"vWALLET","hsh":true},{"av":"AV18totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZ9.99999999","hsh":true}]}""");
          setEventMetadata("'NEXT'","""{"handler":"E12082","iparms":[{"av":"AV14sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999"},{"av":"AV18totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZ9.99999999","hsh":true},{"av":"AV24sendAllCoins","fld":"vSENDALLCOINS"},{"av":"AV7error","fld":"vERROR"},{"av":"AV15sendTo","fld":"vSENDTO"},{"av":"AV23wallet","fld":"vWALLET","hsh":true}]""");
-         setEventMetadata("'NEXT'",""","oparms":[{"av":"AV7error","fld":"vERROR"}]}""");
+         setEventMetadata("'NEXT'",""","oparms":[{"av":"AV7error","fld":"vERROR"},{"av":"chkavSendallcoins.Enabled","ctrl":"vSENDALLCOINS","prop":"Enabled"}]}""");
          setEventMetadata("'SEND COINS'","""{"handler":"E13082","iparms":[{"av":"cmbavUserfee"},{"av":"AV21userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999"},{"av":"AV24sendAllCoins","fld":"vSENDALLCOINS"},{"av":"AV23wallet","fld":"vWALLET","hsh":true},{"av":"AV20transactionsToSend","fld":"vTRANSACTIONSTOSEND"},{"av":"AV14sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999"},{"av":"AV15sendTo","fld":"vSENDTO"},{"av":"AV13changeTo","fld":"vCHANGETO"},{"av":"AV7error","fld":"vERROR"}]""");
          setEventMetadata("'SEND COINS'",""","oparms":[{"av":"AV7error","fld":"vERROR"},{"ctrl":"SENDCOINS","prop":"Visible"},{"av":"cmbavUserfee"},{"av":"AV20transactionsToSend","fld":"vTRANSACTIONSTOSEND"}]}""");
          setEventMetadata("'CANCEL'","""{"handler":"E14082","iparms":[]}""");

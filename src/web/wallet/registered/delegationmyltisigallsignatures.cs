@@ -193,6 +193,7 @@ namespace GeneXus.Programs.wallet.registered {
          ajax_req_read_hidden_sdt(GetNextPar( ), AV18compleatedMuSigSignatures);
          ajax_req_read_hidden_sdt(GetNextPar( ), AV7muSigSignatures);
          ajax_req_read_hidden_sdt(GetNextPar( ), AV14externalUser);
+         ajax_req_read_hidden_sdt(GetNextPar( ), AV5group_sdt);
          sPrefix = GetPar( "sPrefix");
          init_default_properties( ) ;
          setAjaxCallMode();
@@ -201,7 +202,7 @@ namespace GeneXus.Programs.wallet.registered {
             GxWebError = 1;
             return  ;
          }
-         gxgrGridsignatures_refresh( subGridsignatures_Rows, AV22groupId, AV23alreadySignedByMeMuSigSignatures, AV24previousId, AV25alreadyShownMeMuSigSignatures, AV18compleatedMuSigSignatures, AV7muSigSignatures, AV14externalUser, sPrefix) ;
+         gxgrGridsignatures_refresh( subGridsignatures_Rows, AV22groupId, AV23alreadySignedByMeMuSigSignatures, AV24previousId, AV25alreadyShownMeMuSigSignatures, AV18compleatedMuSigSignatures, AV7muSigSignatures, AV14externalUser, AV5group_sdt, sPrefix) ;
          AddString( context.getJSONResponse( )) ;
          /* End function gxgrGridsignatures_refresh_invoke */
       }
@@ -411,6 +412,15 @@ namespace GeneXus.Programs.wallet.registered {
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vMUSIGSIGNATURES", GetSecureSignedToken( sPrefix, AV7muSigSignatures, context));
          if ( context.isAjaxRequest( ) )
          {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vGROUP_SDT", AV5group_sdt);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vGROUP_SDT", AV5group_sdt);
+         }
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vGROUP_SDT", GetSecureSignedToken( sPrefix, AV5group_sdt, context));
+         if ( context.isAjaxRequest( ) )
+         {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vCOMPLEATEDMUSIGSIGNATURES", AV18compleatedMuSigSignatures);
          }
          else
@@ -476,6 +486,15 @@ namespace GeneXus.Programs.wallet.registered {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vMUSIGSIGNATURES", AV7muSigSignatures);
          }
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vMUSIGSIGNATURES", GetSecureSignedToken( sPrefix, AV7muSigSignatures, context));
+         if ( context.isAjaxRequest( ) )
+         {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vGROUP_SDT", AV5group_sdt);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vGROUP_SDT", AV5group_sdt);
+         }
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vGROUP_SDT", GetSecureSignedToken( sPrefix, AV5group_sdt, context));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vCOMPLEATEDMUSIGSIGNATURES", AV18compleatedMuSigSignatures);
@@ -1002,6 +1021,7 @@ namespace GeneXus.Programs.wallet.registered {
                                                  GXBaseCollection<GeneXus.Programs.wallet.registered.SdtMuSigSignatures> AV18compleatedMuSigSignatures ,
                                                  GXBaseCollection<GeneXus.Programs.wallet.registered.SdtMuSigSignatures> AV7muSigSignatures ,
                                                  GeneXus.Programs.distcrypt.SdtExternalUser AV14externalUser ,
+                                                 GeneXus.Programs.wallet.registered.SdtGroup_SDT AV5group_sdt ,
                                                  string sPrefix )
       {
          initialize_formulas( ) ;
@@ -1132,6 +1152,15 @@ namespace GeneXus.Programs.wallet.registered {
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vMUSIGSIGNATURES", GetSecureSignedToken( sPrefix, AV7muSigSignatures, context));
          if ( context.isAjaxRequest( ) )
          {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vGROUP_SDT", AV5group_sdt);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vGROUP_SDT", AV5group_sdt);
+         }
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vGROUP_SDT", GetSecureSignedToken( sPrefix, AV5group_sdt, context));
+         if ( context.isAjaxRequest( ) )
+         {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vCOMPLEATEDMUSIGSIGNATURES", AV18compleatedMuSigSignatures);
          }
          else
@@ -1181,7 +1210,7 @@ namespace GeneXus.Programs.wallet.registered {
          GxWebStd.gx_hidden_field( context, sPrefix+"GRIDSIGNATURES_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDSIGNATURES_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGridsignatures_refresh( subGridsignatures_Rows, AV22groupId, AV23alreadySignedByMeMuSigSignatures, AV24previousId, AV25alreadyShownMeMuSigSignatures, AV18compleatedMuSigSignatures, AV7muSigSignatures, AV14externalUser, sPrefix) ;
+            gxgrGridsignatures_refresh( subGridsignatures_Rows, AV22groupId, AV23alreadySignedByMeMuSigSignatures, AV24previousId, AV25alreadyShownMeMuSigSignatures, AV18compleatedMuSigSignatures, AV7muSigSignatures, AV14externalUser, AV5group_sdt, sPrefix) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1202,7 +1231,7 @@ namespace GeneXus.Programs.wallet.registered {
          GridsignaturesContainer.AddObjectProperty("GRIDSIGNATURES_nFirstRecordOnPage", GRIDSIGNATURES_nFirstRecordOnPage);
          if ( isFullAjaxMode( ) )
          {
-            gxgrGridsignatures_refresh( subGridsignatures_Rows, AV22groupId, AV23alreadySignedByMeMuSigSignatures, AV24previousId, AV25alreadyShownMeMuSigSignatures, AV18compleatedMuSigSignatures, AV7muSigSignatures, AV14externalUser, sPrefix) ;
+            gxgrGridsignatures_refresh( subGridsignatures_Rows, AV22groupId, AV23alreadySignedByMeMuSigSignatures, AV24previousId, AV25alreadyShownMeMuSigSignatures, AV18compleatedMuSigSignatures, AV7muSigSignatures, AV14externalUser, AV5group_sdt, sPrefix) ;
          }
          send_integrity_footer_hashes( ) ;
          return (short)(((GRIDSIGNATURES_nEOF==0) ? 0 : 2)) ;
@@ -1221,7 +1250,7 @@ namespace GeneXus.Programs.wallet.registered {
          GxWebStd.gx_hidden_field( context, sPrefix+"GRIDSIGNATURES_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDSIGNATURES_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGridsignatures_refresh( subGridsignatures_Rows, AV22groupId, AV23alreadySignedByMeMuSigSignatures, AV24previousId, AV25alreadyShownMeMuSigSignatures, AV18compleatedMuSigSignatures, AV7muSigSignatures, AV14externalUser, sPrefix) ;
+            gxgrGridsignatures_refresh( subGridsignatures_Rows, AV22groupId, AV23alreadySignedByMeMuSigSignatures, AV24previousId, AV25alreadyShownMeMuSigSignatures, AV18compleatedMuSigSignatures, AV7muSigSignatures, AV14externalUser, AV5group_sdt, sPrefix) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1248,7 +1277,7 @@ namespace GeneXus.Programs.wallet.registered {
          GxWebStd.gx_hidden_field( context, sPrefix+"GRIDSIGNATURES_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDSIGNATURES_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGridsignatures_refresh( subGridsignatures_Rows, AV22groupId, AV23alreadySignedByMeMuSigSignatures, AV24previousId, AV25alreadyShownMeMuSigSignatures, AV18compleatedMuSigSignatures, AV7muSigSignatures, AV14externalUser, sPrefix) ;
+            gxgrGridsignatures_refresh( subGridsignatures_Rows, AV22groupId, AV23alreadySignedByMeMuSigSignatures, AV24previousId, AV25alreadyShownMeMuSigSignatures, AV18compleatedMuSigSignatures, AV7muSigSignatures, AV14externalUser, AV5group_sdt, sPrefix) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1267,7 +1296,7 @@ namespace GeneXus.Programs.wallet.registered {
          GxWebStd.gx_hidden_field( context, sPrefix+"GRIDSIGNATURES_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDSIGNATURES_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGridsignatures_refresh( subGridsignatures_Rows, AV22groupId, AV23alreadySignedByMeMuSigSignatures, AV24previousId, AV25alreadyShownMeMuSigSignatures, AV18compleatedMuSigSignatures, AV7muSigSignatures, AV14externalUser, sPrefix) ;
+            gxgrGridsignatures_refresh( subGridsignatures_Rows, AV22groupId, AV23alreadySignedByMeMuSigSignatures, AV24previousId, AV25alreadyShownMeMuSigSignatures, AV18compleatedMuSigSignatures, AV7muSigSignatures, AV14externalUser, AV5group_sdt, sPrefix) ;
          }
          send_integrity_footer_hashes( ) ;
          return (int)(0) ;
@@ -1401,6 +1430,7 @@ namespace GeneXus.Programs.wallet.registered {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV7muSigSignatures", AV7muSigSignatures);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV18compleatedMuSigSignatures", AV18compleatedMuSigSignatures);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV14externalUser", AV14externalUser);
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV5group_sdt", AV5group_sdt);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV23alreadySignedByMeMuSigSignatures", AV23alreadySignedByMeMuSigSignatures);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV25alreadyShownMeMuSigSignatures", AV25alreadyShownMeMuSigSignatures);
       }
@@ -1416,7 +1446,14 @@ namespace GeneXus.Programs.wallet.registered {
          returnInSub = false;
          AV8oneMuSigSignatures = (GeneXus.Programs.wallet.registered.SdtMuSigSignatures)(((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)(AV7muSigSignatures.CurrentItem)).Clone());
          AV6websession.Set("MuSign_ONE", AV8oneMuSigSignatures.ToJSonString(false, true));
-         context.PopUp(formatLink("wallet.registered.sendcoinsmusig.aspx") , new Object[] {});
+         if ( AV5group_sdt.gxTpr_Grouptype == 200 )
+         {
+            context.PopUp(formatLink("wallet.registered.sendcoinsmusig.aspx") , new Object[] {});
+         }
+         if ( AV5group_sdt.gxTpr_Grouptype == 800 )
+         {
+            context.PopUp(formatLink("wallet.registered.sendcoinsmusig2.aspx") , new Object[] {});
+         }
       }
 
       private void E141Y2( )
@@ -1473,13 +1510,14 @@ namespace GeneXus.Programs.wallet.registered {
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV7muSigSignatures", AV7muSigSignatures);
             nGXsfl_6_bak_idx = nGXsfl_6_idx;
-            gxgrGridsignatures_refresh( subGridsignatures_Rows, AV22groupId, AV23alreadySignedByMeMuSigSignatures, AV24previousId, AV25alreadyShownMeMuSigSignatures, AV18compleatedMuSigSignatures, AV7muSigSignatures, AV14externalUser, sPrefix) ;
+            gxgrGridsignatures_refresh( subGridsignatures_Rows, AV22groupId, AV23alreadySignedByMeMuSigSignatures, AV24previousId, AV25alreadyShownMeMuSigSignatures, AV18compleatedMuSigSignatures, AV7muSigSignatures, AV14externalUser, AV5group_sdt, sPrefix) ;
             nGXsfl_6_idx = nGXsfl_6_bak_idx;
             sGXsfl_6_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_6_idx), 4, 0), 4, "0");
             SubsflControlProps_62( ) ;
          }
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV18compleatedMuSigSignatures", AV18compleatedMuSigSignatures);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV14externalUser", AV14externalUser);
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV5group_sdt", AV5group_sdt);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV23alreadySignedByMeMuSigSignatures", AV23alreadySignedByMeMuSigSignatures);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV25alreadyShownMeMuSigSignatures", AV25alreadyShownMeMuSigSignatures);
       }
@@ -1681,7 +1719,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20248131333526", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20253141251536", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1697,7 +1735,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/delegationmyltisigallsignatures.js", "?20248131333526", false, true);
+         context.AddJavascriptSource("wallet/registered/delegationmyltisigallsignatures.js", "?20253141251537", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -2071,21 +2109,21 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"GRIDSIGNATURES_nEOF"},{"av":"subGridsignatures_Rows","ctrl":"GRIDSIGNATURES","prop":"Rows"},{"av":"sPrefix"},{"av":"AV22groupId","fld":"vGROUPID"},{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true}]""");
-         setEventMetadata("REFRESH",""","oparms":[{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true}]}""");
-         setEventMetadata("'SIGN TRANSACTION'","""{"handler":"E131Y2","iparms":[{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"GRIDSIGNATURES_nEOF"},{"av":"subGridsignatures_Rows","ctrl":"GRIDSIGNATURES","prop":"Rows"},{"av":"sPrefix"},{"av":"AV22groupId","fld":"vGROUPID"},{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true},{"av":"AV5group_sdt","fld":"vGROUP_SDT","hsh":true},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true}]""");
+         setEventMetadata("REFRESH",""","oparms":[{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV5group_sdt","fld":"vGROUP_SDT","hsh":true},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true}]}""");
+         setEventMetadata("'SIGN TRANSACTION'","""{"handler":"E131Y2","iparms":[{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV5group_sdt","fld":"vGROUP_SDT","hsh":true}]}""");
          setEventMetadata("GRIDSIGNATURES.LOAD","""{"handler":"E141Y2","iparms":[{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true}]""");
          setEventMetadata("GRIDSIGNATURES.LOAD",""","oparms":[{"av":"AV11sign","fld":"vSIGN"}]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E111Y2","iparms":[{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"GRIDSIGNATURES_nEOF"},{"av":"subGridsignatures_Rows","ctrl":"GRIDSIGNATURES","prop":"Rows"},{"av":"AV22groupId","fld":"vGROUPID"},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"sPrefix"},{"av":"AV16PopupName","fld":"vPOPUPNAME"}]""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true}]}""");
-         setEventMetadata("GRIDSIGNATURES_FIRSTPAGE","""{"handler":"subgridsignatures_firstpage","iparms":[{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"GRIDSIGNATURES_nEOF"},{"av":"subGridsignatures_Rows","ctrl":"GRIDSIGNATURES","prop":"Rows"},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"sPrefix"},{"av":"AV22groupId","fld":"vGROUPID"},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true}]""");
-         setEventMetadata("GRIDSIGNATURES_FIRSTPAGE",""","oparms":[{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true}]}""");
-         setEventMetadata("GRIDSIGNATURES_PREVPAGE","""{"handler":"subgridsignatures_previouspage","iparms":[{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"GRIDSIGNATURES_nEOF"},{"av":"subGridsignatures_Rows","ctrl":"GRIDSIGNATURES","prop":"Rows"},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"sPrefix"},{"av":"AV22groupId","fld":"vGROUPID"},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true}]""");
-         setEventMetadata("GRIDSIGNATURES_PREVPAGE",""","oparms":[{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true}]}""");
-         setEventMetadata("GRIDSIGNATURES_NEXTPAGE","""{"handler":"subgridsignatures_nextpage","iparms":[{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"GRIDSIGNATURES_nEOF"},{"av":"subGridsignatures_Rows","ctrl":"GRIDSIGNATURES","prop":"Rows"},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"sPrefix"},{"av":"AV22groupId","fld":"vGROUPID"},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true}]""");
-         setEventMetadata("GRIDSIGNATURES_NEXTPAGE",""","oparms":[{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true}]}""");
-         setEventMetadata("GRIDSIGNATURES_LASTPAGE","""{"handler":"subgridsignatures_lastpage","iparms":[{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"GRIDSIGNATURES_nEOF"},{"av":"subGridsignatures_Rows","ctrl":"GRIDSIGNATURES","prop":"Rows"},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"sPrefix"},{"av":"AV22groupId","fld":"vGROUPID"},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true}]""");
-         setEventMetadata("GRIDSIGNATURES_LASTPAGE",""","oparms":[{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true}]}""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E111Y2","iparms":[{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"GRIDSIGNATURES_nEOF"},{"av":"subGridsignatures_Rows","ctrl":"GRIDSIGNATURES","prop":"Rows"},{"av":"AV22groupId","fld":"vGROUPID"},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV5group_sdt","fld":"vGROUP_SDT","hsh":true},{"av":"sPrefix"},{"av":"AV16PopupName","fld":"vPOPUPNAME"}]""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV5group_sdt","fld":"vGROUP_SDT","hsh":true},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true}]}""");
+         setEventMetadata("GRIDSIGNATURES_FIRSTPAGE","""{"handler":"subgridsignatures_firstpage","iparms":[{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"GRIDSIGNATURES_nEOF"},{"av":"subGridsignatures_Rows","ctrl":"GRIDSIGNATURES","prop":"Rows"},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV5group_sdt","fld":"vGROUP_SDT","hsh":true},{"av":"sPrefix"},{"av":"AV22groupId","fld":"vGROUPID"},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true}]""");
+         setEventMetadata("GRIDSIGNATURES_FIRSTPAGE",""","oparms":[{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV5group_sdt","fld":"vGROUP_SDT","hsh":true},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true}]}""");
+         setEventMetadata("GRIDSIGNATURES_PREVPAGE","""{"handler":"subgridsignatures_previouspage","iparms":[{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"GRIDSIGNATURES_nEOF"},{"av":"subGridsignatures_Rows","ctrl":"GRIDSIGNATURES","prop":"Rows"},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV5group_sdt","fld":"vGROUP_SDT","hsh":true},{"av":"sPrefix"},{"av":"AV22groupId","fld":"vGROUPID"},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true}]""");
+         setEventMetadata("GRIDSIGNATURES_PREVPAGE",""","oparms":[{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV5group_sdt","fld":"vGROUP_SDT","hsh":true},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true}]}""");
+         setEventMetadata("GRIDSIGNATURES_NEXTPAGE","""{"handler":"subgridsignatures_nextpage","iparms":[{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"GRIDSIGNATURES_nEOF"},{"av":"subGridsignatures_Rows","ctrl":"GRIDSIGNATURES","prop":"Rows"},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV5group_sdt","fld":"vGROUP_SDT","hsh":true},{"av":"sPrefix"},{"av":"AV22groupId","fld":"vGROUPID"},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true}]""");
+         setEventMetadata("GRIDSIGNATURES_NEXTPAGE",""","oparms":[{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV5group_sdt","fld":"vGROUP_SDT","hsh":true},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true}]}""");
+         setEventMetadata("GRIDSIGNATURES_LASTPAGE","""{"handler":"subgridsignatures_lastpage","iparms":[{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"GRIDSIGNATURES_nEOF"},{"av":"subGridsignatures_Rows","ctrl":"GRIDSIGNATURES","prop":"Rows"},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV5group_sdt","fld":"vGROUP_SDT","hsh":true},{"av":"sPrefix"},{"av":"AV22groupId","fld":"vGROUPID"},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true}]""");
+         setEventMetadata("GRIDSIGNATURES_LASTPAGE",""","oparms":[{"av":"AV7muSigSignatures","fld":"vMUSIGSIGNATURES","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"GRIDSIGNATURES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_6","ctrl":"GRIDSIGNATURES","prop":"GridRC","grid":6},{"av":"AV18compleatedMuSigSignatures","fld":"vCOMPLEATEDMUSIGSIGNATURES","hsh":true},{"av":"AV14externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV5group_sdt","fld":"vGROUP_SDT","hsh":true},{"av":"AV23alreadySignedByMeMuSigSignatures","fld":"vALREADYSIGNEDBYMEMUSIGSIGNATURES","hsh":true},{"av":"AV25alreadyShownMeMuSigSignatures","fld":"vALREADYSHOWNMEMUSIGSIGNATURES","hsh":true},{"av":"AV24previousId","fld":"vPREVIOUSID","hsh":true}]}""");
          setEventMetadata("VALIDV_GXV2","""{"handler":"Validv_Gxv2","iparms":[]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Sign","iparms":[]}""");
          return  ;
@@ -2112,6 +2150,7 @@ namespace GeneXus.Programs.wallet.registered {
          AV18compleatedMuSigSignatures = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtMuSigSignatures>( context, "MuSigSignatures", "");
          AV7muSigSignatures = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtMuSigSignatures>( context, "MuSigSignatures", "");
          AV14externalUser = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
+         AV5group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
@@ -2129,7 +2168,6 @@ namespace GeneXus.Programs.wallet.registered {
          AV11sign = "";
          AV6websession = context.GetSession();
          GXt_SdtExternalUser1 = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
-         AV5group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
          GXt_SdtGroup_SDT2 = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
          AV10oneContact = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem(context);
          AV8oneMuSigSignatures = new GeneXus.Programs.wallet.registered.SdtMuSigSignatures(context);
@@ -2275,8 +2313,8 @@ namespace GeneXus.Programs.wallet.registered {
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtMuSigSignatures> AV18compleatedMuSigSignatures ;
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtMuSigSignatures> AV7muSigSignatures ;
       private GeneXus.Programs.distcrypt.SdtExternalUser AV14externalUser ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV5group_sdt ;
+      private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT GXt_SdtGroup_SDT2 ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV10oneContact ;
       private GeneXus.Programs.wallet.registered.SdtMuSigSignatures AV8oneMuSigSignatures ;

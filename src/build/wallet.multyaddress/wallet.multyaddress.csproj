@@ -34,6 +34,9 @@
 		<Reference Include="GxInternetLib.dll" > 
 			<HintPath>$(WebBinDirectory)\GxInternetLib.dll</HintPath>
 		</Reference>
+		<Reference Include="MultiSignature.dll" > 
+			<HintPath>$(WebBinDirectory)\MultiSignature.dll</HintPath>
+		</Reference>
 
 
 	</ItemGroup>
