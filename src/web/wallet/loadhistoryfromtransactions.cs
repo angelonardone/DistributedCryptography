@@ -100,9 +100,10 @@ namespace GeneXus.Programs.wallet {
             {
                AV9historyWithBalance.Add(AV11oneAddressHistory, 0);
             }
+            new GeneXus.Programs.wallet.markinalladdressasused(context ).execute(  StringUtil.Trim( AV11oneAddressHistory.gxTpr_Receivedaddress)) ;
             AV21GXV1 = (int)(AV21GXV1+1);
          }
-         AV12SDTAddressHistory.Sort("[ReceivedDateTime]");
+         AV12SDTAddressHistory.Sort("[ReceivedDateTime],ReceivedAddress");
          AV9historyWithBalance.Sort("Balance");
          new GeneXus.Programs.wallet.sethistorywithbalance(context ).execute(  AV9historyWithBalance) ;
          cleanup();

@@ -73,6 +73,7 @@
 		<Compile Include = "$(WebDirectory)\sudodb\savevins.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\decryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\markinalladdressasused.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\get_transaction.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\sethistorywithbalance.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\sendmessage.cs" />
