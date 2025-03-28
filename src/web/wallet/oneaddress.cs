@@ -1495,7 +1495,7 @@ namespace GeneXus.Programs.wallet {
          AssignAttri(sPrefix, false, "AV21transactionsCount", StringUtil.LTrimStr( (decimal)(AV21transactionsCount), 10, 0));
          AV19totalBalance = 0;
          AssignAttri(sPrefix, false, "AV19totalBalance", StringUtil.LTrimStr( AV19totalBalance, 18, 8));
-         AV20transactions__postInput.gxTv_SdtGetTransactions__postInput_Sdt_addressess_SetNull();
+         AV20transactions__postInput.gxTv_SdtGxGetAddressess_Sdt_addressess_SetNull();
          /* Execute user subroutine: 'CREATE 10 ADDRESSESS' */
          S112 ();
          if (returnInSub) return;
@@ -1731,7 +1731,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532417463067", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20253281513141", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1747,7 +1747,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/oneaddress.js", "?202532417463067", false, true);
+         context.AddJavascriptSource("wallet/oneaddress.js", "?20253281513142", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -2203,7 +2203,7 @@ namespace GeneXus.Programs.wallet {
          GXKey = "";
          forbiddenHiddens = new GXProperties();
          AV13PopupName = "";
-         AV20transactions__postInput = new SdtGetTransactions__postInput(context);
+         AV20transactions__postInput = new SdtGxGetAddressess(context);
          AV25oneReturnAddress = new GeneXus.Programs.wallet.SdtSDT_ReturnAddresses_SDT_ReturnAddressesItem(context);
          GX_FocusControl = "";
          TempTags = "";
@@ -2398,7 +2398,7 @@ namespace GeneXus.Programs.wallet {
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wallet.SdtWallet AV23wallet ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV14SDTAddressHistory ;
-      private SdtGetTransactions__postInput AV20transactions__postInput ;
+      private SdtGxGetAddressess AV20transactions__postInput ;
       private GeneXus.Programs.wallet.SdtSDT_ReturnAddresses_SDT_ReturnAddressesItem AV25oneReturnAddress ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo AV11keyInfo ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo GXt_SdtKeyInfo1 ;

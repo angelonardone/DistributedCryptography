@@ -71,7 +71,6 @@ namespace GeneXus.Programs.wallet {
          while ( AV16GXV1 <= AV8transactionsToSend.Count )
          {
             AV9oneAddressHistory = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV8transactionsToSend.Item(AV16GXV1));
-            new GeneXus.Programs.debug.consolewriteline(context ).execute(  AV9oneAddressHistory.ToJSonString(false, true)) ;
             GXt_char1 = AV15error;
             GXt_char2 = AV9oneAddressHistory.gxTpr_Receivedtransactionhex;
             new GeneXus.Programs.sudodb.getrawtransactionfromdb(context ).execute(  StringUtil.Trim( AV9oneAddressHistory.gxTpr_Receivedtransactionid), out  GXt_char2, out  GXt_char1) ;

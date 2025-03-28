@@ -1109,7 +1109,7 @@ namespace GeneXus.Programs.wallet.registered {
                      AssignProp("", false, chkavActivatemanaulfee_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(chkavActivatemanaulfee.Enabled), 5, 0), true);
                      AV32transactionFileName = StringUtil.Trim( AV31group_sdt.gxTpr_Groupid.ToString()) + ".gtrn";
                      GXt_char5 = AV10error;
-                     new GeneXus.Programs.wallet.updatetransactionsaftercoinsent(context ).execute(  AV32transactionFileName,  AV29TransactionId, ref  AV25transactionsToSend, out  GXt_char5) ;
+                     new GeneXus.Programs.wallet.updatetransactionsaftercoinsent(context ).execute(  AV32transactionFileName,  AV29TransactionId,  AV25transactionsToSend, out  GXt_char5) ;
                      AV10error = GXt_char5;
                      AssignAttri("", false, "AV10error", AV10error);
                      if ( ! (Guid.Empty==AV35oneMuSigSignatures.gxTpr_Id) )
@@ -1211,8 +1211,9 @@ namespace GeneXus.Programs.wallet.registered {
                   AssignProp("", false, bttNext_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttNext_Visible), 5, 0), true);
                   bttSendcoins_Visible = 1;
                   AssignProp("", false, bttSendcoins_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttSendcoins_Visible), 5, 0), true);
+                  AV24transactionFee = NumberUtil.Val( "0.00001000", ".");
                   GXt_objcol_SdtSDTAddressHistory3 = AV25transactionsToSend;
-                  new GeneXus.Programs.wallet.selectcoinstosend(context ).execute(  AV33description,  AV18sendCoins, out  GXt_objcol_SdtSDTAddressHistory3) ;
+                  new GeneXus.Programs.wallet.selectcoinstosend(context ).execute(  AV33description,  AV18sendCoins,  AV24transactionFee, out  GXt_objcol_SdtSDTAddressHistory3) ;
                   AV25transactionsToSend = GXt_objcol_SdtSDTAddressHistory3;
                   GXt_char5 = AV10error;
                   new GeneXus.Programs.wallet.getrawtransfromcoinstosend(context ).execute( ref  AV25transactionsToSend, out  GXt_char5) ;
@@ -1370,7 +1371,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532417471611", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532815135485", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1387,7 +1388,7 @@ namespace GeneXus.Programs.wallet.registered {
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
          context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("wallet/registered/sendcoinsmusig.js", "?202532417471611", false, true);
+         context.AddJavascriptSource("wallet/registered/sendcoinsmusig.js", "?202532815135485", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }

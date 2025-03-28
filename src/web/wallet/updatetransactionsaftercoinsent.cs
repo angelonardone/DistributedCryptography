@@ -38,7 +38,7 @@ namespace GeneXus.Programs.wallet {
 
       public void execute( string aP0_transactionFileName ,
                            string aP1_TransactionId ,
-                           ref GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP2_transactionsToSend ,
+                           GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP2_transactionsToSend ,
                            out string aP3_error )
       {
          this.AV19transactionFileName = aP0_transactionFileName;
@@ -47,21 +47,20 @@ namespace GeneXus.Programs.wallet {
          this.AV8error = "" ;
          initialize();
          ExecuteImpl();
-         aP2_transactionsToSend=this.AV14transactionsToSend;
          aP3_error=this.AV8error;
       }
 
       public string executeUdp( string aP0_transactionFileName ,
                                 string aP1_TransactionId ,
-                                ref GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP2_transactionsToSend )
+                                GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP2_transactionsToSend )
       {
-         execute(aP0_transactionFileName, aP1_TransactionId, ref aP2_transactionsToSend, out aP3_error);
+         execute(aP0_transactionFileName, aP1_TransactionId, aP2_transactionsToSend, out aP3_error);
          return AV8error ;
       }
 
       public void executeSubmit( string aP0_transactionFileName ,
                                  string aP1_TransactionId ,
-                                 ref GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP2_transactionsToSend ,
+                                 GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP2_transactionsToSend ,
                                  out string aP3_error )
       {
          this.AV19transactionFileName = aP0_transactionFileName;
@@ -69,7 +68,6 @@ namespace GeneXus.Programs.wallet {
          this.AV14transactionsToSend = aP2_transactionsToSend;
          this.AV8error = "" ;
          SubmitImpl();
-         aP2_transactionsToSend=this.AV14transactionsToSend;
          aP3_error=this.AV8error;
       }
 
@@ -140,7 +138,6 @@ namespace GeneXus.Programs.wallet {
       private string GXt_char1 ;
       private DateTime AV20sentDateTime ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV14transactionsToSend ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP2_transactionsToSend ;
       private GeneXus.Programs.wallet.SdtStoredTransactions AV16StoredTransactions ;
       private GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem AV17oneStoredTransaction ;
       private GeneXus.Programs.wallet.SdtSDTAddressHistory AV15oneTransaction ;

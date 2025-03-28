@@ -37,12 +37,12 @@ namespace GeneXus.Programs.wallet {
       }
 
       public void execute( string aP0_transactionFileName ,
-                           SdtGetTransactions__postInput aP1_transactions__postInput ,
+                           SdtGxGetAddressess aP1_addressess_to_look_for ,
                            out GeneXus.Programs.wallet.SdtStoredTransactions aP2_StoredTransactions ,
                            out string aP3_error )
       {
          this.AV58transactionFileName = aP0_transactionFileName;
-         this.AV36transactions__postInput = aP1_transactions__postInput;
+         this.AV60addressess_to_look_for = aP1_addressess_to_look_for;
          this.AV33StoredTransactions = new GeneXus.Programs.wallet.SdtStoredTransactions(context) ;
          this.AV13error = "" ;
          initialize();
@@ -52,20 +52,20 @@ namespace GeneXus.Programs.wallet {
       }
 
       public string executeUdp( string aP0_transactionFileName ,
-                                SdtGetTransactions__postInput aP1_transactions__postInput ,
+                                SdtGxGetAddressess aP1_addressess_to_look_for ,
                                 out GeneXus.Programs.wallet.SdtStoredTransactions aP2_StoredTransactions )
       {
-         execute(aP0_transactionFileName, aP1_transactions__postInput, out aP2_StoredTransactions, out aP3_error);
+         execute(aP0_transactionFileName, aP1_addressess_to_look_for, out aP2_StoredTransactions, out aP3_error);
          return AV13error ;
       }
 
       public void executeSubmit( string aP0_transactionFileName ,
-                                 SdtGetTransactions__postInput aP1_transactions__postInput ,
+                                 SdtGxGetAddressess aP1_addressess_to_look_for ,
                                  out GeneXus.Programs.wallet.SdtStoredTransactions aP2_StoredTransactions ,
                                  out string aP3_error )
       {
          this.AV58transactionFileName = aP0_transactionFileName;
-         this.AV36transactions__postInput = aP1_transactions__postInput;
+         this.AV60addressess_to_look_for = aP1_addressess_to_look_for;
          this.AV33StoredTransactions = new GeneXus.Programs.wallet.SdtStoredTransactions(context) ;
          this.AV13error = "" ;
          SubmitImpl();
@@ -78,79 +78,73 @@ namespace GeneXus.Programs.wallet {
          /* GeneXus formulas */
          /* Output device settings */
          GXt_char1 = AV13error;
-         new GeneXus.Programs.wallet.gettransctionsfromlocaldb(context ).execute(  AV36transactions__postInput, out  AV38transactionsFromService, out  GXt_char1) ;
+         new GeneXus.Programs.wallet.gettransctionsfromlocaldb(context ).execute(  AV60addressess_to_look_for, out  AV38transactionsFromService, out  GXt_char1) ;
          AV13error = GXt_char1;
-         AV19IsSuccess = true;
-         if ( AV19IsSuccess )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
          {
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
+            AV33StoredTransactions = new GeneXus.Programs.wallet.SdtStoredTransactions(context);
+            AV45transactionsFromFile.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  AV58transactionFileName, out  AV13error), null);
+            AV61GXV1 = 1;
+            while ( AV61GXV1 <= AV45transactionsFromFile.gxTpr_Transaction.Count )
             {
-               AV33StoredTransactions = new GeneXus.Programs.wallet.SdtStoredTransactions(context);
-               AV45transactionsFromFile.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  AV58transactionFileName, out  AV13error), null);
-               AV60GXV1 = 1;
-               while ( AV60GXV1 <= AV45transactionsFromFile.gxTpr_Transaction.Count )
+               AV50oneTempTransactionFromFile = ((GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem)AV45transactionsFromFile.gxTpr_Transaction.Item(AV61GXV1));
+               AV51found = false;
+               AV62GXV2 = 1;
+               while ( AV62GXV2 <= AV38transactionsFromService.gxTpr_Transaction.Count )
                {
-                  AV50oneTempTransactionFromFile = ((GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem)AV45transactionsFromFile.gxTpr_Transaction.Item(AV60GXV1));
-                  AV51found = false;
-                  AV61GXV2 = 1;
-                  while ( AV61GXV2 <= AV38transactionsFromService.gxTpr_Transaction.Count )
+                  AV43transaction = ((SdtGxTransactionItem)AV38transactionsFromService.gxTpr_Transaction.Item(AV62GXV2));
+                  if ( ( StringUtil.StrCmp(AV50oneTempTransactionFromFile.gxTpr_Transactionid, AV43transaction.gxTpr_Transactionid) == 0 ) && ( AV50oneTempTransactionFromFile.gxTpr_N == AV43transaction.gxTpr_N ) )
                   {
-                     AV43transaction = ((SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem)AV38transactionsFromService.gxTpr_Transaction.Item(AV61GXV2));
-                     if ( ( StringUtil.StrCmp(AV50oneTempTransactionFromFile.gxTpr_Transactionid, AV43transaction.gxTpr_Transactionid) == 0 ) && ( AV50oneTempTransactionFromFile.gxTpr_N == AV43transaction.gxTpr_N ) )
-                     {
-                        AV51found = true;
-                        if (true) break;
-                     }
-                     AV61GXV2 = (int)(AV61GXV2+1);
+                     AV51found = true;
+                     if (true) break;
                   }
-                  if ( ! AV51found )
-                  {
-                     AV33StoredTransactions.gxTpr_Transaction.Add(AV50oneTempTransactionFromFile, 0);
-                  }
-                  AV60GXV1 = (int)(AV60GXV1+1);
+                  AV62GXV2 = (int)(AV62GXV2+1);
                }
-               AV62GXV3 = 1;
-               while ( AV62GXV3 <= AV38transactionsFromService.gxTpr_Transaction.Count )
+               if ( ! AV51found )
                {
-                  AV43transaction = ((SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem)AV38transactionsFromService.gxTpr_Transaction.Item(AV62GXV3));
-                  AV63GXV4 = 1;
-                  while ( AV63GXV4 <= AV45transactionsFromFile.gxTpr_Transaction.Count )
+                  AV33StoredTransactions.gxTpr_Transaction.Add(AV50oneTempTransactionFromFile, 0);
+               }
+               AV61GXV1 = (int)(AV61GXV1+1);
+            }
+            AV63GXV3 = 1;
+            while ( AV63GXV3 <= AV38transactionsFromService.gxTpr_Transaction.Count )
+            {
+               AV43transaction = ((SdtGxTransactionItem)AV38transactionsFromService.gxTpr_Transaction.Item(AV63GXV3));
+               AV51found = false;
+               AV59tempDesctiption = "";
+               AV64GXV4 = 1;
+               while ( AV64GXV4 <= AV45transactionsFromFile.gxTpr_Transaction.Count )
+               {
+                  AV50oneTempTransactionFromFile = ((GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem)AV45transactionsFromFile.gxTpr_Transaction.Item(AV64GXV4));
+                  if ( ( StringUtil.StrCmp(AV50oneTempTransactionFromFile.gxTpr_Transactionid, AV43transaction.gxTpr_Transactionid) == 0 ) && ( AV50oneTempTransactionFromFile.gxTpr_N == AV43transaction.gxTpr_N ) )
                   {
-                     AV50oneTempTransactionFromFile = ((GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem)AV45transactionsFromFile.gxTpr_Transaction.Item(AV63GXV4));
-                     AV51found = false;
-                     AV59tempDesctiption = "";
-                     if ( ( StringUtil.StrCmp(AV50oneTempTransactionFromFile.gxTpr_Transactionid, AV43transaction.gxTpr_Transactionid) == 0 ) && ( AV50oneTempTransactionFromFile.gxTpr_N == AV43transaction.gxTpr_N ) )
+                     AV53oneFoundTransactionFromFile = (GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem)(AV50oneTempTransactionFromFile.Clone());
+                     if ( AV43transaction.gxTpr_Confirmations > AV50oneTempTransactionFromFile.gxTpr_Confirmations )
                      {
-                        AV53oneFoundTransactionFromFile = new GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem(context);
-                        if ( AV43transaction.gxTpr_Confirmations > AV50oneTempTransactionFromFile.gxTpr_Confirmations )
-                        {
-                           AV50oneTempTransactionFromFile.gxTpr_Confirmations = AV43transaction.gxTpr_Confirmations;
-                           AV50oneTempTransactionFromFile.gxTpr_Datetime = AV43transaction.gxTpr_Datetime;
-                        }
-                        AV53oneFoundTransactionFromFile = AV50oneTempTransactionFromFile;
-                        AV55tempUsedTransactionId = StringUtil.Trim( AV43transaction.gxTpr_Used.gxTpr_Usedid);
-                        AV59tempDesctiption = AV50oneTempTransactionFromFile.gxTpr_Description;
-                        AV51found = true;
-                        if (true) break;
+                        AV53oneFoundTransactionFromFile.gxTpr_Confirmations = AV43transaction.gxTpr_Confirmations;
+                        AV53oneFoundTransactionFromFile.gxTpr_Datetime = AV43transaction.gxTpr_Datetime;
                      }
-                     AV63GXV4 = (int)(AV63GXV4+1);
+                     AV59tempDesctiption = AV50oneTempTransactionFromFile.gxTpr_Description;
+                     AV51found = true;
+                     if (true) break;
                   }
-                  if ( AV51found )
+                  AV64GXV4 = (int)(AV64GXV4+1);
+               }
+               if ( ! AV51found )
+               {
+                  /* Execute user subroutine: 'CREATE FROM SERVICE' */
+                  S111 ();
+                  if ( returnInSub )
                   {
-                     if ( String.IsNullOrEmpty(StringUtil.RTrim( AV55tempUsedTransactionId)) )
-                     {
-                        AV33StoredTransactions.gxTpr_Transaction.Add(AV53oneFoundTransactionFromFile, 0);
-                     }
-                     else
-                     {
-                        /* Execute user subroutine: 'CREATE FROM SERVICE' */
-                        S111 ();
-                        if ( returnInSub )
-                        {
-                           cleanup();
-                           if (true) return;
-                        }
-                     }
+                     cleanup();
+                     if (true) return;
+                  }
+               }
+               else
+               {
+                  if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV43transaction.gxTpr_Used.gxTpr_Usedid))) )
+                  {
+                     AV33StoredTransactions.gxTpr_Transaction.Add(AV53oneFoundTransactionFromFile, 0);
                   }
                   else
                   {
@@ -162,16 +156,12 @@ namespace GeneXus.Programs.wallet {
                         if (true) return;
                      }
                   }
-                  AV62GXV3 = (int)(AV62GXV3+1);
                }
-               GXt_char1 = AV13error;
-               new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  AV58transactionFileName,  AV33StoredTransactions.ToJSonString(false, true), out  GXt_char1) ;
-               AV13error = GXt_char1;
+               AV63GXV3 = (int)(AV63GXV3+1);
             }
-         }
-         else
-         {
-            AV13error = AV18HttpMessage.ToJSonString(false, true);
+            GXt_char1 = AV13error;
+            new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  AV58transactionFileName,  AV33StoredTransactions.ToJSonString(false, true), out  GXt_char1) ;
+            AV13error = GXt_char1;
          }
          cleanup();
       }
@@ -196,16 +186,16 @@ namespace GeneXus.Programs.wallet {
          AV47oneTransactionFromFile.gxTpr_Usedin.gxTpr_N = AV43transaction.gxTpr_Used.gxTpr_Usedn;
          AV47oneTransactionFromFile.gxTpr_Usedin.gxTpr_Datetime = AV43transaction.gxTpr_Used.gxTpr_Useddatetime;
          AV47oneTransactionFromFile.gxTpr_Confirmations = AV43transaction.gxTpr_Confirmations;
-         AV64GXV5 = 1;
-         while ( AV64GXV5 <= AV43transaction.gxTpr_Used.gxTpr_Usedto.Count )
+         AV65GXV5 = 1;
+         while ( AV65GXV5 <= AV43transaction.gxTpr_Used.gxTpr_Usedto.Count )
          {
-            AV48oneUsedServiceAddress = ((SdtGxExplorer_services_TxoutFromAddresses_Transaction_Used_UsedTo_Item)AV43transaction.gxTpr_Used.gxTpr_Usedto.Item(AV64GXV5));
+            AV48oneUsedServiceAddress = ((SdtGXUsedToItem)AV43transaction.gxTpr_Used.gxTpr_Usedto.Item(AV65GXV5));
             AV49oneUsedTransactionFromFile = new GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem_UsedIn_UsedToItem(context);
             AV49oneUsedTransactionFromFile.gxTpr_Scriptpubkey_address = AV48oneUsedServiceAddress.gxTpr_Scriptpubkey_address;
             AV49oneUsedTransactionFromFile.gxTpr_N = AV48oneUsedServiceAddress.gxTpr_N;
             AV49oneUsedTransactionFromFile.gxTpr_Value = AV48oneUsedServiceAddress.gxTpr_Value;
             AV47oneTransactionFromFile.gxTpr_Usedin.gxTpr_Usedto.Add(AV49oneUsedTransactionFromFile, 0);
-            AV64GXV5 = (int)(AV64GXV5+1);
+            AV65GXV5 = (int)(AV65GXV5+1);
          }
          AV33StoredTransactions.gxTpr_Transaction.Add(AV47oneTransactionFromFile, 0);
       }
@@ -224,48 +214,43 @@ namespace GeneXus.Programs.wallet {
       {
          AV33StoredTransactions = new GeneXus.Programs.wallet.SdtStoredTransactions(context);
          AV13error = "";
-         AV38transactionsFromService = new SdtGxExplorer_services_TxoutFromAddresses(context);
+         AV38transactionsFromService = new SdtGxTransactions(context);
          AV45transactionsFromFile = new GeneXus.Programs.wallet.SdtStoredTransactions(context);
          AV50oneTempTransactionFromFile = new GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem(context);
-         AV43transaction = new SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem(context);
+         AV43transaction = new SdtGxTransactionItem(context);
          AV59tempDesctiption = "";
          AV53oneFoundTransactionFromFile = new GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem(context);
-         AV55tempUsedTransactionId = "";
          GXt_char1 = "";
-         AV18HttpMessage = new GeneXus.Utils.SdtMessages_Message(context);
          AV47oneTransactionFromFile = new GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem(context);
          AV52one_sdt_address = new GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem(context);
          GXt_SdtSDT_Addressess_SDT_AddressessItem2 = new GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem(context);
-         AV48oneUsedServiceAddress = new SdtGxExplorer_services_TxoutFromAddresses_Transaction_Used_UsedTo_Item(context);
+         AV48oneUsedServiceAddress = new SdtGXUsedToItem(context);
          AV49oneUsedTransactionFromFile = new GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem_UsedIn_UsedToItem(context);
          /* GeneXus formulas. */
       }
 
-      private int AV60GXV1 ;
-      private int AV61GXV2 ;
-      private int AV62GXV3 ;
-      private int AV63GXV4 ;
-      private int AV64GXV5 ;
+      private int AV61GXV1 ;
+      private int AV62GXV2 ;
+      private int AV63GXV3 ;
+      private int AV64GXV4 ;
+      private int AV65GXV5 ;
       private string AV58transactionFileName ;
       private string AV13error ;
-      private string AV55tempUsedTransactionId ;
       private string GXt_char1 ;
-      private bool AV19IsSuccess ;
       private bool AV51found ;
       private bool returnInSub ;
       private string AV59tempDesctiption ;
-      private SdtGetTransactions__postInput AV36transactions__postInput ;
+      private SdtGxGetAddressess AV60addressess_to_look_for ;
       private GeneXus.Programs.wallet.SdtStoredTransactions AV33StoredTransactions ;
-      private SdtGxExplorer_services_TxoutFromAddresses AV38transactionsFromService ;
+      private SdtGxTransactions AV38transactionsFromService ;
       private GeneXus.Programs.wallet.SdtStoredTransactions AV45transactionsFromFile ;
       private GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem AV50oneTempTransactionFromFile ;
-      private SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem AV43transaction ;
+      private SdtGxTransactionItem AV43transaction ;
       private GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem AV53oneFoundTransactionFromFile ;
-      private GeneXus.Utils.SdtMessages_Message AV18HttpMessage ;
       private GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem AV47oneTransactionFromFile ;
       private GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem AV52one_sdt_address ;
       private GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem GXt_SdtSDT_Addressess_SDT_AddressessItem2 ;
-      private SdtGxExplorer_services_TxoutFromAddresses_Transaction_Used_UsedTo_Item AV48oneUsedServiceAddress ;
+      private SdtGXUsedToItem AV48oneUsedServiceAddress ;
       private GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem_UsedIn_UsedToItem AV49oneUsedTransactionFromFile ;
       private GeneXus.Programs.wallet.SdtStoredTransactions aP2_StoredTransactions ;
       private string aP3_error ;

@@ -22,9 +22,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Reference Include="GeneXus.dll" > 
-			<HintPath>$(WebBinDirectory)\GeneXus.dll</HintPath>
-		</Reference>
 		<Reference Include="WebExtensionToolkit.dll" > 
 			<HintPath>$(WebBinDirectory)\WebExtensionToolkit.dll</HintPath>
 		</Reference>
