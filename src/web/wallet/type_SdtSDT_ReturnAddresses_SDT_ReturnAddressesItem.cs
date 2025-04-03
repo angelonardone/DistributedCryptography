@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtSDT_ReturnAddresses_SDT_ReturnAddressesItem
 			Description: SDT_ReturnAddresses
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.wallet
@@ -31,6 +32,7 @@ namespace GeneXus.Programs.wallet
 		{
 			/* Constructor for serialization */
 			gxTv_SdtSDT_ReturnAddresses_SDT_ReturnAddressesItem_Address = "";
+
 
 		}
 
@@ -156,6 +158,8 @@ namespace GeneXus.Programs.wallet
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("Address")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="Address", Order=0)]
 		public  string gxTpr_Address
 		{
@@ -168,6 +172,9 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("isUsed")]
+		[JsonPropertyOrder(1)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="isUsed", Order=1)]
 		public bool gxTpr_Isused
 		{
@@ -182,7 +189,7 @@ namespace GeneXus.Programs.wallet
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtSDT_ReturnAddresses_SDT_ReturnAddressesItem sdt
 		{
 			get { 

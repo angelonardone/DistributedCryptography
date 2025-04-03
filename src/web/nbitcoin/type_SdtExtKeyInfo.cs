@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtExtKeyInfo
 			Description: ExtKeyInfo
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nbitcoin
@@ -201,6 +202,7 @@ namespace GeneXus.Programs.nbitcoin
 					gxTv_SdtExtKeyInfo_Extended = new SdtExtKeyInfo_Extended(context);
 				}
 				gxTv_SdtExtKeyInfo_Extended_N = false;
+				SetDirty("Extended");
 				return gxTv_SdtExtKeyInfo_Extended;
 			}
 			set {
@@ -305,6 +307,8 @@ namespace GeneXus.Programs.nbitcoin
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("PrivateKey")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="PrivateKey", Order=0)]
 		public  string gxTpr_Privatekey
 		{
@@ -317,6 +321,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("PublicKey")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="PublicKey", Order=1)]
 		public  string gxTpr_Publickey
 		{
@@ -329,6 +335,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("ChainCode")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="ChainCode", Order=2)]
 		public  string gxTpr_Chaincode
 		{
@@ -341,6 +349,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Mnemonic")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="Mnemonic", Order=3)]
 		public  string gxTpr_Mnemonic
 		{
@@ -353,6 +363,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("WIF")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="WIF", Order=4)]
 		public  string gxTpr_Wif
 		{
@@ -365,6 +377,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("encryptedWIF")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="encryptedWIF", Order=5)]
 		public  string gxTpr_Encryptedwif
 		{
@@ -377,6 +391,9 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Extended")]
+		[JsonPropertyOrder(6)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="Extended", Order=6, EmitDefaultValue=false)]
 		public SdtExtKeyInfo_Extended_RESTInterface gxTpr_Extended
 		{
@@ -396,7 +413,7 @@ namespace GeneXus.Programs.nbitcoin
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtExtKeyInfo sdt
 		{
 			get { 

@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtMultiSigSignatureData_DataItem_signaturesItem
 			Description: signatures
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.wallet
@@ -158,6 +159,8 @@ namespace GeneXus.Programs.wallet
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("signature")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="signature", Order=0)]
 		public  string gxTpr_Signature
 		{
@@ -170,6 +173,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("XOnlyPubKey")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="XOnlyPubKey", Order=1)]
 		public  string gxTpr_Xonlypubkey
 		{
@@ -184,7 +189,7 @@ namespace GeneXus.Programs.wallet
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtMultiSigSignatureData_DataItem_signaturesItem sdt
 		{
 			get { 

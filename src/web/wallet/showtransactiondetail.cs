@@ -261,18 +261,18 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 123260), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -297,7 +297,7 @@ namespace GeneXus.Programs.wallet {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.showtransactiondetail.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV18transactionId)),UrlEncode(StringUtil.LTrimStr(AV23n,10,0)),UrlEncode(StringUtil.RTrim(AV19transactionFileName))}, new string[] {"transactionId","n","transactionFileName"}) +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.showtransactiondetail", new object[] {UrlEncode(StringUtil.RTrim(AV18transactionId)),UrlEncode(StringUtil.LTrimStr(AV23n,10,0)),UrlEncode(StringUtil.RTrim(AV19transactionFileName))}, new string[] {"transactionId","n","transactionFileName"}) +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -411,7 +411,7 @@ namespace GeneXus.Programs.wallet {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wallet.showtransactiondetail.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV18transactionId)),UrlEncode(StringUtil.LTrimStr(AV23n,10,0)),UrlEncode(StringUtil.RTrim(AV19transactionFileName))}, new string[] {"transactionId","n","transactionFileName"})  ;
+         return formatLink("wallet.showtransactiondetail", new object[] {UrlEncode(StringUtil.RTrim(AV18transactionId)),UrlEncode(StringUtil.LTrimStr(AV23n,10,0)),UrlEncode(StringUtil.RTrim(AV19transactionFileName))}, new string[] {"transactionId","n","transactionFileName"})  ;
       }
 
       public override string GetPgmname( )
@@ -714,7 +714,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_12-186073", 0) ;
             }
          }
          Form.Meta.addItem("description", "Transaction Detail", 0) ;
@@ -1338,7 +1338,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532815134017", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254215271814", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1354,8 +1354,8 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("wallet/showtransactiondetail.js", "?202532815134017", false, true);
+         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("wallet/showtransactiondetail.js", "?20254215271814", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -1674,11 +1674,11 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID1_nFirstRecordOnPage"},{"av":"GRID1_nEOF"},{"av":"AV15showTransactionItem","fld":"vSHOWTRANSACTIONITEM"},{"av":"nRC_GXsfl_57","ctrl":"GRID1","prop":"GridRC","grid":57},{"av":"AV16error","fld":"vERROR","hsh":true},{"av":"AV19transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true},{"av":"AV18transactionId","fld":"vTRANSACTIONID","hsh":true},{"av":"AV23n","fld":"vN","pic":"ZZZZZZZZZ9","hsh":true},{"av":"AV17usedTransactionId","fld":"vUSEDTRANSACTIONID","hsh":true}]""");
-         setEventMetadata("REFRESH",""","oparms":[{"av":"AV15showTransactionItem","fld":"vSHOWTRANSACTIONITEM"},{"av":"GRID1_nFirstRecordOnPage"},{"av":"nRC_GXsfl_57","ctrl":"GRID1","prop":"GridRC","grid":57},{"av":"AV17usedTransactionId","fld":"vUSEDTRANSACTIONID","hsh":true},{"av":"grpGroup1_Visible","ctrl":"GROUP1","prop":"Visible"},{"ctrl":"EDITDESCRIPTION","prop":"Visible"}]}""");
-         setEventMetadata("'EDIT DESCRIPTION'","""{"handler":"E110A1","iparms":[{"av":"AV18transactionId","fld":"vTRANSACTIONID","hsh":true},{"av":"AV23n","fld":"vN","pic":"ZZZZZZZZZ9","hsh":true},{"av":"AV19transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true}]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E120A2","iparms":[{"av":"GRID1_nFirstRecordOnPage"},{"av":"GRID1_nEOF"},{"av":"AV15showTransactionItem","fld":"vSHOWTRANSACTIONITEM"},{"av":"nRC_GXsfl_57","ctrl":"GRID1","prop":"GridRC","grid":57},{"av":"AV16error","fld":"vERROR","hsh":true},{"av":"AV19transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true},{"av":"AV18transactionId","fld":"vTRANSACTIONID","hsh":true},{"av":"AV23n","fld":"vN","pic":"ZZZZZZZZZ9","hsh":true},{"av":"AV17usedTransactionId","fld":"vUSEDTRANSACTIONID","hsh":true},{"av":"AV25PopupName","fld":"vPOPUPNAME"}]""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV15showTransactionItem","fld":"vSHOWTRANSACTIONITEM"},{"av":"GRID1_nFirstRecordOnPage"},{"av":"nRC_GXsfl_57","ctrl":"GRID1","prop":"GridRC","grid":57},{"av":"AV17usedTransactionId","fld":"vUSEDTRANSACTIONID","hsh":true},{"av":"grpGroup1_Visible","ctrl":"GROUP1","prop":"Visible"},{"ctrl":"EDITDESCRIPTION","prop":"Visible"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID1_nFirstRecordOnPage","type":"int"},{"av":"GRID1_nEOF","type":"int"},{"av":"AV15showTransactionItem","fld":"vSHOWTRANSACTIONITEM","type":""},{"av":"nRC_GXsfl_57","ctrl":"GRID1","prop":"GridRC","grid":57,"type":"int"},{"av":"AV16error","fld":"vERROR","hsh":true,"type":"char"},{"av":"AV19transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"AV18transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV23n","fld":"vN","pic":"ZZZZZZZZZ9","hsh":true,"type":"int"},{"av":"AV17usedTransactionId","fld":"vUSEDTRANSACTIONID","hsh":true,"type":"char"}]""");
+         setEventMetadata("REFRESH",""","oparms":[{"av":"AV15showTransactionItem","fld":"vSHOWTRANSACTIONITEM","type":""},{"av":"GRID1_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_57","ctrl":"GRID1","prop":"GridRC","grid":57,"type":"int"},{"av":"AV17usedTransactionId","fld":"vUSEDTRANSACTIONID","hsh":true,"type":"char"},{"av":"grpGroup1_Visible","ctrl":"GROUP1","prop":"Visible"},{"ctrl":"EDITDESCRIPTION","prop":"Visible"}]}""");
+         setEventMetadata("'EDIT DESCRIPTION'","""{"handler":"E110A1","iparms":[{"av":"AV18transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV23n","fld":"vN","pic":"ZZZZZZZZZ9","hsh":true,"type":"int"},{"av":"AV19transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"}]}""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E120A2","iparms":[{"av":"GRID1_nFirstRecordOnPage","type":"int"},{"av":"GRID1_nEOF","type":"int"},{"av":"AV15showTransactionItem","fld":"vSHOWTRANSACTIONITEM","type":""},{"av":"nRC_GXsfl_57","ctrl":"GRID1","prop":"GridRC","grid":57,"type":"int"},{"av":"AV16error","fld":"vERROR","hsh":true,"type":"char"},{"av":"AV19transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"AV18transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV23n","fld":"vN","pic":"ZZZZZZZZZ9","hsh":true,"type":"int"},{"av":"AV17usedTransactionId","fld":"vUSEDTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV25PopupName","fld":"vPOPUPNAME","type":"char"}]""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV15showTransactionItem","fld":"vSHOWTRANSACTIONITEM","type":""},{"av":"GRID1_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_57","ctrl":"GRID1","prop":"GridRC","grid":57,"type":"int"},{"av":"AV17usedTransactionId","fld":"vUSEDTRANSACTIONID","hsh":true,"type":"char"},{"av":"grpGroup1_Visible","ctrl":"GROUP1","prop":"Visible"},{"ctrl":"EDITDESCRIPTION","prop":"Visible"}]}""");
          setEventMetadata("'CLOSE'","""{"handler":"E130A2","iparms":[]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Gxv13","iparms":[]}""");
          return  ;

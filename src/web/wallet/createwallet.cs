@@ -203,10 +203,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 123260), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -236,7 +236,7 @@ namespace GeneXus.Programs.wallet {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.createwallet.aspx") +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.createwallet") +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -337,7 +337,7 @@ namespace GeneXus.Programs.wallet {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wallet.createwallet.aspx")  ;
+         return formatLink("wallet.createwallet")  ;
       }
 
       public override string GetPgmname( )
@@ -614,7 +614,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_12-186073", 0) ;
             }
          }
          Form.Meta.addItem("description", "Create Wallet", 0) ;
@@ -1186,7 +1186,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532815134244", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254215272083", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1202,7 +1202,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/createwallet.js", "?202532815134244", false, true);
+         context.AddJavascriptSource("wallet/createwallet.js", "?20254215272083", false, true);
          /* End function include_jscripts */
       }
 
@@ -1329,13 +1329,13 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV23authenticator","fld":"vAUTHENTICATOR"},{"av":"AV28showAuthenticatorCode","fld":"vSHOWAUTHENTICATORCODE"}]}""");
-         setEventMetadata("VMNEMONICNUMBERWORDS.CONTROLVALUECHANGED","""{"handler":"E120K2","iparms":[{"av":"cmbavNetworktype"},{"av":"AV15networkType","fld":"vNETWORKTYPE"},{"av":"AV8extKeyCreate","fld":"vEXTKEYCREATE"},{"av":"cmbavMnemonicnumberwords"},{"av":"AV13mnemonicNumberWords","fld":"vMNEMONICNUMBERWORDS","pic":"ZZZ9"},{"av":"cmbavMnemoniclanguage"},{"av":"AV12mnemonicLanguage","fld":"vMNEMONICLANGUAGE","pic":"ZZZ9"},{"av":"AV7error","fld":"vERROR"},{"av":"AV16newPass","fld":"vNEWPASS"},{"av":"AV19wallet","fld":"vWALLET"},{"av":"AV23authenticator","fld":"vAUTHENTICATOR"},{"av":"AV29extendeSecretAndAuthenticator","fld":"vEXTENDESECRETANDAUTHENTICATOR"},{"av":"AV27base32String","fld":"vBASE32STRING"},{"av":"AV20walletName","fld":"vWALLETNAME"}]""");
-         setEventMetadata("VMNEMONICNUMBERWORDS.CONTROLVALUECHANGED",""","oparms":[{"av":"AV8extKeyCreate","fld":"vEXTKEYCREATE"},{"av":"AV7error","fld":"vERROR"},{"av":"AV19wallet","fld":"vWALLET"},{"av":"AV29extendeSecretAndAuthenticator","fld":"vEXTENDESECRETANDAUTHENTICATOR"},{"av":"AV14MnemonicText","fld":"vMNEMONICTEXT"},{"av":"lblTxt1_Visible","ctrl":"TXT1","prop":"Visible"},{"ctrl":"CREATEWALLET","prop":"Visible"},{"av":"lblTxt1_Caption","ctrl":"TXT1","prop":"Caption"}]}""");
-         setEventMetadata("'CREATE WALLET'","""{"handler":"E130K2","iparms":[{"av":"AV20walletName","fld":"vWALLETNAME"},{"av":"AV16newPass","fld":"vNEWPASS"},{"av":"AV17newPassConfirm","fld":"vNEWPASSCONFIRM"},{"av":"cmbavMnemoniclanguage"},{"av":"AV12mnemonicLanguage","fld":"vMNEMONICLANGUAGE","pic":"ZZZ9"},{"av":"cmbavMnemonicnumberwords"},{"av":"AV13mnemonicNumberWords","fld":"vMNEMONICNUMBERWORDS","pic":"ZZZ9"},{"av":"AV19wallet","fld":"vWALLET"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV23authenticator","fld":"vAUTHENTICATOR","type":"boolean"},{"av":"AV28showAuthenticatorCode","fld":"vSHOWAUTHENTICATORCODE","type":"boolean"}]}""");
+         setEventMetadata("VMNEMONICNUMBERWORDS.CONTROLVALUECHANGED","""{"handler":"E120K2","iparms":[{"av":"cmbavNetworktype"},{"av":"AV15networkType","fld":"vNETWORKTYPE","type":"char"},{"av":"AV8extKeyCreate","fld":"vEXTKEYCREATE","type":""},{"av":"cmbavMnemonicnumberwords"},{"av":"AV13mnemonicNumberWords","fld":"vMNEMONICNUMBERWORDS","pic":"ZZZ9","type":"int"},{"av":"cmbavMnemoniclanguage"},{"av":"AV12mnemonicLanguage","fld":"vMNEMONICLANGUAGE","pic":"ZZZ9","type":"int"},{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"AV16newPass","fld":"vNEWPASS","type":"char"},{"av":"AV19wallet","fld":"vWALLET","type":""},{"av":"AV23authenticator","fld":"vAUTHENTICATOR","type":"boolean"},{"av":"AV29extendeSecretAndAuthenticator","fld":"vEXTENDESECRETANDAUTHENTICATOR","type":""},{"av":"AV27base32String","fld":"vBASE32STRING","type":"char"},{"av":"AV20walletName","fld":"vWALLETNAME","type":"char"}]""");
+         setEventMetadata("VMNEMONICNUMBERWORDS.CONTROLVALUECHANGED",""","oparms":[{"av":"AV8extKeyCreate","fld":"vEXTKEYCREATE","type":""},{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"AV19wallet","fld":"vWALLET","type":""},{"av":"AV29extendeSecretAndAuthenticator","fld":"vEXTENDESECRETANDAUTHENTICATOR","type":""},{"av":"AV14MnemonicText","fld":"vMNEMONICTEXT","type":"vchar"},{"av":"lblTxt1_Visible","ctrl":"TXT1","prop":"Visible"},{"ctrl":"CREATEWALLET","prop":"Visible"},{"av":"lblTxt1_Caption","ctrl":"TXT1","prop":"Caption"}]}""");
+         setEventMetadata("'CREATE WALLET'","""{"handler":"E130K2","iparms":[{"av":"AV20walletName","fld":"vWALLETNAME","type":"char"},{"av":"AV16newPass","fld":"vNEWPASS","type":"char"},{"av":"AV17newPassConfirm","fld":"vNEWPASSCONFIRM","type":"char"},{"av":"cmbavMnemoniclanguage"},{"av":"AV12mnemonicLanguage","fld":"vMNEMONICLANGUAGE","pic":"ZZZ9","type":"int"},{"av":"cmbavMnemonicnumberwords"},{"av":"AV13mnemonicNumberWords","fld":"vMNEMONICNUMBERWORDS","pic":"ZZZ9","type":"int"},{"av":"AV19wallet","fld":"vWALLET","type":""}]}""");
          setEventMetadata("'CANCEL AND CLOSE'","""{"handler":"E140K2","iparms":[]}""");
-         setEventMetadata("VAUTHENTICATOR.CONTROLVALUECHANGED","""{"handler":"E150K2","iparms":[{"av":"AV23authenticator","fld":"vAUTHENTICATOR"},{"av":"AV20walletName","fld":"vWALLETNAME"}]""");
-         setEventMetadata("VAUTHENTICATOR.CONTROLVALUECHANGED",""","oparms":[{"av":"AV7error","fld":"vERROR"},{"av":"AV27base32String","fld":"vBASE32STRING"},{"av":"AV24qrcode","fld":"vQRCODE"},{"av":"chkavShowauthenticatorcode.Visible","ctrl":"vSHOWAUTHENTICATORCODE","prop":"Visible"},{"av":"imgavQrcode_Visible","ctrl":"vQRCODE","prop":"Visible"}]}""");
+         setEventMetadata("VAUTHENTICATOR.CONTROLVALUECHANGED","""{"handler":"E150K2","iparms":[{"av":"AV23authenticator","fld":"vAUTHENTICATOR","type":"boolean"},{"av":"AV20walletName","fld":"vWALLETNAME","type":"char"}]""");
+         setEventMetadata("VAUTHENTICATOR.CONTROLVALUECHANGED",""","oparms":[{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"AV27base32String","fld":"vBASE32STRING","type":"char"},{"av":"AV24qrcode","fld":"vQRCODE","type":"bits"},{"av":"chkavShowauthenticatorcode.Visible","ctrl":"vSHOWAUTHENTICATORCODE","prop":"Visible"},{"av":"imgavQrcode_Visible","ctrl":"vQRCODE","prop":"Visible"}]}""");
          setEventMetadata("VALIDV_NETWORKTYPE","""{"handler":"Validv_Networktype","iparms":[]}""");
          setEventMetadata("VALIDV_MNEMONICLANGUAGE","""{"handler":"Validv_Mnemoniclanguage","iparms":[]}""");
          setEventMetadata("VALIDV_MNEMONICNUMBERWORDS","""{"handler":"Validv_Mnemonicnumberwords","iparms":[]}""");

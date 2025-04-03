@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtprocessRecivedFromNostrTestSDT
 			Description: processRecivedFromNostrTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 
 namespace GeneXus.Programs
@@ -31,6 +32,12 @@ namespace GeneXus.Programs
 		{
 			/* Constructor for serialization */
 			gxTv_SdtprocessRecivedFromNostrTestSDT_Testcaseid = "";
+
+			gxTv_SdtprocessRecivedFromNostrTestSDT_Notificationinfo_N = true;
+
+			gxTv_SdtprocessRecivedFromNostrTestSDT_Recfromnostr_N = true;
+
+			gxTv_SdtprocessRecivedFromNostrTestSDT_Expectedrecfromnostr_N = true;
 
 			gxTv_SdtprocessRecivedFromNostrTestSDT_Msgrecfromnostr = "";
 
@@ -107,6 +114,7 @@ namespace GeneXus.Programs
 				if ( gxTv_SdtprocessRecivedFromNostrTestSDT_Notificationinfo == null )
 				{
 					gxTv_SdtprocessRecivedFromNostrTestSDT_Notificationinfo = new GeneXus.Core.genexus.server.SdtNotificationInfo(context);
+					SetDirty("Notificationinfo");
 				}
 				return gxTv_SdtprocessRecivedFromNostrTestSDT_Notificationinfo; 
 			}
@@ -139,6 +147,7 @@ namespace GeneXus.Programs
 				if ( gxTv_SdtprocessRecivedFromNostrTestSDT_Recfromnostr == null )
 				{
 					gxTv_SdtprocessRecivedFromNostrTestSDT_Recfromnostr = new GeneXus.Programs.nostr.SdtRecFromNostr(context);
+					SetDirty("Recfromnostr");
 				}
 				return gxTv_SdtprocessRecivedFromNostrTestSDT_Recfromnostr; 
 			}
@@ -171,6 +180,7 @@ namespace GeneXus.Programs
 				if ( gxTv_SdtprocessRecivedFromNostrTestSDT_Expectedrecfromnostr == null )
 				{
 					gxTv_SdtprocessRecivedFromNostrTestSDT_Expectedrecfromnostr = new GeneXus.Programs.nostr.SdtRecFromNostr(context);
+					SetDirty("Expectedrecfromnostr");
 				}
 				return gxTv_SdtprocessRecivedFromNostrTestSDT_Expectedrecfromnostr; 
 			}
@@ -287,6 +297,8 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("TestCaseId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="TestCaseId", Order=0)]
 		public  string gxTpr_Testcaseid
 		{
@@ -299,6 +311,9 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("NotificationInfo")]
+		[JsonPropertyOrder(1)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="NotificationInfo", Order=1, EmitDefaultValue=false)]
 		public GeneXus.Core.genexus.server.SdtNotificationInfo_RESTInterface gxTpr_Notificationinfo
 		{
@@ -314,6 +329,9 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("recFromNostr")]
+		[JsonPropertyOrder(2)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="recFromNostr", Order=2, EmitDefaultValue=false)]
 		public GeneXus.Programs.nostr.SdtRecFromNostr_RESTInterface gxTpr_Recfromnostr
 		{
@@ -329,6 +347,9 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("ExpectedrecFromNostr")]
+		[JsonPropertyOrder(3)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="ExpectedrecFromNostr", Order=3, EmitDefaultValue=false)]
 		public GeneXus.Programs.nostr.SdtRecFromNostr_RESTInterface gxTpr_Expectedrecfromnostr
 		{
@@ -344,6 +365,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("MsgrecFromNostr")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="MsgrecFromNostr", Order=4)]
 		public  string gxTpr_Msgrecfromnostr
 		{
@@ -358,7 +381,7 @@ namespace GeneXus.Programs
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtprocessRecivedFromNostrTestSDT sdt
 		{
 			get { 

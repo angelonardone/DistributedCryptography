@@ -12,6 +12,8 @@
 		<MailSupport>false</MailSupport>
 		<GrpcClientSupport>false</GrpcClientSupport>
 		<PdfLibrary></PdfLibrary>
+		<PDFSupport>false</PDFSupport>
+		<SearchSupport>false</SearchSupport>
 	</PropertyGroup>
 	
 	<ItemGroup>
@@ -76,9 +78,6 @@
 		<Compile Include = "$(WebDirectory)\distributedcrypto\encryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\parse_serialized_extended_key.cs" />
 
-	</ItemGroup>
-	<ItemGroup Condition="'$(PostgresqlSupport)'=='true'">
-		<PackageReference Include="Npgsql" Version="8.0.3" PrivateAssets="All"/>
 	</ItemGroup>
 
 	<Import Project="..\DotNetCoreBaseProject.targets"/>	

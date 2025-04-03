@@ -1,7 +1,7 @@
 /*
 				   File: type_Sdtparse_serialized_extended_keyUnitTestSDT
 			Description: parse_serialized_extended_keyUnitTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nbitcoin
@@ -458,6 +459,8 @@ namespace GeneXus.Programs.nbitcoin
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("TestCaseId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="TestCaseId", Order=0)]
 		public  string gxTpr_Testcaseid
 		{
@@ -470,6 +473,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("in_extended_key")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="in_extended_key", Order=1)]
 		public  string gxTpr_In_extended_key
 		{
@@ -482,6 +487,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("out_extended_key")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="out_extended_key", Order=2)]
 		public  string gxTpr_Out_extended_key
 		{
@@ -494,6 +501,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Expectedout_extended_key")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="Expectedout_extended_key", Order=3)]
 		public  string gxTpr_Expectedout_extended_key
 		{
@@ -506,6 +515,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Msgout_extended_key")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="Msgout_extended_key", Order=4)]
 		public  string gxTpr_Msgout_extended_key
 		{
@@ -518,6 +529,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("networkType")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="networkType", Order=5)]
 		public  string gxTpr_Networktype
 		{
@@ -530,6 +543,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("ExpectednetworkType")]
+		[JsonPropertyOrder(6)]
 		[DataMember(Name="ExpectednetworkType", Order=6)]
 		public  string gxTpr_Expectednetworktype
 		{
@@ -542,6 +557,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("MsgnetworkType")]
+		[JsonPropertyOrder(7)]
 		[DataMember(Name="MsgnetworkType", Order=7)]
 		public  string gxTpr_Msgnetworktype
 		{
@@ -554,6 +571,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("extendedKeyType")]
+		[JsonPropertyOrder(8)]
 		[DataMember(Name="extendedKeyType", Order=8)]
 		public  string gxTpr_Extendedkeytype
 		{
@@ -566,6 +585,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("ExpectedextendedKeyType")]
+		[JsonPropertyOrder(9)]
 		[DataMember(Name="ExpectedextendedKeyType", Order=9)]
 		public  string gxTpr_Expectedextendedkeytype
 		{
@@ -578,6 +599,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("MsgextendedKeyType")]
+		[JsonPropertyOrder(10)]
 		[DataMember(Name="MsgextendedKeyType", Order=10)]
 		public  string gxTpr_Msgextendedkeytype
 		{
@@ -590,6 +613,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("error")]
+		[JsonPropertyOrder(11)]
 		[DataMember(Name="error", Order=11)]
 		public  string gxTpr_Error
 		{
@@ -602,6 +627,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Expectederror")]
+		[JsonPropertyOrder(12)]
 		[DataMember(Name="Expectederror", Order=12)]
 		public  string gxTpr_Expectederror
 		{
@@ -614,6 +641,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Msgerror")]
+		[JsonPropertyOrder(13)]
 		[DataMember(Name="Msgerror", Order=13)]
 		public  string gxTpr_Msgerror
 		{
@@ -628,7 +657,7 @@ namespace GeneXus.Programs.nbitcoin
 
 
 		#endregion
-
+		[JsonIgnore]
 		public Sdtparse_serialized_extended_keyUnitTestSDT sdt
 		{
 			get { 

@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtSdtChosenResultItem
 			Description: SdtChosenResultItem
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.wallet
@@ -133,6 +134,8 @@ namespace GeneXus.Programs.wallet
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("value")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="value", Order=0)]
 		public  string gxTpr_Value
 		{
@@ -147,7 +150,7 @@ namespace GeneXus.Programs.wallet
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtSdtChosenResultItem sdt
 		{
 			get { 

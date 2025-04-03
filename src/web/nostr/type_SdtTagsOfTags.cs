@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtTagsOfTags
 			Description: TagsOfTags
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nostr
@@ -94,6 +95,7 @@ namespace GeneXus.Programs.nostr
 					gxTv_SdtTagsOfTags_Tag = new GxSimpleCollection<string>();
 				}
 				gxTv_SdtTagsOfTags_Tag_N = false;
+				SetDirty("Tag");
 				return gxTv_SdtTagsOfTags_Tag ;
 			}
 			set {
@@ -173,6 +175,9 @@ namespace GeneXus.Programs.nostr
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("tag")]
+		[JsonPropertyOrder(0)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="tag", Order=0, EmitDefaultValue=false)]
 		public  GxSimpleCollection<string> gxTpr_Tag
 		{
@@ -190,7 +195,7 @@ namespace GeneXus.Programs.nostr
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtTagsOfTags sdt
 		{
 			get { 

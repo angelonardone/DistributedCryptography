@@ -238,18 +238,18 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 123260), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
@@ -275,7 +275,7 @@ namespace GeneXus.Programs.wallet {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.encryptedfiles.aspx") +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.encryptedfiles") +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -445,7 +445,7 @@ namespace GeneXus.Programs.wallet {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wallet.encryptedfiles.aspx")  ;
+         return formatLink("wallet.encryptedfiles")  ;
       }
 
       public override string GetPgmname( )
@@ -575,7 +575,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_12-186073", 0) ;
             }
          }
          Form.Meta.addItem("description", "Encrypted Files", 0) ;
@@ -1283,7 +1283,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532815134576", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254215272386", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1299,7 +1299,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/encryptedfiles.js", "?202532815134576", false, true);
+         context.AddJavascriptSource("wallet/encryptedfiles.js", "?20254215272386", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
@@ -1557,16 +1557,16 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDFILES_nFirstRecordOnPage"},{"av":"GRIDFILES_nEOF"},{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9},{"av":"AV23wallet","fld":"vWALLET","hsh":true},{"av":"AV27keyInfo","fld":"vKEYINFO","hsh":true}]""");
-         setEventMetadata("REFRESH",""","oparms":[{"av":"AV28deleteFile","fld":"vDELETEFILE"},{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDFILES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9}]}""");
-         setEventMetadata("FILEUPLOAD.UPLOADCOMPLETE","""{"handler":"E11112","iparms":[{"av":"GRIDFILES_nFirstRecordOnPage"},{"av":"GRIDFILES_nEOF"},{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9},{"av":"AV23wallet","fld":"vWALLET","hsh":true},{"av":"AV27keyInfo","fld":"vKEYINFO","hsh":true},{"av":"AV21UploadedFiles","fld":"vUPLOADEDFILES"},{"av":"AV9encryptedFile","fld":"vENCRYPTEDFILE"}]""");
-         setEventMetadata("FILEUPLOAD.UPLOADCOMPLETE",""","oparms":[{"av":"AV11encryptedKey","fld":"vENCRYPTEDKEY"},{"av":"AV9encryptedFile","fld":"vENCRYPTEDFILE"},{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDFILES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9},{"av":"AV28deleteFile","fld":"vDELETEFILE"}]}""");
-         setEventMetadata("'DECRYPT AND DOWNLOAD'","""{"handler":"E15112","iparms":[{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDFILES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9}]""");
-         setEventMetadata("'DECRYPT AND DOWNLOAD'",""","oparms":[{"av":"AV7downloadEncryptedFile","fld":"vDOWNLOADENCRYPTEDFILE"},{"av":"AV32fromDeleteFile","fld":"vFROMDELETEFILE"}]}""");
-         setEventMetadata("'DELETE FILE'","""{"handler":"E16112","iparms":[{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDFILES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9}]""");
-         setEventMetadata("'DELETE FILE'",""","oparms":[{"av":"AV32fromDeleteFile","fld":"vFROMDELETEFILE"},{"av":"AV11encryptedKey","fld":"vENCRYPTEDKEY"},{"av":"AV30FileName","fld":"vFILENAME"}]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED","""{"handler":"E12112","iparms":[{"av":"AV22UserResponse","fld":"vUSERRESPONSE"},{"av":"AV32fromDeleteFile","fld":"vFROMDELETEFILE"},{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDFILES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9},{"av":"AV30FileName","fld":"vFILENAME"},{"av":"AV11encryptedKey","fld":"vENCRYPTEDKEY"},{"av":"AV27keyInfo","fld":"vKEYINFO","hsh":true},{"av":"AV7downloadEncryptedFile","fld":"vDOWNLOADENCRYPTEDFILE"},{"av":"GRIDFILES_nEOF"},{"av":"AV23wallet","fld":"vWALLET","hsh":true}]""");
-         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED",""","oparms":[{"av":"AV9encryptedFile","fld":"vENCRYPTEDFILE"},{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDFILES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDFILES_nFirstRecordOnPage","type":"int"},{"av":"GRIDFILES_nEOF","type":"int"},{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV23wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"AV27keyInfo","fld":"vKEYINFO","hsh":true,"type":""}]""");
+         setEventMetadata("REFRESH",""","oparms":[{"av":"AV28deleteFile","fld":"vDELETEFILE","type":"char"},{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDFILES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9,"type":"int"}]}""");
+         setEventMetadata("FILEUPLOAD.UPLOADCOMPLETE","""{"handler":"E11112","iparms":[{"av":"GRIDFILES_nFirstRecordOnPage","type":"int"},{"av":"GRIDFILES_nEOF","type":"int"},{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV23wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"AV27keyInfo","fld":"vKEYINFO","hsh":true,"type":""},{"av":"AV21UploadedFiles","fld":"vUPLOADEDFILES","type":""},{"av":"AV9encryptedFile","fld":"vENCRYPTEDFILE","type":""}]""");
+         setEventMetadata("FILEUPLOAD.UPLOADCOMPLETE",""","oparms":[{"av":"AV11encryptedKey","fld":"vENCRYPTEDKEY","type":"char"},{"av":"AV9encryptedFile","fld":"vENCRYPTEDFILE","type":""},{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDFILES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV28deleteFile","fld":"vDELETEFILE","type":"char"}]}""");
+         setEventMetadata("'DECRYPT AND DOWNLOAD'","""{"handler":"E15112","iparms":[{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDFILES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9,"type":"int"}]""");
+         setEventMetadata("'DECRYPT AND DOWNLOAD'",""","oparms":[{"av":"AV7downloadEncryptedFile","fld":"vDOWNLOADENCRYPTEDFILE","type":""},{"av":"AV32fromDeleteFile","fld":"vFROMDELETEFILE","type":"boolean"}]}""");
+         setEventMetadata("'DELETE FILE'","""{"handler":"E16112","iparms":[{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDFILES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9,"type":"int"}]""");
+         setEventMetadata("'DELETE FILE'",""","oparms":[{"av":"AV32fromDeleteFile","fld":"vFROMDELETEFILE","type":"boolean"},{"av":"AV11encryptedKey","fld":"vENCRYPTEDKEY","type":"char"},{"av":"AV30FileName","fld":"vFILENAME","type":"char"}]}""");
+         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED","""{"handler":"E12112","iparms":[{"av":"AV22UserResponse","fld":"vUSERRESPONSE","type":"boolean"},{"av":"AV32fromDeleteFile","fld":"vFROMDELETEFILE","type":"boolean"},{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDFILES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV30FileName","fld":"vFILENAME","type":"char"},{"av":"AV11encryptedKey","fld":"vENCRYPTEDKEY","type":"char"},{"av":"AV27keyInfo","fld":"vKEYINFO","hsh":true,"type":""},{"av":"AV7downloadEncryptedFile","fld":"vDOWNLOADENCRYPTEDFILE","type":""},{"av":"GRIDFILES_nEOF","type":"int"},{"av":"AV23wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED",""","oparms":[{"av":"AV9encryptedFile","fld":"vENCRYPTEDFILE","type":""},{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDFILES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9,"type":"int"}]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Deletefile","iparms":[]}""");
          return  ;
       }

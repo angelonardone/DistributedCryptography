@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtGxTransactions
 			Description: GxTransactions
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 
 namespace GeneXus.Programs
@@ -94,6 +95,7 @@ namespace GeneXus.Programs
 					gxTv_SdtGxTransactions_Transaction = new GXBaseCollection<GeneXus.Programs.SdtGxTransactionItem>( context, "GxTransactionItem", "");
 				}
 				gxTv_SdtGxTransactions_Transaction_N = false;
+				SetDirty("Transaction");
 				return gxTv_SdtGxTransactions_Transaction ;
 			}
 			set {
@@ -173,6 +175,9 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("Transaction")]
+		[JsonPropertyOrder(0)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="Transaction", Order=0, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.SdtGxTransactionItem_RESTInterface> gxTpr_Transaction
 		{
@@ -190,7 +195,7 @@ namespace GeneXus.Programs
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtGxTransactions sdt
 		{
 			get { 

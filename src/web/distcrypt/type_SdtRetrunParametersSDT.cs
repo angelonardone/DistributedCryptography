@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtRetrunParametersSDT
 			Description: RetrunParametersSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.distcrypt
@@ -33,6 +34,8 @@ namespace GeneXus.Programs.distcrypt
 			gxTv_SdtRetrunParametersSDT_Returnurl = "";
 
 			gxTv_SdtRetrunParametersSDT_Externaltoken = "";
+
+			gxTv_SdtRetrunParametersSDT_Userinfo_N = true;
 
 		}
 
@@ -115,6 +118,7 @@ namespace GeneXus.Programs.distcrypt
 				if ( gxTv_SdtRetrunParametersSDT_Userinfo == null )
 				{
 					gxTv_SdtRetrunParametersSDT_Userinfo = new GeneXus.Programs.distcrypt.sso.SdtGAMGAMRemoteUserSDT(context);
+					SetDirty("Userinfo");
 				}
 				return gxTv_SdtRetrunParametersSDT_Userinfo; 
 			}
@@ -201,6 +205,8 @@ namespace GeneXus.Programs.distcrypt
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("ReturnURL")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="ReturnURL", Order=0)]
 		public  string gxTpr_Returnurl
 		{
@@ -213,6 +219,8 @@ namespace GeneXus.Programs.distcrypt
 			}
 		}
 
+		[JsonPropertyName("ExternalToken")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="ExternalToken", Order=1)]
 		public  string gxTpr_Externaltoken
 		{
@@ -225,6 +233,9 @@ namespace GeneXus.Programs.distcrypt
 			}
 		}
 
+		[JsonPropertyName("UserInfo")]
+		[JsonPropertyOrder(2)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="UserInfo", Order=2, EmitDefaultValue=false)]
 		public GeneXus.Programs.distcrypt.sso.SdtGAMGAMRemoteUserSDT_RESTInterface gxTpr_Userinfo
 		{
@@ -242,7 +253,7 @@ namespace GeneXus.Programs.distcrypt
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtRetrunParametersSDT sdt
 		{
 			get { 

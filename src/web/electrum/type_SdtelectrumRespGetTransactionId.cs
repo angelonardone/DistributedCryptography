@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtelectrumRespGetTransactionId
 			Description: electrumRespGetTransactionId
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.electrum
@@ -117,6 +118,7 @@ namespace GeneXus.Programs.electrum
 					gxTv_SdtelectrumRespGetTransactionId_Result = new SdtelectrumRespGetTransactionId_result(context);
 				}
 				gxTv_SdtelectrumRespGetTransactionId_Result_N = false;
+				SetDirty("Result");
 				return gxTv_SdtelectrumRespGetTransactionId_Result;
 			}
 			set {
@@ -205,6 +207,8 @@ namespace GeneXus.Programs.electrum
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("id")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="id", Order=0)]
 		public  string gxTpr_Id
 		{
@@ -217,6 +221,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("jsonrpc")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="jsonrpc", Order=1)]
 		public  string gxTpr_Jsonrpc
 		{
@@ -229,6 +235,9 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("result")]
+		[JsonPropertyOrder(2)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="result", Order=2, EmitDefaultValue=false)]
 		public SdtelectrumRespGetTransactionId_result_RESTInterface gxTpr_Result
 		{
@@ -248,7 +257,7 @@ namespace GeneXus.Programs.electrum
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtelectrumRespGetTransactionId sdt
 		{
 			get { 

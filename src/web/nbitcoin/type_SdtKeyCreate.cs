@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtKeyCreate
 			Description: KeyCreate
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nbitcoin
@@ -33,6 +34,7 @@ namespace GeneXus.Programs.nbitcoin
 			gxTv_SdtKeyCreate_Createtext = "";
 
 			gxTv_SdtKeyCreate_Networktype = "";
+
 
 		}
 
@@ -203,6 +205,8 @@ namespace GeneXus.Programs.nbitcoin
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("CreateKeyType")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="CreateKeyType", Order=0)]
 		public short gxTpr_Createkeytype
 		{
@@ -215,6 +219,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("CreateText")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="CreateText", Order=1)]
 		public  string gxTpr_Createtext
 		{
@@ -227,6 +233,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("NetworkType")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="NetworkType", Order=2)]
 		public  string gxTpr_Networktype
 		{
@@ -239,6 +247,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("AddressType")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="AddressType", Order=3)]
 		public short gxTpr_Addresstype
 		{
@@ -253,7 +263,7 @@ namespace GeneXus.Programs.nbitcoin
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtKeyCreate sdt
 		{
 			get { 

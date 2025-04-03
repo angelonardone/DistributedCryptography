@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtGroup_SDT
 			Description: Group_SDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 using GeneXus.Programs.wallet;
@@ -300,6 +301,7 @@ namespace GeneXus.Programs.wallet.registered
 				{
 					gxTv_SdtGroup_SDT_Contact = new GXBaseCollection<SdtGroup_SDT_ContactItem>( context, "Group_SDT.ContactItem", "");
 				}
+				SetDirty("Contact");
 				return gxTv_SdtGroup_SDT_Contact;
 			}
 			set {
@@ -336,6 +338,7 @@ namespace GeneXus.Programs.wallet.registered
 					gxTv_SdtGroup_SDT_Othergroup = new SdtGroup_SDT_otherGroup(context);
 				}
 				gxTv_SdtGroup_SDT_Othergroup_N = false;
+				SetDirty("Othergroup");
 				return gxTv_SdtGroup_SDT_Othergroup;
 			}
 			set {
@@ -464,6 +467,8 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("groupId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="groupId", Order=0)]
 		public Guid gxTpr_Groupid
 		{
@@ -476,6 +481,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("groupType")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="groupType", Order=1)]
 		public short gxTpr_Grouptype
 		{
@@ -488,6 +495,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("groupName")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="groupName", Order=2)]
 		public  string gxTpr_Groupname
 		{
@@ -500,6 +509,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("amIgroupOwner")]
+		[JsonPropertyOrder(3)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="amIgroupOwner", Order=3)]
 		public bool gxTpr_Amigroupowner
 		{
@@ -512,6 +524,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("isActive")]
+		[JsonPropertyOrder(4)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="isActive", Order=4)]
 		public bool gxTpr_Isactive
 		{
@@ -524,6 +539,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("minimumShares")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="minimumShares", Order=5)]
 		public short gxTpr_Minimumshares
 		{
@@ -536,6 +553,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("encPassword")]
+		[JsonPropertyOrder(6)]
 		[DataMember(Name="encPassword", Order=6)]
 		public  string gxTpr_Encpassword
 		{
@@ -548,6 +567,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("clearTextShare")]
+		[JsonPropertyOrder(7)]
 		[DataMember(Name="clearTextShare", Order=7)]
 		public  string gxTpr_Cleartextshare
 		{
@@ -560,6 +581,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("numOfSharesReached")]
+		[JsonPropertyOrder(8)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="numOfSharesReached", Order=8)]
 		public bool gxTpr_Numofsharesreached
 		{
@@ -572,6 +596,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("extPubKeyMultiSigReceiving")]
+		[JsonPropertyOrder(9)]
 		[DataMember(Name="extPubKeyMultiSigReceiving", Order=9)]
 		public  string gxTpr_Extpubkeymultisigreceiving
 		{
@@ -584,6 +610,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("extPubKeyMultiSigChange")]
+		[JsonPropertyOrder(10)]
 		[DataMember(Name="extPubKeyMultiSigChange", Order=10)]
 		public  string gxTpr_Extpubkeymultisigchange
 		{
@@ -596,6 +624,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("Contact")]
+		[JsonPropertyOrder(11)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="Contact", Order=11, EmitDefaultValue=false)]
 		public GxGenericCollection<SdtGroup_SDT_ContactItem_RESTInterface> gxTpr_Contact
 		{
@@ -611,6 +642,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("otherGroup")]
+		[JsonPropertyOrder(12)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="otherGroup", Order=12, EmitDefaultValue=false)]
 		public SdtGroup_SDT_otherGroup_RESTInterface gxTpr_Othergroup
 		{
@@ -630,7 +664,7 @@ namespace GeneXus.Programs.wallet.registered
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtGroup_SDT sdt
 		{
 			get { 

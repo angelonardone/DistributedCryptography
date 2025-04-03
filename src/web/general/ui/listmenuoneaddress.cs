@@ -63,7 +63,7 @@ namespace GeneXus.Programs.general.ui {
          /* Output device settings */
          AV12Name = "ReturnToWallets";
          AV10description = "Return to Wallets";
-         AV13Link = formatLink("wallet.returntowallets.aspx") ;
+         AV13Link = formatLink("wallet.returntowallets") ;
          /* Execute user subroutine: 'ADDPROGRAM' */
          S111 ();
          if ( returnInSub )

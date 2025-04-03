@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtDesktopApp_services_SDT_Messages_Message_MessageItem
 			Description: DesktopApp_services_SDT_Messages_Message_MessageItem
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 
 namespace GeneXus.Programs
@@ -205,6 +206,8 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("MessageId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="MessageId", Order=0)]
 		public Guid gxTpr_Messageid
 		{
@@ -217,6 +220,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("MessageEncryptedKey")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="MessageEncryptedKey", Order=1)]
 		public  string gxTpr_Messageencryptedkey
 		{
@@ -229,6 +234,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("MessageIV")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="MessageIV", Order=2)]
 		public  string gxTpr_Messageiv
 		{
@@ -241,6 +248,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("MessageEncrypted")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="MessageEncrypted", Order=3)]
 		public  string gxTpr_Messageencrypted
 		{
@@ -255,7 +264,7 @@ namespace GeneXus.Programs
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtDesktopApp_services_SDT_Messages_Message_MessageItem sdt
 		{
 			get { 

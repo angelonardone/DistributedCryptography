@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtSDT_Chat
 			Description: SDT_Chat
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nostr
@@ -35,6 +36,7 @@ namespace GeneXus.Programs.nostr
 			gxTv_SdtSDT_Chat_To = "";
 
 			gxTv_SdtSDT_Chat_Message = "";
+
 
 		}
 
@@ -251,6 +253,8 @@ namespace GeneXus.Programs.nostr
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("Id")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="Id", Order=0)]
 		public Guid gxTpr_Id
 		{
@@ -263,6 +267,8 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("From")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="From", Order=1)]
 		public  string gxTpr_From
 		{
@@ -275,6 +281,8 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("To")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="To", Order=2)]
 		public  string gxTpr_To
 		{
@@ -287,6 +295,8 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("dateTimeUnix")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="dateTimeUnix", Order=3)]
 		public  string gxTpr_Datetimeunix
 		{
@@ -299,6 +309,8 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("Message")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="Message", Order=4)]
 		public  string gxTpr_Message
 		{
@@ -311,6 +323,8 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("confirmedDateTimeUnix")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="confirmedDateTimeUnix", Order=5)]
 		public  string gxTpr_Confirmeddatetimeunix
 		{
@@ -325,7 +339,7 @@ namespace GeneXus.Programs.nostr
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtSDT_Chat sdt
 		{
 			get { 

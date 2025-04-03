@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtSdtChosenResult
 			Description: SdtChosenResult
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.wallet
@@ -94,6 +95,7 @@ namespace GeneXus.Programs.wallet
 					gxTv_SdtSdtChosenResult_Chosenresult = new GXBaseCollection<GeneXus.Programs.wallet.SdtSdtChosenResultItem>( context, "SdtChosenResultItem", "");
 				}
 				gxTv_SdtSdtChosenResult_Chosenresult_N = false;
+				SetDirty("Chosenresult");
 				return gxTv_SdtSdtChosenResult_Chosenresult ;
 			}
 			set {
@@ -173,6 +175,9 @@ namespace GeneXus.Programs.wallet
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("chosenResult")]
+		[JsonPropertyOrder(0)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="chosenResult", Order=0, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.wallet.SdtSdtChosenResultItem_RESTInterface> gxTpr_Chosenresult
 		{
@@ -190,7 +195,7 @@ namespace GeneXus.Programs.wallet
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtSdtChosenResult sdt
 		{
 			get { 

@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtEvent
 			Description: Event
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nostr
@@ -183,6 +184,7 @@ namespace GeneXus.Programs.nostr
 					gxTv_SdtEvent_Tags = new GXBaseCollection<GeneXus.Programs.nostr.SdtTagsOfTags>( context, "TagsOfTags", "");
 				}
 				gxTv_SdtEvent_Tags_N = false;
+				SetDirty("Tags");
 				return gxTv_SdtEvent_Tags ;
 			}
 			set {
@@ -316,6 +318,8 @@ namespace GeneXus.Programs.nostr
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("id")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="id", Order=0)]
 		public  string gxTpr_Id
 		{
@@ -328,6 +332,8 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("pubkey")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="pubkey", Order=1)]
 		public  string gxTpr_Pubkey
 		{
@@ -340,6 +346,8 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("created_at")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="created_at", Order=2)]
 		public  string gxTpr_Created_at
 		{
@@ -352,6 +360,8 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("kind")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="kind", Order=3)]
 		public int gxTpr_Kind
 		{
@@ -364,6 +374,9 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("tags")]
+		[JsonPropertyOrder(4)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="tags", Order=4, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.nostr.SdtTagsOfTags_RESTInterface> gxTpr_Tags
 		{
@@ -379,6 +392,8 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("content")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="content", Order=5)]
 		public  string gxTpr_Content
 		{
@@ -391,6 +406,8 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("sig")]
+		[JsonPropertyOrder(6)]
 		[DataMember(Name="sig", Order=6)]
 		public  string gxTpr_Sig
 		{
@@ -405,7 +422,7 @@ namespace GeneXus.Programs.nostr
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtEvent sdt
 		{
 			get { 

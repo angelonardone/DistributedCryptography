@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtelectrumRespEstimateFee
 			Description: electrumRespEstimateFee
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.electrum
@@ -33,6 +34,7 @@ namespace GeneXus.Programs.electrum
 			gxTv_SdtelectrumRespEstimateFee_Id = "";
 
 			gxTv_SdtelectrumRespEstimateFee_Jsonrpc = "";
+
 
 		}
 
@@ -114,7 +116,7 @@ namespace GeneXus.Programs.electrum
 				return Convert.ToString(gxTv_SdtelectrumRespEstimateFee_Result, System.Globalization.CultureInfo.InvariantCulture);
 			}
 			set {
-				gxTv_SdtelectrumRespEstimateFee_Result = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+				gxTv_SdtelectrumRespEstimateFee_Result = NumberUtil.Val(value);
 			}
 		}
 		[XmlIgnore]
@@ -190,6 +192,8 @@ namespace GeneXus.Programs.electrum
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("id")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="id", Order=0)]
 		public  string gxTpr_Id
 		{
@@ -202,6 +206,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("jsonrpc")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="jsonrpc", Order=1)]
 		public  string gxTpr_Jsonrpc
 		{
@@ -214,6 +220,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("result")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="result", Order=2)]
 		public  string gxTpr_Result
 		{
@@ -228,7 +236,7 @@ namespace GeneXus.Programs.electrum
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtelectrumRespEstimateFee sdt
 		{
 			get { 

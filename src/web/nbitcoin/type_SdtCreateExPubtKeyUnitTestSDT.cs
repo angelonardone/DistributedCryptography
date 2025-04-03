@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtCreateExPubtKeyUnitTestSDT
 			Description: CreateExPubtKeyUnitTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nbitcoin
@@ -37,6 +38,10 @@ namespace GeneXus.Programs.nbitcoin
 			gxTv_SdtCreateExPubtKeyUnitTestSDT_Networktype = "";
 
 			gxTv_SdtCreateExPubtKeyUnitTestSDT_Keypath = "";
+
+			gxTv_SdtCreateExPubtKeyUnitTestSDT_Keyinfo_N = true;
+
+			gxTv_SdtCreateExPubtKeyUnitTestSDT_Expectedkeyinfo_N = true;
 
 			gxTv_SdtCreateExPubtKeyUnitTestSDT_Msgkeyinfo = "";
 
@@ -181,6 +186,7 @@ namespace GeneXus.Programs.nbitcoin
 				if ( gxTv_SdtCreateExPubtKeyUnitTestSDT_Keyinfo == null )
 				{
 					gxTv_SdtCreateExPubtKeyUnitTestSDT_Keyinfo = new GeneXus.Programs.nbitcoin.SdtExtPubKeyInfo(context);
+					SetDirty("Keyinfo");
 				}
 				return gxTv_SdtCreateExPubtKeyUnitTestSDT_Keyinfo; 
 			}
@@ -213,6 +219,7 @@ namespace GeneXus.Programs.nbitcoin
 				if ( gxTv_SdtCreateExPubtKeyUnitTestSDT_Expectedkeyinfo == null )
 				{
 					gxTv_SdtCreateExPubtKeyUnitTestSDT_Expectedkeyinfo = new GeneXus.Programs.nbitcoin.SdtExtPubKeyInfo(context);
+					SetDirty("Expectedkeyinfo");
 				}
 				return gxTv_SdtCreateExPubtKeyUnitTestSDT_Expectedkeyinfo; 
 			}
@@ -394,6 +401,8 @@ namespace GeneXus.Programs.nbitcoin
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("TestCaseId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="TestCaseId", Order=0)]
 		public  string gxTpr_Testcaseid
 		{
@@ -406,6 +415,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("ExtendedPublicKey")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="ExtendedPublicKey", Order=1)]
 		public  string gxTpr_Extendedpublickey
 		{
@@ -418,6 +429,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("networkType")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="networkType", Order=2)]
 		public  string gxTpr_Networktype
 		{
@@ -430,6 +443,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("keyPath")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="keyPath", Order=3)]
 		public  string gxTpr_Keypath
 		{
@@ -442,6 +457,9 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("keyInfo")]
+		[JsonPropertyOrder(4)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="keyInfo", Order=4, EmitDefaultValue=false)]
 		public GeneXus.Programs.nbitcoin.SdtExtPubKeyInfo_RESTInterface gxTpr_Keyinfo
 		{
@@ -457,6 +475,9 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("ExpectedkeyInfo")]
+		[JsonPropertyOrder(5)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="ExpectedkeyInfo", Order=5, EmitDefaultValue=false)]
 		public GeneXus.Programs.nbitcoin.SdtExtPubKeyInfo_RESTInterface gxTpr_Expectedkeyinfo
 		{
@@ -472,6 +493,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("MsgkeyInfo")]
+		[JsonPropertyOrder(6)]
 		[DataMember(Name="MsgkeyInfo", Order=6)]
 		public  string gxTpr_Msgkeyinfo
 		{
@@ -484,6 +507,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("error")]
+		[JsonPropertyOrder(7)]
 		[DataMember(Name="error", Order=7)]
 		public  string gxTpr_Error
 		{
@@ -496,6 +521,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Expectederror")]
+		[JsonPropertyOrder(8)]
 		[DataMember(Name="Expectederror", Order=8)]
 		public  string gxTpr_Expectederror
 		{
@@ -508,6 +535,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Msgerror")]
+		[JsonPropertyOrder(9)]
 		[DataMember(Name="Msgerror", Order=9)]
 		public  string gxTpr_Msgerror
 		{
@@ -522,7 +551,7 @@ namespace GeneXus.Programs.nbitcoin
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtCreateExPubtKeyUnitTestSDT sdt
 		{
 			get { 

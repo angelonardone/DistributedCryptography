@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtGxUsedIn
 			Description: GxUsedIn
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 
 namespace GeneXus.Programs
@@ -185,6 +186,7 @@ namespace GeneXus.Programs
 					gxTv_SdtGxUsedIn_Usedto = new GXBaseCollection<GeneXus.Programs.SdtGXUsedToItem>( context, "GXUsedToItem", "");
 				}
 				gxTv_SdtGxUsedIn_Usedto_N = false;
+				SetDirty("Usedto");
 				return gxTv_SdtGxUsedIn_Usedto ;
 			}
 			set {
@@ -281,6 +283,8 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("UsedId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="UsedId", Order=0)]
 		public  string gxTpr_Usedid
 		{
@@ -293,6 +297,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("UsedN")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="UsedN", Order=1)]
 		public  string gxTpr_Usedn
 		{
@@ -305,6 +311,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("UsedDateTime")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="UsedDateTime", Order=2)]
 		public  string gxTpr_Useddatetime
 		{
@@ -317,6 +325,9 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("UsedTo")]
+		[JsonPropertyOrder(3)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="UsedTo", Order=3, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.SdtGXUsedToItem_RESTInterface> gxTpr_Usedto
 		{
@@ -334,7 +345,7 @@ namespace GeneXus.Programs
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtGxUsedIn sdt
 		{
 			get { 

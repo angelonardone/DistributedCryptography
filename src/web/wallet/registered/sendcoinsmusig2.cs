@@ -195,10 +195,10 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 123260), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -223,7 +223,7 @@ namespace GeneXus.Programs.wallet.registered {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.sendcoinsmusig2.aspx") +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.sendcoinsmusig2") +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -564,7 +564,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_12-186073", 0) ;
             }
          }
          Form.Meta.addItem("description", "Send Coins MuSig 2", 0) ;
@@ -1031,7 +1031,7 @@ namespace GeneXus.Programs.wallet.registered {
                   }
                   else
                   {
-                     context.PopUp(formatLink("wallet.approvespending.aspx") , new Object[] {});
+                     context.PopUp(formatLink("wallet.approvespending") , new Object[] {});
                   }
                }
             }
@@ -1349,7 +1349,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532815135819", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254217251212", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1365,8 +1365,8 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("wallet/registered/sendcoinsmusig2.js", "?202532815135819", false, true);
+         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("wallet/registered/sendcoinsmusig2.js", "?20254217251212", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -1455,14 +1455,14 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV22sendAllCoins","fld":"vSENDALLCOINS"},{"av":"AV39activateManaulFee","fld":"vACTIVATEMANAULFEE"},{"av":"AV36wallet","fld":"vWALLET","hsh":true},{"av":"AV14group_sdt","fld":"vGROUP_SDT","hsh":true},{"av":"AV18oneMuSigSignatures","fld":"vONEMUSIGSIGNATURES","hsh":true},{"av":"AV28totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZ9.99999999","hsh":true}]}""");
-         setEventMetadata("'NEXT'","""{"handler":"E12272","iparms":[{"av":"AV23sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999"},{"av":"AV28totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZ9.99999999","hsh":true},{"av":"AV22sendAllCoins","fld":"vSENDALLCOINS"},{"av":"AV11error","fld":"vERROR"},{"av":"AV24sendTo","fld":"vSENDTO"},{"av":"AV36wallet","fld":"vWALLET","hsh":true},{"av":"AV14group_sdt","fld":"vGROUP_SDT","hsh":true},{"av":"AV8description","fld":"vDESCRIPTION"}]""");
-         setEventMetadata("'NEXT'",""","oparms":[{"av":"AV11error","fld":"vERROR"}]}""");
-         setEventMetadata("'SEND COINS'","""{"handler":"E13272","iparms":[{"av":"AV38manaulFee","fld":"vMANAULFEE","pic":"ZZZZZZ9.99999999"},{"av":"AV14group_sdt","fld":"vGROUP_SDT","hsh":true},{"av":"AV22sendAllCoins","fld":"vSENDALLCOINS"},{"av":"AV36wallet","fld":"vWALLET","hsh":true},{"av":"AV23sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999"},{"av":"AV24sendTo","fld":"vSENDTO"},{"av":"AV7changeTo","fld":"vCHANGETO"},{"av":"AV32transactionsToSend","fld":"vTRANSACTIONSTOSEND"},{"av":"AV18oneMuSigSignatures","fld":"vONEMUSIGSIGNATURES","hsh":true},{"av":"AV11error","fld":"vERROR"}]""");
-         setEventMetadata("'SEND COINS'",""","oparms":[{"av":"AV38manaulFee","fld":"vMANAULFEE","pic":"ZZZZZZ9.99999999"},{"av":"AV11error","fld":"vERROR"},{"av":"AV32transactionsToSend","fld":"vTRANSACTIONSTOSEND"},{"ctrl":"SENDCOINS","prop":"Visible"},{"av":"cmbavUserfee"},{"av":"edtavManaulfee_Enabled","ctrl":"vMANAULFEE","prop":"Enabled"},{"av":"chkavActivatemanaulfee.Enabled","ctrl":"vACTIVATEMANAULFEE","prop":"Enabled"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV22sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV39activateManaulFee","fld":"vACTIVATEMANAULFEE","type":"boolean"},{"av":"AV36wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"AV14group_sdt","fld":"vGROUP_SDT","hsh":true,"type":""},{"av":"AV18oneMuSigSignatures","fld":"vONEMUSIGSIGNATURES","hsh":true,"type":""},{"av":"AV28totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZ9.99999999","hsh":true,"type":"decimal"}]}""");
+         setEventMetadata("'NEXT'","""{"handler":"E12272","iparms":[{"av":"AV23sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV28totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZ9.99999999","hsh":true,"type":"decimal"},{"av":"AV22sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV11error","fld":"vERROR","type":"char"},{"av":"AV24sendTo","fld":"vSENDTO","type":"char"},{"av":"AV36wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"AV14group_sdt","fld":"vGROUP_SDT","hsh":true,"type":""},{"av":"AV8description","fld":"vDESCRIPTION","type":"svchar"}]""");
+         setEventMetadata("'NEXT'",""","oparms":[{"av":"AV11error","fld":"vERROR","type":"char"}]}""");
+         setEventMetadata("'SEND COINS'","""{"handler":"E13272","iparms":[{"av":"AV38manaulFee","fld":"vMANAULFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV14group_sdt","fld":"vGROUP_SDT","hsh":true,"type":""},{"av":"AV22sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV36wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"AV23sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV24sendTo","fld":"vSENDTO","type":"char"},{"av":"AV7changeTo","fld":"vCHANGETO","type":"char"},{"av":"AV32transactionsToSend","fld":"vTRANSACTIONSTOSEND","type":""},{"av":"AV18oneMuSigSignatures","fld":"vONEMUSIGSIGNATURES","hsh":true,"type":""},{"av":"AV11error","fld":"vERROR","type":"char"}]""");
+         setEventMetadata("'SEND COINS'",""","oparms":[{"av":"AV38manaulFee","fld":"vMANAULFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV11error","fld":"vERROR","type":"char"},{"av":"AV32transactionsToSend","fld":"vTRANSACTIONSTOSEND","type":""},{"ctrl":"SENDCOINS","prop":"Visible"},{"av":"cmbavUserfee"},{"av":"edtavManaulfee_Enabled","ctrl":"vMANAULFEE","prop":"Enabled"},{"av":"chkavActivatemanaulfee.Enabled","ctrl":"vACTIVATEMANAULFEE","prop":"Enabled"}]}""");
          setEventMetadata("'CANCEL'","""{"handler":"E14272","iparms":[]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E15272","iparms":[{"av":"AV21PopupName","fld":"vPOPUPNAME"},{"av":"AV18oneMuSigSignatures","fld":"vONEMUSIGSIGNATURES","hsh":true},{"av":"AV8description","fld":"vDESCRIPTION"},{"av":"AV23sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999"},{"av":"AV7changeTo","fld":"vCHANGETO"},{"av":"AV11error","fld":"vERROR"},{"av":"AV14group_sdt","fld":"vGROUP_SDT","hsh":true},{"av":"AV22sendAllCoins","fld":"vSENDALLCOINS"},{"av":"AV36wallet","fld":"vWALLET","hsh":true},{"av":"AV24sendTo","fld":"vSENDTO"},{"av":"AV32transactionsToSend","fld":"vTRANSACTIONSTOSEND"},{"av":"AV38manaulFee","fld":"vMANAULFEE","pic":"ZZZZZZ9.99999999"},{"av":"cmbavUserfee"},{"av":"AV33userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999"}]""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"edtavSendcoins_Enabled","ctrl":"vSENDCOINS","prop":"Enabled"},{"av":"edtavSendto_Enabled","ctrl":"vSENDTO","prop":"Enabled"},{"av":"edtavDescription_Enabled","ctrl":"vDESCRIPTION","prop":"Enabled"},{"ctrl":"NEXT","prop":"Visible"},{"ctrl":"SENDCOINS","prop":"Visible"},{"av":"AV32transactionsToSend","fld":"vTRANSACTIONSTOSEND"},{"av":"AV11error","fld":"vERROR"},{"av":"AV7changeTo","fld":"vCHANGETO"},{"av":"cmbavUserfee"},{"av":"AV33userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999"},{"av":"edtavManaulfee_Visible","ctrl":"vMANAULFEE","prop":"Visible"},{"av":"edtavManaulfee_Enabled","ctrl":"vMANAULFEE","prop":"Enabled"},{"av":"chkavActivatemanaulfee.Visible","ctrl":"vACTIVATEMANAULFEE","prop":"Visible"}]}""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E15272","iparms":[{"av":"AV21PopupName","fld":"vPOPUPNAME","type":"char"},{"av":"AV18oneMuSigSignatures","fld":"vONEMUSIGSIGNATURES","hsh":true,"type":""},{"av":"AV8description","fld":"vDESCRIPTION","type":"svchar"},{"av":"AV23sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV7changeTo","fld":"vCHANGETO","type":"char"},{"av":"AV11error","fld":"vERROR","type":"char"},{"av":"AV14group_sdt","fld":"vGROUP_SDT","hsh":true,"type":""},{"av":"AV22sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV36wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"AV24sendTo","fld":"vSENDTO","type":"char"},{"av":"AV32transactionsToSend","fld":"vTRANSACTIONSTOSEND","type":""},{"av":"AV38manaulFee","fld":"vMANAULFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"cmbavUserfee"},{"av":"AV33userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999","type":"decimal"}]""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"edtavSendcoins_Enabled","ctrl":"vSENDCOINS","prop":"Enabled"},{"av":"edtavSendto_Enabled","ctrl":"vSENDTO","prop":"Enabled"},{"av":"edtavDescription_Enabled","ctrl":"vDESCRIPTION","prop":"Enabled"},{"ctrl":"NEXT","prop":"Visible"},{"ctrl":"SENDCOINS","prop":"Visible"},{"av":"AV32transactionsToSend","fld":"vTRANSACTIONSTOSEND","type":""},{"av":"AV11error","fld":"vERROR","type":"char"},{"av":"AV7changeTo","fld":"vCHANGETO","type":"char"},{"av":"cmbavUserfee"},{"av":"AV33userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"edtavManaulfee_Visible","ctrl":"vMANAULFEE","prop":"Visible"},{"av":"edtavManaulfee_Enabled","ctrl":"vMANAULFEE","prop":"Enabled"},{"av":"chkavActivatemanaulfee.Visible","ctrl":"vACTIVATEMANAULFEE","prop":"Visible"}]}""");
          return  ;
       }
 

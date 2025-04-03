@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtderiveAddressFromExtPubKeyUnitTestSDT
 			Description: deriveAddressFromExtPubKeyUnitTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nbitcoin
@@ -216,6 +217,7 @@ namespace GeneXus.Programs.nbitcoin
 					gxTv_SdtderiveAddressFromExtPubKeyUnitTestSDT_Sdt_addressess = new GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem>( context, "SDT_Addressess", "");
 				}
 				gxTv_SdtderiveAddressFromExtPubKeyUnitTestSDT_Sdt_addressess_N = false;
+				SetDirty("Sdt_addressess");
 				return gxTv_SdtderiveAddressFromExtPubKeyUnitTestSDT_Sdt_addressess ;
 			}
 			set {
@@ -269,6 +271,7 @@ namespace GeneXus.Programs.nbitcoin
 					gxTv_SdtderiveAddressFromExtPubKeyUnitTestSDT_Expectedsdt_addressess = new GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem>( context, "SDT_Addressess", "");
 				}
 				gxTv_SdtderiveAddressFromExtPubKeyUnitTestSDT_Expectedsdt_addressess_N = false;
+				SetDirty("Expectedsdt_addressess");
 				return gxTv_SdtderiveAddressFromExtPubKeyUnitTestSDT_Expectedsdt_addressess ;
 			}
 			set {
@@ -451,6 +454,8 @@ namespace GeneXus.Programs.nbitcoin
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("TestCaseId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="TestCaseId", Order=0)]
 		public  string gxTpr_Testcaseid
 		{
@@ -463,6 +468,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("deserializedExtPubKey")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="deserializedExtPubKey", Order=1)]
 		public  string gxTpr_Deserializedextpubkey
 		{
@@ -475,6 +482,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("base")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="base", Order=2)]
 		public  string gxTpr_Base
 		{
@@ -487,6 +496,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("start")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="start", Order=3)]
 		public  string gxTpr_Start
 		{
@@ -499,6 +510,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("end")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="end", Order=4)]
 		public  string gxTpr_End
 		{
@@ -511,6 +524,9 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("sdt_addressess")]
+		[JsonPropertyOrder(5)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="sdt_addressess", Order=5, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem_RESTInterface> gxTpr_Sdt_addressess
 		{
@@ -526,6 +542,9 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Expectedsdt_addressess")]
+		[JsonPropertyOrder(6)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="Expectedsdt_addressess", Order=6, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem_RESTInterface> gxTpr_Expectedsdt_addressess
 		{
@@ -541,6 +560,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Msgsdt_addressess")]
+		[JsonPropertyOrder(7)]
 		[DataMember(Name="Msgsdt_addressess", Order=7)]
 		public  string gxTpr_Msgsdt_addressess
 		{
@@ -553,6 +574,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("error")]
+		[JsonPropertyOrder(8)]
 		[DataMember(Name="error", Order=8)]
 		public  string gxTpr_Error
 		{
@@ -565,6 +588,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Expectederror")]
+		[JsonPropertyOrder(9)]
 		[DataMember(Name="Expectederror", Order=9)]
 		public  string gxTpr_Expectederror
 		{
@@ -577,6 +602,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Msgerror")]
+		[JsonPropertyOrder(10)]
 		[DataMember(Name="Msgerror", Order=10)]
 		public  string gxTpr_Msgerror
 		{
@@ -591,7 +618,7 @@ namespace GeneXus.Programs.nbitcoin
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtderiveAddressFromExtPubKeyUnitTestSDT sdt
 		{
 			get { 

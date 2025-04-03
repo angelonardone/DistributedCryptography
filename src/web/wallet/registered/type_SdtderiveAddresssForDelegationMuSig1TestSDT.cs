@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtderiveAddresssForDelegationMuSig1TestSDT
 			Description: deriveAddresssForDelegationMuSig1TestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 using GeneXus.Programs.wallet;
@@ -32,6 +33,10 @@ namespace GeneXus.Programs.wallet.registered
 		{
 			/* Constructor for serialization */
 			gxTv_SdtderiveAddresssForDelegationMuSig1TestSDT_Testcaseid = "";
+
+			gxTv_SdtderiveAddresssForDelegationMuSig1TestSDT_Storedtransactions_N = true;
+
+			gxTv_SdtderiveAddresssForDelegationMuSig1TestSDT_Group_sdt_N = true;
 
 			gxTv_SdtderiveAddresssForDelegationMuSig1TestSDT_Networktype = "";
 
@@ -138,6 +143,7 @@ namespace GeneXus.Programs.wallet.registered
 				if ( gxTv_SdtderiveAddresssForDelegationMuSig1TestSDT_Storedtransactions == null )
 				{
 					gxTv_SdtderiveAddresssForDelegationMuSig1TestSDT_Storedtransactions = new GeneXus.Programs.wallet.SdtStoredTransactions(context);
+					SetDirty("Storedtransactions");
 				}
 				return gxTv_SdtderiveAddresssForDelegationMuSig1TestSDT_Storedtransactions; 
 			}
@@ -170,6 +176,7 @@ namespace GeneXus.Programs.wallet.registered
 				if ( gxTv_SdtderiveAddresssForDelegationMuSig1TestSDT_Group_sdt == null )
 				{
 					gxTv_SdtderiveAddresssForDelegationMuSig1TestSDT_Group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
+					SetDirty("Group_sdt");
 				}
 				return gxTv_SdtderiveAddresssForDelegationMuSig1TestSDT_Group_sdt; 
 			}
@@ -270,6 +277,7 @@ namespace GeneXus.Programs.wallet.registered
 					gxTv_SdtderiveAddresssForDelegationMuSig1TestSDT_Sdt_addressess = new GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem>( context, "SDT_Addressess", "");
 				}
 				gxTv_SdtderiveAddresssForDelegationMuSig1TestSDT_Sdt_addressess_N = false;
+				SetDirty("Sdt_addressess");
 				return gxTv_SdtderiveAddresssForDelegationMuSig1TestSDT_Sdt_addressess ;
 			}
 			set {
@@ -323,6 +331,7 @@ namespace GeneXus.Programs.wallet.registered
 					gxTv_SdtderiveAddresssForDelegationMuSig1TestSDT_Expectedsdt_addressess = new GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem>( context, "SDT_Addressess", "");
 				}
 				gxTv_SdtderiveAddresssForDelegationMuSig1TestSDT_Expectedsdt_addressess_N = false;
+				SetDirty("Expectedsdt_addressess");
 				return gxTv_SdtderiveAddresssForDelegationMuSig1TestSDT_Expectedsdt_addressess ;
 			}
 			set {
@@ -515,6 +524,8 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("TestCaseId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="TestCaseId", Order=0)]
 		public  string gxTpr_Testcaseid
 		{
@@ -527,6 +538,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("StoredTransactions")]
+		[JsonPropertyOrder(1)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="StoredTransactions", Order=1, EmitDefaultValue=false)]
 		public GeneXus.Programs.wallet.SdtStoredTransactions_RESTInterface gxTpr_Storedtransactions
 		{
@@ -542,6 +556,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("group_sdt")]
+		[JsonPropertyOrder(2)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="group_sdt", Order=2, EmitDefaultValue=false)]
 		public GeneXus.Programs.wallet.registered.SdtGroup_SDT_RESTInterface gxTpr_Group_sdt
 		{
@@ -557,6 +574,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("networkType")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="networkType", Order=3)]
 		public  string gxTpr_Networktype
 		{
@@ -569,6 +588,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("cuantity")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="cuantity", Order=4)]
 		public short gxTpr_Cuantity
 		{
@@ -581,6 +602,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("generatedType")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="generatedType", Order=5)]
 		public short gxTpr_Generatedtype
 		{
@@ -593,6 +616,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("sdt_addressess")]
+		[JsonPropertyOrder(6)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="sdt_addressess", Order=6, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem_RESTInterface> gxTpr_Sdt_addressess
 		{
@@ -608,6 +634,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("Expectedsdt_addressess")]
+		[JsonPropertyOrder(7)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="Expectedsdt_addressess", Order=7, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem_RESTInterface> gxTpr_Expectedsdt_addressess
 		{
@@ -623,6 +652,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("Msgsdt_addressess")]
+		[JsonPropertyOrder(8)]
 		[DataMember(Name="Msgsdt_addressess", Order=8)]
 		public  string gxTpr_Msgsdt_addressess
 		{
@@ -635,6 +666,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("error")]
+		[JsonPropertyOrder(9)]
 		[DataMember(Name="error", Order=9)]
 		public  string gxTpr_Error
 		{
@@ -647,6 +680,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("Expectederror")]
+		[JsonPropertyOrder(10)]
 		[DataMember(Name="Expectederror", Order=10)]
 		public  string gxTpr_Expectederror
 		{
@@ -659,6 +694,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("Msgerror")]
+		[JsonPropertyOrder(11)]
 		[DataMember(Name="Msgerror", Order=11)]
 		public  string gxTpr_Msgerror
 		{
@@ -673,7 +710,7 @@ namespace GeneXus.Programs.wallet.registered
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtderiveAddresssForDelegationMuSig1TestSDT sdt
 		{
 			get { 

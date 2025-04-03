@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtelectrumRespGetTransactionId_result_vinItem_scriptSig
 			Description: scriptSig
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.electrum
@@ -158,6 +159,8 @@ namespace GeneXus.Programs.electrum
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("asm")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="asm", Order=0)]
 		public  string gxTpr_Asm
 		{
@@ -170,6 +173,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("hex")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="hex", Order=1)]
 		public  string gxTpr_Hex
 		{
@@ -184,7 +189,7 @@ namespace GeneXus.Programs.electrum
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtelectrumRespGetTransactionId_result_vinItem_scriptSig sdt
 		{
 			get { 

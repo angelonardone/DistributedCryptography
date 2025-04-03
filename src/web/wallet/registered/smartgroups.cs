@@ -242,10 +242,10 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 123260), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -275,7 +275,7 @@ namespace GeneXus.Programs.wallet.registered {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.smartgroups.aspx") +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.smartgroups") +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -424,7 +424,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wallet.registered.smartgroups.aspx")  ;
+         return formatLink("wallet.registered.smartgroups")  ;
       }
 
       public override string GetPgmname( )
@@ -556,7 +556,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_12-186073", 0) ;
             }
          }
          Form.Meta.addItem("description", "Smart Groups", 0) ;
@@ -1053,7 +1053,7 @@ namespace GeneXus.Programs.wallet.registered {
          /* 'go to group' Routine */
          returnInSub = false;
          AV9websession.Set("Group_EDIT", ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)(AV6all_groups_sdt.CurrentItem)).ToJSonString(false, true));
-         CallWebObject(formatLink("wallet.registered.smartgroup.aspx", new object[] {UrlEncode(((GeneXus.Programs.wallet.registered.SdtGroup_SDT)(AV6all_groups_sdt.CurrentItem)).gxTpr_Groupid.ToString())}, new string[] {"groupId"}) );
+         CallWebObject(formatLink("wallet.registered.smartgroup", new object[] {UrlEncode(((GeneXus.Programs.wallet.registered.SdtGroup_SDT)(AV6all_groups_sdt.CurrentItem)).gxTpr_Groupid.ToString())}, new string[] {"groupId"}) );
          context.wjLocDisableFrm = 1;
       }
 
@@ -1461,7 +1461,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532815135262", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254215273153", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1477,8 +1477,8 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("wallet/registered/smartgroups.js", "?202532815135263", false, true);
+         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("wallet/registered/smartgroups.js", "?20254215273153", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -1907,20 +1907,20 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDGROUP_nFirstRecordOnPage"},{"av":"GRIDGROUP_nEOF"},{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11},{"av":"AV32extKeyInfoRoot","fld":"vEXTKEYINFOROOT","hsh":true},{"av":"AV33wallet","fld":"vWALLET","hsh":true}]}""");
-         setEventMetadata("'RECOVER GROUPS FROM SERVER'","""{"handler":"E121F2","iparms":[{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11},{"av":"GRIDGROUP_nEOF"},{"av":"AV32extKeyInfoRoot","fld":"vEXTKEYINFOROOT","hsh":true},{"av":"AV33wallet","fld":"vWALLET","hsh":true}]""");
-         setEventMetadata("'RECOVER GROUPS FROM SERVER'",""","oparms":[{"av":"AV7error","fld":"vERROR"},{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDGROUP_nFirstRecordOnPage","type":"int"},{"av":"GRIDGROUP_nEOF","type":"int"},{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11,"type":"int"},{"av":"AV32extKeyInfoRoot","fld":"vEXTKEYINFOROOT","hsh":true,"type":""},{"av":"AV33wallet","fld":"vWALLET","hsh":true,"type":""}]}""");
+         setEventMetadata("'RECOVER GROUPS FROM SERVER'","""{"handler":"E121F2","iparms":[{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11,"type":"int"},{"av":"GRIDGROUP_nEOF","type":"int"},{"av":"AV32extKeyInfoRoot","fld":"vEXTKEYINFOROOT","hsh":true,"type":""},{"av":"AV33wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("'RECOVER GROUPS FROM SERVER'",""","oparms":[{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11,"type":"int"}]}""");
          setEventMetadata("'CREATE GROUP'","""{"handler":"E111F1","iparms":[]}""");
-         setEventMetadata("'GO TO GROUP'","""{"handler":"E151F2","iparms":[{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11}]}""");
-         setEventMetadata("'DELETE GROUP'","""{"handler":"E161F2","iparms":[{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11}]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED","""{"handler":"E131F2","iparms":[{"av":"AV11UserResponse","fld":"vUSERRESPONSE"},{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11},{"av":"GRIDGROUP_nEOF"},{"av":"AV32extKeyInfoRoot","fld":"vEXTKEYINFOROOT","hsh":true},{"av":"AV33wallet","fld":"vWALLET","hsh":true}]""");
-         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED",""","oparms":[{"av":"AV7error","fld":"vERROR"},{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11}]}""");
-         setEventMetadata("GRIDGROUP.LOAD","""{"handler":"E171F2","iparms":[{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11}]""");
-         setEventMetadata("GRIDGROUP.LOAD",""","oparms":[{"av":"AV10delete","fld":"vDELETE"},{"av":"AV13acceptInvitation","fld":"vACCEPTINVITATION"},{"av":"AV14declineInvitation","fld":"vDECLINEINVITATION"},{"av":"edtavAcceptinvitation_Visible","ctrl":"vACCEPTINVITATION","prop":"Visible"},{"av":"edtavDeclineinvitation_Visible","ctrl":"vDECLINEINVITATION","prop":"Visible"},{"av":"edtavDelete_Visible","ctrl":"vDELETE","prop":"Visible"}]}""");
-         setEventMetadata("'DECLINE INVITATION'","""{"handler":"E181F2","iparms":[{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11},{"av":"AV7error","fld":"vERROR"},{"av":"AV17grpupId","fld":"vGRPUPID"},{"av":"AV18removedFromSDT","fld":"vREMOVEDFROMSDT"},{"av":"GRIDGROUP_nEOF"},{"av":"AV32extKeyInfoRoot","fld":"vEXTKEYINFOROOT","hsh":true},{"av":"AV33wallet","fld":"vWALLET","hsh":true}]""");
-         setEventMetadata("'DECLINE INVITATION'",""","oparms":[{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11},{"av":"AV18removedFromSDT","fld":"vREMOVEDFROMSDT"},{"av":"AV7error","fld":"vERROR"}]}""");
-         setEventMetadata("'ACCEPT INVITATION'","""{"handler":"E191F2","iparms":[{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11},{"av":"AV32extKeyInfoRoot","fld":"vEXTKEYINFOROOT","hsh":true},{"av":"AV33wallet","fld":"vWALLET","hsh":true},{"av":"AV21message_signature","fld":"vMESSAGE_SIGNATURE"},{"av":"AV19sdt_message","fld":"vSDT_MESSAGE"},{"av":"GRIDGROUP_nEOF"}]""");
-         setEventMetadata("'ACCEPT INVITATION'",""","oparms":[{"av":"AV7error","fld":"vERROR"},{"av":"AV17grpupId","fld":"vGRPUPID"},{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11},{"av":"AV21message_signature","fld":"vMESSAGE_SIGNATURE"},{"av":"AV19sdt_message","fld":"vSDT_MESSAGE"}]}""");
+         setEventMetadata("'GO TO GROUP'","""{"handler":"E151F2","iparms":[{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11,"type":"int"}]}""");
+         setEventMetadata("'DELETE GROUP'","""{"handler":"E161F2","iparms":[{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11,"type":"int"}]}""");
+         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED","""{"handler":"E131F2","iparms":[{"av":"AV11UserResponse","fld":"vUSERRESPONSE","type":"boolean"},{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11,"type":"int"},{"av":"GRIDGROUP_nEOF","type":"int"},{"av":"AV32extKeyInfoRoot","fld":"vEXTKEYINFOROOT","hsh":true,"type":""},{"av":"AV33wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED",""","oparms":[{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11,"type":"int"}]}""");
+         setEventMetadata("GRIDGROUP.LOAD","""{"handler":"E171F2","iparms":[{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11,"type":"int"}]""");
+         setEventMetadata("GRIDGROUP.LOAD",""","oparms":[{"av":"AV10delete","fld":"vDELETE","type":"char"},{"av":"AV13acceptInvitation","fld":"vACCEPTINVITATION","type":"char"},{"av":"AV14declineInvitation","fld":"vDECLINEINVITATION","type":"char"},{"av":"edtavAcceptinvitation_Visible","ctrl":"vACCEPTINVITATION","prop":"Visible"},{"av":"edtavDeclineinvitation_Visible","ctrl":"vDECLINEINVITATION","prop":"Visible"},{"av":"edtavDelete_Visible","ctrl":"vDELETE","prop":"Visible"}]}""");
+         setEventMetadata("'DECLINE INVITATION'","""{"handler":"E181F2","iparms":[{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11,"type":"int"},{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"AV17grpupId","fld":"vGRPUPID","type":"guid"},{"av":"AV18removedFromSDT","fld":"vREMOVEDFROMSDT","type":"boolean"},{"av":"GRIDGROUP_nEOF","type":"int"},{"av":"AV32extKeyInfoRoot","fld":"vEXTKEYINFOROOT","hsh":true,"type":""},{"av":"AV33wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("'DECLINE INVITATION'",""","oparms":[{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11,"type":"int"},{"av":"AV18removedFromSDT","fld":"vREMOVEDFROMSDT","type":"boolean"},{"av":"AV7error","fld":"vERROR","type":"char"}]}""");
+         setEventMetadata("'ACCEPT INVITATION'","""{"handler":"E191F2","iparms":[{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11,"type":"int"},{"av":"AV32extKeyInfoRoot","fld":"vEXTKEYINFOROOT","hsh":true,"type":""},{"av":"AV33wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"AV21message_signature","fld":"vMESSAGE_SIGNATURE","type":""},{"av":"AV19sdt_message","fld":"vSDT_MESSAGE","type":""},{"av":"GRIDGROUP_nEOF","type":"int"}]""");
+         setEventMetadata("'ACCEPT INVITATION'",""","oparms":[{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"AV17grpupId","fld":"vGRPUPID","type":"guid"},{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11,"type":"int"},{"av":"AV21message_signature","fld":"vMESSAGE_SIGNATURE","type":""},{"av":"AV19sdt_message","fld":"vSDT_MESSAGE","type":""}]}""");
          setEventMetadata("VALIDV_GXV2","""{"handler":"Validv_Gxv2","iparms":[]}""");
          setEventMetadata("VALIDV_GXV4","""{"handler":"Validv_Gxv4","iparms":[]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Delete","iparms":[]}""");

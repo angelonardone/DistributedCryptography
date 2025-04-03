@@ -238,10 +238,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 123260), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -271,7 +271,7 @@ namespace GeneXus.Programs.wallet {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.distcryptlogin.aspx") +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.distcryptlogin") +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -382,7 +382,7 @@ namespace GeneXus.Programs.wallet {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wallet.distcryptlogin.aspx")  ;
+         return formatLink("wallet.distcryptlogin")  ;
       }
 
       public override string GetPgmname( )
@@ -605,7 +605,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_12-186073", 0) ;
             }
          }
          Form.Meta.addItem("description", "Dist Crypt Login", 0) ;
@@ -1064,9 +1064,9 @@ namespace GeneXus.Programs.wallet {
       {
          /* 'Login anonymously' Routine */
          returnInSub = false;
-         AV5callerURL = formatLink("wallet.distcryptlogin.aspx") ;
+         AV5callerURL = formatLink("wallet.distcryptlogin") ;
          AV36WebSession.Set("LoginCaller", AV5callerURL);
-         CallWebObject(formatLink("distcrypt.sso.webloginanonymous.aspx") );
+         CallWebObject(formatLink("distcrypt.sso.webloginanonymous") );
          context.wjLocDisableFrm = 1;
       }
 
@@ -1078,7 +1078,7 @@ namespace GeneXus.Programs.wallet {
          new GeneXus.Programs.distcrypt.setexternaluser(context ).execute(  AV6externalUser) ;
          GXt_char2 = "";
          new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  "distcrypt.conf",  AV6externalUser.ToJSonString(false, true), out  GXt_char2) ;
-         CallWebObject(formatLink("wallet.distcryptlogin.aspx") );
+         CallWebObject(formatLink("wallet.distcryptlogin") );
          context.wjLocDisableFrm = 1;
          /*  Sending Event outputs  */
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV6externalUser", AV6externalUser);
@@ -1175,7 +1175,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532815134683", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025421527254", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1191,7 +1191,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/distcryptlogin.js", "?202532815134683", false, true);
+         context.AddJavascriptSource("wallet/distcryptlogin.js", "?2025421527254", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -1550,14 +1550,14 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDNOSTRSERVERS_nFirstRecordOnPage"},{"av":"GRIDNOSTRSERVERS_nEOF"},{"av":"AV42ConnectionParameters","fld":"vCONNECTIONPARAMETERS","grid":35},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"nRC_GXsfl_35","ctrl":"GRIDNOSTRSERVERS","prop":"GridRC","grid":35}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDNOSTRSERVERS_nFirstRecordOnPage","type":"int"},{"av":"GRIDNOSTRSERVERS_nEOF","type":"int"},{"av":"AV42ConnectionParameters","fld":"vCONNECTIONPARAMETERS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"nRC_GXsfl_35","ctrl":"GRIDNOSTRSERVERS","prop":"GridRC","grid":35,"type":"int"}]}""");
          setEventMetadata("'LOGIN WITH SSO'","""{"handler":"E11131","iparms":[]}""");
          setEventMetadata("'LOGIN ANONYMOUSLY'","""{"handler":"E13132","iparms":[]}""");
          setEventMetadata("'LOGOUT'","""{"handler":"E14132","iparms":[]""");
-         setEventMetadata("'LOGOUT'",""","oparms":[{"av":"AV6externalUser","fld":"vEXTERNALUSER"}]}""");
+         setEventMetadata("'LOGOUT'",""","oparms":[{"av":"AV6externalUser","fld":"vEXTERNALUSER","type":""}]}""");
          setEventMetadata("'CONFIGURE YOUR NOSTR SERVERS'","""{"handler":"E12131","iparms":[]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E15132","iparms":[{"av":"AV55PopupName","fld":"vPOPUPNAME"},{"av":"AV42ConnectionParameters","fld":"vCONNECTIONPARAMETERS","grid":35},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"GRIDNOSTRSERVERS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_35","ctrl":"GRIDNOSTRSERVERS","prop":"GridRC","grid":35},{"av":"GRIDNOSTRSERVERS_nEOF"}]""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV42ConnectionParameters","fld":"vCONNECTIONPARAMETERS","grid":35},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"GRIDNOSTRSERVERS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_35","ctrl":"GRIDNOSTRSERVERS","prop":"GridRC","grid":35}]}""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E15132","iparms":[{"av":"AV55PopupName","fld":"vPOPUPNAME","type":"char"},{"av":"AV42ConnectionParameters","fld":"vCONNECTIONPARAMETERS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"GRIDNOSTRSERVERS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_35","ctrl":"GRIDNOSTRSERVERS","prop":"GridRC","grid":35,"type":"int"},{"av":"GRIDNOSTRSERVERS_nEOF","type":"int"}]""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV42ConnectionParameters","fld":"vCONNECTIONPARAMETERS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"GRIDNOSTRSERVERS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_35","ctrl":"GRIDNOSTRSERVERS","prop":"GridRC","grid":35,"type":"int"}]}""");
          setEventMetadata("VALIDV_GXV3","""{"handler":"Validv_Gxv3","iparms":[]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Gxv7","iparms":[]}""");
          return  ;

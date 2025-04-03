@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtGxGetAddressess
 			Description: GxGetAddressess
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 
 namespace GeneXus.Programs
@@ -30,6 +31,8 @@ namespace GeneXus.Programs
 		public SdtGxGetAddressess( )
 		{
 			/* Constructor for serialization */
+			gxTv_SdtGxGetAddressess_Sdt_addressess_N = true;
+
 		}
 
 		public SdtGxGetAddressess(IGxContext context)
@@ -75,6 +78,7 @@ namespace GeneXus.Programs
 				if ( gxTv_SdtGxGetAddressess_Sdt_addressess == null )
 				{
 					gxTv_SdtGxGetAddressess_Sdt_addressess = new GeneXus.Programs.SdtNBitcoin_SDT_Addressess(context);
+					SetDirty("Sdt_addressess");
 				}
 				return gxTv_SdtGxGetAddressess_Sdt_addressess; 
 			}
@@ -154,6 +158,9 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("SDT_Addressess")]
+		[JsonPropertyOrder(0)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="SDT_Addressess", Order=0, EmitDefaultValue=false)]
 		public GeneXus.Programs.SdtNBitcoin_SDT_Addressess_RESTInterface gxTpr_Sdt_addressess
 		{
@@ -171,7 +178,7 @@ namespace GeneXus.Programs
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtGxGetAddressess sdt
 		{
 			get { 

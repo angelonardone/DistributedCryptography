@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtExtendeSecretAndAuthenticator
 			Description: ExtendeSecretAndAuthenticator
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.wallet
@@ -158,6 +159,8 @@ namespace GeneXus.Programs.wallet
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("ExtEncryptedSecret")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="ExtEncryptedSecret", Order=0)]
 		public  string gxTpr_Extencryptedsecret
 		{
@@ -170,6 +173,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("AuthenticatorBase32")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="AuthenticatorBase32", Order=1)]
 		public  string gxTpr_Authenticatorbase32
 		{
@@ -184,7 +189,7 @@ namespace GeneXus.Programs.wallet
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtExtendeSecretAndAuthenticator sdt
 		{
 			get { 

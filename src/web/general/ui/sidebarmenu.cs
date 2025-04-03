@@ -72,14 +72,14 @@ namespace GeneXus.Programs.general.ui {
             AV16SidebarItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem(context);
             AV16SidebarItem.gxTpr_Id = "Balance";
             AV16SidebarItem.gxTpr_Title = "Wallet Balance";
-            AV16SidebarItem.gxTpr_Target = formatLink("wallet.balance.aspx") ;
+            AV16SidebarItem.gxTpr_Target = formatLink("wallet.balance") ;
             AV15SidebarItems.Add(AV16SidebarItem, 0);
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13externalUser.gxTpr_Externaltoken)) )
             {
                AV16SidebarItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem(context);
                AV16SidebarItem.gxTpr_Id = "DistCryptLogin";
                AV16SidebarItem.gxTpr_Title = "Login";
-               AV16SidebarItem.gxTpr_Target = formatLink("wallet.distcryptlogin.aspx") ;
+               AV16SidebarItem.gxTpr_Target = formatLink("wallet.distcryptlogin") ;
                AV15SidebarItems.Add(AV16SidebarItem, 0);
             }
             else
@@ -92,17 +92,17 @@ namespace GeneXus.Programs.general.ui {
                AV18SubItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem_SubItem(context);
                AV18SubItem.gxTpr_Id = "UserInfo";
                AV18SubItem.gxTpr_Title = "User Info";
-               AV18SubItem.gxTpr_Target = formatLink("wallet.distcryptlogin.aspx") ;
+               AV18SubItem.gxTpr_Target = formatLink("wallet.distcryptlogin") ;
                AV16SidebarItem.gxTpr_Sidebarsubitems.Add(AV18SubItem, 0);
                AV18SubItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem_SubItem(context);
                AV18SubItem.gxTpr_Id = "Contacts";
                AV18SubItem.gxTpr_Title = "Contacts";
-               AV18SubItem.gxTpr_Target = formatLink("wallet.registered.contacts.aspx") ;
+               AV18SubItem.gxTpr_Target = formatLink("wallet.registered.contacts") ;
                AV16SidebarItem.gxTpr_Sidebarsubitems.Add(AV18SubItem, 0);
                AV18SubItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem_SubItem(context);
                AV18SubItem.gxTpr_Id = "SmartGroups";
                AV18SubItem.gxTpr_Title = "Smart Groups";
-               AV18SubItem.gxTpr_Target = formatLink("wallet.registered.smartgroups.aspx") ;
+               AV18SubItem.gxTpr_Target = formatLink("wallet.registered.smartgroups") ;
                AV16SidebarItem.gxTpr_Sidebarsubitems.Add(AV18SubItem, 0);
                AV15SidebarItems.Add(AV16SidebarItem, 0);
             }
@@ -114,34 +114,34 @@ namespace GeneXus.Programs.general.ui {
             AV18SubItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem_SubItem(context);
             AV18SubItem.gxTpr_Id = "EncryptedNotes";
             AV18SubItem.gxTpr_Title = "Encrypted Notes";
-            AV18SubItem.gxTpr_Target = formatLink("wallet.encryptednotes.aspx") ;
+            AV18SubItem.gxTpr_Target = formatLink("wallet.encryptednotes") ;
             AV16SidebarItem.gxTpr_Sidebarsubitems.Add(AV18SubItem, 0);
             AV18SubItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem_SubItem(context);
             AV18SubItem.gxTpr_Id = "EncryptedFiles";
             AV18SubItem.gxTpr_Title = "Encrypted Files";
-            AV18SubItem.gxTpr_Target = formatLink("wallet.encryptedfiles.aspx") ;
+            AV18SubItem.gxTpr_Target = formatLink("wallet.encryptedfiles") ;
             AV16SidebarItem.gxTpr_Sidebarsubitems.Add(AV18SubItem, 0);
             AV18SubItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem_SubItem(context);
             AV18SubItem.gxTpr_Id = "Autheticators";
             AV18SubItem.gxTpr_Title = "Autheticators";
-            AV18SubItem.gxTpr_Target = formatLink("wallet.autheticators.aspx") ;
+            AV18SubItem.gxTpr_Target = formatLink("wallet.autheticators") ;
             AV16SidebarItem.gxTpr_Sidebarsubitems.Add(AV18SubItem, 0);
             AV18SubItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem_SubItem(context);
             AV18SubItem.gxTpr_Id = "CreateQRCodes";
             AV18SubItem.gxTpr_Title = "Create QRCodes";
-            AV18SubItem.gxTpr_Target = formatLink("qrcoder.createqrcode.aspx") ;
+            AV18SubItem.gxTpr_Target = formatLink("qrcoder.createqrcode") ;
             AV16SidebarItem.gxTpr_Sidebarsubitems.Add(AV18SubItem, 0);
             AV18SubItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem_SubItem(context);
             AV18SubItem.gxTpr_Id = "SplitASecret";
             AV18SubItem.gxTpr_Title = "Split a secret";
-            AV18SubItem.gxTpr_Target = formatLink("shamirss.shamirsecretsharing.aspx") ;
+            AV18SubItem.gxTpr_Target = formatLink("shamirss.shamirsecretsharing") ;
             AV16SidebarItem.gxTpr_Sidebarsubitems.Add(AV18SubItem, 0);
             AV15SidebarItems.Add(AV16SidebarItem, 0);
          }
          AV16SidebarItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem(context);
          AV16SidebarItem.gxTpr_Id = "ReturnToWallets";
          AV16SidebarItem.gxTpr_Title = "Return to Wallets";
-         AV16SidebarItem.gxTpr_Target = formatLink("wallet.returntowallets.aspx") ;
+         AV16SidebarItem.gxTpr_Target = formatLink("wallet.returntowallets") ;
          AV15SidebarItems.Add(AV16SidebarItem, 0);
          cleanup();
       }

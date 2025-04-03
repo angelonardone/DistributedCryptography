@@ -289,18 +289,18 @@ namespace GeneXus.Programs.wallet.registered {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 123260), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 123260), false, true);
          if ( StringUtil.Len( sPrefix) == 0 )
          {
             context.CloseHtmlHeader();
@@ -322,7 +322,7 @@ namespace GeneXus.Programs.wallet.registered {
             context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
             context.WriteHtmlText( FormProcess+">") ;
             context.skipLines(1);
-            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.smartgroupwalletbackupnotowner.aspx") +"\">") ;
+            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.smartgroupwalletbackupnotowner") +"\">") ;
             GxWebStd.gx_hidden_field( context, "_EventName", "");
             GxWebStd.gx_hidden_field( context, "_EventGridId", "");
             GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -543,7 +543,7 @@ namespace GeneXus.Programs.wallet.registered {
             RenderHtmlOpenForm( ) ;
             if ( StringUtil.Len( sPrefix) != 0 )
             {
-               GxWebStd.gx_hidden_field( context, sPrefix+"_CMPPGM", "wallet.registered.smartgroupwalletbackupnotowner.aspx");
+               GxWebStd.gx_hidden_field( context, sPrefix+"_CMPPGM", "wallet.registered.smartgroupwalletbackupnotowner");
             }
             GxWebStd.gx_msg_list( context, "", context.GX_msglist.DisplayMode, "", "", sPrefix, "false");
             /* Div Control */
@@ -683,7 +683,7 @@ namespace GeneXus.Programs.wallet.registered {
             {
                if ( context.ExposeMetadata( ) )
                {
-                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_12-186073", 0) ;
                }
             }
             Form.Meta.addItem("description", "Smart Group Wallet Backup Not Owner", 0) ;
@@ -1645,7 +1645,7 @@ namespace GeneXus.Programs.wallet.registered {
          /* 'Create recovered wallet' Routine */
          returnInSub = false;
          AV6websession.Set("Group_Restore_ExtPrivKey", StringUtil.Trim( AV42group_sdt_my.gxTpr_Cleartextshare));
-         context.PopUp(formatLink("wallet.registered.resotregroupwallet.aspx") , new Object[] {});
+         context.PopUp(formatLink("wallet.registered.resotregroupwallet") , new Object[] {});
          /*  Sending Event outputs  */
       }
 
@@ -1660,7 +1660,7 @@ namespace GeneXus.Programs.wallet.registered {
             AV53walletRestored = BooleanUtil.Val( AV6websession.Get("Group_Restore_Confirmed"));
             if ( AV53walletRestored )
             {
-               CallWebObject(formatLink("wallet.returntowallets.aspx") );
+               CallWebObject(formatLink("wallet.returntowallets") );
                context.wjLocDisableFrm = 1;
             }
          }
@@ -1837,7 +1837,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20253281513415", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025421725155", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1853,7 +1853,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/smartgroupwalletbackupnotowner.js", "?20253281513416", false, true);
+         context.AddJavascriptSource("wallet/registered/smartgroupwalletbackupnotowner.js", "?2025421725155", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -2181,14 +2181,14 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDCONTACTS_nFirstRecordOnPage"},{"av":"GRIDCONTACTS_nEOF"},{"av":"AV18groupContacts","fld":"vGROUPCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"nRC_GXsfl_11","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":11},{"av":"AV42group_sdt_my","fld":"vGROUP_SDT_MY"},{"av":"sPrefix"},{"av":"AV20externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"GXV1","fld":"CTLMINIMUMSHARES","pic":"ZZZ9"}]}""");
-         setEventMetadata("GRIDCONTACTS.LOAD","""{"handler":"E161L2","iparms":[{"av":"AV42group_sdt_my","fld":"vGROUP_SDT_MY"}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDCONTACTS_nFirstRecordOnPage","type":"int"},{"av":"GRIDCONTACTS_nEOF","type":"int"},{"av":"AV18groupContacts","fld":"vGROUPCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"nRC_GXsfl_11","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":11,"type":"int"},{"av":"AV42group_sdt_my","fld":"vGROUP_SDT_MY","type":""},{"av":"sPrefix","type":"char"},{"av":"AV20externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""},{"av":"GXV1","fld":"CTLMINIMUMSHARES","pic":"ZZZ9","type":"int"}]}""");
+         setEventMetadata("GRIDCONTACTS.LOAD","""{"handler":"E161L2","iparms":[{"av":"AV42group_sdt_my","fld":"vGROUP_SDT_MY","type":""}]""");
          setEventMetadata("GRIDCONTACTS.LOAD",""","oparms":[{"ctrl":"CTLCONTACTPRIVATENAME","prop":"Visible"},{"ctrl":"CTLCONTACTUSERNAME","prop":"Visible"}]}""");
          setEventMetadata("'CLOSE'","""{"handler":"E111L2","iparms":[]}""");
-         setEventMetadata("'RESTORE WALLET'","""{"handler":"E121L2","iparms":[{"av":"AV13group_sdt","fld":"vGROUP_SDT"},{"av":"AV20externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV42group_sdt_my","fld":"vGROUP_SDT_MY"},{"av":"AV44sharesToRecover","fld":"vSHARESTORECOVER"},{"av":"AV10error","fld":"vERROR"},{"av":"AV32message_signature","fld":"vMESSAGE_SIGNATURE"},{"av":"AV36sdt_message","fld":"vSDT_MESSAGE"},{"av":"AV49numOfSharedWasReach","fld":"vNUMOFSHAREDWASREACH"}]""");
-         setEventMetadata("'RESTORE WALLET'",""","oparms":[{"av":"AV49numOfSharedWasReach","fld":"vNUMOFSHAREDWASREACH"},{"av":"AV44sharesToRecover","fld":"vSHARESTORECOVER"},{"av":"AV42group_sdt_my","fld":"vGROUP_SDT_MY"},{"av":"AV10error","fld":"vERROR"},{"av":"AV32message_signature","fld":"vMESSAGE_SIGNATURE"},{"av":"AV36sdt_message","fld":"vSDT_MESSAGE"},{"ctrl":"RESTOREWALLET","prop":"Visible"},{"ctrl":"CREATERECOVEREDWALLET","prop":"Visible"}]}""");
-         setEventMetadata("'CREATE RECOVERED WALLET'","""{"handler":"E131L2","iparms":[{"av":"AV42group_sdt_my","fld":"vGROUP_SDT_MY"}]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E141L2","iparms":[{"av":"AV34PopupName","fld":"vPOPUPNAME"}]}""");
+         setEventMetadata("'RESTORE WALLET'","""{"handler":"E121L2","iparms":[{"av":"AV13group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV20externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""},{"av":"AV42group_sdt_my","fld":"vGROUP_SDT_MY","type":""},{"av":"AV44sharesToRecover","fld":"vSHARESTORECOVER","type":""},{"av":"AV10error","fld":"vERROR","type":"char"},{"av":"AV32message_signature","fld":"vMESSAGE_SIGNATURE","type":""},{"av":"AV36sdt_message","fld":"vSDT_MESSAGE","type":""},{"av":"AV49numOfSharedWasReach","fld":"vNUMOFSHAREDWASREACH","type":"boolean"}]""");
+         setEventMetadata("'RESTORE WALLET'",""","oparms":[{"av":"AV49numOfSharedWasReach","fld":"vNUMOFSHAREDWASREACH","type":"boolean"},{"av":"AV44sharesToRecover","fld":"vSHARESTORECOVER","type":""},{"av":"AV42group_sdt_my","fld":"vGROUP_SDT_MY","type":""},{"av":"AV10error","fld":"vERROR","type":"char"},{"av":"AV32message_signature","fld":"vMESSAGE_SIGNATURE","type":""},{"av":"AV36sdt_message","fld":"vSDT_MESSAGE","type":""},{"ctrl":"RESTOREWALLET","prop":"Visible"},{"ctrl":"CREATERECOVEREDWALLET","prop":"Visible"}]}""");
+         setEventMetadata("'CREATE RECOVERED WALLET'","""{"handler":"E131L2","iparms":[{"av":"AV42group_sdt_my","fld":"vGROUP_SDT_MY","type":""}]}""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E141L2","iparms":[{"av":"AV34PopupName","fld":"vPOPUPNAME","type":"char"}]}""");
          setEventMetadata("VALIDV_GXV3","""{"handler":"Validv_Gxv3","iparms":[]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Gxv8","iparms":[]}""");
          return  ;

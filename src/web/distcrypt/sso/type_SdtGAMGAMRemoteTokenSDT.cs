@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtGAMGAMRemoteTokenSDT
 			Description: GAMGAMRemoteTokenSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 using GeneXus.Programs.distcrypt;
@@ -184,6 +185,8 @@ namespace GeneXus.Programs.distcrypt.sso
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("access_token")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="access_token", Order=0)]
 		public  string gxTpr_Access_token
 		{
@@ -196,6 +199,8 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("token_type")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="token_type", Order=1)]
 		public  string gxTpr_Token_type
 		{
@@ -208,6 +213,8 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("expires_in")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="expires_in", Order=2)]
 		public  string gxTpr_Expires_in
 		{
@@ -222,7 +229,7 @@ namespace GeneXus.Programs.distcrypt.sso
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtGAMGAMRemoteTokenSDT sdt
 		{
 			get { 

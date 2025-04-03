@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtECCverifyMsgUnitTestSDT
 			Description: ECCverifyMsgUnitTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nbitcoin
@@ -354,6 +355,8 @@ namespace GeneXus.Programs.nbitcoin
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("TestCaseId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="TestCaseId", Order=0)]
 		public  string gxTpr_Testcaseid
 		{
@@ -366,6 +369,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("pubKey")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="pubKey", Order=1)]
 		public  string gxTpr_Pubkey
 		{
@@ -378,6 +383,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("message")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="message", Order=2)]
 		public  string gxTpr_Message
 		{
@@ -390,6 +397,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("signature")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="signature", Order=3)]
 		public  string gxTpr_Signature
 		{
@@ -402,6 +411,9 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("verified")]
+		[JsonPropertyOrder(4)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="verified", Order=4)]
 		public bool gxTpr_Verified
 		{
@@ -414,6 +426,9 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Expectedverified")]
+		[JsonPropertyOrder(5)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="Expectedverified", Order=5)]
 		public bool gxTpr_Expectedverified
 		{
@@ -426,6 +441,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Msgverified")]
+		[JsonPropertyOrder(6)]
 		[DataMember(Name="Msgverified", Order=6)]
 		public  string gxTpr_Msgverified
 		{
@@ -438,6 +455,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("error")]
+		[JsonPropertyOrder(7)]
 		[DataMember(Name="error", Order=7)]
 		public  string gxTpr_Error
 		{
@@ -450,6 +469,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Expectederror")]
+		[JsonPropertyOrder(8)]
 		[DataMember(Name="Expectederror", Order=8)]
 		public  string gxTpr_Expectederror
 		{
@@ -462,6 +483,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Msgerror")]
+		[JsonPropertyOrder(9)]
 		[DataMember(Name="Msgerror", Order=9)]
 		public  string gxTpr_Msgerror
 		{
@@ -476,7 +499,7 @@ namespace GeneXus.Programs.nbitcoin
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtECCverifyMsgUnitTestSDT sdt
 		{
 			get { 

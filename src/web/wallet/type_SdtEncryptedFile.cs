@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtEncryptedFile
 			Description: EncryptedFile
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.wallet
@@ -271,6 +272,8 @@ namespace GeneXus.Programs.wallet
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("FileName")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="FileName", Order=0)]
 		public  string gxTpr_Filename
 		{
@@ -283,6 +286,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("Create")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="Create", Order=1)]
 		public  string gxTpr_Create
 		{
@@ -295,6 +300,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("FullFileName")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="FullFileName", Order=2)]
 		public  string gxTpr_Fullfilename
 		{
@@ -307,6 +314,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("EncryptedKey")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="EncryptedKey", Order=3)]
 		public  string gxTpr_Encryptedkey
 		{
@@ -319,6 +328,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("IV")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="IV", Order=4)]
 		public  string gxTpr_Iv
 		{
@@ -333,7 +344,7 @@ namespace GeneXus.Programs.wallet
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtEncryptedFile sdt
 		{
 			get { 

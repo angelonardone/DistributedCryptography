@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtGxTransactionItem
 			Description: GxTransactionItem
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 
 namespace GeneXus.Programs
@@ -35,6 +36,8 @@ namespace GeneXus.Programs
 			gxTv_SdtGxTransactionItem_Scriptpubkey_address = "";
 
 			gxTv_SdtGxTransactionItem_Datetime = (DateTime)(DateTime.MinValue);
+
+			gxTv_SdtGxTransactionItem_Used_N = true;
 
 		}
 
@@ -149,7 +152,7 @@ namespace GeneXus.Programs
 				return Convert.ToString(gxTv_SdtGxTransactionItem_Value, System.Globalization.CultureInfo.InvariantCulture);
 			}
 			set {
-				gxTv_SdtGxTransactionItem_Value = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+				gxTv_SdtGxTransactionItem_Value = NumberUtil.Val(value);
 			}
 		}
 		[XmlIgnore]
@@ -233,6 +236,7 @@ namespace GeneXus.Programs
 				if ( gxTv_SdtGxTransactionItem_Used == null )
 				{
 					gxTv_SdtGxTransactionItem_Used = new GeneXus.Programs.SdtGxUsedIn(context);
+					SetDirty("Used");
 				}
 				return gxTv_SdtGxTransactionItem_Used; 
 			}
@@ -342,6 +346,8 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("TransactionId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="TransactionId", Order=0)]
 		public  string gxTpr_Transactionid
 		{
@@ -354,6 +360,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("n")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="n", Order=1)]
 		public  string gxTpr_N
 		{
@@ -366,6 +374,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("value")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="value", Order=2)]
 		public  string gxTpr_Value
 		{
@@ -378,6 +388,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("scriptPubKey_address")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="scriptPubKey_address", Order=3)]
 		public  string gxTpr_Scriptpubkey_address
 		{
@@ -390,6 +402,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("datetime")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="datetime", Order=4)]
 		public  string gxTpr_Datetime
 		{
@@ -402,6 +416,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("Confirmations")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="Confirmations", Order=5)]
 		public  string gxTpr_Confirmations
 		{
@@ -414,6 +430,9 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("Used")]
+		[JsonPropertyOrder(6)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="Used", Order=6, EmitDefaultValue=false)]
 		public GeneXus.Programs.SdtGxUsedIn_RESTInterface gxTpr_Used
 		{
@@ -431,7 +450,7 @@ namespace GeneXus.Programs
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtGxTransactionItem sdt
 		{
 			get { 

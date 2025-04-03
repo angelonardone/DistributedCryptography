@@ -301,18 +301,18 @@ namespace GeneXus.Programs.wallet {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 123260), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 123260), false, true);
          if ( StringUtil.Len( sPrefix) == 0 )
          {
             context.CloseHtmlHeader();
@@ -334,7 +334,7 @@ namespace GeneXus.Programs.wallet {
             context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
             context.WriteHtmlText( FormProcess+">") ;
             context.skipLines(1);
-            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.oneaddress.aspx") +"\">") ;
+            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.oneaddress") +"\">") ;
             GxWebStd.gx_hidden_field( context, "_EventName", "");
             GxWebStd.gx_hidden_field( context, "_EventGridId", "");
             GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -521,7 +521,7 @@ namespace GeneXus.Programs.wallet {
             RenderHtmlOpenForm( ) ;
             if ( StringUtil.Len( sPrefix) != 0 )
             {
-               GxWebStd.gx_hidden_field( context, sPrefix+"_CMPPGM", "wallet.oneaddress.aspx");
+               GxWebStd.gx_hidden_field( context, sPrefix+"_CMPPGM", "wallet.oneaddress");
             }
             GxWebStd.gx_msg_list( context, "", context.GX_msglist.DisplayMode, "", "", sPrefix, "false");
             /* Div Control */
@@ -694,7 +694,7 @@ namespace GeneXus.Programs.wallet {
             {
                if ( context.ExposeMetadata( ) )
                {
-                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_12-186073", 0) ;
                }
             }
             Form.Meta.addItem("description", "One Address", 0) ;
@@ -1423,7 +1423,7 @@ namespace GeneXus.Programs.wallet {
          }
          /* 'Get Key Info' Routine */
          returnInSub = false;
-         context.PopUp(formatLink("wallet.showtransactiondetail.aspx", new object[] {UrlEncode(StringUtil.RTrim(((GeneXus.Programs.wallet.SdtSDTAddressHistory)(AV14SDTAddressHistory.CurrentItem)).gxTpr_Receivedtransactionid)),UrlEncode(StringUtil.LTrimStr(((GeneXus.Programs.wallet.SdtSDTAddressHistory)(AV14SDTAddressHistory.CurrentItem)).gxTpr_Recivedn,10,0)),UrlEncode(StringUtil.RTrim("transactions.trn"))}, new string[] {"transactionId","n","transactionFileName"}) , new Object[] {});
+         context.PopUp(formatLink("wallet.showtransactiondetail", new object[] {UrlEncode(StringUtil.RTrim(((GeneXus.Programs.wallet.SdtSDTAddressHistory)(AV14SDTAddressHistory.CurrentItem)).gxTpr_Receivedtransactionid)),UrlEncode(StringUtil.LTrimStr(((GeneXus.Programs.wallet.SdtSDTAddressHistory)(AV14SDTAddressHistory.CurrentItem)).gxTpr_Recivedn,10,0)),UrlEncode(StringUtil.RTrim("transactions.trn"))}, new string[] {"transactionId","n","transactionFileName"}) , new Object[] {});
       }
 
       protected void E12072( )
@@ -1731,7 +1731,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20253281513141", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254215264799", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1747,7 +1747,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/oneaddress.js", "?20253281513142", false, true);
+         context.AddJavascriptSource("wallet/oneaddress.js", "?20254215264799", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -2167,15 +2167,15 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"ADDRESSGRID_nFirstRecordOnPage"},{"av":"ADDRESSGRID_nEOF"},{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29},{"av":"sPrefix"},{"av":"AV23wallet","fld":"vWALLET","hsh":true},{"av":"AV12mainAddress","fld":"vMAINADDRESS","hsh":true}]}""");
-         setEventMetadata("ADDRESSGRID.LOAD","""{"handler":"E15072","iparms":[{"av":"AV23wallet","fld":"vWALLET","hsh":true},{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29}]""");
-         setEventMetadata("ADDRESSGRID.LOAD",""","oparms":[{"av":"edtavFirstlink_Link","ctrl":"vFIRSTLINK","prop":"Link"},{"av":"edtavSecondlink_Link","ctrl":"vSECONDLINK","prop":"Link"},{"av":"AV6firstLink","fld":"vFIRSTLINK"},{"av":"edtavFirstlink_Linktarget","ctrl":"vFIRSTLINK","prop":"Linktarget"},{"av":"edtavSecondlink_Linktarget","ctrl":"vSECONDLINK","prop":"Linktarget"},{"av":"AV15secondLink","fld":"vSECONDLINK"},{"av":"AV31txtConfirmations","fld":"vTXTCONFIRMATIONS"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"ADDRESSGRID_nEOF","type":"int"},{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV23wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"AV12mainAddress","fld":"vMAINADDRESS","hsh":true,"type":"char"}]}""");
+         setEventMetadata("ADDRESSGRID.LOAD","""{"handler":"E15072","iparms":[{"av":"AV23wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"}]""");
+         setEventMetadata("ADDRESSGRID.LOAD",""","oparms":[{"av":"edtavFirstlink_Link","ctrl":"vFIRSTLINK","prop":"Link"},{"av":"edtavSecondlink_Link","ctrl":"vSECONDLINK","prop":"Link"},{"av":"AV6firstLink","fld":"vFIRSTLINK","type":"char"},{"av":"edtavFirstlink_Linktarget","ctrl":"vFIRSTLINK","prop":"Linktarget"},{"av":"edtavSecondlink_Linktarget","ctrl":"vSECONDLINK","prop":"Linktarget"},{"av":"AV15secondLink","fld":"vSECONDLINK","type":"char"},{"av":"AV31txtConfirmations","fld":"vTXTCONFIRMATIONS","type":"char"}]}""");
          setEventMetadata("'SEND'","""{"handler":"E11071","iparms":[]}""");
-         setEventMetadata("'GET KEY INFO'","""{"handler":"E16072","iparms":[{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29}]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E12072","iparms":[{"av":"AV13PopupName","fld":"vPOPUPNAME"},{"av":"AV20transactions__postInput","fld":"vTRANSACTIONS__POSTINPUT"},{"av":"AV12mainAddress","fld":"vMAINADDRESS","hsh":true},{"av":"AV25oneReturnAddress","fld":"vONERETURNADDRESS"},{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29},{"av":"ADDRESSGRID_nEOF"},{"av":"sPrefix"},{"av":"AV23wallet","fld":"vWALLET","hsh":true}]""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29},{"av":"AV21transactionsCount","fld":"vTRANSACTIONSCOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV19totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZZZ9.99999999"},{"av":"AV20transactions__postInput","fld":"vTRANSACTIONS__POSTINPUT"},{"av":"AV5error","fld":"vERROR"},{"ctrl":"SEND","prop":"Visible"},{"av":"AV25oneReturnAddress","fld":"vONERETURNADDRESS"}]}""");
-         setEventMetadata("'UPDATE BALANCE'","""{"handler":"E13072","iparms":[{"av":"AV20transactions__postInput","fld":"vTRANSACTIONS__POSTINPUT"},{"av":"AV12mainAddress","fld":"vMAINADDRESS","hsh":true},{"av":"AV25oneReturnAddress","fld":"vONERETURNADDRESS"},{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29},{"av":"ADDRESSGRID_nEOF"},{"av":"sPrefix"},{"av":"AV23wallet","fld":"vWALLET","hsh":true}]""");
-         setEventMetadata("'UPDATE BALANCE'",""","oparms":[{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29},{"av":"AV21transactionsCount","fld":"vTRANSACTIONSCOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV19totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZZZ9.99999999"},{"av":"AV20transactions__postInput","fld":"vTRANSACTIONS__POSTINPUT"},{"av":"AV5error","fld":"vERROR"},{"ctrl":"SEND","prop":"Visible"},{"av":"AV25oneReturnAddress","fld":"vONERETURNADDRESS"}]}""");
+         setEventMetadata("'GET KEY INFO'","""{"handler":"E16072","iparms":[{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"}]}""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E12072","iparms":[{"av":"AV13PopupName","fld":"vPOPUPNAME","type":"char"},{"av":"AV20transactions__postInput","fld":"vTRANSACTIONS__POSTINPUT","type":""},{"av":"AV12mainAddress","fld":"vMAINADDRESS","hsh":true,"type":"char"},{"av":"AV25oneReturnAddress","fld":"vONERETURNADDRESS","type":""},{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"},{"av":"ADDRESSGRID_nEOF","type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV23wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"},{"av":"AV21transactionsCount","fld":"vTRANSACTIONSCOUNT","pic":"ZZZZZZZZZ9","type":"int"},{"av":"AV19totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZZZ9.99999999","type":"decimal"},{"av":"AV20transactions__postInput","fld":"vTRANSACTIONS__POSTINPUT","type":""},{"av":"AV5error","fld":"vERROR","type":"char"},{"ctrl":"SEND","prop":"Visible"},{"av":"AV25oneReturnAddress","fld":"vONERETURNADDRESS","type":""}]}""");
+         setEventMetadata("'UPDATE BALANCE'","""{"handler":"E13072","iparms":[{"av":"AV20transactions__postInput","fld":"vTRANSACTIONS__POSTINPUT","type":""},{"av":"AV12mainAddress","fld":"vMAINADDRESS","hsh":true,"type":"char"},{"av":"AV25oneReturnAddress","fld":"vONERETURNADDRESS","type":""},{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"},{"av":"ADDRESSGRID_nEOF","type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV23wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("'UPDATE BALANCE'",""","oparms":[{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"},{"av":"AV21transactionsCount","fld":"vTRANSACTIONSCOUNT","pic":"ZZZZZZZZZ9","type":"int"},{"av":"AV19totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZZZ9.99999999","type":"decimal"},{"av":"AV20transactions__postInput","fld":"vTRANSACTIONS__POSTINPUT","type":""},{"av":"AV5error","fld":"vERROR","type":"char"},{"ctrl":"SEND","prop":"Visible"},{"av":"AV25oneReturnAddress","fld":"vONERETURNADDRESS","type":""}]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Txtconfirmations","iparms":[]}""");
          return  ;
       }

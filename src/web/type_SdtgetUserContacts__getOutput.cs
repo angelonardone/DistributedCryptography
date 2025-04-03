@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtgetUserContacts__getOutput
 			Description: getUserContacts__getOutput
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 
 namespace GeneXus.Programs
@@ -30,6 +31,8 @@ namespace GeneXus.Programs
 		public SdtgetUserContacts__getOutput( )
 		{
 			/* Constructor for serialization */
+			gxTv_SdtgetUserContacts__getOutput_Contacts_N = true;
+
 			gxTv_SdtgetUserContacts__getOutput_Error = "";
 
 		}
@@ -80,6 +83,7 @@ namespace GeneXus.Programs
 				if ( gxTv_SdtgetUserContacts__getOutput_Contacts == null )
 				{
 					gxTv_SdtgetUserContacts__getOutput_Contacts = new GeneXus.Programs.SdtDesktopApp_services_SDT_Contacts(context);
+					SetDirty("Contacts");
 				}
 				return gxTv_SdtgetUserContacts__getOutput_Contacts; 
 			}
@@ -177,6 +181,9 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("contacts")]
+		[JsonPropertyOrder(0)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="contacts", Order=0, EmitDefaultValue=false)]
 		public GeneXus.Programs.SdtDesktopApp_services_SDT_Contacts_RESTInterface gxTpr_Contacts
 		{
@@ -192,6 +199,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("error")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="error", Order=1)]
 		public  string gxTpr_Error
 		{
@@ -206,7 +215,7 @@ namespace GeneXus.Programs
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtgetUserContacts__getOutput sdt
 		{
 			get { 

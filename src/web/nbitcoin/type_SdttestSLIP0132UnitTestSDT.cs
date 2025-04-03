@@ -1,7 +1,7 @@
 /*
 				   File: type_SdttestSLIP0132UnitTestSDT
 			Description: testSLIP0132UnitTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nbitcoin
@@ -31,6 +32,12 @@ namespace GeneXus.Programs.nbitcoin
 		{
 			/* Constructor for serialization */
 			gxTv_SdttestSLIP0132UnitTestSDT_Testcaseid = "";
+
+			gxTv_SdttestSLIP0132UnitTestSDT_Test_slip0132_in_N = true;
+
+			gxTv_SdttestSLIP0132UnitTestSDT_Test_slip0132_out_N = true;
+
+			gxTv_SdttestSLIP0132UnitTestSDT_Expectedtest_slip0132_out_N = true;
 
 			gxTv_SdttestSLIP0132UnitTestSDT_Msgtest_slip0132_out = "";
 
@@ -122,6 +129,7 @@ namespace GeneXus.Programs.nbitcoin
 				if ( gxTv_SdttestSLIP0132UnitTestSDT_Test_slip0132_in == null )
 				{
 					gxTv_SdttestSLIP0132UnitTestSDT_Test_slip0132_in = new GeneXus.Programs.nbitcoin.Sdttest_SLIP0132_in(context);
+					SetDirty("Test_slip0132_in");
 				}
 				return gxTv_SdttestSLIP0132UnitTestSDT_Test_slip0132_in; 
 			}
@@ -154,6 +162,7 @@ namespace GeneXus.Programs.nbitcoin
 				if ( gxTv_SdttestSLIP0132UnitTestSDT_Test_slip0132_out == null )
 				{
 					gxTv_SdttestSLIP0132UnitTestSDT_Test_slip0132_out = new GeneXus.Programs.nbitcoin.Sdttest_SLIP0132_out(context);
+					SetDirty("Test_slip0132_out");
 				}
 				return gxTv_SdttestSLIP0132UnitTestSDT_Test_slip0132_out; 
 			}
@@ -186,6 +195,7 @@ namespace GeneXus.Programs.nbitcoin
 				if ( gxTv_SdttestSLIP0132UnitTestSDT_Expectedtest_slip0132_out == null )
 				{
 					gxTv_SdttestSLIP0132UnitTestSDT_Expectedtest_slip0132_out = new GeneXus.Programs.nbitcoin.Sdttest_SLIP0132_out(context);
+					SetDirty("Expectedtest_slip0132_out");
 				}
 				return gxTv_SdttestSLIP0132UnitTestSDT_Expectedtest_slip0132_out; 
 			}
@@ -362,6 +372,8 @@ namespace GeneXus.Programs.nbitcoin
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("TestCaseId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="TestCaseId", Order=0)]
 		public  string gxTpr_Testcaseid
 		{
@@ -374,6 +386,9 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("test_SLIP0132_in")]
+		[JsonPropertyOrder(1)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="test_SLIP0132_in", Order=1, EmitDefaultValue=false)]
 		public GeneXus.Programs.nbitcoin.Sdttest_SLIP0132_in_RESTInterface gxTpr_Test_slip0132_in
 		{
@@ -389,6 +404,9 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("test_SLIP0132_out")]
+		[JsonPropertyOrder(2)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="test_SLIP0132_out", Order=2, EmitDefaultValue=false)]
 		public GeneXus.Programs.nbitcoin.Sdttest_SLIP0132_out_RESTInterface gxTpr_Test_slip0132_out
 		{
@@ -404,6 +422,9 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Expectedtest_SLIP0132_out")]
+		[JsonPropertyOrder(3)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="Expectedtest_SLIP0132_out", Order=3, EmitDefaultValue=false)]
 		public GeneXus.Programs.nbitcoin.Sdttest_SLIP0132_out_RESTInterface gxTpr_Expectedtest_slip0132_out
 		{
@@ -419,6 +440,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Msgtest_SLIP0132_out")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="Msgtest_SLIP0132_out", Order=4)]
 		public  string gxTpr_Msgtest_slip0132_out
 		{
@@ -431,6 +454,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("error")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="error", Order=5)]
 		public  string gxTpr_Error
 		{
@@ -443,6 +468,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Expectederror")]
+		[JsonPropertyOrder(6)]
 		[DataMember(Name="Expectederror", Order=6)]
 		public  string gxTpr_Expectederror
 		{
@@ -455,6 +482,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Msgerror")]
+		[JsonPropertyOrder(7)]
 		[DataMember(Name="Msgerror", Order=7)]
 		public  string gxTpr_Msgerror
 		{
@@ -469,7 +498,7 @@ namespace GeneXus.Programs.nbitcoin
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdttestSLIP0132UnitTestSDT sdt
 		{
 			get { 

@@ -218,10 +218,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 123260), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -251,7 +251,7 @@ namespace GeneXus.Programs.wallet {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.editdescription.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV13transactionId)),UrlEncode(StringUtil.LTrimStr(AV6n,10,0)),UrlEncode(StringUtil.RTrim(AV12transactionFileName))}, new string[] {"transactionId","n","transactionFileName"}) +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.editdescription", new object[] {UrlEncode(StringUtil.RTrim(AV13transactionId)),UrlEncode(StringUtil.LTrimStr(AV6n,10,0)),UrlEncode(StringUtil.RTrim(AV12transactionFileName))}, new string[] {"transactionId","n","transactionFileName"}) +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -347,7 +347,7 @@ namespace GeneXus.Programs.wallet {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wallet.editdescription.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV13transactionId)),UrlEncode(StringUtil.LTrimStr(AV6n,10,0)),UrlEncode(StringUtil.RTrim(AV12transactionFileName))}, new string[] {"transactionId","n","transactionFileName"})  ;
+         return formatLink("wallet.editdescription", new object[] {UrlEncode(StringUtil.RTrim(AV13transactionId)),UrlEncode(StringUtil.LTrimStr(AV6n,10,0)),UrlEncode(StringUtil.RTrim(AV12transactionFileName))}, new string[] {"transactionId","n","transactionFileName"})  ;
       }
 
       public override string GetPgmname( )
@@ -431,7 +431,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_12-186073", 0) ;
             }
          }
          Form.Meta.addItem("description", "Edit Description", 0) ;
@@ -811,7 +811,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532815135220", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254215273136", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -827,7 +827,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/editdescription.js", "?202532815135222", false, true);
+         context.AddJavascriptSource("wallet/editdescription.js", "?20254215273136", false, true);
          /* End function include_jscripts */
       }
 
@@ -872,9 +872,9 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true},{"av":"AV6n","fld":"vN","pic":"ZZZZZZZZZ9","hsh":true},{"av":"AV12transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true}]}""");
-         setEventMetadata("'UPDATE DESCRIPTION'","""{"handler":"E121X2","iparms":[{"av":"AV10StoredTransactions","fld":"vSTOREDTRANSACTIONS"},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true},{"av":"AV6n","fld":"vN","pic":"ZZZZZZZZZ9","hsh":true},{"av":"AV16description","fld":"vDESCRIPTION"},{"av":"AV12transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true}]""");
-         setEventMetadata("'UPDATE DESCRIPTION'",""","oparms":[{"av":"AV10StoredTransactions","fld":"vSTOREDTRANSACTIONS"},{"av":"AV5error","fld":"vERROR"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV6n","fld":"vN","pic":"ZZZZZZZZZ9","hsh":true,"type":"int"},{"av":"AV12transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"}]}""");
+         setEventMetadata("'UPDATE DESCRIPTION'","""{"handler":"E121X2","iparms":[{"av":"AV10StoredTransactions","fld":"vSTOREDTRANSACTIONS","type":""},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV6n","fld":"vN","pic":"ZZZZZZZZZ9","hsh":true,"type":"int"},{"av":"AV16description","fld":"vDESCRIPTION","type":"svchar"},{"av":"AV12transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"}]""");
+         setEventMetadata("'UPDATE DESCRIPTION'",""","oparms":[{"av":"AV10StoredTransactions","fld":"vSTOREDTRANSACTIONS","type":""},{"av":"AV5error","fld":"vERROR","type":"char"}]}""");
          setEventMetadata("'CLOSE'","""{"handler":"E131X2","iparms":[]}""");
          return  ;
       }

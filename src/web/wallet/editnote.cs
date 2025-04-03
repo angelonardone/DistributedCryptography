@@ -234,10 +234,10 @@ namespace GeneXus.Programs.wallet {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 123260), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -266,7 +266,7 @@ namespace GeneXus.Programs.wallet {
             context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
             context.WriteHtmlText( FormProcess+">") ;
             context.skipLines(1);
-            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.editnote.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV8fileName))}, new string[] {"fileName"}) +"\">") ;
+            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.editnote", new object[] {UrlEncode(StringUtil.RTrim(AV8fileName))}, new string[] {"fileName"}) +"\">") ;
             GxWebStd.gx_hidden_field( context, "_EventName", "");
             GxWebStd.gx_hidden_field( context, "_EventGridId", "");
             GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -412,7 +412,7 @@ namespace GeneXus.Programs.wallet {
             RenderHtmlOpenForm( ) ;
             if ( StringUtil.Len( sPrefix) != 0 )
             {
-               GxWebStd.gx_hidden_field( context, sPrefix+"_CMPPGM", "wallet.editnote.aspx");
+               GxWebStd.gx_hidden_field( context, sPrefix+"_CMPPGM", "wallet.editnote");
                context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true);
                context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true);
             }
@@ -492,7 +492,7 @@ namespace GeneXus.Programs.wallet {
             {
                if ( context.ExposeMetadata( ) )
                {
-                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_12-186073", 0) ;
                }
             }
             Form.Meta.addItem("description", "Edit Note", 0) ;
@@ -803,6 +803,7 @@ namespace GeneXus.Programs.wallet {
             /* Read saved SDTs. */
             /* Read saved values. */
             AV12text = cgiGet( sPrefix+"vTEXT");
+            AssignAttri(sPrefix, false, "AV12text", AV12text);
             wcpOAV8fileName = cgiGet( sPrefix+"wcpOAV8fileName");
             Text_Enabled = StringUtil.StrToBool( cgiGet( sPrefix+"TEXT_Enabled"));
             Text_Skin = cgiGet( sPrefix+"TEXT_Skin");
@@ -1127,7 +1128,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20253281513972", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542172545", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1143,7 +1144,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/editnote.js", "?20253281513972", false, true);
+         context.AddJavascriptSource("wallet/editnote.js", "?202542172545", false, true);
          context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true);
          context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true);
          /* End function include_jscripts */
@@ -1203,8 +1204,8 @@ namespace GeneXus.Programs.wallet {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
-         setEventMetadata("'SAVE'","""{"handler":"E130D2","iparms":[{"av":"AV8fileName","fld":"vFILENAME"},{"av":"AV12text","fld":"vTEXT"},{"av":"AV10note","fld":"vNOTE"},{"av":"AV5description","fld":"vDESCRIPTION"}]""");
-         setEventMetadata("'SAVE'",""","oparms":[{"av":"AV10note","fld":"vNOTE"},{"av":"AV6error","fld":"vERROR"}]}""");
+         setEventMetadata("'SAVE'","""{"handler":"E130D2","iparms":[{"av":"AV8fileName","fld":"vFILENAME","type":"svchar"},{"av":"AV12text","fld":"vTEXT","type":"vchar"},{"av":"AV10note","fld":"vNOTE","type":""},{"av":"AV5description","fld":"vDESCRIPTION","type":"char"}]""");
+         setEventMetadata("'SAVE'",""","oparms":[{"av":"AV10note","fld":"vNOTE","type":""},{"av":"AV6error","fld":"vERROR","type":"char"}]}""");
          setEventMetadata("'CANCEL AND RETURN'","""{"handler":"E110D1","iparms":[]}""");
          return  ;
       }

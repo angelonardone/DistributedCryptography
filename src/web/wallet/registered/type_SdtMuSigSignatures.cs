@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtMuSigSignatures
 			Description: MuSigSignatures
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 using GeneXus.Programs.wallet;
@@ -233,7 +234,7 @@ namespace GeneXus.Programs.wallet.registered
 				return Convert.ToString(gxTv_SdtMuSigSignatures_Sendcoins, System.Globalization.CultureInfo.InvariantCulture);
 			}
 			set {
-				gxTv_SdtMuSigSignatures_Sendcoins = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+				gxTv_SdtMuSigSignatures_Sendcoins = NumberUtil.Val(value);
 			}
 		}
 		[XmlIgnore]
@@ -258,7 +259,7 @@ namespace GeneXus.Programs.wallet.registered
 				return Convert.ToString(gxTv_SdtMuSigSignatures_Transactionfee, System.Globalization.CultureInfo.InvariantCulture);
 			}
 			set {
-				gxTv_SdtMuSigSignatures_Transactionfee = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+				gxTv_SdtMuSigSignatures_Transactionfee = NumberUtil.Val(value);
 			}
 		}
 		[XmlIgnore]
@@ -383,6 +384,7 @@ namespace GeneXus.Programs.wallet.registered
 					gxTv_SdtMuSigSignatures_Transactions = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "");
 				}
 				gxTv_SdtMuSigSignatures_Transactions_N = false;
+				SetDirty("Transactions");
 				return gxTv_SdtMuSigSignatures_Transactions ;
 			}
 			set {
@@ -514,6 +516,8 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("id")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="id", Order=0)]
 		public Guid gxTpr_Id
 		{
@@ -526,6 +530,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("description")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="description", Order=1)]
 		public  string gxTpr_Description
 		{
@@ -538,6 +544,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("signedDateTime")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="signedDateTime", Order=2)]
 		public  string gxTpr_Signeddatetime
 		{
@@ -550,6 +558,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("compleated")]
+		[JsonPropertyOrder(3)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="compleated", Order=3)]
 		public bool gxTpr_Compleated
 		{
@@ -562,6 +573,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("sendAllCoins")]
+		[JsonPropertyOrder(4)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="sendAllCoins", Order=4)]
 		public bool gxTpr_Sendallcoins
 		{
@@ -574,6 +588,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("sendCoins")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="sendCoins", Order=5)]
 		public  string gxTpr_Sendcoins
 		{
@@ -586,6 +602,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("transactionFee")]
+		[JsonPropertyOrder(6)]
 		[DataMember(Name="transactionFee", Order=6)]
 		public  string gxTpr_Transactionfee
 		{
@@ -598,6 +616,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("sendTo")]
+		[JsonPropertyOrder(7)]
 		[DataMember(Name="sendTo", Order=7)]
 		public  string gxTpr_Sendto
 		{
@@ -610,6 +630,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("changeTo")]
+		[JsonPropertyOrder(8)]
 		[DataMember(Name="changeTo", Order=8)]
 		public  string gxTpr_Changeto
 		{
@@ -622,6 +644,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("referenceGroupId")]
+		[JsonPropertyOrder(9)]
 		[DataMember(Name="referenceGroupId", Order=9)]
 		public Guid gxTpr_Referencegroupid
 		{
@@ -634,6 +658,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("senderUserName")]
+		[JsonPropertyOrder(10)]
 		[DataMember(Name="senderUserName", Order=10)]
 		public  string gxTpr_Senderusername
 		{
@@ -646,6 +672,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("senderSignature")]
+		[JsonPropertyOrder(11)]
 		[DataMember(Name="senderSignature", Order=11)]
 		public  string gxTpr_Sendersignature
 		{
@@ -658,6 +686,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("transactions")]
+		[JsonPropertyOrder(12)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="transactions", Order=12, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory_RESTInterface> gxTpr_Transactions
 		{
@@ -675,7 +706,7 @@ namespace GeneXus.Programs.wallet.registered
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtMuSigSignatures sdt
 		{
 			get { 

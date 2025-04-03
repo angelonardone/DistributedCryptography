@@ -147,7 +147,6 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void gxgrContactgrid_refresh_invoke( )
       {
-         ajax_req_read_hidden_sdt(GetNextPar( ), AV6allContacts);
          ajax_req_read_hidden_sdt(GetNextPar( ), AV27wallet);
          setAjaxCallMode();
          if ( ! IsValidAjaxCall( true) )
@@ -155,7 +154,7 @@ namespace GeneXus.Programs.wallet.registered {
             GxWebError = 1;
             return  ;
          }
-         gxgrContactgrid_refresh( AV6allContacts, AV27wallet) ;
+         gxgrContactgrid_refresh( AV27wallet) ;
          AddString( context.getJSONResponse( )) ;
          /* End function gxgrContactgrid_refresh_invoke */
       }
@@ -238,10 +237,10 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 123260), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -271,7 +270,7 @@ namespace GeneXus.Programs.wallet.registered {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.promptcontac.aspx") +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.promptcontac") +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -286,15 +285,6 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void send_integrity_footer_hashes( )
       {
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vALLCONTACTS", AV6allContacts);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vALLCONTACTS", AV6allContacts);
-         }
-         GxWebStd.gx_hidden_field( context, "gxhash_vALLCONTACTS", GetSecureSignedToken( "", AV6allContacts, context));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLET", AV27wallet);
@@ -320,7 +310,6 @@ namespace GeneXus.Programs.wallet.registered {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("Allcontacts", AV6allContacts);
          }
-         GxWebStd.gx_hidden_field( context, "gxhash_Allcontacts", GetSecureSignedToken( "", AV6allContacts, context));
          GxWebStd.gx_hidden_field( context, "nRC_GXsfl_6", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_6), 8, 0, ".", "")));
          if ( context.isAjaxRequest( ) )
          {
@@ -330,7 +319,6 @@ namespace GeneXus.Programs.wallet.registered {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vALLCONTACTS", AV6allContacts);
          }
-         GxWebStd.gx_hidden_field( context, "gxhash_vALLCONTACTS", GetSecureSignedToken( "", AV6allContacts, context));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLET", AV27wallet);
@@ -393,7 +381,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wallet.registered.promptcontac.aspx")  ;
+         return formatLink("wallet.registered.promptcontac")  ;
       }
 
       public override string GetPgmname( )
@@ -518,7 +506,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_12-186073", 0) ;
             }
          }
          Form.Meta.addItem("description", "Prompt Contac", 0) ;
@@ -717,8 +705,7 @@ namespace GeneXus.Programs.wallet.registered {
          /* End function gxnrContactgrid_newrow */
       }
 
-      protected void gxgrContactgrid_refresh( GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> AV6allContacts ,
-                                              GeneXus.Programs.wallet.SdtWallet AV27wallet )
+      protected void gxgrContactgrid_refresh( GeneXus.Programs.wallet.SdtWallet AV27wallet )
       {
          initialize_formulas( ) ;
          GxWebStd.set_html_headers( context, 0, "", "");
@@ -802,15 +789,6 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void send_integrity_lvl_hashes1K2( )
       {
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vALLCONTACTS", AV6allContacts);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vALLCONTACTS", AV6allContacts);
-         }
-         GxWebStd.gx_hidden_field( context, "gxhash_vALLCONTACTS", GetSecureSignedToken( "", AV6allContacts, context));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLET", AV27wallet);
@@ -1045,7 +1023,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532815135087", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254215272921", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1061,7 +1039,7 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/registered/promptcontac.js", "?202532815135087", false, true);
+         context.AddJavascriptSource("wallet/registered/promptcontac.js", "?20254215272923", false, true);
          /* End function include_jscripts */
       }
 
@@ -1310,10 +1288,10 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"CONTACTGRID_nFirstRecordOnPage"},{"av":"CONTACTGRID_nEOF"},{"av":"AV6allContacts","fld":"vALLCONTACTS","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"nRC_GXsfl_6","ctrl":"CONTACTGRID","prop":"GridRC","grid":6},{"av":"AV27wallet","fld":"vWALLET","hsh":true}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"CONTACTGRID_nFirstRecordOnPage","type":"int"},{"av":"CONTACTGRID_nEOF","type":"int"},{"av":"AV6allContacts","fld":"vALLCONTACTS","grid":6,"type":""},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"nRC_GXsfl_6","ctrl":"CONTACTGRID","prop":"GridRC","grid":6,"type":"int"},{"av":"AV27wallet","fld":"vWALLET","hsh":true,"type":""}]}""");
          setEventMetadata("CONTACTGRID.LOAD","""{"handler":"E131K2","iparms":[]""");
-         setEventMetadata("CONTACTGRID.LOAD",""","oparms":[{"av":"AV25selectContact","fld":"vSELECTCONTACT"}]}""");
-         setEventMetadata("'SELECT CONTACT'","""{"handler":"E141K2","iparms":[{"av":"AV6allContacts","fld":"vALLCONTACTS","grid":6,"hsh":true},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"CONTACTGRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_6","ctrl":"CONTACTGRID","prop":"GridRC","grid":6},{"av":"AV27wallet","fld":"vWALLET","hsh":true}]}""");
+         setEventMetadata("CONTACTGRID.LOAD",""","oparms":[{"av":"AV25selectContact","fld":"vSELECTCONTACT","type":"char"}]}""");
+         setEventMetadata("'SELECT CONTACT'","""{"handler":"E141K2","iparms":[{"av":"AV6allContacts","fld":"vALLCONTACTS","grid":6,"type":""},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"CONTACTGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_6","ctrl":"CONTACTGRID","prop":"GridRC","grid":6,"type":"int"},{"av":"AV27wallet","fld":"vWALLET","hsh":true,"type":""}]}""");
          setEventMetadata("'CLOSE'","""{"handler":"E111K2","iparms":[]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Selectcontact","iparms":[]}""");
          return  ;
@@ -1332,12 +1310,12 @@ namespace GeneXus.Programs.wallet.registered {
       {
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
-         AV6allContacts = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT>( context, "Contact_SDT", "distributedcryptography");
          AV27wallet = new GeneXus.Programs.wallet.SdtWallet(context);
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
+         AV6allContacts = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT>( context, "Contact_SDT", "distributedcryptography");
          GX_FocusControl = "";
          Form = new GXWebForm();
          sPrefix = "";
@@ -1456,8 +1434,8 @@ namespace GeneXus.Programs.wallet.registered {
       private IGxSession AV24websession ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
-      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> AV6allContacts ;
       private GeneXus.Programs.wallet.SdtWallet AV27wallet ;
+      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> AV6allContacts ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> AV7allContacts_temp ;
       private GeneXus.Programs.wallet.registered.SdtContact_SDT AV9contact ;

@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtcreateContact__postOutput
 			Description: createContact__postOutput
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 
 namespace GeneXus.Programs
@@ -155,6 +156,8 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("ContactId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="ContactId", Order=0)]
 		public Guid gxTpr_Contactid
 		{
@@ -167,6 +170,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("error")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="error", Order=1)]
 		public  string gxTpr_Error
 		{
@@ -181,7 +186,7 @@ namespace GeneXus.Programs
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtcreateContact__postOutput sdt
 		{
 			get { 

@@ -291,18 +291,18 @@ namespace GeneXus.Programs.wallet.registered {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 123260), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 123260), false, true);
          if ( StringUtil.Len( sPrefix) == 0 )
          {
             context.CloseHtmlHeader();
@@ -324,7 +324,7 @@ namespace GeneXus.Programs.wallet.registered {
             context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
             context.WriteHtmlText( FormProcess+">") ;
             context.skipLines(1);
-            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.delegationmultisignature.aspx") +"\">") ;
+            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.delegationmultisignature") +"\">") ;
             GxWebStd.gx_hidden_field( context, "_EventName", "");
             GxWebStd.gx_hidden_field( context, "_EventGridId", "");
             GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -567,7 +567,7 @@ namespace GeneXus.Programs.wallet.registered {
             RenderHtmlOpenForm( ) ;
             if ( StringUtil.Len( sPrefix) != 0 )
             {
-               GxWebStd.gx_hidden_field( context, sPrefix+"_CMPPGM", "wallet.registered.delegationmultisignature.aspx");
+               GxWebStd.gx_hidden_field( context, sPrefix+"_CMPPGM", "wallet.registered.delegationmultisignature");
             }
             GxWebStd.gx_msg_list( context, "", context.GX_msglist.DisplayMode, "", "", sPrefix, "false");
             /* Div Control */
@@ -729,7 +729,7 @@ namespace GeneXus.Programs.wallet.registered {
             {
                if ( context.ExposeMetadata( ) )
                {
-                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_12-186073", 0) ;
                }
             }
             Form.Meta.addItem("description", "Delegation Multi Signature", 0) ;
@@ -2123,7 +2123,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20253281513850", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025421725617", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2139,7 +2139,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/delegationmultisignature.js", "?20253281513850", false, true);
+         context.AddJavascriptSource("wallet/registered/delegationmultisignature.js", "?2025421725617", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -2476,21 +2476,21 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDCONTACTS_nFirstRecordOnPage"},{"av":"GRIDCONTACTS_nEOF"},{"av":"AV25removeContact","fld":"vREMOVECONTACT"},{"av":"AV13group_sdt","fld":"vGROUP_SDT"},{"av":"AV18groupContacts","fld":"vGROUPCONTACTS","grid":14},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":14},{"av":"sPrefix"},{"av":"AV5externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV36extKeyInfoRoot","fld":"vEXTKEYINFOROOT","hsh":true},{"av":"AV35wallet","fld":"vWALLET","hsh":true}]}""");
-         setEventMetadata("'SAVE'","""{"handler":"E121O2","iparms":[{"av":"AV13group_sdt","fld":"vGROUP_SDT"},{"av":"AV18groupContacts","fld":"vGROUPCONTACTS","grid":14},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCONTACTS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":14},{"av":"AV32saveAndReturn","fld":"vSAVEANDRETURN"}]""");
-         setEventMetadata("'SAVE'",""","oparms":[{"av":"AV32saveAndReturn","fld":"vSAVEANDRETURN"},{"av":"AV13group_sdt","fld":"vGROUP_SDT"},{"av":"AV10error","fld":"vERROR"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDCONTACTS_nFirstRecordOnPage","type":"int"},{"av":"GRIDCONTACTS_nEOF","type":"int"},{"av":"AV25removeContact","fld":"vREMOVECONTACT","type":"char"},{"av":"AV13group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV18groupContacts","fld":"vGROUPCONTACTS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":14,"type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV5externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""},{"av":"AV36extKeyInfoRoot","fld":"vEXTKEYINFOROOT","hsh":true,"type":""},{"av":"AV35wallet","fld":"vWALLET","hsh":true,"type":""}]}""");
+         setEventMetadata("'SAVE'","""{"handler":"E121O2","iparms":[{"av":"AV13group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV18groupContacts","fld":"vGROUPCONTACTS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCONTACTS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":14,"type":"int"},{"av":"AV32saveAndReturn","fld":"vSAVEANDRETURN","type":"boolean"}]""");
+         setEventMetadata("'SAVE'",""","oparms":[{"av":"AV32saveAndReturn","fld":"vSAVEANDRETURN","type":"boolean"},{"av":"AV13group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV10error","fld":"vERROR","type":"char"}]}""");
          setEventMetadata("'CANCEL EDIT'","""{"handler":"E131O2","iparms":[]}""");
          setEventMetadata("'ADD A CONTACT'","""{"handler":"E111O1","iparms":[]}""");
-         setEventMetadata("GRIDCONTACTS.LOAD","""{"handler":"E181O2","iparms":[{"av":"AV13group_sdt","fld":"vGROUP_SDT"},{"av":"AV18groupContacts","fld":"vGROUPCONTACTS","grid":14},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCONTACTS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":14}]""");
+         setEventMetadata("GRIDCONTACTS.LOAD","""{"handler":"E181O2","iparms":[{"av":"AV13group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV18groupContacts","fld":"vGROUPCONTACTS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCONTACTS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":14,"type":"int"}]""");
          setEventMetadata("GRIDCONTACTS.LOAD",""","oparms":[{"ctrl":"CTLCONTACTPRIVATENAME","prop":"Visible"},{"ctrl":"CTLCONTACTUSERNAME","prop":"Visible"},{"av":"edtavRemovecontact_Visible","ctrl":"vREMOVECONTACT","prop":"Visible"}]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E141O2","iparms":[{"av":"AV24PopupName","fld":"vPOPUPNAME"},{"av":"AV18groupContacts","fld":"vGROUPCONTACTS","grid":14},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCONTACTS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":14},{"av":"AV17groupContactAdd","fld":"vGROUPCONTACTADD"},{"av":"GRIDCONTACTS_nEOF"},{"av":"AV25removeContact","fld":"vREMOVECONTACT"},{"av":"AV13group_sdt","fld":"vGROUP_SDT"},{"av":"sPrefix"},{"av":"AV5externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV36extKeyInfoRoot","fld":"vEXTKEYINFOROOT","hsh":true},{"av":"AV35wallet","fld":"vWALLET","hsh":true}]""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV25removeContact","fld":"vREMOVECONTACT"},{"av":"AV17groupContactAdd","fld":"vGROUPCONTACTADD"},{"av":"AV18groupContacts","fld":"vGROUPCONTACTS","grid":14},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCONTACTS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":14}]}""");
-         setEventMetadata("'REMOVE CONTACT'","""{"handler":"E191O2","iparms":[{"av":"AV18groupContacts","fld":"vGROUPCONTACTS","grid":14},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCONTACTS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":14},{"av":"GRIDCONTACTS_nEOF"},{"av":"AV25removeContact","fld":"vREMOVECONTACT"},{"av":"AV13group_sdt","fld":"vGROUP_SDT"},{"av":"sPrefix"},{"av":"AV5externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV36extKeyInfoRoot","fld":"vEXTKEYINFOROOT","hsh":true},{"av":"AV35wallet","fld":"vWALLET","hsh":true}]""");
-         setEventMetadata("'REMOVE CONTACT'",""","oparms":[{"av":"AV18groupContacts","fld":"vGROUPCONTACTS","grid":14},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCONTACTS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":14}]}""");
-         setEventMetadata("'SEND INVITATION TO GROUP MEMBERS'","""{"handler":"E151O2","iparms":[{"av":"AV10error","fld":"vERROR"},{"av":"AV13group_sdt","fld":"vGROUP_SDT"},{"av":"AV5externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV22message_signature","fld":"vMESSAGE_SIGNATURE"},{"av":"AV26sdt_message","fld":"vSDT_MESSAGE"},{"av":"AV18groupContacts","fld":"vGROUPCONTACTS","grid":14},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCONTACTS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":14},{"av":"AV32saveAndReturn","fld":"vSAVEANDRETURN"}]""");
-         setEventMetadata("'SEND INVITATION TO GROUP MEMBERS'",""","oparms":[{"av":"AV32saveAndReturn","fld":"vSAVEANDRETURN"},{"av":"AV22message_signature","fld":"vMESSAGE_SIGNATURE"},{"av":"AV10error","fld":"vERROR"},{"av":"AV13group_sdt","fld":"vGROUP_SDT"},{"av":"AV26sdt_message","fld":"vSDT_MESSAGE"}]}""");
-         setEventMetadata("'ACTIVATE GROUP'","""{"handler":"E161O2","iparms":[{"av":"AV13group_sdt","fld":"vGROUP_SDT"},{"av":"AV18groupContacts","fld":"vGROUPCONTACTS","grid":14},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCONTACTS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":14},{"av":"AV36extKeyInfoRoot","fld":"vEXTKEYINFOROOT","hsh":true},{"av":"AV35wallet","fld":"vWALLET","hsh":true},{"av":"AV5externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV10error","fld":"vERROR"},{"av":"AV22message_signature","fld":"vMESSAGE_SIGNATURE"},{"av":"AV26sdt_message","fld":"vSDT_MESSAGE"}]""");
-         setEventMetadata("'ACTIVATE GROUP'",""","oparms":[{"av":"AV13group_sdt","fld":"vGROUP_SDT"},{"av":"AV10error","fld":"vERROR"},{"av":"AV22message_signature","fld":"vMESSAGE_SIGNATURE"},{"av":"AV26sdt_message","fld":"vSDT_MESSAGE"}]}""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E141O2","iparms":[{"av":"AV24PopupName","fld":"vPOPUPNAME","type":"char"},{"av":"AV18groupContacts","fld":"vGROUPCONTACTS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCONTACTS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":14,"type":"int"},{"av":"AV17groupContactAdd","fld":"vGROUPCONTACTADD","type":""},{"av":"GRIDCONTACTS_nEOF","type":"int"},{"av":"AV25removeContact","fld":"vREMOVECONTACT","type":"char"},{"av":"AV13group_sdt","fld":"vGROUP_SDT","type":""},{"av":"sPrefix","type":"char"},{"av":"AV5externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""},{"av":"AV36extKeyInfoRoot","fld":"vEXTKEYINFOROOT","hsh":true,"type":""},{"av":"AV35wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV25removeContact","fld":"vREMOVECONTACT","type":"char"},{"av":"AV17groupContactAdd","fld":"vGROUPCONTACTADD","type":""},{"av":"AV18groupContacts","fld":"vGROUPCONTACTS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCONTACTS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":14,"type":"int"}]}""");
+         setEventMetadata("'REMOVE CONTACT'","""{"handler":"E191O2","iparms":[{"av":"AV18groupContacts","fld":"vGROUPCONTACTS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCONTACTS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":14,"type":"int"},{"av":"GRIDCONTACTS_nEOF","type":"int"},{"av":"AV25removeContact","fld":"vREMOVECONTACT","type":"char"},{"av":"AV13group_sdt","fld":"vGROUP_SDT","type":""},{"av":"sPrefix","type":"char"},{"av":"AV5externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""},{"av":"AV36extKeyInfoRoot","fld":"vEXTKEYINFOROOT","hsh":true,"type":""},{"av":"AV35wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("'REMOVE CONTACT'",""","oparms":[{"av":"AV18groupContacts","fld":"vGROUPCONTACTS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCONTACTS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":14,"type":"int"}]}""");
+         setEventMetadata("'SEND INVITATION TO GROUP MEMBERS'","""{"handler":"E151O2","iparms":[{"av":"AV10error","fld":"vERROR","type":"char"},{"av":"AV13group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV5externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""},{"av":"AV22message_signature","fld":"vMESSAGE_SIGNATURE","type":""},{"av":"AV26sdt_message","fld":"vSDT_MESSAGE","type":""},{"av":"AV18groupContacts","fld":"vGROUPCONTACTS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCONTACTS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":14,"type":"int"},{"av":"AV32saveAndReturn","fld":"vSAVEANDRETURN","type":"boolean"}]""");
+         setEventMetadata("'SEND INVITATION TO GROUP MEMBERS'",""","oparms":[{"av":"AV32saveAndReturn","fld":"vSAVEANDRETURN","type":"boolean"},{"av":"AV22message_signature","fld":"vMESSAGE_SIGNATURE","type":""},{"av":"AV10error","fld":"vERROR","type":"char"},{"av":"AV13group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV26sdt_message","fld":"vSDT_MESSAGE","type":""}]}""");
+         setEventMetadata("'ACTIVATE GROUP'","""{"handler":"E161O2","iparms":[{"av":"AV13group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV18groupContacts","fld":"vGROUPCONTACTS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCONTACTS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":14,"type":"int"},{"av":"AV36extKeyInfoRoot","fld":"vEXTKEYINFOROOT","hsh":true,"type":""},{"av":"AV35wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"AV5externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""},{"av":"AV10error","fld":"vERROR","type":"char"},{"av":"AV22message_signature","fld":"vMESSAGE_SIGNATURE","type":""},{"av":"AV26sdt_message","fld":"vSDT_MESSAGE","type":""}]""");
+         setEventMetadata("'ACTIVATE GROUP'",""","oparms":[{"av":"AV13group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV10error","fld":"vERROR","type":"char"},{"av":"AV22message_signature","fld":"vMESSAGE_SIGNATURE","type":""},{"av":"AV26sdt_message","fld":"vSDT_MESSAGE","type":""}]}""");
          setEventMetadata("VALIDV_GXV3","""{"handler":"Validv_Gxv3","iparms":[]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Removecontact","iparms":[]}""");
          return  ;

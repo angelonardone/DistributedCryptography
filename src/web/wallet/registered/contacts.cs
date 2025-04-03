@@ -238,18 +238,18 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 123260), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -274,7 +274,7 @@ namespace GeneXus.Programs.wallet.registered {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.contacts.aspx") +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.contacts") +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -405,7 +405,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wallet.registered.contacts.aspx")  ;
+         return formatLink("wallet.registered.contacts")  ;
       }
 
       public override string GetPgmname( )
@@ -537,7 +537,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_12-186073", 0) ;
             }
          }
          Form.Meta.addItem("description", "Contacts", 0) ;
@@ -1334,7 +1334,7 @@ namespace GeneXus.Programs.wallet.registered {
          /* 'Accept Invitation' Routine */
          returnInSub = false;
          AV13websession.Set("Contact_SDT_ACCEPT", ((GeneXus.Programs.wallet.registered.SdtContact_SDT)(AV17allContacts.CurrentItem)).ToJSonString(false, true));
-         context.PopUp(formatLink("wallet.registered.contact.aspx") , new Object[] {});
+         context.PopUp(formatLink("wallet.registered.contact") , new Object[] {});
          /*  Sending Event outputs  */
       }
 
@@ -1411,7 +1411,7 @@ namespace GeneXus.Programs.wallet.registered {
          /* 'Chat' Routine */
          returnInSub = false;
          new GeneXus.Programs.wallet.setcontact(context ).execute(  ((GeneXus.Programs.wallet.registered.SdtContact_SDT)(AV17allContacts.CurrentItem))) ;
-         CallWebObject(formatLink("wallet.registered.chat.aspx") );
+         CallWebObject(formatLink("wallet.registered.chat") );
          context.wjLocDisableFrm = 1;
       }
 
@@ -1425,7 +1425,7 @@ namespace GeneXus.Programs.wallet.registered {
          /* 'Edit Contact' Routine */
          returnInSub = false;
          AV13websession.Set("Contact_SDT_EDIT", ((GeneXus.Programs.wallet.registered.SdtContact_SDT)(AV17allContacts.CurrentItem)).ToJSonString(false, true));
-         context.PopUp(formatLink("wallet.registered.contact.aspx") , new Object[] {});
+         context.PopUp(formatLink("wallet.registered.contact") , new Object[] {});
          /*  Sending Event outputs  */
       }
 
@@ -1546,7 +1546,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532815134834", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254215272677", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1562,8 +1562,8 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("wallet/registered/contacts.js", "?202532815134834", false, true);
+         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("wallet/registered/contacts.js", "?20254215272678", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
@@ -1951,23 +1951,23 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"CONTACTGRID_nFirstRecordOnPage"},{"av":"CONTACTGRID_nEOF"},{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11},{"av":"AV27externalUser","fld":"vEXTERNALUSER","hsh":true}]}""");
-         setEventMetadata("'RECOVER CONTACTS FROM SERVER'","""{"handler":"E12162","iparms":[{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11},{"av":"CONTACTGRID_nEOF"},{"av":"AV27externalUser","fld":"vEXTERNALUSER","hsh":true}]""");
-         setEventMetadata("'RECOVER CONTACTS FROM SERVER'",""","oparms":[{"av":"AV8error","fld":"vERROR"},{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11}]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E13162","iparms":[{"av":"AV10PopupName","fld":"vPOPUPNAME"},{"av":"AV26sdt_message","fld":"vSDT_MESSAGE"},{"av":"AV27externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV28message_signature","fld":"vMESSAGE_SIGNATURE"},{"av":"AV8error","fld":"vERROR"},{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11},{"av":"CONTACTGRID_nEOF"}]""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV26sdt_message","fld":"vSDT_MESSAGE"},{"av":"AV28message_signature","fld":"vMESSAGE_SIGNATURE"},{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11},{"av":"AV8error","fld":"vERROR"}]}""");
-         setEventMetadata("CONTACTGRID.LOAD","""{"handler":"E16162","iparms":[{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11}]""");
-         setEventMetadata("CONTACTGRID.LOAD",""","oparms":[{"av":"AV18deleteContact","fld":"vDELETECONTACT"},{"av":"AV25chatWith","fld":"vCHATWITH"},{"av":"AV29acceptInvitation","fld":"vACCEPTINVITATION"},{"av":"AV32declineInvitation","fld":"vDECLINEINVITATION"},{"av":"AV35editContact","fld":"vEDITCONTACT"},{"av":"edtavAcceptinvitation_Visible","ctrl":"vACCEPTINVITATION","prop":"Visible"},{"av":"edtavDeclineinvitation_Visible","ctrl":"vDECLINEINVITATION","prop":"Visible"},{"av":"edtavChatwith_Visible","ctrl":"vCHATWITH","prop":"Visible"},{"av":"edtavDeletecontact_Visible","ctrl":"vDELETECONTACT","prop":"Visible"},{"av":"edtavEditcontact_Visible","ctrl":"vEDITCONTACT","prop":"Visible"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"CONTACTGRID_nFirstRecordOnPage","type":"int"},{"av":"CONTACTGRID_nEOF","type":"int"},{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11,"type":"int"},{"av":"AV27externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""}]}""");
+         setEventMetadata("'RECOVER CONTACTS FROM SERVER'","""{"handler":"E12162","iparms":[{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11,"type":"int"},{"av":"CONTACTGRID_nEOF","type":"int"},{"av":"AV27externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""}]""");
+         setEventMetadata("'RECOVER CONTACTS FROM SERVER'",""","oparms":[{"av":"AV8error","fld":"vERROR","type":"char"},{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11,"type":"int"}]}""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E13162","iparms":[{"av":"AV10PopupName","fld":"vPOPUPNAME","type":"char"},{"av":"AV26sdt_message","fld":"vSDT_MESSAGE","type":""},{"av":"AV27externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""},{"av":"AV28message_signature","fld":"vMESSAGE_SIGNATURE","type":""},{"av":"AV8error","fld":"vERROR","type":"char"},{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11,"type":"int"},{"av":"CONTACTGRID_nEOF","type":"int"}]""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV26sdt_message","fld":"vSDT_MESSAGE","type":""},{"av":"AV28message_signature","fld":"vMESSAGE_SIGNATURE","type":""},{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11,"type":"int"},{"av":"AV8error","fld":"vERROR","type":"char"}]}""");
+         setEventMetadata("CONTACTGRID.LOAD","""{"handler":"E16162","iparms":[{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11,"type":"int"}]""");
+         setEventMetadata("CONTACTGRID.LOAD",""","oparms":[{"av":"AV18deleteContact","fld":"vDELETECONTACT","type":"char"},{"av":"AV25chatWith","fld":"vCHATWITH","type":"char"},{"av":"AV29acceptInvitation","fld":"vACCEPTINVITATION","type":"char"},{"av":"AV32declineInvitation","fld":"vDECLINEINVITATION","type":"char"},{"av":"AV35editContact","fld":"vEDITCONTACT","type":"char"},{"av":"edtavAcceptinvitation_Visible","ctrl":"vACCEPTINVITATION","prop":"Visible"},{"av":"edtavDeclineinvitation_Visible","ctrl":"vDECLINEINVITATION","prop":"Visible"},{"av":"edtavChatwith_Visible","ctrl":"vCHATWITH","prop":"Visible"},{"av":"edtavDeletecontact_Visible","ctrl":"vDELETECONTACT","prop":"Visible"},{"av":"edtavEditcontact_Visible","ctrl":"vEDITCONTACT","prop":"Visible"}]}""");
          setEventMetadata("'CREATE NEW CONTACT'","""{"handler":"E11161","iparms":[]}""");
-         setEventMetadata("'ACCEPT INVITATION'","""{"handler":"E17162","iparms":[{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11}]}""");
-         setEventMetadata("'DECLINE INVITATION'","""{"handler":"E18162","iparms":[{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11},{"av":"AV8error","fld":"vERROR"},{"av":"CONTACTGRID_nEOF"},{"av":"AV27externalUser","fld":"vEXTERNALUSER","hsh":true}]""");
-         setEventMetadata("'DECLINE INVITATION'",""","oparms":[{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11},{"av":"AV8error","fld":"vERROR"}]}""");
-         setEventMetadata("'DELETE CONTACT'","""{"handler":"E19162","iparms":[{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11}]""");
-         setEventMetadata("'DELETE CONTACT'",""","oparms":[{"av":"AV21selectedClientId","fld":"vSELECTEDCLIENTID"}]}""");
-         setEventMetadata("'CHAT'","""{"handler":"E20162","iparms":[{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11}]}""");
-         setEventMetadata("'EDIT CONTACT'","""{"handler":"E21162","iparms":[{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11}]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED","""{"handler":"E14162","iparms":[{"av":"AV20UserResponse","fld":"vUSERRESPONSE"},{"av":"AV21selectedClientId","fld":"vSELECTEDCLIENTID"},{"av":"AV8error","fld":"vERROR"},{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11},{"av":"CONTACTGRID_nEOF"},{"av":"AV27externalUser","fld":"vEXTERNALUSER","hsh":true}]""");
-         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED",""","oparms":[{"av":"AV8error","fld":"vERROR"},{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11}]}""");
+         setEventMetadata("'ACCEPT INVITATION'","""{"handler":"E17162","iparms":[{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11,"type":"int"}]}""");
+         setEventMetadata("'DECLINE INVITATION'","""{"handler":"E18162","iparms":[{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11,"type":"int"},{"av":"AV8error","fld":"vERROR","type":"char"},{"av":"CONTACTGRID_nEOF","type":"int"},{"av":"AV27externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""}]""");
+         setEventMetadata("'DECLINE INVITATION'",""","oparms":[{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11,"type":"int"},{"av":"AV8error","fld":"vERROR","type":"char"}]}""");
+         setEventMetadata("'DELETE CONTACT'","""{"handler":"E19162","iparms":[{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11,"type":"int"}]""");
+         setEventMetadata("'DELETE CONTACT'",""","oparms":[{"av":"AV21selectedClientId","fld":"vSELECTEDCLIENTID","type":"guid"}]}""");
+         setEventMetadata("'CHAT'","""{"handler":"E20162","iparms":[{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11,"type":"int"}]}""");
+         setEventMetadata("'EDIT CONTACT'","""{"handler":"E21162","iparms":[{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11,"type":"int"}]}""");
+         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED","""{"handler":"E14162","iparms":[{"av":"AV20UserResponse","fld":"vUSERRESPONSE","type":"boolean"},{"av":"AV21selectedClientId","fld":"vSELECTEDCLIENTID","type":"guid"},{"av":"AV8error","fld":"vERROR","type":"char"},{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11,"type":"int"},{"av":"CONTACTGRID_nEOF","type":"int"},{"av":"AV27externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""}]""");
+         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED",""","oparms":[{"av":"AV8error","fld":"vERROR","type":"char"},{"av":"AV17allContacts","fld":"vALLCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"CONTACTGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"CONTACTGRID","prop":"GridRC","grid":11,"type":"int"}]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Deletecontact","iparms":[]}""");
          return  ;
       }

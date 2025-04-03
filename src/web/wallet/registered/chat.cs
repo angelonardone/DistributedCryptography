@@ -240,18 +240,18 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 123260), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -276,7 +276,7 @@ namespace GeneXus.Programs.wallet.registered {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.chat.aspx") +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.chat") +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -442,7 +442,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wallet.registered.chat.aspx")  ;
+         return formatLink("wallet.registered.chat")  ;
       }
 
       public override string GetPgmname( )
@@ -607,7 +607,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_12-186073", 0) ;
             }
          }
          Form.Meta.addItem("description", "Chat", 0) ;
@@ -1296,7 +1296,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532815134895", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025421725993", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1312,8 +1312,8 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("wallet/registered/chat.js", "?202532815134896", false, true);
+         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("wallet/registered/chat.js", "?2025421725993", false, true);
          /* End function include_jscripts */
       }
 
@@ -1586,12 +1586,12 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDCHAT_nFirstRecordOnPage"},{"av":"GRIDCHAT_nEOF"},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14},{"av":"AV16externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV21wallet","fld":"vWALLET","hsh":true},{"av":"GXV1","fld":"CTLUSERPRIVATENAME"}]}""");
-         setEventMetadata("GLOBALEVENTS.RECEIVECHAT","""{"handler":"E11182","iparms":[{"av":"AV12contact","fld":"vCONTACT"},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14},{"av":"GRIDCHAT_nEOF"},{"av":"AV16externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV21wallet","fld":"vWALLET","hsh":true},{"av":"GXV1","fld":"CTLUSERPRIVATENAME"}]""");
-         setEventMetadata("GLOBALEVENTS.RECEIVECHAT",""","oparms":[{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14}]}""");
-         setEventMetadata("'SEND'","""{"handler":"E12182","iparms":[{"av":"AV11sendClearText","fld":"vSENDCLEARTEXT"},{"av":"AV16externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV12contact","fld":"vCONTACT"},{"av":"AV14sdt_message","fld":"vSDT_MESSAGE"},{"av":"AV18json_enc","fld":"vJSON_ENC"},{"av":"AV21wallet","fld":"vWALLET","hsh":true},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14},{"av":"GRIDCHAT_nEOF"},{"av":"GXV1","fld":"CTLUSERPRIVATENAME"}]""");
-         setEventMetadata("'SEND'",""","oparms":[{"av":"AV14sdt_message","fld":"vSDT_MESSAGE"},{"av":"AV18json_enc","fld":"vJSON_ENC"},{"av":"AV11sendClearText","fld":"vSENDCLEARTEXT"},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14}]}""");
-         setEventMetadata("GRIDCHAT.LOAD","""{"handler":"E14182","iparms":[{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14},{"av":"AV16externalUser","fld":"vEXTERNALUSER","hsh":true}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"GRIDCHAT_nEOF","type":"int"},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"},{"av":"AV16externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""},{"av":"AV21wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"GXV1","fld":"CTLUSERPRIVATENAME","type":"char"}]}""");
+         setEventMetadata("GLOBALEVENTS.RECEIVECHAT","""{"handler":"E11182","iparms":[{"av":"AV12contact","fld":"vCONTACT","type":""},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"},{"av":"GRIDCHAT_nEOF","type":"int"},{"av":"AV16externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""},{"av":"AV21wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"GXV1","fld":"CTLUSERPRIVATENAME","type":"char"}]""");
+         setEventMetadata("GLOBALEVENTS.RECEIVECHAT",""","oparms":[{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"}]}""");
+         setEventMetadata("'SEND'","""{"handler":"E12182","iparms":[{"av":"AV11sendClearText","fld":"vSENDCLEARTEXT","type":"vchar"},{"av":"AV16externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""},{"av":"AV12contact","fld":"vCONTACT","type":""},{"av":"AV14sdt_message","fld":"vSDT_MESSAGE","type":""},{"av":"AV18json_enc","fld":"vJSON_ENC","type":""},{"av":"AV21wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"},{"av":"GRIDCHAT_nEOF","type":"int"},{"av":"GXV1","fld":"CTLUSERPRIVATENAME","type":"char"}]""");
+         setEventMetadata("'SEND'",""","oparms":[{"av":"AV14sdt_message","fld":"vSDT_MESSAGE","type":""},{"av":"AV18json_enc","fld":"vJSON_ENC","type":""},{"av":"AV11sendClearText","fld":"vSENDCLEARTEXT","type":"vchar"},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"}]}""");
+         setEventMetadata("GRIDCHAT.LOAD","""{"handler":"E14182","iparms":[{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"},{"av":"AV16externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""}]""");
          setEventMetadata("GRIDCHAT.LOAD",""","oparms":[{"av":"divGridmessagestable_Class","ctrl":"GRIDMESSAGESTABLE","prop":"Class"},{"av":"tblTablemessage_Class","ctrl":"TABLEMESSAGE","prop":"Class"}]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Gxv4","iparms":[]}""");
          return  ;

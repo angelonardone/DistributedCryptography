@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtDesktopApp_services_SDT_Contacts_Contact_ContactItem
 			Description: DesktopApp_services_SDT_Contacts_Contact_ContactItem
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 
 namespace GeneXus.Programs
@@ -205,6 +206,8 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("ContactId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="ContactId", Order=0)]
 		public Guid gxTpr_Contactid
 		{
@@ -217,6 +220,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("EncryptedKey")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="EncryptedKey", Order=1)]
 		public  string gxTpr_Encryptedkey
 		{
@@ -229,6 +234,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("IV")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="IV", Order=2)]
 		public  string gxTpr_Iv
 		{
@@ -241,6 +248,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("ContactEncrypted")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="ContactEncrypted", Order=3)]
 		public  string gxTpr_Contactencrypted
 		{
@@ -255,7 +264,7 @@ namespace GeneXus.Programs
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtDesktopApp_services_SDT_Contacts_Contact_ContactItem sdt
 		{
 			get { 

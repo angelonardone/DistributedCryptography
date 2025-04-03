@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtContact_SDT
 			Description: Contact_SDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 using GeneXus.Programs.wallet;
@@ -44,6 +45,7 @@ namespace GeneXus.Programs.wallet.registered
 			gxTv_SdtContact_SDT_Invitationsent = (DateTime)(DateTime.MinValue);
 
 			gxTv_SdtContact_SDT_Invitacionaccepted = (DateTime)(DateTime.MinValue);
+
 
 		}
 
@@ -467,6 +469,8 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("contactrId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="contactrId", Order=0)]
 		public Guid gxTpr_Contactrid
 		{
@@ -479,6 +483,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("userName")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="userName", Order=1)]
 		public  string gxTpr_Username
 		{
@@ -491,6 +497,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("userPubKey")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="userPubKey", Order=2)]
 		public  string gxTpr_Userpubkey
 		{
@@ -503,6 +511,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("messagePubKey")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="messagePubKey", Order=3)]
 		public  string gxTpr_Messagepubkey
 		{
@@ -515,6 +525,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("groupPubKey")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="groupPubKey", Order=4)]
 		public  string gxTpr_Grouppubkey
 		{
@@ -527,6 +539,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("userPrivateName")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="userPrivateName", Order=5)]
 		public  string gxTpr_Userprivatename
 		{
@@ -539,6 +553,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("invitationSent")]
+		[JsonPropertyOrder(6)]
 		[DataMember(Name="invitationSent", Order=6)]
 		public  string gxTpr_Invitationsent
 		{
@@ -551,6 +567,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("invitacionAccepted")]
+		[JsonPropertyOrder(7)]
 		[DataMember(Name="invitacionAccepted", Order=7)]
 		public  string gxTpr_Invitacionaccepted
 		{
@@ -563,6 +581,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("invitationDeclined")]
+		[JsonPropertyOrder(8)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="invitationDeclined", Order=8)]
 		public bool gxTpr_Invitationdeclined
 		{
@@ -575,6 +596,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("sent")]
+		[JsonPropertyOrder(9)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="sent", Order=9)]
 		public bool gxTpr_Sent
 		{
@@ -587,6 +611,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("received")]
+		[JsonPropertyOrder(10)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="received", Order=10)]
 		public bool gxTpr_Received
 		{
@@ -599,6 +626,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("edited")]
+		[JsonPropertyOrder(11)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="edited", Order=11)]
 		public bool gxTpr_Edited
 		{
@@ -613,7 +643,7 @@ namespace GeneXus.Programs.wallet.registered
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtContact_SDT sdt
 		{
 			get { 

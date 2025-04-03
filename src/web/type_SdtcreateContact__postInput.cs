@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtcreateContact__postInput
 			Description: createContact__postInput
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 
 namespace GeneXus.Programs
@@ -183,6 +184,8 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("EncryptedKey")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="EncryptedKey", Order=0)]
 		public  string gxTpr_Encryptedkey
 		{
@@ -195,6 +198,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("IV")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="IV", Order=1)]
 		public  string gxTpr_Iv
 		{
@@ -207,6 +212,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("ContactEncrypted")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="ContactEncrypted", Order=2)]
 		public  string gxTpr_Contactencrypted
 		{
@@ -221,7 +228,7 @@ namespace GeneXus.Programs
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtcreateContact__postInput sdt
 		{
 			get { 

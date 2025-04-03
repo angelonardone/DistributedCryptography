@@ -16,9 +16,11 @@
     <Configuration>Release</Configuration>
     <Prefer32Bit>false</Prefer32Bit>
     <PlatformTarget Condition="'$(PlatformTarget)' == ''">AnyCPU</PlatformTarget>
-    <OfficeSupport Condition="'$(OfficeSupport)' == ''">true</OfficeSupport>
-    <MailSupport Condition="'$(MailSupport)' == ''">true</MailSupport>
-    <PDFSupport Condition="'$(PDFSupport)' == ''">true</PDFSupport>
+    <OfficeSupport Condition="'$(OfficeSupport)' == ''">false</OfficeSupport>
+    <IntegratedSecurity>false</IntegratedSecurity>
+    <MailSupport Condition="'$(MailSupport)' == ''">false</MailSupport>
+    <SearchSupport Condition="'$(SearchSupport)' == ''">false</SearchSupport>
+    <PDFSupport Condition="'$(PDFSupport)' == ''">false</PDFSupport>
     <LogProvider Condition="'$(LogProvider)' == ''">false</LogProvider>
     <GrpcClientSupport Condition="'$(GrpcClientSupport)' == ''">true</GrpcClientSupport>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -51,8 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GeneXus.Classes.Web.Core" Version="$(GenStdVersion)" />
-    <PackageReference Include="GeneXus.Mail.Core" Version="$(GenStdVersion)" Condition="'$(MailSupport)'=='true'" />
+    <PackageReference Include="GeneXus.Mail.Core" Version="$(GenStdVersion)" Condition="'$(MailSupport)'=='true' OR '$(IntegratedSecurity)'=='true'" />
     <PackageReference Include="GeneXus.Excel.Core" Version="$(GenStdVersion)" Condition="'$(OfficeSupport)'=='true'" />
+    <PackageReference Include="GeneXus.Search.Core" Version="$(GenStdVersion)" Condition="'$(SearchSupport)'=='true'" />
   </ItemGroup>
   <ItemGroup Condition="'$(GrpcClientSupport)'=='true'">
     <PackageReference Include="Grpc.AspNetCore" Version="2.27.0" />
@@ -62,6 +65,10 @@
   </ItemGroup>
   <ItemGroup Condition="'$(PDFSupport)'=='true'">
     <PackageReference Include="GeneXus.PdfReportsCS.Core" Version="$(GenStdVersion)" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(PostgresqlSupport)'=='true'">
+    <PackageReference Include="Npgsql" Version="8.0.3" />
+    <PackageReference Include="Pgvector" Version="0.3.0" />
   </ItemGroup>
   <ItemGroup Condition="'$(PDFSupport)'=='true' AND '$(PdfLibrary)'=='ITEXT8'">
     <PackageReference Include="itext7" Version="8.0.0" />

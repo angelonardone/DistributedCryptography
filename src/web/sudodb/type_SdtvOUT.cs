@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtvOUT
 			Description: vOUT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.sudodb
@@ -122,7 +123,7 @@ namespace GeneXus.Programs.sudodb
 				return Convert.ToString(gxTv_SdtvOUT_Value, System.Globalization.CultureInfo.InvariantCulture);
 			}
 			set {
-				gxTv_SdtvOUT_Value = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+				gxTv_SdtvOUT_Value = NumberUtil.Val(value);
 			}
 		}
 		[XmlIgnore]
@@ -238,6 +239,8 @@ namespace GeneXus.Programs.sudodb
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("TransactionId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="TransactionId", Order=0)]
 		public  string gxTpr_Transactionid
 		{
@@ -250,6 +253,8 @@ namespace GeneXus.Programs.sudodb
 			}
 		}
 
+		[JsonPropertyName("n")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="n", Order=1)]
 		public  string gxTpr_N
 		{
@@ -262,6 +267,8 @@ namespace GeneXus.Programs.sudodb
 			}
 		}
 
+		[JsonPropertyName("value")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="value", Order=2)]
 		public  string gxTpr_Value
 		{
@@ -274,6 +281,8 @@ namespace GeneXus.Programs.sudodb
 			}
 		}
 
+		[JsonPropertyName("scriptPubKey_address")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="scriptPubKey_address", Order=3)]
 		public  string gxTpr_Scriptpubkey_address
 		{
@@ -286,6 +295,8 @@ namespace GeneXus.Programs.sudodb
 			}
 		}
 
+		[JsonPropertyName("type")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="type", Order=4)]
 		public  string gxTpr_Type
 		{
@@ -300,7 +311,7 @@ namespace GeneXus.Programs.sudodb
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtvOUT sdt
 		{
 			get { 

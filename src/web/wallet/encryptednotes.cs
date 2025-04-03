@@ -237,18 +237,18 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 123260), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -273,7 +273,7 @@ namespace GeneXus.Programs.wallet {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.encryptednotes.aspx") +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.encryptednotes") +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -389,7 +389,7 @@ namespace GeneXus.Programs.wallet {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wallet.encryptednotes.aspx")  ;
+         return formatLink("wallet.encryptednotes")  ;
       }
 
       public override string GetPgmname( )
@@ -559,7 +559,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_12-186073", 0) ;
             }
          }
          Form.Meta.addItem("description", "Encrypted Notes", 0) ;
@@ -1273,7 +1273,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20253281513444", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025421725774", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1289,7 +1289,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/encryptednotes.js", "?20253281513446", false, true);
+         context.AddJavascriptSource("wallet/encryptednotes.js", "?2025421725774", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -1548,17 +1548,17 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"GRIDNOTES_nEOF"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9},{"av":"AV12wallet","fld":"vWALLET","hsh":true}]""");
-         setEventMetadata("REFRESH",""","oparms":[{"av":"AV10delete","fld":"vDELETE"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9}]}""");
-         setEventMetadata("'CREATE A NEW NOTE'","""{"handler":"E11102","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"GRIDNOTES_nEOF"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9},{"av":"AV12wallet","fld":"vWALLET","hsh":true}]""");
-         setEventMetadata("'CREATE A NEW NOTE'",""","oparms":[{"av":"subGridnotes_Visible","ctrl":"GRIDNOTES","prop":"Visible"},{"ctrl":"CREATEANEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE"},{"av":"AV10delete","fld":"vDELETE"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9}]}""");
-         setEventMetadata("'OPEN NOTE'","""{"handler":"E16102","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"GRIDNOTES_nEOF"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9},{"av":"AV12wallet","fld":"vWALLET","hsh":true}]""");
-         setEventMetadata("'OPEN NOTE'",""","oparms":[{"av":"subGridnotes_Visible","ctrl":"GRIDNOTES","prop":"Visible"},{"ctrl":"CREATEANEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE"},{"av":"AV10delete","fld":"vDELETE"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9}]}""");
-         setEventMetadata("GLOBALEVENTS.DONEWITHNOTES","""{"handler":"E12102","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"GRIDNOTES_nEOF"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9},{"av":"AV12wallet","fld":"vWALLET","hsh":true}]""");
-         setEventMetadata("GLOBALEVENTS.DONEWITHNOTES",""","oparms":[{"av":"subGridnotes_Visible","ctrl":"GRIDNOTES","prop":"Visible"},{"ctrl":"CREATEANEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE","prop":"Visible"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9},{"av":"AV10delete","fld":"vDELETE"}]}""");
-         setEventMetadata("'DELETE NOTE'","""{"handler":"E17102","iparms":[{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9}]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED","""{"handler":"E13102","iparms":[{"av":"AV9UserResponse","fld":"vUSERRESPONSE"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9},{"av":"AV12wallet","fld":"vWALLET","hsh":true},{"av":"GRIDNOTES_nEOF"}]""");
-         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED",""","oparms":[{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"GRIDNOTES_nEOF","type":"int"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV12wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("REFRESH",""","oparms":[{"av":"AV10delete","fld":"vDELETE","type":"char"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"}]}""");
+         setEventMetadata("'CREATE A NEW NOTE'","""{"handler":"E11102","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"GRIDNOTES_nEOF","type":"int"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV12wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("'CREATE A NEW NOTE'",""","oparms":[{"av":"subGridnotes_Visible","ctrl":"GRIDNOTES","prop":"Visible"},{"ctrl":"CREATEANEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE"},{"av":"AV10delete","fld":"vDELETE","type":"char"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"}]}""");
+         setEventMetadata("'OPEN NOTE'","""{"handler":"E16102","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"GRIDNOTES_nEOF","type":"int"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV12wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("'OPEN NOTE'",""","oparms":[{"av":"subGridnotes_Visible","ctrl":"GRIDNOTES","prop":"Visible"},{"ctrl":"CREATEANEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE"},{"av":"AV10delete","fld":"vDELETE","type":"char"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"}]}""");
+         setEventMetadata("GLOBALEVENTS.DONEWITHNOTES","""{"handler":"E12102","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"GRIDNOTES_nEOF","type":"int"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV12wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("GLOBALEVENTS.DONEWITHNOTES",""","oparms":[{"av":"subGridnotes_Visible","ctrl":"GRIDNOTES","prop":"Visible"},{"ctrl":"CREATEANEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE","prop":"Visible"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV10delete","fld":"vDELETE","type":"char"}]}""");
+         setEventMetadata("'DELETE NOTE'","""{"handler":"E17102","iparms":[{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"}]}""");
+         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED","""{"handler":"E13102","iparms":[{"av":"AV9UserResponse","fld":"vUSERRESPONSE","type":"boolean"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV12wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"GRIDNOTES_nEOF","type":"int"}]""");
+         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED",""","oparms":[{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"}]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Delete","iparms":[]}""");
          return  ;
       }

@@ -200,10 +200,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 123260), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -233,7 +233,7 @@ namespace GeneXus.Programs.wallet {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.resotrewallet.aspx") +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.resotrewallet") +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -334,7 +334,7 @@ namespace GeneXus.Programs.wallet {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wallet.resotrewallet.aspx")  ;
+         return formatLink("wallet.resotrewallet")  ;
       }
 
       public override string GetPgmname( )
@@ -570,7 +570,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_12-186073", 0) ;
             }
          }
          Form.Meta.addItem("description", "Resotre Wallet", 0) ;
@@ -1384,7 +1384,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532815134170", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254215271975", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1400,7 +1400,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/resotrewallet.js", "?202532815134171", false, true);
+         context.AddJavascriptSource("wallet/resotrewallet.js", "?20254215271976", false, true);
          /* End function include_jscripts */
       }
 
@@ -1524,11 +1524,11 @@ namespace GeneXus.Programs.wallet {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
-         setEventMetadata("'RESTORE WALLET'","""{"handler":"E120L2","iparms":[{"av":"AV17walletName","fld":"vWALLETNAME"},{"av":"AV13newPass","fld":"vNEWPASS"},{"av":"AV14newPassConfirm","fld":"vNEWPASSCONFIRM"},{"av":"AV11MnemonicText","fld":"vMNEMONICTEXT"},{"av":"AV19WIFText","fld":"vWIFTEXT"},{"av":"AV5BrainText","fld":"vBRAINTEXT"},{"av":"cmbavWallettype"},{"av":"AV18walletType","fld":"vWALLETTYPE"},{"av":"cmbavNetworktype"},{"av":"AV12networkType","fld":"vNETWORKTYPE"},{"av":"AV7extKeyCreate","fld":"vEXTKEYCREATE"},{"av":"AV15passworWithMnamonic","fld":"vPASSWORWITHMNAMONIC"},{"av":"AV16wallet","fld":"vWALLET"},{"av":"AV6error","fld":"vERROR"},{"av":"AV9keyCreate","fld":"vKEYCREATE"}]""");
-         setEventMetadata("'RESTORE WALLET'",""","oparms":[{"av":"AV7extKeyCreate","fld":"vEXTKEYCREATE"},{"av":"AV6error","fld":"vERROR"},{"av":"AV16wallet","fld":"vWALLET"},{"av":"AV9keyCreate","fld":"vKEYCREATE"}]}""");
+         setEventMetadata("'RESTORE WALLET'","""{"handler":"E120L2","iparms":[{"av":"AV17walletName","fld":"vWALLETNAME","type":"char"},{"av":"AV13newPass","fld":"vNEWPASS","type":"char"},{"av":"AV14newPassConfirm","fld":"vNEWPASSCONFIRM","type":"char"},{"av":"AV11MnemonicText","fld":"vMNEMONICTEXT","type":"vchar"},{"av":"AV19WIFText","fld":"vWIFTEXT","type":"char"},{"av":"AV5BrainText","fld":"vBRAINTEXT","type":"char"},{"av":"cmbavWallettype"},{"av":"AV18walletType","fld":"vWALLETTYPE","type":"char"},{"av":"cmbavNetworktype"},{"av":"AV12networkType","fld":"vNETWORKTYPE","type":"char"},{"av":"AV7extKeyCreate","fld":"vEXTKEYCREATE","type":""},{"av":"AV15passworWithMnamonic","fld":"vPASSWORWITHMNAMONIC","type":"char"},{"av":"AV16wallet","fld":"vWALLET","type":""},{"av":"AV6error","fld":"vERROR","type":"char"},{"av":"AV9keyCreate","fld":"vKEYCREATE","type":""}]""");
+         setEventMetadata("'RESTORE WALLET'",""","oparms":[{"av":"AV7extKeyCreate","fld":"vEXTKEYCREATE","type":""},{"av":"AV6error","fld":"vERROR","type":"char"},{"av":"AV16wallet","fld":"vWALLET","type":""},{"av":"AV9keyCreate","fld":"vKEYCREATE","type":""}]}""");
          setEventMetadata("'CANCEL AND CLOSE'","""{"handler":"E130L2","iparms":[]}""");
          setEventMetadata("VALIDV_NETWORKTYPE","""{"handler":"Validv_Networktype","iparms":[]}""");
-         setEventMetadata("VALIDV_WALLETTYPE","""{"handler":"Validv_Wallettype","iparms":[{"av":"cmbavWallettype"},{"av":"AV18walletType","fld":"vWALLETTYPE"}]""");
+         setEventMetadata("VALIDV_WALLETTYPE","""{"handler":"Validv_Wallettype","iparms":[{"av":"cmbavWallettype"},{"av":"AV18walletType","fld":"vWALLETTYPE","type":"char"}]""");
          setEventMetadata("VALIDV_WALLETTYPE",""","oparms":[{"av":"edtavMnemonictext_Visible","ctrl":"vMNEMONICTEXT","prop":"Visible"},{"av":"edtavPassworwithmnamonic_Visible","ctrl":"vPASSWORWITHMNAMONIC","prop":"Visible"},{"av":"edtavWiftext_Visible","ctrl":"vWIFTEXT","prop":"Visible"},{"av":"edtavBraintext_Visible","ctrl":"vBRAINTEXT","prop":"Visible"},{"av":"edtavNewpass_Visible","ctrl":"vNEWPASS","prop":"Visible"},{"av":"edtavNewpassconfirm_Visible","ctrl":"vNEWPASSCONFIRM","prop":"Visible"},{"ctrl":"RESTOREWALLET","prop":"Visible"}]}""");
          return  ;
       }

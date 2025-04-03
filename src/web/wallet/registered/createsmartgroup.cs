@@ -199,10 +199,10 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 123260), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -232,7 +232,7 @@ namespace GeneXus.Programs.wallet.registered {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.createsmartgroup.aspx") +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.createsmartgroup") +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -324,7 +324,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wallet.registered.createsmartgroup.aspx")  ;
+         return formatLink("wallet.registered.createsmartgroup")  ;
       }
 
       public override string GetPgmname( )
@@ -423,7 +423,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_12-186073", 0) ;
             }
          }
          Form.Meta.addItem("description", "Create Smart Group", 0) ;
@@ -818,7 +818,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532815135043", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254215272890", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -834,7 +834,7 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/registered/createsmartgroup.js", "?202532815135043", false, true);
+         context.AddJavascriptSource("wallet/registered/createsmartgroup.js", "?20254215272890", false, true);
          /* End function include_jscripts */
       }
 
@@ -898,8 +898,8 @@ namespace GeneXus.Programs.wallet.registered {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
-         setEventMetadata("'CREATE'","""{"handler":"E121I2","iparms":[{"av":"cmbavGrouptype"},{"av":"AV9groupType","fld":"vGROUPTYPE","pic":"ZZZ9"},{"av":"AV8groupName","fld":"vGROUPNAME"},{"av":"AV7group_sdt","fld":"vGROUP_SDT"},{"av":"AV5all_groups_sdt","fld":"vALL_GROUPS_SDT"}]""");
-         setEventMetadata("'CREATE'",""","oparms":[{"av":"AV7group_sdt","fld":"vGROUP_SDT"},{"av":"AV6error","fld":"vERROR"},{"av":"AV5all_groups_sdt","fld":"vALL_GROUPS_SDT"}]}""");
+         setEventMetadata("'CREATE'","""{"handler":"E121I2","iparms":[{"av":"cmbavGrouptype"},{"av":"AV9groupType","fld":"vGROUPTYPE","pic":"ZZZ9","type":"int"},{"av":"AV8groupName","fld":"vGROUPNAME","type":"char"},{"av":"AV7group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV5all_groups_sdt","fld":"vALL_GROUPS_SDT","type":""}]""");
+         setEventMetadata("'CREATE'",""","oparms":[{"av":"AV7group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV6error","fld":"vERROR","type":"char"},{"av":"AV5all_groups_sdt","fld":"vALL_GROUPS_SDT","type":""}]}""");
          setEventMetadata("'CANCEL EDIT'","""{"handler":"E131I2","iparms":[]}""");
          setEventMetadata("VALIDV_GROUPTYPE","""{"handler":"Validv_Grouptype","iparms":[]}""");
          return  ;

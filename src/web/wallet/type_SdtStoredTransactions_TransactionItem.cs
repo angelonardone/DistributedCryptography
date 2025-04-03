@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtStoredTransactions_TransactionItem
 			Description: Transaction
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.wallet
@@ -37,6 +38,7 @@ namespace GeneXus.Programs.wallet
 			gxTv_SdtStoredTransactions_TransactionItem_Datetime = (DateTime)(DateTime.MinValue);
 
 			gxTv_SdtStoredTransactions_TransactionItem_Description = "";
+
 
 		}
 
@@ -160,7 +162,7 @@ namespace GeneXus.Programs.wallet
 				return Convert.ToString(gxTv_SdtStoredTransactions_TransactionItem_Value, System.Globalization.CultureInfo.InvariantCulture);
 			}
 			set {
-				gxTv_SdtStoredTransactions_TransactionItem_Value = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+				gxTv_SdtStoredTransactions_TransactionItem_Value = NumberUtil.Val(value);
 			}
 		}
 		[XmlIgnore]
@@ -294,6 +296,7 @@ namespace GeneXus.Programs.wallet
 					gxTv_SdtStoredTransactions_TransactionItem_Usedin = new SdtStoredTransactions_TransactionItem_UsedIn(context);
 				}
 				gxTv_SdtStoredTransactions_TransactionItem_Usedin_N = false;
+				SetDirty("Usedin");
 				return gxTv_SdtStoredTransactions_TransactionItem_Usedin;
 			}
 			set {
@@ -417,6 +420,8 @@ namespace GeneXus.Programs.wallet
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("TransactionId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="TransactionId", Order=0)]
 		public  string gxTpr_Transactionid
 		{
@@ -429,6 +434,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("n")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="n", Order=1)]
 		public  string gxTpr_N
 		{
@@ -441,6 +448,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("value")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="value", Order=2)]
 		public  string gxTpr_Value
 		{
@@ -453,6 +462,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("scriptPubKey_address")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="scriptPubKey_address", Order=3)]
 		public  string gxTpr_Scriptpubkey_address
 		{
@@ -465,6 +476,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("datetime")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="datetime", Order=4)]
 		public  string gxTpr_Datetime
 		{
@@ -477,6 +490,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("AddressGeneratedType")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="AddressGeneratedType", Order=5)]
 		public short gxTpr_Addressgeneratedtype
 		{
@@ -489,6 +504,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("AddressCreationSequence")]
+		[JsonPropertyOrder(6)]
 		[DataMember(Name="AddressCreationSequence", Order=6)]
 		public short gxTpr_Addresscreationsequence
 		{
@@ -501,6 +518,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("Description")]
+		[JsonPropertyOrder(7)]
 		[DataMember(Name="Description", Order=7)]
 		public  string gxTpr_Description
 		{
@@ -513,6 +532,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("Confirmations")]
+		[JsonPropertyOrder(8)]
 		[DataMember(Name="Confirmations", Order=8)]
 		public  string gxTpr_Confirmations
 		{
@@ -525,6 +546,9 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("UsedIn")]
+		[JsonPropertyOrder(9)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="UsedIn", Order=9, EmitDefaultValue=false)]
 		public SdtStoredTransactions_TransactionItem_UsedIn_RESTInterface gxTpr_Usedin
 		{
@@ -544,7 +568,7 @@ namespace GeneXus.Programs.wallet
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtStoredTransactions_TransactionItem sdt
 		{
 			get { 

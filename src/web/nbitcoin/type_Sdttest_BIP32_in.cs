@@ -1,7 +1,7 @@
 /*
 				   File: type_Sdttest_BIP32_in
 			Description: test_BIP32_in
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nbitcoin
@@ -158,6 +159,8 @@ namespace GeneXus.Programs.nbitcoin
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("seed")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="seed", Order=0)]
 		public  string gxTpr_Seed
 		{
@@ -170,6 +173,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("path")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="path", Order=1)]
 		public  string gxTpr_Path
 		{
@@ -184,7 +189,7 @@ namespace GeneXus.Programs.nbitcoin
 
 
 		#endregion
-
+		[JsonIgnore]
 		public Sdttest_BIP32_in sdt
 		{
 			get { 

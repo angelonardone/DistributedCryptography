@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtserializeEventUnitTestSDT
 			Description: serializeEventUnitTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nostr
@@ -31,6 +32,10 @@ namespace GeneXus.Programs.nostr
 		{
 			/* Constructor for serialization */
 			gxTv_SdtserializeEventUnitTestSDT_Testcaseid = "";
+
+			gxTv_SdtserializeEventUnitTestSDT_Nostrevent_N = true;
+
+			gxTv_SdtserializeEventUnitTestSDT_Expectednostrevent_N = true;
 
 			gxTv_SdtserializeEventUnitTestSDT_Msgnostrevent = "";
 
@@ -138,6 +143,7 @@ namespace GeneXus.Programs.nostr
 				if ( gxTv_SdtserializeEventUnitTestSDT_Nostrevent == null )
 				{
 					gxTv_SdtserializeEventUnitTestSDT_Nostrevent = new GeneXus.Programs.nostr.SdtEvent(context);
+					SetDirty("Nostrevent");
 				}
 				return gxTv_SdtserializeEventUnitTestSDT_Nostrevent; 
 			}
@@ -170,6 +176,7 @@ namespace GeneXus.Programs.nostr
 				if ( gxTv_SdtserializeEventUnitTestSDT_Expectednostrevent == null )
 				{
 					gxTv_SdtserializeEventUnitTestSDT_Expectednostrevent = new GeneXus.Programs.nostr.SdtEvent(context);
+					SetDirty("Expectednostrevent");
 				}
 				return gxTv_SdtserializeEventUnitTestSDT_Expectednostrevent; 
 			}
@@ -419,6 +426,8 @@ namespace GeneXus.Programs.nostr
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("TestCaseId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="TestCaseId", Order=0)]
 		public  string gxTpr_Testcaseid
 		{
@@ -431,6 +440,9 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("nostrEvent")]
+		[JsonPropertyOrder(1)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="nostrEvent", Order=1, EmitDefaultValue=false)]
 		public GeneXus.Programs.nostr.SdtEvent_RESTInterface gxTpr_Nostrevent
 		{
@@ -446,6 +458,9 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("ExpectednostrEvent")]
+		[JsonPropertyOrder(2)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="ExpectednostrEvent", Order=2, EmitDefaultValue=false)]
 		public GeneXus.Programs.nostr.SdtEvent_RESTInterface gxTpr_Expectednostrevent
 		{
@@ -461,6 +476,8 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("MsgnostrEvent")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="MsgnostrEvent", Order=3)]
 		public  string gxTpr_Msgnostrevent
 		{
@@ -473,6 +490,8 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("privateKey")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="privateKey", Order=4)]
 		public  string gxTpr_Privatekey
 		{
@@ -485,6 +504,8 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("serialized")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="serialized", Order=5)]
 		public  string gxTpr_Serialized
 		{
@@ -497,6 +518,8 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("Expectedserialized")]
+		[JsonPropertyOrder(6)]
 		[DataMember(Name="Expectedserialized", Order=6)]
 		public  string gxTpr_Expectedserialized
 		{
@@ -509,6 +532,8 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("Msgserialized")]
+		[JsonPropertyOrder(7)]
 		[DataMember(Name="Msgserialized", Order=7)]
 		public  string gxTpr_Msgserialized
 		{
@@ -521,6 +546,8 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("error")]
+		[JsonPropertyOrder(8)]
 		[DataMember(Name="error", Order=8)]
 		public  string gxTpr_Error
 		{
@@ -533,6 +560,8 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("Expectederror")]
+		[JsonPropertyOrder(9)]
 		[DataMember(Name="Expectederror", Order=9)]
 		public  string gxTpr_Expectederror
 		{
@@ -545,6 +574,8 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("Msgerror")]
+		[JsonPropertyOrder(10)]
 		[DataMember(Name="Msgerror", Order=10)]
 		public  string gxTpr_Msgerror
 		{
@@ -559,7 +590,7 @@ namespace GeneXus.Programs.nostr
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtserializeEventUnitTestSDT sdt
 		{
 			get { 

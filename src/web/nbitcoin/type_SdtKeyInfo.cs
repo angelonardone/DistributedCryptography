@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtKeyInfo
 			Description: KeyInfo
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nbitcoin
@@ -308,6 +309,8 @@ namespace GeneXus.Programs.nbitcoin
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("PrivateKey")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="PrivateKey", Order=0)]
 		public  string gxTpr_Privatekey
 		{
@@ -320,6 +323,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("PublicKey")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="PublicKey", Order=1)]
 		public  string gxTpr_Publickey
 		{
@@ -332,6 +337,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("TaprootPubKey")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="TaprootPubKey", Order=2)]
 		public  string gxTpr_Taprootpubkey
 		{
@@ -344,6 +351,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("PublicKeyHash")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="PublicKeyHash", Order=3)]
 		public  string gxTpr_Publickeyhash
 		{
@@ -356,6 +365,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("ScriptPublicKey")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="ScriptPublicKey", Order=4)]
 		public  string gxTpr_Scriptpublickey
 		{
@@ -368,6 +379,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Address")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="Address", Order=5)]
 		public  string gxTpr_Address
 		{
@@ -380,6 +393,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("WIF")]
+		[JsonPropertyOrder(6)]
 		[DataMember(Name="WIF", Order=6)]
 		public  string gxTpr_Wif
 		{
@@ -392,6 +407,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("encryptedWIF")]
+		[JsonPropertyOrder(7)]
 		[DataMember(Name="encryptedWIF", Order=7)]
 		public  string gxTpr_Encryptedwif
 		{
@@ -406,7 +423,7 @@ namespace GeneXus.Programs.nbitcoin
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtKeyInfo sdt
 		{
 			get { 

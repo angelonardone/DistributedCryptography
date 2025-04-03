@@ -1,7 +1,7 @@
 /*
 				   File: type_Sdttest_SLIP0132_in
 			Description: test_SLIP0132_in
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nbitcoin
@@ -37,6 +38,7 @@ namespace GeneXus.Programs.nbitcoin
 			gxTv_Sdttest_SLIP0132_in_Rootpath = "";
 
 			gxTv_Sdttest_SLIP0132_in_Derivepathaddress = "";
+
 
 		}
 
@@ -254,6 +256,8 @@ namespace GeneXus.Programs.nbitcoin
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("Mnemonic")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="Mnemonic", Order=0)]
 		public  string gxTpr_Mnemonic
 		{
@@ -266,6 +270,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("NetworkType")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="NetworkType", Order=1)]
 		public  string gxTpr_Networktype
 		{
@@ -278,6 +284,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("RootPath")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="RootPath", Order=2)]
 		public  string gxTpr_Rootpath
 		{
@@ -290,6 +298,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("AddressType")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="AddressType", Order=3)]
 		public short gxTpr_Addresstype
 		{
@@ -302,6 +312,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("DerivePathAddress")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="DerivePathAddress", Order=4)]
 		public  string gxTpr_Derivepathaddress
 		{
@@ -314,6 +326,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("testMethod")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="testMethod", Order=5)]
 		public short gxTpr_Testmethod
 		{
@@ -328,7 +342,7 @@ namespace GeneXus.Programs.nbitcoin
 
 
 		#endregion
-
+		[JsonIgnore]
 		public Sdttest_SLIP0132_in sdt
 		{
 			get { 

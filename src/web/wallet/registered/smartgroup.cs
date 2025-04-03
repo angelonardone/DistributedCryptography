@@ -208,10 +208,10 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 123260), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -246,7 +246,7 @@ namespace GeneXus.Programs.wallet.registered {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.smartgroup.aspx", new object[] {UrlEncode(AV9groupId.ToString())}, new string[] {"groupId"}) +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.smartgroup", new object[] {UrlEncode(AV9groupId.ToString())}, new string[] {"groupId"}) +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -357,7 +357,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wallet.registered.smartgroup.aspx", new object[] {UrlEncode(AV9groupId.ToString())}, new string[] {"groupId"})  ;
+         return formatLink("wallet.registered.smartgroup", new object[] {UrlEncode(AV9groupId.ToString())}, new string[] {"groupId"})  ;
       }
 
       public override string GetPgmname( )
@@ -605,7 +605,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_12-186073", 0) ;
             }
          }
          Form.Meta.addItem("description", "Smart Group", 0) ;
@@ -652,19 +652,25 @@ namespace GeneXus.Programs.wallet.registered {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                            }
-                           else if ( StringUtil.StrCmp(sEvt, "START") == 0 )
+                           else if ( StringUtil.StrCmp(sEvt, "REFRESH") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
-                              /* Execute user event: Start */
+                              /* Execute user event: Refresh */
                               E111G2 ();
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "GLOBALEVENTS.REFRESHSMARTGROUP") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              E121G2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Load */
-                              E121G2 ();
+                              E131G2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                            {
@@ -856,6 +862,8 @@ namespace GeneXus.Programs.wallet.registered {
       {
          initialize_formulas( ) ;
          clear_multi_value_controls( ) ;
+         /* Execute user event: Refresh */
+         E111G2 ();
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             if ( 1 != 0 )
@@ -892,7 +900,7 @@ namespace GeneXus.Programs.wallet.registered {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E121G2 ();
+            E131G2 ();
             WB1G0( ) ;
          }
       }
@@ -918,10 +926,6 @@ namespace GeneXus.Programs.wallet.registered {
       {
          /* Before Start, stand alone formulas. */
          before_start_formulas( ) ;
-         /* Execute Start event if defined. */
-         context.wbGlbDoneStart = 0;
-         /* Execute user event: Start */
-         E111G2 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
@@ -949,16 +953,9 @@ namespace GeneXus.Programs.wallet.registered {
          }
       }
 
-      protected void GXStart( )
-      {
-         /* Execute user event: Start */
-         E111G2 ();
-         if (returnInSub) return;
-      }
-
       protected void E111G2( )
       {
-         /* Start Routine */
+         /* Refresh Routine */
          returnInSub = false;
          AV8group_sdt.FromJSonString(AV5websession.Get("Group_EDIT"), null);
          if ( ( AV8group_sdt.gxTpr_Grouptype == 10 ) && AV8group_sdt.gxTpr_Amigroupowner )
@@ -980,6 +977,12 @@ namespace GeneXus.Programs.wallet.registered {
                WebComp_Comp_grouptype.setjustcreated();
                WebComp_Comp_grouptype.componentprepare(new Object[] {(string)"W0032",(string)""});
                WebComp_Comp_grouptype.componentbind(new Object[] {});
+            }
+            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_grouptype )
+            {
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0032"+"");
+               WebComp_Comp_grouptype.componentdraw();
+               context.httpAjaxContext.ajax_rspEndCmp();
             }
             this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)2});
             this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)3});
@@ -1004,6 +1007,12 @@ namespace GeneXus.Programs.wallet.registered {
                WebComp_Comp_grouptype.componentprepare(new Object[] {(string)"W0032",(string)""});
                WebComp_Comp_grouptype.componentbind(new Object[] {});
             }
+            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_grouptype )
+            {
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0032"+"");
+               WebComp_Comp_grouptype.componentdraw();
+               context.httpAjaxContext.ajax_rspEndCmp();
+            }
             this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)2});
             this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)3});
          }
@@ -1027,6 +1036,12 @@ namespace GeneXus.Programs.wallet.registered {
                WebComp_Comp_grouptype.componentprepare(new Object[] {(string)"W0032",(string)""});
                WebComp_Comp_grouptype.componentbind(new Object[] {});
             }
+            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_grouptype )
+            {
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0032"+"");
+               WebComp_Comp_grouptype.componentdraw();
+               context.httpAjaxContext.ajax_rspEndCmp();
+            }
             if ( ! AV8group_sdt.gxTpr_Isactive )
             {
                this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)2});
@@ -1052,6 +1067,12 @@ namespace GeneXus.Programs.wallet.registered {
                   WebComp_Comp_walletbalance.componentprepare(new Object[] {(string)"W0040",(string)"",(Guid)AV9groupId});
                   WebComp_Comp_walletbalance.componentbind(new Object[] {(string)""});
                }
+               if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_walletbalance )
+               {
+                  context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0040"+"");
+                  WebComp_Comp_walletbalance.componentdraw();
+                  context.httpAjaxContext.ajax_rspEndCmp();
+               }
                /* Object Property */
                if ( true )
                {
@@ -1069,6 +1090,12 @@ namespace GeneXus.Programs.wallet.registered {
                   WebComp_Comp_signatures.setjustcreated();
                   WebComp_Comp_signatures.componentprepare(new Object[] {(string)"W0048",(string)"",(Guid)AV9groupId});
                   WebComp_Comp_signatures.componentbind(new Object[] {(string)""});
+               }
+               if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_signatures )
+               {
+                  context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0048"+"");
+                  WebComp_Comp_signatures.componentdraw();
+                  context.httpAjaxContext.ajax_rspEndCmp();
                }
             }
          }
@@ -1092,6 +1119,12 @@ namespace GeneXus.Programs.wallet.registered {
                WebComp_Comp_grouptype.componentprepare(new Object[] {(string)"W0032",(string)""});
                WebComp_Comp_grouptype.componentbind(new Object[] {});
             }
+            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_grouptype )
+            {
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0032"+"");
+               WebComp_Comp_grouptype.componentdraw();
+               context.httpAjaxContext.ajax_rspEndCmp();
+            }
             if ( ! AV8group_sdt.gxTpr_Isactive )
             {
                this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)2});
@@ -1117,6 +1150,12 @@ namespace GeneXus.Programs.wallet.registered {
                   WebComp_Comp_walletbalance.componentprepare(new Object[] {(string)"W0040",(string)"",(Guid)AV9groupId});
                   WebComp_Comp_walletbalance.componentbind(new Object[] {(string)""});
                }
+               if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_walletbalance )
+               {
+                  context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0040"+"");
+                  WebComp_Comp_walletbalance.componentdraw();
+                  context.httpAjaxContext.ajax_rspEndCmp();
+               }
                /* Object Property */
                if ( true )
                {
@@ -1135,19 +1174,34 @@ namespace GeneXus.Programs.wallet.registered {
                   WebComp_Comp_signatures.componentprepare(new Object[] {(string)"W0048",(string)"",(Guid)AV9groupId});
                   WebComp_Comp_signatures.componentbind(new Object[] {(string)""});
                }
+               if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_signatures )
+               {
+                  context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0048"+"");
+                  WebComp_Comp_signatures.componentdraw();
+                  context.httpAjaxContext.ajax_rspEndCmp();
+               }
             }
          }
          else
          {
             GX_msglist.addItem("This type of group is not implemented yet");
          }
+         /*  Sending Event outputs  */
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV8group_sdt", AV8group_sdt);
+      }
+
+      protected void E121G2( )
+      {
+         /* GlobalEvents_Refreshsmartgroup Routine */
+         returnInSub = false;
+         context.DoAjaxRefresh();
       }
 
       protected void nextLoad( )
       {
       }
 
-      protected void E121G2( )
+      protected void E131G2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -1217,7 +1271,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532815134980", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025421758096", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1233,7 +1287,7 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/registered/smartgroup.js", "?202532815134980", false, true);
+         context.AddJavascriptSource("wallet/registered/smartgroup.js", "?2025421758096", false, true);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);
@@ -1328,7 +1382,9 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GXV3","fld":"CTLAMIGROUPOWNER"},{"av":"GXV4","fld":"CTLISACTIVE"},{"av":"AV9groupId","fld":"vGROUPID","hsh":true}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GXV3","fld":"CTLAMIGROUPOWNER","type":"boolean"},{"av":"GXV4","fld":"CTLISACTIVE","type":"boolean"},{"av":"AV9groupId","fld":"vGROUPID","hsh":true,"type":"guid"}]""");
+         setEventMetadata("REFRESH",""","oparms":[{"av":"AV8group_sdt","fld":"vGROUP_SDT","type":""},{"ctrl":"COMP_GROUPTYPE"},{"ctrl":"COMP_WALLETBALANCE"},{"ctrl":"COMP_SIGNATURES"}]}""");
+         setEventMetadata("GLOBALEVENTS.REFRESHSMARTGROUP","""{"handler":"E121G2","iparms":[]}""");
          setEventMetadata("VALIDV_GXV1","""{"handler":"Validv_Gxv1","iparms":[]}""");
          return  ;
       }

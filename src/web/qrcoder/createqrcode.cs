@@ -198,10 +198,10 @@ namespace GeneXus.Programs.qrcoder {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 123260), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 123260), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -231,7 +231,7 @@ namespace GeneXus.Programs.qrcoder {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("qrcoder.createqrcode.aspx") +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("qrcoder.createqrcode") +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -307,7 +307,7 @@ namespace GeneXus.Programs.qrcoder {
 
       public override string GetSelfLink( )
       {
-         return formatLink("qrcoder.createqrcode.aspx")  ;
+         return formatLink("qrcoder.createqrcode")  ;
       }
 
       public override string GetPgmname( )
@@ -408,7 +408,7 @@ namespace GeneXus.Programs.qrcoder {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_12-186073", 0) ;
             }
          }
          Form.Meta.addItem("description", "Create QRCode", 0) ;
@@ -695,7 +695,7 @@ namespace GeneXus.Programs.qrcoder {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532815135118", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254215272979", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -711,7 +711,7 @@ namespace GeneXus.Programs.qrcoder {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("qrcoder/createqrcode.js", "?202532815135118", false, true);
+         context.AddJavascriptSource("qrcoder/createqrcode.js", "?20254215272980", false, true);
          /* End function include_jscripts */
       }
 
@@ -761,7 +761,7 @@ namespace GeneXus.Programs.qrcoder {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
-         setEventMetadata("'GENERATE'","""{"handler":"E111Q2","iparms":[{"av":"AV10text","fld":"vTEXT"}]""");
+         setEventMetadata("'GENERATE'","""{"handler":"E111Q2","iparms":[{"av":"AV10text","fld":"vTEXT","type":"vchar"}]""");
          setEventMetadata("'GENERATE'",""","oparms":[{"av":"imgavImage_Visible","ctrl":"vIMAGE","prop":"Visible"},{"av":"lblSalida_Caption","ctrl":"SALIDA","prop":"Caption"}]}""");
          return  ;
       }
