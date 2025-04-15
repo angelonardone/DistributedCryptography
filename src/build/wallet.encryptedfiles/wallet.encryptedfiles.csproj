@@ -24,9 +24,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Reference Include="WebExtensionToolkit.dll" > 
-			<HintPath>$(WebBinDirectory)\WebExtensionToolkit.dll</HintPath>
-		</Reference>
 		<Reference Include="Google.Authenticator.dll" > 
 			<HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
 		</Reference>
@@ -38,26 +35,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getfileenckey.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\aesencryptstring.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\aesdecryptfile.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\encryptjson.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\decryptjson.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\aesencryptfile.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\deletefilewithdelay.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\encryptedfiles.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\insertintoallfiles.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\readallfiles.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\aesdecryptstring.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\deleteoneencryptelfiles.cs" />
 
 	</ItemGroup>
 

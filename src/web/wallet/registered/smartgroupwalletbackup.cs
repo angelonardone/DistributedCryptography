@@ -2030,7 +2030,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025421725996", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202541513133291", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2046,7 +2046,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/smartgroupwalletbackup.js", "?2025421725996", false, true);
+         context.AddJavascriptSource("wallet/registered/smartgroupwalletbackup.js", "?202541513133292", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }

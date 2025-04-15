@@ -20,9 +20,9 @@ using GeneXus.Http.Client;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
 namespace GeneXus.Programs.wallet {
-   public class editnote : GXWebComponent
+   public class receivefromuser : GXWebComponent
    {
-      public editnote( )
+      public receivefromuser( )
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
@@ -34,16 +34,15 @@ namespace GeneXus.Programs.wallet {
          }
       }
 
-      public editnote( IGxContext context )
+      public receivefromuser( IGxContext context )
       {
          this.context = context;
          IsMain = false;
          dsDefault = context.GetDataStore("Default");
       }
 
-      public void execute( string aP0_fileName )
+      public void execute( )
       {
-         this.AV8fileName = aP0_fileName;
          ExecuteImpl();
       }
 
@@ -70,7 +69,7 @@ namespace GeneXus.Programs.wallet {
             if ( nGotPars == 0 )
             {
                entryPointCalled = false;
-               gxfirstwebparm = GetFirstPar( "fileName");
+               gxfirstwebparm = GetNextPar( );
                gxfirstwebparm_bkp = gxfirstwebparm;
                gxfirstwebparm = DecryptAjaxCall( gxfirstwebparm);
                toggleJsOutput = isJsOutputEnabled( );
@@ -100,10 +99,8 @@ namespace GeneXus.Programs.wallet {
                   nDynComponent = 1;
                   sCompPrefix = GetPar( "sCompPrefix");
                   sSFPrefix = GetPar( "sSFPrefix");
-                  AV8fileName = GetPar( "fileName");
-                  AssignAttri(sPrefix, false, "AV8fileName", AV8fileName);
                   setjustcreated();
-                  componentprepare(new Object[] {(string)sCompPrefix,(string)sSFPrefix,(string)AV8fileName});
+                  componentprepare(new Object[] {(string)sCompPrefix,(string)sSFPrefix});
                   componentstart();
                   context.httpAjaxContext.ajax_rspStartCmp(sPrefix);
                   componentdraw();
@@ -118,7 +115,7 @@ namespace GeneXus.Programs.wallet {
                      GxWebError = 1;
                      return  ;
                   }
-                  gxfirstwebparm = GetFirstPar( "fileName");
+                  gxfirstwebparm = GetNextPar( );
                }
                else if ( StringUtil.StrCmp(gxfirstwebparm, "gxfullajaxEvt") == 0 )
                {
@@ -127,7 +124,7 @@ namespace GeneXus.Programs.wallet {
                      GxWebError = 1;
                      return  ;
                   }
-                  gxfirstwebparm = GetFirstPar( "fileName");
+                  gxfirstwebparm = GetNextPar( );
                }
                else
                {
@@ -167,11 +164,11 @@ namespace GeneXus.Programs.wallet {
             {
                ValidateSpaRequest();
             }
-            PA0D2( ) ;
+            PA2C2( ) ;
             if ( ( GxWebError == 0 ) && ! isAjaxCallMode( ) )
             {
                /* GeneXus formulas. */
-               WS0D2( ) ;
+               WS2C2( ) ;
                if ( ! isAjaxCallMode( ) )
                {
                   if ( nDynComponent == 0 )
@@ -220,7 +217,7 @@ namespace GeneXus.Programs.wallet {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( "Edit Note") ;
+            context.SendWebValue( "Receive From User") ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -243,8 +240,7 @@ namespace GeneXus.Programs.wallet {
          {
             enableOutput();
          }
-         context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true);
-         context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true);
+         context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
          if ( StringUtil.Len( sPrefix) == 0 )
          {
             context.CloseHtmlHeader();
@@ -266,7 +262,7 @@ namespace GeneXus.Programs.wallet {
             context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
             context.WriteHtmlText( FormProcess+">") ;
             context.skipLines(1);
-            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.editnote", new object[] {UrlEncode(StringUtil.RTrim(AV8fileName))}, new string[] {"fileName"}) +"\">") ;
+            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.receivefromuser") +"\">") ;
             GxWebStd.gx_hidden_field( context, "_EventName", "");
             GxWebStd.gx_hidden_field( context, "_EventGridId", "");
             GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -313,6 +309,15 @@ namespace GeneXus.Programs.wallet {
 
       protected void send_integrity_footer_hashes( )
       {
+         if ( context.isAjaxRequest( ) )
+         {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vEXTERNALUSER", AV19externalUser);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vEXTERNALUSER", AV19externalUser);
+         }
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vEXTERNALUSER", GetSecureSignedToken( sPrefix, AV19externalUser, context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -321,26 +326,39 @@ namespace GeneXus.Programs.wallet {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, sPrefix+"vTEXT", AV12text);
-         GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV8fileName", wcpOAV8fileName);
-         GxWebStd.gx_hidden_field( context, sPrefix+"vFILENAME", AV8fileName);
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vNOTE", AV10note);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vUPLOADEDFILES", AV17UploadedFiles);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vNOTE", AV10note);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vUPLOADEDFILES", AV17UploadedFiles);
          }
-         GxWebStd.gx_hidden_field( context, sPrefix+"TEXT_Enabled", StringUtil.BoolToStr( Text_Enabled));
-         GxWebStd.gx_hidden_field( context, sPrefix+"TEXT_Skin", StringUtil.RTrim( Text_Skin));
-         GxWebStd.gx_hidden_field( context, sPrefix+"TEXT_Toolbar", StringUtil.RTrim( Text_Toolbar));
-         GxWebStd.gx_hidden_field( context, sPrefix+"TEXT_Captionclass", StringUtil.RTrim( Text_Captionclass));
-         GxWebStd.gx_hidden_field( context, sPrefix+"TEXT_Captionstyle", StringUtil.RTrim( Text_Captionstyle));
-         GxWebStd.gx_hidden_field( context, sPrefix+"TEXT_Captionposition", StringUtil.RTrim( Text_Captionposition));
+         if ( context.isAjaxRequest( ) )
+         {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vFAILEDFILES", AV9FailedFiles);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vFAILEDFILES", AV9FailedFiles);
+         }
+         if ( context.isAjaxRequest( ) )
+         {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vEXTERNALUSER", AV19externalUser);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vEXTERNALUSER", AV19externalUser);
+         }
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vEXTERNALUSER", GetSecureSignedToken( sPrefix, AV19externalUser, context));
+         GxWebStd.gx_hidden_field( context, sPrefix+"FILEUPLOAD_Autoupload", StringUtil.BoolToStr( Fileupload_Autoupload));
+         GxWebStd.gx_hidden_field( context, sPrefix+"FILEUPLOAD_Hideadditionalbuttons", StringUtil.BoolToStr( Fileupload_Hideadditionalbuttons));
+         GxWebStd.gx_hidden_field( context, sPrefix+"FILEUPLOAD_Maxfilesize", StringUtil.LTrim( StringUtil.NToC( (decimal)(Fileupload_Maxfilesize), 9, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"FILEUPLOAD_Maxnumberoffiles", StringUtil.LTrim( StringUtil.NToC( (decimal)(Fileupload_Maxnumberoffiles), 9, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"FILEUPLOAD_Autodisableaddingfiles", StringUtil.BoolToStr( Fileupload_Autodisableaddingfiles));
       }
 
-      protected void RenderHtmlCloseForm0D2( )
+      protected void RenderHtmlCloseForm2C2( )
       {
          SendCloseFormHiddens( ) ;
          if ( ( StringUtil.Len( sPrefix) != 0 ) && ( context.isAjaxRequest( ) || context.isSpaRequest( ) ) )
@@ -389,15 +407,15 @@ namespace GeneXus.Programs.wallet {
 
       public override string GetPgmname( )
       {
-         return "Wallet.EditNote" ;
+         return "Wallet.ReceiveFromUser" ;
       }
 
       public override string GetPgmdesc( )
       {
-         return "Edit Note" ;
+         return "Receive From User" ;
       }
 
-      protected void WB0D0( )
+      protected void WB2C0( )
       {
          if ( context.isAjaxRequest( ) )
          {
@@ -412,9 +430,8 @@ namespace GeneXus.Programs.wallet {
             RenderHtmlOpenForm( ) ;
             if ( StringUtil.Len( sPrefix) != 0 )
             {
-               GxWebStd.gx_hidden_field( context, sPrefix+"_CMPPGM", "wallet.editnote");
-               context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true);
-               context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true);
+               GxWebStd.gx_hidden_field( context, sPrefix+"_CMPPGM", "wallet.receivefromuser");
+               context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
             }
             GxWebStd.gx_msg_list( context, "", context.GX_msglist.DisplayMode, "", "", sPrefix, "false");
             /* Div Control */
@@ -425,54 +442,15 @@ namespace GeneXus.Programs.wallet {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavDescription_Internalname+"\"", "", "div");
-            /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavDescription_Internalname, "Description", "col-sm-3 AttributeLabel", 1, true, "");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
-            /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 8,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavDescription_Internalname, StringUtil.RTrim( AV5description), StringUtil.RTrim( context.localUtil.Format( AV5description, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,8);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavDescription_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavDescription_Enabled, 1, "text", "", 80, "chr", 1, "row", 80, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Wallet/EditNote.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", -1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+Text_Internalname+"\"", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* User Defined Control */
-            ucText.SetProperty("Attribute", AV12text);
-            ucText.SetProperty("Skin", Text_Skin);
-            ucText.SetProperty("Toolbar", Text_Toolbar);
-            ucText.SetProperty("CaptionClass", Text_Captionclass);
-            ucText.SetProperty("CaptionStyle", Text_Captionstyle);
-            ucText.SetProperty("CaptionPosition", Text_Captionposition);
-            ucText.Render(context, "fckeditor", Text_Internalname, sPrefix+"TEXTContainer");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 16,'" + sPrefix + "',false,'',0)\"";
-            ClassString = "Button";
-            StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttSave_Internalname, "", "Save", bttSave_Jsonclick, 5, "Save", "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'SAVE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Wallet/EditNote.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 18,'" + sPrefix + "',false,'',0)\"";
-            ClassString = "Button";
-            StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttCancel_Internalname, "", "Cancel", bttCancel_Jsonclick, 7, "Cancel", "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+"e110d1_client"+"'", TempTags, "", 2, "HLP_Wallet/EditNote.htm");
+            ucFileupload.SetProperty("AutoUpload", Fileupload_Autoupload);
+            ucFileupload.SetProperty("HideAdditionalButtons", Fileupload_Hideadditionalbuttons);
+            ucFileupload.SetProperty("TooltipText", Fileupload_Tooltiptext);
+            ucFileupload.SetProperty("MaxNumberOfFiles", Fileupload_Maxnumberoffiles);
+            ucFileupload.SetProperty("AutoDisableAddingFiles", Fileupload_Autodisableaddingfiles);
+            ucFileupload.SetProperty("UploadedFiles", AV17UploadedFiles);
+            ucFileupload.SetProperty("FailedFiles", AV9FailedFiles);
+            ucFileupload.Render(context, "fileupload", Fileupload_Internalname, sPrefix+"FILEUPLOADContainer");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -481,7 +459,7 @@ namespace GeneXus.Programs.wallet {
          wbLoad = true;
       }
 
-      protected void START0D2( )
+      protected void START2C2( )
       {
          wbLoad = false;
          wbEnd = 0;
@@ -495,7 +473,7 @@ namespace GeneXus.Programs.wallet {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_12-186073", 0) ;
                }
             }
-            Form.Meta.addItem("description", "Edit Note", 0) ;
+            Form.Meta.addItem("description", "Receive From User", 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -512,18 +490,18 @@ namespace GeneXus.Programs.wallet {
          {
             if ( nDoneStart == 0 )
             {
-               STRUP0D0( ) ;
+               STRUP2C0( ) ;
             }
          }
       }
 
-      protected void WS0D2( )
+      protected void WS2C2( )
       {
-         START0D2( ) ;
-         EVT0D2( ) ;
+         START2C2( ) ;
+         EVT2C2( ) ;
       }
 
-      protected void EVT0D2( )
+      protected void EVT2C2( )
       {
          sXEvt = cgiGet( "_EventName");
          if ( ( ( ( StringUtil.Len( sPrefix) == 0 ) ) || ( StringUtil.StringSearch( sXEvt, sPrefix, 1) > 0 ) ) && ! GetJustCreated( ) && ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 ) )
@@ -553,7 +531,7 @@ namespace GeneXus.Programs.wallet {
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
-                                 STRUP0D0( ) ;
+                                 STRUP2C0( ) ;
                               }
                               if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
                               {
@@ -564,11 +542,28 @@ namespace GeneXus.Programs.wallet {
                                  }
                               }
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "FILEUPLOAD.UPLOADCOMPLETE") == 0 )
+                           {
+                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
+                              {
+                                 STRUP2C0( ) ;
+                              }
+                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+                              {
+                                 context.wbHandled = 1;
+                                 if ( ! wbErr )
+                                 {
+                                    dynload_actions( ) ;
+                                    /* Execute user event: Fileupload.Uploadcomplete */
+                                    E112C2 ();
+                                 }
+                              }
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "START") == 0 )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
-                                 STRUP0D0( ) ;
+                                 STRUP2C0( ) ;
                               }
                               if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
                               {
@@ -577,24 +572,7 @@ namespace GeneXus.Programs.wallet {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: Start */
-                                    E120D2 ();
-                                 }
-                              }
-                           }
-                           else if ( StringUtil.StrCmp(sEvt, "'SAVE'") == 0 )
-                           {
-                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
-                              {
-                                 STRUP0D0( ) ;
-                              }
-                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
-                              {
-                                 context.wbHandled = 1;
-                                 if ( ! wbErr )
-                                 {
-                                    dynload_actions( ) ;
-                                    /* Execute user event: 'Save' */
-                                    E130D2 ();
+                                    E122C2 ();
                                  }
                               }
                            }
@@ -602,7 +580,7 @@ namespace GeneXus.Programs.wallet {
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
-                                 STRUP0D0( ) ;
+                                 STRUP2C0( ) ;
                               }
                               if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
                               {
@@ -611,7 +589,7 @@ namespace GeneXus.Programs.wallet {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: Load */
-                                    E140D2 ();
+                                    E132C2 ();
                                  }
                               }
                            }
@@ -619,7 +597,7 @@ namespace GeneXus.Programs.wallet {
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
-                                 STRUP0D0( ) ;
+                                 STRUP2C0( ) ;
                               }
                               if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
                               {
@@ -642,7 +620,7 @@ namespace GeneXus.Programs.wallet {
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
-                                 STRUP0D0( ) ;
+                                 STRUP2C0( ) ;
                               }
                               if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
                               {
@@ -650,8 +628,6 @@ namespace GeneXus.Programs.wallet {
                                  if ( ! wbErr )
                                  {
                                     dynload_actions( ) ;
-                                    GX_FocusControl = edtavDescription_Internalname;
-                                    AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
                                  }
                               }
                               dynload_actions( ) ;
@@ -668,7 +644,7 @@ namespace GeneXus.Programs.wallet {
          }
       }
 
-      protected void WE0D2( )
+      protected void WE2C2( )
       {
          if ( ! GxWebStd.gx_redirect( context) )
          {
@@ -676,12 +652,12 @@ namespace GeneXus.Programs.wallet {
             Refresh( ) ;
             if ( ! GxWebStd.gx_redirect( context) )
             {
-               RenderHtmlCloseForm0D2( ) ;
+               RenderHtmlCloseForm2C2( ) ;
             }
          }
       }
 
-      protected void PA0D2( )
+      protected void PA2C2( )
       {
          if ( nDonePA == 0 )
          {
@@ -718,8 +694,6 @@ namespace GeneXus.Programs.wallet {
             }
             if ( ! context.isAjaxRequest( ) )
             {
-               GX_FocusControl = edtavDescription_Internalname;
-               AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
             }
             nDonePA = 1;
          }
@@ -750,7 +724,7 @@ namespace GeneXus.Programs.wallet {
       public void Refresh( )
       {
          send_integrity_hashes( ) ;
-         RF0D2( ) ;
+         RF2C2( ) ;
          if ( isFullAjaxMode( ) )
          {
             send_integrity_footer_hashes( ) ;
@@ -762,7 +736,7 @@ namespace GeneXus.Programs.wallet {
          /* GeneXus formulas. */
       }
 
-      protected void RF0D2( )
+      protected void RF2C2( )
       {
          initialize_formulas( ) ;
          clear_multi_value_controls( ) ;
@@ -772,13 +746,22 @@ namespace GeneXus.Programs.wallet {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E140D2 ();
-            WB0D0( ) ;
+            E132C2 ();
+            WB2C0( ) ;
          }
       }
 
-      protected void send_integrity_lvl_hashes0D2( )
+      protected void send_integrity_lvl_hashes2C2( )
       {
+         if ( context.isAjaxRequest( ) )
+         {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vEXTERNALUSER", AV19externalUser);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vEXTERNALUSER", AV19externalUser);
+         }
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vEXTERNALUSER", GetSecureSignedToken( sPrefix, AV19externalUser, context));
       }
 
       protected void before_start_formulas( )
@@ -786,14 +769,14 @@ namespace GeneXus.Programs.wallet {
          fix_multi_value_controls( ) ;
       }
 
-      protected void STRUP0D0( )
+      protected void STRUP2C0( )
       {
          /* Before Start, stand alone formulas. */
          before_start_formulas( ) ;
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E120D2 ();
+         E122C2 ();
          context.wbGlbDoneStart = 1;
          nDoneStart = 1;
          /* After Start, stand alone formulas. */
@@ -801,19 +784,15 @@ namespace GeneXus.Programs.wallet {
          if ( ! GetJustCreated( ) && ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 ) )
          {
             /* Read saved SDTs. */
+            ajax_req_read_hidden_sdt(cgiGet( sPrefix+"vUPLOADEDFILES"), AV17UploadedFiles);
+            ajax_req_read_hidden_sdt(cgiGet( sPrefix+"vFAILEDFILES"), AV9FailedFiles);
             /* Read saved values. */
-            AV12text = cgiGet( sPrefix+"vTEXT");
-            AssignAttri(sPrefix, false, "AV12text", AV12text);
-            wcpOAV8fileName = cgiGet( sPrefix+"wcpOAV8fileName");
-            Text_Enabled = StringUtil.StrToBool( cgiGet( sPrefix+"TEXT_Enabled"));
-            Text_Skin = cgiGet( sPrefix+"TEXT_Skin");
-            Text_Toolbar = cgiGet( sPrefix+"TEXT_Toolbar");
-            Text_Captionclass = cgiGet( sPrefix+"TEXT_Captionclass");
-            Text_Captionstyle = cgiGet( sPrefix+"TEXT_Captionstyle");
-            Text_Captionposition = cgiGet( sPrefix+"TEXT_Captionposition");
+            Fileupload_Autoupload = StringUtil.StrToBool( cgiGet( sPrefix+"FILEUPLOAD_Autoupload"));
+            Fileupload_Hideadditionalbuttons = StringUtil.StrToBool( cgiGet( sPrefix+"FILEUPLOAD_Hideadditionalbuttons"));
+            Fileupload_Maxfilesize = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"FILEUPLOAD_Maxfilesize"), ".", ","), 18, MidpointRounding.ToEven));
+            Fileupload_Maxnumberoffiles = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"FILEUPLOAD_Maxnumberoffiles"), ".", ","), 18, MidpointRounding.ToEven));
+            Fileupload_Autodisableaddingfiles = StringUtil.StrToBool( cgiGet( sPrefix+"FILEUPLOAD_Autodisableaddingfiles"));
             /* Read variables values. */
-            AV5description = cgiGet( edtavDescription_Internalname);
-            AssignAttri(sPrefix, false, "AV5description", AV5description);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -827,106 +806,83 @@ namespace GeneXus.Programs.wallet {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E120D2 ();
+         E122C2 ();
          if (returnInSub) return;
       }
 
-      protected void E120D2( )
+      protected void E122C2( )
       {
          /* Start Routine */
          returnInSub = false;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV8fileName)) )
-         {
-            edtavDescription_Enabled = 0;
-            AssignProp(sPrefix, false, edtavDescription_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavDescription_Enabled), 5, 0), true);
-            AV10note.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  StringUtil.Trim( AV8fileName), out  AV6error), null);
-            AV5description = AV10note.gxTpr_Description;
-            AssignAttri(sPrefix, false, "AV5description", AV5description);
-            AV12text = AV10note.gxTpr_Notetext;
-            AssignAttri(sPrefix, false, "AV12text", AV12text);
-            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
-            {
-               this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"Note ",(string)AV6error}, true);
-            }
-         }
+         GXt_SdtWallet1 = AV18wallet;
+         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet1) ;
+         AV18wallet = GXt_SdtWallet1;
+         Fileupload_Maxfilesize = 999999999;
+         ucFileupload.SendProperty(context, sPrefix, false, Fileupload_Internalname, "MaxFileSize", StringUtil.LTrimStr( (decimal)(Fileupload_Maxfilesize), 9, 0));
+         GXt_SdtExternalUser2 = AV19externalUser;
+         new GeneXus.Programs.distcrypt.getexternaluser(context ).execute( out  GXt_SdtExternalUser2) ;
+         AV19externalUser = GXt_SdtExternalUser2;
       }
 
-      protected void E130D2( )
+      protected void E112C2( )
       {
-         /* 'Save' Routine */
+         /* Fileupload_Uploadcomplete Routine */
          returnInSub = false;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV8fileName)) )
+         AV20GXV1 = 1;
+         while ( AV20GXV1 <= AV17UploadedFiles.Count )
          {
-            AV10note.gxTpr_Notetext = AV12text;
-            GXt_char1 = AV6error;
-            new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  StringUtil.Trim( AV8fileName),  AV10note.ToJSonString(false, true), out  GXt_char1) ;
-            AV6error = GXt_char1;
-            AssignAttri(sPrefix, false, "AV6error", AV6error);
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
+            AV11FileUploadData = ((SdtFileUploadData)AV17UploadedFiles.Item(AV20GXV1));
+            AV16tempBlob = AV11FileUploadData.gxTpr_File;
+            AV10File.Source = AV16tempBlob;
+            AV13newRndName = Guid.NewGuid( ).ToString();
+            AV6directory.Source = StringUtil.StringReplace( AV10File.GetPath(), "PrivateTempStorage", "PublicTempStorage");
+            GXt_boolean3 = false;
+            new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
+            GXt_boolean4 = false;
+            new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean4) ;
+            AV7EncDestination = AV6directory.GetAbsoluteName() + (GXt_boolean4 ? "/" : "\\") + StringUtil.Trim( AV13newRndName);
+            GXt_char5 = AV8error;
+            new GeneXus.Programs.distributedcrypto.aesdecryptfileto(context ).execute(  AV10File.GetAbsoluteName(),  AV7EncDestination,  StringUtil.Trim( AV19externalUser.gxTpr_Keyinfo.gxTpr_Privatekey), out  GXt_char5) ;
+            AV8error = GXt_char5;
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
             {
-               this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "DoneWithNotes", new Object[] {}, true);
+               AV12newFile.Source = AV7EncDestination;
+               GXt_boolean4 = false;
+               new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean4) ;
+               GXt_boolean3 = false;
+               new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
+               AV15renamedFile = AV6directory.GetAbsoluteName() + (GXt_boolean3 ? "/" : "\\") + AV11FileUploadData.gxTpr_Name + "." + AV11FileUploadData.gxTpr_Extension;
+               AV12newFile.Rename(AV15renamedFile);
+               GXt_boolean4 = false;
+               new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean4) ;
+               GXt_boolean3 = false;
+               new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
+               AV7EncDestination = "PublicTempStorage" + (GXt_boolean3 ? "/" : "\\") + AV11FileUploadData.gxTpr_Name + "." + AV11FileUploadData.gxTpr_Extension;
+               this.executeExternalObjectMethod(sPrefix, false, "gx.extensions.web.window", "open", new Object[] {(string)AV7EncDestination}, false);
+               new GeneXus.Programs.wallet.deletefilewithdelay(context).executeSubmit(  AV7EncDestination) ;
+               GXt_boolean4 = false;
+               new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean4) ;
+               GXt_boolean3 = false;
+               new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
+               AV7EncDestination = "PublicTempStorage" + (GXt_boolean3 ? "/" : "\\") + StringUtil.Trim( AV13newRndName);
+               new GeneXus.Programs.wallet.deletefilewithdelay(context).executeSubmit(  AV7EncDestination) ;
+               this.executeUsercontrolMethod(sPrefix, false, "FILEUPLOADContainer", "Clear", "", new Object[] {});
+               this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"success",(string)"File decrypted!: ",(string)"Check your download folder"}, true);
             }
             else
             {
-               this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"Note ",(string)AV6error}, true);
+               GX_msglist.addItem(AV8error);
             }
-         }
-         else
-         {
-            GXt_SdtWallet2 = AV15wallet;
-            new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet2) ;
-            AV15wallet = GXt_SdtWallet2;
-            AV16directory.Source = AV15wallet.gxTpr_Walletbasedirectory;
-            AV17noteDirectory.Source = AV15wallet.gxTpr_Walletbasedirectory+"Notes";
-            if ( ! AV17noteDirectory.Exists() )
-            {
-               AV17noteDirectory.Create();
-            }
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV5description)) )
-            {
-               GX_msglist.addItem("The Description is mandatory");
-            }
-            else
-            {
-               if ( GxRegex.IsMatch(AV5description,"^[ ]") )
-               {
-                  GX_msglist.addItem("Spaces at the beginning of the name are not allowed");
-               }
-               else
-               {
-                  AV18newRndName = Guid.NewGuid( ).ToString();
-                  GXt_boolean3 = false;
-                  new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
-                  GXt_boolean4 = false;
-                  new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean4) ;
-                  AV19noteFileName = "Notes" + (GXt_boolean4 ? "/" : "\\") + StringUtil.Trim( AV18newRndName) + ".note";
-                  AV10note.gxTpr_Description = StringUtil.Trim( AV5description);
-                  AV10note.gxTpr_Created = DateTimeUtil.Now( context);
-                  AV10note.gxTpr_Notetext = AV12text;
-                  GXt_char1 = AV6error;
-                  new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  AV19noteFileName,  AV10note.ToJSonString(false, true), out  GXt_char1) ;
-                  AV6error = GXt_char1;
-                  AssignAttri(sPrefix, false, "AV6error", AV6error);
-                  if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
-                  {
-                     this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "DoneWithNotes", new Object[] {}, true);
-                  }
-                  else
-                  {
-                     this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"Note ",(string)AV6error}, true);
-                  }
-               }
-            }
+            AV20GXV1 = (int)(AV20GXV1+1);
          }
          /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV10note", AV10note);
       }
 
       protected void nextLoad( )
       {
       }
 
-      protected void E140D2( )
+      protected void E132C2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -936,8 +892,6 @@ namespace GeneXus.Programs.wallet {
       {
          createObjects();
          initialize();
-         AV8fileName = (string)getParm(obj,0);
-         AssignAttri(sPrefix, false, "AV8fileName", AV8fileName);
       }
 
       public override string getresponse( string sGXDynURL )
@@ -949,9 +903,9 @@ namespace GeneXus.Programs.wallet {
          nGotPars = (short)(1);
          nGXWrapped = (short)(1);
          context.SetWrapped(true);
-         PA0D2( ) ;
-         WS0D2( ) ;
-         WE0D2( ) ;
+         PA2C2( ) ;
+         WS2C2( ) ;
+         WE2C2( ) ;
          cleanup();
          context.SetWrapped(false);
          SaveComponentMsgList(sPrefix);
@@ -969,14 +923,13 @@ namespace GeneXus.Programs.wallet {
          {
             return  ;
          }
-         sCtrlAV8fileName = (string)((string)getParm(obj,0));
       }
 
       public override void componentrestorestate( string sPPrefix ,
                                                   string sPSFPrefix )
       {
          sPrefix = sPPrefix + sPSFPrefix;
-         PA0D2( ) ;
+         PA2C2( ) ;
          WCParametersGet( ) ;
       }
 
@@ -986,7 +939,7 @@ namespace GeneXus.Programs.wallet {
          sCompPrefix = (string)getParm(obj,0);
          sSFPrefix = (string)getParm(obj,1);
          sPrefix = sCompPrefix + sSFPrefix;
-         AddComponentObject(sPrefix, "wallet\\editnote", GetJustCreated( ));
+         AddComponentObject(sPrefix, "wallet\\receivefromuser", GetJustCreated( ));
          if ( ( nDoneStart == 0 ) && ( nDynComponent == 0 ) )
          {
             INITWEB( ) ;
@@ -996,37 +949,19 @@ namespace GeneXus.Programs.wallet {
             init_default_properties( ) ;
             init_web_controls( ) ;
          }
-         PA0D2( ) ;
+         PA2C2( ) ;
          if ( ! GetJustCreated( ) && ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 ) && ( context.wbGlbDoneStart == 0 ) )
          {
             WCParametersGet( ) ;
          }
          else
          {
-            AV8fileName = (string)getParm(obj,2);
-            AssignAttri(sPrefix, false, "AV8fileName", AV8fileName);
          }
-         wcpOAV8fileName = cgiGet( sPrefix+"wcpOAV8fileName");
-         if ( ! GetJustCreated( ) && ( ( StringUtil.StrCmp(AV8fileName, wcpOAV8fileName) != 0 ) ) )
-         {
-            setjustcreated();
-         }
-         wcpOAV8fileName = AV8fileName;
       }
 
       protected void WCParametersGet( )
       {
          /* Read Component Parameters. */
-         sCtrlAV8fileName = cgiGet( sPrefix+"AV8fileName_CTRL");
-         if ( StringUtil.Len( sCtrlAV8fileName) > 0 )
-         {
-            AV8fileName = cgiGet( sCtrlAV8fileName);
-            AssignAttri(sPrefix, false, "AV8fileName", AV8fileName);
-         }
-         else
-         {
-            AV8fileName = cgiGet( sPrefix+"AV8fileName_PARM");
-         }
       }
 
       public override void componentprocess( string sPPrefix ,
@@ -1040,10 +975,10 @@ namespace GeneXus.Programs.wallet {
          context.GX_msglist = LclMsgLst;
          INITWEB( ) ;
          nDraw = 0;
-         PA0D2( ) ;
+         PA2C2( ) ;
          sEvt = sCompEvt;
          WCParametersGet( ) ;
-         WS0D2( ) ;
+         WS2C2( ) ;
          if ( isFullAjaxMode( ) )
          {
             componentdraw();
@@ -1065,18 +1000,13 @@ namespace GeneXus.Programs.wallet {
          nDraw = 1;
          BackMsgLst = context.GX_msglist;
          context.GX_msglist = LclMsgLst;
-         WS0D2( ) ;
+         WS2C2( ) ;
          SaveComponentMsgList(sPrefix);
          context.GX_msglist = BackMsgLst;
       }
 
       protected void WCParametersSet( )
       {
-         GxWebStd.gx_hidden_field( context, sPrefix+"AV8fileName_PARM", AV8fileName);
-         if ( StringUtil.Len( StringUtil.RTrim( sCtrlAV8fileName)) > 0 )
-         {
-            GxWebStd.gx_hidden_field( context, sPrefix+"AV8fileName_CTRL", StringUtil.RTrim( sCtrlAV8fileName));
-         }
       }
 
       public override void componentdraw( )
@@ -1088,7 +1018,7 @@ namespace GeneXus.Programs.wallet {
          BackMsgLst = context.GX_msglist;
          context.GX_msglist = LclMsgLst;
          WCParametersSet( ) ;
-         WE0D2( ) ;
+         WE2C2( ) ;
          SaveComponentMsgList(sPrefix);
          context.GX_msglist = BackMsgLst;
       }
@@ -1119,6 +1049,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void define_styles( )
       {
+         AddStyleSheetFile("FileUpload/fileupload.min.css", "");
          AddThemeStyleSheetFile("", context.GetTheme( )+".css", "?"+GetCacheInvalidationToken( ));
          bool outputEnabled = isOutputEnabled( );
          if ( context.isSpaRequest( ) )
@@ -1128,7 +1059,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202541513132949", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254151313199", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1144,9 +1075,9 @@ namespace GeneXus.Programs.wallet {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/editnote.js", "?202541513132949", false, true);
-         context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true);
-         context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true);
+         context.AddJavascriptSource("wallet/receivefromuser.js", "?20254151313199", false, true);
+         context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
+         context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
          /* End function include_jscripts */
       }
 
@@ -1157,10 +1088,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void init_default_properties( )
       {
-         edtavDescription_Internalname = sPrefix+"vDESCRIPTION";
-         Text_Internalname = sPrefix+"TEXT";
-         bttSave_Internalname = sPrefix+"SAVE";
-         bttCancel_Internalname = sPrefix+"CANCEL";
+         Fileupload_Internalname = sPrefix+"FILEUPLOAD";
          divMaintable_Internalname = sPrefix+"MAINTABLE";
          Form.Internalname = sPrefix+"FORM";
       }
@@ -1179,14 +1107,12 @@ namespace GeneXus.Programs.wallet {
             }
          }
          init_default_properties( ) ;
-         Text_Enabled = Convert.ToBoolean( 1);
-         edtavDescription_Jsonclick = "";
-         edtavDescription_Enabled = 1;
-         Text_Captionposition = "Left";
-         Text_Captionstyle = "";
-         Text_Captionclass = "col-sm-3 AttributeLabel";
-         Text_Toolbar = "Basic";
-         Text_Skin = "default";
+         Fileupload_Tooltiptext = "";
+         Fileupload_Autodisableaddingfiles = Convert.ToBoolean( -1);
+         Fileupload_Maxnumberoffiles = 1;
+         Fileupload_Maxfilesize = 134217728;
+         Fileupload_Hideadditionalbuttons = Convert.ToBoolean( -1);
+         Fileupload_Autoupload = Convert.ToBoolean( -1);
          if ( StringUtil.Len( sPrefix) == 0 )
          {
             if ( context.isSpaRequest( ) )
@@ -1203,10 +1129,8 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
-         setEventMetadata("'SAVE'","""{"handler":"E130D2","iparms":[{"av":"AV8fileName","fld":"vFILENAME","type":"svchar"},{"av":"AV12text","fld":"vTEXT","type":"vchar"},{"av":"AV10note","fld":"vNOTE","type":""},{"av":"AV5description","fld":"vDESCRIPTION","type":"char"}]""");
-         setEventMetadata("'SAVE'",""","oparms":[{"av":"AV10note","fld":"vNOTE","type":""},{"av":"AV6error","fld":"vERROR","type":"char"}]}""");
-         setEventMetadata("'CANCEL AND RETURN'","""{"handler":"E110D1","iparms":[]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV19externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""}]}""");
+         setEventMetadata("FILEUPLOAD.UPLOADCOMPLETE","""{"handler":"E112C2","iparms":[{"av":"AV17UploadedFiles","fld":"vUPLOADEDFILES","type":""},{"av":"AV19externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""}]}""");
          return  ;
       }
 
@@ -1219,43 +1143,46 @@ namespace GeneXus.Programs.wallet {
          }
       }
 
+      public override bool UploadEnabled( )
+      {
+         return true ;
+      }
+
       public override void initialize( )
       {
-         wcpOAV8fileName = "";
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
          sPrefix = "";
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
+         AV19externalUser = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
          GXKey = "";
-         AV12text = "";
-         AV10note = new GeneXus.Programs.wallet.SdtNote(context);
+         AV17UploadedFiles = new GXBaseCollection<SdtFileUploadData>( context, "FileUploadData", "distributedcryptography");
+         AV9FailedFiles = new GXBaseCollection<SdtFileUploadData>( context, "FileUploadData", "distributedcryptography");
          GX_FocusControl = "";
-         TempTags = "";
-         AV5description = "";
-         ucText = new GXUserControl();
-         ClassString = "";
-         StyleString = "";
-         bttSave_Jsonclick = "";
-         bttCancel_Jsonclick = "";
+         ucFileupload = new GXUserControl();
          Form = new GXWebForm();
          sXEvt = "";
          sEvt = "";
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
-         AV6error = "";
-         AV15wallet = new GeneXus.Programs.wallet.SdtWallet(context);
-         GXt_SdtWallet2 = new GeneXus.Programs.wallet.SdtWallet(context);
-         AV16directory = new GxDirectory(context.GetPhysicalPath());
-         AV17noteDirectory = new GxDirectory(context.GetPhysicalPath());
-         AV18newRndName = "";
-         AV19noteFileName = "";
-         GXt_char1 = "";
+         AV18wallet = new GeneXus.Programs.wallet.SdtWallet(context);
+         GXt_SdtWallet1 = new GeneXus.Programs.wallet.SdtWallet(context);
+         GXt_SdtExternalUser2 = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
+         AV11FileUploadData = new SdtFileUploadData(context);
+         AV16tempBlob = "";
+         AV10File = new GxFile(context.GetPhysicalPath());
+         AV13newRndName = "";
+         AV6directory = new GxDirectory(context.GetPhysicalPath());
+         AV7EncDestination = "";
+         AV8error = "";
+         GXt_char5 = "";
+         AV12newFile = new GxFile(context.GetPhysicalPath());
+         AV15renamedFile = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
-         sCtrlAV8fileName = "";
          /* GeneXus formulas. */
       }
 
@@ -1269,7 +1196,9 @@ namespace GeneXus.Programs.wallet {
       private short nDonePA ;
       private short gxcookieaux ;
       private short nGXWrapped ;
-      private int edtavDescription_Enabled ;
+      private int Fileupload_Maxfilesize ;
+      private int Fileupload_Maxnumberoffiles ;
+      private int AV20GXV1 ;
       private int idxLst ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
@@ -1280,55 +1209,46 @@ namespace GeneXus.Programs.wallet {
       private string FormProcess ;
       private string bodyStyle ;
       private string GXKey ;
-      private string Text_Skin ;
-      private string Text_Toolbar ;
-      private string Text_Captionclass ;
-      private string Text_Captionstyle ;
-      private string Text_Captionposition ;
       private string GX_FocusControl ;
       private string divMaintable_Internalname ;
-      private string edtavDescription_Internalname ;
-      private string TempTags ;
-      private string AV5description ;
-      private string edtavDescription_Jsonclick ;
-      private string Text_Internalname ;
-      private string ClassString ;
-      private string StyleString ;
-      private string bttSave_Internalname ;
-      private string bttSave_Jsonclick ;
-      private string bttCancel_Internalname ;
-      private string bttCancel_Jsonclick ;
+      private string Fileupload_Tooltiptext ;
+      private string Fileupload_Internalname ;
       private string sXEvt ;
       private string sEvt ;
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
-      private string AV6error ;
-      private string AV18newRndName ;
-      private string AV19noteFileName ;
-      private string GXt_char1 ;
-      private string sCtrlAV8fileName ;
+      private string AV13newRndName ;
+      private string AV7EncDestination ;
+      private string AV8error ;
+      private string GXt_char5 ;
+      private string AV15renamedFile ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
-      private bool Text_Enabled ;
+      private bool Fileupload_Autoupload ;
+      private bool Fileupload_Hideadditionalbuttons ;
+      private bool Fileupload_Autodisableaddingfiles ;
       private bool wbLoad ;
       private bool Rfr0gs ;
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
-      private bool GXt_boolean3 ;
       private bool GXt_boolean4 ;
-      private string AV12text ;
-      private string AV8fileName ;
-      private string wcpOAV8fileName ;
-      private GXUserControl ucText ;
+      private bool GXt_boolean3 ;
+      private string AV16tempBlob ;
+      private GXUserControl ucFileupload ;
       private GXWebForm Form ;
-      private GxDirectory AV16directory ;
-      private GxDirectory AV17noteDirectory ;
+      private GxFile AV10File ;
+      private GxFile AV12newFile ;
+      private GxDirectory AV6directory ;
       private IGxDataStore dsDefault ;
-      private GeneXus.Programs.wallet.SdtNote AV10note ;
-      private GeneXus.Programs.wallet.SdtWallet AV15wallet ;
-      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet2 ;
+      private GeneXus.Programs.distcrypt.SdtExternalUser AV19externalUser ;
+      private GXBaseCollection<SdtFileUploadData> AV17UploadedFiles ;
+      private GXBaseCollection<SdtFileUploadData> AV9FailedFiles ;
+      private GeneXus.Programs.wallet.SdtWallet AV18wallet ;
+      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
+      private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser2 ;
+      private SdtFileUploadData AV11FileUploadData ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

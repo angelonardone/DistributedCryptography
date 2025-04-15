@@ -695,7 +695,7 @@ namespace GeneXus.Programs.qrcoder {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254215272979", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202541513141094", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -711,7 +711,7 @@ namespace GeneXus.Programs.qrcoder {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("qrcoder/createqrcode.js", "?20254215272980", false, true);
+         context.AddJavascriptSource("qrcoder/createqrcode.js", "?202541513141094", false, true);
          /* End function include_jscripts */
       }
 

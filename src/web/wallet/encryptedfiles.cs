@@ -97,16 +97,6 @@ namespace GeneXus.Programs.wallet {
                }
                gxfirstwebparm = GetNextPar( );
             }
-            else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxNewRow_"+"Gridfiles") == 0 )
-            {
-               gxnrGridfiles_newrow_invoke( ) ;
-               return  ;
-            }
-            else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxGridRefresh_"+"Gridfiles") == 0 )
-            {
-               gxgrGridfiles_refresh_invoke( ) ;
-               return  ;
-            }
             else
             {
                if ( ! IsValidAjaxCall( false) )
@@ -128,36 +118,6 @@ namespace GeneXus.Programs.wallet {
          {
             context.PushCurrentUrl();
          }
-      }
-
-      protected void gxnrGridfiles_newrow_invoke( )
-      {
-         nRC_GXsfl_9 = (int)(Math.Round(NumberUtil.Val( GetPar( "nRC_GXsfl_9"), "."), 18, MidpointRounding.ToEven));
-         nGXsfl_9_idx = (int)(Math.Round(NumberUtil.Val( GetPar( "nGXsfl_9_idx"), "."), 18, MidpointRounding.ToEven));
-         sGXsfl_9_idx = GetPar( "sGXsfl_9_idx");
-         setAjaxCallMode();
-         if ( ! IsValidAjaxCall( true) )
-         {
-            GxWebError = 1;
-            return  ;
-         }
-         gxnrGridfiles_newrow( ) ;
-         /* End function gxnrGridfiles_newrow_invoke */
-      }
-
-      protected void gxgrGridfiles_refresh_invoke( )
-      {
-         ajax_req_read_hidden_sdt(GetNextPar( ), AV23wallet);
-         ajax_req_read_hidden_sdt(GetNextPar( ), AV27keyInfo);
-         setAjaxCallMode();
-         if ( ! IsValidAjaxCall( true) )
-         {
-            GxWebError = 1;
-            return  ;
-         }
-         gxgrGridfiles_refresh( AV23wallet, AV27keyInfo) ;
-         AddString( context.getJSONResponse( )) ;
-         /* End function gxgrGridfiles_refresh_invoke */
       }
 
       public override void webExecute( )
@@ -247,10 +207,11 @@ namespace GeneXus.Programs.wallet {
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 123260), false, true);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 123260), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 123260), false, true);
-         context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
+         context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
+         context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
+         context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);
+         context.AddJavascriptSource("shared/HistoryManager/HistoryManagerCreate.js", "", false, true);
+         context.AddJavascriptSource("Tab/BasicTabRender.js", "", false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -290,24 +251,6 @@ namespace GeneXus.Programs.wallet {
 
       protected void send_integrity_footer_hashes( )
       {
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLET", AV23wallet);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLET", AV23wallet);
-         }
-         GxWebStd.gx_hidden_field( context, "gxhash_vWALLET", GetSecureSignedToken( "", AV23wallet, context));
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vKEYINFO", AV27keyInfo);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vKEYINFO", AV27keyInfo);
-         }
-         GxWebStd.gx_hidden_field( context, "gxhash_vKEYINFO", GetSecureSignedToken( "", AV27keyInfo, context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -316,82 +259,9 @@ namespace GeneXus.Programs.wallet {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "Encryptedfiles", AV10encryptedFiles);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("Encryptedfiles", AV10encryptedFiles);
-         }
-         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_9", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_9), 8, 0, ".", "")));
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vUPLOADEDFILES", AV21UploadedFiles);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vUPLOADEDFILES", AV21UploadedFiles);
-         }
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vFAILEDFILES", AV14FailedFiles);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vFAILEDFILES", AV14FailedFiles);
-         }
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLET", AV23wallet);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLET", AV23wallet);
-         }
-         GxWebStd.gx_hidden_field( context, "gxhash_vWALLET", GetSecureSignedToken( "", AV23wallet, context));
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vKEYINFO", AV27keyInfo);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vKEYINFO", AV27keyInfo);
-         }
-         GxWebStd.gx_hidden_field( context, "gxhash_vKEYINFO", GetSecureSignedToken( "", AV27keyInfo, context));
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vENCRYPTEDFILE", AV9encryptedFile);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vENCRYPTEDFILE", AV9encryptedFile);
-         }
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vENCRYPTEDFILES", AV10encryptedFiles);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vENCRYPTEDFILES", AV10encryptedFiles);
-         }
-         GxWebStd.gx_boolean_hidden_field( context, "vUSERRESPONSE", AV22UserResponse);
-         GxWebStd.gx_boolean_hidden_field( context, "vFROMDELETEFILE", AV32fromDeleteFile);
-         GxWebStd.gx_hidden_field( context, "vFILENAME", StringUtil.RTrim( AV30FileName));
-         GxWebStd.gx_hidden_field( context, "vENCRYPTEDKEY", StringUtil.RTrim( AV11encryptedKey));
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vDOWNLOADENCRYPTEDFILE", AV7downloadEncryptedFile);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vDOWNLOADENCRYPTEDFILE", AV7downloadEncryptedFile);
-         }
-         GxWebStd.gx_hidden_field( context, "FILEUPLOAD_Autoupload", StringUtil.BoolToStr( Fileupload_Autoupload));
-         GxWebStd.gx_hidden_field( context, "FILEUPLOAD_Hideadditionalbuttons", StringUtil.BoolToStr( Fileupload_Hideadditionalbuttons));
-         GxWebStd.gx_hidden_field( context, "FILEUPLOAD_Maxfilesize", StringUtil.LTrim( StringUtil.NToC( (decimal)(Fileupload_Maxfilesize), 9, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "FILEUPLOAD_Maxnumberoffiles", StringUtil.LTrim( StringUtil.NToC( (decimal)(Fileupload_Maxnumberoffiles), 9, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "FILEUPLOAD_Autodisableaddingfiles", StringUtil.BoolToStr( Fileupload_Autodisableaddingfiles));
+         GxWebStd.gx_hidden_field( context, "TABS_Pagecount", StringUtil.LTrim( StringUtil.NToC( (decimal)(Tabs_Pagecount), 9, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "TABS_Class", StringUtil.RTrim( Tabs_Class));
+         GxWebStd.gx_hidden_field( context, "TABS_Historymanagement", StringUtil.BoolToStr( Tabs_Historymanagement));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -413,6 +283,18 @@ namespace GeneXus.Programs.wallet {
             enableOutput();
          }
          include_jscripts( ) ;
+         if ( ! ( WebComp_Component1 == null ) )
+         {
+            WebComp_Component1.componentjscripts();
+         }
+         if ( ! ( WebComp_Component2 == null ) )
+         {
+            WebComp_Component2.componentjscripts();
+         }
+         if ( ! ( WebComp_Component3 == null ) )
+         {
+            WebComp_Component3.componentjscripts();
+         }
       }
 
       public override void RenderHtmlContent( )
@@ -481,87 +363,125 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* User Defined Control */
-            ucFileupload.SetProperty("AutoUpload", Fileupload_Autoupload);
-            ucFileupload.SetProperty("HideAdditionalButtons", Fileupload_Hideadditionalbuttons);
-            ucFileupload.SetProperty("TooltipText", Fileupload_Tooltiptext);
-            ucFileupload.SetProperty("MaxNumberOfFiles", Fileupload_Maxnumberoffiles);
-            ucFileupload.SetProperty("AutoDisableAddingFiles", Fileupload_Autodisableaddingfiles);
-            ucFileupload.SetProperty("UploadedFiles", AV21UploadedFiles);
-            ucFileupload.SetProperty("FailedFiles", AV14FailedFiles);
-            ucFileupload.Render(context, "fileupload", Fileupload_Internalname, "FILEUPLOADContainer");
+            ucTabs.SetProperty("PageCount", Tabs_Pagecount);
+            ucTabs.SetProperty("Class", Tabs_Class);
+            ucTabs.SetProperty("HistoryManagement", Tabs_Historymanagement);
+            ucTabs.Render(context, "basictab", Tabs_Internalname, "TABSContainer");
+            context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"title1"+"\" style=\"display:none;\">") ;
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblLocalfiles_title_Internalname, "Local Files", "", "", lblLocalfiles_title_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Wallet/EncryptedFiles.htm");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "Section", "start", "top", "", "display:none;", "div");
+            context.WriteHtmlText( "LocalFiles") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
+            context.WriteHtmlText( "</div>") ;
+            context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"panel1"+"\" style=\"display:none;\">") ;
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divTabpage1table_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
-            /*  Grid Control  */
-            GridfilesContainer.SetWrapped(nGXWrapped);
-            StartGridControl9( ) ;
-         }
-         if ( wbEnd == 9 )
-         {
-            wbEnd = 0;
-            nRC_GXsfl_9 = (int)(nGXsfl_9_idx-1);
-            if ( GridfilesContainer.GetWrapped() == 1 )
+            if ( ! isFullAjaxMode( ) )
             {
-               context.WriteHtmlText( "</table>") ;
+               /* WebComponent */
+               context.WriteHtmlText( "<div") ;
+               GxWebStd.ClassAttribute( context, "gxwebcomponent");
+               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0014"+""+"\""+"") ;
+               context.WriteHtmlText( ">") ;
+               if ( ! context.isAjaxRequest( ) )
+               {
+                  context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0014"+"");
+               }
+               WebComp_Component1.componentdraw();
+               if ( ! context.isAjaxRequest( ) )
+               {
+                  context.httpAjaxContext.ajax_rspEndCmp();
+               }
                context.WriteHtmlText( "</div>") ;
             }
-            else
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            context.WriteHtmlText( "</div>") ;
+            context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"title2"+"\" style=\"display:none;\">") ;
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblSendto_title_Internalname, "Encrypt for a user", "", "", lblSendto_title_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Wallet/EncryptedFiles.htm");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "Section", "start", "top", "", "display:none;", "div");
+            context.WriteHtmlText( "SendTo") ;
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            context.WriteHtmlText( "</div>") ;
+            context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"panel2"+"\" style=\"display:none;\">") ;
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divTabpage2table_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            if ( ! isFullAjaxMode( ) )
             {
-               AV33GXV1 = nGXsfl_9_idx;
-               sStyleString = "";
-               context.WriteHtmlText( "<div id=\""+"GridfilesContainer"+"Div\" "+sStyleString+">"+"</div>") ;
-               context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Gridfiles", GridfilesContainer, subGridfiles_Internalname);
-               if ( ! context.isAjaxRequest( ) && ! context.isSpaRequest( ) )
+               /* WebComponent */
+               context.WriteHtmlText( "<div") ;
+               GxWebStd.ClassAttribute( context, "gxwebcomponent");
+               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0022"+""+"\""+"") ;
+               context.WriteHtmlText( ">") ;
+               if ( ! context.isAjaxRequest( ) )
                {
-                  GxWebStd.gx_hidden_field( context, "GridfilesContainerData", GridfilesContainer.ToJavascriptSource());
+                  context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0022"+"");
                }
-               if ( context.isAjaxRequest( ) || context.isSpaRequest( ) )
+               WebComp_Component2.componentdraw();
+               if ( ! context.isAjaxRequest( ) )
                {
-                  GxWebStd.gx_hidden_field( context, "GridfilesContainerData"+"V", GridfilesContainer.GridValuesHidden());
+                  context.httpAjaxContext.ajax_rspEndCmp();
                }
-               else
-               {
-                  context.WriteHtmlText( "<input type=\"hidden\" "+"name=\""+"GridfilesContainerData"+"V"+"\" value='"+GridfilesContainer.GridValuesHidden()+"'/>") ;
-               }
+               context.WriteHtmlText( "</div>") ;
             }
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
+            context.WriteHtmlText( "</div>") ;
+            context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"title3"+"\" style=\"display:none;\">") ;
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblReceived_title_Internalname, "Received from a User", "", "", lblReceived_title_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Wallet/EncryptedFiles.htm");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "Section", "start", "top", "", "display:none;", "div");
+            context.WriteHtmlText( "Received") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
-         }
-         if ( wbEnd == 9 )
-         {
-            wbEnd = 0;
-            if ( isFullAjaxMode( ) )
+            context.WriteHtmlText( "</div>") ;
+            context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"panel3"+"\" style=\"display:none;\">") ;
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divTabpage3table_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            if ( ! isFullAjaxMode( ) )
             {
-               if ( GridfilesContainer.GetWrapped() == 1 )
+               /* WebComponent */
+               context.WriteHtmlText( "<div") ;
+               GxWebStd.ClassAttribute( context, "gxwebcomponent");
+               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0030"+""+"\""+"") ;
+               context.WriteHtmlText( ">") ;
+               if ( ! context.isAjaxRequest( ) )
                {
-                  context.WriteHtmlText( "</table>") ;
-                  context.WriteHtmlText( "</div>") ;
+                  context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0030"+"");
                }
-               else
+               WebComp_Component3.componentdraw();
+               if ( ! context.isAjaxRequest( ) )
                {
-                  AV33GXV1 = nGXsfl_9_idx;
-                  sStyleString = "";
-                  context.WriteHtmlText( "<div id=\""+"GridfilesContainer"+"Div\" "+sStyleString+">"+"</div>") ;
-                  context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Gridfiles", GridfilesContainer, subGridfiles_Internalname);
-                  if ( ! context.isAjaxRequest( ) && ! context.isSpaRequest( ) )
-                  {
-                     GxWebStd.gx_hidden_field( context, "GridfilesContainerData", GridfilesContainer.ToJavascriptSource());
-                  }
-                  if ( context.isAjaxRequest( ) || context.isSpaRequest( ) )
-                  {
-                     GxWebStd.gx_hidden_field( context, "GridfilesContainerData"+"V", GridfilesContainer.GridValuesHidden());
-                  }
-                  else
-                  {
-                     context.WriteHtmlText( "<input type=\"hidden\" "+"name=\""+"GridfilesContainerData"+"V"+"\" value='"+GridfilesContainer.GridValuesHidden()+"'/>") ;
-                  }
+                  context.httpAjaxContext.ajax_rspEndCmp();
                }
+               context.WriteHtmlText( "</div>") ;
             }
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            context.WriteHtmlText( "</div>") ;
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
          }
          wbLoad = true;
       }
@@ -622,18 +542,25 @@ namespace GeneXus.Programs.wallet {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                            }
-                           else if ( StringUtil.StrCmp(sEvt, "FILEUPLOAD.UPLOADCOMPLETE") == 0 )
+                           else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
-                              /* Execute user event: Fileupload.Uploadcomplete */
+                              /* Execute user event: Load */
                               E11112 ();
                            }
-                           else if ( StringUtil.StrCmp(sEvt, "GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED") == 0 )
+                           else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                            {
                               context.wbHandled = 1;
-                              dynload_actions( ) ;
-                              E12112 ();
+                              if ( ! wbErr )
+                              {
+                                 Rfr0gs = false;
+                                 if ( ! Rfr0gs )
+                                 {
+                                 }
+                                 dynload_actions( ) ;
+                              }
+                              /* No code required for Cancel button. It is implemented as the Reset button. */
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LSCR") == 0 )
                            {
@@ -644,82 +571,36 @@ namespace GeneXus.Programs.wallet {
                         }
                         else
                         {
-                           sEvtType = StringUtil.Right( sEvt, 4);
-                           sEvt = StringUtil.Left( sEvt, (short)(StringUtil.Len( sEvt)-4));
-                           if ( ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "START") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 7), "REFRESH") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 22), "'DECRYPT AND DOWNLOAD'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 13), "'DELETE FILE'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 14), "GRIDFILES.LOAD") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "ENTER") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 6), "CANCEL") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 22), "'DECRYPT AND DOWNLOAD'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 13), "'DELETE FILE'") == 0 ) )
-                           {
-                              nGXsfl_9_idx = (int)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
-                              sGXsfl_9_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_idx), 4, 0), 4, "0");
-                              SubsflControlProps_92( ) ;
-                              AV33GXV1 = nGXsfl_9_idx;
-                              if ( ( AV10encryptedFiles.Count >= AV33GXV1 ) && ( AV33GXV1 > 0 ) )
-                              {
-                                 AV10encryptedFiles.CurrentItem = ((GeneXus.Programs.wallet.SdtEncryptedFile)AV10encryptedFiles.Item(AV33GXV1));
-                                 AV28deleteFile = cgiGet( edtavDeletefile_Internalname);
-                                 AssignAttri("", false, edtavDeletefile_Internalname, AV28deleteFile);
-                              }
-                              sEvtType = StringUtil.Right( sEvt, 1);
-                              if ( StringUtil.StrCmp(sEvtType, ".") == 0 )
-                              {
-                                 sEvt = StringUtil.Left( sEvt, (short)(StringUtil.Len( sEvt)-1));
-                                 if ( StringUtil.StrCmp(sEvt, "START") == 0 )
-                                 {
-                                    context.wbHandled = 1;
-                                    dynload_actions( ) ;
-                                    /* Execute user event: Start */
-                                    E13112 ();
-                                 }
-                                 else if ( StringUtil.StrCmp(sEvt, "REFRESH") == 0 )
-                                 {
-                                    context.wbHandled = 1;
-                                    dynload_actions( ) ;
-                                    /* Execute user event: Refresh */
-                                    E14112 ();
-                                 }
-                                 else if ( StringUtil.StrCmp(sEvt, "'DECRYPT AND DOWNLOAD'") == 0 )
-                                 {
-                                    context.wbHandled = 1;
-                                    dynload_actions( ) ;
-                                    /* Execute user event: 'Decrypt and download' */
-                                    E15112 ();
-                                 }
-                                 else if ( StringUtil.StrCmp(sEvt, "'DELETE FILE'") == 0 )
-                                 {
-                                    context.wbHandled = 1;
-                                    dynload_actions( ) ;
-                                    /* Execute user event: 'Delete File' */
-                                    E16112 ();
-                                 }
-                                 else if ( StringUtil.StrCmp(sEvt, "GRIDFILES.LOAD") == 0 )
-                                 {
-                                    context.wbHandled = 1;
-                                    dynload_actions( ) ;
-                                    /* Execute user event: Gridfiles.Load */
-                                    E17112 ();
-                                 }
-                                 else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
-                                 {
-                                    context.wbHandled = 1;
-                                    if ( ! wbErr )
-                                    {
-                                       Rfr0gs = false;
-                                       if ( ! Rfr0gs )
-                                       {
-                                       }
-                                       dynload_actions( ) ;
-                                    }
-                                    /* No code required for Cancel button. It is implemented as the Reset button. */
-                                 }
-                                 else if ( StringUtil.StrCmp(sEvt, "LSCR") == 0 )
-                                 {
-                                    context.wbHandled = 1;
-                                    dynload_actions( ) ;
-                                 }
-                              }
-                              else
-                              {
-                              }
-                           }
+                        }
+                     }
+                     else if ( StringUtil.StrCmp(sEvtType, "W") == 0 )
+                     {
+                        sEvtType = StringUtil.Left( sEvt, 4);
+                        sEvt = StringUtil.Right( sEvt, (short)(StringUtil.Len( sEvt)-4));
+                        nCmpId = (short)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
+                        if ( nCmpId == 14 )
+                        {
+                           WebComp_Component1 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.encryptedlocalfiles", new Object[] {context} );
+                           WebComp_Component1.ComponentInit();
+                           WebComp_Component1.Name = "Wallet.EncryptedLocalFiles";
+                           WebComp_Component1_Component = "Wallet.EncryptedLocalFiles";
+                           WebComp_Component1.componentprocess("W0014", "", sEvt);
+                        }
+                        else if ( nCmpId == 22 )
+                        {
+                           WebComp_Component2 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.encryptto", new Object[] {context} );
+                           WebComp_Component2.ComponentInit();
+                           WebComp_Component2.Name = "Wallet.EncryptTo";
+                           WebComp_Component2_Component = "Wallet.EncryptTo";
+                           WebComp_Component2.componentprocess("W0022", "", sEvt);
+                        }
+                        else if ( nCmpId == 30 )
+                        {
+                           WebComp_Component3 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.receivefromuser", new Object[] {context} );
+                           WebComp_Component3.ComponentInit();
+                           WebComp_Component3.Name = "Wallet.ReceiveFromUser";
+                           WebComp_Component3_Component = "Wallet.ReceiveFromUser";
+                           WebComp_Component3.componentprocess("W0030", "", sEvt);
                         }
                      }
                      context.wbHandled = 1;
@@ -779,34 +660,6 @@ namespace GeneXus.Programs.wallet {
          /* End function dynload_actions */
       }
 
-      protected void gxnrGridfiles_newrow( )
-      {
-         GxWebStd.set_html_headers( context, 0, "", "");
-         SubsflControlProps_92( ) ;
-         while ( nGXsfl_9_idx <= nRC_GXsfl_9 )
-         {
-            sendrow_92( ) ;
-            nGXsfl_9_idx = ((subGridfiles_Islastpage==1)&&(nGXsfl_9_idx+1>subGridfiles_fnc_Recordsperpage( )) ? 1 : nGXsfl_9_idx+1);
-            sGXsfl_9_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_idx), 4, 0), 4, "0");
-            SubsflControlProps_92( ) ;
-         }
-         AddString( context.httpAjaxContext.getJSONContainerResponse( GridfilesContainer)) ;
-         /* End function gxnrGridfiles_newrow */
-      }
-
-      protected void gxgrGridfiles_refresh( GeneXus.Programs.wallet.SdtWallet AV23wallet ,
-                                            GeneXus.Programs.nbitcoin.SdtKeyInfo AV27keyInfo )
-      {
-         initialize_formulas( ) ;
-         GxWebStd.set_html_headers( context, 0, "", "");
-         GRIDFILES_nCurrentRecord = 0;
-         RF112( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-         send_integrity_footer_hashes( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-         /* End function gxgrGridfiles_refresh */
-      }
-
       protected void send_integrity_hashes( )
       {
       }
@@ -837,95 +690,98 @@ namespace GeneXus.Programs.wallet {
       protected void initialize_formulas( )
       {
          /* GeneXus formulas. */
-         edtavCtlfilename_Enabled = 0;
-         edtavCtlcreate_Enabled = 0;
-         edtavDeletefile_Enabled = 0;
       }
 
       protected void RF112( )
       {
          initialize_formulas( ) ;
          clear_multi_value_controls( ) ;
-         if ( isAjaxCallMode( ) )
+         if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
-            GridfilesContainer.ClearRows();
+            if ( StringUtil.StrCmp(WebComp_Component1_Component, "") == 0 )
+            {
+               WebComp_Component1 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.encryptedlocalfiles", new Object[] {context} );
+               WebComp_Component1.ComponentInit();
+               WebComp_Component1.Name = "Wallet.EncryptedLocalFiles";
+               WebComp_Component1_Component = "Wallet.EncryptedLocalFiles";
+            }
+            WebComp_Component1.setjustcreated();
+            WebComp_Component1.componentprepare(new Object[] {(string)"W0014",(string)""});
+            WebComp_Component1.componentbind(new Object[] {});
+            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Component1 )
+            {
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0014"+"");
+               WebComp_Component1.componentdraw();
+               context.httpAjaxContext.ajax_rspEndCmp();
+            }
+            if ( 1 != 0 )
+            {
+               WebComp_Component1.componentstart();
+            }
          }
-         wbStart = 9;
-         /* Execute user event: Refresh */
-         E14112 ();
-         nGXsfl_9_idx = 1;
-         sGXsfl_9_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_idx), 4, 0), 4, "0");
-         SubsflControlProps_92( ) ;
-         bGXsfl_9_Refreshing = true;
-         GridfilesContainer.AddObjectProperty("GridName", "Gridfiles");
-         GridfilesContainer.AddObjectProperty("CmpContext", "");
-         GridfilesContainer.AddObjectProperty("InMasterPage", "false");
-         GridfilesContainer.AddObjectProperty("Class", "Grid");
-         GridfilesContainer.AddObjectProperty("Cellpadding", StringUtil.LTrim( StringUtil.NToC( (decimal)(1), 4, 0, ".", "")));
-         GridfilesContainer.AddObjectProperty("Cellspacing", StringUtil.LTrim( StringUtil.NToC( (decimal)(2), 4, 0, ".", "")));
-         GridfilesContainer.AddObjectProperty("Backcolorstyle", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridfiles_Backcolorstyle), 1, 0, ".", "")));
-         GridfilesContainer.PageSize = subGridfiles_fnc_Recordsperpage( );
+         if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+         {
+            if ( StringUtil.StrCmp(WebComp_Component2_Component, "") == 0 )
+            {
+               WebComp_Component2 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.encryptto", new Object[] {context} );
+               WebComp_Component2.ComponentInit();
+               WebComp_Component2.Name = "Wallet.EncryptTo";
+               WebComp_Component2_Component = "Wallet.EncryptTo";
+            }
+            WebComp_Component2.setjustcreated();
+            WebComp_Component2.componentprepare(new Object[] {(string)"W0022",(string)""});
+            WebComp_Component2.componentbind(new Object[] {});
+            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Component2 )
+            {
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0022"+"");
+               WebComp_Component2.componentdraw();
+               context.httpAjaxContext.ajax_rspEndCmp();
+            }
+            if ( 1 != 0 )
+            {
+               WebComp_Component2.componentstart();
+            }
+         }
+         if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+         {
+            if ( StringUtil.StrCmp(WebComp_Component3_Component, "") == 0 )
+            {
+               WebComp_Component3 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.receivefromuser", new Object[] {context} );
+               WebComp_Component3.ComponentInit();
+               WebComp_Component3.Name = "Wallet.ReceiveFromUser";
+               WebComp_Component3_Component = "Wallet.ReceiveFromUser";
+            }
+            WebComp_Component3.setjustcreated();
+            WebComp_Component3.componentprepare(new Object[] {(string)"W0030",(string)""});
+            WebComp_Component3.componentbind(new Object[] {});
+            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Component3 )
+            {
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0030"+"");
+               WebComp_Component3.componentdraw();
+               context.httpAjaxContext.ajax_rspEndCmp();
+            }
+            if ( 1 != 0 )
+            {
+               WebComp_Component3.componentstart();
+            }
+         }
          gxdyncontrolsrefreshing = true;
          fix_multi_value_controls( ) ;
          gxdyncontrolsrefreshing = false;
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
-            SubsflControlProps_92( ) ;
-            /* Execute user event: Gridfiles.Load */
-            E17112 ();
-            wbEnd = 9;
+            /* Execute user event: Load */
+            E11112 ();
             WB110( ) ;
          }
-         bGXsfl_9_Refreshing = true;
       }
 
       protected void send_integrity_lvl_hashes112( )
       {
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLET", AV23wallet);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLET", AV23wallet);
-         }
-         GxWebStd.gx_hidden_field( context, "gxhash_vWALLET", GetSecureSignedToken( "", AV23wallet, context));
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vKEYINFO", AV27keyInfo);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vKEYINFO", AV27keyInfo);
-         }
-         GxWebStd.gx_hidden_field( context, "gxhash_vKEYINFO", GetSecureSignedToken( "", AV27keyInfo, context));
-      }
-
-      protected int subGridfiles_fnc_Pagecount( )
-      {
-         return (int)(-1) ;
-      }
-
-      protected int subGridfiles_fnc_Recordcount( )
-      {
-         return (int)(-1) ;
-      }
-
-      protected int subGridfiles_fnc_Recordsperpage( )
-      {
-         return (int)(-1) ;
-      }
-
-      protected int subGridfiles_fnc_Currentpage( )
-      {
-         return (int)(-1) ;
       }
 
       protected void before_start_formulas( )
       {
-         edtavCtlfilename_Enabled = 0;
-         edtavCtlcreate_Enabled = 0;
-         edtavDeletefile_Enabled = 0;
          fix_multi_value_controls( ) ;
       }
 
@@ -933,47 +789,15 @@ namespace GeneXus.Programs.wallet {
       {
          /* Before Start, stand alone formulas. */
          before_start_formulas( ) ;
-         /* Execute Start event if defined. */
-         context.wbGlbDoneStart = 0;
-         /* Execute user event: Start */
-         E13112 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
             /* Read saved SDTs. */
-            ajax_req_read_hidden_sdt(cgiGet( "Encryptedfiles"), AV10encryptedFiles);
-            ajax_req_read_hidden_sdt(cgiGet( "vUPLOADEDFILES"), AV21UploadedFiles);
-            ajax_req_read_hidden_sdt(cgiGet( "vFAILEDFILES"), AV14FailedFiles);
-            ajax_req_read_hidden_sdt(cgiGet( "vENCRYPTEDFILES"), AV10encryptedFiles);
             /* Read saved values. */
-            nRC_GXsfl_9 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_9"), ".", ","), 18, MidpointRounding.ToEven));
-            Fileupload_Autoupload = StringUtil.StrToBool( cgiGet( "FILEUPLOAD_Autoupload"));
-            Fileupload_Hideadditionalbuttons = StringUtil.StrToBool( cgiGet( "FILEUPLOAD_Hideadditionalbuttons"));
-            Fileupload_Maxfilesize = (int)(Math.Round(context.localUtil.CToN( cgiGet( "FILEUPLOAD_Maxfilesize"), ".", ","), 18, MidpointRounding.ToEven));
-            Fileupload_Maxnumberoffiles = (int)(Math.Round(context.localUtil.CToN( cgiGet( "FILEUPLOAD_Maxnumberoffiles"), ".", ","), 18, MidpointRounding.ToEven));
-            Fileupload_Autodisableaddingfiles = StringUtil.StrToBool( cgiGet( "FILEUPLOAD_Autodisableaddingfiles"));
-            nRC_GXsfl_9 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_9"), ".", ","), 18, MidpointRounding.ToEven));
-            nGXsfl_9_fel_idx = 0;
-            while ( nGXsfl_9_fel_idx < nRC_GXsfl_9 )
-            {
-               nGXsfl_9_fel_idx = ((subGridfiles_Islastpage==1)&&(nGXsfl_9_fel_idx+1>subGridfiles_fnc_Recordsperpage( )) ? 1 : nGXsfl_9_fel_idx+1);
-               sGXsfl_9_fel_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_fel_idx), 4, 0), 4, "0");
-               SubsflControlProps_fel_92( ) ;
-               AV33GXV1 = nGXsfl_9_fel_idx;
-               if ( ( AV10encryptedFiles.Count >= AV33GXV1 ) && ( AV33GXV1 > 0 ) )
-               {
-                  AV10encryptedFiles.CurrentItem = ((GeneXus.Programs.wallet.SdtEncryptedFile)AV10encryptedFiles.Item(AV33GXV1));
-                  AV28deleteFile = cgiGet( edtavDeletefile_Internalname);
-               }
-            }
-            if ( nGXsfl_9_fel_idx == 0 )
-            {
-               nGXsfl_9_idx = 1;
-               sGXsfl_9_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_idx), 4, 0), 4, "0");
-               SubsflControlProps_92( ) ;
-            }
-            nGXsfl_9_fel_idx = 1;
+            Tabs_Pagecount = (int)(Math.Round(context.localUtil.CToN( cgiGet( "TABS_Pagecount"), ".", ","), 18, MidpointRounding.ToEven));
+            Tabs_Class = cgiGet( "TABS_Class");
+            Tabs_Historymanagement = StringUtil.StrToBool( cgiGet( "TABS_Historymanagement"));
             /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
@@ -985,261 +809,14 @@ namespace GeneXus.Programs.wallet {
          }
       }
 
-      protected void GXStart( )
+      protected void nextLoad( )
       {
-         /* Execute user event: Start */
-         E13112 ();
-         if (returnInSub) return;
-      }
-
-      protected void E13112( )
-      {
-         /* Start Routine */
-         returnInSub = false;
-         GXt_SdtWallet1 = AV23wallet;
-         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet1) ;
-         AV23wallet = GXt_SdtWallet1;
-         GXt_SdtKeyInfo2 = AV27keyInfo;
-         new GeneXus.Programs.wallet.getfileenckey(context ).execute( out  GXt_SdtKeyInfo2) ;
-         AV27keyInfo = GXt_SdtKeyInfo2;
-         Fileupload_Autodisableaddingfiles = false;
-         ucFileupload.SendProperty(context, "", false, Fileupload_Internalname, "AutoDisableAddingFiles", StringUtil.BoolToStr( Fileupload_Autodisableaddingfiles));
-         AV6directory.Source = AV23wallet.gxTpr_Walletbasedirectory+"Files";
-         if ( ! AV6directory.Exists() )
-         {
-            AV6directory.Create();
-         }
-         Fileupload_Maxfilesize = 250000000;
-         ucFileupload.SendProperty(context, "", false, Fileupload_Internalname, "MaxFileSize", StringUtil.LTrimStr( (decimal)(Fileupload_Maxfilesize), 9, 0));
-      }
-
-      protected void E14112( )
-      {
-         if ( gx_refresh_fired )
-         {
-            return  ;
-         }
-         gx_refresh_fired = true;
-         /* Refresh Routine */
-         returnInSub = false;
-         AV28deleteFile = "Delete";
-         AssignAttri("", false, edtavDeletefile_Internalname, AV28deleteFile);
-         GXt_objcol_SdtEncryptedFile3 = AV10encryptedFiles;
-         new GeneXus.Programs.wallet.readallfiles(context ).execute( out  GXt_objcol_SdtEncryptedFile3) ;
-         AV10encryptedFiles = GXt_objcol_SdtEncryptedFile3;
-         gx_BV9 = true;
-         /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV10encryptedFiles", AV10encryptedFiles);
       }
 
       protected void E11112( )
       {
-         AV33GXV1 = nGXsfl_9_idx;
-         if ( ( AV33GXV1 > 0 ) && ( AV10encryptedFiles.Count >= AV33GXV1 ) )
-         {
-            AV10encryptedFiles.CurrentItem = ((GeneXus.Programs.wallet.SdtEncryptedFile)AV10encryptedFiles.Item(AV33GXV1));
-         }
-         /* Fileupload_Uploadcomplete Routine */
+         /* Load Routine */
          returnInSub = false;
-         AV36GXV4 = 1;
-         while ( AV36GXV4 <= AV21UploadedFiles.Count )
-         {
-            AV18FileUploadData = ((SdtFileUploadData)AV21UploadedFiles.Item(AV36GXV4));
-            AV20tempBlob = AV18FileUploadData.gxTpr_File;
-            AV15File.Source = AV20tempBlob;
-            AV26newRndName = Guid.NewGuid( ).ToString();
-            AV6directory.Source = AV23wallet.gxTpr_Walletbasedirectory+"Files";
-            GXt_boolean4 = false;
-            new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean4) ;
-            GXt_boolean5 = false;
-            new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean5) ;
-            AV8EncDestination = AV6directory.GetAbsoluteName() + (GXt_boolean5 ? "/" : "\\") + StringUtil.Trim( AV26newRndName);
-            GXt_char6 = AV12error;
-            new GeneXus.Programs.distributedcrypto.aesencryptfile(context ).execute(  AV15File.GetAbsoluteName(),  AV8EncDestination, out  AV5clearKey, out  AV19iv, out  GXt_char6) ;
-            AV12error = GXt_char6;
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV12error)) )
-            {
-               GXt_char6 = AV12error;
-               new GeneXus.Programs.nbitcoin.eccenctrypt(context ).execute(  AV27keyInfo.gxTpr_Publickey,  AV5clearKey, out  AV11encryptedKey, out  GXt_char6) ;
-               AssignAttri("", false, "AV11encryptedKey", AV11encryptedKey);
-               AV12error = GXt_char6;
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV12error)) )
-               {
-                  AV9encryptedFile.gxTpr_Iv = AV19iv;
-                  AV9encryptedFile.gxTpr_Encryptedkey = AV11encryptedKey;
-                  AV9encryptedFile.gxTpr_Filename = AV18FileUploadData.gxTpr_Fullname;
-                  AV9encryptedFile.gxTpr_Fullfilename = AV8EncDestination;
-                  AV9encryptedFile.gxTpr_Create = DateTimeUtil.Now( context);
-                  GXt_char6 = AV12error;
-                  new GeneXus.Programs.wallet.insertintoallfiles(context ).execute(  AV9encryptedFile, out  GXt_char6) ;
-                  AV12error = GXt_char6;
-               }
-               else
-               {
-                  GX_msglist.addItem(AV12error);
-               }
-               this.executeUsercontrolMethod("", false, "FILEUPLOADContainer", "Clear", "", new Object[] {});
-               AV15File.Delete();
-            }
-            else
-            {
-               GX_msglist.addItem(AV12error);
-            }
-            GXt_objcol_SdtEncryptedFile3 = AV10encryptedFiles;
-            new GeneXus.Programs.wallet.readallfiles(context ).execute( out  GXt_objcol_SdtEncryptedFile3) ;
-            AV10encryptedFiles = GXt_objcol_SdtEncryptedFile3;
-            gx_BV9 = true;
-            gxgrGridfiles_refresh( AV23wallet, AV27keyInfo) ;
-            AV36GXV4 = (int)(AV36GXV4+1);
-         }
-         /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV9encryptedFile", AV9encryptedFile);
-         if ( gx_BV9 )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV10encryptedFiles", AV10encryptedFiles);
-            nGXsfl_9_bak_idx = nGXsfl_9_idx;
-            gxgrGridfiles_refresh( AV23wallet, AV27keyInfo) ;
-            nGXsfl_9_idx = nGXsfl_9_bak_idx;
-            sGXsfl_9_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_idx), 4, 0), 4, "0");
-            SubsflControlProps_92( ) ;
-         }
-      }
-
-      protected void E15112( )
-      {
-         AV33GXV1 = nGXsfl_9_idx;
-         if ( ( AV33GXV1 > 0 ) && ( AV10encryptedFiles.Count >= AV33GXV1 ) )
-         {
-            AV10encryptedFiles.CurrentItem = ((GeneXus.Programs.wallet.SdtEncryptedFile)AV10encryptedFiles.Item(AV33GXV1));
-         }
-         /* 'Decrypt and download' Routine */
-         returnInSub = false;
-         AV7downloadEncryptedFile = ((GeneXus.Programs.wallet.SdtEncryptedFile)(AV10encryptedFiles.CurrentItem));
-         AV32fromDeleteFile = false;
-         AssignAttri("", false, "AV32fromDeleteFile", AV32fromDeleteFile);
-         this.executeExternalObjectMethod("", false, "gx.extensions.web.dialogs", "showConfirm", new Object[] {"Are you sure you want to decrypt and download "+AV7downloadEncryptedFile.gxTpr_Filename+"?"}, false);
-         /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV7downloadEncryptedFile", AV7downloadEncryptedFile);
-      }
-
-      protected void E16112( )
-      {
-         AV33GXV1 = nGXsfl_9_idx;
-         if ( ( AV33GXV1 > 0 ) && ( AV10encryptedFiles.Count >= AV33GXV1 ) )
-         {
-            AV10encryptedFiles.CurrentItem = ((GeneXus.Programs.wallet.SdtEncryptedFile)AV10encryptedFiles.Item(AV33GXV1));
-         }
-         /* 'Delete File' Routine */
-         returnInSub = false;
-         AV32fromDeleteFile = true;
-         AssignAttri("", false, "AV32fromDeleteFile", AV32fromDeleteFile);
-         this.executeExternalObjectMethod("", false, "gx.extensions.web.dialogs", "showConfirm", new Object[] {"Are you sure you want to Delete "+((GeneXus.Programs.wallet.SdtEncryptedFile)(AV10encryptedFiles.CurrentItem)).gxTpr_Filename+" file?"}, false);
-         AV11encryptedKey = StringUtil.Trim( ((GeneXus.Programs.wallet.SdtEncryptedFile)(AV10encryptedFiles.CurrentItem)).gxTpr_Encryptedkey);
-         AssignAttri("", false, "AV11encryptedKey", AV11encryptedKey);
-         AV30FileName = StringUtil.Trim( ((GeneXus.Programs.wallet.SdtEncryptedFile)(AV10encryptedFiles.CurrentItem)).gxTpr_Filename);
-         AssignAttri("", false, "AV30FileName", AV30FileName);
-         /*  Sending Event outputs  */
-      }
-
-      protected void E12112( )
-      {
-         AV33GXV1 = nGXsfl_9_idx;
-         if ( ( AV33GXV1 > 0 ) && ( AV10encryptedFiles.Count >= AV33GXV1 ) )
-         {
-            AV10encryptedFiles.CurrentItem = ((GeneXus.Programs.wallet.SdtEncryptedFile)AV10encryptedFiles.Item(AV33GXV1));
-         }
-         /* Extensions\Web\Dialog_Onconfirmclosed Routine */
-         returnInSub = false;
-         if ( AV22UserResponse )
-         {
-            if ( AV32fromDeleteFile )
-            {
-               AV37GXV5 = 1;
-               while ( AV37GXV5 <= AV10encryptedFiles.Count )
-               {
-                  AV9encryptedFile = ((GeneXus.Programs.wallet.SdtEncryptedFile)AV10encryptedFiles.Item(AV37GXV5));
-                  if ( ( StringUtil.StrCmp(StringUtil.Trim( AV9encryptedFile.gxTpr_Filename), AV30FileName) == 0 ) && ( StringUtil.StrCmp(StringUtil.Trim( AV9encryptedFile.gxTpr_Encryptedkey), AV11encryptedKey) == 0 ) )
-                  {
-                     AV10encryptedFiles.RemoveItem(AV10encryptedFiles.IndexOf(AV9encryptedFile));
-                     gx_BV9 = true;
-                     GXt_char6 = "";
-                     new GeneXus.Programs.wallet.deleteoneencryptelfiles(context ).execute(  AV9encryptedFile, out  GXt_char6) ;
-                     GXt_objcol_SdtEncryptedFile3 = AV10encryptedFiles;
-                     new GeneXus.Programs.wallet.readallfiles(context ).execute( out  GXt_objcol_SdtEncryptedFile3) ;
-                     AV10encryptedFiles = GXt_objcol_SdtEncryptedFile3;
-                     gx_BV9 = true;
-                  }
-                  AV37GXV5 = (int)(AV37GXV5+1);
-               }
-            }
-            else
-            {
-               GXt_char6 = AV12error;
-               new GeneXus.Programs.nbitcoin.eccdecrypt(context ).execute(  AV27keyInfo.gxTpr_Privatekey,  AV7downloadEncryptedFile.gxTpr_Encryptedkey, out  AV5clearKey, out  GXt_char6) ;
-               AV12error = GXt_char6;
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV12error)) )
-               {
-                  AV24DecSource = AV7downloadEncryptedFile.gxTpr_Fullfilename;
-                  AV6directory.Source = "PublicTempStorage";
-                  GXt_boolean5 = false;
-                  new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean5) ;
-                  GXt_boolean4 = false;
-                  new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean4) ;
-                  AV25DecDestination = AV6directory.GetAbsoluteName() + (GXt_boolean4 ? "/" : "\\") + AV7downloadEncryptedFile.gxTpr_Filename;
-                  GXt_char6 = AV12error;
-                  new GeneXus.Programs.distributedcrypto.aesdecryptfile(context ).execute(  AV24DecSource,  AV25DecDestination,  AV5clearKey,  AV7downloadEncryptedFile.gxTpr_Iv, out  GXt_char6) ;
-                  AV12error = GXt_char6;
-                  if ( String.IsNullOrEmpty(StringUtil.RTrim( AV12error)) )
-                  {
-                     GXt_boolean5 = false;
-                     new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean5) ;
-                     GXt_boolean4 = false;
-                     new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean4) ;
-                     AV25DecDestination = "PublicTempStorage" + (GXt_boolean4 ? "/" : "\\") + AV7downloadEncryptedFile.gxTpr_Filename;
-                     this.executeExternalObjectMethod("", false, "gx.extensions.web.window", "open", new Object[] {(string)AV25DecDestination}, false);
-                     new GeneXus.Programs.wallet.deletefilewithdelay(context).executeSubmit(  AV25DecDestination) ;
-                  }
-                  else
-                  {
-                     GX_msglist.addItem(AV12error);
-                  }
-               }
-               else
-               {
-                  GX_msglist.addItem(AV12error);
-               }
-            }
-         }
-         /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV9encryptedFile", AV9encryptedFile);
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV10encryptedFiles", AV10encryptedFiles);
-         nGXsfl_9_bak_idx = nGXsfl_9_idx;
-         gxgrGridfiles_refresh( AV23wallet, AV27keyInfo) ;
-         nGXsfl_9_idx = nGXsfl_9_bak_idx;
-         sGXsfl_9_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_idx), 4, 0), 4, "0");
-         SubsflControlProps_92( ) ;
-      }
-
-      private void E17112( )
-      {
-         /* Gridfiles_Load Routine */
-         returnInSub = false;
-         AV33GXV1 = 1;
-         while ( AV33GXV1 <= AV10encryptedFiles.Count )
-         {
-            AV10encryptedFiles.CurrentItem = ((GeneXus.Programs.wallet.SdtEncryptedFile)AV10encryptedFiles.Item(AV33GXV1));
-            /* Load Method */
-            if ( wbStart != -1 )
-            {
-               wbStart = 9;
-            }
-            sendrow_92( ) ;
-            if ( isFullAjaxMode( ) && ! bGXsfl_9_Refreshing )
-            {
-               DoAjaxLoad(9, GridfilesRow);
-            }
-            AV33GXV1 = (int)(AV33GXV1+1);
-         }
       }
 
       public override void setparameters( Object[] obj )
@@ -1272,9 +849,41 @@ namespace GeneXus.Programs.wallet {
 
       protected void define_styles( )
       {
-         AddStyleSheetFile("FileUpload/fileupload.min.css", "");
-         AddStyleSheetFile("calendar-system.css", "");
+         AddStyleSheetFile("Tab/BasicTab.css", "");
          AddThemeStyleSheetFile("", context.GetTheme( )+".css", "?"+GetCacheInvalidationToken( ));
+         if ( StringUtil.StrCmp(WebComp_Component1_Component, "") == 0 )
+         {
+            WebComp_Component1 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.encryptedlocalfiles", new Object[] {context} );
+            WebComp_Component1.ComponentInit();
+            WebComp_Component1.Name = "Wallet.EncryptedLocalFiles";
+            WebComp_Component1_Component = "Wallet.EncryptedLocalFiles";
+         }
+         if ( ! ( WebComp_Component1 == null ) )
+         {
+            WebComp_Component1.componentthemes();
+         }
+         if ( StringUtil.StrCmp(WebComp_Component2_Component, "") == 0 )
+         {
+            WebComp_Component2 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.encryptto", new Object[] {context} );
+            WebComp_Component2.ComponentInit();
+            WebComp_Component2.Name = "Wallet.EncryptTo";
+            WebComp_Component2_Component = "Wallet.EncryptTo";
+         }
+         if ( ! ( WebComp_Component2 == null ) )
+         {
+            WebComp_Component2.componentthemes();
+         }
+         if ( StringUtil.StrCmp(WebComp_Component3_Component, "") == 0 )
+         {
+            WebComp_Component3 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.receivefromuser", new Object[] {context} );
+            WebComp_Component3.ComponentInit();
+            WebComp_Component3.Name = "Wallet.ReceiveFromUser";
+            WebComp_Component3_Component = "Wallet.ReceiveFromUser";
+         }
+         if ( ! ( WebComp_Component3 == null ) )
+         {
+            WebComp_Component3.componentthemes();
+         }
          bool outputEnabled = isOutputEnabled( );
          if ( context.isSpaRequest( ) )
          {
@@ -1283,7 +892,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254215272386", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254151314379", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1299,122 +908,13 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/encryptedfiles.js", "?20254215272386", false, true);
-         context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
-         context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
-         context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
+         context.AddJavascriptSource("wallet/encryptedfiles.js", "?20254151314380", false, true);
+         context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
+         context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
+         context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);
+         context.AddJavascriptSource("shared/HistoryManager/HistoryManagerCreate.js", "", false, true);
+         context.AddJavascriptSource("Tab/BasicTabRender.js", "", false, true);
          /* End function include_jscripts */
-      }
-
-      protected void SubsflControlProps_92( )
-      {
-         edtavCtlfilename_Internalname = "CTLFILENAME_"+sGXsfl_9_idx;
-         edtavCtlcreate_Internalname = "CTLCREATE_"+sGXsfl_9_idx;
-         edtavDeletefile_Internalname = "vDELETEFILE_"+sGXsfl_9_idx;
-      }
-
-      protected void SubsflControlProps_fel_92( )
-      {
-         edtavCtlfilename_Internalname = "CTLFILENAME_"+sGXsfl_9_fel_idx;
-         edtavCtlcreate_Internalname = "CTLCREATE_"+sGXsfl_9_fel_idx;
-         edtavDeletefile_Internalname = "vDELETEFILE_"+sGXsfl_9_fel_idx;
-      }
-
-      protected void sendrow_92( )
-      {
-         sGXsfl_9_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_idx), 4, 0), 4, "0");
-         SubsflControlProps_92( ) ;
-         WB110( ) ;
-         GridfilesRow = GXWebRow.GetNew(context,GridfilesContainer);
-         if ( subGridfiles_Backcolorstyle == 0 )
-         {
-            /* None style subfile background logic. */
-            subGridfiles_Backstyle = 0;
-            if ( StringUtil.StrCmp(subGridfiles_Class, "") != 0 )
-            {
-               subGridfiles_Linesclass = subGridfiles_Class+"Odd";
-            }
-         }
-         else if ( subGridfiles_Backcolorstyle == 1 )
-         {
-            /* Uniform style subfile background logic. */
-            subGridfiles_Backstyle = 0;
-            subGridfiles_Backcolor = subGridfiles_Allbackcolor;
-            if ( StringUtil.StrCmp(subGridfiles_Class, "") != 0 )
-            {
-               subGridfiles_Linesclass = subGridfiles_Class+"Uniform";
-            }
-         }
-         else if ( subGridfiles_Backcolorstyle == 2 )
-         {
-            /* Header style subfile background logic. */
-            subGridfiles_Backstyle = 1;
-            if ( StringUtil.StrCmp(subGridfiles_Class, "") != 0 )
-            {
-               subGridfiles_Linesclass = subGridfiles_Class+"Odd";
-            }
-            subGridfiles_Backcolor = (int)(0x0);
-         }
-         else if ( subGridfiles_Backcolorstyle == 3 )
-         {
-            /* Report style subfile background logic. */
-            subGridfiles_Backstyle = 1;
-            if ( ((int)((nGXsfl_9_idx) % (2))) == 0 )
-            {
-               subGridfiles_Backcolor = (int)(0x0);
-               if ( StringUtil.StrCmp(subGridfiles_Class, "") != 0 )
-               {
-                  subGridfiles_Linesclass = subGridfiles_Class+"Even";
-               }
-            }
-            else
-            {
-               subGridfiles_Backcolor = (int)(0x0);
-               if ( StringUtil.StrCmp(subGridfiles_Class, "") != 0 )
-               {
-                  subGridfiles_Linesclass = subGridfiles_Class+"Odd";
-               }
-            }
-         }
-         if ( GridfilesContainer.GetWrapped() == 1 )
-         {
-            context.WriteHtmlText( "<tr ") ;
-            context.WriteHtmlText( " class=\""+"Grid"+"\" style=\""+""+"\"") ;
-            context.WriteHtmlText( " gxrow=\""+sGXsfl_9_idx+"\">") ;
-         }
-         /* Subfile cell */
-         if ( GridfilesContainer.GetWrapped() == 1 )
-         {
-            context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
-         }
-         /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 10,'',false,'" + sGXsfl_9_idx + "',9)\"";
-         ROClassString = "Attribute";
-         GridfilesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlfilename_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtEncryptedFile)AV10encryptedFiles.Item(AV33GXV1)).gxTpr_Filename),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,10);\"","'"+""+"'"+",false,"+"'"+"E\\'DECRYPT AND DOWNLOAD\\'."+sGXsfl_9_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlfilename_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlfilename_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)200,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
-         /* Subfile cell */
-         if ( GridfilesContainer.GetWrapped() == 1 )
-         {
-            context.WriteHtmlText( "<td valign=\"middle\" align=\""+"end"+"\""+" style=\""+""+"\">") ;
-         }
-         /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 11,'',false,'" + sGXsfl_9_idx + "',9)\"";
-         ROClassString = "Attribute";
-         GridfilesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlcreate_Internalname,context.localUtil.TToC( ((GeneXus.Programs.wallet.SdtEncryptedFile)AV10encryptedFiles.Item(AV33GXV1)).gxTpr_Create, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.wallet.SdtEncryptedFile)AV10encryptedFiles.Item(AV33GXV1)).gxTpr_Create, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onblur(this,11);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlcreate_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlcreate_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)17,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
-         /* Subfile cell */
-         if ( GridfilesContainer.GetWrapped() == 1 )
-         {
-            context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
-         }
-         /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 12,'',false,'" + sGXsfl_9_idx + "',9)\"";
-         ROClassString = "Attribute";
-         GridfilesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavDeletefile_Internalname,StringUtil.RTrim( AV28deleteFile),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,12);\"","'"+""+"'"+",false,"+"'"+"E\\'DELETE FILE\\'."+sGXsfl_9_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavDeletefile_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavDeletefile_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
-         send_integrity_lvl_hashes112( ) ;
-         GridfilesContainer.AddRow(GridfilesRow);
-         nGXsfl_9_idx = ((subGridfiles_Islastpage==1)&&(nGXsfl_9_idx+1>subGridfiles_fnc_Recordsperpage( )) ? 1 : nGXsfl_9_idx+1);
-         sGXsfl_9_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_idx), 4, 0), 4, "0");
-         SubsflControlProps_92( ) ;
-         /* End function sendrow_92 */
       }
 
       protected void init_web_controls( )
@@ -1422,94 +922,17 @@ namespace GeneXus.Programs.wallet {
          /* End function init_web_controls */
       }
 
-      protected void StartGridControl9( )
-      {
-         if ( GridfilesContainer.GetWrapped() == 1 )
-         {
-            context.WriteHtmlText( "<div id=\""+"GridfilesContainer"+"DivS\" data-gxgridid=\"9\">") ;
-            sStyleString = "";
-            GxWebStd.gx_table_start( context, subGridfiles_Internalname, subGridfiles_Internalname, "", "Grid", 0, "", "", 1, 2, sStyleString, "", "", 0);
-            /* Subfile titles */
-            context.WriteHtmlText( "<tr") ;
-            context.WriteHtmlTextNl( ">") ;
-            if ( subGridfiles_Backcolorstyle == 0 )
-            {
-               subGridfiles_Titlebackstyle = 0;
-               if ( StringUtil.Len( subGridfiles_Class) > 0 )
-               {
-                  subGridfiles_Linesclass = subGridfiles_Class+"Title";
-               }
-            }
-            else
-            {
-               subGridfiles_Titlebackstyle = 1;
-               if ( subGridfiles_Backcolorstyle == 1 )
-               {
-                  subGridfiles_Titlebackcolor = subGridfiles_Allbackcolor;
-                  if ( StringUtil.Len( subGridfiles_Class) > 0 )
-                  {
-                     subGridfiles_Linesclass = subGridfiles_Class+"UniformTitle";
-                  }
-               }
-               else
-               {
-                  if ( StringUtil.Len( subGridfiles_Class) > 0 )
-                  {
-                     subGridfiles_Linesclass = subGridfiles_Class+"Title";
-                  }
-               }
-            }
-            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "File Name") ;
-            context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+"end"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "Created / Modified") ;
-            context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "") ;
-            context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlTextNl( "</tr>") ;
-            GridfilesContainer.AddObjectProperty("GridName", "Gridfiles");
-         }
-         else
-         {
-            GridfilesContainer.AddObjectProperty("GridName", "Gridfiles");
-            GridfilesContainer.AddObjectProperty("Header", subGridfiles_Header);
-            GridfilesContainer.AddObjectProperty("Class", "Grid");
-            GridfilesContainer.AddObjectProperty("Cellpadding", StringUtil.LTrim( StringUtil.NToC( (decimal)(1), 4, 0, ".", "")));
-            GridfilesContainer.AddObjectProperty("Cellspacing", StringUtil.LTrim( StringUtil.NToC( (decimal)(2), 4, 0, ".", "")));
-            GridfilesContainer.AddObjectProperty("Backcolorstyle", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridfiles_Backcolorstyle), 1, 0, ".", "")));
-            GridfilesContainer.AddObjectProperty("CmpContext", "");
-            GridfilesContainer.AddObjectProperty("InMasterPage", "false");
-            GridfilesColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
-            GridfilesColumn.AddObjectProperty("Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtavCtlfilename_Enabled), 5, 0, ".", "")));
-            GridfilesContainer.AddColumnProperties(GridfilesColumn);
-            GridfilesColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
-            GridfilesColumn.AddObjectProperty("Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtavCtlcreate_Enabled), 5, 0, ".", "")));
-            GridfilesContainer.AddColumnProperties(GridfilesColumn);
-            GridfilesColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
-            GridfilesColumn.AddObjectProperty("Value", GXUtil.ValueEncode( StringUtil.RTrim( AV28deleteFile)));
-            GridfilesColumn.AddObjectProperty("Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtavDeletefile_Enabled), 5, 0, ".", "")));
-            GridfilesContainer.AddColumnProperties(GridfilesColumn);
-            GridfilesContainer.AddObjectProperty("Selectedindex", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridfiles_Selectedindex), 4, 0, ".", "")));
-            GridfilesContainer.AddObjectProperty("Allowselection", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridfiles_Allowselection), 1, 0, ".", "")));
-            GridfilesContainer.AddObjectProperty("Selectioncolor", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridfiles_Selectioncolor), 9, 0, ".", "")));
-            GridfilesContainer.AddObjectProperty("Allowhover", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridfiles_Allowhovering), 1, 0, ".", "")));
-            GridfilesContainer.AddObjectProperty("Hovercolor", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridfiles_Hoveringcolor), 9, 0, ".", "")));
-            GridfilesContainer.AddObjectProperty("Allowcollapsing", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridfiles_Allowcollapsing), 1, 0, ".", "")));
-            GridfilesContainer.AddObjectProperty("Collapsed", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridfiles_Collapsed), 1, 0, ".", "")));
-         }
-      }
-
       protected void init_default_properties( )
       {
-         Fileupload_Internalname = "FILEUPLOAD";
-         edtavCtlfilename_Internalname = "CTLFILENAME";
-         edtavCtlcreate_Internalname = "CTLCREATE";
-         edtavDeletefile_Internalname = "vDELETEFILE";
+         lblLocalfiles_title_Internalname = "LOCALFILES_TITLE";
+         divTabpage1table_Internalname = "TABPAGE1TABLE";
+         lblSendto_title_Internalname = "SENDTO_TITLE";
+         divTabpage2table_Internalname = "TABPAGE2TABLE";
+         lblReceived_title_Internalname = "RECEIVED_TITLE";
+         divTabpage3table_Internalname = "TABPAGE3TABLE";
+         Tabs_Internalname = "TABS";
          divMaintable_Internalname = "MAINTABLE";
          Form.Internalname = "FORM";
-         subGridfiles_Internalname = "GRIDFILES";
       }
 
       public override void initialize_properties( )
@@ -1520,25 +943,9 @@ namespace GeneXus.Programs.wallet {
             disableJsOutput();
          }
          init_default_properties( ) ;
-         subGridfiles_Allowcollapsing = 0;
-         subGridfiles_Allowselection = 0;
-         subGridfiles_Header = "";
-         edtavDeletefile_Jsonclick = "";
-         edtavDeletefile_Enabled = 1;
-         edtavCtlcreate_Jsonclick = "";
-         edtavCtlcreate_Enabled = 0;
-         edtavCtlfilename_Jsonclick = "";
-         edtavCtlfilename_Enabled = 0;
-         subGridfiles_Class = "Grid";
-         subGridfiles_Backcolorstyle = 0;
-         edtavCtlcreate_Enabled = -1;
-         edtavCtlfilename_Enabled = -1;
-         Fileupload_Tooltiptext = "";
-         Fileupload_Autodisableaddingfiles = Convert.ToBoolean( -1);
-         Fileupload_Maxnumberoffiles = 1;
-         Fileupload_Maxfilesize = 134217728;
-         Fileupload_Hideadditionalbuttons = Convert.ToBoolean( -1);
-         Fileupload_Autoupload = Convert.ToBoolean( -1);
+         Tabs_Historymanagement = Convert.ToBoolean( 0);
+         Tabs_Class = "Tab";
+         Tabs_Pagecount = 3;
          Form.Headerrawhtml = "";
          Form.Background = "";
          Form.Textcolor = 0;
@@ -1557,17 +964,7 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDFILES_nFirstRecordOnPage","type":"int"},{"av":"GRIDFILES_nEOF","type":"int"},{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV23wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"AV27keyInfo","fld":"vKEYINFO","hsh":true,"type":""}]""");
-         setEventMetadata("REFRESH",""","oparms":[{"av":"AV28deleteFile","fld":"vDELETEFILE","type":"char"},{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDFILES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9,"type":"int"}]}""");
-         setEventMetadata("FILEUPLOAD.UPLOADCOMPLETE","""{"handler":"E11112","iparms":[{"av":"GRIDFILES_nFirstRecordOnPage","type":"int"},{"av":"GRIDFILES_nEOF","type":"int"},{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV23wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"AV27keyInfo","fld":"vKEYINFO","hsh":true,"type":""},{"av":"AV21UploadedFiles","fld":"vUPLOADEDFILES","type":""},{"av":"AV9encryptedFile","fld":"vENCRYPTEDFILE","type":""}]""");
-         setEventMetadata("FILEUPLOAD.UPLOADCOMPLETE",""","oparms":[{"av":"AV11encryptedKey","fld":"vENCRYPTEDKEY","type":"char"},{"av":"AV9encryptedFile","fld":"vENCRYPTEDFILE","type":""},{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDFILES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV28deleteFile","fld":"vDELETEFILE","type":"char"}]}""");
-         setEventMetadata("'DECRYPT AND DOWNLOAD'","""{"handler":"E15112","iparms":[{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDFILES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9,"type":"int"}]""");
-         setEventMetadata("'DECRYPT AND DOWNLOAD'",""","oparms":[{"av":"AV7downloadEncryptedFile","fld":"vDOWNLOADENCRYPTEDFILE","type":""},{"av":"AV32fromDeleteFile","fld":"vFROMDELETEFILE","type":"boolean"}]}""");
-         setEventMetadata("'DELETE FILE'","""{"handler":"E16112","iparms":[{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDFILES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9,"type":"int"}]""");
-         setEventMetadata("'DELETE FILE'",""","oparms":[{"av":"AV32fromDeleteFile","fld":"vFROMDELETEFILE","type":"boolean"},{"av":"AV11encryptedKey","fld":"vENCRYPTEDKEY","type":"char"},{"av":"AV30FileName","fld":"vFILENAME","type":"char"}]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED","""{"handler":"E12112","iparms":[{"av":"AV22UserResponse","fld":"vUSERRESPONSE","type":"boolean"},{"av":"AV32fromDeleteFile","fld":"vFROMDELETEFILE","type":"boolean"},{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDFILES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV30FileName","fld":"vFILENAME","type":"char"},{"av":"AV11encryptedKey","fld":"vENCRYPTEDKEY","type":"char"},{"av":"AV27keyInfo","fld":"vKEYINFO","hsh":true,"type":""},{"av":"AV7downloadEncryptedFile","fld":"vDOWNLOADENCRYPTEDFILE","type":""},{"av":"GRIDFILES_nEOF","type":"int"},{"av":"AV23wallet","fld":"vWALLET","hsh":true,"type":""}]""");
-         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED",""","oparms":[{"av":"AV9encryptedFile","fld":"vENCRYPTEDFILE","type":""},{"av":"AV10encryptedFiles","fld":"vENCRYPTEDFILES","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDFILES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDFILES","prop":"GridRC","grid":9,"type":"int"}]}""");
-         setEventMetadata("NULL","""{"handler":"Validv_Deletefile","iparms":[]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
          return  ;
       }
 
@@ -1580,65 +977,34 @@ namespace GeneXus.Programs.wallet {
          }
       }
 
-      public override bool UploadEnabled( )
-      {
-         return true ;
-      }
-
       public override void initialize( )
       {
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
-         AV23wallet = new GeneXus.Programs.wallet.SdtWallet(context);
-         AV27keyInfo = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
-         AV10encryptedFiles = new GXBaseCollection<GeneXus.Programs.wallet.SdtEncryptedFile>( context, "EncryptedFile", "distributedcryptography");
-         AV21UploadedFiles = new GXBaseCollection<SdtFileUploadData>( context, "FileUploadData", "distributedcryptography");
-         AV14FailedFiles = new GXBaseCollection<SdtFileUploadData>( context, "FileUploadData", "distributedcryptography");
-         AV9encryptedFile = new GeneXus.Programs.wallet.SdtEncryptedFile(context);
-         AV30FileName = "";
-         AV11encryptedKey = "";
-         AV7downloadEncryptedFile = new GeneXus.Programs.wallet.SdtEncryptedFile(context);
          GX_FocusControl = "";
          Form = new GXWebForm();
          sPrefix = "";
-         ucFileupload = new GXUserControl();
-         GridfilesContainer = new GXWebGrid( context);
-         sStyleString = "";
+         ucTabs = new GXUserControl();
+         lblLocalfiles_title_Jsonclick = "";
+         lblSendto_title_Jsonclick = "";
+         lblReceived_title_Jsonclick = "";
          sEvt = "";
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
-         AV28deleteFile = "";
-         GXt_SdtWallet1 = new GeneXus.Programs.wallet.SdtWallet(context);
-         GXt_SdtKeyInfo2 = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
-         AV6directory = new GxDirectory(context.GetPhysicalPath());
-         AV18FileUploadData = new SdtFileUploadData(context);
-         AV20tempBlob = "";
-         AV15File = new GxFile(context.GetPhysicalPath());
-         AV26newRndName = "";
-         AV8EncDestination = "";
-         AV12error = "";
-         AV5clearKey = "";
-         AV19iv = "";
-         GXt_objcol_SdtEncryptedFile3 = new GXBaseCollection<GeneXus.Programs.wallet.SdtEncryptedFile>( context, "EncryptedFile", "distributedcryptography");
-         AV24DecSource = "";
-         AV25DecDestination = "";
-         GXt_char6 = "";
-         GridfilesRow = new GXWebRow();
+         WebComp_Component1_Component = "";
+         WebComp_Component2_Component = "";
+         WebComp_Component3_Component = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
-         subGridfiles_Linesclass = "";
-         TempTags = "";
-         ROClassString = "";
-         GridfilesColumn = new GXWebColumn();
+         WebComp_Component1 = new GeneXus.Http.GXNullWebComponent();
+         WebComp_Component2 = new GeneXus.Http.GXNullWebComponent();
+         WebComp_Component3 = new GeneXus.Http.GXNullWebComponent();
          /* GeneXus formulas. */
-         edtavCtlfilename_Enabled = 0;
-         edtavCtlcreate_Enabled = 0;
-         edtavDeletefile_Enabled = 0;
       }
 
       private short nGotPars ;
@@ -1646,117 +1012,56 @@ namespace GeneXus.Programs.wallet {
       private short gxajaxcallmode ;
       private short wbEnd ;
       private short wbStart ;
+      private short nCmpId ;
       private short nDonePA ;
       private short gxcookieaux ;
-      private short subGridfiles_Backcolorstyle ;
-      private short GRIDFILES_nEOF ;
       private short nGXWrapped ;
-      private short subGridfiles_Backstyle ;
-      private short subGridfiles_Titlebackstyle ;
-      private short subGridfiles_Allowselection ;
-      private short subGridfiles_Allowhovering ;
-      private short subGridfiles_Allowcollapsing ;
-      private short subGridfiles_Collapsed ;
-      private int nRC_GXsfl_9 ;
-      private int nGXsfl_9_idx=1 ;
-      private int Fileupload_Maxfilesize ;
-      private int Fileupload_Maxnumberoffiles ;
-      private int AV33GXV1 ;
-      private int subGridfiles_Islastpage ;
-      private int edtavCtlfilename_Enabled ;
-      private int edtavCtlcreate_Enabled ;
-      private int edtavDeletefile_Enabled ;
-      private int nGXsfl_9_fel_idx=1 ;
-      private int AV36GXV4 ;
-      private int nGXsfl_9_bak_idx=1 ;
-      private int AV37GXV5 ;
+      private int Tabs_Pagecount ;
       private int idxLst ;
-      private int subGridfiles_Backcolor ;
-      private int subGridfiles_Allbackcolor ;
-      private int subGridfiles_Titlebackcolor ;
-      private int subGridfiles_Selectedindex ;
-      private int subGridfiles_Selectioncolor ;
-      private int subGridfiles_Hoveringcolor ;
-      private long GRIDFILES_nCurrentRecord ;
-      private long GRIDFILES_nFirstRecordOnPage ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
-      private string sGXsfl_9_idx="0001" ;
       private string sDynURL ;
       private string FormProcess ;
       private string bodyStyle ;
       private string GXKey ;
-      private string AV30FileName ;
-      private string AV11encryptedKey ;
+      private string Tabs_Class ;
       private string GX_FocusControl ;
       private string sPrefix ;
       private string divMaintable_Internalname ;
-      private string Fileupload_Tooltiptext ;
-      private string Fileupload_Internalname ;
-      private string sStyleString ;
-      private string subGridfiles_Internalname ;
+      private string Tabs_Internalname ;
+      private string lblLocalfiles_title_Internalname ;
+      private string lblLocalfiles_title_Jsonclick ;
+      private string divTabpage1table_Internalname ;
+      private string lblSendto_title_Internalname ;
+      private string lblSendto_title_Jsonclick ;
+      private string divTabpage2table_Internalname ;
+      private string lblReceived_title_Internalname ;
+      private string lblReceived_title_Jsonclick ;
+      private string divTabpage3table_Internalname ;
       private string sEvt ;
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
-      private string AV28deleteFile ;
-      private string edtavDeletefile_Internalname ;
-      private string sGXsfl_9_fel_idx="0001" ;
-      private string AV26newRndName ;
-      private string AV8EncDestination ;
-      private string AV12error ;
-      private string AV5clearKey ;
-      private string AV19iv ;
-      private string AV24DecSource ;
-      private string AV25DecDestination ;
-      private string GXt_char6 ;
-      private string edtavCtlfilename_Internalname ;
-      private string edtavCtlcreate_Internalname ;
-      private string subGridfiles_Class ;
-      private string subGridfiles_Linesclass ;
-      private string TempTags ;
-      private string ROClassString ;
-      private string edtavCtlfilename_Jsonclick ;
-      private string edtavCtlcreate_Jsonclick ;
-      private string edtavDeletefile_Jsonclick ;
-      private string subGridfiles_Header ;
+      private string WebComp_Component1_Component ;
+      private string WebComp_Component2_Component ;
+      private string WebComp_Component3_Component ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
-      private bool AV22UserResponse ;
-      private bool AV32fromDeleteFile ;
-      private bool Fileupload_Autoupload ;
-      private bool Fileupload_Hideadditionalbuttons ;
-      private bool Fileupload_Autodisableaddingfiles ;
+      private bool Tabs_Historymanagement ;
       private bool wbLoad ;
       private bool Rfr0gs ;
       private bool wbErr ;
-      private bool bGXsfl_9_Refreshing=false ;
+      private bool bDynCreated_Component1 ;
+      private bool bDynCreated_Component2 ;
+      private bool bDynCreated_Component3 ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
-      private bool gx_refresh_fired ;
-      private bool gx_BV9 ;
-      private bool GXt_boolean5 ;
-      private bool GXt_boolean4 ;
-      private string AV20tempBlob ;
-      private GXWebGrid GridfilesContainer ;
-      private GXWebRow GridfilesRow ;
-      private GXWebColumn GridfilesColumn ;
-      private GXUserControl ucFileupload ;
-      private GxFile AV15File ;
-      private GxDirectory AV6directory ;
+      private GXWebComponent WebComp_Component1 ;
+      private GXWebComponent WebComp_Component2 ;
+      private GXWebComponent WebComp_Component3 ;
+      private GXUserControl ucTabs ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
-      private GeneXus.Programs.wallet.SdtWallet AV23wallet ;
-      private GeneXus.Programs.nbitcoin.SdtKeyInfo AV27keyInfo ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtEncryptedFile> AV10encryptedFiles ;
-      private GXBaseCollection<SdtFileUploadData> AV21UploadedFiles ;
-      private GXBaseCollection<SdtFileUploadData> AV14FailedFiles ;
-      private GeneXus.Programs.wallet.SdtEncryptedFile AV9encryptedFile ;
-      private GeneXus.Programs.wallet.SdtEncryptedFile AV7downloadEncryptedFile ;
-      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
-      private GeneXus.Programs.nbitcoin.SdtKeyInfo GXt_SdtKeyInfo2 ;
-      private SdtFileUploadData AV18FileUploadData ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtEncryptedFile> GXt_objcol_SdtEncryptedFile3 ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }
