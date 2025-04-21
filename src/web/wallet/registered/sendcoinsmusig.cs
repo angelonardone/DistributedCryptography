@@ -964,7 +964,7 @@ namespace GeneXus.Programs.wallet.registered {
          AV23totalBalance = GXt_decimal4;
          AssignAttri("", false, "AV23totalBalance", StringUtil.LTrimStr( AV23totalBalance, 16, 8));
          GxWebStd.gx_hidden_field( context, "gxhash_vTOTALBALANCE", GetSecureSignedToken( "", context.localUtil.Format( AV23totalBalance, "ZZZZZZ9.99999999"), context));
-         new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+         new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
          AV31group_sdt.FromJSonString(AV30websession.Get("Group_EDIT"), null);
          AV35oneMuSigSignatures.FromJSonString(AV30websession.Get("MuSign_ONE"), null);
          if ( ! (Guid.Empty==AV35oneMuSigSignatures.gxTpr_Id) )
@@ -1066,7 +1066,7 @@ namespace GeneXus.Programs.wallet.registered {
             AssignAttri("", false, "AV10error", AV10error);
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV10error)) )
             {
-               new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+               new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
                if ( ! AV34verified )
                {
                   if ( ! AV31group_sdt.gxTpr_Amigroupowner )
@@ -1172,7 +1172,7 @@ namespace GeneXus.Programs.wallet.registered {
       {
          /* 'Cancel' Routine */
          returnInSub = false;
-         new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+         new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
          AV30websession.Set("MuSign_ONE", "");
          context.setWebReturnParms(new Object[] {});
          context.setWebReturnParmsMetadata(new Object[] {});
@@ -1270,31 +1270,31 @@ namespace GeneXus.Programs.wallet.registered {
                               else
                               {
                                  this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"There was a problem calculatin fastest fee: ",(string)AV10error}, true);
-                                 new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+                                 new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
                               }
                            }
                            else
                            {
                               this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"There was a problem calculatin standar fee: ",(string)AV10error}, true);
-                              new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+                              new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
                            }
                         }
                         else
                         {
                            this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"There was a problem calculatin economical fee: ",(string)AV10error}, true);
-                           new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+                           new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
                         }
                      }
                      else
                      {
                         this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"There was a problem building the estimated transaction fee: ",(string)AV10error}, true);
-                        new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+                        new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
                      }
                   }
                   else
                   {
                      this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"There was a problem getting the Raw Transaction from the server: ",(string)AV10error}, true);
-                     new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+                     new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
                   }
                }
                else
@@ -1304,7 +1304,7 @@ namespace GeneXus.Programs.wallet.registered {
                   {
                      AV10error = "The 'change address' does not belong to this wallet or it has already been used";
                      AssignAttri("", false, "AV10error", AV10error);
-                     new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+                     new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
                   }
                   else
                   {
@@ -1371,7 +1371,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202541513141423", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202541913335393", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1388,7 +1388,7 @@ namespace GeneXus.Programs.wallet.registered {
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
          context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 123260), false, true);
-         context.AddJavascriptSource("wallet/registered/sendcoinsmusig.js", "?202541513141423", false, true);
+         context.AddJavascriptSource("wallet/registered/sendcoinsmusig.js", "?202541913335394", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }

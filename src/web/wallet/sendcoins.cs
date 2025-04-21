@@ -904,7 +904,7 @@ namespace GeneXus.Programs.wallet {
          AV18totalBalance = GXt_decimal4;
          AssignAttri("", false, "AV18totalBalance", StringUtil.LTrimStr( AV18totalBalance, 16, 8));
          GxWebStd.gx_hidden_field( context, "gxhash_vTOTALBALANCE", GetSecureSignedToken( "", context.localUtil.Format( AV18totalBalance, "ZZZZZZ9.99999999"), context));
-         new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+         new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
       }
 
       protected void E12082( )
@@ -963,7 +963,7 @@ namespace GeneXus.Programs.wallet {
                AssignAttri("", false, "AV7error", AV7error);
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV7error)) )
                {
-                  new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+                  new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
                   GXt_char5 = AV7error;
                   new GeneXus.Programs.wallet.sendrawtransaction(context ).execute(  AV10hexTransaction, out  AV29TransactionId, out  GXt_char5) ;
                   AV7error = GXt_char5;
@@ -1019,7 +1019,7 @@ namespace GeneXus.Programs.wallet {
       {
          /* 'Cancel' Routine */
          returnInSub = false;
-         new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+         new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
          context.setWebReturnParms(new Object[] {});
          context.setWebReturnParmsMetadata(new Object[] {});
          context.wjLocDisableFrm = 1;
@@ -1187,7 +1187,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254151313571", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202541913335214", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1204,7 +1204,7 @@ namespace GeneXus.Programs.wallet {
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
          context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 123260), false, true);
-         context.AddJavascriptSource("wallet/sendcoins.js", "?20254151313572", false, true);
+         context.AddJavascriptSource("wallet/sendcoins.js", "?202541913335214", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }

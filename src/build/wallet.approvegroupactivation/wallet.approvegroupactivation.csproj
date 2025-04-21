@@ -24,9 +24,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Reference Include="GeneXus.dll" > 
-			<HintPath>$(WebBinDirectory)\GeneXus.dll</HintPath>
-		</Reference>
 		<Reference Include="Google.Authenticator.dll" > 
 			<HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
 		</Reference>
@@ -38,13 +35,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Include = "$(WebDirectory)\distributedcrypto\argon2encryption.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\createextkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\createkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setextkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\approvegroupactivation.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\readwallet.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\approveactionsetextkey.cs" />
 
 	</ItemGroup>
 

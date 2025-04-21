@@ -123,9 +123,6 @@
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtMessage_signature.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtMuSigSignatures.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtSDTAddressHistory.cs" />
- 	<Compile Include="$(WebDirectory)\wallet\type_SdtSdtChosen_SdtChosenItem.cs" />
- 	<Compile Include="$(WebDirectory)\wallet\type_SdtSdtChosenResult.cs" />
- 	<Compile Include="$(WebDirectory)\wallet\type_SdtSdtChosenResultItem.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtSDT_Json_Enc.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtSDT_ReturnAddresses_SDT_ReturnAddressesItem.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtStoredTransactions.cs" />

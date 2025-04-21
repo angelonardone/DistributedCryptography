@@ -269,6 +269,14 @@ namespace GeneXus.Programs.wallet.registered {
          GxWebStd.gx_hidden_field( context, "gxhash_vNETWORKTYPE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12networkType, "")), context));
          if ( context.isAjaxRequest( ) )
          {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vEXTENDESECRETANDAUTHENTICATOR", AV27extendeSecretAndAuthenticator);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vEXTENDESECRETANDAUTHENTICATOR", AV27extendeSecretAndAuthenticator);
+         }
+         if ( context.isAjaxRequest( ) )
+         {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLET", AV16wallet);
          }
          else
@@ -750,6 +758,7 @@ namespace GeneXus.Programs.wallet.registered {
          }
          /*  Sending Event outputs  */
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV7extKeyCreate", AV7extKeyCreate);
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV27extendeSecretAndAuthenticator", AV27extendeSecretAndAuthenticator);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV16wallet", AV16wallet);
       }
 
@@ -765,21 +774,18 @@ namespace GeneXus.Programs.wallet.registered {
             AV7extKeyCreate.gxTpr_Networktype = AV12networkType;
             AV7extKeyCreate.gxTpr_Createextkeytype = 70;
             AV7extKeyCreate.gxTpr_Extendedprivatekey = StringUtil.Trim( AV25extPrivateKey);
+            AV27extendeSecretAndAuthenticator.gxTpr_Authenticatorbase32 = "";
+            AV27extendeSecretAndAuthenticator.gxTpr_Extendedprivatekey = StringUtil.Trim( AV7extKeyCreate.gxTpr_Extendedprivatekey);
             GXt_char2 = AV6error;
-            new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV7extKeyCreate,  AV13newPass, out  AV8extKeyInfo, out  GXt_char2) ;
+            GXt_char3 = AV16wallet.gxTpr_Encryptedsecret;
+            new GeneXus.Programs.distributedcrypto.argon2encryption(context ).execute(  10,  AV13newPass,  AV27extendeSecretAndAuthenticator.ToJSonString(false, true), out  GXt_char3, ref  GXt_char2) ;
+            AV16wallet.gxTpr_Encryptedsecret = GXt_char3;
             AV6error = GXt_char2;
             AssignAttri("", false, "AV6error", AV6error);
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
             {
                AV16wallet.gxTpr_Wallettype = "BIP86";
                AV16wallet.gxTpr_Networktype = AV12networkType;
-               AV16wallet.gxTpr_Encryptedsecret = AV8extKeyInfo.gxTpr_Encryptedwif;
-               GXt_char2 = AV6error;
-               new GeneXus.Programs.nbitcoin.eccenctrypt(context ).execute(  AV8extKeyInfo.gxTpr_Publickey,  AV8extKeyInfo.gxTpr_Extended.gxTpr_Privatekey, out  AV20cypherText, out  GXt_char2) ;
-               AV6error = GXt_char2;
-               AssignAttri("", false, "AV6error", AV6error);
-               AV16wallet.gxTpr_Extencryptedsecret = AV20cypherText;
-               AV16wallet.gxTpr_Useauthenticator = false;
                AV16wallet.gxTpr_Walletname = AV17walletName;
                new GeneXus.Programs.wallet.createwalletfiles(context ).execute(  AV16wallet) ;
                AV26walletRestored = true;
@@ -865,7 +871,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202541513141073", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254181752218", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -881,7 +887,7 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/registered/resotregroupwallet.js", "?202541513141073", false, true);
+         context.AddJavascriptSource("wallet/registered/resotregroupwallet.js", "?20254181752219", false, true);
          /* End function include_jscripts */
       }
 
@@ -933,8 +939,8 @@ namespace GeneXus.Programs.wallet.registered {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV12networkType","fld":"vNETWORKTYPE","hsh":true,"type":"char"}]}""");
-         setEventMetadata("'RESTORE WALLET'","""{"handler":"E121M2","iparms":[{"av":"AV17walletName","fld":"vWALLETNAME","type":"char"},{"av":"AV13newPass","fld":"vNEWPASS","type":"char"},{"av":"AV14newPassConfirm","fld":"vNEWPASSCONFIRM","type":"char"},{"av":"AV6error","fld":"vERROR","type":"char"},{"av":"AV7extKeyCreate","fld":"vEXTKEYCREATE","type":""},{"av":"AV12networkType","fld":"vNETWORKTYPE","hsh":true,"type":"char"},{"av":"AV16wallet","fld":"vWALLET","type":""}]""");
-         setEventMetadata("'RESTORE WALLET'",""","oparms":[{"av":"AV7extKeyCreate","fld":"vEXTKEYCREATE","type":""},{"av":"AV6error","fld":"vERROR","type":"char"},{"av":"AV16wallet","fld":"vWALLET","type":""}]}""");
+         setEventMetadata("'RESTORE WALLET'","""{"handler":"E121M2","iparms":[{"av":"AV17walletName","fld":"vWALLETNAME","type":"char"},{"av":"AV13newPass","fld":"vNEWPASS","type":"char"},{"av":"AV14newPassConfirm","fld":"vNEWPASSCONFIRM","type":"char"},{"av":"AV6error","fld":"vERROR","type":"char"},{"av":"AV7extKeyCreate","fld":"vEXTKEYCREATE","type":""},{"av":"AV12networkType","fld":"vNETWORKTYPE","hsh":true,"type":"char"},{"av":"AV27extendeSecretAndAuthenticator","fld":"vEXTENDESECRETANDAUTHENTICATOR","type":""},{"av":"AV16wallet","fld":"vWALLET","type":""}]""");
+         setEventMetadata("'RESTORE WALLET'",""","oparms":[{"av":"AV7extKeyCreate","fld":"vEXTKEYCREATE","type":""},{"av":"AV27extendeSecretAndAuthenticator","fld":"vEXTENDESECRETANDAUTHENTICATOR","type":""},{"av":"AV6error","fld":"vERROR","type":"char"},{"av":"AV16wallet","fld":"vWALLET","type":""}]}""");
          setEventMetadata("'CANCEL AND CLOSE'","""{"handler":"E131M2","iparms":[]}""");
          return  ;
       }
@@ -959,6 +965,7 @@ namespace GeneXus.Programs.wallet.registered {
          GXKey = "";
          AV6error = "";
          AV7extKeyCreate = new GeneXus.Programs.nbitcoin.SdtExtKeyCreate(context);
+         AV27extendeSecretAndAuthenticator = new GeneXus.Programs.wallet.SdtExtendeSecretAndAuthenticator(context);
          AV16wallet = new GeneXus.Programs.wallet.SdtWallet(context);
          GX_FocusControl = "";
          Form = new GXWebForm();
@@ -980,9 +987,8 @@ namespace GeneXus.Programs.wallet.registered {
          AV18walletType = "";
          AV25extPrivateKey = "";
          AV24webSession = context.GetSession();
-         AV8extKeyInfo = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
          GXt_char2 = "";
-         AV20cypherText = "";
+         GXt_char3 = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          /* GeneXus formulas. */
@@ -1033,6 +1039,7 @@ namespace GeneXus.Programs.wallet.registered {
       private string AV18walletType ;
       private string AV25extPrivateKey ;
       private string GXt_char2 ;
+      private string GXt_char3 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool wbLoad ;
@@ -1041,15 +1048,14 @@ namespace GeneXus.Programs.wallet.registered {
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private bool AV26walletRestored ;
-      private string AV20cypherText ;
       private IGxSession AV24webSession ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyCreate AV7extKeyCreate ;
+      private GeneXus.Programs.wallet.SdtExtendeSecretAndAuthenticator AV27extendeSecretAndAuthenticator ;
       private GeneXus.Programs.wallet.SdtWallet AV16wallet ;
       private GeneXus.Programs.wallet.SdtWallet AV23CurrentWallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
-      private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV8extKeyInfo ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

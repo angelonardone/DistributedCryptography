@@ -1708,7 +1708,7 @@ namespace GeneXus.Programs.wallet.registered {
                   new GeneXus.Programs.wallet.getextkey(context ).execute( out  GXt_SdtExtKeyInfo2) ;
                   AV36extKeyInfo = GXt_SdtExtKeyInfo2;
                   AV20secret = AV36extKeyInfo.gxTpr_Extended.gxTpr_Privatekeytaproot;
-                  new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+                  new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
                   GXt_char4 = AV8error;
                   new GeneXus.Programs.shamirss.createshares(context ).execute(  AV20secret,  AV22totalUserShares,  AV11group_sdt.gxTpr_Minimumshares, out  AV21shares, ref  GXt_char4) ;
                   AV8error = GXt_char4;
@@ -2030,7 +2030,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202541513133291", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202541913335749", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2046,7 +2046,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/smartgroupwalletbackup.js", "?202541513133292", false, true);
+         context.AddJavascriptSource("wallet/registered/smartgroupwalletbackup.js", "?202541913335749", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }

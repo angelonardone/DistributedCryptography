@@ -48,6 +48,8 @@
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getextkey.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\aesdecryptstring.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\cleanprivatekeys.cs" />
 		<Compile Include = "$(WebDirectory)\apibaseurlauth.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\sha256.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
@@ -60,9 +62,9 @@
 		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\varchartojsonformat.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\setkey.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\encryptjsonto.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\processserver.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\cleanextkey.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\decryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\smartgroupwalletbackup.cs" />

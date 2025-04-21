@@ -37,8 +37,6 @@ namespace GeneXus.Programs.wallet
 
 			gxTv_SdtWallet_Encryptedsecret = "";
 
-			gxTv_SdtWallet_Extencryptedsecret = "";
-
 			gxTv_SdtWallet_Networktype = "";
 
 			gxTv_SdtWallet_Walletfilename = "";
@@ -80,9 +78,6 @@ namespace GeneXus.Programs.wallet
 
 
 			AddObjectProperty("EncryptedSecret", gxTpr_Encryptedsecret, false);
-
-
-			AddObjectProperty("ExtEncryptedSecret", gxTpr_Extencryptedsecret, false);
 
 
 			AddObjectProperty("useAuthenticator", gxTpr_Useauthenticator, false);
@@ -147,22 +142,6 @@ namespace GeneXus.Programs.wallet
 			set {
 				gxTv_SdtWallet_Encryptedsecret = value;
 				SetDirty("Encryptedsecret");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="ExtEncryptedSecret")]
-		[XmlElement(ElementName="ExtEncryptedSecret")]
-		public string gxTpr_Extencryptedsecret
-		{
-			get {
-				return gxTv_SdtWallet_Extencryptedsecret; 
-			}
-			set {
-				gxTv_SdtWallet_Extencryptedsecret = value;
-				SetDirty("Extencryptedsecret");
 			}
 		}
 
@@ -272,7 +251,6 @@ namespace GeneXus.Programs.wallet
 			gxTv_SdtWallet_Walletname = "";
 			gxTv_SdtWallet_Wallettype = "";
 			gxTv_SdtWallet_Encryptedsecret = "";
-			gxTv_SdtWallet_Extencryptedsecret = "";
 
 			gxTv_SdtWallet_Networktype = "";
 			gxTv_SdtWallet_Walletfilename = "";
@@ -294,9 +272,6 @@ namespace GeneXus.Programs.wallet
 		 
 
 		protected string gxTv_SdtWallet_Encryptedsecret;
-		 
-
-		protected string gxTv_SdtWallet_Extencryptedsecret;
 		 
 
 		protected bool gxTv_SdtWallet_Useauthenticator;
@@ -373,24 +348,10 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
-		[JsonPropertyName("ExtEncryptedSecret")]
-		[JsonPropertyOrder(3)]
-		[DataMember(Name="ExtEncryptedSecret", Order=3)]
-		public  string gxTpr_Extencryptedsecret
-		{
-			get { 
-				return sdt.gxTpr_Extencryptedsecret;
-
-			}
-			set { 
-				 sdt.gxTpr_Extencryptedsecret = value;
-			}
-		}
-
 		[JsonPropertyName("useAuthenticator")]
-		[JsonPropertyOrder(4)]
+		[JsonPropertyOrder(3)]
 		[JsonConverter(typeof(BoolStringJsonConverter))]
-		[DataMember(Name="useAuthenticator", Order=4)]
+		[DataMember(Name="useAuthenticator", Order=3)]
 		public bool gxTpr_Useauthenticator
 		{
 			get { 
@@ -403,8 +364,8 @@ namespace GeneXus.Programs.wallet
 		}
 
 		[JsonPropertyName("NetworkType")]
-		[JsonPropertyOrder(5)]
-		[DataMember(Name="NetworkType", Order=5)]
+		[JsonPropertyOrder(4)]
+		[DataMember(Name="NetworkType", Order=4)]
 		public  string gxTpr_Networktype
 		{
 			get { 
@@ -417,8 +378,8 @@ namespace GeneXus.Programs.wallet
 		}
 
 		[JsonPropertyName("WalletFileName")]
-		[JsonPropertyOrder(6)]
-		[DataMember(Name="WalletFileName", Order=6)]
+		[JsonPropertyOrder(5)]
+		[DataMember(Name="WalletFileName", Order=5)]
 		public  string gxTpr_Walletfilename
 		{
 			get { 
@@ -431,8 +392,8 @@ namespace GeneXus.Programs.wallet
 		}
 
 		[JsonPropertyName("WalletBaseDirectory")]
-		[JsonPropertyOrder(7)]
-		[DataMember(Name="WalletBaseDirectory", Order=7)]
+		[JsonPropertyOrder(6)]
+		[DataMember(Name="WalletBaseDirectory", Order=6)]
 		public  string gxTpr_Walletbasedirectory
 		{
 			get { 
@@ -445,9 +406,9 @@ namespace GeneXus.Programs.wallet
 		}
 
 		[JsonPropertyName("WalletReadBalanceOnStart")]
-		[JsonPropertyOrder(8)]
+		[JsonPropertyOrder(7)]
 		[JsonConverter(typeof(BoolStringJsonConverter))]
-		[DataMember(Name="WalletReadBalanceOnStart", Order=8)]
+		[DataMember(Name="WalletReadBalanceOnStart", Order=7)]
 		public bool gxTpr_Walletreadbalanceonstart
 		{
 			get { 

@@ -71,6 +71,7 @@
 		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainextendedkeytype.cs" />
 		<Compile Include = "$(WebDirectory)\gxinternetlib\type_SdtOperationResult.cs" />
 		<Compile Include = "$(WebDirectory)\gxinternetlib\type_SdtGxInternetLibWs.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\gxdomainencryptaction.cs" />
 		<Compile Include = "$(WebDirectory)\gxdomainfckeditormodes.cs" />
 
 	</ItemGroup>

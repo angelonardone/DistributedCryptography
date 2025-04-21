@@ -31,7 +31,7 @@ namespace GeneXus.Programs.wallet
 		public SdtExtendeSecretAndAuthenticator( )
 		{
 			/* Constructor for serialization */
-			gxTv_SdtExtendeSecretAndAuthenticator_Extencryptedsecret = "";
+			gxTv_SdtExtendeSecretAndAuthenticator_Extendedprivatekey = "";
 
 			gxTv_SdtExtendeSecretAndAuthenticator_Authenticatorbase32 = "";
 
@@ -62,7 +62,7 @@ namespace GeneXus.Programs.wallet
 
 		public override void ToJSON(bool includeState)
 		{
-			AddObjectProperty("ExtEncryptedSecret", gxTpr_Extencryptedsecret, false);
+			AddObjectProperty("ExtendedPrivateKey", gxTpr_Extendedprivatekey, false);
 
 
 			AddObjectProperty("AuthenticatorBase32", gxTpr_Authenticatorbase32, false);
@@ -73,16 +73,16 @@ namespace GeneXus.Programs.wallet
 
 		#region Properties
 
-		[SoapElement(ElementName="ExtEncryptedSecret")]
-		[XmlElement(ElementName="ExtEncryptedSecret")]
-		public string gxTpr_Extencryptedsecret
+		[SoapElement(ElementName="ExtendedPrivateKey")]
+		[XmlElement(ElementName="ExtendedPrivateKey")]
+		public string gxTpr_Extendedprivatekey
 		{
 			get {
-				return gxTv_SdtExtendeSecretAndAuthenticator_Extencryptedsecret; 
+				return gxTv_SdtExtendeSecretAndAuthenticator_Extendedprivatekey; 
 			}
 			set {
-				gxTv_SdtExtendeSecretAndAuthenticator_Extencryptedsecret = value;
-				SetDirty("Extencryptedsecret");
+				gxTv_SdtExtendeSecretAndAuthenticator_Extendedprivatekey = value;
+				SetDirty("Extendedprivatekey");
 			}
 		}
 
@@ -125,7 +125,7 @@ namespace GeneXus.Programs.wallet
 
 		public void initialize( )
 		{
-			gxTv_SdtExtendeSecretAndAuthenticator_Extencryptedsecret = "";
+			gxTv_SdtExtendeSecretAndAuthenticator_Extendedprivatekey = "";
 			gxTv_SdtExtendeSecretAndAuthenticator_Authenticatorbase32 = "";
 			return  ;
 		}
@@ -136,7 +136,7 @@ namespace GeneXus.Programs.wallet
 
 		#region Declaration
 
-		protected string gxTv_SdtExtendeSecretAndAuthenticator_Extencryptedsecret;
+		protected string gxTv_SdtExtendeSecretAndAuthenticator_Extendedprivatekey;
 		 
 
 		protected string gxTv_SdtExtendeSecretAndAuthenticator_Authenticatorbase32;
@@ -159,17 +159,17 @@ namespace GeneXus.Programs.wallet
 		}
 
 		#region Rest Properties
-		[JsonPropertyName("ExtEncryptedSecret")]
+		[JsonPropertyName("ExtendedPrivateKey")]
 		[JsonPropertyOrder(0)]
-		[DataMember(Name="ExtEncryptedSecret", Order=0)]
-		public  string gxTpr_Extencryptedsecret
+		[DataMember(Name="ExtendedPrivateKey", Order=0)]
+		public  string gxTpr_Extendedprivatekey
 		{
 			get { 
-				return StringUtil.RTrim( sdt.gxTpr_Extencryptedsecret);
+				return StringUtil.RTrim( sdt.gxTpr_Extendedprivatekey);
 
 			}
 			set { 
-				 sdt.gxTpr_Extencryptedsecret = value;
+				 sdt.gxTpr_Extendedprivatekey = value;
 			}
 		}
 

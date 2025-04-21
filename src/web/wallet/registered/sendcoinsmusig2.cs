@@ -962,7 +962,7 @@ namespace GeneXus.Programs.wallet.registered {
          AV28totalBalance = GXt_decimal4;
          AssignAttri("", false, "AV28totalBalance", StringUtil.LTrimStr( AV28totalBalance, 16, 8));
          GxWebStd.gx_hidden_field( context, "gxhash_vTOTALBALANCE", GetSecureSignedToken( "", context.localUtil.Format( AV28totalBalance, "ZZZZZZ9.99999999"), context));
-         new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+         new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
          AV14group_sdt.FromJSonString(AV37websession.Get("Group_EDIT"), null);
          AV18oneMuSigSignatures.FromJSonString(AV37websession.Get("MuSign_ONE"), null);
          if ( ! (Guid.Empty==AV18oneMuSigSignatures.gxTpr_Id) )
@@ -1053,7 +1053,7 @@ namespace GeneXus.Programs.wallet.registered {
             AssignAttri("", false, "AV11error", AV11error);
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
             {
-               new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+               new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
                GXt_char5 = AV11error;
                new GeneXus.Programs.wallet.sendrawtransaction(context ).execute(  AV15hexTransaction, out  AV31TransactionId, out  GXt_char5) ;
                AV11error = GXt_char5;
@@ -1132,7 +1132,7 @@ namespace GeneXus.Programs.wallet.registered {
       {
          /* 'Cancel' Routine */
          returnInSub = false;
-         new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+         new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
          AV37websession.Set("MuSign_ONE", "");
          context.setWebReturnParms(new Object[] {});
          context.setWebReturnParmsMetadata(new Object[] {});
@@ -1192,7 +1192,7 @@ namespace GeneXus.Programs.wallet.registered {
                   {
                      AV11error = "The 'change address' does not belong to this wallet or it has already been used";
                      AssignAttri("", false, "AV11error", AV11error);
-                     new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+                     new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
                   }
                }
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
@@ -1265,32 +1265,32 @@ namespace GeneXus.Programs.wallet.registered {
                               else
                               {
                                  this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"There was a problem calculatin fastest fee: ",(string)AV11error}, true);
-                                 new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+                                 new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
                               }
                            }
                            else
                            {
                               this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"There was a problem calculatin standar fee: ",(string)AV11error}, true);
-                              new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+                              new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
                            }
                         }
                         else
                         {
                            this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"There was a problem calculatin economical fee: ",(string)AV11error}, true);
-                           new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+                           new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
                         }
                      }
                      else
                      {
                         this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"There was a problem building the transaction: ",(string)AV11error}, true);
-                        new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+                        new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
                      }
                   }
                }
                else
                {
                   this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"There was a problem getting the Raw Transaction from the server: ",(string)AV11error}, true);
-                  new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+                  new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
                }
             }
          }
@@ -1349,7 +1349,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202541513141611", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202541913335627", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1366,7 +1366,7 @@ namespace GeneXus.Programs.wallet.registered {
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
          context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 123260), false, true);
-         context.AddJavascriptSource("wallet/registered/sendcoinsmusig2.js", "?202541513141611", false, true);
+         context.AddJavascriptSource("wallet/registered/sendcoinsmusig2.js", "?202541913335627", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }

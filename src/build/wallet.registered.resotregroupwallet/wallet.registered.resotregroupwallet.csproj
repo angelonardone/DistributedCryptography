@@ -35,12 +35,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include = "$(WebDirectory)\wallet\createwalletfiles.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\createextkey.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\registered\resotregroupwallet.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\argon2encryption.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\createwalletfiles.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\resotregroupwallet.cs" />
 
 	</ItemGroup>
 

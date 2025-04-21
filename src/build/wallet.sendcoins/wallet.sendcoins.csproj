@@ -45,13 +45,14 @@
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\selectcoinstosend.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\aesencryptstring.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getestimatesmartfee.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\getelectrumconnid.cs" />
 		<Compile Include = "$(WebDirectory)\receivefromelectrum.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\updatetransactionsaftercoinsent.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\aesdecryptstring.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getkey.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getestimatesmartfee.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\cleanprivatekeys.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\getelectrumconfigservers.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
@@ -62,6 +63,7 @@
 		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\setelectrumconnid.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\setkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gethistorywithbalance.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setalladdress.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\createkey.cs" />
@@ -73,7 +75,6 @@
 		<Compile Include = "$(WebDirectory)\wallet\getrawtransfromcoinstosend.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getextkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getalladdress.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\cleanextkey.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\createextkey.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\decryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
