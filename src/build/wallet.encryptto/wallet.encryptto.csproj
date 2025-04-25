@@ -43,8 +43,8 @@
 	<ItemGroup>
 		<Compile Include = "$(WebDirectory)\apibaseurlauth.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\aesencryptstring.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\aesencryptfileto.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\encryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\aesencryptionlargefile.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\varchartojsonformat.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluser.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\aesdecryptstring.cs" />

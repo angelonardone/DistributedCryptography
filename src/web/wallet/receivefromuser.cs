@@ -351,6 +351,7 @@ namespace GeneXus.Programs.wallet {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vEXTERNALUSER", AV19externalUser);
          }
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vEXTERNALUSER", GetSecureSignedToken( sPrefix, AV19externalUser, context));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vREALFILENAME", AV20realFileName);
          GxWebStd.gx_hidden_field( context, sPrefix+"FILEUPLOAD_Autoupload", StringUtil.BoolToStr( Fileupload_Autoupload));
          GxWebStd.gx_hidden_field( context, sPrefix+"FILEUPLOAD_Hideadditionalbuttons", StringUtil.BoolToStr( Fileupload_Hideadditionalbuttons));
          GxWebStd.gx_hidden_field( context, sPrefix+"FILEUPLOAD_Maxfilesize", StringUtil.LTrim( StringUtil.NToC( (decimal)(Fileupload_Maxfilesize), 9, 0, ".", "")));
@@ -828,10 +829,10 @@ namespace GeneXus.Programs.wallet {
       {
          /* Fileupload_Uploadcomplete Routine */
          returnInSub = false;
-         AV20GXV1 = 1;
-         while ( AV20GXV1 <= AV17UploadedFiles.Count )
+         AV21GXV1 = 1;
+         while ( AV21GXV1 <= AV17UploadedFiles.Count )
          {
-            AV11FileUploadData = ((SdtFileUploadData)AV17UploadedFiles.Item(AV20GXV1));
+            AV11FileUploadData = ((SdtFileUploadData)AV17UploadedFiles.Item(AV21GXV1));
             AV16tempBlob = AV11FileUploadData.gxTpr_File;
             AV10File.Source = AV16tempBlob;
             AV13newRndName = Guid.NewGuid( ).ToString();
@@ -842,7 +843,11 @@ namespace GeneXus.Programs.wallet {
             new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean4) ;
             AV7EncDestination = AV6directory.GetAbsoluteName() + (GXt_boolean4 ? "/" : "\\") + StringUtil.Trim( AV13newRndName);
             GXt_char5 = AV8error;
-            new GeneXus.Programs.distributedcrypto.aesdecryptfileto(context ).execute(  AV10File.GetAbsoluteName(),  AV7EncDestination,  StringUtil.Trim( AV19externalUser.gxTpr_Keyinfo.gxTpr_Privatekey), out  GXt_char5) ;
+            GXt_char6 = "";
+            GXt_char7 = "";
+            GXt_char8 = "";
+            new GeneXus.Programs.distributedcrypto.aesencryptionlargefile(context ).execute(  20,  AV10File.GetAbsoluteName(),  AV7EncDestination,  "",  StringUtil.Trim( AV19externalUser.gxTpr_Keyinfo.gxTpr_Privatekey), ref  AV20realFileName, ref  GXt_char6, ref  GXt_char7, ref  GXt_char8, out  GXt_char5) ;
+            AssignAttri(sPrefix, false, "AV20realFileName", AV20realFileName);
             AV8error = GXt_char5;
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
             {
@@ -851,13 +856,13 @@ namespace GeneXus.Programs.wallet {
                new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean4) ;
                GXt_boolean3 = false;
                new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
-               AV15renamedFile = AV6directory.GetAbsoluteName() + (GXt_boolean3 ? "/" : "\\") + AV11FileUploadData.gxTpr_Name + "." + AV11FileUploadData.gxTpr_Extension;
+               AV15renamedFile = AV6directory.GetAbsoluteName() + (GXt_boolean3 ? "/" : "\\") + AV20realFileName;
                AV12newFile.Rename(AV15renamedFile);
                GXt_boolean4 = false;
                new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean4) ;
                GXt_boolean3 = false;
                new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
-               AV7EncDestination = "PublicTempStorage" + (GXt_boolean3 ? "/" : "\\") + AV11FileUploadData.gxTpr_Name + "." + AV11FileUploadData.gxTpr_Extension;
+               AV7EncDestination = "PublicTempStorage" + (GXt_boolean3 ? "/" : "\\") + AV20realFileName;
                this.executeExternalObjectMethod(sPrefix, false, "gx.extensions.web.window", "open", new Object[] {(string)AV7EncDestination}, false);
                new GeneXus.Programs.wallet.deletefilewithdelay(context).executeSubmit(  AV7EncDestination) ;
                GXt_boolean4 = false;
@@ -873,7 +878,7 @@ namespace GeneXus.Programs.wallet {
             {
                GX_msglist.addItem(AV8error);
             }
-            AV20GXV1 = (int)(AV20GXV1+1);
+            AV21GXV1 = (int)(AV21GXV1+1);
          }
          /*  Sending Event outputs  */
       }
@@ -1059,7 +1064,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202541817511446", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542515572773", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1075,7 +1080,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/receivefromuser.js", "?202541817511446", false, true);
+         context.AddJavascriptSource("wallet/receivefromuser.js", "?202542515572774", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
          /* End function include_jscripts */
@@ -1130,7 +1135,8 @@ namespace GeneXus.Programs.wallet {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV19externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""}]}""");
-         setEventMetadata("FILEUPLOAD.UPLOADCOMPLETE","""{"handler":"E112C2","iparms":[{"av":"AV17UploadedFiles","fld":"vUPLOADEDFILES","type":""},{"av":"AV19externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""}]}""");
+         setEventMetadata("FILEUPLOAD.UPLOADCOMPLETE","""{"handler":"E112C2","iparms":[{"av":"AV17UploadedFiles","fld":"vUPLOADEDFILES","type":""},{"av":"AV19externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""},{"av":"AV20realFileName","fld":"vREALFILENAME","type":"svchar"}]""");
+         setEventMetadata("FILEUPLOAD.UPLOADCOMPLETE",""","oparms":[{"av":"AV20realFileName","fld":"vREALFILENAME","type":"svchar"}]}""");
          return  ;
       }
 
@@ -1160,6 +1166,7 @@ namespace GeneXus.Programs.wallet {
          GXKey = "";
          AV17UploadedFiles = new GXBaseCollection<SdtFileUploadData>( context, "FileUploadData", "distributedcryptography");
          AV9FailedFiles = new GXBaseCollection<SdtFileUploadData>( context, "FileUploadData", "distributedcryptography");
+         AV20realFileName = "";
          GX_FocusControl = "";
          ucFileupload = new GXUserControl();
          Form = new GXWebForm();
@@ -1179,6 +1186,9 @@ namespace GeneXus.Programs.wallet {
          AV7EncDestination = "";
          AV8error = "";
          GXt_char5 = "";
+         GXt_char6 = "";
+         GXt_char7 = "";
+         GXt_char8 = "";
          AV12newFile = new GxFile(context.GetPhysicalPath());
          AV15renamedFile = "";
          BackMsgLst = new msglist();
@@ -1198,7 +1208,7 @@ namespace GeneXus.Programs.wallet {
       private short nGXWrapped ;
       private int Fileupload_Maxfilesize ;
       private int Fileupload_Maxnumberoffiles ;
-      private int AV20GXV1 ;
+      private int AV21GXV1 ;
       private int idxLst ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
@@ -1222,6 +1232,9 @@ namespace GeneXus.Programs.wallet {
       private string AV7EncDestination ;
       private string AV8error ;
       private string GXt_char5 ;
+      private string GXt_char6 ;
+      private string GXt_char7 ;
+      private string GXt_char8 ;
       private string AV15renamedFile ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
@@ -1235,6 +1248,7 @@ namespace GeneXus.Programs.wallet {
       private bool returnInSub ;
       private bool GXt_boolean4 ;
       private bool GXt_boolean3 ;
+      private string AV20realFileName ;
       private string AV16tempBlob ;
       private GXUserControl ucFileupload ;
       private GXWebForm Form ;

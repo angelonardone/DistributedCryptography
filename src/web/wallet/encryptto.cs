@@ -867,10 +867,10 @@ namespace GeneXus.Programs.wallet {
       {
          /* Fileupload_Uploadcomplete Routine */
          returnInSub = false;
-         AV19GXV1 = 1;
-         while ( AV19GXV1 <= AV15UploadedFiles.Count )
+         AV20GXV1 = 1;
+         while ( AV20GXV1 <= AV15UploadedFiles.Count )
          {
-            AV11FileUploadData = ((SdtFileUploadData)AV15UploadedFiles.Item(AV19GXV1));
+            AV11FileUploadData = ((SdtFileUploadData)AV15UploadedFiles.Item(AV20GXV1));
             AV14tempBlob = AV11FileUploadData.gxTpr_File;
             AV10File.Source = AV14tempBlob;
             AV12newRndName = Guid.NewGuid( ).ToString();
@@ -880,8 +880,12 @@ namespace GeneXus.Programs.wallet {
             GXt_boolean3 = false;
             new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
             AV7EncDestination = AV6directory.GetAbsoluteName() + (GXt_boolean3 ? "/" : "\\") + StringUtil.Trim( AV12newRndName);
+            AV19realFileName = AV11FileUploadData.gxTpr_Name + "." + AV11FileUploadData.gxTpr_Extension;
             GXt_char4 = AV8error;
-            new GeneXus.Programs.distributedcrypto.aesencryptfileto(context ).execute(  AV10File.GetAbsoluteName(),  AV7EncDestination,  AV13PubKey, out  GXt_char4) ;
+            GXt_char5 = "";
+            GXt_char6 = "";
+            GXt_char7 = "";
+            new GeneXus.Programs.distributedcrypto.aesencryptionlargefile(context ).execute(  10,  AV10File.GetAbsoluteName(),  AV7EncDestination,  AV13PubKey,  "", ref  AV19realFileName, ref  GXt_char5, ref  GXt_char6, ref  GXt_char7, out  GXt_char4) ;
             AV8error = GXt_char4;
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
             {
@@ -890,13 +894,13 @@ namespace GeneXus.Programs.wallet {
                new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
                GXt_boolean2 = false;
                new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean2) ;
-               AV18renamedFile = AV6directory.GetAbsoluteName() + (GXt_boolean2 ? "/" : "\\") + AV11FileUploadData.gxTpr_Name + "." + AV11FileUploadData.gxTpr_Extension;
+               AV18renamedFile = AV6directory.GetAbsoluteName() + (GXt_boolean2 ? "/" : "\\") + AV19realFileName;
                AV17newFile.Rename(AV18renamedFile);
                GXt_boolean3 = false;
                new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
                GXt_boolean2 = false;
                new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean2) ;
-               AV7EncDestination = "PublicTempStorage" + (GXt_boolean2 ? "/" : "\\") + AV11FileUploadData.gxTpr_Name + "." + AV11FileUploadData.gxTpr_Extension;
+               AV7EncDestination = "PublicTempStorage" + (GXt_boolean2 ? "/" : "\\") + AV19realFileName;
                this.executeExternalObjectMethod(sPrefix, false, "gx.extensions.web.window", "open", new Object[] {(string)AV7EncDestination}, false);
                new GeneXus.Programs.wallet.deletefilewithdelay(context).executeSubmit(  AV7EncDestination) ;
                GXt_boolean3 = false;
@@ -922,7 +926,7 @@ namespace GeneXus.Programs.wallet {
             {
                GX_msglist.addItem(AV8error);
             }
-            AV19GXV1 = (int)(AV19GXV1+1);
+            AV20GXV1 = (int)(AV20GXV1+1);
          }
          /*  Sending Event outputs  */
       }
@@ -931,10 +935,10 @@ namespace GeneXus.Programs.wallet {
       {
          /* 'Validate user' Routine */
          returnInSub = false;
-         GXt_char4 = AV8error;
-         new GeneXus.Programs.wallet.registered.getuserpubkey(context ).execute(  AV5ContactUserName, out  AV13PubKey, out  GXt_char4) ;
+         GXt_char7 = AV8error;
+         new GeneXus.Programs.wallet.registered.getuserpubkey(context ).execute(  AV5ContactUserName, out  AV13PubKey, out  GXt_char7) ;
          AssignAttri(sPrefix, false, "AV13PubKey", AV13PubKey);
-         AV8error = GXt_char4;
+         AV8error = GXt_char7;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
          {
             divCanvas_Visible = 1;
@@ -1134,7 +1138,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254181751152", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542515572730", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1150,7 +1154,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/encryptto.js", "?20254181751152", false, true);
+         context.AddJavascriptSource("wallet/encryptto.js", "?202542515572730", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
          /* End function include_jscripts */
@@ -1269,10 +1273,14 @@ namespace GeneXus.Programs.wallet {
          AV12newRndName = "";
          AV6directory = new GxDirectory(context.GetPhysicalPath());
          AV7EncDestination = "";
+         AV19realFileName = "";
          AV8error = "";
+         GXt_char4 = "";
+         GXt_char5 = "";
+         GXt_char6 = "";
          AV17newFile = new GxFile(context.GetPhysicalPath());
          AV18renamedFile = "";
-         GXt_char4 = "";
+         GXt_char7 = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          /* GeneXus formulas. */
@@ -1294,7 +1302,7 @@ namespace GeneXus.Programs.wallet {
       private int bttValidateuserformat_Visible ;
       private int lblTbvalidate_Visible ;
       private int divCanvas_Visible ;
-      private int AV19GXV1 ;
+      private int AV20GXV1 ;
       private int idxLst ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
@@ -1328,8 +1336,11 @@ namespace GeneXus.Programs.wallet {
       private string AV12newRndName ;
       private string AV7EncDestination ;
       private string AV8error ;
-      private string AV18renamedFile ;
       private string GXt_char4 ;
+      private string GXt_char5 ;
+      private string GXt_char6 ;
+      private string AV18renamedFile ;
+      private string GXt_char7 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool Fileupload_Autoupload ;
@@ -1343,6 +1354,7 @@ namespace GeneXus.Programs.wallet {
       private bool GXt_boolean3 ;
       private bool GXt_boolean2 ;
       private string AV5ContactUserName ;
+      private string AV19realFileName ;
       private string AV14tempBlob ;
       private GXUserControl ucFileupload ;
       private GXWebForm Form ;
