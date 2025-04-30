@@ -126,7 +126,16 @@ namespace GeneXus.Programs.distributedcrypto {
             /* User Code */
              NBitcoin.PubKey publicKey = new NBitcoin.PubKey(bytes);
             /* User Code */
-             var (AV14ivBase64, AV15hmacBase64, AV16encryptedKeyBase64) = EncryptFileStreaming(AV17originalFileName, AV10inputFile, AV11outputFile, publicKey);
+             var (ivBase64, hmacBase64, encryptedKeyBase64) = EncryptFileStreaming(AV17originalFileName, AV10inputFile, AV11outputFile, publicKey);
+            /* User Code */
+             AV14ivBase64 =  ivBase64;
+            /* User Code */
+             AV15hmacBase64 =  hmacBase64;
+            /* User Code */
+             AV16encryptedKeyBase64 = encryptedKeyBase64;
+            GXt_char1 = AV14ivBase64 + " | " + AV15hmacBase64 + " | " + AV16encryptedKeyBase64;
+            GXt_char2 = "";
+            new GeneXus.Programs.debug.dbg(context ).execute( ref  AV18Pgmname, ref  GXt_char1, ref  GXt_char2) ;
          }
          else if ( AV8encryptAction == 20 )
          {
@@ -497,7 +506,12 @@ namespace GeneXus.Programs.distributedcrypto {
       public override void initialize( )
       {
          AV9error = "";
+         AV18Pgmname = "";
+         GXt_char1 = "";
+         GXt_char2 = "";
+         AV18Pgmname = "DistributedCrypto.AesEncryptionLargeFile";
          /* GeneXus formulas. */
+         AV18Pgmname = "DistributedCrypto.AesEncryptionLargeFile";
       }
 
       private short AV8encryptAction ;
@@ -507,6 +521,9 @@ namespace GeneXus.Programs.distributedcrypto {
       private string AV15hmacBase64 ;
       private string AV16encryptedKeyBase64 ;
       private string AV9error ;
+      private string AV18Pgmname ;
+      private string GXt_char1 ;
+      private string GXt_char2 ;
       private string AV10inputFile ;
       private string AV11outputFile ;
       private string AV17originalFileName ;
