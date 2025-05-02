@@ -223,7 +223,7 @@ namespace GeneXus.Programs.distributedcrypto {
          /* User Code */
          			argon2.Iterations = 10;
          /* User Code */
-         			argon2.MemorySize = 65536 * 6;
+         			argon2.MemorySize = 65536 * 10;
          /* User Code */
          			return argon2.GetBytes(32);
          /* User Code */

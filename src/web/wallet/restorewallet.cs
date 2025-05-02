@@ -1210,15 +1210,7 @@ namespace GeneXus.Programs.wallet {
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
          {
             GXt_char2 = AV6error;
-            new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV7extKeyCreate,  AV15passworWithMnamonic, out  AV8extKeyInfo, out  GXt_char2) ;
-            AV6error = GXt_char2;
-            AssignAttri("", false, "AV6error", AV6error);
-            AV7extKeyCreate.gxTpr_Keypath = "";
-            AV7extKeyCreate.gxTpr_Networktype = AV12networkType;
-            AV7extKeyCreate.gxTpr_Createextkeytype = 70;
-            AV7extKeyCreate.gxTpr_Extendedprivatekey = AV8extKeyInfo.gxTpr_Extended.gxTpr_Privatekey;
-            GXt_char2 = AV6error;
-            new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV7extKeyCreate,  AV13newPass, out  AV8extKeyInfo, out  GXt_char2) ;
+            new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV7extKeyCreate,  StringUtil.Trim( AV15passworWithMnamonic), out  AV8extKeyInfo, out  GXt_char2) ;
             AV6error = GXt_char2;
             AssignAttri("", false, "AV6error", AV6error);
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
@@ -1313,7 +1305,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254191333534", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255213173596", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1329,7 +1321,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/restorewallet.js", "?20254191333534", false, true);
+         context.AddJavascriptSource("wallet/restorewallet.js", "?20255213173597", false, true);
          /* End function include_jscripts */
       }
 

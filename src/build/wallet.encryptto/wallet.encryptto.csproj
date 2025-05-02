@@ -59,7 +59,6 @@
 		<Compile Include = "$(WebDirectory)\desktopappservicesrestgetuserpubkeyget.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\deletefilewithdelay.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
-		<Compile Include = "$(WebDirectory)\debug\dbg.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\processserver.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\callapi.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\setexternaluser.cs" />

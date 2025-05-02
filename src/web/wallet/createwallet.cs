@@ -990,7 +990,6 @@ namespace GeneXus.Programs.wallet {
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV7error)) )
             {
                AV19wallet.gxTpr_Networktype = AV15networkType;
-               AV19wallet.gxTpr_Encryptedsecret = AV9extKeyInfo.gxTpr_Encryptedwif;
                AV19wallet.gxTpr_Walletname = AV20walletName;
                AV29extendeSecretAndAuthenticator.gxTpr_Extendedprivatekey = StringUtil.Trim( AV9extKeyInfo.gxTpr_Extended.gxTpr_Privatekey);
                AV29extendeSecretAndAuthenticator.gxTpr_Authenticatorbase32 = "";
@@ -1109,33 +1108,41 @@ namespace GeneXus.Programs.wallet {
       {
          /* Authenticator_Controlvaluechanged Routine */
          returnInSub = false;
-         if ( AV23authenticator )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV20walletName)) && ! String.IsNullOrEmpty(StringUtil.RTrim( AV16newPass)) )
          {
-            GXt_char2 = AV7error;
-            new GeneXus.Programs.nbitcoin.createrandomkey(context ).execute( out  AV11keyInfo, out  GXt_char2) ;
-            AV7error = GXt_char2;
-            AssignAttri("", false, "AV7error", AV7error);
-            GXt_char2 = AV7error;
-            new GeneXus.Programs.nbitcoin.hextobase32(context ).execute(  StringUtil.Trim( AV11keyInfo.gxTpr_Privatekey), out  AV27base32String, out  GXt_char2) ;
-            AssignAttri("", false, "AV27base32String", AV27base32String);
-            AV7error = GXt_char2;
-            AssignAttri("", false, "AV7error", AV7error);
-            AV25SetupCode = AV26TwoFactorAuthenticator.generatesetupcode("Distributed Cryptography", AV20walletName, StringUtil.Trim( AV27base32String), true, 3);
-            AV24qrcode = AV25SetupCode.gxTpr_Qrcodesetupimageurl;
-            AssignProp("", false, imgavQrcode_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV24qrcode)) ? AV30Qrcode_GXI : context.convertURL( context.PathToRelativeUrl( AV24qrcode))), true);
-            AssignProp("", false, imgavQrcode_Internalname, "SrcSet", context.GetImageSrcSet( AV24qrcode), true);
-            AV30Qrcode_GXI = GXDbFile.PathToUrl( AV25SetupCode.gxTpr_Qrcodesetupimageurl, context);
-            AssignProp("", false, imgavQrcode_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV24qrcode)) ? AV30Qrcode_GXI : context.convertURL( context.PathToRelativeUrl( AV24qrcode))), true);
-            AssignProp("", false, imgavQrcode_Internalname, "SrcSet", context.GetImageSrcSet( AV24qrcode), true);
-            imgavQrcode_Visible = 1;
-            AssignProp("", false, imgavQrcode_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(imgavQrcode_Visible), 5, 0), true);
-            chkavShowauthenticatorcode.Visible = 1;
-            AssignProp("", false, chkavShowauthenticatorcode_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkavShowauthenticatorcode.Visible), 5, 0), true);
+            if ( AV23authenticator )
+            {
+               GXt_char2 = AV7error;
+               new GeneXus.Programs.nbitcoin.createrandomkey(context ).execute( out  AV11keyInfo, out  GXt_char2) ;
+               AV7error = GXt_char2;
+               AssignAttri("", false, "AV7error", AV7error);
+               GXt_char2 = AV7error;
+               new GeneXus.Programs.nbitcoin.hextobase32(context ).execute(  StringUtil.Trim( AV11keyInfo.gxTpr_Privatekey), out  AV27base32String, out  GXt_char2) ;
+               AssignAttri("", false, "AV27base32String", AV27base32String);
+               AV7error = GXt_char2;
+               AssignAttri("", false, "AV7error", AV7error);
+               AV25SetupCode = AV26TwoFactorAuthenticator.generatesetupcode("Distributed Cryptography", AV20walletName, StringUtil.Trim( AV27base32String), true, 3);
+               AV24qrcode = AV25SetupCode.gxTpr_Qrcodesetupimageurl;
+               AssignProp("", false, imgavQrcode_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV24qrcode)) ? AV30Qrcode_GXI : context.convertURL( context.PathToRelativeUrl( AV24qrcode))), true);
+               AssignProp("", false, imgavQrcode_Internalname, "SrcSet", context.GetImageSrcSet( AV24qrcode), true);
+               AV30Qrcode_GXI = GXDbFile.PathToUrl( AV25SetupCode.gxTpr_Qrcodesetupimageurl, context);
+               AssignProp("", false, imgavQrcode_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV24qrcode)) ? AV30Qrcode_GXI : context.convertURL( context.PathToRelativeUrl( AV24qrcode))), true);
+               AssignProp("", false, imgavQrcode_Internalname, "SrcSet", context.GetImageSrcSet( AV24qrcode), true);
+               imgavQrcode_Visible = 1;
+               AssignProp("", false, imgavQrcode_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(imgavQrcode_Visible), 5, 0), true);
+               chkavShowauthenticatorcode.Visible = 1;
+               AssignProp("", false, chkavShowauthenticatorcode_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkavShowauthenticatorcode.Visible), 5, 0), true);
+            }
+            else
+            {
+               imgavQrcode_Visible = 0;
+               AssignProp("", false, imgavQrcode_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(imgavQrcode_Visible), 5, 0), true);
+            }
          }
          else
          {
-            imgavQrcode_Visible = 0;
-            AssignProp("", false, imgavQrcode_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(imgavQrcode_Visible), 5, 0), true);
+            AV23authenticator = false;
+            AssignAttri("", false, "AV23authenticator", AV23authenticator);
          }
          /*  Sending Event outputs  */
       }
@@ -1189,7 +1196,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202541817521125", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255213173656", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1205,7 +1212,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/createwallet.js", "?202541817521125", false, true);
+         context.AddJavascriptSource("wallet/createwallet.js", "?20255213173657", false, true);
          /* End function include_jscripts */
       }
 
@@ -1337,8 +1344,8 @@ namespace GeneXus.Programs.wallet {
          setEventMetadata("VMNEMONICNUMBERWORDS.CONTROLVALUECHANGED",""","oparms":[{"av":"AV8extKeyCreate","fld":"vEXTKEYCREATE","type":""},{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"AV19wallet","fld":"vWALLET","type":""},{"av":"AV29extendeSecretAndAuthenticator","fld":"vEXTENDESECRETANDAUTHENTICATOR","type":""},{"av":"AV14MnemonicText","fld":"vMNEMONICTEXT","type":"vchar"},{"av":"lblTxt1_Visible","ctrl":"TXT1","prop":"Visible"},{"ctrl":"CREATEWALLET","prop":"Visible"},{"av":"lblTxt1_Caption","ctrl":"TXT1","prop":"Caption"}]}""");
          setEventMetadata("'CREATE WALLET'","""{"handler":"E130K2","iparms":[{"av":"AV20walletName","fld":"vWALLETNAME","type":"char"},{"av":"AV16newPass","fld":"vNEWPASS","type":"char"},{"av":"AV17newPassConfirm","fld":"vNEWPASSCONFIRM","type":"char"},{"av":"cmbavMnemoniclanguage"},{"av":"AV12mnemonicLanguage","fld":"vMNEMONICLANGUAGE","pic":"ZZZ9","type":"int"},{"av":"cmbavMnemonicnumberwords"},{"av":"AV13mnemonicNumberWords","fld":"vMNEMONICNUMBERWORDS","pic":"ZZZ9","type":"int"},{"av":"AV19wallet","fld":"vWALLET","type":""}]}""");
          setEventMetadata("'CANCEL AND CLOSE'","""{"handler":"E140K2","iparms":[]}""");
-         setEventMetadata("VAUTHENTICATOR.CONTROLVALUECHANGED","""{"handler":"E150K2","iparms":[{"av":"AV23authenticator","fld":"vAUTHENTICATOR","type":"boolean"},{"av":"AV20walletName","fld":"vWALLETNAME","type":"char"}]""");
-         setEventMetadata("VAUTHENTICATOR.CONTROLVALUECHANGED",""","oparms":[{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"AV27base32String","fld":"vBASE32STRING","type":"char"},{"av":"AV24qrcode","fld":"vQRCODE","type":"bits"},{"av":"chkavShowauthenticatorcode.Visible","ctrl":"vSHOWAUTHENTICATORCODE","prop":"Visible"},{"av":"imgavQrcode_Visible","ctrl":"vQRCODE","prop":"Visible"}]}""");
+         setEventMetadata("VAUTHENTICATOR.CONTROLVALUECHANGED","""{"handler":"E150K2","iparms":[{"av":"AV20walletName","fld":"vWALLETNAME","type":"char"},{"av":"AV16newPass","fld":"vNEWPASS","type":"char"},{"av":"AV23authenticator","fld":"vAUTHENTICATOR","type":"boolean"}]""");
+         setEventMetadata("VAUTHENTICATOR.CONTROLVALUECHANGED",""","oparms":[{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"AV27base32String","fld":"vBASE32STRING","type":"char"},{"av":"AV24qrcode","fld":"vQRCODE","type":"bits"},{"av":"chkavShowauthenticatorcode.Visible","ctrl":"vSHOWAUTHENTICATORCODE","prop":"Visible"},{"av":"imgavQrcode_Visible","ctrl":"vQRCODE","prop":"Visible"},{"av":"AV23authenticator","fld":"vAUTHENTICATOR","type":"boolean"}]}""");
          setEventMetadata("VALIDV_NETWORKTYPE","""{"handler":"Validv_Networktype","iparms":[]}""");
          setEventMetadata("VALIDV_MNEMONICLANGUAGE","""{"handler":"Validv_Mnemoniclanguage","iparms":[]}""");
          setEventMetadata("VALIDV_MNEMONICNUMBERWORDS","""{"handler":"Validv_Mnemonicnumberwords","iparms":[]}""");
