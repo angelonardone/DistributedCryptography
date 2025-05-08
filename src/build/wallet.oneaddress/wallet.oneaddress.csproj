@@ -36,17 +36,19 @@
 		<Reference Include="GxInternetLib.dll" > 
 			<HintPath>$(WebBinDirectory)\GxInternetLib.dll</HintPath>
 		</Reference>
+		<Reference Include="DistricutedCryptographyLib.dll" > 
+			<HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
+		</Reference>
 
 
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include = "$(WebDirectory)\distributedcrypto\aesencryptstring.cs" />
 		<Compile Include = "$(WebDirectory)\sudodb\savetolocaldb.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\getelectrumconnid.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\retaddresselectrumformat.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\aesdecryptstring.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\oneaddress.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
@@ -60,17 +62,17 @@
 		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\setelectrumconnid.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
+		<Compile Include = "$(WebDirectory)\sudodb\savetransaction.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\gettransactionsfromservice.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\defaultparameters.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\reversehexstring.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\get_history.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\connect.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\unixtimetolocaldatetimeseconds.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getalladdress.cs" />
 		<Compile Include = "$(WebDirectory)\receivefromelectrum.cs" />
 		<Compile Include = "$(WebDirectory)\sudodb\savevins.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\decryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\markinalladdressasused.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\get_transaction.cs" />
@@ -78,8 +80,7 @@
 		<Compile Include = "$(WebDirectory)\electrum\sendmessage.cs" />
 		<Compile Include = "$(WebDirectory)\sudodb\gettransactionsfromaddress.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\getelectrumconfigfornetworktype.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\encryptjson.cs" />
-		<Compile Include = "$(WebDirectory)\sudodb\savetransaction.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\gettransactionsfromservice.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gettransctionsfromlocaldb.cs" />
 
 	</ItemGroup>

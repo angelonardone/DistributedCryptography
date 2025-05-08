@@ -33,8 +33,6 @@ namespace GeneXus.Programs
 			/* Constructor for serialization */
 			gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageencryptedkey = "";
 
-			gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageiv = "";
-
 			gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageencrypted = "";
 
 		}
@@ -68,9 +66,6 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("MessageEncryptedKey", gxTpr_Messageencryptedkey, false);
-
-
-			AddObjectProperty("MessageIV", gxTpr_Messageiv, false);
 
 
 			AddObjectProperty("MessageEncrypted", gxTpr_Messageencrypted, false);
@@ -107,22 +102,6 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageencryptedkey = value;
 				SetDirty("Messageencryptedkey");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="MessageIV")]
-		[XmlElement(ElementName="MessageIV")]
-		public string gxTpr_Messageiv
-		{
-			get {
-				return gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageiv; 
-			}
-			set {
-				gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageiv = value;
-				SetDirty("Messageiv");
 			}
 		}
 
@@ -166,7 +145,6 @@ namespace GeneXus.Programs
 		public void initialize( )
 		{
 			gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageencryptedkey = "";
-			gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageiv = "";
 			gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageencrypted = "";
 			return  ;
 		}
@@ -181,9 +159,6 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageencryptedkey;
-		 
-
-		protected string gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageiv;
 		 
 
 		protected string gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageencrypted;
@@ -234,23 +209,9 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[JsonPropertyName("MessageIV")]
-		[JsonPropertyOrder(2)]
-		[DataMember(Name="MessageIV", Order=2)]
-		public  string gxTpr_Messageiv
-		{
-			get { 
-				return sdt.gxTpr_Messageiv;
-
-			}
-			set { 
-				 sdt.gxTpr_Messageiv = value;
-			}
-		}
-
 		[JsonPropertyName("MessageEncrypted")]
-		[JsonPropertyOrder(3)]
-		[DataMember(Name="MessageEncrypted", Order=3)]
+		[JsonPropertyOrder(2)]
+		[DataMember(Name="MessageEncrypted", Order=2)]
 		public  string gxTpr_Messageencrypted
 		{
 			get { 

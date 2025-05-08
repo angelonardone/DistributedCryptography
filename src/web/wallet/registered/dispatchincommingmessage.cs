@@ -825,7 +825,6 @@ namespace GeneXus.Programs.wallet.registered {
                AV21message = ((SdtDesktopApp_services_SDT_Messages_Message_MessageItem)AV19messages.gxTpr_Message.Item(AV31GXV3));
                AV13json_enc = new GeneXus.Programs.wallet.SdtSDT_Json_Enc(context);
                AV13json_enc.gxTpr_Encryptedkey = AV21message.gxTpr_Messageencryptedkey;
-               AV13json_enc.gxTpr_Iv = AV21message.gxTpr_Messageiv;
                AV13json_enc.gxTpr_Encryptedtext = AV21message.gxTpr_Messageencrypted;
                /* Execute user subroutine: 'DISPATCH ONE MESSAGE' */
                S112 ();
@@ -848,17 +847,17 @@ namespace GeneXus.Programs.wallet.registered {
          /* 'DISPATCH ONE MESSAGE' Routine */
          returnInSub = false;
          GXt_char3 = AV14error;
-         new GeneXus.Programs.distributedcrypto.decryptjsonfor(context ).execute(  AV13json_enc.gxTpr_Encryptedtext,  AV13json_enc.gxTpr_Encryptedkey,  AV13json_enc.gxTpr_Iv,  AV16externalUser.gxTpr_Chatkeyinfo.gxTpr_Privatekey, out  AV15clearText, out  GXt_char3) ;
+         new GeneXus.Programs.distributedcryptographylib.decryptjsonfor(context ).execute(  AV13json_enc.gxTpr_Encryptedtext,  AV13json_enc.gxTpr_Encryptedkey,  AV16externalUser.gxTpr_Chatkeyinfo.gxTpr_Privatekey, out  AV15clearText, out  GXt_char3) ;
          AV14error = GXt_char3;
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
          {
             GXt_char3 = AV14error;
-            new GeneXus.Programs.distributedcrypto.decryptjsonfor(context ).execute(  AV13json_enc.gxTpr_Encryptedtext,  AV13json_enc.gxTpr_Encryptedkey,  AV13json_enc.gxTpr_Iv,  AV16externalUser.gxTpr_Keyinfo.gxTpr_Privatekey, out  AV15clearText, out  GXt_char3) ;
+            new GeneXus.Programs.distributedcryptographylib.decryptjsonfor(context ).execute(  AV13json_enc.gxTpr_Encryptedtext,  AV13json_enc.gxTpr_Encryptedkey,  AV16externalUser.gxTpr_Keyinfo.gxTpr_Privatekey, out  AV15clearText, out  GXt_char3) ;
             AV14error = GXt_char3;
             if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
             {
                GXt_char3 = AV14error;
-               new GeneXus.Programs.distributedcrypto.decryptjsonfor(context ).execute(  AV13json_enc.gxTpr_Encryptedtext,  AV13json_enc.gxTpr_Encryptedkey,  AV13json_enc.gxTpr_Iv,  AV16externalUser.gxTpr_Groupskeyinfo.gxTpr_Privatekey, out  AV15clearText, out  GXt_char3) ;
+               new GeneXus.Programs.distributedcryptographylib.decryptjsonfor(context ).execute(  AV13json_enc.gxTpr_Encryptedtext,  AV13json_enc.gxTpr_Encryptedkey,  AV16externalUser.gxTpr_Groupskeyinfo.gxTpr_Privatekey, out  AV15clearText, out  GXt_char3) ;
                AV14error = GXt_char3;
             }
          }
@@ -1370,7 +1369,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025521317141", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255719414396", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1386,7 +1385,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/dispatchincommingmessage.js", "?2025521317142", false, true);
+         context.AddJavascriptSource("wallet/registered/dispatchincommingmessage.js", "?20255719414397", false, true);
          /* End function include_jscripts */
       }
 

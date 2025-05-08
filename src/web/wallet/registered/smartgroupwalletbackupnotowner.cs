@@ -1461,7 +1461,7 @@ namespace GeneXus.Programs.wallet.registered {
             if ( StringUtil.StrCmp(StringUtil.Trim( AV19groupContact.gxTpr_Contactusername), StringUtil.Trim( AV20externalUser.gxTpr_Userinfo.gxTpr_Username)) == 0 )
             {
                GXt_char2 = AV10error;
-               new GeneXus.Programs.distributedcrypto.decryptjsonfor(context ).execute(  AV19groupContact.gxTpr_Contactencryptedtext,  AV19groupContact.gxTpr_Contactencryptedkey,  AV19groupContact.gxTpr_Contactiv,  AV20externalUser.gxTpr_Groupskeyinfo.gxTpr_Privatekey, out  AV43share, out  GXt_char2) ;
+               new GeneXus.Programs.distributedcryptographylib.decryptjsonfor(context ).execute(  AV19groupContact.gxTpr_Contactencryptedtext,  AV19groupContact.gxTpr_Contactencryptedkey,  AV20externalUser.gxTpr_Groupskeyinfo.gxTpr_Privatekey, out  AV43share, out  GXt_char2) ;
                AV10error = GXt_char2;
                AssignAttri(sPrefix, false, "AV10error", AV10error);
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV10error)) )
@@ -1837,7 +1837,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255213165937", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025571941399", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1853,7 +1853,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/smartgroupwalletbackupnotowner.js", "?20255213165937", false, true);
+         context.AddJavascriptSource("wallet/registered/smartgroupwalletbackupnotowner.js", "?2025571941399", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }

@@ -77,12 +77,10 @@ namespace GeneXus.Programs.wallet.registered {
          {
             GXt_char2 = AV13error;
             GXt_char3 = AV24body.gxTpr_Encryptedkey;
-            GXt_char4 = AV24body.gxTpr_Iv;
-            GXt_char5 = AV24body.gxTpr_Contactencrypted;
-            new GeneXus.Programs.distributedcrypto.encryptjson(context ).execute(  AV23contact.ToJSonString(false, true),  "", out  GXt_char3, out  GXt_char4, out  GXt_char5, out  GXt_char2) ;
+            GXt_char4 = AV24body.gxTpr_Contactencrypted;
+            new GeneXus.Programs.distributedcryptographylib.encryptjson(context ).execute(  AV23contact.ToJSonString(false, true),  "", out  GXt_char3, out  GXt_char4, out  GXt_char2) ;
             AV24body.gxTpr_Encryptedkey = GXt_char3;
-            AV24body.gxTpr_Iv = GXt_char4;
-            AV24body.gxTpr_Contactencrypted = GXt_char5;
+            AV24body.gxTpr_Contactencrypted = GXt_char4;
             AV13error = GXt_char2;
             AV24body.gxTpr_Contactid = AV8ContactId;
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
@@ -125,7 +123,6 @@ namespace GeneXus.Programs.wallet.registered {
          AV24body = new SdtupdateContact__postInput(context);
          GXt_char3 = "";
          GXt_char4 = "";
-         GXt_char5 = "";
          AV45ServerUrlTemplatingVar = new GXProperties();
          AV46updateContact__postOutputOUT = new SdtupdateContact__postOutput(context);
          AV16HttpMessage = new GeneXus.Utils.SdtMessages_Message(context);
@@ -137,7 +134,6 @@ namespace GeneXus.Programs.wallet.registered {
       private string GXt_char2 ;
       private string GXt_char3 ;
       private string GXt_char4 ;
-      private string GXt_char5 ;
       private bool AV17IsSuccess ;
       private Guid AV8ContactId ;
       private Guid AV47Outcontactid ;

@@ -91,7 +91,7 @@ namespace GeneXus.Programs.wallet.registered {
             {
                AV11error = AV12getGroup__getOutputOUT.gxTpr_Error;
                GXt_char2 = AV11error;
-               new GeneXus.Programs.distributedcrypto.decryptjsonwithpassword(context ).execute(  AV12getGroup__getOutputOUT.gxTpr_Group.gxTpr_Groupencrypted,  AV10groupPassword,  AV12getGroup__getOutputOUT.gxTpr_Group.gxTpr_Groupiv, out  AV18group_sdt_char, out  GXt_char2) ;
+               new GeneXus.Programs.distributedcryptographylib.decryptjsonwithpassword(context ).execute(  AV12getGroup__getOutputOUT.gxTpr_Group.gxTpr_Groupencrypted,  AV10groupPassword, out  AV18group_sdt_char, out  GXt_char2) ;
                AV11error = GXt_char2;
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
                {

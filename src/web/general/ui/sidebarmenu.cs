@@ -104,6 +104,11 @@ namespace GeneXus.Programs.general.ui {
                AV18SubItem.gxTpr_Title = "Smart Groups";
                AV18SubItem.gxTpr_Target = formatLink("wallet.registered.smartgroups") ;
                AV16SidebarItem.gxTpr_Sidebarsubitems.Add(AV18SubItem, 0);
+               AV18SubItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem_SubItem(context);
+               AV18SubItem.gxTpr_Id = "File Encryption";
+               AV18SubItem.gxTpr_Title = "File Encryption";
+               AV18SubItem.gxTpr_Target = formatLink("wallet.registered.fileencryption") ;
+               AV16SidebarItem.gxTpr_Sidebarsubitems.Add(AV18SubItem, 0);
                AV15SidebarItems.Add(AV16SidebarItem, 0);
             }
             AV16SidebarItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem(context);
@@ -119,7 +124,7 @@ namespace GeneXus.Programs.general.ui {
             AV18SubItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem_SubItem(context);
             AV18SubItem.gxTpr_Id = "EncryptedFiles";
             AV18SubItem.gxTpr_Title = "Encrypted Files";
-            AV18SubItem.gxTpr_Target = formatLink("wallet.encryptedfiles") ;
+            AV18SubItem.gxTpr_Target = formatLink("wallet.encryptedlocalfiles") ;
             AV16SidebarItem.gxTpr_Sidebarsubitems.Add(AV18SubItem, 0);
             AV18SubItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem_SubItem(context);
             AV18SubItem.gxTpr_Id = "Autheticators";

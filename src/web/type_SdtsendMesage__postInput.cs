@@ -35,8 +35,6 @@ namespace GeneXus.Programs
 
 			gxTv_SdtsendMesage__postInput_Messageencryptedkey = "";
 
-			gxTv_SdtsendMesage__postInput_Messageiv = "";
-
 			gxTv_SdtsendMesage__postInput_Messageencrypted = "";
 
 		}
@@ -70,9 +68,6 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("MessageEncryptedKey", gxTpr_Messageencryptedkey, false);
-
-
-			AddObjectProperty("MessageIV", gxTpr_Messageiv, false);
 
 
 			AddObjectProperty("MessageEncrypted", gxTpr_Messageencrypted, false);
@@ -109,22 +104,6 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtsendMesage__postInput_Messageencryptedkey = value;
 				SetDirty("Messageencryptedkey");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="MessageIV")]
-		[XmlElement(ElementName="MessageIV")]
-		public string gxTpr_Messageiv
-		{
-			get {
-				return gxTv_SdtsendMesage__postInput_Messageiv; 
-			}
-			set {
-				gxTv_SdtsendMesage__postInput_Messageiv = value;
-				SetDirty("Messageiv");
 			}
 		}
 
@@ -169,7 +148,6 @@ namespace GeneXus.Programs
 		{
 			gxTv_SdtsendMesage__postInput_Username = "";
 			gxTv_SdtsendMesage__postInput_Messageencryptedkey = "";
-			gxTv_SdtsendMesage__postInput_Messageiv = "";
 			gxTv_SdtsendMesage__postInput_Messageencrypted = "";
 			return  ;
 		}
@@ -184,9 +162,6 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtsendMesage__postInput_Messageencryptedkey;
-		 
-
-		protected string gxTv_SdtsendMesage__postInput_Messageiv;
 		 
 
 		protected string gxTv_SdtsendMesage__postInput_Messageencrypted;
@@ -237,23 +212,9 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[JsonPropertyName("MessageIV")]
-		[JsonPropertyOrder(2)]
-		[DataMember(Name="MessageIV", Order=2)]
-		public  string gxTpr_Messageiv
-		{
-			get { 
-				return sdt.gxTpr_Messageiv;
-
-			}
-			set { 
-				 sdt.gxTpr_Messageiv = value;
-			}
-		}
-
 		[JsonPropertyName("MessageEncrypted")]
-		[JsonPropertyOrder(3)]
-		[DataMember(Name="MessageEncrypted", Order=3)]
+		[JsonPropertyOrder(2)]
+		[DataMember(Name="MessageEncrypted", Order=2)]
 		public  string gxTpr_Messageencrypted
 		{
 			get { 

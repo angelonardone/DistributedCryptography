@@ -36,6 +36,9 @@
 		<Reference Include="GxInternetLib.dll" > 
 			<HintPath>$(WebBinDirectory)\GxInternetLib.dll</HintPath>
 		</Reference>
+		<Reference Include="DistricutedCryptographyLib.dll" > 
+			<HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
+		</Reference>
 
 
 	</ItemGroup>
@@ -43,14 +46,13 @@
 	<ItemGroup>
 		<Compile Include = "$(WebDirectory)\wallet\registered\sendmessage.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluser.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\aesencryptstring.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\registered\getgroups.cs" />
+		<Compile Include = "$(WebDirectory)\desktopappservicesrestdeletegrouppost.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\getunixtimemilisecondsutc.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\updategroup.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\deletegroup.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getextkey.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\aesdecryptstring.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\apibaseurlauth.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
@@ -61,21 +63,20 @@
 		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\createexpubtkey.cs" />
 		<Compile Include = "$(WebDirectory)\desktopappservicesrestcreategrouppost.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\registered\smartgroups.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\varchartojsonformat.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\creategroup.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\desktopappservicesrestgetusergroupsget.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\encryptjsonto.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\getgroups.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\processserver.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getlastjasonencritionkey.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\decryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
-		<Compile Include = "$(WebDirectory)\desktopappservicesrestdeletegrouppost.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\callapi.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjsonto.cs" />
 		<Compile Include = "$(WebDirectory)\desktopappservicesrestupdategrouppost.cs" />
 		<Compile Include = "$(WebDirectory)\desktopappservicesrestsendmesagepost.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\encryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\smartgroups.cs" />
 
 	</ItemGroup>
 

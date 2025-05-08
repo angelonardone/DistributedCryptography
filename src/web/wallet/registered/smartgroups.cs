@@ -491,7 +491,7 @@ namespace GeneXus.Programs.wallet.registered {
             }
             else
             {
-               AV36GXV1 = nGXsfl_11_idx;
+               AV37GXV1 = nGXsfl_11_idx;
                sStyleString = "";
                context.WriteHtmlText( "<div id=\""+"GridgroupContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Gridgroup", GridgroupContainer, subGridgroup_Internalname);
@@ -525,7 +525,7 @@ namespace GeneXus.Programs.wallet.registered {
                }
                else
                {
-                  AV36GXV1 = nGXsfl_11_idx;
+                  AV37GXV1 = nGXsfl_11_idx;
                   sStyleString = "";
                   context.WriteHtmlText( "<div id=\""+"GridgroupContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                   context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Gridgroup", GridgroupContainer, subGridgroup_Internalname);
@@ -627,21 +627,24 @@ namespace GeneXus.Programs.wallet.registered {
                         {
                            sEvtType = StringUtil.Right( sEvt, 4);
                            sEvt = StringUtil.Left( sEvt, (short)(StringUtil.Len( sEvt)-4));
-                           if ( ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "START") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 13), "'GO TO GROUP'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 14), "'DELETE GROUP'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 14), "GRIDGROUP.LOAD") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 20), "'DECLINE INVITATION'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 19), "'ACCEPT INVITATION'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "ENTER") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 6), "CANCEL") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 13), "'GO TO GROUP'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 19), "'ACCEPT INVITATION'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 20), "'DECLINE INVITATION'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 14), "'DELETE GROUP'") == 0 ) )
+                           if ( ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "START") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 13), "'GO TO GROUP'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 14), "'DELETE GROUP'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 14), "GRIDGROUP.LOAD") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 20), "'DECLINE INVITATION'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 19), "'ACCEPT INVITATION'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "ENTER") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 6), "CANCEL") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 13), "'GO TO GROUP'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 19), "'ACCEPT INVITATION'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 20), "'DECLINE INVITATION'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 14), "'DELETE GROUP'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 14), "'DELETE GROUP'") == 0 ) )
                            {
                               nGXsfl_11_idx = (int)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
                               sGXsfl_11_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_11_idx), 4, 0), 4, "0");
                               SubsflControlProps_112( ) ;
-                              AV36GXV1 = nGXsfl_11_idx;
-                              if ( ( AV6all_groups_sdt.Count >= AV36GXV1 ) && ( AV36GXV1 > 0 ) )
+                              AV37GXV1 = nGXsfl_11_idx;
+                              if ( ( AV6all_groups_sdt.Count >= AV37GXV1 ) && ( AV37GXV1 > 0 ) )
                               {
-                                 AV6all_groups_sdt.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1));
+                                 AV6all_groups_sdt.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1));
                                  AV13acceptInvitation = cgiGet( edtavAcceptinvitation_Internalname);
                                  AssignAttri("", false, edtavAcceptinvitation_Internalname, AV13acceptInvitation);
                                  AV14declineInvitation = cgiGet( edtavDeclineinvitation_Internalname);
                                  AssignAttri("", false, edtavDeclineinvitation_Internalname, AV14declineInvitation);
                                  AV10delete = cgiGet( edtavDelete_Internalname);
                                  AssignAttri("", false, edtavDelete_Internalname, AV10delete);
+                                 AV36deleteImage = cgiGet( edtavDeleteimage_Internalname);
+                                 AssignProp("", false, edtavDeleteimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV36deleteImage)) ? AV44Deleteimage_GXI : context.convertURL( context.PathToRelativeUrl( AV36deleteImage))), !bGXsfl_11_Refreshing);
+                                 AssignProp("", false, edtavDeleteimage_Internalname, "SrcSet", context.GetImageSrcSet( AV36deleteImage), true);
                               }
                               sEvtType = StringUtil.Right( sEvt, 1);
                               if ( StringUtil.StrCmp(sEvtType, ".") == 0 )
@@ -954,13 +957,14 @@ namespace GeneXus.Programs.wallet.registered {
                nGXsfl_11_fel_idx = ((subGridgroup_Islastpage==1)&&(nGXsfl_11_fel_idx+1>subGridgroup_fnc_Recordsperpage( )) ? 1 : nGXsfl_11_fel_idx+1);
                sGXsfl_11_fel_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_11_fel_idx), 4, 0), 4, "0");
                SubsflControlProps_fel_112( ) ;
-               AV36GXV1 = nGXsfl_11_fel_idx;
-               if ( ( AV6all_groups_sdt.Count >= AV36GXV1 ) && ( AV36GXV1 > 0 ) )
+               AV37GXV1 = nGXsfl_11_fel_idx;
+               if ( ( AV6all_groups_sdt.Count >= AV37GXV1 ) && ( AV37GXV1 > 0 ) )
                {
-                  AV6all_groups_sdt.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1));
+                  AV6all_groups_sdt.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1));
                   AV13acceptInvitation = cgiGet( edtavAcceptinvitation_Internalname);
                   AV14declineInvitation = cgiGet( edtavDeclineinvitation_Internalname);
                   AV10delete = cgiGet( edtavDelete_Internalname);
+                  AV36deleteImage = cgiGet( edtavDeleteimage_Internalname);
                }
             }
             if ( nGXsfl_11_fel_idx == 0 )
@@ -1006,10 +1010,10 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void E121F2( )
       {
-         AV36GXV1 = nGXsfl_11_idx;
-         if ( ( AV36GXV1 > 0 ) && ( AV6all_groups_sdt.Count >= AV36GXV1 ) )
+         AV37GXV1 = nGXsfl_11_idx;
+         if ( ( AV37GXV1 > 0 ) && ( AV6all_groups_sdt.Count >= AV37GXV1 ) )
          {
-            AV6all_groups_sdt.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1));
+            AV6all_groups_sdt.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1));
          }
          /* 'Recover groups from server' Routine */
          returnInSub = false;
@@ -1045,10 +1049,10 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void E151F2( )
       {
-         AV36GXV1 = nGXsfl_11_idx;
-         if ( ( AV36GXV1 > 0 ) && ( AV6all_groups_sdt.Count >= AV36GXV1 ) )
+         AV37GXV1 = nGXsfl_11_idx;
+         if ( ( AV37GXV1 > 0 ) && ( AV6all_groups_sdt.Count >= AV37GXV1 ) )
          {
-            AV6all_groups_sdt.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1));
+            AV6all_groups_sdt.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1));
          }
          /* 'go to group' Routine */
          returnInSub = false;
@@ -1065,25 +1069,25 @@ namespace GeneXus.Programs.wallet.registered {
          gx_BV11 = true;
          AV8all_groups_sdt_temp.Clear();
          AV8all_groups_sdt_temp.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "gropus.enc", out  AV7error), null);
-         AV42GXV7 = 1;
-         while ( AV42GXV7 <= AV8all_groups_sdt_temp.Count )
+         AV43GXV7 = 1;
+         while ( AV43GXV7 <= AV8all_groups_sdt_temp.Count )
          {
-            AV15group_sdt_temp = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV8all_groups_sdt_temp.Item(AV42GXV7));
+            AV15group_sdt_temp = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV8all_groups_sdt_temp.Item(AV43GXV7));
             if ( ! AV15group_sdt_temp.gxTpr_Othergroup.gxTpr_Invitationdeclined )
             {
                AV6all_groups_sdt.Add(AV15group_sdt_temp, 0);
                gx_BV11 = true;
             }
-            AV42GXV7 = (int)(AV42GXV7+1);
+            AV43GXV7 = (int)(AV43GXV7+1);
          }
       }
 
       protected void E161F2( )
       {
-         AV36GXV1 = nGXsfl_11_idx;
-         if ( ( AV36GXV1 > 0 ) && ( AV6all_groups_sdt.Count >= AV36GXV1 ) )
+         AV37GXV1 = nGXsfl_11_idx;
+         if ( ( AV37GXV1 > 0 ) && ( AV6all_groups_sdt.Count >= AV37GXV1 ) )
          {
-            AV6all_groups_sdt.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1));
+            AV6all_groups_sdt.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1));
          }
          /* 'Delete Group' Routine */
          returnInSub = false;
@@ -1099,10 +1103,10 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void E131F2( )
       {
-         AV36GXV1 = nGXsfl_11_idx;
-         if ( ( AV36GXV1 > 0 ) && ( AV6all_groups_sdt.Count >= AV36GXV1 ) )
+         AV37GXV1 = nGXsfl_11_idx;
+         if ( ( AV37GXV1 > 0 ) && ( AV6all_groups_sdt.Count >= AV37GXV1 ) )
          {
-            AV6all_groups_sdt.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1));
+            AV6all_groups_sdt.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1));
          }
          /* Extensions\Web\Dialog_Onconfirmclosed Routine */
          returnInSub = false;
@@ -1141,12 +1145,14 @@ namespace GeneXus.Programs.wallet.registered {
       {
          /* Gridgroup_Load Routine */
          returnInSub = false;
-         AV36GXV1 = 1;
-         while ( AV36GXV1 <= AV6all_groups_sdt.Count )
+         AV37GXV1 = 1;
+         while ( AV37GXV1 <= AV6all_groups_sdt.Count )
          {
-            AV6all_groups_sdt.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1));
-            AV10delete = "Delete Group";
-            AssignAttri("", false, edtavDelete_Internalname, AV10delete);
+            AV6all_groups_sdt.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1));
+            edtavDeleteimage_gximage = "GeneXusUnanimo_delete_light";
+            AV36deleteImage = context.GetImagePath( "db0f63cd-dde8-4bf7-aca2-01cdf8d3c157", "", context.GetTheme( ));
+            AssignAttri("", false, edtavDeleteimage_Internalname, AV36deleteImage);
+            AV44Deleteimage_GXI = GXDbFile.PathToUrl( context.GetImagePath( "db0f63cd-dde8-4bf7-aca2-01cdf8d3c157", "", context.GetTheme( )), context);
             AV13acceptInvitation = "Accept Invitation";
             AssignAttri("", false, edtavAcceptinvitation_Internalname, AV13acceptInvitation);
             AV14declineInvitation = "Decline Invitation";
@@ -1155,13 +1161,13 @@ namespace GeneXus.Programs.wallet.registered {
             {
                edtavAcceptinvitation_Visible = 1;
                edtavDeclineinvitation_Visible = 1;
-               edtavDelete_Visible = 0;
+               edtavDeleteimage_Visible = 0;
             }
             else
             {
                edtavAcceptinvitation_Visible = 0;
                edtavDeclineinvitation_Visible = 0;
-               edtavDelete_Visible = 1;
+               edtavDeleteimage_Visible = 1;
             }
             /* Load Method */
             if ( wbStart != -1 )
@@ -1173,17 +1179,17 @@ namespace GeneXus.Programs.wallet.registered {
             {
                DoAjaxLoad(11, GridgroupRow);
             }
-            AV36GXV1 = (int)(AV36GXV1+1);
+            AV37GXV1 = (int)(AV37GXV1+1);
          }
          /*  Sending Event outputs  */
       }
 
       protected void E181F2( )
       {
-         AV36GXV1 = nGXsfl_11_idx;
-         if ( ( AV36GXV1 > 0 ) && ( AV6all_groups_sdt.Count >= AV36GXV1 ) )
+         AV37GXV1 = nGXsfl_11_idx;
+         if ( ( AV37GXV1 > 0 ) && ( AV6all_groups_sdt.Count >= AV37GXV1 ) )
          {
-            AV6all_groups_sdt.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1));
+            AV6all_groups_sdt.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1));
          }
          /* 'Decline Invitation' Routine */
          returnInSub = false;
@@ -1196,17 +1202,17 @@ namespace GeneXus.Programs.wallet.registered {
             AV5group_sdt.gxTpr_Groupid = (Guid)(new());
             AV8all_groups_sdt_temp.Clear();
             AV8all_groups_sdt_temp.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "gropus.enc", out  AV7error), null);
-            AV43GXV8 = 1;
-            while ( AV43GXV8 <= AV8all_groups_sdt_temp.Count )
+            AV45GXV8 = 1;
+            while ( AV45GXV8 <= AV8all_groups_sdt_temp.Count )
             {
-               AV15group_sdt_temp = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV8all_groups_sdt_temp.Item(AV43GXV8));
+               AV15group_sdt_temp = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV8all_groups_sdt_temp.Item(AV45GXV8));
                if ( AV15group_sdt_temp.gxTpr_Othergroup.gxTpr_Referencegroupid == AV5group_sdt.gxTpr_Othergroup.gxTpr_Referencegroupid )
                {
                   AV8all_groups_sdt_temp.RemoveItem(AV8all_groups_sdt_temp.IndexOf(AV15group_sdt_temp));
                   AV18removedFromSDT = true;
                   AssignAttri("", false, "AV18removedFromSDT", AV18removedFromSDT);
                }
-               AV43GXV8 = (int)(AV43GXV8+1);
+               AV45GXV8 = (int)(AV45GXV8+1);
             }
             if ( AV18removedFromSDT )
             {
@@ -1242,10 +1248,10 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void E191F2( )
       {
-         AV36GXV1 = nGXsfl_11_idx;
-         if ( ( AV36GXV1 > 0 ) && ( AV6all_groups_sdt.Count >= AV36GXV1 ) )
+         AV37GXV1 = nGXsfl_11_idx;
+         if ( ( AV37GXV1 > 0 ) && ( AV6all_groups_sdt.Count >= AV37GXV1 ) )
          {
-            AV6all_groups_sdt.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1));
+            AV6all_groups_sdt.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1));
          }
          /* 'Accept Invitation' Routine */
          returnInSub = false;
@@ -1324,15 +1330,15 @@ namespace GeneXus.Programs.wallet.registered {
                   AV19sdt_message.gxTpr_Messagetype = 80;
                   AV19sdt_message.gxTpr_Message = AV15group_sdt_temp.ToJSonString(false, true);
                   AV22allContacts.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "contacts.enc", out  AV7error), null);
-                  AV44GXV9 = 1;
-                  while ( AV44GXV9 <= AV22allContacts.Count )
+                  AV46GXV9 = 1;
+                  while ( AV46GXV9 <= AV22allContacts.Count )
                   {
-                     AV23contact = ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV22allContacts.Item(AV44GXV9));
+                     AV23contact = ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV22allContacts.Item(AV46GXV9));
                      if ( StringUtil.StrCmp(AV23contact.gxTpr_Username, StringUtil.Trim( AV5group_sdt.gxTpr_Othergroup.gxTpr_Referenceusernname)) == 0 )
                      {
                         if (true) break;
                      }
-                     AV44GXV9 = (int)(AV44GXV9+1);
+                     AV46GXV9 = (int)(AV46GXV9+1);
                   }
                   if ( ! (Guid.Empty==AV23contact.gxTpr_Contactrid) )
                   {
@@ -1353,10 +1359,10 @@ namespace GeneXus.Programs.wallet.registered {
                         {
                            AV6all_groups_sdt.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "gropus.enc", out  AV7error), null);
                            gx_BV11 = true;
-                           AV45GXV10 = 1;
-                           while ( AV45GXV10 <= AV6all_groups_sdt.Count )
+                           AV47GXV10 = 1;
+                           while ( AV47GXV10 <= AV6all_groups_sdt.Count )
                            {
-                              AV15group_sdt_temp = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV45GXV10));
+                              AV15group_sdt_temp = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV47GXV10));
                               if ( AV15group_sdt_temp.gxTpr_Othergroup.gxTpr_Referencegroupid == AV5group_sdt.gxTpr_Othergroup.gxTpr_Referencegroupid )
                               {
                                  AV15group_sdt_temp.gxTpr_Groupid = AV5group_sdt.gxTpr_Groupid;
@@ -1368,7 +1374,7 @@ namespace GeneXus.Programs.wallet.registered {
                                  }
                                  if (true) break;
                               }
-                              AV45GXV10 = (int)(AV45GXV10+1);
+                              AV47GXV10 = (int)(AV47GXV10+1);
                            }
                            GXt_char5 = AV7error;
                            new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  "gropus.enc",  AV6all_groups_sdt.ToJSonString(false), out  GXt_char5) ;
@@ -1461,7 +1467,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255213174638", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255719423315", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1478,7 +1484,7 @@ namespace GeneXus.Programs.wallet.registered {
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
          context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 123260), false, true);
-         context.AddJavascriptSource("wallet/registered/smartgroups.js", "?20255213174638", false, true);
+         context.AddJavascriptSource("wallet/registered/smartgroups.js", "?20255719423316", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -1493,6 +1499,7 @@ namespace GeneXus.Programs.wallet.registered {
          edtavAcceptinvitation_Internalname = "vACCEPTINVITATION_"+sGXsfl_11_idx;
          edtavDeclineinvitation_Internalname = "vDECLINEINVITATION_"+sGXsfl_11_idx;
          edtavDelete_Internalname = "vDELETE_"+sGXsfl_11_idx;
+         edtavDeleteimage_Internalname = "vDELETEIMAGE_"+sGXsfl_11_idx;
       }
 
       protected void SubsflControlProps_fel_112( )
@@ -1505,6 +1512,7 @@ namespace GeneXus.Programs.wallet.registered {
          edtavAcceptinvitation_Internalname = "vACCEPTINVITATION_"+sGXsfl_11_fel_idx;
          edtavDeclineinvitation_Internalname = "vDECLINEINVITATION_"+sGXsfl_11_fel_idx;
          edtavDelete_Internalname = "vDELETE_"+sGXsfl_11_fel_idx;
+         edtavDeleteimage_Internalname = "vDELETEIMAGE_"+sGXsfl_11_fel_idx;
       }
 
       protected void sendrow_112( )
@@ -1576,7 +1584,7 @@ namespace GeneXus.Programs.wallet.registered {
          }
          /* Single line edit */
          ROClassString = "Attribute";
-         GridgroupRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlgroupid_Internalname,((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1)).gxTpr_Groupid.ToString(),((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1)).gxTpr_Groupid.ToString(),""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlgroupid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)0,(int)edtavCtlgroupid_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)11,(short)0,(short)0,(short)0,(bool)true,(string)"",(string)"",(bool)false,(string)""});
+         GridgroupRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlgroupid_Internalname,((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1)).gxTpr_Groupid.ToString(),((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1)).gxTpr_Groupid.ToString(),""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlgroupid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)0,(int)edtavCtlgroupid_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)11,(short)0,(short)0,(short)0,(bool)true,(string)"",(string)"",(bool)false,(string)""});
          /* Subfile cell */
          if ( GridgroupContainer.GetWrapped() == 1 )
          {
@@ -1587,7 +1595,7 @@ namespace GeneXus.Programs.wallet.registered {
          ROClassString = "Attribute";
          edtavCtlgroupname_Link = "";
          AssignProp("", false, edtavCtlgroupname_Internalname, "Link", edtavCtlgroupname_Link, !bGXsfl_11_Refreshing);
-         GridgroupRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlgroupname_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1)).gxTpr_Groupname),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,13);\"","'"+""+"'"+",false,"+"'"+"E\\'GO TO GROUP\\'."+sGXsfl_11_idx+"'",(string)edtavCtlgroupname_Link,(string)"",(string)"",(string)"",(string)edtavCtlgroupname_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlgroupname_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)80,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         GridgroupRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlgroupname_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1)).gxTpr_Groupname),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,13);\"","'"+""+"'"+",false,"+"'"+"E\\'GO TO GROUP\\'."+sGXsfl_11_idx+"'",(string)edtavCtlgroupname_Link,(string)"",(string)"",(string)"",(string)edtavCtlgroupname_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlgroupname_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)80,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          if ( GridgroupContainer.GetWrapped() == 1 )
          {
@@ -1608,15 +1616,15 @@ namespace GeneXus.Programs.wallet.registered {
             cmbavCtlgrouptype.addItem("700", "Concensus Timed File Vault", 0);
             if ( cmbavCtlgrouptype.ItemCount > 0 )
             {
-               if ( ( AV36GXV1 > 0 ) && ( AV6all_groups_sdt.Count >= AV36GXV1 ) && (0==((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1)).gxTpr_Grouptype) )
+               if ( ( AV37GXV1 > 0 ) && ( AV6all_groups_sdt.Count >= AV37GXV1 ) && (0==((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1)).gxTpr_Grouptype) )
                {
-                  ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1)).gxTpr_Grouptype = (short)(Math.Round(NumberUtil.Val( cmbavCtlgrouptype.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1)).gxTpr_Grouptype), 4, 0))), "."), 18, MidpointRounding.ToEven));
+                  ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1)).gxTpr_Grouptype = (short)(Math.Round(NumberUtil.Val( cmbavCtlgrouptype.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1)).gxTpr_Grouptype), 4, 0))), "."), 18, MidpointRounding.ToEven));
                }
             }
          }
          /* ComboBox */
-         GridgroupRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbavCtlgrouptype,(string)cmbavCtlgrouptype_Internalname,StringUtil.Trim( StringUtil.Str( (decimal)(((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1)).gxTpr_Grouptype), 4, 0)),(short)1,(string)cmbavCtlgrouptype_Jsonclick,(short)0,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"int",(string)"",(short)-1,cmbavCtlgrouptype.Enabled,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"Attribute",(string)"",(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,14);\"",(string)"",(bool)true,(short)0});
-         cmbavCtlgrouptype.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1)).gxTpr_Grouptype), 4, 0));
+         GridgroupRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbavCtlgrouptype,(string)cmbavCtlgrouptype_Internalname,StringUtil.Trim( StringUtil.Str( (decimal)(((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1)).gxTpr_Grouptype), 4, 0)),(short)1,(string)cmbavCtlgrouptype_Jsonclick,(short)0,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"int",(string)"",(short)-1,cmbavCtlgrouptype.Enabled,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"Attribute",(string)"",(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,14);\"",(string)"",(bool)true,(short)0});
+         cmbavCtlgrouptype.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1)).gxTpr_Grouptype), 4, 0));
          AssignProp("", false, cmbavCtlgrouptype_Internalname, "Values", (string)(cmbavCtlgrouptype.ToJavascriptSource()), !bGXsfl_11_Refreshing);
          /* Subfile cell */
          if ( GridgroupContainer.GetWrapped() == 1 )
@@ -1633,7 +1641,7 @@ namespace GeneXus.Programs.wallet.registered {
          chkavCtlamigroupowner.Caption = "";
          AssignProp("", false, chkavCtlamigroupowner_Internalname, "TitleCaption", chkavCtlamigroupowner.Caption, !bGXsfl_11_Refreshing);
          chkavCtlamigroupowner.CheckedValue = "false";
-         GridgroupRow.AddColumnProperties("checkbox", 1, isAjaxCallMode( ), new Object[] {(string)chkavCtlamigroupowner_Internalname,StringUtil.BoolToStr( ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1)).gxTpr_Amigroupowner),(string)"",(string)"",(short)-1,chkavCtlamigroupowner.Enabled,(string)"true",(string)"",(string)StyleString,(string)ClassString,(string)"",(string)"",TempTags+" onclick="+"\"gx.fn.checkboxClick(15, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,15);\""});
+         GridgroupRow.AddColumnProperties("checkbox", 1, isAjaxCallMode( ), new Object[] {(string)chkavCtlamigroupowner_Internalname,StringUtil.BoolToStr( ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1)).gxTpr_Amigroupowner),(string)"",(string)"",(short)-1,chkavCtlamigroupowner.Enabled,(string)"true",(string)"",(string)StyleString,(string)ClassString,(string)"",(string)"",TempTags+" onclick="+"\"gx.fn.checkboxClick(15, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,15);\""});
          /* Subfile cell */
          if ( GridgroupContainer.GetWrapped() == 1 )
          {
@@ -1649,7 +1657,7 @@ namespace GeneXus.Programs.wallet.registered {
          chkavCtlisactive.Caption = "";
          AssignProp("", false, chkavCtlisactive_Internalname, "TitleCaption", chkavCtlisactive.Caption, !bGXsfl_11_Refreshing);
          chkavCtlisactive.CheckedValue = "false";
-         GridgroupRow.AddColumnProperties("checkbox", 1, isAjaxCallMode( ), new Object[] {(string)chkavCtlisactive_Internalname,StringUtil.BoolToStr( ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1)).gxTpr_Isactive),(string)"",(string)"",(short)-1,chkavCtlisactive.Enabled,(string)"true",(string)"",(string)StyleString,(string)ClassString,(string)"",(string)"",TempTags+" onclick="+"\"gx.fn.checkboxClick(16, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,16);\""});
+         GridgroupRow.AddColumnProperties("checkbox", 1, isAjaxCallMode( ), new Object[] {(string)chkavCtlisactive_Internalname,StringUtil.BoolToStr( ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1)).gxTpr_Isactive),(string)"",(string)"",(short)-1,chkavCtlisactive.Enabled,(string)"true",(string)"",(string)StyleString,(string)ClassString,(string)"",(string)"",TempTags+" onclick="+"\"gx.fn.checkboxClick(16, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,16);\""});
          /* Subfile cell */
          if ( GridgroupContainer.GetWrapped() == 1 )
          {
@@ -1671,12 +1679,24 @@ namespace GeneXus.Programs.wallet.registered {
          /* Subfile cell */
          if ( GridgroupContainer.GetWrapped() == 1 )
          {
-            context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+((edtavDelete_Visible==0) ? "display:none;" : "")+"\">") ;
+            context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
          }
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 19,'',false,'" + sGXsfl_11_idx + "',11)\"";
          ROClassString = "Attribute";
-         GridgroupRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavDelete_Internalname,StringUtil.RTrim( AV10delete),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,19);\"","'"+""+"'"+",false,"+"'"+"E\\'DELETE GROUP\\'."+sGXsfl_11_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavDelete_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtavDelete_Visible,(int)edtavDelete_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         GridgroupRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavDelete_Internalname,StringUtil.RTrim( AV10delete),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,19);\"","'"+""+"'"+",false,"+"'"+"E\\'DELETE GROUP\\'."+sGXsfl_11_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavDelete_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavDelete_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         /* Subfile cell */
+         if ( GridgroupContainer.GetWrapped() == 1 )
+         {
+            context.WriteHtmlText( "<td valign=\"middle\" align=\""+""+"\""+" style=\""+((edtavDeleteimage_Visible==0) ? "display:none;" : "")+"\">") ;
+         }
+         /* Active Bitmap Variable */
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 20,'',false,'',11)\"";
+         ClassString = "Image" + " " + ((StringUtil.StrCmp(edtavDeleteimage_gximage, "")==0) ? "" : "GX_Image_"+edtavDeleteimage_gximage+"_Class");
+         StyleString = "";
+         AV36deleteImage_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV36deleteImage))&&String.IsNullOrEmpty(StringUtil.RTrim( AV44Deleteimage_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV36deleteImage)));
+         sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV36deleteImage)) ? AV44Deleteimage_GXI : context.PathToRelativeUrl( AV36deleteImage));
+         GridgroupRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtavDeleteimage_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(int)edtavDeleteimage_Visible,(short)1,(string)"",(string)"",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)5,(string)edtavDeleteimage_Jsonclick,"'"+""+"'"+",false,"+"'"+"E\\'DELETE GROUP\\'."+sGXsfl_11_idx+"'",(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"",(string)"",(string)""+TempTags,(string)"",(string)"",(short)1,(bool)AV36deleteImage_IsBlob,(bool)false,context.GetImageSrcSet( sImgUrl)});
          send_integrity_lvl_hashes1F2( ) ;
          GridgroupContainer.AddRow(GridgroupRow);
          nGXsfl_11_idx = ((subGridgroup_Islastpage==1)&&(nGXsfl_11_idx+1>subGridgroup_fnc_Recordsperpage( )) ? 1 : nGXsfl_11_idx+1);
@@ -1699,9 +1719,9 @@ namespace GeneXus.Programs.wallet.registered {
          cmbavCtlgrouptype.addItem("700", "Concensus Timed File Vault", 0);
          if ( cmbavCtlgrouptype.ItemCount > 0 )
          {
-            if ( ( AV36GXV1 > 0 ) && ( AV6all_groups_sdt.Count >= AV36GXV1 ) && (0==((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1)).gxTpr_Grouptype) )
+            if ( ( AV37GXV1 > 0 ) && ( AV6all_groups_sdt.Count >= AV37GXV1 ) && (0==((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1)).gxTpr_Grouptype) )
             {
-               ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1)).gxTpr_Grouptype = (short)(Math.Round(NumberUtil.Val( cmbavCtlgrouptype.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV36GXV1)).gxTpr_Grouptype), 4, 0))), "."), 18, MidpointRounding.ToEven));
+               ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1)).gxTpr_Grouptype = (short)(Math.Round(NumberUtil.Val( cmbavCtlgrouptype.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV6all_groups_sdt.Item(AV37GXV1)).gxTpr_Grouptype), 4, 0))), "."), 18, MidpointRounding.ToEven));
             }
          }
          GXCCtl = "CTLAMIGROUPOWNER_" + sGXsfl_11_idx;
@@ -1777,7 +1797,10 @@ namespace GeneXus.Programs.wallet.registered {
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+((edtavDeclineinvitation_Visible==0) ? "display:none;" : "")+""+"\" "+">") ;
             context.SendWebValue( "") ;
             context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+((edtavDelete_Visible==0) ? "display:none;" : "")+""+"\" "+">") ;
+            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
+            context.SendWebValue( "") ;
+            context.WriteHtmlTextNl( "</th>") ;
+            context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Image"+" "+((StringUtil.StrCmp(edtavDeleteimage_gximage, "")==0) ? "" : "GX_Image_"+edtavDeleteimage_gximage+"_Class")+"\" "+" style=\""+((edtavDeleteimage_Visible==0) ? "display:none;" : "")+""+"\" "+">") ;
             context.SendWebValue( "") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlTextNl( "</tr>") ;
@@ -1822,7 +1845,11 @@ namespace GeneXus.Programs.wallet.registered {
             GridgroupColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridgroupColumn.AddObjectProperty("Value", GXUtil.ValueEncode( StringUtil.RTrim( AV10delete)));
             GridgroupColumn.AddObjectProperty("Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtavDelete_Enabled), 5, 0, ".", "")));
-            GridgroupColumn.AddObjectProperty("Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtavDelete_Visible), 5, 0, ".", "")));
+            GridgroupContainer.AddColumnProperties(GridgroupColumn);
+            GridgroupColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
+            GridgroupColumn.AddObjectProperty("Value", context.convertURL( AV36deleteImage));
+            GridgroupColumn.AddObjectProperty("Link", StringUtil.RTrim( edtavDeleteimage_Link));
+            GridgroupColumn.AddObjectProperty("Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtavDeleteimage_Visible), 5, 0, ".", "")));
             GridgroupContainer.AddColumnProperties(GridgroupColumn);
             GridgroupContainer.AddObjectProperty("Selectedindex", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridgroup_Selectedindex), 4, 0, ".", "")));
             GridgroupContainer.AddObjectProperty("Allowselection", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridgroup_Allowselection), 1, 0, ".", "")));
@@ -1846,6 +1873,7 @@ namespace GeneXus.Programs.wallet.registered {
          edtavAcceptinvitation_Internalname = "vACCEPTINVITATION";
          edtavDeclineinvitation_Internalname = "vDECLINEINVITATION";
          edtavDelete_Internalname = "vDELETE";
+         edtavDeleteimage_Internalname = "vDELETEIMAGE";
          divMaintable_Internalname = "MAINTABLE";
          Form.Internalname = "FORM";
          subGridgroup_Internalname = "GRIDGROUP";
@@ -1861,10 +1889,13 @@ namespace GeneXus.Programs.wallet.registered {
          init_default_properties( ) ;
          subGridgroup_Allowcollapsing = 0;
          subGridgroup_Allowselection = 0;
+         edtavDeleteimage_Link = "";
          subGridgroup_Header = "";
+         edtavDeleteimage_Jsonclick = "";
+         edtavDeleteimage_gximage = "";
+         edtavDeleteimage_Visible = -1;
          edtavDelete_Jsonclick = "";
          edtavDelete_Enabled = 1;
-         edtavDelete_Visible = -1;
          edtavDeclineinvitation_Jsonclick = "";
          edtavDeclineinvitation_Enabled = 1;
          edtavDeclineinvitation_Visible = -1;
@@ -1916,14 +1947,14 @@ namespace GeneXus.Programs.wallet.registered {
          setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED","""{"handler":"E131F2","iparms":[{"av":"AV11UserResponse","fld":"vUSERRESPONSE","type":"boolean"},{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11,"type":"int"},{"av":"GRIDGROUP_nEOF","type":"int"},{"av":"AV32extKeyInfoRoot","fld":"vEXTKEYINFOROOT","hsh":true,"type":""},{"av":"AV33wallet","fld":"vWALLET","hsh":true,"type":""}]""");
          setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED",""","oparms":[{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11,"type":"int"}]}""");
          setEventMetadata("GRIDGROUP.LOAD","""{"handler":"E171F2","iparms":[{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11,"type":"int"}]""");
-         setEventMetadata("GRIDGROUP.LOAD",""","oparms":[{"av":"AV10delete","fld":"vDELETE","type":"char"},{"av":"AV13acceptInvitation","fld":"vACCEPTINVITATION","type":"char"},{"av":"AV14declineInvitation","fld":"vDECLINEINVITATION","type":"char"},{"av":"edtavAcceptinvitation_Visible","ctrl":"vACCEPTINVITATION","prop":"Visible"},{"av":"edtavDeclineinvitation_Visible","ctrl":"vDECLINEINVITATION","prop":"Visible"},{"av":"edtavDelete_Visible","ctrl":"vDELETE","prop":"Visible"}]}""");
+         setEventMetadata("GRIDGROUP.LOAD",""","oparms":[{"av":"AV36deleteImage","fld":"vDELETEIMAGE","type":"bits"},{"av":"AV13acceptInvitation","fld":"vACCEPTINVITATION","type":"char"},{"av":"AV14declineInvitation","fld":"vDECLINEINVITATION","type":"char"},{"av":"edtavAcceptinvitation_Visible","ctrl":"vACCEPTINVITATION","prop":"Visible"},{"av":"edtavDeclineinvitation_Visible","ctrl":"vDECLINEINVITATION","prop":"Visible"},{"av":"edtavDeleteimage_Visible","ctrl":"vDELETEIMAGE","prop":"Visible"}]}""");
          setEventMetadata("'DECLINE INVITATION'","""{"handler":"E181F2","iparms":[{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11,"type":"int"},{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"AV17grpupId","fld":"vGRPUPID","type":"guid"},{"av":"AV18removedFromSDT","fld":"vREMOVEDFROMSDT","type":"boolean"},{"av":"GRIDGROUP_nEOF","type":"int"},{"av":"AV32extKeyInfoRoot","fld":"vEXTKEYINFOROOT","hsh":true,"type":""},{"av":"AV33wallet","fld":"vWALLET","hsh":true,"type":""}]""");
          setEventMetadata("'DECLINE INVITATION'",""","oparms":[{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11,"type":"int"},{"av":"AV18removedFromSDT","fld":"vREMOVEDFROMSDT","type":"boolean"},{"av":"AV7error","fld":"vERROR","type":"char"}]}""");
          setEventMetadata("'ACCEPT INVITATION'","""{"handler":"E191F2","iparms":[{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11,"type":"int"},{"av":"AV32extKeyInfoRoot","fld":"vEXTKEYINFOROOT","hsh":true,"type":""},{"av":"AV33wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"AV21message_signature","fld":"vMESSAGE_SIGNATURE","type":""},{"av":"AV19sdt_message","fld":"vSDT_MESSAGE","type":""},{"av":"GRIDGROUP_nEOF","type":"int"}]""");
          setEventMetadata("'ACCEPT INVITATION'",""","oparms":[{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"AV17grpupId","fld":"vGRPUPID","type":"guid"},{"av":"AV6all_groups_sdt","fld":"vALL_GROUPS_SDT","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDGROUP_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDGROUP","prop":"GridRC","grid":11,"type":"int"},{"av":"AV21message_signature","fld":"vMESSAGE_SIGNATURE","type":""},{"av":"AV19sdt_message","fld":"vSDT_MESSAGE","type":""}]}""");
          setEventMetadata("VALIDV_GXV2","""{"handler":"Validv_Gxv2","iparms":[]}""");
          setEventMetadata("VALIDV_GXV4","""{"handler":"Validv_Gxv4","iparms":[]}""");
-         setEventMetadata("NULL","""{"handler":"Validv_Delete","iparms":[]}""");
+         setEventMetadata("NULL","""{"handler":"Validv_Deleteimage","iparms":[]}""");
          return  ;
       }
 
@@ -1968,6 +1999,8 @@ namespace GeneXus.Programs.wallet.registered {
          AV13acceptInvitation = "";
          AV14declineInvitation = "";
          AV10delete = "";
+         AV36deleteImage = "";
+         AV44Deleteimage_GXI = "";
          GXt_SdtExtKeyInfo1 = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
          GXt_SdtWallet2 = new GeneXus.Programs.wallet.SdtWallet(context);
          AV9websession = context.GetSession();
@@ -1988,6 +2021,7 @@ namespace GeneXus.Programs.wallet.registered {
          subGridgroup_Linesclass = "";
          ROClassString = "";
          GXCCtl = "";
+         sImgUrl = "";
          GridgroupColumn = new GXWebColumn();
          /* GeneXus formulas. */
          edtavCtlgroupid_Enabled = 0;
@@ -2018,7 +2052,7 @@ namespace GeneXus.Programs.wallet.registered {
       private short subGridgroup_Collapsed ;
       private int nRC_GXsfl_11 ;
       private int nGXsfl_11_idx=1 ;
-      private int AV36GXV1 ;
+      private int AV37GXV1 ;
       private int subGridgroup_Islastpage ;
       private int edtavCtlgroupid_Enabled ;
       private int edtavCtlgroupname_Enabled ;
@@ -2027,13 +2061,13 @@ namespace GeneXus.Programs.wallet.registered {
       private int edtavDelete_Enabled ;
       private int nGXsfl_11_fel_idx=1 ;
       private int nGXsfl_11_bak_idx=1 ;
-      private int AV42GXV7 ;
+      private int AV43GXV7 ;
       private int edtavAcceptinvitation_Visible ;
       private int edtavDeclineinvitation_Visible ;
-      private int edtavDelete_Visible ;
-      private int AV43GXV8 ;
-      private int AV44GXV9 ;
-      private int AV45GXV10 ;
+      private int edtavDeleteimage_Visible ;
+      private int AV45GXV8 ;
+      private int AV46GXV9 ;
+      private int AV47GXV10 ;
       private int idxLst ;
       private int subGridgroup_Backcolor ;
       private int subGridgroup_Allbackcolor ;
@@ -2074,7 +2108,9 @@ namespace GeneXus.Programs.wallet.registered {
       private string edtavDeclineinvitation_Internalname ;
       private string AV10delete ;
       private string edtavDelete_Internalname ;
+      private string edtavDeleteimage_Internalname ;
       private string sGXsfl_11_fel_idx="0001" ;
+      private string edtavDeleteimage_gximage ;
       private string AV25encryptionKey ;
       private string GXt_char3 ;
       private string GXt_char5 ;
@@ -2094,7 +2130,10 @@ namespace GeneXus.Programs.wallet.registered {
       private string edtavAcceptinvitation_Jsonclick ;
       private string edtavDeclineinvitation_Jsonclick ;
       private string edtavDelete_Jsonclick ;
+      private string sImgUrl ;
+      private string edtavDeleteimage_Jsonclick ;
       private string subGridgroup_Header ;
+      private string edtavDeleteimage_Link ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool AV11UserResponse ;
@@ -2106,6 +2145,9 @@ namespace GeneXus.Programs.wallet.registered {
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private bool gx_BV11 ;
+      private bool AV36deleteImage_IsBlob ;
+      private string AV44Deleteimage_GXI ;
+      private string AV36deleteImage ;
       private Guid AV17grpupId ;
       private GXWebGrid GridgroupContainer ;
       private GXWebRow GridgroupRow ;

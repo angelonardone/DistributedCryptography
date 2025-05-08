@@ -1694,7 +1694,7 @@ namespace GeneXus.Programs.wallet.registered {
             if (returnInSub) return;
             if ( AV11group_sdt.gxTpr_Minimumshares > AV22totalUserShares )
             {
-               GX_msglist.addItem("The \"Minimum amount of shares to recover the secret\" cannot be bigger that the total amont of shares for each contact");
+               GX_msglist.addItem("The \"Minimum amount of shares to recover the secret\" cannot be bigger that the total amount of shares for each contact");
             }
             else
             {
@@ -1730,12 +1730,10 @@ namespace GeneXus.Programs.wallet.registered {
                         }
                         GXt_char4 = AV8error;
                         GXt_char1 = AV13groupContact.gxTpr_Contactencryptedkey;
-                        GXt_char6 = AV13groupContact.gxTpr_Contactiv;
-                        GXt_char7 = AV13groupContact.gxTpr_Contactencryptedtext;
-                        new GeneXus.Programs.distributedcrypto.encryptjsonto(context ).execute(  AV24userShares.ToJSonString(false),  StringUtil.Trim( AV13groupContact.gxTpr_Contactuserpubkey), out  GXt_char1, out  GXt_char6, out  GXt_char7, out  GXt_char4) ;
+                        GXt_char6 = AV13groupContact.gxTpr_Contactencryptedtext;
+                        new GeneXus.Programs.distributedcryptographylib.encryptjsonto(context ).execute(  AV24userShares.ToJSonString(false),  StringUtil.Trim( AV13groupContact.gxTpr_Contactuserpubkey), out  GXt_char1, out  GXt_char6, out  GXt_char4) ;
                         AV13groupContact.gxTpr_Contactencryptedkey = GXt_char1;
-                        AV13groupContact.gxTpr_Contactiv = GXt_char6;
-                        AV13groupContact.gxTpr_Contactencryptedtext = GXt_char7;
+                        AV13groupContact.gxTpr_Contactencryptedtext = GXt_char6;
                         AV8error = GXt_char4;
                         AssignAttri(sPrefix, false, "AV8error", AV8error);
                         AV73GXV15 = (int)(AV73GXV15+1);
@@ -1772,11 +1770,11 @@ namespace GeneXus.Programs.wallet.registered {
             AV30group_sdt_temp.gxTpr_Othergroup.gxTpr_Encpassword = AV11group_sdt.gxTpr_Othergroup.gxTpr_Encpassword;
             AV27message_signature.gxTpr_Username = StringUtil.Trim( AV29externalUser.gxTpr_Userinfo.gxTpr_Username);
             AV27message_signature.gxTpr_Grouppubkey = StringUtil.Trim( AV29externalUser.gxTpr_Groupskeyinfo.gxTpr_Publickey);
-            GXt_char7 = AV8error;
-            GXt_char6 = AV27message_signature.gxTpr_Signature;
-            new GeneXus.Programs.nbitcoin.eccsignmsg(context ).execute(  AV29externalUser.gxTpr_Groupskeyinfo.gxTpr_Privatekey,  StringUtil.Trim( AV27message_signature.gxTpr_Username)+StringUtil.Trim( AV27message_signature.gxTpr_Grouppubkey), out  GXt_char6, out  GXt_char7) ;
-            AV27message_signature.gxTpr_Signature = GXt_char6;
-            AV8error = GXt_char7;
+            GXt_char6 = AV8error;
+            GXt_char4 = AV27message_signature.gxTpr_Signature;
+            new GeneXus.Programs.nbitcoin.eccsignmsg(context ).execute(  AV29externalUser.gxTpr_Groupskeyinfo.gxTpr_Privatekey,  StringUtil.Trim( AV27message_signature.gxTpr_Username)+StringUtil.Trim( AV27message_signature.gxTpr_Grouppubkey), out  GXt_char4, out  GXt_char6) ;
+            AV27message_signature.gxTpr_Signature = GXt_char4;
+            AV8error = GXt_char6;
             AssignAttri(sPrefix, false, "AV8error", AV8error);
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
             {
@@ -1796,9 +1794,9 @@ namespace GeneXus.Programs.wallet.registered {
                   AV7contact = new GeneXus.Programs.wallet.registered.SdtContact_SDT(context);
                   AV7contact.gxTpr_Username = StringUtil.Trim( AV13groupContact.gxTpr_Contactusername);
                   AV7contact.gxTpr_Messagepubkey = StringUtil.Trim( AV13groupContact.gxTpr_Contactuserpubkey);
-                  GXt_char7 = AV8error;
-                  new GeneXus.Programs.wallet.registered.sendmessage(context ).execute(  AV7contact,  AV28sdt_message, out  GXt_char7) ;
-                  AV8error = GXt_char7;
+                  GXt_char6 = AV8error;
+                  new GeneXus.Programs.wallet.registered.sendmessage(context ).execute(  AV7contact,  AV28sdt_message, out  GXt_char6) ;
+                  AV8error = GXt_char6;
                   AssignAttri(sPrefix, false, "AV8error", AV8error);
                   if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
                   {
@@ -1809,9 +1807,9 @@ namespace GeneXus.Programs.wallet.registered {
                }
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
                {
-                  GXt_char7 = AV8error;
-                  new GeneXus.Programs.wallet.registered.updategroup(context ).execute(  AV11group_sdt,  StringUtil.Trim( AV11group_sdt.gxTpr_Othergroup.gxTpr_Encpassword), out  AV15grpupId, out  GXt_char7) ;
-                  AV8error = GXt_char7;
+                  GXt_char6 = AV8error;
+                  new GeneXus.Programs.wallet.registered.updategroup(context ).execute(  AV11group_sdt,  StringUtil.Trim( AV11group_sdt.gxTpr_Othergroup.gxTpr_Encpassword), out  AV15grpupId, out  GXt_char6) ;
+                  AV8error = GXt_char6;
                   AssignAttri(sPrefix, false, "AV8error", AV8error);
                   if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
                   {
@@ -2030,7 +2028,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025521317492", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255719414342", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2046,7 +2044,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/smartgroupwalletbackup.js", "?2025521317493", false, true);
+         context.AddJavascriptSource("wallet/registered/smartgroupwalletbackup.js", "?20255719414344", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -2480,11 +2478,10 @@ namespace GeneXus.Programs.wallet.registered {
          AV20secret = "";
          AV21shares = new GxSimpleCollection<string>();
          AV24userShares = new GxSimpleCollection<string>();
-         GXt_char4 = "";
          GXt_char1 = "";
          GXt_SdtExternalUser3 = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
+         GXt_char4 = "";
          GXt_char6 = "";
-         GXt_char7 = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          subGridcontacts_Linesclass = "";
@@ -2609,10 +2606,9 @@ namespace GeneXus.Programs.wallet.registered {
       private string sGXsfl_11_fel_idx="0001" ;
       private string edtavCtlnumshares_Internalname ;
       private string AV9expectedPopupName ;
-      private string GXt_char4 ;
       private string GXt_char1 ;
+      private string GXt_char4 ;
       private string GXt_char6 ;
-      private string GXt_char7 ;
       private string subGridcontacts_Class ;
       private string subGridcontacts_Linesclass ;
       private string ROClassString ;

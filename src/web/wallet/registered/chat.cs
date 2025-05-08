@@ -1123,23 +1123,21 @@ namespace GeneXus.Programs.wallet.registered {
             AV14sdt_message.gxTpr_Message = AV15sdt_chat.ToJSonString(false, true);
             GXt_char7 = AV5error;
             GXt_char8 = AV18json_enc.gxTpr_Encryptedkey;
-            GXt_char9 = AV18json_enc.gxTpr_Iv;
-            GXt_char10 = AV18json_enc.gxTpr_Encryptedtext;
-            new GeneXus.Programs.distributedcrypto.encryptjsonto(context ).execute(  AV14sdt_message.ToJSonString(false, true),  AV12contact.gxTpr_Userpubkey, out  GXt_char8, out  GXt_char9, out  GXt_char10, out  GXt_char7) ;
+            GXt_char9 = AV18json_enc.gxTpr_Encryptedtext;
+            new GeneXus.Programs.distributedcryptographylib.encryptjsonto(context ).execute(  AV14sdt_message.ToJSonString(false, true),  AV12contact.gxTpr_Userpubkey, out  GXt_char8, out  GXt_char9, out  GXt_char7) ;
             AV18json_enc.gxTpr_Encryptedkey = GXt_char8;
-            AV18json_enc.gxTpr_Iv = GXt_char9;
-            AV18json_enc.gxTpr_Encryptedtext = GXt_char10;
+            AV18json_enc.gxTpr_Encryptedtext = GXt_char9;
             AV5error = GXt_char7;
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV5error)) )
             {
-               GXt_char10 = AV5error;
-               new GeneXus.Programs.nbitcoin.tapprootaddresstoxonlypubkey(context ).execute(  AV12contact.gxTpr_Username,  AV21wallet.gxTpr_Networktype, out  AV20taprootPubKey, out  GXt_char10) ;
-               AV5error = GXt_char10;
+               GXt_char9 = AV5error;
+               new GeneXus.Programs.nbitcoin.tapprootaddresstoxonlypubkey(context ).execute(  AV12contact.gxTpr_Username,  AV21wallet.gxTpr_Networktype, out  AV20taprootPubKey, out  GXt_char9) ;
+               AV5error = GXt_char9;
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV5error)) )
                {
-                  GXt_char10 = AV5error;
-                  new GeneXus.Programs.nostr.publish(context ).execute(  AV20taprootPubKey,  AV18json_enc.ToJSonString(false, true), out  GXt_char10) ;
-                  AV5error = GXt_char10;
+                  GXt_char9 = AV5error;
+                  new GeneXus.Programs.nostr.publish(context ).execute(  AV20taprootPubKey,  AV18json_enc.ToJSonString(false, true), out  GXt_char9) ;
+                  AV5error = GXt_char9;
                   if ( String.IsNullOrEmpty(StringUtil.RTrim( AV5error)) )
                   {
                      /* Execute user subroutine: 'CONTACT_CHAT_TO_SCREEN' */
@@ -1296,7 +1294,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255213174282", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255719422778", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1313,7 +1311,7 @@ namespace GeneXus.Programs.wallet.registered {
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
          context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 123260), false, true);
-         context.AddJavascriptSource("wallet/registered/chat.js", "?20255213174284", false, true);
+         context.AddJavascriptSource("wallet/registered/chat.js", "?20255719422778", false, true);
          /* End function include_jscripts */
       }
 
@@ -1646,9 +1644,8 @@ namespace GeneXus.Programs.wallet.registered {
          AV5error = "";
          GXt_char7 = "";
          GXt_char8 = "";
-         GXt_char9 = "";
          AV20taprootPubKey = "";
-         GXt_char10 = "";
+         GXt_char9 = "";
          GridchatRow = new GXWebRow();
          imgChatsendimage_gximage = "";
          sImgUrl = "";
@@ -1727,9 +1724,8 @@ namespace GeneXus.Programs.wallet.registered {
       private string AV5error ;
       private string GXt_char7 ;
       private string GXt_char8 ;
-      private string GXt_char9 ;
       private string AV20taprootPubKey ;
-      private string GXt_char10 ;
+      private string GXt_char9 ;
       private string divGridmessagestable_Class ;
       private string divGridmessagestable_Internalname ;
       private string tblTablemessage_Class ;

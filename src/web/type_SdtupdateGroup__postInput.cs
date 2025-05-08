@@ -33,8 +33,6 @@ namespace GeneXus.Programs
 			/* Constructor for serialization */
 			gxTv_SdtupdateGroup__postInput_Groupencryptedkey = "";
 
-			gxTv_SdtupdateGroup__postInput_Groupiv = "";
-
 			gxTv_SdtupdateGroup__postInput_Groupencrypted = "";
 
 		}
@@ -68,9 +66,6 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("GroupEncryptedKey", gxTpr_Groupencryptedkey, false);
-
-
-			AddObjectProperty("GroupIV", gxTpr_Groupiv, false);
 
 
 			AddObjectProperty("GroupEncrypted", gxTpr_Groupencrypted, false);
@@ -107,22 +102,6 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtupdateGroup__postInput_Groupencryptedkey = value;
 				SetDirty("Groupencryptedkey");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="GroupIV")]
-		[XmlElement(ElementName="GroupIV")]
-		public string gxTpr_Groupiv
-		{
-			get {
-				return gxTv_SdtupdateGroup__postInput_Groupiv; 
-			}
-			set {
-				gxTv_SdtupdateGroup__postInput_Groupiv = value;
-				SetDirty("Groupiv");
 			}
 		}
 
@@ -166,7 +145,6 @@ namespace GeneXus.Programs
 		public void initialize( )
 		{
 			gxTv_SdtupdateGroup__postInput_Groupencryptedkey = "";
-			gxTv_SdtupdateGroup__postInput_Groupiv = "";
 			gxTv_SdtupdateGroup__postInput_Groupencrypted = "";
 			return  ;
 		}
@@ -181,9 +159,6 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtupdateGroup__postInput_Groupencryptedkey;
-		 
-
-		protected string gxTv_SdtupdateGroup__postInput_Groupiv;
 		 
 
 		protected string gxTv_SdtupdateGroup__postInput_Groupencrypted;
@@ -234,23 +209,9 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[JsonPropertyName("GroupIV")]
-		[JsonPropertyOrder(2)]
-		[DataMember(Name="GroupIV", Order=2)]
-		public  string gxTpr_Groupiv
-		{
-			get { 
-				return sdt.gxTpr_Groupiv;
-
-			}
-			set { 
-				 sdt.gxTpr_Groupiv = value;
-			}
-		}
-
 		[JsonPropertyName("GroupEncrypted")]
-		[JsonPropertyOrder(3)]
-		[DataMember(Name="GroupEncrypted", Order=3)]
+		[JsonPropertyOrder(2)]
+		[DataMember(Name="GroupEncrypted", Order=2)]
 		public  string gxTpr_Groupencrypted
 		{
 			get { 

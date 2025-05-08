@@ -33,8 +33,6 @@ namespace GeneXus.Programs.wallet
 			/* Constructor for serialization */
 			gxTv_SdtSDT_Json_Enc_Encryptedkey = "";
 
-			gxTv_SdtSDT_Json_Enc_Iv = "";
-
 			gxTv_SdtSDT_Json_Enc_Encryptedtext = "";
 
 		}
@@ -67,9 +65,6 @@ namespace GeneXus.Programs.wallet
 			AddObjectProperty("encryptedKey", gxTpr_Encryptedkey, false);
 
 
-			AddObjectProperty("IV", gxTpr_Iv, false);
-
-
 			AddObjectProperty("encryptedText", gxTpr_Encryptedtext, false);
 
 			return;
@@ -88,22 +83,6 @@ namespace GeneXus.Programs.wallet
 			set {
 				gxTv_SdtSDT_Json_Enc_Encryptedkey = value;
 				SetDirty("Encryptedkey");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="IV")]
-		[XmlElement(ElementName="IV")]
-		public string gxTpr_Iv
-		{
-			get {
-				return gxTv_SdtSDT_Json_Enc_Iv; 
-			}
-			set {
-				gxTv_SdtSDT_Json_Enc_Iv = value;
-				SetDirty("Iv");
 			}
 		}
 
@@ -147,7 +126,6 @@ namespace GeneXus.Programs.wallet
 		public void initialize( )
 		{
 			gxTv_SdtSDT_Json_Enc_Encryptedkey = "";
-			gxTv_SdtSDT_Json_Enc_Iv = "";
 			gxTv_SdtSDT_Json_Enc_Encryptedtext = "";
 			return  ;
 		}
@@ -159,9 +137,6 @@ namespace GeneXus.Programs.wallet
 		#region Declaration
 
 		protected string gxTv_SdtSDT_Json_Enc_Encryptedkey;
-		 
-
-		protected string gxTv_SdtSDT_Json_Enc_Iv;
 		 
 
 		protected string gxTv_SdtSDT_Json_Enc_Encryptedtext;
@@ -198,23 +173,9 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
-		[JsonPropertyName("IV")]
-		[JsonPropertyOrder(1)]
-		[DataMember(Name="IV", Order=1)]
-		public  string gxTpr_Iv
-		{
-			get { 
-				return StringUtil.RTrim( sdt.gxTpr_Iv);
-
-			}
-			set { 
-				 sdt.gxTpr_Iv = value;
-			}
-		}
-
 		[JsonPropertyName("encryptedText")]
-		[JsonPropertyOrder(2)]
-		[DataMember(Name="encryptedText", Order=2)]
+		[JsonPropertyOrder(1)]
+		[DataMember(Name="encryptedText", Order=1)]
 		public  string gxTpr_Encryptedtext
 		{
 			get { 

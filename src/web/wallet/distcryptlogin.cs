@@ -1093,7 +1093,7 @@ namespace GeneXus.Programs.wallet {
          }
          /* Extensions\Web\Popup_Onpopupclosed Routine */
          returnInSub = false;
-         AV61sendCoinPopupName = "Wallet.ConfigreuNostrServers";
+         AV61sendCoinPopupName = "Wallet.ConfigureNostrServers";
          AV63strFound = (short)(StringUtil.StringSearch( AV55PopupName, StringUtil.Lower( AV61sendCoinPopupName), 1));
          if ( AV63strFound > 0 )
          {
@@ -1175,7 +1175,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255213174061", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255719422584", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1191,7 +1191,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/distcryptlogin.js", "?20255213174061", false, true);
+         context.AddJavascriptSource("wallet/distcryptlogin.js", "?20255719422584", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }

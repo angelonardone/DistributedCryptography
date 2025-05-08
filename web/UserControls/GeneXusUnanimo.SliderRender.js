@@ -1,1 +1,171 @@
-function GeneXusUnanimo_Slider(n){var u='<div class="slider-container">    <input type="range" min="{{MinValue}}" max="{{MaxValue}}" step="{{Step}}" class="slider" tabindex="0" {{^Enabled}}disabled{{/Enabled}} data-gx-binding="value">\t<output class="slider-value"><\/div> ',f={},r;Mustache.parse(u);var e=0,o=0,i,t={};this.setAttribute=function(n){t.value=Number(n)};this.getAttribute=function(){return t.value};this.show=function(){i=n(this.getContainerControl());e=0;o=0;this.setHtml(Mustache.render(u,this,f));this.renderChildContainers();var r=i.find("[data-gx-binding]"),s=r.attr("data-gx-binding")||"value";r.on("input",function(){t.value=Number(this[s])});r.on("change",function(){t.value=Number(this[s])});r.on("focus",this.onfocus.closure(this));r.on("input",this.oninput.closure(this));r.on("change",this.onchange.closure(this));r.prop(s,t.value);n(this.getContainerControl()).find("[data-event='Event']").on("click",this.onEventHandler.closure(this)).each(function(n){this.setAttribute("data-items-index",n+1)});n(this.getContainerControl()).find("[data-event='ControlValueChanged']").on("controlvaluechanged",this.onControlValueChangedHandler.closure(this)).each(function(n){this.setAttribute("data-items-index",n+1)});this.InitSlider()};this.Scripts=[];this.InitSlider=function(){function e(n,t){const i=n.value,r=n.min?n.min:0,f=n.max?n.max:100,u=Number((i-r)*100/(f-r));t.innerHTML=i;t.style.left=`calc(${u}% + (${8-u*.15}px))`}const n=this;var i=document.getElementById(n.ContainerName),r=i.getElementsByTagName("input")[0],u=i.getElementsByTagName("output")[0];i=i.firstChild;i.setAttribute("id","sliderContainer"+n.ControlId);r.setAttribute("id","slider"+n.ControlId);u.setAttribute("for","slider"+n.ControlId);const t=r,f=u;e(t,f);t.addEventListener("input",function(){e(t,f);n.ControlValueChanged&&n.ControlValueChanged()});t.addEventListener("keydown",function(i){switch(i.keyCode){case 37:case 40:t.value-n.Step;break;case 38:case 39:t.value+n.Step}})};this.onEventHandler=function(n){if(n){var t=n.currentTarget;n.preventDefault()}this.Event&&this.Event()};this.onControlValueChangedHandler=function(n){if(n){var t=n.currentTarget;n.preventDefault()}this.ControlValueChanged&&this.ControlValueChanged()};this.autoToggleVisibility=!0;r={};this.renderChildContainers=function(){i.find("[data-slot][data-parent='"+this.ContainerName+"']").each(function(t,i){var e=n(i),f=e.attr("data-slot"),u;u=r[f];u||(u=this.getChildContainer(f),r[f]=u,u.parentNode.removeChild(u));e.append(u);n(u).show()}.closure(this))}}
+function GeneXusUnanimo_Slider($) {
+	  
+	  
+	  
+	  
+	  
+
+	var template = '<div class=\"slider-container\">    <input type=\"range\" min=\"{{MinValue}}\" max=\"{{MaxValue}}\" step=\"{{Step}}\" class=\"slider\" tabindex=\"0\" {{^Enabled}}disabled{{/Enabled}} data-gx-binding=\"value\">	<output class=\"slider-value\"></div> ';
+	var partials = {  }; 
+	Mustache.parse(template);
+	var _iOnEvent = 0; 
+	var _iOnControlValueChanged = 0; 
+	var $container;
+	var valueObject = {};
+
+	this.setAttribute = function (v) {
+		valueObject.value = Number(v);
+	}
+	this.getAttribute = function () {
+		var v = valueObject.value;
+		return v;
+	}
+
+	this.show = function() {
+			$container = $(this.getContainerControl());
+
+			// Raise before show scripts
+
+			_iOnEvent = 0; 
+			_iOnControlValueChanged = 0; 
+
+			//if (this.IsPostBack)
+				this.setHtml(Mustache.render(template, this, partials));
+			this.renderChildContainers();
+
+			var $dataElement = $container.find("[data-gx-binding]");
+			var dataElementProp = $dataElement.attr("data-gx-binding") || "value";
+			$dataElement.on("input", function () {
+				valueObject.value = Number(this[dataElementProp]);
+			});
+			$dataElement.on("change", function () {
+				valueObject.value = Number(this[dataElementProp]);
+			});
+			$dataElement.on("focus", this.onfocus.closure(this));
+			$dataElement.on("input", this.oninput.closure(this));
+			$dataElement.on("change", this.onchange.closure(this));
+
+			$dataElement.prop(dataElementProp, valueObject.value);
+
+			$(this.getContainerControl())
+				.find("[data-event='Event']")
+				.on('click', this.onEventHandler.closure(this))
+				.each(function (i) {
+					this.setAttribute("data-items-index", i + 1);
+				}); 
+			$(this.getContainerControl())
+				.find("[data-event='ControlValueChanged']")
+				.on('controlvaluechanged', this.onControlValueChangedHandler.closure(this))
+				.each(function (i) {
+					this.setAttribute("data-items-index", i + 1);
+				}); 
+
+			// Raise after show scripts
+			this.InitSlider(); 
+	}
+
+	this.Scripts = [];
+
+		this.InitSlider = function() {
+
+			  	const UC = this;
+				
+				var containerEl = document.getElementById(UC.ContainerName);
+				var el = containerEl.getElementsByTagName("input")[0];
+				var output = containerEl.getElementsByTagName("output")[0];
+				containerEl = containerEl.firstChild;
+				containerEl.setAttribute("id", "sliderContainer" + UC.ControlId);
+				el.setAttribute("id", "slider" + UC.ControlId);
+				output.setAttribute("for", "slider" + UC.ControlId);
+				const range = el;
+				const bubble = output;
+				
+				setBubble(range, bubble);
+				
+				range.addEventListener("input", function() {
+					setBubble(range, bubble);
+					if (UC.ControlValueChanged){
+						UC.ControlValueChanged()
+					}
+				});
+				
+				range.addEventListener("keydown", function(ev){
+					switch (ev.keyCode) {
+						case 37:
+						case 40:
+							range.value - UC.Step;
+							break;
+						case 38:
+						case 39:
+							range.value + UC.Step;
+							break;
+					}
+				})
+				
+				function setBubble(range, bubble) {
+					const val = range.value;
+					const min = range.min ? range.min : 0;
+					const max = range.max ? range.max : 100;
+					const newVal = Number(((val - min) * 100) / (max - min));
+					bubble.innerHTML = val;
+					bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
+				}
+
+		}
+
+
+		this.onEventHandler = function (e) {
+			if (e) {
+				var target = e.currentTarget;
+				e.preventDefault();
+				 
+				 
+				 
+				 
+				 
+			}
+
+			if (this.Event) {
+				this.Event();
+			}
+		} 
+
+		this.onControlValueChangedHandler = function (e) {
+			if (e) {
+				var target = e.currentTarget;
+				e.preventDefault();
+				 
+				 
+				 
+				 
+				 
+			}
+
+			if (this.ControlValueChanged) {
+				this.ControlValueChanged();
+			}
+		} 
+
+	this.autoToggleVisibility = true;
+
+	var childContainers = {};
+	this.renderChildContainers = function () {
+		$container
+			.find("[data-slot][data-parent='" + this.ContainerName + "']")
+			.each((function (i, slot) {
+				var $slot = $(slot),
+					slotName = $slot.attr('data-slot'),
+					slotContentEl;
+
+				slotContentEl = childContainers[slotName];
+				if (!slotContentEl) {				
+					slotContentEl = this.getChildContainer(slotName)
+					childContainers[slotName] = slotContentEl;
+					slotContentEl.parentNode.removeChild(slotContentEl);
+				}
+				$slot.append(slotContentEl);
+				$(slotContentEl).show();
+			}).closure(this));
+	};
+
+}

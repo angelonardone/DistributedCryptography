@@ -33,8 +33,6 @@ namespace GeneXus.Programs
 			/* Constructor for serialization */
 			gxTv_SdtDesktopApp_services_SDT_Contacts_Contact_ContactItem_Encryptedkey = "";
 
-			gxTv_SdtDesktopApp_services_SDT_Contacts_Contact_ContactItem_Iv = "";
-
 			gxTv_SdtDesktopApp_services_SDT_Contacts_Contact_ContactItem_Contactencrypted = "";
 
 		}
@@ -68,9 +66,6 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("EncryptedKey", gxTpr_Encryptedkey, false);
-
-
-			AddObjectProperty("IV", gxTpr_Iv, false);
 
 
 			AddObjectProperty("ContactEncrypted", gxTpr_Contactencrypted, false);
@@ -107,22 +102,6 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtDesktopApp_services_SDT_Contacts_Contact_ContactItem_Encryptedkey = value;
 				SetDirty("Encryptedkey");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="IV")]
-		[XmlElement(ElementName="IV")]
-		public string gxTpr_Iv
-		{
-			get {
-				return gxTv_SdtDesktopApp_services_SDT_Contacts_Contact_ContactItem_Iv; 
-			}
-			set {
-				gxTv_SdtDesktopApp_services_SDT_Contacts_Contact_ContactItem_Iv = value;
-				SetDirty("Iv");
 			}
 		}
 
@@ -166,7 +145,6 @@ namespace GeneXus.Programs
 		public void initialize( )
 		{
 			gxTv_SdtDesktopApp_services_SDT_Contacts_Contact_ContactItem_Encryptedkey = "";
-			gxTv_SdtDesktopApp_services_SDT_Contacts_Contact_ContactItem_Iv = "";
 			gxTv_SdtDesktopApp_services_SDT_Contacts_Contact_ContactItem_Contactencrypted = "";
 			return  ;
 		}
@@ -181,9 +159,6 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtDesktopApp_services_SDT_Contacts_Contact_ContactItem_Encryptedkey;
-		 
-
-		protected string gxTv_SdtDesktopApp_services_SDT_Contacts_Contact_ContactItem_Iv;
 		 
 
 		protected string gxTv_SdtDesktopApp_services_SDT_Contacts_Contact_ContactItem_Contactencrypted;
@@ -234,23 +209,9 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[JsonPropertyName("IV")]
-		[JsonPropertyOrder(2)]
-		[DataMember(Name="IV", Order=2)]
-		public  string gxTpr_Iv
-		{
-			get { 
-				return sdt.gxTpr_Iv;
-
-			}
-			set { 
-				 sdt.gxTpr_Iv = value;
-			}
-		}
-
 		[JsonPropertyName("ContactEncrypted")]
-		[JsonPropertyOrder(3)]
-		[DataMember(Name="ContactEncrypted", Order=3)]
+		[JsonPropertyOrder(2)]
+		[DataMember(Name="ContactEncrypted", Order=2)]
 		public  string gxTpr_Contactencrypted
 		{
 			get { 

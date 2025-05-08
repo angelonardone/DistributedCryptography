@@ -40,8 +40,6 @@ namespace GeneXus.Programs.wallet.registered
 
 			gxTv_SdtGroup_SDT_ContactItem_Contactencryptedkey = "";
 
-			gxTv_SdtGroup_SDT_ContactItem_Contactiv = "";
-
 			gxTv_SdtGroup_SDT_ContactItem_Contactencryptedtext = "";
 
 			gxTv_SdtGroup_SDT_ContactItem_Contactinvitationsent = (DateTime)(DateTime.MinValue);
@@ -99,9 +97,6 @@ namespace GeneXus.Programs.wallet.registered
 
 
 			AddObjectProperty("contactencryptedKey", gxTpr_Contactencryptedkey, false);
-
-
-			AddObjectProperty("contactIV", gxTpr_Contactiv, false);
 
 
 			AddObjectProperty("contactEncryptedText", gxTpr_Contactencryptedtext, false);
@@ -279,22 +274,6 @@ namespace GeneXus.Programs.wallet.registered
 			set {
 				gxTv_SdtGroup_SDT_ContactItem_Contactencryptedkey = value;
 				SetDirty("Contactencryptedkey");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="contactIV")]
-		[XmlElement(ElementName="contactIV")]
-		public string gxTpr_Contactiv
-		{
-			get {
-				return gxTv_SdtGroup_SDT_ContactItem_Contactiv; 
-			}
-			set {
-				gxTv_SdtGroup_SDT_ContactItem_Contactiv = value;
-				SetDirty("Contactiv");
 			}
 		}
 
@@ -593,7 +572,6 @@ namespace GeneXus.Programs.wallet.registered
 			gxTv_SdtGroup_SDT_ContactItem_Contactusername = "";
 			gxTv_SdtGroup_SDT_ContactItem_Contactuserpubkey = "";
 			gxTv_SdtGroup_SDT_ContactItem_Contactencryptedkey = "";
-			gxTv_SdtGroup_SDT_ContactItem_Contactiv = "";
 			gxTv_SdtGroup_SDT_ContactItem_Contactencryptedtext = "";
 			gxTv_SdtGroup_SDT_ContactItem_Contactinvitationsent = (DateTime)(DateTime.MinValue);
 			gxTv_SdtGroup_SDT_ContactItem_Contactinvitacionaccepted = (DateTime)(DateTime.MinValue);
@@ -641,9 +619,6 @@ namespace GeneXus.Programs.wallet.registered
 		 
 
 		protected string gxTv_SdtGroup_SDT_ContactItem_Contactencryptedkey;
-		 
-
-		protected string gxTv_SdtGroup_SDT_ContactItem_Contactiv;
 		 
 
 		protected string gxTv_SdtGroup_SDT_ContactItem_Contactencryptedtext;
@@ -785,23 +760,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
-		[JsonPropertyName("contactIV")]
-		[JsonPropertyOrder(6)]
-		[DataMember(Name="contactIV", Order=6)]
-		public  string gxTpr_Contactiv
-		{
-			get { 
-				return StringUtil.RTrim( sdt.gxTpr_Contactiv);
-
-			}
-			set { 
-				 sdt.gxTpr_Contactiv = value;
-			}
-		}
-
 		[JsonPropertyName("contactEncryptedText")]
-		[JsonPropertyOrder(7)]
-		[DataMember(Name="contactEncryptedText", Order=7)]
+		[JsonPropertyOrder(6)]
+		[DataMember(Name="contactEncryptedText", Order=6)]
 		public  string gxTpr_Contactencryptedtext
 		{
 			get { 
@@ -814,8 +775,8 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 		[JsonPropertyName("contactInvitationSent")]
-		[JsonPropertyOrder(8)]
-		[DataMember(Name="contactInvitationSent", Order=8)]
+		[JsonPropertyOrder(7)]
+		[DataMember(Name="contactInvitationSent", Order=7)]
 		public  string gxTpr_Contactinvitationsent
 		{
 			get { 
@@ -828,8 +789,8 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 		[JsonPropertyName("contactInvitacionAccepted")]
-		[JsonPropertyOrder(9)]
-		[DataMember(Name="contactInvitacionAccepted", Order=9)]
+		[JsonPropertyOrder(8)]
+		[DataMember(Name="contactInvitacionAccepted", Order=8)]
 		public  string gxTpr_Contactinvitacionaccepted
 		{
 			get { 
@@ -842,9 +803,9 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 		[JsonPropertyName("contactInvitationDelined")]
-		[JsonPropertyOrder(10)]
+		[JsonPropertyOrder(9)]
 		[JsonConverter(typeof(BoolStringJsonConverter))]
-		[DataMember(Name="contactInvitationDelined", Order=10)]
+		[DataMember(Name="contactInvitationDelined", Order=9)]
 		public bool gxTpr_Contactinvitationdelined
 		{
 			get { 
@@ -857,9 +818,9 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 		[JsonPropertyName("contactInviSent")]
-		[JsonPropertyOrder(11)]
+		[JsonPropertyOrder(10)]
 		[JsonConverter(typeof(BoolStringJsonConverter))]
-		[DataMember(Name="contactInviSent", Order=11)]
+		[DataMember(Name="contactInviSent", Order=10)]
 		public bool gxTpr_Contactinvisent
 		{
 			get { 
@@ -872,9 +833,9 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 		[JsonPropertyName("contactInvRec")]
-		[JsonPropertyOrder(12)]
+		[JsonPropertyOrder(11)]
 		[JsonConverter(typeof(BoolStringJsonConverter))]
-		[DataMember(Name="contactInvRec", Order=12)]
+		[DataMember(Name="contactInvRec", Order=11)]
 		public bool gxTpr_Contactinvrec
 		{
 			get { 
@@ -887,8 +848,8 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 		[JsonPropertyName("contactGroupId")]
-		[JsonPropertyOrder(13)]
-		[DataMember(Name="contactGroupId", Order=13)]
+		[JsonPropertyOrder(12)]
+		[DataMember(Name="contactGroupId", Order=12)]
 		public Guid gxTpr_Contactgroupid
 		{
 			get { 
@@ -901,8 +862,8 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 		[JsonPropertyName("contactGroupEncPassword")]
-		[JsonPropertyOrder(14)]
-		[DataMember(Name="contactGroupEncPassword", Order=14)]
+		[JsonPropertyOrder(13)]
+		[DataMember(Name="contactGroupEncPassword", Order=13)]
 		public  string gxTpr_Contactgroupencpassword
 		{
 			get { 
@@ -915,8 +876,8 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 		[JsonPropertyName("clearTextShare")]
-		[JsonPropertyOrder(15)]
-		[DataMember(Name="clearTextShare", Order=15)]
+		[JsonPropertyOrder(14)]
+		[DataMember(Name="clearTextShare", Order=14)]
 		public  string gxTpr_Cleartextshare
 		{
 			get { 
@@ -929,9 +890,9 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 		[JsonPropertyName("numOfSharesReached")]
-		[JsonPropertyOrder(16)]
+		[JsonPropertyOrder(15)]
 		[JsonConverter(typeof(BoolStringJsonConverter))]
-		[DataMember(Name="numOfSharesReached", Order=16)]
+		[DataMember(Name="numOfSharesReached", Order=15)]
 		public bool gxTpr_Numofsharesreached
 		{
 			get { 
@@ -944,8 +905,8 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 		[JsonPropertyName("extPubKeyMultiSigReceiving")]
-		[JsonPropertyOrder(17)]
-		[DataMember(Name="extPubKeyMultiSigReceiving", Order=17)]
+		[JsonPropertyOrder(16)]
+		[DataMember(Name="extPubKeyMultiSigReceiving", Order=16)]
 		public  string gxTpr_Extpubkeymultisigreceiving
 		{
 			get { 
@@ -958,8 +919,8 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 		[JsonPropertyName("extPubKeyMultiSigChange")]
-		[JsonPropertyOrder(18)]
-		[DataMember(Name="extPubKeyMultiSigChange", Order=18)]
+		[JsonPropertyOrder(17)]
+		[DataMember(Name="extPubKeyMultiSigChange", Order=17)]
 		public  string gxTpr_Extpubkeymultisigchange
 		{
 			get { 
@@ -972,9 +933,9 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 		[JsonPropertyName("muSigSignatures")]
-		[JsonPropertyOrder(19)]
+		[JsonPropertyOrder(18)]
 		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-		[DataMember(Name="muSigSignatures", Order=19, EmitDefaultValue=false)]
+		[DataMember(Name="muSigSignatures", Order=18, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.wallet.registered.SdtMuSigSignatures_RESTInterface> gxTpr_Musigsignatures
 		{
 			get { 

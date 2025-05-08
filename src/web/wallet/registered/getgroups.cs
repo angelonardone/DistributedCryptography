@@ -88,7 +88,7 @@ namespace GeneXus.Programs.wallet.registered {
                   {
                      AV15oneEncGroup = ((SdtDesktopApp_services_SDT_Groups_Group_GroupItem)AV14encriptedGroups.gxTpr_Group.Item(AV19GXV1));
                      GXt_char2 = AV16error;
-                     new GeneXus.Programs.distributedcrypto.decryptjson(context ).execute(  AV15oneEncGroup.gxTpr_Groupencrypted,  AV15oneEncGroup.gxTpr_Groupencryptedkey,  AV15oneEncGroup.gxTpr_Groupiv, out  AV17group_sdt_chart, out  GXt_char2) ;
+                     new GeneXus.Programs.distributedcryptographylib.decryptjson(context ).execute(  AV15oneEncGroup.gxTpr_Groupencrypted,  AV15oneEncGroup.gxTpr_Groupencryptedkey, out  AV17group_sdt_chart, out  GXt_char2) ;
                      AV16error = GXt_char2;
                      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV16error)) )
                      {
