@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
+	
+	
+	<PropertyGroup>
+		<AssemblyName>distcrypt.sso.weblogin</AssemblyName>
+		<TargetFramework>$(TargetFramework)</TargetFramework>
+		<OutputType>Library</OutputType>
+		<GenerateDependencyFile>false</GenerateDependencyFile>
+		<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+		<PostgresqlSupport>false</PostgresqlSupport>
+		<OfficeSupport>false</OfficeSupport>
+		<MailSupport>false</MailSupport>
+		<GrpcClientSupport>false</GrpcClientSupport>
+		<PdfLibrary></PdfLibrary>
+		<PDFSupport>false</PDFSupport>
+		<SearchSupport>false</SearchSupport>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<ProjectReference Include=".\..\GeneXus.Programs.Common\GeneXus.Programs.Common.csproj" >
+			<OutputItemType>$(CommonOutputItemType)</OutputItemType>
+		</ProjectReference>
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="GeneXus.dll" > 
+			<HintPath>$(WebBinDirectory)\GeneXus.dll</HintPath>
+		</Reference>
+		<Reference Include="Google.Authenticator.dll" > 
+			<HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
+		</Reference>
+		<Reference Include="GxInternetLib.dll" > 
+			<HintPath>$(WebBinDirectory)\GxInternetLib.dll</HintPath>
+		</Reference>
+		<Reference Include="DistricutedCryptographyLib.dll" > 
+			<HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
+		</Reference>
+
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include = "$(WebDirectory)\distcrypt\sso\weblogin.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\desktopappip.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\sso\getidentprovbaseurl.cs" />
+
+	</ItemGroup>
+
+	<Import Project="..\DotNetCoreBaseProject.targets"/>	
+</Project>
+

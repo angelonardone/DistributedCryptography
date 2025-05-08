@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <OutputType>exe</OutputType>
+	<WebDirectory>$(MSBuildThisFileDirectory)..\..\web</WebDirectory>
+	<PublishIISAssets>false</PublishIISAssets>
+	<PublishDir>$(WebDirectory)\bin</PublishDir>
+	<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+	<Configuration>Release</Configuration>
+  </PropertyGroup>
+	<ItemGroup>
+	<PackageReference Include="GeneXus.NetCoreStartup" Version="$(GenStdVersion)" />
+	</ItemGroup>
+	<ItemGroup>
+        <Watch Include="$(WebDirectory)\*.json" />
+        <Watch Include="$(WebDirectory)\*.config" />
+        <Watch Include="$(WebDirectory)\app_offline.htm" />
+        <Watch Include="$(WebDirectory)\_app_offline.htm" />
+        <Watch Include="..\**\*.dll" />
+    </ItemGroup>
+	
+</Project>
