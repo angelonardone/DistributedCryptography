@@ -1,2 +1,0 @@
-System.register([],(function(e){"use strict";return{execute:function(){e("default",n);function n(e){return{name:"ERB",subLanguage:"xml",contains:[e.COMMENT("<%#","%>"),{begin:"<%[%=-]?",end:"[%-]?%>",subLanguage:"ruby",excludeBegin:!0,excludeEnd:!0}]}}}}}));
-//# sourceMappingURL=p-16e09d62.system.js.map
