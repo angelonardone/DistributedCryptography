@@ -761,10 +761,10 @@ namespace GeneXus.Programs.wallet {
             AV14wallet = GXt_SdtWallet1;
             AV13password = AV15webSession.Get("TempPassword");
             AV18code = AV15webSession.Get("TempPINAuthenticator");
+            AV15webSession.Set("TempPassword", "");
+            AV15webSession.Set("TempPINAuthenticator", "");
             if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13password)) )
             {
-               AV15webSession.Set("TempPassword", "");
-               AV15webSession.Set("TempPINAuthenticator", "");
                new GeneXus.Programs.wallet.setwallet(context ).execute(  AV14wallet) ;
                if ( ( StringUtil.StrCmp(AV14wallet.gxTpr_Wallettype, "BrainWallet") == 0 ) || ( StringUtil.StrCmp(AV14wallet.gxTpr_Wallettype, "ImportedWIF") == 0 ) )
                {
@@ -827,7 +827,9 @@ namespace GeneXus.Programs.wallet {
                   AV19extendeSecretAndAuthenticator.FromJSonString(AV6clearText, null);
                   AV9extKeyCreate.gxTpr_Extendedprivatekey = AV19extendeSecretAndAuthenticator.gxTpr_Extendedprivatekey;
                   AV9extKeyCreate.gxTpr_Createextkeytype = 70;
-                  AV9extKeyCreate.gxTpr_Networktype = AV14wallet.gxTpr_Networktype;
+                  AV9extKeyCreate.gxTpr_Networktype = AV19extendeSecretAndAuthenticator.gxTpr_Networktype;
+                  AV14wallet.gxTpr_Networktype = AV19extendeSecretAndAuthenticator.gxTpr_Networktype;
+                  new GeneXus.Programs.wallet.setwallet(context ).execute(  AV14wallet) ;
                   GXt_char5 = AV8error;
                   new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV9extKeyCreate,  "", out  AV10extKeyInfo, out  GXt_char5) ;
                   AV8error = GXt_char5;
@@ -1042,7 +1044,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255719422380", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202551216232555", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1058,7 +1060,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/balance.js", "?20255719422380", false, true);
+         context.AddJavascriptSource("wallet/balance.js", "?202551216232555", false, true);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);

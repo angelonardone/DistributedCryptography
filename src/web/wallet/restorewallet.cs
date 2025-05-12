@@ -1216,6 +1216,7 @@ namespace GeneXus.Programs.wallet {
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
             {
                AV16wallet.gxTpr_Networktype = AV12networkType;
+               AV32extendeSecretAndAuthenticator.gxTpr_Networktype = AV12networkType;
                AV32extendeSecretAndAuthenticator.gxTpr_Authenticatorbase32 = "";
                AV32extendeSecretAndAuthenticator.gxTpr_Extendedprivatekey = StringUtil.Trim( AV8extKeyInfo.gxTpr_Extended.gxTpr_Privatekey);
                GXt_char2 = AV6error;
@@ -1305,7 +1306,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255719421988", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202551216232991", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1321,7 +1322,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/restorewallet.js", "?20255719421988", false, true);
+         context.AddJavascriptSource("wallet/restorewallet.js", "?202551216232991", false, true);
          /* End function include_jscripts */
       }
 

@@ -979,6 +979,7 @@ namespace GeneXus.Programs.wallet {
                AV26wallet.gxTpr_Networktype = AV18networkType;
                AV26wallet.gxTpr_Useauthenticator = false;
                AV26wallet.gxTpr_Wallettype = "BIP86";
+               AV10extendeSecretAndAuthenticator.gxTpr_Networktype = AV18networkType;
                AV10extendeSecretAndAuthenticator.gxTpr_Extendedprivatekey = StringUtil.Trim( AV12extKeyInfo.gxTpr_Extended.gxTpr_Privatekey);
                AV10extendeSecretAndAuthenticator.gxTpr_Authenticatorbase32 = "";
                GXt_char1 = AV9error;
@@ -1073,7 +1074,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255719423765", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202551216232789", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1089,7 +1090,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/createrestoreadvancebrainwallet.js", "?20255719423765", false, true);
+         context.AddJavascriptSource("wallet/createrestoreadvancebrainwallet.js", "?202551216232789", false, true);
          /* End function include_jscripts */
       }
 

@@ -35,6 +35,8 @@ namespace GeneXus.Programs.wallet
 
 			gxTv_SdtExtendeSecretAndAuthenticator_Authenticatorbase32 = "";
 
+			gxTv_SdtExtendeSecretAndAuthenticator_Networktype = "";
+
 		}
 
 		public SdtExtendeSecretAndAuthenticator(IGxContext context)
@@ -66,6 +68,9 @@ namespace GeneXus.Programs.wallet
 
 
 			AddObjectProperty("AuthenticatorBase32", gxTpr_Authenticatorbase32, false);
+
+
+			AddObjectProperty("NetworkType", gxTpr_Networktype, false);
 
 			return;
 		}
@@ -104,6 +109,22 @@ namespace GeneXus.Programs.wallet
 
 
 
+
+		[SoapElement(ElementName="NetworkType")]
+		[XmlElement(ElementName="NetworkType")]
+		public string gxTpr_Networktype
+		{
+			get {
+				return gxTv_SdtExtendeSecretAndAuthenticator_Networktype; 
+			}
+			set {
+				gxTv_SdtExtendeSecretAndAuthenticator_Networktype = value;
+				SetDirty("Networktype");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -127,6 +148,7 @@ namespace GeneXus.Programs.wallet
 		{
 			gxTv_SdtExtendeSecretAndAuthenticator_Extendedprivatekey = "";
 			gxTv_SdtExtendeSecretAndAuthenticator_Authenticatorbase32 = "";
+			gxTv_SdtExtendeSecretAndAuthenticator_Networktype = "";
 			return  ;
 		}
 
@@ -140,6 +162,9 @@ namespace GeneXus.Programs.wallet
 		 
 
 		protected string gxTv_SdtExtendeSecretAndAuthenticator_Authenticatorbase32;
+		 
+
+		protected string gxTv_SdtExtendeSecretAndAuthenticator_Networktype;
 		 
 
 
@@ -184,6 +209,20 @@ namespace GeneXus.Programs.wallet
 			}
 			set { 
 				 sdt.gxTpr_Authenticatorbase32 = value;
+			}
+		}
+
+		[JsonPropertyName("NetworkType")]
+		[JsonPropertyOrder(2)]
+		[DataMember(Name="NetworkType", Order=2)]
+		public  string gxTpr_Networktype
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Networktype);
+
+			}
+			set { 
+				 sdt.gxTpr_Networktype = value;
 			}
 		}
 
