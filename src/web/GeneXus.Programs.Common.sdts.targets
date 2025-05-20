@@ -115,6 +115,9 @@
  	<Compile Include="$(WebDirectory)\wallet\type_SdtMultiSigSignatureData_DataItem_signaturesItem.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtNote.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtNoteRead.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtPassword.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtPasswords_and_tags.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtPassword_tag.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtContact_SDT.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtderiveAddresssForDelegationMuSig1TestSDT.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroup_SDT.cs" />

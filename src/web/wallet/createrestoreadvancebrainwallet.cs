@@ -947,59 +947,70 @@ namespace GeneXus.Programs.wallet {
          returnInSub = false;
          AV36salt = StringUtil.Trim( StringUtil.Str( (decimal)(AV30year), 4, 0)) + StringUtil.Trim( StringUtil.Str( (decimal)(AV31month), 4, 0)) + StringUtil.Trim( StringUtil.Str( (decimal)(AV34day), 4, 0)) + StringUtil.Trim( StringUtil.Str( (decimal)(AV33chosenPIN), 10, 0));
          GXt_char1 = AV9error;
-         new GeneXus.Programs.distributedcrypto.argon2derivekey512(context ).execute(  AV19newPass,  AV36salt, out  AV35extKeySeed, out  GXt_char1) ;
+         new GeneXus.Programs.distributedcrypto.argon2derivekey512(context ).execute(  AV19newPass,  AV36salt, out  AV37seedForKey, out  GXt_char1) ;
          AV9error = GXt_char1;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
          {
-            AV11extKeyCreate.gxTpr_Networktype = AV18networkType;
-            AV11extKeyCreate.gxTpr_Createextkeytype = 50;
-            AV11extKeyCreate.gxTpr_Createtext = StringUtil.Trim( AV35extKeySeed);
-            if ( StringUtil.StrCmp(AV18networkType, "MainNet") == 0 )
-            {
-               AV11extKeyCreate.gxTpr_Keypath = "m/86'/0'/0'";
-            }
-            else if ( StringUtil.StrCmp(AV18networkType, "TestNet") == 0 )
-            {
-               AV11extKeyCreate.gxTpr_Keypath = "m/86'/1'/0'";
-            }
-            else if ( StringUtil.StrCmp(AV18networkType, "RegTest") == 0 )
-            {
-               AV11extKeyCreate.gxTpr_Keypath = "m/86'/1'/0'";
-            }
-            else
-            {
-               AV9error = "Network Type not sopported";
-            }
+            AV38preSeed = StringUtil.Trim( StringUtil.Str( (decimal)(AV30year), 4, 0)) + StringUtil.Trim( StringUtil.Str( (decimal)(AV31month), 4, 0)) + StringUtil.Trim( AV37seedForKey) + StringUtil.Trim( StringUtil.Str( (decimal)(AV34day), 4, 0)) + StringUtil.Trim( StringUtil.Str( (decimal)(AV33chosenPIN), 10, 0));
             GXt_char1 = AV9error;
-            new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV11extKeyCreate,  AV19newPass, out  AV12extKeyInfo, out  GXt_char1) ;
+            new GeneXus.Programs.nbitcoin.sha512(context ).execute(  AV38preSeed, out  AV35extKeySeed, out  GXt_char1) ;
             AV9error = GXt_char1;
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
             {
-               AV26wallet.gxTpr_Walletname = AV27walletName;
-               AV26wallet.gxTpr_Networktype = AV18networkType;
-               AV26wallet.gxTpr_Useauthenticator = false;
-               AV26wallet.gxTpr_Wallettype = "BIP86";
-               AV10extendeSecretAndAuthenticator.gxTpr_Networktype = AV18networkType;
-               AV10extendeSecretAndAuthenticator.gxTpr_Extendedprivatekey = StringUtil.Trim( AV12extKeyInfo.gxTpr_Extended.gxTpr_Privatekey);
-               AV10extendeSecretAndAuthenticator.gxTpr_Authenticatorbase32 = "";
-               GXt_char1 = AV9error;
-               GXt_char2 = AV26wallet.gxTpr_Encryptedsecret;
-               new GeneXus.Programs.distributedcrypto.argon2encryption(context ).execute(  10,  AV19newPass,  AV10extendeSecretAndAuthenticator.ToJSonString(false, true), out  GXt_char2, ref  GXt_char1) ;
-               AV26wallet.gxTpr_Encryptedsecret = GXt_char2;
-               AV9error = GXt_char1;
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
+               AV11extKeyCreate.gxTpr_Networktype = AV18networkType;
+               AV11extKeyCreate.gxTpr_Createextkeytype = 50;
+               AV11extKeyCreate.gxTpr_Seed = StringUtil.Trim( AV35extKeySeed);
+               if ( StringUtil.StrCmp(AV18networkType, "MainNet") == 0 )
                {
-                  new GeneXus.Programs.wallet.createwalletfiles(context ).execute(  AV26wallet) ;
-                  context.setWebReturnParms(new Object[] {});
-                  context.setWebReturnParmsMetadata(new Object[] {});
-                  context.wjLocDisableFrm = 1;
-                  context.nUserReturn = 1;
-                  returnInSub = true;
-                  if (true) return;
+                  AV11extKeyCreate.gxTpr_Keypath = "m/86'/0'/0'";
+               }
+               else if ( StringUtil.StrCmp(AV18networkType, "TestNet") == 0 )
+               {
+                  AV11extKeyCreate.gxTpr_Keypath = "m/86'/1'/0'";
+               }
+               else if ( StringUtil.StrCmp(AV18networkType, "RegTest") == 0 )
+               {
+                  AV11extKeyCreate.gxTpr_Keypath = "m/86'/1'/0'";
                }
                else
                {
-                  GX_msglist.addItem("There was a problem encrypting the Extended Key: "+AV9error);
+                  AV9error = "Network Type not sopported";
+               }
+               GXt_char1 = AV9error;
+               new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV11extKeyCreate,  "", out  AV12extKeyInfo, out  GXt_char1) ;
+               AV9error = GXt_char1;
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
+               {
+                  AV26wallet.gxTpr_Walletname = AV27walletName;
+                  AV26wallet.gxTpr_Networktype = AV18networkType;
+                  AV26wallet.gxTpr_Useauthenticator = false;
+                  AV26wallet.gxTpr_Wallettype = "BIP86";
+                  AV10extendeSecretAndAuthenticator.gxTpr_Networktype = AV18networkType;
+                  AV10extendeSecretAndAuthenticator.gxTpr_Extendedprivatekey = StringUtil.Trim( AV12extKeyInfo.gxTpr_Extended.gxTpr_Privatekey);
+                  AV10extendeSecretAndAuthenticator.gxTpr_Authenticatorbase32 = "";
+                  GXt_char1 = AV9error;
+                  GXt_char2 = AV26wallet.gxTpr_Encryptedsecret;
+                  new GeneXus.Programs.distributedcrypto.argon2encryption(context ).execute(  10,  AV19newPass,  AV10extendeSecretAndAuthenticator.ToJSonString(false, true), out  GXt_char2, ref  GXt_char1) ;
+                  AV26wallet.gxTpr_Encryptedsecret = GXt_char2;
+                  AV9error = GXt_char1;
+                  if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
+                  {
+                     new GeneXus.Programs.wallet.createwalletfiles(context ).execute(  AV26wallet) ;
+                     context.setWebReturnParms(new Object[] {});
+                     context.setWebReturnParmsMetadata(new Object[] {});
+                     context.wjLocDisableFrm = 1;
+                     context.nUserReturn = 1;
+                     returnInSub = true;
+                     if (true) return;
+                  }
+                  else
+                  {
+                     GX_msglist.addItem("There was a problem encrypting the Extended Key: "+AV9error);
+                  }
+               }
+               else
+               {
+                  GX_msglist.addItem(AV9error);
                }
             }
             else
@@ -1074,7 +1085,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202551216232789", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202552012594719", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1090,7 +1101,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/createrestoreadvancebrainwallet.js", "?202551216232789", false, true);
+         context.AddJavascriptSource("wallet/createrestoreadvancebrainwallet.js", "?202552012594719", false, true);
          /* End function include_jscripts */
       }
 
@@ -1218,6 +1229,8 @@ namespace GeneXus.Programs.wallet {
          sEvtType = "";
          AV36salt = "";
          AV9error = "";
+         AV37seedForKey = "";
+         AV38preSeed = "";
          AV35extKeySeed = "";
          AV12extKeyInfo = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
          GXt_char1 = "";
@@ -1292,8 +1305,8 @@ namespace GeneXus.Programs.wallet {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
-      private string AV36salt ;
       private string AV9error ;
+      private string AV37seedForKey ;
       private string AV35extKeySeed ;
       private string GXt_char1 ;
       private string GXt_char2 ;
@@ -1304,6 +1317,8 @@ namespace GeneXus.Programs.wallet {
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
+      private string AV36salt ;
+      private string AV38preSeed ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
       private GXCombobox cmbavNetworktype ;

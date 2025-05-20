@@ -1369,7 +1369,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255719414396", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202552012585379", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1385,7 +1385,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/dispatchincommingmessage.js", "?20255719414397", false, true);
+         context.AddJavascriptSource("wallet/registered/dispatchincommingmessage.js", "?202552012585379", false, true);
          /* End function include_jscripts */
       }
 

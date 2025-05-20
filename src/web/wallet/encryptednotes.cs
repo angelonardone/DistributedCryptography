@@ -1015,7 +1015,6 @@ namespace GeneXus.Programs.wallet {
          gx_refresh_fired = true;
          /* Refresh Routine */
          returnInSub = false;
-         AV10delete = "Delete";
          GXt_objcol_SdtNoteRead2 = AV8notesRead;
          new GeneXus.Programs.wallet.readallnotes(context ).execute( out  GXt_objcol_SdtNoteRead2) ;
          AV8notesRead = GXt_objcol_SdtNoteRead2;
@@ -1279,7 +1278,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255719422343", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202552012593527", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1295,7 +1294,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/encryptednotes.js", "?20255719422343", false, true);
+         context.AddJavascriptSource("wallet/encryptednotes.js", "?202552012593527", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -1610,7 +1609,6 @@ namespace GeneXus.Programs.wallet {
          AV13deleteImage = "";
          AV17Deleteimage_GXI = "";
          GXt_SdtWallet1 = new GeneXus.Programs.wallet.SdtWallet(context);
-         AV10delete = "";
          AV11file = new GxFile(context.GetPhysicalPath());
          GXt_objcol_SdtNoteRead2 = new GXBaseCollection<GeneXus.Programs.wallet.SdtNoteRead>( context, "NoteRead", "distributedcryptography");
          GridnotesRow = new GXWebRow();
@@ -1688,7 +1686,6 @@ namespace GeneXus.Programs.wallet {
       private string sEvtType ;
       private string edtavDeleteimage_Internalname ;
       private string sGXsfl_9_fel_idx="0001" ;
-      private string AV10delete ;
       private string edtavDeleteimage_gximage ;
       private string edtavCtldescription1_Internalname ;
       private string edtavCtlcreated1_Internalname ;

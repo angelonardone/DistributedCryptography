@@ -27,6 +27,10 @@
 	--GX-Image_DClogohorizontal : url(../DClogohorizontal.svg);
 	--GX-Image_ChatGallery : url(../ChatGallery.svg);
 	--GX-Image_ChatSend : url(../ChatSend.svg);
+	--GX-Image_Wallet_chat : url(../Wallet.chat.svg);
+	--GX-Image_Wallet_copy : url(../Wallet.copy.svg);
+	--GX-Image_Wallet_unlock : url(../Wallet.unlock.svg);
+	--GX-Image_Wallet_tag : url(../Wallet.tag.svg);
 }
 
 .GX_Image_PageFirst_Class{content: var(--GX-Image_PageFirst);}
@@ -55,4 +59,8 @@
 .GX_Image_DClogohorizontal_Class{content: var(--GX-Image_DClogohorizontal);}
 .GX_Image_ChatGallery_Class{content: var(--GX-Image_ChatGallery);}
 .GX_Image_ChatSend_Class{content: var(--GX-Image_ChatSend);}
+.GX_Image_Wallet_chat_Class{content: var(--GX-Image_Wallet_chat);}
+.GX_Image_Wallet_copy_Class{content: var(--GX-Image_Wallet_copy);}
+.GX_Image_Wallet_unlock_Class{content: var(--GX-Image_Wallet_unlock);}
+.GX_Image_Wallet_tag_Class{content: var(--GX-Image_Wallet_tag);}
 }

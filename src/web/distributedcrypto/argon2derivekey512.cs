@@ -141,11 +141,11 @@ namespace GeneXus.Programs.distributedcrypto {
       }
 
       private string AV9password ;
-      private string AV10salt ;
       private string AV11ExtendedKeySeed ;
       private string AV8error ;
       private string GXt_char1 ;
       private string AV12shaSalt ;
+      private string AV10salt ;
       private string aP2_ExtendedKeySeed ;
       private string aP3_error ;
    }
