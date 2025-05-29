@@ -1,1 +1,205 @@
-function GeneXusUnanimo_Sidebar(n){var t,r,u,f,e,i;this.setSidebarItems=function(n){this.SidebarItems=n};this.getSidebarItems=function(){return this.SidebarItems};t='<ch-sidebar-menu     menu-title="{{Title}}"     id="ch-sidebar-menu"     class="{{Class}}"     distance-to-top="{{DistanceToTop}}"     collapsible="{{Collapsible}}"     active-item-id="{{ActiveItemId}}" >    <ch-sidebar-menu-list>\t  {{#SidebarItems}}      <ch-sidebar-menu-list-item id="{{id}}" item-icon-src="{{icon}}" {{#IconAutoColor}}auto-color{{/IconAutoColor}}>        {{title}}\t\t{{#hasSubItems}}        <ch-sidebar-menu-list slot="list">\t\t  {{#SidebarSubItems}}            <ch-sidebar-menu-list-item id="{{id}}">              {{title}}\t\t  \t\t\t  {{#hasSubItems}}\t\t\t\t<ch-sidebar-menu-list slot="list">\t\t\t\t{{#SidebarSubSubItems}}\t\t\t\t\t<ch-sidebar-menu-list-item id="{{id}}">\t\t\t\t\t{{title}}\t\t\t\t\t<\/ch-sidebar-menu-list-item>\t\t\t\t{{/SidebarSubSubItems}}\t\t\t\t<\/ch-sidebar-menu-list>\t\t\t  {{/hasSubItems}}            <\/ch-sidebar-menu-list-item>\t\t  {{/SidebarSubItems}}\t\t<\/ch-sidebar-menu-list>\t\t{{/hasSubItems}}      <\/ch-sidebar-menu-list-item>\t  {{/SidebarItems}}    <\/ch-sidebar-menu-list>    <div slot="footer">{{FooterText}}<\/div><\/ch-sidebar-menu>';r={};Mustache.parse(t);u=0;f=0;this.show=function(){e=n(this.getContainerControl());u=0;f=0;this.setHtml(Mustache.render(t,this,r));this.renderChildContainers();n(this.getContainerControl()).find("[data-event='ItemClick']").on("itemclick",this.onItemClickHandler.closure(this)).each(function(n){this.setAttribute("data-items-index",n+1)});n(this.getContainerControl()).find("[data-event='GetState']").on("getstate",this.onGetStateHandler.closure(this)).each(function(n){this.setAttribute("data-items-index",n+1)});this.initSidebar()};this.Scripts=[];this.initSidebar=function(){const n=this,t=document.getElementById("ch-sidebar-menu");t.addEventListener("collapseBtnClicked",function(t){n.isCollapsed=t.detail.isCollapsed;n.GetState&&n.GetState()});t.addEventListener("itemClickedEvent",function(t){for(let i=0;i<n.SidebarItems.length;i++){const r=n.SidebarItems[i];if(r.id===t.detail["item-id"]&&r.target!==""){n.SelectedItemTarget=r.target;n.ItemClick&&n.ItemClick();break}if(r.hasSubItems)for(let i=0;i<r.SidebarSubItems.length;i++){const u=r.SidebarSubItems[i];if(u.id===t.detail["item-id"]&&u.target!==""){n.SelectedItemTarget=u.target;n.ItemClick&&n.ItemClick();break}if(u.hasSubItems)for(let i=0;i<u.SidebarSubSubItems.length;i++){const r=u.SidebarSubSubItems[i];if(r.id===t.detail["item-id"]&&r.target!==""){n.SelectedItemTarget=r.target;n.ItemClick&&n.ItemClick();break}}}}});const i=document.getElementsByClassName("sidebar__toggle-ico")[0];i&&i.addEventListener("click",function(){const n=t.shadowRoot.lastChild;n.classList.contains("visible-xs")?(n.classList.remove("visible-xs"),n.classList.add("hidden-xs")):(n.classList.add("visible-xs"),n.classList.remove("hidden-xs"))})};this.GetActiveItem=function(){const n=this;let t=sessionStorage.getItem("active-item");n.SidebarItems.activeItem=t};this.onItemClickHandler=function(t){if(t){var i=t.currentTarget;t.preventDefault();this.SidebarItemsCurrentIndex=parseInt(n(i).attr("data-items-index"),10)||1}this.ItemClick&&this.ItemClick()};this.onGetStateHandler=function(t){if(t){var i=t.currentTarget;t.preventDefault();this.SidebarItemsCurrentIndex=parseInt(n(i).attr("data-items-index"),10)||1}this.GetState&&this.GetState()};this.autoToggleVisibility=!0;i={};this.renderChildContainers=function(){e.find("[data-slot][data-parent='"+this.ContainerName+"']").each(function(t,r){var e=n(r),f=e.attr("data-slot"),u;u=i[f];u||(u=this.getChildContainer(f),i[f]=u,u.parentNode.removeChild(u));e.append(u);n(u).show()}.closure(this))}}
+function GeneXusUnanimo_Sidebar($) {
+	  
+	  
+	  
+	  
+	  
+	 this.setSidebarItems = function(value) {
+			this.SidebarItems = value;
+		}
+
+		this.getSidebarItems = function() {
+			return this.SidebarItems;
+		} 
+	  
+	  
+	  
+	  
+	  
+
+	var template = '<ch-sidebar-menu     menu-title=\"{{Title}}\"     id=\"ch-sidebar-menu\"     class=\"{{Class}}\"     distance-to-top=\"{{DistanceToTop}}\"     collapsible=\"{{Collapsible}}\"     active-item-id=\"{{ActiveItemId}}\" >    <ch-sidebar-menu-list>	  {{#SidebarItems}}      <ch-sidebar-menu-list-item id=\"{{id}}\" item-icon-src=\"{{icon}}\" {{#IconAutoColor}}auto-color{{/IconAutoColor}}>        {{title}}		{{#hasSubItems}}        <ch-sidebar-menu-list slot=\"list\">		  {{#SidebarSubItems}}            <ch-sidebar-menu-list-item id=\"{{id}}\">              {{title}}		  			  {{#hasSubItems}}				<ch-sidebar-menu-list slot=\"list\">				{{#SidebarSubSubItems}}					<ch-sidebar-menu-list-item id=\"{{id}}\">					{{title}}					</ch-sidebar-menu-list-item>				{{/SidebarSubSubItems}}				</ch-sidebar-menu-list>			  {{/hasSubItems}}            </ch-sidebar-menu-list-item>		  {{/SidebarSubItems}}		</ch-sidebar-menu-list>		{{/hasSubItems}}      </ch-sidebar-menu-list-item>	  {{/SidebarItems}}    </ch-sidebar-menu-list>    <div slot=\"footer\">{{FooterText}}</div></ch-sidebar-menu>';
+	var partials = {  }; 
+	Mustache.parse(template);
+	var _iOnItemClick = 0; 
+	var _iOnGetState = 0; 
+	var $container;
+	this.show = function() {
+			$container = $(this.getContainerControl());
+
+			// Raise before show scripts
+
+			_iOnItemClick = 0; 
+			_iOnGetState = 0; 
+
+			//if (this.IsPostBack)
+				this.setHtml(Mustache.render(template, this, partials));
+			this.renderChildContainers();
+
+			$(this.getContainerControl())
+				.find("[data-event='ItemClick']")
+				.on('itemclick', this.onItemClickHandler.closure(this))
+				.each(function (i) {
+					this.setAttribute("data-items-index", i + 1);
+				}); 
+			$(this.getContainerControl())
+				.find("[data-event='GetState']")
+				.on('getstate', this.onGetStateHandler.closure(this))
+				.each(function (i) {
+					this.setAttribute("data-items-index", i + 1);
+				}); 
+
+			// Raise after show scripts
+			this.initSidebar(); 
+	}
+
+	this.Scripts = [];
+
+		this.initSidebar = function() {
+
+					const UC = this;
+					const sidebar = document.getElementById("ch-sidebar-menu"); 
+					
+					sidebar.addEventListener("collapseBtnClicked", function(e){
+						UC.isCollapsed = e.detail.isCollapsed;
+						if (UC.GetState){
+							UC.GetState();
+						}
+					});
+					
+					sidebar.addEventListener("itemClickedEvent", function(e){
+						/*get the item's target*/
+						for (let i = 0; i < UC.SidebarItems.length; i++) {
+							const item = UC.SidebarItems[i];
+							if (item.id === e.detail["item-id"]){
+								if (item.target !== "") {
+									UC.SelectedItemTarget = item.target;
+									if (UC.ItemClick){
+										UC.ItemClick();
+									}
+									break;
+								}
+							}
+							if (item.hasSubItems) {
+								for (let j = 0; j < item.SidebarSubItems.length; j++) {
+									const subItem = item.SidebarSubItems[j];
+									if (subItem.id === e.detail["item-id"]){
+										if (subItem.target !== "") {
+											UC.SelectedItemTarget = subItem.target;
+											if (UC.ItemClick){
+												UC.ItemClick();
+											}
+											break;
+										}
+									}
+									if (subItem.hasSubItems) {		
+										for (let k = 0; k < subItem.SidebarSubSubItems.length; k++) {
+											const subSubItem = subItem.SidebarSubSubItems[k];
+											if (subSubItem.id === e.detail["item-id"]){
+												if (subSubItem.target !== "") {
+													UC.SelectedItemTarget = subSubItem.target;
+													if (UC.ItemClick){
+														UC.ItemClick();
+													}
+													break;
+												}
+											}
+										}
+										
+									}
+								}
+							}
+						}
+					});
+				
+					const toggleSidebarBtn = document.getElementsByClassName("sidebar__toggle-ico")[0];
+					if (toggleSidebarBtn) {
+						toggleSidebarBtn.addEventListener("click", function(e){
+							const menu = sidebar.shadowRoot.lastChild;
+							if (!menu.classList.contains("visible-xs")){
+								menu.classList.add("visible-xs");
+								menu.classList.remove("hidden-xs");
+								}else{
+								menu.classList.remove("visible-xs");
+								menu.classList.add("hidden-xs");
+							}
+						})
+					}
+				
+		}
+		this.GetActiveItem = function() {
+
+					/*get active item from storage*/
+					const UC = this;
+					let activeItem = sessionStorage.getItem("active-item");
+					UC.SidebarItems.activeItem = activeItem;
+				
+		}
+
+
+		this.onItemClickHandler = function (e) {
+			if (e) {
+				var target = e.currentTarget;
+				e.preventDefault();
+				 
+				 
+				 
+				 
+				 
+				 this.SidebarItemsCurrentIndex = (parseInt($(target).attr('data-items-index'), 10) || 1);  
+				 
+				 
+				 
+				 
+				 
+			}
+
+			if (this.ItemClick) {
+				this.ItemClick();
+			}
+		} 
+
+		this.onGetStateHandler = function (e) {
+			if (e) {
+				var target = e.currentTarget;
+				e.preventDefault();
+				 
+				 
+				 
+				 
+				 
+				 this.SidebarItemsCurrentIndex = (parseInt($(target).attr('data-items-index'), 10) || 1);  
+				 
+				 
+				 
+				 
+				 
+			}
+
+			if (this.GetState) {
+				this.GetState();
+			}
+		} 
+
+	this.autoToggleVisibility = true;
+
+	var childContainers = {};
+	this.renderChildContainers = function () {
+		$container
+			.find("[data-slot][data-parent='" + this.ContainerName + "']")
+			.each((function (i, slot) {
+				var $slot = $(slot),
+					slotName = $slot.attr('data-slot'),
+					slotContentEl;
+
+				slotContentEl = childContainers[slotName];
+				if (!slotContentEl) {				
+					slotContentEl = this.getChildContainer(slotName)
+					childContainers[slotName] = slotContentEl;
+					slotContentEl.parentNode.removeChild(slotContentEl);
+				}
+				$slot.append(slotContentEl);
+				$(slotContentEl).show();
+			}).closure(this));
+	};
+
+}
