@@ -52,6 +52,8 @@ namespace GeneXus.Programs.wallet {
       protected override void createObjects( )
       {
          cmbavNetworktype = new GXCombobox();
+         chkavAuthenticator = new GXCheckbox();
+         chkavShowauthenticatorcode = new GXCheckbox();
       }
 
       protected void INITWEB( )
@@ -516,7 +518,7 @@ namespace GeneXus.Programs.wallet {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 50,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavChosenpin_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV33chosenPIN), 10, 0, ".", "")), StringUtil.LTrim( ((edtavChosenpin_Enabled!=0) ? context.localUtil.Format( (decimal)(AV33chosenPIN), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(AV33chosenPIN), "ZZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,50);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavChosenpin_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavChosenpin_Enabled, 0, "text", "1", 10, "chr", 1, "row", 10, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Wallet/CreateRestoreAdvanceBrainWallet.htm");
+            GxWebStd.gx_single_line_edit( context, edtavChosenpin_Internalname, StringUtil.LTrim( StringUtil.NToC( AV33chosenPIN, 28, 0, ".", "")), StringUtil.LTrim( ((edtavChosenpin_Enabled!=0) ? context.localUtil.Format( AV33chosenPIN, "ZZZZZZZZZZZZZZZZZZZZZZZZZZZ9") : context.localUtil.Format( AV33chosenPIN, "ZZZZZZZZZZZZZZZZZZZZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,50);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavChosenpin_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavChosenpin_Enabled, 0, "text", "1", 28, "chr", 1, "row", 28, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Wallet/CreateRestoreAdvanceBrainWallet.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -528,15 +530,85 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 100, "px", "col-xs-12 col-sm-6", "start", "Bottom", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 53,'',false,'',0)\"";
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divTable3_Internalname, 1, 100, "%", 0, "px", "Table", "start", "top", " "+"data-gx-smarttable"+" ", "grid-template-columns:50fr 50fr;grid-template-rows:auto auto;", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", " "+"data-gx-smarttable-cell"+" ", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group gx-default-form-group", "start", "top", ""+" data-gx-for=\""+chkavAuthenticator_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, chkavAuthenticator_Internalname, "Optionaly use 2FA (authenticator) for extra security", "gx-form-item AttributeLabel", 1, true, "width: 50%;");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 50, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
+            /* Check box */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 57,'',false,'',0)\"";
+            ClassString = "Attribute";
+            StyleString = "";
+            GxWebStd.gx_checkbox_ctrl( context, chkavAuthenticator_Internalname, StringUtil.BoolToStr( AV5authenticator), "", "Optionaly use 2FA (authenticator) for extra security", 1, chkavAuthenticator.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(57, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,57);\"");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", " "+"data-gx-smarttable-cell"+" ", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", chkavShowauthenticatorcode.Visible, 0, "px", 0, "px", "form-group gx-form-group gx-default-form-group", "start", "top", ""+" data-gx-for=\""+chkavShowauthenticatorcode_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, chkavShowauthenticatorcode_Internalname, "Show Authenticator Code", "gx-form-item AttributeLabel", 1, true, "width: 30%;");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 70, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
+            /* Check box */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 61,'',false,'',0)\"";
+            ClassString = "Attribute";
+            StyleString = "";
+            GxWebStd.gx_checkbox_ctrl( context, chkavShowauthenticatorcode_Internalname, StringUtil.BoolToStr( AV24showAuthenticatorCode), "", "Show Authenticator Code", chkavShowauthenticatorcode.Visible, chkavShowauthenticatorcode.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(61, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,61);\"");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", " "+"data-gx-smarttable-cell"+" ", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", imgavQrcode_Visible, 0, "px", 0, "px", "form-group gx-form-group gx-default-form-group gx-label-top", "start", "top", ""+" data-gx-for=\""+imgavQrcode_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, "", "Scan this code with your Authenticator's App", "gx-form-item ImageLabel", 1, true, "width: 100%;");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 100, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
+            /* Static Bitmap Variable */
+            ClassString = "Image" + " " + ((StringUtil.StrCmp(imgavQrcode_gximage, "")==0) ? "" : "GX_Image_"+imgavQrcode_gximage+"_Class");
+            StyleString = "";
+            AV22qrcode_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV22qrcode))&&String.IsNullOrEmpty(StringUtil.RTrim( AV68Qrcode_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV22qrcode)));
+            sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV22qrcode)) ? AV68Qrcode_GXI : context.PathToRelativeUrl( AV22qrcode));
+            GxWebStd.gx_bitmap( context, imgavQrcode_Internalname, sImgUrl, "", "", "", context.GetTheme( ), imgavQrcode_Visible, 0, "", "", 0, -1, 0, "", 0, "", 0, 0, 0, "", "", StyleString, ClassString, "", "", "", "", "", "", "", 1, AV22qrcode_IsBlob, false, context.GetImageSrcSet( sImgUrl), "HLP_Wallet/CreateRestoreAdvanceBrainWallet.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", " "+"data-gx-smarttable-cell"+" ", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", edtavBase32string_Visible, 0, "px", 0, "px", "form-group gx-form-group gx-default-form-group", "start", "top", ""+" data-gx-for=\""+edtavBase32string_Internalname+"\"", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
+            /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 69,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavBase32string_Internalname, StringUtil.RTrim( AV6base32String), StringUtil.RTrim( context.localUtil.Format( AV6base32String, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,69);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavBase32string_Jsonclick, 0, "Attribute", "", "", "", "", edtavBase32string_Visible, edtavBase32string_Enabled, 0, "text", "", 80, "chr", 1, "row", 120, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Wallet/CreateRestoreAdvanceBrainWallet.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "Bottom", "", "", "div");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 72,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttCreatewallet_Internalname, "", "Create Wallet", bttCreatewallet_Jsonclick, 5, "Create Wallet", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'CREATE WALLET\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Wallet/CreateRestoreAdvanceBrainWallet.htm");
             GxWebStd.gx_div_end( context, "start", "Bottom", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 100, "px", "col-xs-12 col-sm-6", "end", "Bottom", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 55,'',false,'',0)\"";
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "end", "Bottom", "", "", "div");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 74,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttCancel_Internalname, "", "Cancel and close", bttCancel_Jsonclick, 5, "Cancel and close", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'CANCEL AND CLOSE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Wallet/CreateRestoreAdvanceBrainWallet.htm");
@@ -625,12 +697,18 @@ namespace GeneXus.Programs.wallet {
                               /* Execute user event: 'Cancel and close' */
                               E132E2 ();
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "VAUTHENTICATOR.CONTROLVALUECHANGED") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              E142E2 ();
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Load */
-                              E142E2 ();
+                              E152E2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                            {
@@ -740,6 +818,10 @@ namespace GeneXus.Programs.wallet {
             cmbavNetworktype.CurrentValue = StringUtil.RTrim( AV18networkType);
             AssignProp("", false, cmbavNetworktype_Internalname, "Values", cmbavNetworktype.ToJavascriptSource(), true);
          }
+         AV5authenticator = StringUtil.StrToBool( StringUtil.BoolToStr( AV5authenticator));
+         AssignAttri("", false, "AV5authenticator", AV5authenticator);
+         AV24showAuthenticatorCode = StringUtil.StrToBool( StringUtil.BoolToStr( AV24showAuthenticatorCode));
+         AssignAttri("", false, "AV24showAuthenticatorCode", AV24showAuthenticatorCode);
       }
 
       public void Refresh( )
@@ -755,6 +837,8 @@ namespace GeneXus.Programs.wallet {
       protected void initialize_formulas( )
       {
          /* GeneXus formulas. */
+         edtavBase32string_Enabled = 0;
+         AssignProp("", false, edtavBase32string_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavBase32string_Enabled), 5, 0), true);
       }
 
       protected void RF2E2( )
@@ -767,7 +851,7 @@ namespace GeneXus.Programs.wallet {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E142E2 ();
+            E152E2 ();
             WB2E0( ) ;
          }
       }
@@ -778,6 +862,8 @@ namespace GeneXus.Programs.wallet {
 
       protected void before_start_formulas( )
       {
+         edtavBase32string_Enabled = 0;
+         AssignProp("", false, edtavBase32string_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavBase32string_Enabled), 5, 0), true);
          fix_multi_value_controls( ) ;
       }
 
@@ -847,20 +933,27 @@ namespace GeneXus.Programs.wallet {
                AV34day = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavDay_Internalname), ".", ","), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "AV34day", StringUtil.LTrimStr( (decimal)(AV34day), 4, 0));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavChosenpin_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavChosenpin_Internalname), ".", ",") > Convert.ToDecimal( 9999999999L )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavChosenpin_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavChosenpin_Internalname), ".", ",") > 9999999999999999999999999999m ) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vCHOSENPIN");
                GX_FocusControl = edtavChosenpin_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
                AV33chosenPIN = 0;
-               AssignAttri("", false, "AV33chosenPIN", StringUtil.LTrimStr( (decimal)(AV33chosenPIN), 10, 0));
+               AssignAttri("", false, "AV33chosenPIN", StringUtil.LTrimStr( AV33chosenPIN, 28, 0));
             }
             else
             {
-               AV33chosenPIN = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtavChosenpin_Internalname), ".", ","), 18, MidpointRounding.ToEven));
-               AssignAttri("", false, "AV33chosenPIN", StringUtil.LTrimStr( (decimal)(AV33chosenPIN), 10, 0));
+               AV33chosenPIN = context.localUtil.CToN( cgiGet( edtavChosenpin_Internalname), ".", ",");
+               AssignAttri("", false, "AV33chosenPIN", StringUtil.LTrimStr( AV33chosenPIN, 28, 0));
             }
+            AV5authenticator = StringUtil.StrToBool( cgiGet( chkavAuthenticator_Internalname));
+            AssignAttri("", false, "AV5authenticator", AV5authenticator);
+            AV24showAuthenticatorCode = StringUtil.StrToBool( cgiGet( chkavShowauthenticatorcode_Internalname));
+            AssignAttri("", false, "AV24showAuthenticatorCode", AV24showAuthenticatorCode);
+            AV22qrcode = cgiGet( imgavQrcode_Internalname);
+            AV6base32String = cgiGet( edtavBase32string_Internalname);
+            AssignAttri("", false, "AV6base32String", AV6base32String);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -884,6 +977,14 @@ namespace GeneXus.Programs.wallet {
          returnInSub = false;
          lblWarning_Caption = "We <b>strongly</b> advise against relying solely on memorization (like a 'brain wallet') for security.</br>"+"Why? Because the phrases people can easily remember are often not random enough, making them easier for attackers to guess compared to truly random keys.</br></br>"+"That said, sometimes you need to rely only on your memory, without saving your <b>KEYs</b> anywhere else.</br></br>"+"To address this, we've engineered a method using advanced security technology.</br>"+"This process takes your chosen phrase, a memorable date and number, then mathematically transforms it into a much more secure key, providing strong protection while still originating from your memory.</br></br>"+"Furthermore, we've included a <b>novel</b> backup mechanism to help you regain access should you ever forget your memorized information, offering extra security and peace of mind.</br></br></br>";
          AssignProp("", false, lblWarning_Internalname, "Caption", lblWarning_Caption, true);
+         AV5authenticator = false;
+         AssignAttri("", false, "AV5authenticator", AV5authenticator);
+         chkavShowauthenticatorcode.Visible = 0;
+         AssignProp("", false, chkavShowauthenticatorcode_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkavShowauthenticatorcode.Visible), 5, 0), true);
+         edtavBase32string_Visible = 0;
+         AssignProp("", false, edtavBase32string_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavBase32string_Visible), 5, 0), true);
+         imgavQrcode_Visible = 0;
+         AssignProp("", false, imgavQrcode_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(imgavQrcode_Visible), 5, 0), true);
       }
 
       protected void E122E2( )
@@ -920,7 +1021,7 @@ namespace GeneXus.Programs.wallet {
                      }
                      else
                      {
-                        if ( (0==AV30year) || (0==AV31month) || (0==AV34day) || (0==AV33chosenPIN) )
+                        if ( (0==AV30year) || (0==AV31month) || (0==AV34day) || (Convert.ToDecimal(0)==AV33chosenPIN) )
                         {
                            GX_msglist.addItem("The Memorable Date or number cannot be empty");
                         }
@@ -945,13 +1046,13 @@ namespace GeneXus.Programs.wallet {
       {
          /* 'CREATE WALLET' Routine */
          returnInSub = false;
-         AV36salt = StringUtil.Trim( StringUtil.Str( (decimal)(AV30year), 4, 0)) + StringUtil.Trim( StringUtil.Str( (decimal)(AV31month), 4, 0)) + StringUtil.Trim( StringUtil.Str( (decimal)(AV34day), 4, 0)) + StringUtil.Trim( StringUtil.Str( (decimal)(AV33chosenPIN), 10, 0));
+         AV36salt = StringUtil.Trim( StringUtil.Str( (decimal)(AV30year), 4, 0)) + StringUtil.Trim( StringUtil.Str( (decimal)(AV31month), 4, 0)) + StringUtil.Trim( StringUtil.Str( (decimal)(AV34day), 4, 0)) + StringUtil.Trim( StringUtil.Str( AV33chosenPIN, 28, 0));
          GXt_char1 = AV9error;
          new GeneXus.Programs.distributedcrypto.argon2derivekey512(context ).execute(  AV19newPass,  AV36salt, out  AV37seedForKey, out  GXt_char1) ;
          AV9error = GXt_char1;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
          {
-            AV38preSeed = StringUtil.Trim( StringUtil.Str( (decimal)(AV30year), 4, 0)) + StringUtil.Trim( StringUtil.Str( (decimal)(AV31month), 4, 0)) + StringUtil.Trim( AV37seedForKey) + StringUtil.Trim( StringUtil.Str( (decimal)(AV34day), 4, 0)) + StringUtil.Trim( StringUtil.Str( (decimal)(AV33chosenPIN), 10, 0));
+            AV38preSeed = StringUtil.Trim( StringUtil.Str( (decimal)(AV30year), 4, 0)) + StringUtil.Trim( StringUtil.Str( (decimal)(AV31month), 4, 0)) + StringUtil.Trim( AV37seedForKey) + StringUtil.Trim( StringUtil.Str( (decimal)(AV34day), 4, 0)) + StringUtil.Trim( StringUtil.Str( AV33chosenPIN, 28, 0));
             GXt_char1 = AV9error;
             new GeneXus.Programs.nbitcoin.sha512(context ).execute(  AV38preSeed, out  AV35extKeySeed, out  GXt_char1) ;
             AV9error = GXt_char1;
@@ -983,11 +1084,19 @@ namespace GeneXus.Programs.wallet {
                {
                   AV26wallet.gxTpr_Walletname = AV27walletName;
                   AV26wallet.gxTpr_Networktype = AV18networkType;
-                  AV26wallet.gxTpr_Useauthenticator = false;
                   AV26wallet.gxTpr_Wallettype = "BIP86";
                   AV10extendeSecretAndAuthenticator.gxTpr_Networktype = AV18networkType;
                   AV10extendeSecretAndAuthenticator.gxTpr_Extendedprivatekey = StringUtil.Trim( AV12extKeyInfo.gxTpr_Extended.gxTpr_Privatekey);
-                  AV10extendeSecretAndAuthenticator.gxTpr_Authenticatorbase32 = "";
+                  if ( AV5authenticator )
+                  {
+                     AV10extendeSecretAndAuthenticator.gxTpr_Authenticatorbase32 = StringUtil.Trim( AV6base32String);
+                     AV26wallet.gxTpr_Useauthenticator = true;
+                  }
+                  else
+                  {
+                     AV10extendeSecretAndAuthenticator.gxTpr_Authenticatorbase32 = "";
+                     AV26wallet.gxTpr_Useauthenticator = false;
+                  }
                   GXt_char1 = AV9error;
                   GXt_char2 = AV26wallet.gxTpr_Encryptedsecret;
                   new GeneXus.Programs.distributedcrypto.argon2encryption(context ).execute(  10,  AV19newPass,  AV10extendeSecretAndAuthenticator.ToJSonString(false, true), out  GXt_char2, ref  GXt_char1) ;
@@ -1036,11 +1145,58 @@ namespace GeneXus.Programs.wallet {
          if (true) return;
       }
 
+      protected void E142E2( )
+      {
+         /* Authenticator_Controlvaluechanged Routine */
+         returnInSub = false;
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV27walletName)) && ! String.IsNullOrEmpty(StringUtil.RTrim( AV19newPass)) )
+         {
+            if ( AV5authenticator )
+            {
+               GXt_char2 = AV9error;
+               new GeneXus.Programs.nbitcoin.createrandomkey(context ).execute( out  AV14keyInfo, out  GXt_char2) ;
+               AV9error = GXt_char2;
+               GXt_char2 = AV9error;
+               new GeneXus.Programs.nbitcoin.hextobase32(context ).execute(  StringUtil.Trim( AV14keyInfo.gxTpr_Privatekey), out  AV6base32String, out  GXt_char2) ;
+               AssignAttri("", false, "AV6base32String", AV6base32String);
+               AV9error = GXt_char2;
+               AV23SetupCode = AV25TwoFactorAuthenticator.generatesetupcode("Distributed Cryptography", AV27walletName, StringUtil.Trim( AV6base32String), true, 3);
+               AV22qrcode = AV23SetupCode.gxTpr_Qrcodesetupimageurl;
+               AssignProp("", false, imgavQrcode_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV22qrcode)) ? AV68Qrcode_GXI : context.convertURL( context.PathToRelativeUrl( AV22qrcode))), true);
+               AssignProp("", false, imgavQrcode_Internalname, "SrcSet", context.GetImageSrcSet( AV22qrcode), true);
+               AV68Qrcode_GXI = GXDbFile.PathToUrl( AV23SetupCode.gxTpr_Qrcodesetupimageurl, context);
+               AssignProp("", false, imgavQrcode_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV22qrcode)) ? AV68Qrcode_GXI : context.convertURL( context.PathToRelativeUrl( AV22qrcode))), true);
+               AssignProp("", false, imgavQrcode_Internalname, "SrcSet", context.GetImageSrcSet( AV22qrcode), true);
+               imgavQrcode_Visible = 1;
+               AssignProp("", false, imgavQrcode_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(imgavQrcode_Visible), 5, 0), true);
+               chkavShowauthenticatorcode.Visible = 1;
+               AssignProp("", false, chkavShowauthenticatorcode_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkavShowauthenticatorcode.Visible), 5, 0), true);
+            }
+            else
+            {
+               imgavQrcode_Visible = 0;
+               AssignProp("", false, imgavQrcode_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(imgavQrcode_Visible), 5, 0), true);
+               chkavShowauthenticatorcode.Visible = 0;
+               AssignProp("", false, chkavShowauthenticatorcode_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkavShowauthenticatorcode.Visible), 5, 0), true);
+               AV24showAuthenticatorCode = false;
+               AssignAttri("", false, "AV24showAuthenticatorCode", AV24showAuthenticatorCode);
+               edtavBase32string_Visible = 0;
+               AssignProp("", false, edtavBase32string_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavBase32string_Visible), 5, 0), true);
+            }
+         }
+         else
+         {
+            AV5authenticator = false;
+            AssignAttri("", false, "AV5authenticator", AV5authenticator);
+         }
+         /*  Sending Event outputs  */
+      }
+
       protected void nextLoad( )
       {
       }
 
-      protected void E142E2( )
+      protected void E152E2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -1085,7 +1241,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202552012594719", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20256612562514", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1101,7 +1257,8 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/createrestoreadvancebrainwallet.js", "?202552012594719", false, true);
+         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("wallet/createrestoreadvancebrainwallet.js", "?20256612562515", false, true);
          /* End function include_jscripts */
       }
 
@@ -1117,6 +1274,20 @@ namespace GeneXus.Programs.wallet {
             AV18networkType = cmbavNetworktype.getValidValue(AV18networkType);
             AssignAttri("", false, "AV18networkType", AV18networkType);
          }
+         chkavAuthenticator.Name = "vAUTHENTICATOR";
+         chkavAuthenticator.WebTags = "";
+         chkavAuthenticator.Caption = "Optionaly use 2FA (authenticator) for extra security";
+         AssignProp("", false, chkavAuthenticator_Internalname, "TitleCaption", chkavAuthenticator.Caption, true);
+         chkavAuthenticator.CheckedValue = "false";
+         AV5authenticator = StringUtil.StrToBool( StringUtil.BoolToStr( AV5authenticator));
+         AssignAttri("", false, "AV5authenticator", AV5authenticator);
+         chkavShowauthenticatorcode.Name = "vSHOWAUTHENTICATORCODE";
+         chkavShowauthenticatorcode.WebTags = "";
+         chkavShowauthenticatorcode.Caption = "Show Authenticator Code";
+         AssignProp("", false, chkavShowauthenticatorcode_Internalname, "TitleCaption", chkavShowauthenticatorcode.Caption, true);
+         chkavShowauthenticatorcode.CheckedValue = "false";
+         AV24showAuthenticatorCode = StringUtil.StrToBool( StringUtil.BoolToStr( AV24showAuthenticatorCode));
+         AssignAttri("", false, "AV24showAuthenticatorCode", AV24showAuthenticatorCode);
          /* End function init_web_controls */
       }
 
@@ -1134,6 +1305,11 @@ namespace GeneXus.Programs.wallet {
          edtavChosenpin_Internalname = "vCHOSENPIN";
          divGroup1table_Internalname = "GROUP1TABLE";
          grpGroup1_Internalname = "GROUP1";
+         chkavAuthenticator_Internalname = "vAUTHENTICATOR";
+         chkavShowauthenticatorcode_Internalname = "vSHOWAUTHENTICATORCODE";
+         imgavQrcode_Internalname = "vQRCODE";
+         edtavBase32string_Internalname = "vBASE32STRING";
+         divTable3_Internalname = "TABLE3";
          bttCreatewallet_Internalname = "CREATEWALLET";
          bttCancel_Internalname = "CANCEL";
          divMaintable_Internalname = "MAINTABLE";
@@ -1148,6 +1324,16 @@ namespace GeneXus.Programs.wallet {
             disableJsOutput();
          }
          init_default_properties( ) ;
+         chkavShowauthenticatorcode.Caption = "Show Authenticator Code";
+         chkavAuthenticator.Caption = "Optionaly use 2FA (authenticator) for extra security";
+         edtavBase32string_Jsonclick = "";
+         edtavBase32string_Enabled = 1;
+         edtavBase32string_Visible = 1;
+         imgavQrcode_gximage = "";
+         imgavQrcode_Visible = 1;
+         chkavShowauthenticatorcode.Enabled = 1;
+         chkavShowauthenticatorcode.Visible = 1;
+         chkavAuthenticator.Enabled = 1;
          edtavChosenpin_Jsonclick = "";
          edtavChosenpin_Enabled = 1;
          edtavDay_Jsonclick = "";
@@ -1182,10 +1368,12 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
-         setEventMetadata("'CREATE WALLET'","""{"handler":"E122E2","iparms":[{"av":"AV27walletName","fld":"vWALLETNAME","type":"char"},{"av":"AV19newPass","fld":"vNEWPASS","type":"char"},{"av":"AV20newPassConfirm","fld":"vNEWPASSCONFIRM","type":"char"},{"av":"AV30year","fld":"vYEAR","pic":"ZZZ9","type":"int"},{"av":"AV31month","fld":"vMONTH","pic":"ZZZ9","type":"int"},{"av":"AV34day","fld":"vDAY","pic":"ZZZ9","type":"int"},{"av":"AV33chosenPIN","fld":"vCHOSENPIN","pic":"ZZZZZZZZZ9","type":"int"},{"av":"cmbavNetworktype"},{"av":"AV18networkType","fld":"vNETWORKTYPE","type":"char"},{"av":"AV11extKeyCreate","fld":"vEXTKEYCREATE","type":""},{"av":"AV26wallet","fld":"vWALLET","type":""},{"av":"AV10extendeSecretAndAuthenticator","fld":"vEXTENDESECRETANDAUTHENTICATOR","type":""}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV5authenticator","fld":"vAUTHENTICATOR","type":"boolean"},{"av":"AV24showAuthenticatorCode","fld":"vSHOWAUTHENTICATORCODE","type":"boolean"}]}""");
+         setEventMetadata("'CREATE WALLET'","""{"handler":"E122E2","iparms":[{"av":"AV27walletName","fld":"vWALLETNAME","type":"char"},{"av":"AV19newPass","fld":"vNEWPASS","type":"char"},{"av":"AV20newPassConfirm","fld":"vNEWPASSCONFIRM","type":"char"},{"av":"AV30year","fld":"vYEAR","pic":"ZZZ9","type":"int"},{"av":"AV31month","fld":"vMONTH","pic":"ZZZ9","type":"int"},{"av":"AV34day","fld":"vDAY","pic":"ZZZ9","type":"int"},{"av":"AV33chosenPIN","fld":"vCHOSENPIN","pic":"ZZZZZZZZZZZZZZZZZZZZZZZZZZZ9","type":"decimal"},{"av":"cmbavNetworktype"},{"av":"AV18networkType","fld":"vNETWORKTYPE","type":"char"},{"av":"AV11extKeyCreate","fld":"vEXTKEYCREATE","type":""},{"av":"AV26wallet","fld":"vWALLET","type":""},{"av":"AV10extendeSecretAndAuthenticator","fld":"vEXTENDESECRETANDAUTHENTICATOR","type":""},{"av":"AV5authenticator","fld":"vAUTHENTICATOR","type":"boolean"},{"av":"AV6base32String","fld":"vBASE32STRING","type":"char"}]""");
          setEventMetadata("'CREATE WALLET'",""","oparms":[{"av":"AV11extKeyCreate","fld":"vEXTKEYCREATE","type":""},{"av":"AV26wallet","fld":"vWALLET","type":""},{"av":"AV10extendeSecretAndAuthenticator","fld":"vEXTENDESECRETANDAUTHENTICATOR","type":""}]}""");
          setEventMetadata("'CANCEL AND CLOSE'","""{"handler":"E132E2","iparms":[]}""");
+         setEventMetadata("VAUTHENTICATOR.CONTROLVALUECHANGED","""{"handler":"E142E2","iparms":[{"av":"AV27walletName","fld":"vWALLETNAME","type":"char"},{"av":"AV19newPass","fld":"vNEWPASS","type":"char"},{"av":"AV5authenticator","fld":"vAUTHENTICATOR","type":"boolean"}]""");
+         setEventMetadata("VAUTHENTICATOR.CONTROLVALUECHANGED",""","oparms":[{"av":"AV6base32String","fld":"vBASE32STRING","type":"char"},{"av":"AV22qrcode","fld":"vQRCODE","type":"bits"},{"av":"AV24showAuthenticatorCode","fld":"vSHOWAUTHENTICATORCODE","type":"boolean"},{"av":"edtavBase32string_Visible","ctrl":"vBASE32STRING","prop":"Visible"},{"av":"imgavQrcode_Visible","ctrl":"vQRCODE","prop":"Visible"},{"av":"chkavShowauthenticatorcode.Visible","ctrl":"vSHOWAUTHENTICATORCODE","prop":"Visible"},{"av":"AV5authenticator","fld":"vAUTHENTICATOR","type":"boolean"}]}""");
          setEventMetadata("VALIDV_NETWORKTYPE","""{"handler":"Validv_Networktype","iparms":[]}""");
          return  ;
       }
@@ -1221,6 +1409,10 @@ namespace GeneXus.Programs.wallet {
          AV18networkType = "";
          AV19newPass = "";
          AV20newPassConfirm = "";
+         AV22qrcode = "";
+         AV68Qrcode_GXI = "";
+         sImgUrl = "";
+         AV6base32String = "";
          bttCreatewallet_Jsonclick = "";
          bttCancel_Jsonclick = "";
          sEvt = "";
@@ -1234,10 +1426,14 @@ namespace GeneXus.Programs.wallet {
          AV35extKeySeed = "";
          AV12extKeyInfo = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
          GXt_char1 = "";
+         AV14keyInfo = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
          GXt_char2 = "";
+         AV23SetupCode = new GeneXus.Programs.googleauthenticator.SdtSetupCode(context);
+         AV25TwoFactorAuthenticator = new GeneXus.Programs.googleauthenticator.SdtTwoFactorAuthenticator(context);
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          /* GeneXus formulas. */
+         edtavBase32string_Enabled = 0;
       }
 
       private short nGotPars ;
@@ -1258,8 +1454,11 @@ namespace GeneXus.Programs.wallet {
       private int edtavMonth_Enabled ;
       private int edtavDay_Enabled ;
       private int edtavChosenpin_Enabled ;
+      private int imgavQrcode_Visible ;
+      private int edtavBase32string_Visible ;
+      private int edtavBase32string_Enabled ;
       private int idxLst ;
-      private long AV33chosenPIN ;
+      private decimal AV33chosenPIN ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
       private string sDynURL ;
@@ -1297,6 +1496,15 @@ namespace GeneXus.Programs.wallet {
       private string edtavDay_Jsonclick ;
       private string edtavChosenpin_Internalname ;
       private string edtavChosenpin_Jsonclick ;
+      private string divTable3_Internalname ;
+      private string chkavAuthenticator_Internalname ;
+      private string chkavShowauthenticatorcode_Internalname ;
+      private string imgavQrcode_Internalname ;
+      private string imgavQrcode_gximage ;
+      private string sImgUrl ;
+      private string edtavBase32string_Internalname ;
+      private string AV6base32String ;
+      private string edtavBase32string_Jsonclick ;
       private string bttCreatewallet_Internalname ;
       private string bttCreatewallet_Jsonclick ;
       private string bttCancel_Internalname ;
@@ -1313,19 +1521,29 @@ namespace GeneXus.Programs.wallet {
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool wbLoad ;
+      private bool AV5authenticator ;
+      private bool AV24showAuthenticatorCode ;
+      private bool AV22qrcode_IsBlob ;
       private bool Rfr0gs ;
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private string AV36salt ;
       private string AV38preSeed ;
+      private string AV68Qrcode_GXI ;
+      private string AV22qrcode ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
       private GXCombobox cmbavNetworktype ;
+      private GXCheckbox chkavAuthenticator ;
+      private GXCheckbox chkavShowauthenticatorcode ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyCreate AV11extKeyCreate ;
       private GeneXus.Programs.wallet.SdtWallet AV26wallet ;
       private GeneXus.Programs.wallet.SdtExtendeSecretAndAuthenticator AV10extendeSecretAndAuthenticator ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV12extKeyInfo ;
+      private GeneXus.Programs.nbitcoin.SdtKeyInfo AV14keyInfo ;
+      private GeneXus.Programs.googleauthenticator.SdtSetupCode AV23SetupCode ;
+      private GeneXus.Programs.googleauthenticator.SdtTwoFactorAuthenticator AV25TwoFactorAuthenticator ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }
