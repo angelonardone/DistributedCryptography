@@ -863,6 +863,9 @@ namespace GeneXus.Programs.wallet {
                         GXt_char5 = AV8error;
                         new GeneXus.Programs.distcrypt.sso.createandsaveexternaluser(context ).execute( out  GXt_char5) ;
                         AV8error = GXt_char5;
+                        GXt_char5 = AV8error;
+                        new GeneXus.Programs.hsm.inithsm(context ).execute( out  GXt_char5) ;
+                        AV8error = GXt_char5;
                         new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
                         GXt_SdtExternalUser6 = AV16externalUser;
                         new GeneXus.Programs.distcrypt.getexternaluser(context ).execute( out  GXt_SdtExternalUser6) ;
@@ -1044,7 +1047,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202552012593648", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025717927398", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1060,7 +1063,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/balance.js", "?202552012593649", false, true);
+         context.AddJavascriptSource("wallet/balance.js", "?2025717927398", false, true);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);

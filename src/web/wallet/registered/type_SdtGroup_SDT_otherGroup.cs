@@ -42,6 +42,8 @@ namespace GeneXus.Programs.wallet.registered
 
 			gxTv_SdtGroup_SDT_otherGroup_Extpubkeymultisigchange = "";
 
+			gxTv_SdtGroup_SDT_otherGroup_Extpubkeytimebountyreceiving = "";
+
 		}
 
 		public SdtGroup_SDT_otherGroup(IGxContext context)
@@ -88,6 +90,9 @@ namespace GeneXus.Programs.wallet.registered
 
 
 			AddObjectProperty("extPubKeyMultiSigChange", gxTpr_Extpubkeymultisigchange, false);
+
+
+			AddObjectProperty("extPubKeyTimeBountyReceiving", gxTpr_Extpubkeytimebountyreceiving, false);
 
 			return;
 		}
@@ -206,6 +211,22 @@ namespace GeneXus.Programs.wallet.registered
 
 
 
+
+		[SoapElement(ElementName="extPubKeyTimeBountyReceiving")]
+		[XmlElement(ElementName="extPubKeyTimeBountyReceiving")]
+		public string gxTpr_Extpubkeytimebountyreceiving
+		{
+			get {
+				return gxTv_SdtGroup_SDT_otherGroup_Extpubkeytimebountyreceiving; 
+			}
+			set {
+				gxTv_SdtGroup_SDT_otherGroup_Extpubkeytimebountyreceiving = value;
+				SetDirty("Extpubkeytimebountyreceiving");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -232,6 +253,7 @@ namespace GeneXus.Programs.wallet.registered
 			gxTv_SdtGroup_SDT_otherGroup_Signature = "";
 			gxTv_SdtGroup_SDT_otherGroup_Extpubkeymultisigreceiving = "";
 			gxTv_SdtGroup_SDT_otherGroup_Extpubkeymultisigchange = "";
+			gxTv_SdtGroup_SDT_otherGroup_Extpubkeytimebountyreceiving = "";
 			return  ;
 		}
 
@@ -260,6 +282,9 @@ namespace GeneXus.Programs.wallet.registered
 		 
 
 		protected string gxTv_SdtGroup_SDT_otherGroup_Extpubkeymultisigchange;
+		 
+
+		protected string gxTv_SdtGroup_SDT_otherGroup_Extpubkeytimebountyreceiving;
 		 
 
 
@@ -375,6 +400,20 @@ namespace GeneXus.Programs.wallet.registered
 			}
 			set { 
 				 sdt.gxTpr_Extpubkeymultisigchange = value;
+			}
+		}
+
+		[JsonPropertyName("extPubKeyTimeBountyReceiving")]
+		[JsonPropertyOrder(7)]
+		[DataMember(Name="extPubKeyTimeBountyReceiving", Order=7)]
+		public  string gxTpr_Extpubkeytimebountyreceiving
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Extpubkeytimebountyreceiving);
+
+			}
+			set { 
+				 sdt.gxTpr_Extpubkeytimebountyreceiving = value;
 			}
 		}
 

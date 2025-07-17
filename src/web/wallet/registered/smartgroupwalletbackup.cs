@@ -526,7 +526,7 @@ namespace GeneXus.Programs.wallet.registered {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavCtlminimumshares_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavCtlminimumshares_Internalname, "Minimum amount of shares to recover the secret", "col-sm-3 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavCtlminimumshares_Internalname, "Minimum amount of votes to recover the backup", "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -1318,7 +1318,7 @@ namespace GeneXus.Programs.wallet.registered {
          returnInSub = false;
          if ( AV11group_sdt.gxTpr_Minimumshares <= 1 )
          {
-            AV8error = "The \"Minimum amount of shares to recover the secret\" has to be at least 2";
+            AV8error = "The \"Minimum amount of votes to recover the secret\" has to be at least 2";
             AssignAttri(sPrefix, false, "AV8error", AV8error);
             GX_msglist.addItem(AV8error);
          }
@@ -1329,7 +1329,7 @@ namespace GeneXus.Programs.wallet.registered {
             if (returnInSub) return;
             if ( AV11group_sdt.gxTpr_Minimumshares > AV22totalUserShares )
             {
-               AV8error = "The \"Minimum amount of shares to recover the secret\" cannot be bigger that the total amont of shares for each contact";
+               AV8error = "The \"Minimum amount of votes to recover the secret\" cannot be bigger that the total amont of votes for each contact";
                AssignAttri(sPrefix, false, "AV8error", AV8error);
                GX_msglist.addItem(AV8error);
             }
@@ -1685,7 +1685,7 @@ namespace GeneXus.Programs.wallet.registered {
          returnInSub = false;
          if ( AV11group_sdt.gxTpr_Minimumshares <= 1 )
          {
-            GX_msglist.addItem("The \"Minimum amount of shares to recover the secret\" has to be bigger than 1");
+            GX_msglist.addItem("The \"Minimum amount of votes to recover the secret\" has to be bigger than 1");
          }
          else
          {
@@ -1694,7 +1694,7 @@ namespace GeneXus.Programs.wallet.registered {
             if (returnInSub) return;
             if ( AV11group_sdt.gxTpr_Minimumshares > AV22totalUserShares )
             {
-               GX_msglist.addItem("The \"Minimum amount of shares to recover the secret\" cannot be bigger that the total amount of shares for each contact");
+               GX_msglist.addItem("The \"Minimum amount of votes to recover the secret\" cannot be bigger that the total amount of votes for each contact");
             }
             else
             {
@@ -1832,6 +1832,7 @@ namespace GeneXus.Programs.wallet.registered {
                      {
                         AV5websession.Set("Group_EDIT", "");
                         this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"success",(string)"Group Activation",(string)"All notifications sent"}, true);
+                        new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
                         context.setWebReturnParms(new Object[] {});
                         context.setWebReturnParmsMetadata(new Object[] {});
                         context.wjLocDisableFrm = 1;
@@ -2028,7 +2029,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202552012585699", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025717927138", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2044,7 +2045,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/smartgroupwalletbackup.js", "?20255201258570", false, true);
+         context.AddJavascriptSource("wallet/registered/smartgroupwalletbackup.js", "?2025717927138", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -2255,7 +2256,7 @@ namespace GeneXus.Programs.wallet.registered {
             context.SendWebValue( "Contact Name") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"end"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "Number of shares") ;
+            context.SendWebValue( "Number of votes") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"end"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
             context.SendWebValue( "Invitation Sent") ;

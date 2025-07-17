@@ -1426,13 +1426,9 @@ namespace GeneXus.Programs.wallet.registered {
          returnInSub = false;
          AV8oneMuSigSignatures = (GeneXus.Programs.wallet.registered.SdtMuSigSignatures)(((GeneXus.Programs.wallet.registered.SdtMuSigSignatures)(AV7muSigSignatures.CurrentItem)).Clone());
          AV6websession.Set("MuSign_ONE", AV8oneMuSigSignatures.ToJSonString(false, true));
-         if ( AV5group_sdt.gxTpr_Grouptype == 200 )
+         if ( AV5group_sdt.gxTpr_Grouptype == 30 )
          {
             context.PopUp(formatLink("wallet.registered.sendcoinsmusig") , new Object[] {});
-         }
-         if ( AV5group_sdt.gxTpr_Grouptype == 800 )
-         {
-            context.PopUp(formatLink("wallet.registered.sendcoinsmusig2") , new Object[] {});
          }
       }
 
@@ -1684,7 +1680,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202552012584616", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20257179265188", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1700,7 +1696,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/delegationmyltisigallsignatures.js", "?202552012584616", false, true);
+         context.AddJavascriptSource("wallet/registered/delegationmyltisigallsignatures.js", "?20257179265189", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }

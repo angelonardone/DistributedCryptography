@@ -1350,7 +1350,7 @@ namespace GeneXus.Programs.wallet.registered {
          while ( AV44GXV8 <= AV13group_sdt.gxTpr_Contact.Count )
          {
             AV16groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV13group_sdt.gxTpr_Contact.Item(AV44GXV8));
-            if ( ( AV13group_sdt.gxTpr_Grouptype == 200 ) && ! ( AV16groupContact.gxTpr_Contactid == AV16groupContact.gxTpr_Contactgroupid ) )
+            if ( ( AV13group_sdt.gxTpr_Grouptype == 30 ) && ! ( AV16groupContact.gxTpr_Contactid == AV16groupContact.gxTpr_Contactgroupid ) )
             {
                AV18groupContacts.Add(AV16groupContact, 0);
                gx_BV14 = true;
@@ -1848,7 +1848,7 @@ namespace GeneXus.Programs.wallet.registered {
                AV15group_sdt_temp.gxTpr_Contact.Add(AV23oneGroupContact, 0);
                AV50GXV13 = (int)(AV50GXV13+1);
             }
-            if ( AV13group_sdt.gxTpr_Grouptype == 200 )
+            if ( AV13group_sdt.gxTpr_Grouptype == 30 )
             {
                AV23oneGroupContact = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem(context);
                AV23oneGroupContact.gxTpr_Contactid = AV13group_sdt.gxTpr_Groupid;
@@ -1886,7 +1886,7 @@ namespace GeneXus.Programs.wallet.registered {
                   AV9contact = new GeneXus.Programs.wallet.registered.SdtContact_SDT(context);
                   AV9contact.gxTpr_Username = StringUtil.Trim( AV16groupContact.gxTpr_Contactusername);
                   AV9contact.gxTpr_Messagepubkey = StringUtil.Trim( AV16groupContact.gxTpr_Contactuserpubkey);
-                  if ( ( AV13group_sdt.gxTpr_Grouptype == 200 ) && ! ( AV16groupContact.gxTpr_Contactid == AV16groupContact.gxTpr_Contactgroupid ) )
+                  if ( ( AV13group_sdt.gxTpr_Grouptype == 30 ) && ! ( AV16groupContact.gxTpr_Contactid == AV16groupContact.gxTpr_Contactgroupid ) )
                   {
                      GXt_char5 = AV10error;
                      new GeneXus.Programs.wallet.registered.sendmessage(context ).execute(  AV9contact,  AV26sdt_message, out  GXt_char5) ;
@@ -2123,7 +2123,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202552012585444", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20257179265780", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2139,7 +2139,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/delegationmultisignature.js", "?202552012585446", false, true);
+         context.AddJavascriptSource("wallet/registered/delegationmultisignature.js", "?20257179265780", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }

@@ -42,6 +42,8 @@ namespace GeneXus.Programs.nbitcoin {
          domain["3000"] = "Group Relative";
          domain["4000"] = "Json Files Relative";
          domain["5000"] = "File Enc Relative";
+         domain["6000'"] = "HSMpath";
+         domain["4"] = "Time Bounty Receiving";
       }
 
       public static string getDescription( IGxContext context ,
@@ -92,6 +94,8 @@ namespace GeneXus.Programs.nbitcoin {
             domainMap["GroupRelative"] = "3000";
             domainMap["JsonFilesRelative"] = "4000";
             domainMap["FileEncRelative"] = "5000";
+            domainMap["HSMpath"] = "6000'";
+            domainMap["TimeBountyReceiving"] = "4";
          }
          return (string)domainMap[key] ;
       }

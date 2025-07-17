@@ -576,8 +576,8 @@ namespace GeneXus.Programs.wallet {
             /* Static Bitmap Variable */
             ClassString = "Image" + " " + ((StringUtil.StrCmp(imgavQrcode_gximage, "")==0) ? "" : "GX_Image_"+imgavQrcode_gximage+"_Class");
             StyleString = "";
-            AV22qrcode_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV22qrcode))&&String.IsNullOrEmpty(StringUtil.RTrim( AV68Qrcode_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV22qrcode)));
-            sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV22qrcode)) ? AV68Qrcode_GXI : context.PathToRelativeUrl( AV22qrcode));
+            AV22qrcode_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV22qrcode))&&String.IsNullOrEmpty(StringUtil.RTrim( AV39Qrcode_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV22qrcode)));
+            sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV22qrcode)) ? AV39Qrcode_GXI : context.PathToRelativeUrl( AV22qrcode));
             GxWebStd.gx_bitmap( context, imgavQrcode_Internalname, sImgUrl, "", "", "", context.GetTheme( ), imgavQrcode_Visible, 0, "", "", 0, -1, 0, "", 0, "", 0, 0, 0, "", "", StyleString, ClassString, "", "", "", "", "", "", "", 1, AV22qrcode_IsBlob, false, context.GetImageSrcSet( sImgUrl), "HLP_Wallet/CreateRestoreAdvanceBrainWallet.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1162,10 +1162,10 @@ namespace GeneXus.Programs.wallet {
                AV9error = GXt_char2;
                AV23SetupCode = AV25TwoFactorAuthenticator.generatesetupcode("Distributed Cryptography", AV27walletName, StringUtil.Trim( AV6base32String), true, 3);
                AV22qrcode = AV23SetupCode.gxTpr_Qrcodesetupimageurl;
-               AssignProp("", false, imgavQrcode_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV22qrcode)) ? AV68Qrcode_GXI : context.convertURL( context.PathToRelativeUrl( AV22qrcode))), true);
+               AssignProp("", false, imgavQrcode_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV22qrcode)) ? AV39Qrcode_GXI : context.convertURL( context.PathToRelativeUrl( AV22qrcode))), true);
                AssignProp("", false, imgavQrcode_Internalname, "SrcSet", context.GetImageSrcSet( AV22qrcode), true);
-               AV68Qrcode_GXI = GXDbFile.PathToUrl( AV23SetupCode.gxTpr_Qrcodesetupimageurl, context);
-               AssignProp("", false, imgavQrcode_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV22qrcode)) ? AV68Qrcode_GXI : context.convertURL( context.PathToRelativeUrl( AV22qrcode))), true);
+               AV39Qrcode_GXI = GXDbFile.PathToUrl( AV23SetupCode.gxTpr_Qrcodesetupimageurl, context);
+               AssignProp("", false, imgavQrcode_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV22qrcode)) ? AV39Qrcode_GXI : context.convertURL( context.PathToRelativeUrl( AV22qrcode))), true);
                AssignProp("", false, imgavQrcode_Internalname, "SrcSet", context.GetImageSrcSet( AV22qrcode), true);
                imgavQrcode_Visible = 1;
                AssignProp("", false, imgavQrcode_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(imgavQrcode_Visible), 5, 0), true);
@@ -1241,7 +1241,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20256612562514", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20257179275068", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1258,7 +1258,7 @@ namespace GeneXus.Programs.wallet {
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
          context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 123260), false, true);
-         context.AddJavascriptSource("wallet/createrestoreadvancebrainwallet.js", "?20256612562515", false, true);
+         context.AddJavascriptSource("wallet/createrestoreadvancebrainwallet.js", "?20257179275068", false, true);
          /* End function include_jscripts */
       }
 
@@ -1410,7 +1410,7 @@ namespace GeneXus.Programs.wallet {
          AV19newPass = "";
          AV20newPassConfirm = "";
          AV22qrcode = "";
-         AV68Qrcode_GXI = "";
+         AV39Qrcode_GXI = "";
          sImgUrl = "";
          AV6base32String = "";
          bttCreatewallet_Jsonclick = "";
@@ -1530,7 +1530,7 @@ namespace GeneXus.Programs.wallet {
       private bool returnInSub ;
       private string AV36salt ;
       private string AV38preSeed ;
-      private string AV68Qrcode_GXI ;
+      private string AV39Qrcode_GXI ;
       private string AV22qrcode ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;

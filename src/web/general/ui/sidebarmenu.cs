@@ -132,6 +132,11 @@ namespace GeneXus.Programs.general.ui {
             AV18SubItem.gxTpr_Target = formatLink("wallet.encryptedpasswords") ;
             AV16SidebarItem.gxTpr_Sidebarsubitems.Add(AV18SubItem, 0);
             AV18SubItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem_SubItem(context);
+            AV18SubItem.gxTpr_Id = "HSM";
+            AV18SubItem.gxTpr_Title = "HSM";
+            AV18SubItem.gxTpr_Target = formatLink("hsm.hsmconfig") ;
+            AV16SidebarItem.gxTpr_Sidebarsubitems.Add(AV18SubItem, 0);
+            AV18SubItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem_SubItem(context);
             AV18SubItem.gxTpr_Id = "Autheticators";
             AV18SubItem.gxTpr_Title = "Autheticators";
             AV18SubItem.gxTpr_Target = formatLink("wallet.autheticators") ;

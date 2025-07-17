@@ -65,10 +65,6 @@ namespace GeneXus.Programs.wallet
 
 			AddObjectProperty("Name", gxTpr_Name, false);
 
-			if (gxTv_SdtPassword_tag_Passwords != null)
-			{
-				AddObjectProperty("Passwords", gxTv_SdtPassword_tag_Passwords, false);
-			}
 			return;
 		}
 		#endregion
@@ -106,60 +102,6 @@ namespace GeneXus.Programs.wallet
 
 
 
-
-		[SoapElement(ElementName="Passwords" )]
-		[XmlArray(ElementName="Passwords"  )]
-		[XmlArrayItemAttribute(ElementName="Item" , IsNullable=false )]
-		public GXBaseCollection<GeneXus.Programs.wallet.SdtPassword> gxTpr_Passwords_GXBaseCollection
-		{
-			get {
-				if ( gxTv_SdtPassword_tag_Passwords == null )
-				{
-					gxTv_SdtPassword_tag_Passwords = new GXBaseCollection<GeneXus.Programs.wallet.SdtPassword>( context, "Password", "");
-				}
-				return gxTv_SdtPassword_tag_Passwords;
-			}
-			set {
-				gxTv_SdtPassword_tag_Passwords_N = false;
-				gxTv_SdtPassword_tag_Passwords = value;
-			}
-		}
-
-		[XmlIgnore]
-		public GXBaseCollection<GeneXus.Programs.wallet.SdtPassword> gxTpr_Passwords
-		{
-			get {
-				if ( gxTv_SdtPassword_tag_Passwords == null )
-				{
-					gxTv_SdtPassword_tag_Passwords = new GXBaseCollection<GeneXus.Programs.wallet.SdtPassword>( context, "Password", "");
-				}
-				gxTv_SdtPassword_tag_Passwords_N = false;
-				SetDirty("Passwords");
-				return gxTv_SdtPassword_tag_Passwords ;
-			}
-			set {
-				gxTv_SdtPassword_tag_Passwords_N = false;
-				gxTv_SdtPassword_tag_Passwords = value;
-				SetDirty("Passwords");
-			}
-		}
-
-		public void gxTv_SdtPassword_tag_Passwords_SetNull()
-		{
-			gxTv_SdtPassword_tag_Passwords_N = true;
-			gxTv_SdtPassword_tag_Passwords = null;
-		}
-
-		public bool gxTv_SdtPassword_tag_Passwords_IsNull()
-		{
-			return gxTv_SdtPassword_tag_Passwords == null;
-		}
-		public bool ShouldSerializegxTpr_Passwords_GXBaseCollection_Json()
-		{
-			return gxTv_SdtPassword_tag_Passwords != null && gxTv_SdtPassword_tag_Passwords.Count > 0;
-
-		}
-
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -182,9 +124,6 @@ namespace GeneXus.Programs.wallet
 		public void initialize( )
 		{
 			gxTv_SdtPassword_tag_Name = "";
-
-			gxTv_SdtPassword_tag_Passwords_N = true;
-
 			return  ;
 		}
 
@@ -199,8 +138,6 @@ namespace GeneXus.Programs.wallet
 
 		protected string gxTv_SdtPassword_tag_Name;
 		 
-		protected bool gxTv_SdtPassword_tag_Passwords_N;
-		protected GXBaseCollection<GeneXus.Programs.wallet.SdtPassword> gxTv_SdtPassword_tag_Passwords = null;  
 
 
 		#endregion
@@ -244,24 +181,6 @@ namespace GeneXus.Programs.wallet
 			}
 			set { 
 				 sdt.gxTpr_Name = value;
-			}
-		}
-
-		[JsonPropertyName("Passwords")]
-		[JsonPropertyOrder(2)]
-		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-		[DataMember(Name="Passwords", Order=2, EmitDefaultValue=false)]
-		public  GxGenericCollection<GeneXus.Programs.wallet.SdtPassword_RESTInterface> gxTpr_Passwords
-		{
-			get { 
-				if (sdt.ShouldSerializegxTpr_Passwords_GXBaseCollection_Json())
-					return new GxGenericCollection<GeneXus.Programs.wallet.SdtPassword_RESTInterface>(sdt.gxTpr_Passwords);
-				else
-					return null;
-
-			}
-			set { 
-				value.LoadCollection(sdt.gxTpr_Passwords);
 			}
 		}
 

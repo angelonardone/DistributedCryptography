@@ -965,7 +965,7 @@ namespace GeneXus.Programs.wallet.registered {
          AssignAttri("", false, "AV23totalBalance", StringUtil.LTrimStr( AV23totalBalance, 16, 8));
          GxWebStd.gx_hidden_field( context, "gxhash_vTOTALBALANCE", GetSecureSignedToken( "", context.localUtil.Format( AV23totalBalance, "ZZZZZZ9.99999999"), context));
          new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
-         AV31group_sdt.FromJSonString(AV30websession.Get("Group_EDIT"), null);
+         AV31group_sdt.FromJSonString(AV30websession.Get("Group_EDIT_WALLET"), null);
          AV35oneMuSigSignatures.FromJSonString(AV30websession.Get("MuSign_ONE"), null);
          if ( ! (Guid.Empty==AV35oneMuSigSignatures.gxTpr_Id) )
          {
@@ -1371,7 +1371,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255201259467", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20257179274833", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1388,7 +1388,7 @@ namespace GeneXus.Programs.wallet.registered {
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
          context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 123260), false, true);
-         context.AddJavascriptSource("wallet/registered/sendcoinsmusig.js", "?20255201259467", false, true);
+         context.AddJavascriptSource("wallet/registered/sendcoinsmusig.js", "?20257179274834", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }

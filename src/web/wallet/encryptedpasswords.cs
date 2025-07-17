@@ -283,13 +283,13 @@ namespace GeneXus.Programs.wallet {
             enableOutput();
          }
          include_jscripts( ) ;
-         if ( ! ( WebComp_Component1 == null ) )
+         if ( ! ( WebComp_Comppassword == null ) )
          {
-            WebComp_Component1.componentjscripts();
+            WebComp_Comppassword.componentjscripts();
          }
-         if ( ! ( WebComp_Component2 == null ) )
+         if ( ! ( WebComp_Comptag == null ) )
          {
-            WebComp_Component2.componentjscripts();
+            WebComp_Comptag.componentjscripts();
          }
       }
 
@@ -381,18 +381,22 @@ namespace GeneXus.Programs.wallet {
             if ( ! isFullAjaxMode( ) )
             {
                /* WebComponent */
+               GxWebStd.gx_hidden_field( context, "W0014"+"", StringUtil.RTrim( WebComp_Comppassword_Component));
                context.WriteHtmlText( "<div") ;
                GxWebStd.ClassAttribute( context, "gxwebcomponent");
                context.WriteHtmlText( " id=\""+"gxHTMLWrpW0014"+""+"\""+"") ;
                context.WriteHtmlText( ">") ;
-               if ( ! context.isAjaxRequest( ) )
+               if ( StringUtil.Len( WebComp_Comppassword_Component) != 0 )
                {
-                  context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0014"+"");
-               }
-               WebComp_Component1.componentdraw();
-               if ( ! context.isAjaxRequest( ) )
-               {
-                  context.httpAjaxContext.ajax_rspEndCmp();
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComppassword), StringUtil.Lower( WebComp_Comppassword_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0014"+"");
+                  }
+                  WebComp_Comppassword.componentdraw();
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComppassword), StringUtil.Lower( WebComp_Comppassword_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspEndCmp();
+                  }
                }
                context.WriteHtmlText( "</div>") ;
             }
@@ -418,18 +422,22 @@ namespace GeneXus.Programs.wallet {
             if ( ! isFullAjaxMode( ) )
             {
                /* WebComponent */
+               GxWebStd.gx_hidden_field( context, "W0022"+"", StringUtil.RTrim( WebComp_Comptag_Component));
                context.WriteHtmlText( "<div") ;
                GxWebStd.ClassAttribute( context, "gxwebcomponent");
                context.WriteHtmlText( " id=\""+"gxHTMLWrpW0022"+""+"\""+"") ;
                context.WriteHtmlText( ">") ;
-               if ( ! context.isAjaxRequest( ) )
+               if ( StringUtil.Len( WebComp_Comptag_Component) != 0 )
                {
-                  context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0022"+"");
-               }
-               WebComp_Component2.componentdraw();
-               if ( ! context.isAjaxRequest( ) )
-               {
-                  context.httpAjaxContext.ajax_rspEndCmp();
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComptag), StringUtil.Lower( WebComp_Comptag_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0022"+"");
+                  }
+                  WebComp_Comptag.componentdraw();
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComptag), StringUtil.Lower( WebComp_Comptag_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspEndCmp();
+                  }
                }
                context.WriteHtmlText( "</div>") ;
             }
@@ -501,12 +509,19 @@ namespace GeneXus.Programs.wallet {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "START") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: Start */
+                              E112G2 ();
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Load */
-                              E112G2 ();
+                              E122G2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                            {
@@ -539,19 +554,35 @@ namespace GeneXus.Programs.wallet {
                         nCmpId = (short)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
                         if ( nCmpId == 14 )
                         {
-                           WebComp_Component1 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.passwordswc", new Object[] {context} );
-                           WebComp_Component1.ComponentInit();
-                           WebComp_Component1.Name = "Wallet.PasswordsWC";
-                           WebComp_Component1_Component = "Wallet.PasswordsWC";
-                           WebComp_Component1.componentprocess("W0014", "", sEvt);
+                           OldComppassword = cgiGet( "W0014");
+                           if ( ( StringUtil.Len( OldComppassword) == 0 ) || ( StringUtil.StrCmp(OldComppassword, WebComp_Comppassword_Component) != 0 ) )
+                           {
+                              WebComp_Comppassword = getWebComponent(GetType(), "GeneXus.Programs", OldComppassword, new Object[] {context} );
+                              WebComp_Comppassword.ComponentInit();
+                              WebComp_Comppassword.Name = "OldComppassword";
+                              WebComp_Comppassword_Component = OldComppassword;
+                           }
+                           if ( StringUtil.Len( WebComp_Comppassword_Component) != 0 )
+                           {
+                              WebComp_Comppassword.componentprocess("W0014", "", sEvt);
+                           }
+                           WebComp_Comppassword_Component = OldComppassword;
                         }
                         else if ( nCmpId == 22 )
                         {
-                           WebComp_Component2 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.tagswc", new Object[] {context} );
-                           WebComp_Component2.ComponentInit();
-                           WebComp_Component2.Name = "Wallet.TagsWC";
-                           WebComp_Component2_Component = "Wallet.TagsWC";
-                           WebComp_Component2.componentprocess("W0022", "", sEvt);
+                           OldComptag = cgiGet( "W0022");
+                           if ( ( StringUtil.Len( OldComptag) == 0 ) || ( StringUtil.StrCmp(OldComptag, WebComp_Comptag_Component) != 0 ) )
+                           {
+                              WebComp_Comptag = getWebComponent(GetType(), "GeneXus.Programs", OldComptag, new Object[] {context} );
+                              WebComp_Comptag.ComponentInit();
+                              WebComp_Comptag.Name = "OldComptag";
+                              WebComp_Comptag_Component = OldComptag;
+                           }
+                           if ( StringUtil.Len( WebComp_Comptag_Component) != 0 )
+                           {
+                              WebComp_Comptag.componentprocess("W0022", "", sEvt);
+                           }
+                           WebComp_Comptag_Component = OldComptag;
                         }
                      }
                      context.wbHandled = 1;
@@ -649,48 +680,22 @@ namespace GeneXus.Programs.wallet {
          clear_multi_value_controls( ) ;
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
-            if ( StringUtil.StrCmp(WebComp_Component1_Component, "") == 0 )
-            {
-               WebComp_Component1 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.passwordswc", new Object[] {context} );
-               WebComp_Component1.ComponentInit();
-               WebComp_Component1.Name = "Wallet.PasswordsWC";
-               WebComp_Component1_Component = "Wallet.PasswordsWC";
-            }
-            WebComp_Component1.setjustcreated();
-            WebComp_Component1.componentprepare(new Object[] {(string)"W0014",(string)""});
-            WebComp_Component1.componentbind(new Object[] {});
-            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Component1 )
-            {
-               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0014"+"");
-               WebComp_Component1.componentdraw();
-               context.httpAjaxContext.ajax_rspEndCmp();
-            }
             if ( 1 != 0 )
             {
-               WebComp_Component1.componentstart();
+               if ( StringUtil.Len( WebComp_Comppassword_Component) != 0 )
+               {
+                  WebComp_Comppassword.componentstart();
+               }
             }
          }
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
-            if ( StringUtil.StrCmp(WebComp_Component2_Component, "") == 0 )
-            {
-               WebComp_Component2 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.tagswc", new Object[] {context} );
-               WebComp_Component2.ComponentInit();
-               WebComp_Component2.Name = "Wallet.TagsWC";
-               WebComp_Component2_Component = "Wallet.TagsWC";
-            }
-            WebComp_Component2.setjustcreated();
-            WebComp_Component2.componentprepare(new Object[] {(string)"W0022",(string)""});
-            WebComp_Component2.componentbind(new Object[] {});
-            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Component2 )
-            {
-               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0022"+"");
-               WebComp_Component2.componentdraw();
-               context.httpAjaxContext.ajax_rspEndCmp();
-            }
             if ( 1 != 0 )
             {
-               WebComp_Component2.componentstart();
+               if ( StringUtil.Len( WebComp_Comptag_Component) != 0 )
+               {
+                  WebComp_Comptag.componentstart();
+               }
             }
          }
          gxdyncontrolsrefreshing = true;
@@ -699,7 +704,7 @@ namespace GeneXus.Programs.wallet {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E112G2 ();
+            E122G2 ();
             WB2G0( ) ;
          }
       }
@@ -717,6 +722,10 @@ namespace GeneXus.Programs.wallet {
       {
          /* Before Start, stand alone formulas. */
          before_start_formulas( ) ;
+         /* Execute Start event if defined. */
+         context.wbGlbDoneStart = 0;
+         /* Execute user event: Start */
+         E112G2 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
@@ -737,11 +746,62 @@ namespace GeneXus.Programs.wallet {
          }
       }
 
+      protected void GXStart( )
+      {
+         /* Execute user event: Start */
+         E112G2 ();
+         if (returnInSub) return;
+      }
+
+      protected void E112G2( )
+      {
+         /* Start Routine */
+         returnInSub = false;
+         AV5websession.Set("Group_EDIT", "");
+         AV6emptyGUID = Guid.Empty;
+         /* Object Property */
+         if ( true )
+         {
+            bDynCreated_Comppassword = true;
+         }
+         if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comppassword_Component), StringUtil.Lower( "Wallet.PasswordsWC")) != 0 )
+         {
+            WebComp_Comppassword = getWebComponent(GetType(), "GeneXus.Programs", "wallet.passwordswc", new Object[] {context} );
+            WebComp_Comppassword.ComponentInit();
+            WebComp_Comppassword.Name = "Wallet.PasswordsWC";
+            WebComp_Comppassword_Component = "Wallet.PasswordsWC";
+         }
+         if ( StringUtil.Len( WebComp_Comppassword_Component) != 0 )
+         {
+            WebComp_Comppassword.setjustcreated();
+            WebComp_Comppassword.componentprepare(new Object[] {(string)"W0014",(string)"",(Guid)AV6emptyGUID});
+            WebComp_Comppassword.componentbind(new Object[] {(string)""});
+         }
+         /* Object Property */
+         if ( true )
+         {
+            bDynCreated_Comptag = true;
+         }
+         if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comptag_Component), StringUtil.Lower( "Wallet.TagsWC")) != 0 )
+         {
+            WebComp_Comptag = getWebComponent(GetType(), "GeneXus.Programs", "wallet.tagswc", new Object[] {context} );
+            WebComp_Comptag.ComponentInit();
+            WebComp_Comptag.Name = "Wallet.TagsWC";
+            WebComp_Comptag_Component = "Wallet.TagsWC";
+         }
+         if ( StringUtil.Len( WebComp_Comptag_Component) != 0 )
+         {
+            WebComp_Comptag.setjustcreated();
+            WebComp_Comptag.componentprepare(new Object[] {(string)"W0022",(string)"",(Guid)AV6emptyGUID});
+            WebComp_Comptag.componentbind(new Object[] {(string)""});
+         }
+      }
+
       protected void nextLoad( )
       {
       }
 
-      protected void E112G2( )
+      protected void E122G2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -779,27 +839,19 @@ namespace GeneXus.Programs.wallet {
       {
          AddStyleSheetFile("Tab/BasicTab.css", "");
          AddThemeStyleSheetFile("", context.GetTheme( )+".css", "?"+GetCacheInvalidationToken( ));
-         if ( StringUtil.StrCmp(WebComp_Component1_Component, "") == 0 )
+         if ( ! ( WebComp_Comppassword == null ) )
          {
-            WebComp_Component1 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.passwordswc", new Object[] {context} );
-            WebComp_Component1.ComponentInit();
-            WebComp_Component1.Name = "Wallet.PasswordsWC";
-            WebComp_Component1_Component = "Wallet.PasswordsWC";
+            if ( StringUtil.Len( WebComp_Comppassword_Component) != 0 )
+            {
+               WebComp_Comppassword.componentthemes();
+            }
          }
-         if ( ! ( WebComp_Component1 == null ) )
+         if ( ! ( WebComp_Comptag == null ) )
          {
-            WebComp_Component1.componentthemes();
-         }
-         if ( StringUtil.StrCmp(WebComp_Component2_Component, "") == 0 )
-         {
-            WebComp_Component2 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.tagswc", new Object[] {context} );
-            WebComp_Component2.ComponentInit();
-            WebComp_Component2.Name = "Wallet.TagsWC";
-            WebComp_Component2_Component = "Wallet.TagsWC";
-         }
-         if ( ! ( WebComp_Component2 == null ) )
-         {
-            WebComp_Component2.componentthemes();
+            if ( StringUtil.Len( WebComp_Comptag_Component) != 0 )
+            {
+               WebComp_Comptag.componentthemes();
+            }
          }
          bool outputEnabled = isOutputEnabled( );
          if ( context.isSpaRequest( ) )
@@ -809,7 +861,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202552012594820", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025717927518", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -825,7 +877,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/encryptedpasswords.js", "?202552012594820", false, true);
+         context.AddJavascriptSource("wallet/encryptedpasswords.js", "?2025717927518", false, true);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);
@@ -905,17 +957,21 @@ namespace GeneXus.Programs.wallet {
          sPrefix = "";
          ucPasswordstab = new GXUserControl();
          lblPasswords_title_Jsonclick = "";
+         WebComp_Comppassword_Component = "";
+         OldComppassword = "";
          lblTags_title_Jsonclick = "";
+         WebComp_Comptag_Component = "";
+         OldComptag = "";
          sEvt = "";
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
-         WebComp_Component1_Component = "";
-         WebComp_Component2_Component = "";
+         AV5websession = context.GetSession();
+         AV6emptyGUID = Guid.Empty;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
-         WebComp_Component1 = new GeneXus.Http.GXNullWebComponent();
-         WebComp_Component2 = new GeneXus.Http.GXNullWebComponent();
+         WebComp_Comppassword = new GeneXus.Http.GXNullWebComponent();
+         WebComp_Comptag = new GeneXus.Http.GXNullWebComponent();
          /* GeneXus formulas. */
       }
 
@@ -944,28 +1000,32 @@ namespace GeneXus.Programs.wallet {
       private string lblPasswords_title_Internalname ;
       private string lblPasswords_title_Jsonclick ;
       private string divTabpage1table_Internalname ;
+      private string WebComp_Comppassword_Component ;
+      private string OldComppassword ;
       private string lblTags_title_Internalname ;
       private string lblTags_title_Jsonclick ;
       private string divTabpage2table_Internalname ;
+      private string WebComp_Comptag_Component ;
+      private string OldComptag ;
       private string sEvt ;
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
-      private string WebComp_Component1_Component ;
-      private string WebComp_Component2_Component ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool Passwordstab_Historymanagement ;
       private bool wbLoad ;
       private bool Rfr0gs ;
       private bool wbErr ;
-      private bool bDynCreated_Component1 ;
-      private bool bDynCreated_Component2 ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
-      private GXWebComponent WebComp_Component1 ;
-      private GXWebComponent WebComp_Component2 ;
+      private bool bDynCreated_Comppassword ;
+      private bool bDynCreated_Comptag ;
+      private Guid AV6emptyGUID ;
+      private GXWebComponent WebComp_Comppassword ;
+      private GXWebComponent WebComp_Comptag ;
       private GXUserControl ucPasswordstab ;
+      private IGxSession AV5websession ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
       private msglist BackMsgLst ;

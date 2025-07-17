@@ -1358,7 +1358,7 @@ namespace GeneXus.Programs.electrum {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202552012584459", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20257179264894", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1374,7 +1374,7 @@ namespace GeneXus.Programs.electrum {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("electrum/configelectrumservers.js", "?202552012584459", false, true);
+         context.AddJavascriptSource("electrum/configelectrumservers.js", "?20257179264894", false, true);
          /* End function include_jscripts */
       }
 

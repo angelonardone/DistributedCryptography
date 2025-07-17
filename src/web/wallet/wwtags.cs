@@ -484,7 +484,7 @@ namespace GeneXus.Programs.wallet {
             }
             else
             {
-               AV19GXV1 = nGXsfl_11_idx;
+               AV22GXV1 = nGXsfl_11_idx;
                sStyleString = "";
                context.WriteHtmlText( "<div id=\""+"GridonepasswordtagsContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Gridonepasswordtags", GridonepasswordtagsContainer, subGridonepasswordtags_Internalname);
@@ -535,7 +535,7 @@ namespace GeneXus.Programs.wallet {
                }
                else
                {
-                  AV19GXV1 = nGXsfl_11_idx;
+                  AV22GXV1 = nGXsfl_11_idx;
                   sStyleString = "";
                   context.WriteHtmlText( "<div id=\""+"GridonepasswordtagsContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                   context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Gridonepasswordtags", GridonepasswordtagsContainer, subGridonepasswordtags_Internalname);
@@ -649,12 +649,12 @@ namespace GeneXus.Programs.wallet {
                               nGXsfl_11_idx = (int)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
                               sGXsfl_11_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_11_idx), 4, 0), 4, "0");
                               SubsflControlProps_112( ) ;
-                              AV19GXV1 = nGXsfl_11_idx;
-                              if ( ( AV15passwordTags.Count >= AV19GXV1 ) && ( AV19GXV1 > 0 ) )
+                              AV22GXV1 = nGXsfl_11_idx;
+                              if ( ( AV15passwordTags.Count >= AV22GXV1 ) && ( AV22GXV1 > 0 ) )
                               {
-                                 AV15passwordTags.CurrentItem = ((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV19GXV1));
+                                 AV15passwordTags.CurrentItem = ((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV22GXV1));
                                  AV6deleteImage = cgiGet( edtavDeleteimage_Internalname);
-                                 AssignProp("", false, edtavDeleteimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV6deleteImage)) ? AV25Deleteimage_GXI : context.convertURL( context.PathToRelativeUrl( AV6deleteImage))), !bGXsfl_11_Refreshing);
+                                 AssignProp("", false, edtavDeleteimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV6deleteImage)) ? AV28Deleteimage_GXI : context.convertURL( context.PathToRelativeUrl( AV6deleteImage))), !bGXsfl_11_Refreshing);
                                  AssignProp("", false, edtavDeleteimage_Internalname, "SrcSet", context.GetImageSrcSet( AV6deleteImage), true);
                               }
                               sEvtType = StringUtil.Right( sEvt, 1);
@@ -946,10 +946,10 @@ namespace GeneXus.Programs.wallet {
                nGXsfl_11_fel_idx = ((subGridonepasswordtags_Islastpage==1)&&(nGXsfl_11_fel_idx+1>subGridonepasswordtags_fnc_Recordsperpage( )) ? 1 : nGXsfl_11_fel_idx+1);
                sGXsfl_11_fel_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_11_fel_idx), 4, 0), 4, "0");
                SubsflControlProps_fel_112( ) ;
-               AV19GXV1 = nGXsfl_11_fel_idx;
-               if ( ( AV15passwordTags.Count >= AV19GXV1 ) && ( AV19GXV1 > 0 ) )
+               AV22GXV1 = nGXsfl_11_fel_idx;
+               if ( ( AV15passwordTags.Count >= AV22GXV1 ) && ( AV22GXV1 > 0 ) )
                {
-                  AV15passwordTags.CurrentItem = ((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV19GXV1));
+                  AV15passwordTags.CurrentItem = ((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV22GXV1));
                   AV6deleteImage = cgiGet( edtavDeleteimage_Internalname);
                }
             }
@@ -987,17 +987,19 @@ namespace GeneXus.Programs.wallet {
          /* Start Routine */
          returnInSub = false;
          AV10onePassword.FromJSonString(AV17websession.Get("ONE_PASSWORD_TO_WWTAGS"), null);
-         AV14Passwords_and_tags.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "encpasswords.enc", out  AV7error), null);
+         /* Execute user subroutine: 'READ PASSWORDS_AND_TAGS' */
+         S112 ();
+         if (returnInSub) return;
          AV13Passwords = (GXBaseCollection<GeneXus.Programs.wallet.SdtPassword>)(AV14Passwords_and_tags.gxTpr_Password.Clone());
          AV12Password_tags = (GXBaseCollection<GeneXus.Programs.wallet.SdtPassword_tag>)(AV14Passwords_and_tags.gxTpr_Password_tag.Clone());
          cmbavTagname.removeAllItems();
          cmbavTagname.addItem(StringUtil.StrToGuid( "").ToString(), "Select a Tag to add", 0);
-         AV22GXV4 = 1;
-         while ( AV22GXV4 <= AV12Password_tags.Count )
+         AV25GXV4 = 1;
+         while ( AV25GXV4 <= AV12Password_tags.Count )
          {
-            AV5oneTag = ((GeneXus.Programs.wallet.SdtPassword_tag)AV12Password_tags.Item(AV22GXV4));
+            AV5oneTag = ((GeneXus.Programs.wallet.SdtPassword_tag)AV12Password_tags.Item(AV25GXV4));
             cmbavTagname.addItem(AV5oneTag.gxTpr_Tagid.ToString(), AV5oneTag.gxTpr_Name, 0);
-            AV22GXV4 = (int)(AV22GXV4+1);
+            AV25GXV4 = (int)(AV25GXV4+1);
          }
          edtavCtlname_Title = "Tags assigned to "+StringUtil.Trim( AV10onePassword.gxTpr_Description);
          AssignProp("", false, edtavCtlname_Internalname, "Title", edtavCtlname_Title, !bGXsfl_11_Refreshing);
@@ -1007,37 +1009,37 @@ namespace GeneXus.Programs.wallet {
 
       protected void E112K2( )
       {
-         AV19GXV1 = nGXsfl_11_idx;
-         if ( ( AV19GXV1 > 0 ) && ( AV15passwordTags.Count >= AV19GXV1 ) )
+         AV22GXV1 = nGXsfl_11_idx;
+         if ( ( AV22GXV1 > 0 ) && ( AV15passwordTags.Count >= AV22GXV1 ) )
          {
-            AV15passwordTags.CurrentItem = ((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV19GXV1));
+            AV15passwordTags.CurrentItem = ((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV22GXV1));
          }
          /* Tagname_Controlvaluechanged Routine */
          returnInSub = false;
          AV9found = false;
-         AV23GXV5 = 1;
-         while ( AV23GXV5 <= AV15passwordTags.Count )
+         AV26GXV5 = 1;
+         while ( AV26GXV5 <= AV15passwordTags.Count )
          {
-            AV8findOneTag = ((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV23GXV5));
+            AV8findOneTag = ((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV26GXV5));
             if ( AV8findOneTag.gxTpr_Tagid == AV16tagName )
             {
                AV9found = true;
             }
-            AV23GXV5 = (int)(AV23GXV5+1);
+            AV26GXV5 = (int)(AV26GXV5+1);
          }
          if ( ! AV9found && ! (Guid.Empty==AV16tagName) )
          {
             AV11oneTagTemp = new GeneXus.Programs.wallet.SdtPassword_tag(context);
             AV11oneTagTemp.gxTpr_Tagid = AV16tagName;
-            AV24GXV6 = 1;
-            while ( AV24GXV6 <= AV12Password_tags.Count )
+            AV27GXV6 = 1;
+            while ( AV27GXV6 <= AV12Password_tags.Count )
             {
-               AV5oneTag = ((GeneXus.Programs.wallet.SdtPassword_tag)AV12Password_tags.Item(AV24GXV6));
+               AV5oneTag = ((GeneXus.Programs.wallet.SdtPassword_tag)AV12Password_tags.Item(AV27GXV6));
                if ( AV5oneTag.gxTpr_Tagid == AV16tagName )
                {
                   AV11oneTagTemp.gxTpr_Name = AV5oneTag.gxTpr_Name;
                }
-               AV24GXV6 = (int)(AV24GXV6+1);
+               AV27GXV6 = (int)(AV27GXV6+1);
             }
             AV15passwordTags.Add(AV11oneTagTemp, 0);
             gx_BV11 = true;
@@ -1055,14 +1057,14 @@ namespace GeneXus.Programs.wallet {
       {
          /* Gridonepasswordtags_Load Routine */
          returnInSub = false;
-         AV19GXV1 = 1;
-         while ( AV19GXV1 <= AV15passwordTags.Count )
+         AV22GXV1 = 1;
+         while ( AV22GXV1 <= AV15passwordTags.Count )
          {
-            AV15passwordTags.CurrentItem = ((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV19GXV1));
+            AV15passwordTags.CurrentItem = ((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV22GXV1));
             edtavDeleteimage_gximage = "GeneXusUnanimo_delete_light";
             AV6deleteImage = context.GetImagePath( "db0f63cd-dde8-4bf7-aca2-01cdf8d3c157", "", context.GetTheme( ));
             AssignAttri("", false, edtavDeleteimage_Internalname, AV6deleteImage);
-            AV25Deleteimage_GXI = GXDbFile.PathToUrl( context.GetImagePath( "db0f63cd-dde8-4bf7-aca2-01cdf8d3c157", "", context.GetTheme( )), context);
+            AV28Deleteimage_GXI = GXDbFile.PathToUrl( context.GetImagePath( "db0f63cd-dde8-4bf7-aca2-01cdf8d3c157", "", context.GetTheme( )), context);
             /* Load Method */
             if ( wbStart != -1 )
             {
@@ -1073,30 +1075,30 @@ namespace GeneXus.Programs.wallet {
             {
                DoAjaxLoad(11, GridonepasswordtagsRow);
             }
-            AV19GXV1 = (int)(AV19GXV1+1);
+            AV22GXV1 = (int)(AV22GXV1+1);
          }
          /*  Sending Event outputs  */
       }
 
       protected void E162K2( )
       {
-         AV19GXV1 = nGXsfl_11_idx;
-         if ( ( AV19GXV1 > 0 ) && ( AV15passwordTags.Count >= AV19GXV1 ) )
+         AV22GXV1 = nGXsfl_11_idx;
+         if ( ( AV22GXV1 > 0 ) && ( AV15passwordTags.Count >= AV22GXV1 ) )
          {
-            AV15passwordTags.CurrentItem = ((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV19GXV1));
+            AV15passwordTags.CurrentItem = ((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV22GXV1));
          }
          /* 'delete tag' Routine */
          returnInSub = false;
-         AV26GXV7 = 1;
-         while ( AV26GXV7 <= AV15passwordTags.Count )
+         AV29GXV7 = 1;
+         while ( AV29GXV7 <= AV15passwordTags.Count )
          {
-            AV8findOneTag = ((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV26GXV7));
+            AV8findOneTag = ((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV29GXV7));
             if ( AV8findOneTag.gxTpr_Tagid == ((GeneXus.Programs.wallet.SdtPassword_tag)(AV15passwordTags.CurrentItem)).gxTpr_Tagid )
             {
                AV15passwordTags.RemoveItem(AV15passwordTags.IndexOf(AV8findOneTag));
                gx_BV11 = true;
             }
-            AV26GXV7 = (int)(AV26GXV7+1);
+            AV29GXV7 = (int)(AV29GXV7+1);
          }
          /*  Sending Event outputs  */
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV15passwordTags", AV15passwordTags);
@@ -1109,35 +1111,34 @@ namespace GeneXus.Programs.wallet {
 
       protected void E122K2( )
       {
-         AV19GXV1 = nGXsfl_11_idx;
-         if ( ( AV19GXV1 > 0 ) && ( AV15passwordTags.Count >= AV19GXV1 ) )
+         AV22GXV1 = nGXsfl_11_idx;
+         if ( ( AV22GXV1 > 0 ) && ( AV15passwordTags.Count >= AV22GXV1 ) )
          {
-            AV15passwordTags.CurrentItem = ((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV19GXV1));
+            AV15passwordTags.CurrentItem = ((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV22GXV1));
          }
          /* 'Save' Routine */
          returnInSub = false;
-         AV27GXV8 = 1;
-         while ( AV27GXV8 <= AV13Passwords.Count )
+         AV30GXV8 = 1;
+         while ( AV30GXV8 <= AV13Passwords.Count )
          {
-            AV18findPassword = ((GeneXus.Programs.wallet.SdtPassword)AV13Passwords.Item(AV27GXV8));
+            AV18findPassword = ((GeneXus.Programs.wallet.SdtPassword)AV13Passwords.Item(AV30GXV8));
             if ( AV18findPassword.gxTpr_Passwordid == AV10onePassword.gxTpr_Passwordid )
             {
                AV18findPassword.gxTpr_Password_tag.Clear();
-               AV28GXV9 = 1;
-               while ( AV28GXV9 <= AV15passwordTags.Count )
+               AV31GXV9 = 1;
+               while ( AV31GXV9 <= AV15passwordTags.Count )
                {
-                  AV5oneTag = ((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV28GXV9));
+                  AV5oneTag = ((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV31GXV9));
                   AV18findPassword.gxTpr_Password_tag.Add(AV5oneTag, 0);
-                  AV28GXV9 = (int)(AV28GXV9+1);
+                  AV31GXV9 = (int)(AV31GXV9+1);
                }
             }
-            AV27GXV8 = (int)(AV27GXV8+1);
+            AV30GXV8 = (int)(AV30GXV8+1);
          }
          AV14Passwords_and_tags.gxTpr_Password = AV13Passwords;
-         GXt_char1 = AV7error;
-         new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  "encpasswords.enc",  AV14Passwords_and_tags.ToJSonString(false, true), out  GXt_char1) ;
-         AV7error = GXt_char1;
-         AssignAttri("", false, "AV7error", AV7error);
+         /* Execute user subroutine: 'SAVE PASSWORDS_AND_TAGS' */
+         S122 ();
+         if (returnInSub) return;
          AV17websession.Set("ONE_PASSWORD_TO_WWTAGS", "");
          context.setWebReturnParms(new Object[] {});
          context.setWebReturnParmsMetadata(new Object[] {});
@@ -1162,6 +1163,89 @@ namespace GeneXus.Programs.wallet {
          returnInSub = true;
          if (true) return;
          /*  Sending Event outputs  */
+      }
+
+      protected void S112( )
+      {
+         /* 'READ PASSWORDS_AND_TAGS' Routine */
+         returnInSub = false;
+         AV20group_sdt.FromJSonString(AV17websession.Get("Group_EDIT"), null);
+         if ( AV20group_sdt.gxTpr_Grouptype == 40 )
+         {
+            GXt_char1 = AV7error;
+            new GeneXus.Programs.distributedcryptographylib.decryptjson(context ).execute(  AV20group_sdt.gxTpr_Encryptedtextshare,  AV20group_sdt.gxTpr_Encpassword, out  AV19clearText, out  GXt_char1) ;
+            AV7error = GXt_char1;
+            AssignAttri("", false, "AV7error", AV7error);
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV7error)) )
+            {
+               if ( StringUtil.StrCmp(AV19clearText, "_empty_") == 0 )
+               {
+                  AV19clearText = "";
+               }
+               AV14Passwords_and_tags.FromJSonString(AV19clearText, null);
+            }
+            else
+            {
+               GX_msglist.addItem(AV7error);
+            }
+         }
+         else
+         {
+            AV14Passwords_and_tags.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "encpasswords.enc", out  AV7error), null);
+         }
+      }
+
+      protected void S122( )
+      {
+         /* 'SAVE PASSWORDS_AND_TAGS' Routine */
+         returnInSub = false;
+         AV20group_sdt.FromJSonString(AV17websession.Get("Group_EDIT"), null);
+         if ( AV20group_sdt.gxTpr_Grouptype == 40 )
+         {
+            if ( AV20group_sdt.gxTpr_Amigroupowner )
+            {
+               GXt_char1 = AV7error;
+               GXt_char2 = AV20group_sdt.gxTpr_Encpassword;
+               GXt_char3 = AV20group_sdt.gxTpr_Encryptedtextshare;
+               new GeneXus.Programs.distributedcryptographylib.encryptjson(context ).execute(  AV14Passwords_and_tags.ToJSonString(false, true),  "", out  GXt_char2, out  GXt_char3, out  GXt_char1) ;
+               AV20group_sdt.gxTpr_Encpassword = GXt_char2;
+               AV20group_sdt.gxTpr_Encryptedtextshare = GXt_char3;
+               AV7error = GXt_char1;
+               AssignAttri("", false, "AV7error", AV7error);
+               AV17websession.Set("Group_EDIT", AV20group_sdt.ToJSonString(false, true));
+               new GeneXus.Programs.wallet.savepasswordforgroupusers(context ).execute( ) ;
+               AV20group_sdt.FromJSonString(AV17websession.Get("Group_EDIT"), null);
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV7error)) )
+               {
+                  GXt_char3 = AV7error;
+                  new GeneXus.Programs.wallet.registered.updategroup(context ).execute(  AV20group_sdt,  StringUtil.Trim( AV20group_sdt.gxTpr_Othergroup.gxTpr_Encpassword), out  AV21groupId, out  GXt_char3) ;
+                  AV7error = GXt_char3;
+                  AssignAttri("", false, "AV7error", AV7error);
+                  if ( String.IsNullOrEmpty(StringUtil.RTrim( AV7error)) )
+                  {
+                     GXt_char3 = AV7error;
+                     new GeneXus.Programs.wallet.registered.updategrouponlocalfiles(context ).execute(  AV20group_sdt, out  GXt_char3) ;
+                     AV7error = GXt_char3;
+                     AssignAttri("", false, "AV7error", AV7error);
+                  }
+                  else
+                  {
+                     GX_msglist.addItem("There was an error updating group on server: "+AV7error);
+                  }
+               }
+               else
+               {
+                  GX_msglist.addItem("There was an error encrypting Password: "+AV7error);
+               }
+            }
+         }
+         else
+         {
+            GXt_char3 = AV7error;
+            new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  "encpasswords.enc",  AV14Passwords_and_tags.ToJSonString(false, true), out  GXt_char3) ;
+            AV7error = GXt_char3;
+            AssignAttri("", false, "AV7error", AV7error);
+         }
       }
 
       public override void setparameters( Object[] obj )
@@ -1203,7 +1287,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202552012594877", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20257179275173", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1219,7 +1303,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/wwtags.js", "?202552012594877", false, true);
+         context.AddJavascriptSource("wallet/wwtags.js", "?20257179275173", false, true);
          /* End function include_jscripts */
       }
 
@@ -1306,7 +1390,7 @@ namespace GeneXus.Programs.wallet {
          }
          /* Single line edit */
          ROClassString = "Attribute";
-         GridonepasswordtagsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtltagid_Internalname,((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV19GXV1)).gxTpr_Tagid.ToString(),((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV19GXV1)).gxTpr_Tagid.ToString(),""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtltagid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)0,(int)edtavCtltagid_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)11,(short)0,(short)0,(short)0,(bool)true,(string)"",(string)"",(bool)false,(string)""});
+         GridonepasswordtagsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtltagid_Internalname,((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV22GXV1)).gxTpr_Tagid.ToString(),((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV22GXV1)).gxTpr_Tagid.ToString(),""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtltagid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)0,(int)edtavCtltagid_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)11,(short)0,(short)0,(short)0,(bool)true,(string)"",(string)"",(bool)false,(string)""});
          /* Subfile cell */
          if ( GridonepasswordtagsContainer.GetWrapped() == 1 )
          {
@@ -1315,7 +1399,7 @@ namespace GeneXus.Programs.wallet {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 13,'',false,'" + sGXsfl_11_idx + "',11)\"";
          ROClassString = "Attribute";
-         GridonepasswordtagsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlname_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV19GXV1)).gxTpr_Name),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,13);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlname_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlname_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)80,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         GridonepasswordtagsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlname_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtPassword_tag)AV15passwordTags.Item(AV22GXV1)).gxTpr_Name),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,13);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlname_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlname_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)80,(short)0,(short)0,(short)11,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          if ( GridonepasswordtagsContainer.GetWrapped() == 1 )
          {
@@ -1325,8 +1409,8 @@ namespace GeneXus.Programs.wallet {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 14,'',false,'',11)\"";
          ClassString = "Image" + " " + ((StringUtil.StrCmp(edtavDeleteimage_gximage, "")==0) ? "" : "GX_Image_"+edtavDeleteimage_gximage+"_Class");
          StyleString = "";
-         AV6deleteImage_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV6deleteImage))&&String.IsNullOrEmpty(StringUtil.RTrim( AV25Deleteimage_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV6deleteImage)));
-         sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV6deleteImage)) ? AV25Deleteimage_GXI : context.PathToRelativeUrl( AV6deleteImage));
+         AV6deleteImage_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV6deleteImage))&&String.IsNullOrEmpty(StringUtil.RTrim( AV28Deleteimage_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV6deleteImage)));
+         sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV6deleteImage)) ? AV28Deleteimage_GXI : context.PathToRelativeUrl( AV6deleteImage));
          GridonepasswordtagsRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtavDeleteimage_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(short)-1,(short)1,(string)"",(string)"delete",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)5,(string)edtavDeleteimage_Jsonclick,"'"+""+"'"+",false,"+"'"+"E\\'DELETE TAG\\'."+sGXsfl_11_idx+"'",(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"",(string)"",(string)""+TempTags,(string)"",(string)"",(short)1,(bool)AV6deleteImage_IsBlob,(bool)false,context.GetImageSrcSet( sImgUrl)});
          send_integrity_lvl_hashes2K2( ) ;
          GridonepasswordtagsContainer.AddRow(GridonepasswordtagsRow);
@@ -1537,15 +1621,20 @@ namespace GeneXus.Programs.wallet {
          EvtRowId = "";
          sEvtType = "";
          AV6deleteImage = "";
-         AV25Deleteimage_GXI = "";
+         AV28Deleteimage_GXI = "";
          AV17websession = context.GetSession();
-         AV7error = "";
          AV5oneTag = new GeneXus.Programs.wallet.SdtPassword_tag(context);
          AV8findOneTag = new GeneXus.Programs.wallet.SdtPassword_tag(context);
          AV11oneTagTemp = new GeneXus.Programs.wallet.SdtPassword_tag(context);
          GridonepasswordtagsRow = new GXWebRow();
          AV18findPassword = new GeneXus.Programs.wallet.SdtPassword(context);
+         AV20group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
+         AV7error = "";
+         AV19clearText = "";
          GXt_char1 = "";
+         GXt_char2 = "";
+         AV21groupId = Guid.Empty;
+         GXt_char3 = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          subGridonepasswordtags_Linesclass = "";
@@ -1575,18 +1664,18 @@ namespace GeneXus.Programs.wallet {
       private short subGridonepasswordtags_Collapsed ;
       private int nRC_GXsfl_11 ;
       private int nGXsfl_11_idx=1 ;
-      private int AV19GXV1 ;
+      private int AV22GXV1 ;
       private int subGridonepasswordtags_Islastpage ;
       private int edtavCtltagid_Enabled ;
       private int edtavCtlname_Enabled ;
       private int nGXsfl_11_fel_idx=1 ;
-      private int AV22GXV4 ;
-      private int AV23GXV5 ;
-      private int AV24GXV6 ;
+      private int AV25GXV4 ;
+      private int AV26GXV5 ;
+      private int AV27GXV6 ;
       private int nGXsfl_11_bak_idx=1 ;
-      private int AV26GXV7 ;
-      private int AV27GXV8 ;
-      private int AV28GXV9 ;
+      private int AV29GXV7 ;
+      private int AV30GXV8 ;
+      private int AV31GXV9 ;
       private int idxLst ;
       private int subGridonepasswordtags_Backcolor ;
       private int subGridonepasswordtags_Allbackcolor ;
@@ -1623,11 +1712,13 @@ namespace GeneXus.Programs.wallet {
       private string sEvtType ;
       private string edtavDeleteimage_Internalname ;
       private string sGXsfl_11_fel_idx="0001" ;
-      private string AV7error ;
       private string edtavCtlname_Title ;
       private string edtavCtlname_Internalname ;
       private string edtavDeleteimage_gximage ;
+      private string AV7error ;
       private string GXt_char1 ;
+      private string GXt_char2 ;
+      private string GXt_char3 ;
       private string edtavCtltagid_Internalname ;
       private string subGridonepasswordtags_Class ;
       private string subGridonepasswordtags_Linesclass ;
@@ -1648,9 +1739,11 @@ namespace GeneXus.Programs.wallet {
       private bool gx_BV11 ;
       private bool AV9found ;
       private bool AV6deleteImage_IsBlob ;
-      private string AV25Deleteimage_GXI ;
+      private string AV19clearText ;
+      private string AV28Deleteimage_GXI ;
       private string AV6deleteImage ;
       private Guid AV16tagName ;
+      private Guid AV21groupId ;
       private IGxSession AV17websession ;
       private GXWebGrid GridonepasswordtagsContainer ;
       private GXWebRow GridonepasswordtagsRow ;
@@ -1667,6 +1760,7 @@ namespace GeneXus.Programs.wallet {
       private GeneXus.Programs.wallet.SdtPassword_tag AV8findOneTag ;
       private GeneXus.Programs.wallet.SdtPassword_tag AV11oneTagTemp ;
       private GeneXus.Programs.wallet.SdtPassword AV18findPassword ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV20group_sdt ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

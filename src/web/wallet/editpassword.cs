@@ -310,6 +310,8 @@ namespace GeneXus.Programs.wallet {
 
       protected void send_integrity_footer_hashes( )
       {
+         GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISNEWPASSWORD", AV10isNewPassword);
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISNEWPASSWORD", GetSecureSignedToken( sPrefix, AV10isNewPassword, context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -327,6 +329,8 @@ namespace GeneXus.Programs.wallet {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"Onepassword", AV8onePassword);
          }
          GxWebStd.gx_hidden_field( context, sPrefix+"vNOTE", AV5note);
+         GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISNEWPASSWORD", AV10isNewPassword);
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISNEWPASSWORD", GetSecureSignedToken( sPrefix, AV10isNewPassword, context));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vONEPASSWORD", AV8onePassword);
@@ -888,6 +892,8 @@ namespace GeneXus.Programs.wallet {
 
       protected void send_integrity_lvl_hashes2J2( )
       {
+         GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISNEWPASSWORD", AV10isNewPassword);
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISNEWPASSWORD", GetSecureSignedToken( sPrefix, AV10isNewPassword, context));
       }
 
       protected void before_start_formulas( )
@@ -950,12 +956,18 @@ namespace GeneXus.Programs.wallet {
          /* Start Routine */
          returnInSub = false;
          AV8onePassword.FromJSonString(AV7websession.Get("ONE_PASSWORD_TO_ENCR"), null);
+         AV10isNewPassword = true;
+         AssignAttri(sPrefix, false, "AV10isNewPassword", AV10isNewPassword);
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISNEWPASSWORD", GetSecureSignedToken( sPrefix, AV10isNewPassword, context));
          if ( ! (Guid.Empty==AV8onePassword.gxTpr_Passwordid) )
          {
             AV6verifyPassword = AV8onePassword.gxTpr_Password;
             AssignAttri(sPrefix, false, "AV6verifyPassword", AV6verifyPassword);
             AV5note = AV8onePassword.gxTpr_Note;
             AssignAttri(sPrefix, false, "AV5note", AV5note);
+            AV10isNewPassword = false;
+            AssignAttri(sPrefix, false, "AV10isNewPassword", AV10isNewPassword);
+            GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISNEWPASSWORD", GetSecureSignedToken( sPrefix, AV10isNewPassword, context));
          }
       }
 
@@ -964,7 +976,7 @@ namespace GeneXus.Programs.wallet {
          /* 'Cancel' Routine */
          returnInSub = false;
          AV7websession.Set("ONE_PASSWORD_TO_ENCR", "");
-         this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "DoneWithPassword", new Object[] {}, true);
+         this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "DoneWithPassword", new Object[] {(bool)AV10isNewPassword}, true);
          /*  Sending Event outputs  */
       }
 
@@ -1008,7 +1020,7 @@ namespace GeneXus.Programs.wallet {
                         }
                         AV8onePassword.gxTpr_Note = AV5note;
                         AV7websession.Set("ONE_PASSWORD_TO_ENCR", AV8onePassword.ToJSonString(false, true));
-                        this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "DoneWithPassword", new Object[] {}, true);
+                        this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "DoneWithPassword", new Object[] {(bool)AV10isNewPassword}, true);
                      }
                   }
                }
@@ -1198,7 +1210,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202552012584334", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20257179264342", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1214,7 +1226,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/editpassword.js", "?202552012584334", false, true);
+         context.AddJavascriptSource("wallet/editpassword.js", "?20257179264342", false, true);
          context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true);
          context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true);
          /* End function include_jscripts */
@@ -1286,9 +1298,9 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
-         setEventMetadata("'CANCEL'","""{"handler":"E122J2","iparms":[]}""");
-         setEventMetadata("'SAVE'","""{"handler":"E132J2","iparms":[{"av":"AV8onePassword","fld":"vONEPASSWORD","type":""},{"av":"AV6verifyPassword","fld":"vVERIFYPASSWORD","type":"char"},{"av":"AV5note","fld":"vNOTE","type":"vchar"}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV10isNewPassword","fld":"vISNEWPASSWORD","hsh":true,"type":"boolean"}]}""");
+         setEventMetadata("'CANCEL'","""{"handler":"E122J2","iparms":[{"av":"AV10isNewPassword","fld":"vISNEWPASSWORD","hsh":true,"type":"boolean"}]}""");
+         setEventMetadata("'SAVE'","""{"handler":"E132J2","iparms":[{"av":"AV8onePassword","fld":"vONEPASSWORD","type":""},{"av":"AV6verifyPassword","fld":"vVERIFYPASSWORD","type":"char"},{"av":"AV5note","fld":"vNOTE","type":"vchar"},{"av":"AV10isNewPassword","fld":"vISNEWPASSWORD","hsh":true,"type":"boolean"}]""");
          setEventMetadata("'SAVE'",""","oparms":[{"av":"AV8onePassword","fld":"vONEPASSWORD","type":""}]}""");
          return  ;
       }
@@ -1392,6 +1404,7 @@ namespace GeneXus.Programs.wallet {
       private string sEvtType ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
+      private bool AV10isNewPassword ;
       private bool Note_Enabled ;
       private bool wbLoad ;
       private bool Rfr0gs ;

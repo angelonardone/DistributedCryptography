@@ -114,7 +114,6 @@ namespace GeneXus.Programs.wallet.registered {
             {
                AV9groupId = StringUtil.StrToGuid( gxfirstwebparm);
                AssignAttri("", false, "AV9groupId", AV9groupId.ToString());
-               GxWebStd.gx_hidden_field( context, "gxhash_vGROUPID", GetSecureSignedToken( "", AV9groupId, context));
             }
             if ( toggleJsOutput )
             {
@@ -261,8 +260,6 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void send_integrity_footer_hashes( )
       {
-         GxWebStd.gx_hidden_field( context, "vGROUPID", AV9groupId.ToString());
-         GxWebStd.gx_hidden_field( context, "gxhash_vGROUPID", GetSecureSignedToken( "", AV9groupId, context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -280,7 +277,6 @@ namespace GeneXus.Programs.wallet.registered {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("Group_sdt", AV8group_sdt);
          }
          GxWebStd.gx_hidden_field( context, "vGROUPID", AV9groupId.ToString());
-         GxWebStd.gx_hidden_field( context, "gxhash_vGROUPID", GetSecureSignedToken( "", AV9groupId, context));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vGROUP_SDT", AV8group_sdt);
@@ -324,6 +320,18 @@ namespace GeneXus.Programs.wallet.registered {
          if ( ! ( WebComp_Comp_signatures == null ) )
          {
             WebComp_Comp_signatures.componentjscripts();
+         }
+         if ( ! ( WebComp_Comp_bountywallet == null ) )
+         {
+            WebComp_Comp_bountywallet.componentjscripts();
+         }
+         if ( ! ( WebComp_Comp_passwords == null ) )
+         {
+            WebComp_Comp_passwords.componentjscripts();
+         }
+         if ( ! ( WebComp_Comp_tags == null ) )
+         {
+            WebComp_Comp_tags.componentjscripts();
          }
       }
 
@@ -588,6 +596,129 @@ namespace GeneXus.Programs.wallet.registered {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</div>") ;
+            context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"title4"+"\" style=\"display:none;\">") ;
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblBountywallet_title_Internalname, "Bounty Wallet", "", "", lblBountywallet_title_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Wallet/registered/SmartGroup.htm");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "Section", "start", "top", "", "display:none;", "div");
+            context.WriteHtmlText( "BountyWallet") ;
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            context.WriteHtmlText( "</div>") ;
+            context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"panel4"+"\" style=\"display:none;\">") ;
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divTabpage1table2_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            if ( ! isFullAjaxMode( ) )
+            {
+               /* WebComponent */
+               GxWebStd.gx_hidden_field( context, "W0056"+"", StringUtil.RTrim( WebComp_Comp_bountywallet_Component));
+               context.WriteHtmlText( "<div") ;
+               GxWebStd.ClassAttribute( context, "gxwebcomponent");
+               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0056"+""+"\""+"") ;
+               context.WriteHtmlText( ">") ;
+               if ( StringUtil.Len( WebComp_Comp_bountywallet_Component) != 0 )
+               {
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_bountywallet), StringUtil.Lower( WebComp_Comp_bountywallet_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0056"+"");
+                  }
+                  WebComp_Comp_bountywallet.componentdraw();
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_bountywallet), StringUtil.Lower( WebComp_Comp_bountywallet_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspEndCmp();
+                  }
+               }
+               context.WriteHtmlText( "</div>") ;
+            }
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            context.WriteHtmlText( "</div>") ;
+            context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"title5"+"\" style=\"display:none;\">") ;
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblPasswords_title_Internalname, "Passwords", "", "", lblPasswords_title_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Wallet/registered/SmartGroup.htm");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "Section", "start", "top", "", "display:none;", "div");
+            context.WriteHtmlText( "Passwords") ;
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            context.WriteHtmlText( "</div>") ;
+            context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"panel5"+"\" style=\"display:none;\">") ;
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divTabpage1table3_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            if ( ! isFullAjaxMode( ) )
+            {
+               /* WebComponent */
+               GxWebStd.gx_hidden_field( context, "W0064"+"", StringUtil.RTrim( WebComp_Comp_passwords_Component));
+               context.WriteHtmlText( "<div") ;
+               GxWebStd.ClassAttribute( context, "gxwebcomponent");
+               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0064"+""+"\""+"") ;
+               context.WriteHtmlText( ">") ;
+               if ( StringUtil.Len( WebComp_Comp_passwords_Component) != 0 )
+               {
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_passwords), StringUtil.Lower( WebComp_Comp_passwords_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0064"+"");
+                  }
+                  WebComp_Comp_passwords.componentdraw();
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_passwords), StringUtil.Lower( WebComp_Comp_passwords_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspEndCmp();
+                  }
+               }
+               context.WriteHtmlText( "</div>") ;
+            }
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            context.WriteHtmlText( "</div>") ;
+            context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"title6"+"\" style=\"display:none;\">") ;
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblTags_title_Internalname, "Tags", "", "", lblTags_title_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Wallet/registered/SmartGroup.htm");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "Section", "start", "top", "", "display:none;", "div");
+            context.WriteHtmlText( "Tags") ;
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            context.WriteHtmlText( "</div>") ;
+            context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"panel6"+"\" style=\"display:none;\">") ;
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divTabpage1table4_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            if ( ! isFullAjaxMode( ) )
+            {
+               /* WebComponent */
+               GxWebStd.gx_hidden_field( context, "W0072"+"", StringUtil.RTrim( WebComp_Comp_tags_Component));
+               context.WriteHtmlText( "<div") ;
+               GxWebStd.ClassAttribute( context, "gxwebcomponent");
+               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0072"+""+"\""+"") ;
+               context.WriteHtmlText( ">") ;
+               if ( StringUtil.Len( WebComp_Comp_tags_Component) != 0 )
+               {
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_tags), StringUtil.Lower( WebComp_Comp_tags_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0072"+"");
+                  }
+                  WebComp_Comp_tags.componentdraw();
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_tags), StringUtil.Lower( WebComp_Comp_tags_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspEndCmp();
+                  }
+               }
+               context.WriteHtmlText( "</div>") ;
+            }
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            context.WriteHtmlText( "</div>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -749,6 +880,54 @@ namespace GeneXus.Programs.wallet.registered {
                            }
                            WebComp_Comp_signatures_Component = OldComp_signatures;
                         }
+                        else if ( nCmpId == 56 )
+                        {
+                           OldComp_bountywallet = cgiGet( "W0056");
+                           if ( ( StringUtil.Len( OldComp_bountywallet) == 0 ) || ( StringUtil.StrCmp(OldComp_bountywallet, WebComp_Comp_bountywallet_Component) != 0 ) )
+                           {
+                              WebComp_Comp_bountywallet = getWebComponent(GetType(), "GeneXus.Programs", OldComp_bountywallet, new Object[] {context} );
+                              WebComp_Comp_bountywallet.ComponentInit();
+                              WebComp_Comp_bountywallet.Name = "OldComp_bountywallet";
+                              WebComp_Comp_bountywallet_Component = OldComp_bountywallet;
+                           }
+                           if ( StringUtil.Len( WebComp_Comp_bountywallet_Component) != 0 )
+                           {
+                              WebComp_Comp_bountywallet.componentprocess("W0056", "", sEvt);
+                           }
+                           WebComp_Comp_bountywallet_Component = OldComp_bountywallet;
+                        }
+                        else if ( nCmpId == 64 )
+                        {
+                           OldComp_passwords = cgiGet( "W0064");
+                           if ( ( StringUtil.Len( OldComp_passwords) == 0 ) || ( StringUtil.StrCmp(OldComp_passwords, WebComp_Comp_passwords_Component) != 0 ) )
+                           {
+                              WebComp_Comp_passwords = getWebComponent(GetType(), "GeneXus.Programs", OldComp_passwords, new Object[] {context} );
+                              WebComp_Comp_passwords.ComponentInit();
+                              WebComp_Comp_passwords.Name = "OldComp_passwords";
+                              WebComp_Comp_passwords_Component = OldComp_passwords;
+                           }
+                           if ( StringUtil.Len( WebComp_Comp_passwords_Component) != 0 )
+                           {
+                              WebComp_Comp_passwords.componentprocess("W0064", "", sEvt);
+                           }
+                           WebComp_Comp_passwords_Component = OldComp_passwords;
+                        }
+                        else if ( nCmpId == 72 )
+                        {
+                           OldComp_tags = cgiGet( "W0072");
+                           if ( ( StringUtil.Len( OldComp_tags) == 0 ) || ( StringUtil.StrCmp(OldComp_tags, WebComp_Comp_tags_Component) != 0 ) )
+                           {
+                              WebComp_Comp_tags = getWebComponent(GetType(), "GeneXus.Programs", OldComp_tags, new Object[] {context} );
+                              WebComp_Comp_tags.ComponentInit();
+                              WebComp_Comp_tags.Name = "OldComp_tags";
+                              WebComp_Comp_tags_Component = OldComp_tags;
+                           }
+                           if ( StringUtil.Len( WebComp_Comp_tags_Component) != 0 )
+                           {
+                              WebComp_Comp_tags.componentprocess("W0072", "", sEvt);
+                           }
+                           WebComp_Comp_tags_Component = OldComp_tags;
+                        }
                      }
                      context.wbHandled = 1;
                   }
@@ -894,6 +1073,36 @@ namespace GeneXus.Programs.wallet.registered {
                }
             }
          }
+         if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+         {
+            if ( 1 != 0 )
+            {
+               if ( StringUtil.Len( WebComp_Comp_bountywallet_Component) != 0 )
+               {
+                  WebComp_Comp_bountywallet.componentstart();
+               }
+            }
+         }
+         if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+         {
+            if ( 1 != 0 )
+            {
+               if ( StringUtil.Len( WebComp_Comp_passwords_Component) != 0 )
+               {
+                  WebComp_Comp_passwords.componentstart();
+               }
+            }
+         }
+         if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+         {
+            if ( 1 != 0 )
+            {
+               if ( StringUtil.Len( WebComp_Comp_tags_Component) != 0 )
+               {
+                  WebComp_Comp_tags.componentstart();
+               }
+            }
+         }
          gxdyncontrolsrefreshing = true;
          fix_multi_value_controls( ) ;
          gxdyncontrolsrefreshing = false;
@@ -986,6 +1195,9 @@ namespace GeneXus.Programs.wallet.registered {
             }
             this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)2});
             this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)3});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)4});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)5});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)6});
          }
          else if ( ( AV8group_sdt.gxTpr_Grouptype == 10 ) && ! AV8group_sdt.gxTpr_Amigroupowner )
          {
@@ -1015,9 +1227,15 @@ namespace GeneXus.Programs.wallet.registered {
             }
             this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)2});
             this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)3});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)4});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)5});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)6});
          }
-         else if ( ( AV8group_sdt.gxTpr_Grouptype == 200 ) && AV8group_sdt.gxTpr_Amigroupowner )
+         else if ( ( AV8group_sdt.gxTpr_Grouptype == 30 ) && AV8group_sdt.gxTpr_Amigroupowner )
          {
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)4});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)5});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)6});
             /* Object Property */
             if ( true )
             {
@@ -1064,7 +1282,7 @@ namespace GeneXus.Programs.wallet.registered {
                if ( StringUtil.Len( WebComp_Comp_walletbalance_Component) != 0 )
                {
                   WebComp_Comp_walletbalance.setjustcreated();
-                  WebComp_Comp_walletbalance.componentprepare(new Object[] {(string)"W0040",(string)"",(Guid)AV9groupId});
+                  WebComp_Comp_walletbalance.componentprepare(new Object[] {(string)"W0040",(string)"",AV8group_sdt.gxTpr_Groupid});
                   WebComp_Comp_walletbalance.componentbind(new Object[] {(string)""});
                }
                if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_walletbalance )
@@ -1088,7 +1306,7 @@ namespace GeneXus.Programs.wallet.registered {
                if ( StringUtil.Len( WebComp_Comp_signatures_Component) != 0 )
                {
                   WebComp_Comp_signatures.setjustcreated();
-                  WebComp_Comp_signatures.componentprepare(new Object[] {(string)"W0048",(string)"",(Guid)AV9groupId});
+                  WebComp_Comp_signatures.componentprepare(new Object[] {(string)"W0048",(string)"",AV8group_sdt.gxTpr_Groupid});
                   WebComp_Comp_signatures.componentbind(new Object[] {(string)""});
                }
                if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_signatures )
@@ -1099,8 +1317,11 @@ namespace GeneXus.Programs.wallet.registered {
                }
             }
          }
-         else if ( ( AV8group_sdt.gxTpr_Grouptype == 200 ) && ! AV8group_sdt.gxTpr_Amigroupowner )
+         else if ( ( AV8group_sdt.gxTpr_Grouptype == 30 ) && ! AV8group_sdt.gxTpr_Amigroupowner )
          {
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)4});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)5});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)6});
             /* Object Property */
             if ( true )
             {
@@ -1147,7 +1368,7 @@ namespace GeneXus.Programs.wallet.registered {
                if ( StringUtil.Len( WebComp_Comp_walletbalance_Component) != 0 )
                {
                   WebComp_Comp_walletbalance.setjustcreated();
-                  WebComp_Comp_walletbalance.componentprepare(new Object[] {(string)"W0040",(string)"",(Guid)AV9groupId});
+                  WebComp_Comp_walletbalance.componentprepare(new Object[] {(string)"W0040",(string)"",AV8group_sdt.gxTpr_Groupid});
                   WebComp_Comp_walletbalance.componentbind(new Object[] {(string)""});
                }
                if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_walletbalance )
@@ -1171,7 +1392,7 @@ namespace GeneXus.Programs.wallet.registered {
                if ( StringUtil.Len( WebComp_Comp_signatures_Component) != 0 )
                {
                   WebComp_Comp_signatures.setjustcreated();
-                  WebComp_Comp_signatures.componentprepare(new Object[] {(string)"W0048",(string)"",(Guid)AV9groupId});
+                  WebComp_Comp_signatures.componentprepare(new Object[] {(string)"W0048",(string)"",AV8group_sdt.gxTpr_Groupid});
                   WebComp_Comp_signatures.componentbind(new Object[] {(string)""});
                }
                if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_signatures )
@@ -1181,6 +1402,273 @@ namespace GeneXus.Programs.wallet.registered {
                   context.httpAjaxContext.ajax_rspEndCmp();
                }
             }
+         }
+         else if ( ( AV8group_sdt.gxTpr_Grouptype == 20 ) && AV8group_sdt.gxTpr_Amigroupowner )
+         {
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)3});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)2});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)5});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)6});
+            /* Object Property */
+            if ( true )
+            {
+               bDynCreated_Comp_grouptype = true;
+            }
+            if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_grouptype_Component), StringUtil.Lower( "Wallet.registered.TimeWalletConfig")) != 0 )
+            {
+               WebComp_Comp_grouptype = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.timewalletconfig", new Object[] {context} );
+               WebComp_Comp_grouptype.ComponentInit();
+               WebComp_Comp_grouptype.Name = "Wallet.registered.TimeWalletConfig";
+               WebComp_Comp_grouptype_Component = "Wallet.registered.TimeWalletConfig";
+            }
+            if ( StringUtil.Len( WebComp_Comp_grouptype_Component) != 0 )
+            {
+               WebComp_Comp_grouptype.setjustcreated();
+               WebComp_Comp_grouptype.componentprepare(new Object[] {(string)"W0032",(string)""});
+               WebComp_Comp_grouptype.componentbind(new Object[] {});
+            }
+            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_grouptype )
+            {
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0032"+"");
+               WebComp_Comp_grouptype.componentdraw();
+               context.httpAjaxContext.ajax_rspEndCmp();
+            }
+            if ( ! AV8group_sdt.gxTpr_Isactive )
+            {
+               this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)4});
+            }
+            else
+            {
+               /* Object Property */
+               if ( true )
+               {
+                  bDynCreated_Comp_bountywallet = true;
+               }
+               if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_bountywallet_Component), StringUtil.Lower( "Wallet.registered.BountyWallet")) != 0 )
+               {
+                  WebComp_Comp_bountywallet = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.bountywallet", new Object[] {context} );
+                  WebComp_Comp_bountywallet.ComponentInit();
+                  WebComp_Comp_bountywallet.Name = "Wallet.registered.BountyWallet";
+                  WebComp_Comp_bountywallet_Component = "Wallet.registered.BountyWallet";
+               }
+               if ( StringUtil.Len( WebComp_Comp_bountywallet_Component) != 0 )
+               {
+                  WebComp_Comp_bountywallet.setjustcreated();
+                  WebComp_Comp_bountywallet.componentprepare(new Object[] {(string)"W0056",(string)"",AV8group_sdt.gxTpr_Bountygroupid});
+                  WebComp_Comp_bountywallet.componentbind(new Object[] {(string)""});
+               }
+               if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_bountywallet )
+               {
+                  context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0056"+"");
+                  WebComp_Comp_bountywallet.componentdraw();
+                  context.httpAjaxContext.ajax_rspEndCmp();
+               }
+            }
+         }
+         else if ( ( AV8group_sdt.gxTpr_Grouptype == 20 ) && ! AV8group_sdt.gxTpr_Amigroupowner && ( AV8group_sdt.gxTpr_Subgrouptype == 30 ) )
+         {
+            /* Object Property */
+            if ( true )
+            {
+               bDynCreated_Comp_grouptype = true;
+            }
+            if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_grouptype_Component), StringUtil.Lower( "Wallet.registered.TimedWalletBackupNotOwner")) != 0 )
+            {
+               WebComp_Comp_grouptype = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.timedwalletbackupnotowner", new Object[] {context} );
+               WebComp_Comp_grouptype.ComponentInit();
+               WebComp_Comp_grouptype.Name = "Wallet.registered.TimedWalletBackupNotOwner";
+               WebComp_Comp_grouptype_Component = "Wallet.registered.TimedWalletBackupNotOwner";
+            }
+            if ( StringUtil.Len( WebComp_Comp_grouptype_Component) != 0 )
+            {
+               WebComp_Comp_grouptype.setjustcreated();
+               WebComp_Comp_grouptype.componentprepare(new Object[] {(string)"W0032",(string)""});
+               WebComp_Comp_grouptype.componentbind(new Object[] {});
+            }
+            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_grouptype )
+            {
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0032"+"");
+               WebComp_Comp_grouptype.componentdraw();
+               context.httpAjaxContext.ajax_rspEndCmp();
+            }
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)2});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)3});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)4});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)5});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)6});
+         }
+         else if ( ( AV8group_sdt.gxTpr_Grouptype == 20 ) && ! AV8group_sdt.gxTpr_Amigroupowner && ( AV8group_sdt.gxTpr_Subgrouptype == 20 ) )
+         {
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)2});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)3});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)5});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)6});
+            if ( ! AV8group_sdt.gxTpr_Isactive )
+            {
+               /* Object Property */
+               if ( true )
+               {
+                  bDynCreated_Comp_grouptype = true;
+               }
+               if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_grouptype_Component), StringUtil.Lower( "Wallet.registered.TimedWalletBountyNotOwner")) != 0 )
+               {
+                  WebComp_Comp_grouptype = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.timedwalletbountynotowner", new Object[] {context} );
+                  WebComp_Comp_grouptype.ComponentInit();
+                  WebComp_Comp_grouptype.Name = "Wallet.registered.TimedWalletBountyNotOwner";
+                  WebComp_Comp_grouptype_Component = "Wallet.registered.TimedWalletBountyNotOwner";
+               }
+               if ( StringUtil.Len( WebComp_Comp_grouptype_Component) != 0 )
+               {
+                  WebComp_Comp_grouptype.setjustcreated();
+                  WebComp_Comp_grouptype.componentprepare(new Object[] {(string)"W0032",(string)""});
+                  WebComp_Comp_grouptype.componentbind(new Object[] {});
+               }
+               if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_grouptype )
+               {
+                  context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0032"+"");
+                  WebComp_Comp_grouptype.componentdraw();
+                  context.httpAjaxContext.ajax_rspEndCmp();
+               }
+               this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)4});
+            }
+            else
+            {
+               this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)1});
+               /* Object Property */
+               if ( true )
+               {
+                  bDynCreated_Comp_bountywallet = true;
+               }
+               if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_bountywallet_Component), StringUtil.Lower( "Wallet.registered.BountyWallet")) != 0 )
+               {
+                  WebComp_Comp_bountywallet = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.bountywallet", new Object[] {context} );
+                  WebComp_Comp_bountywallet.ComponentInit();
+                  WebComp_Comp_bountywallet.Name = "Wallet.registered.BountyWallet";
+                  WebComp_Comp_bountywallet_Component = "Wallet.registered.BountyWallet";
+               }
+               if ( StringUtil.Len( WebComp_Comp_bountywallet_Component) != 0 )
+               {
+                  WebComp_Comp_bountywallet.setjustcreated();
+                  WebComp_Comp_bountywallet.componentprepare(new Object[] {(string)"W0056",(string)"",AV8group_sdt.gxTpr_Groupid});
+                  WebComp_Comp_bountywallet.componentbind(new Object[] {(string)""});
+               }
+               if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_bountywallet )
+               {
+                  context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0056"+"");
+                  WebComp_Comp_bountywallet.componentdraw();
+                  context.httpAjaxContext.ajax_rspEndCmp();
+               }
+            }
+         }
+         else if ( ( AV8group_sdt.gxTpr_Grouptype == 40 ) && AV8group_sdt.gxTpr_Amigroupowner )
+         {
+            /* Object Property */
+            if ( true )
+            {
+               bDynCreated_Comp_grouptype = true;
+            }
+            if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_grouptype_Component), StringUtil.Lower( "Wallet.registered.SmartGroupEncryptedPasswords")) != 0 )
+            {
+               WebComp_Comp_grouptype = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.smartgroupencryptedpasswords", new Object[] {context} );
+               WebComp_Comp_grouptype.ComponentInit();
+               WebComp_Comp_grouptype.Name = "Wallet.registered.SmartGroupEncryptedPasswords";
+               WebComp_Comp_grouptype_Component = "Wallet.registered.SmartGroupEncryptedPasswords";
+            }
+            if ( StringUtil.Len( WebComp_Comp_grouptype_Component) != 0 )
+            {
+               WebComp_Comp_grouptype.setjustcreated();
+               WebComp_Comp_grouptype.componentprepare(new Object[] {(string)"W0032",(string)""});
+               WebComp_Comp_grouptype.componentbind(new Object[] {});
+            }
+            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_grouptype )
+            {
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0032"+"");
+               WebComp_Comp_grouptype.componentdraw();
+               context.httpAjaxContext.ajax_rspEndCmp();
+            }
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)2});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)3});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)4});
+            /* Object Property */
+            if ( true )
+            {
+               bDynCreated_Comp_passwords = true;
+            }
+            if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_passwords_Component), StringUtil.Lower( "Wallet.PasswordsWC")) != 0 )
+            {
+               WebComp_Comp_passwords = getWebComponent(GetType(), "GeneXus.Programs", "wallet.passwordswc", new Object[] {context} );
+               WebComp_Comp_passwords.ComponentInit();
+               WebComp_Comp_passwords.Name = "Wallet.PasswordsWC";
+               WebComp_Comp_passwords_Component = "Wallet.PasswordsWC";
+            }
+            if ( StringUtil.Len( WebComp_Comp_passwords_Component) != 0 )
+            {
+               WebComp_Comp_passwords.setjustcreated();
+               WebComp_Comp_passwords.componentprepare(new Object[] {(string)"W0064",(string)"",AV8group_sdt.gxTpr_Groupid});
+               WebComp_Comp_passwords.componentbind(new Object[] {(string)""});
+            }
+            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_passwords )
+            {
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0064"+"");
+               WebComp_Comp_passwords.componentdraw();
+               context.httpAjaxContext.ajax_rspEndCmp();
+            }
+            /* Object Property */
+            if ( true )
+            {
+               bDynCreated_Comp_tags = true;
+            }
+            if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_tags_Component), StringUtil.Lower( "Wallet.TagsWC")) != 0 )
+            {
+               WebComp_Comp_tags = getWebComponent(GetType(), "GeneXus.Programs", "wallet.tagswc", new Object[] {context} );
+               WebComp_Comp_tags.ComponentInit();
+               WebComp_Comp_tags.Name = "Wallet.TagsWC";
+               WebComp_Comp_tags_Component = "Wallet.TagsWC";
+            }
+            if ( StringUtil.Len( WebComp_Comp_tags_Component) != 0 )
+            {
+               WebComp_Comp_tags.setjustcreated();
+               WebComp_Comp_tags.componentprepare(new Object[] {(string)"W0072",(string)"",AV8group_sdt.gxTpr_Groupid});
+               WebComp_Comp_tags.componentbind(new Object[] {(string)""});
+            }
+            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_tags )
+            {
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0072"+"");
+               WebComp_Comp_tags.componentdraw();
+               context.httpAjaxContext.ajax_rspEndCmp();
+            }
+         }
+         else if ( ( AV8group_sdt.gxTpr_Grouptype == 40 ) && ! AV8group_sdt.gxTpr_Amigroupowner )
+         {
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)1});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)2});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)3});
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)4});
+            /* Object Property */
+            if ( true )
+            {
+               bDynCreated_Comp_passwords = true;
+            }
+            if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_passwords_Component), StringUtil.Lower( "Wallet.PasswordsWC")) != 0 )
+            {
+               WebComp_Comp_passwords = getWebComponent(GetType(), "GeneXus.Programs", "wallet.passwordswc", new Object[] {context} );
+               WebComp_Comp_passwords.ComponentInit();
+               WebComp_Comp_passwords.Name = "Wallet.PasswordsWC";
+               WebComp_Comp_passwords_Component = "Wallet.PasswordsWC";
+            }
+            if ( StringUtil.Len( WebComp_Comp_passwords_Component) != 0 )
+            {
+               WebComp_Comp_passwords.setjustcreated();
+               WebComp_Comp_passwords.componentprepare(new Object[] {(string)"W0064",(string)"",AV8group_sdt.gxTpr_Groupid});
+               WebComp_Comp_passwords.componentbind(new Object[] {(string)""});
+            }
+            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Comp_passwords )
+            {
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0064"+"");
+               WebComp_Comp_passwords.componentdraw();
+               context.httpAjaxContext.ajax_rspEndCmp();
+            }
+            this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)6});
          }
          else
          {
@@ -1213,7 +1701,6 @@ namespace GeneXus.Programs.wallet.registered {
          initialize();
          AV9groupId = (Guid)getParm(obj,0);
          AssignAttri("", false, "AV9groupId", AV9groupId.ToString());
-         GxWebStd.gx_hidden_field( context, "gxhash_vGROUPID", GetSecureSignedToken( "", AV9groupId, context));
       }
 
       public override string getresponse( string sGXDynURL )
@@ -1263,6 +1750,27 @@ namespace GeneXus.Programs.wallet.registered {
                WebComp_Comp_signatures.componentthemes();
             }
          }
+         if ( ! ( WebComp_Comp_bountywallet == null ) )
+         {
+            if ( StringUtil.Len( WebComp_Comp_bountywallet_Component) != 0 )
+            {
+               WebComp_Comp_bountywallet.componentthemes();
+            }
+         }
+         if ( ! ( WebComp_Comp_passwords == null ) )
+         {
+            if ( StringUtil.Len( WebComp_Comp_passwords_Component) != 0 )
+            {
+               WebComp_Comp_passwords.componentthemes();
+            }
+         }
+         if ( ! ( WebComp_Comp_tags == null ) )
+         {
+            if ( StringUtil.Len( WebComp_Comp_tags_Component) != 0 )
+            {
+               WebComp_Comp_tags.componentthemes();
+            }
+         }
          bool outputEnabled = isOutputEnabled( );
          if ( context.isSpaRequest( ) )
          {
@@ -1271,7 +1779,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202552012594114", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20257179274413", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1287,7 +1795,7 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/registered/smartgroup.js", "?202552012594114", false, true);
+         context.AddJavascriptSource("wallet/registered/smartgroup.js", "?20257179274413", false, true);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);
@@ -1302,11 +1810,9 @@ namespace GeneXus.Programs.wallet.registered {
          cmbavCtlgrouptype.WebTags = "";
          cmbavCtlgrouptype.addItem("0", "Select Group Type", 0);
          cmbavCtlgrouptype.addItem("10", "Wallet Backup", 0);
-         cmbavCtlgrouptype.addItem("200", "Delegation Multi-Signature Wallet", 0);
-         cmbavCtlgrouptype.addItem("300", "Shared based Multi-Signature Wallet", 0);
-         cmbavCtlgrouptype.addItem("800", "Synchronous Delegation Mult-Signature Wallet", 0);
-         cmbavCtlgrouptype.addItem("600", "Concensus File Vault", 0);
-         cmbavCtlgrouptype.addItem("700", "Concensus Timed File Vault", 0);
+         cmbavCtlgrouptype.addItem("30", "Delegation Multi-Signature Wallet", 0);
+         cmbavCtlgrouptype.addItem("40", "Encrypted Passwords", 0);
+         cmbavCtlgrouptype.addItem("20", "Time Encrypted Vault", 0);
          if ( cmbavCtlgrouptype.ItemCount > 0 )
          {
             AV8group_sdt.gxTpr_Grouptype = (short)(Math.Round(NumberUtil.Val( cmbavCtlgrouptype.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(AV8group_sdt.gxTpr_Grouptype), 4, 0))), "."), 18, MidpointRounding.ToEven));
@@ -1336,6 +1842,12 @@ namespace GeneXus.Programs.wallet.registered {
          divTabpage2table_Internalname = "TABPAGE2TABLE";
          lblSignatures_title_Internalname = "SIGNATURES_TITLE";
          divTabpage1table1_Internalname = "TABPAGE1TABLE1";
+         lblBountywallet_title_Internalname = "BOUNTYWALLET_TITLE";
+         divTabpage1table2_Internalname = "TABPAGE1TABLE2";
+         lblPasswords_title_Internalname = "PASSWORDS_TITLE";
+         divTabpage1table3_Internalname = "TABPAGE1TABLE3";
+         lblTags_title_Internalname = "TAGS_TITLE";
+         divTabpage1table4_Internalname = "TABPAGE1TABLE4";
          Tabs_Internalname = "TABS";
          divMaintable_Internalname = "MAINTABLE";
          Form.Internalname = "FORM";
@@ -1363,7 +1875,7 @@ namespace GeneXus.Programs.wallet.registered {
          cmbavCtlgrouptype.Enabled = 0;
          Tabs_Historymanagement = Convert.ToBoolean( 0);
          Tabs_Class = "Tab";
-         Tabs_Pagecount = 3;
+         Tabs_Pagecount = 6;
          Form.Headerrawhtml = "";
          Form.Background = "";
          Form.Textcolor = 0;
@@ -1382,8 +1894,8 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GXV3","fld":"CTLAMIGROUPOWNER","type":"boolean"},{"av":"GXV4","fld":"CTLISACTIVE","type":"boolean"},{"av":"AV9groupId","fld":"vGROUPID","hsh":true,"type":"guid"}]""");
-         setEventMetadata("REFRESH",""","oparms":[{"av":"AV8group_sdt","fld":"vGROUP_SDT","type":""},{"ctrl":"COMP_GROUPTYPE"},{"ctrl":"COMP_WALLETBALANCE"},{"ctrl":"COMP_SIGNATURES"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GXV3","fld":"CTLAMIGROUPOWNER","type":"boolean"},{"av":"GXV4","fld":"CTLISACTIVE","type":"boolean"}]""");
+         setEventMetadata("REFRESH",""","oparms":[{"av":"AV8group_sdt","fld":"vGROUP_SDT","type":""},{"ctrl":"COMP_PASSWORDS"},{"ctrl":"COMP_GROUPTYPE"},{"ctrl":"COMP_TAGS"},{"ctrl":"COMP_BOUNTYWALLET"},{"ctrl":"COMP_WALLETBALANCE"},{"ctrl":"COMP_SIGNATURES"}]}""");
          setEventMetadata("GLOBALEVENTS.REFRESHSMARTGROUP","""{"handler":"E121G2","iparms":[]}""");
          setEventMetadata("VALIDV_GXV1","""{"handler":"Validv_Gxv1","iparms":[]}""");
          return  ;
@@ -1424,6 +1936,15 @@ namespace GeneXus.Programs.wallet.registered {
          lblSignatures_title_Jsonclick = "";
          WebComp_Comp_signatures_Component = "";
          OldComp_signatures = "";
+         lblBountywallet_title_Jsonclick = "";
+         WebComp_Comp_bountywallet_Component = "";
+         OldComp_bountywallet = "";
+         lblPasswords_title_Jsonclick = "";
+         WebComp_Comp_passwords_Component = "";
+         OldComp_passwords = "";
+         lblTags_title_Jsonclick = "";
+         WebComp_Comp_tags_Component = "";
+         OldComp_tags = "";
          sEvt = "";
          EvtGridId = "";
          EvtRowId = "";
@@ -1434,6 +1955,9 @@ namespace GeneXus.Programs.wallet.registered {
          WebComp_Comp_grouptype = new GeneXus.Http.GXNullWebComponent();
          WebComp_Comp_walletbalance = new GeneXus.Http.GXNullWebComponent();
          WebComp_Comp_signatures = new GeneXus.Http.GXNullWebComponent();
+         WebComp_Comp_bountywallet = new GeneXus.Http.GXNullWebComponent();
+         WebComp_Comp_passwords = new GeneXus.Http.GXNullWebComponent();
+         WebComp_Comp_tags = new GeneXus.Http.GXNullWebComponent();
          /* GeneXus formulas. */
          cmbavCtlgrouptype.Enabled = 0;
          edtavCtlgroupname_Enabled = 0;
@@ -1488,6 +2012,21 @@ namespace GeneXus.Programs.wallet.registered {
       private string divTabpage1table1_Internalname ;
       private string WebComp_Comp_signatures_Component ;
       private string OldComp_signatures ;
+      private string lblBountywallet_title_Internalname ;
+      private string lblBountywallet_title_Jsonclick ;
+      private string divTabpage1table2_Internalname ;
+      private string WebComp_Comp_bountywallet_Component ;
+      private string OldComp_bountywallet ;
+      private string lblPasswords_title_Internalname ;
+      private string lblPasswords_title_Jsonclick ;
+      private string divTabpage1table3_Internalname ;
+      private string WebComp_Comp_passwords_Component ;
+      private string OldComp_passwords ;
+      private string lblTags_title_Internalname ;
+      private string lblTags_title_Jsonclick ;
+      private string divTabpage1table4_Internalname ;
+      private string WebComp_Comp_tags_Component ;
+      private string OldComp_tags ;
       private string sEvt ;
       private string EvtGridId ;
       private string EvtRowId ;
@@ -1503,12 +2042,18 @@ namespace GeneXus.Programs.wallet.registered {
       private bool bDynCreated_Comp_grouptype ;
       private bool bDynCreated_Comp_walletbalance ;
       private bool bDynCreated_Comp_signatures ;
+      private bool bDynCreated_Comp_bountywallet ;
+      private bool bDynCreated_Comp_passwords ;
+      private bool bDynCreated_Comp_tags ;
       private Guid AV9groupId ;
       private Guid wcpOAV9groupId ;
       private IGxSession AV5websession ;
       private GXWebComponent WebComp_Comp_grouptype ;
       private GXWebComponent WebComp_Comp_walletbalance ;
       private GXWebComponent WebComp_Comp_signatures ;
+      private GXWebComponent WebComp_Comp_bountywallet ;
+      private GXWebComponent WebComp_Comp_passwords ;
+      private GXWebComponent WebComp_Comp_tags ;
       private GXUserControl ucTabs ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;

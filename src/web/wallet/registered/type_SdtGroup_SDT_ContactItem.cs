@@ -54,6 +54,8 @@ namespace GeneXus.Programs.wallet.registered
 
 			gxTv_SdtGroup_SDT_ContactItem_Extpubkeymultisigchange = "";
 
+			gxTv_SdtGroup_SDT_ContactItem_Extpubkeytimebountyreceiving = "";
+
 		}
 
 		public SdtGroup_SDT_ContactItem(IGxContext context)
@@ -173,6 +175,9 @@ namespace GeneXus.Programs.wallet.registered
 
 
 			AddObjectProperty("extPubKeyMultiSigChange", gxTpr_Extpubkeymultisigchange, false);
+
+
+			AddObjectProperty("extPubKeyTimeBountyReceiving", gxTpr_Extpubkeytimebountyreceiving, false);
 
 			if (gxTv_SdtGroup_SDT_ContactItem_Musigsignatures != null)
 			{
@@ -494,6 +499,22 @@ namespace GeneXus.Programs.wallet.registered
 
 
 
+		[SoapElement(ElementName="extPubKeyTimeBountyReceiving")]
+		[XmlElement(ElementName="extPubKeyTimeBountyReceiving")]
+		public string gxTpr_Extpubkeytimebountyreceiving
+		{
+			get {
+				return gxTv_SdtGroup_SDT_ContactItem_Extpubkeytimebountyreceiving; 
+			}
+			set {
+				gxTv_SdtGroup_SDT_ContactItem_Extpubkeytimebountyreceiving = value;
+				SetDirty("Extpubkeytimebountyreceiving");
+			}
+		}
+
+
+
+
 		[SoapElement(ElementName="muSigSignatures" )]
 		[XmlArray(ElementName="muSigSignatures"  )]
 		[XmlArrayItemAttribute(ElementName="Item" , IsNullable=false )]
@@ -584,6 +605,7 @@ namespace GeneXus.Programs.wallet.registered
 
 			gxTv_SdtGroup_SDT_ContactItem_Extpubkeymultisigreceiving = "";
 			gxTv_SdtGroup_SDT_ContactItem_Extpubkeymultisigchange = "";
+			gxTv_SdtGroup_SDT_ContactItem_Extpubkeytimebountyreceiving = "";
 
 			gxTv_SdtGroup_SDT_ContactItem_Musigsignatures_N = true;
 
@@ -655,6 +677,9 @@ namespace GeneXus.Programs.wallet.registered
 		 
 
 		protected string gxTv_SdtGroup_SDT_ContactItem_Extpubkeymultisigchange;
+		 
+
+		protected string gxTv_SdtGroup_SDT_ContactItem_Extpubkeytimebountyreceiving;
 		 
 		protected bool gxTv_SdtGroup_SDT_ContactItem_Musigsignatures_N;
 		protected GXBaseCollection<GeneXus.Programs.wallet.registered.SdtMuSigSignatures> gxTv_SdtGroup_SDT_ContactItem_Musigsignatures = null;  
@@ -932,10 +957,24 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
-		[JsonPropertyName("muSigSignatures")]
+		[JsonPropertyName("extPubKeyTimeBountyReceiving")]
 		[JsonPropertyOrder(18)]
+		[DataMember(Name="extPubKeyTimeBountyReceiving", Order=18)]
+		public  string gxTpr_Extpubkeytimebountyreceiving
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Extpubkeytimebountyreceiving);
+
+			}
+			set { 
+				 sdt.gxTpr_Extpubkeytimebountyreceiving = value;
+			}
+		}
+
+		[JsonPropertyName("muSigSignatures")]
+		[JsonPropertyOrder(19)]
 		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-		[DataMember(Name="muSigSignatures", Order=18, EmitDefaultValue=false)]
+		[DataMember(Name="muSigSignatures", Order=19, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.wallet.registered.SdtMuSigSignatures_RESTInterface> gxTpr_Musigsignatures
 		{
 			get { 

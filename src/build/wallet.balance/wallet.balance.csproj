@@ -42,6 +42,7 @@
 
 	<ItemGroup>
 		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluser.cs" />
+		<Compile Include = "$(WebDirectory)\hsm\inithsm.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\argon2encryption.cs" />
 		<Compile Include = "$(WebDirectory)\nostr\settnostrconnectionid.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setextkey.cs" />

@@ -39,12 +39,14 @@
 		<Compile Include = "$(WebDirectory)\electrum\gxdomainmessagetype.cs" />
 		<Compile Include = "$(WebDirectory)\nostr\gxdomainconstants.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainnetworktype.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\gxdomainconstants.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gxdomainmessagetype.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\gxdomainconnectiontype.cs" />
 		<Compile Include = "$(WebDirectory)\nostr\gxdomainkindtype.cs" />
 		<Compile Include = "$(WebDirectory)\gxdomaingamerrormessages.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomaincreatekeytype.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainmnemonicnumberwords.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\gxdomainsubgrouptype.cs" />
 		<Compile Include = "$(WebDirectory)\gxinternetlib\type_SdtGxInternetLibTcp.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gxdomainestimatesmartfeetype.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\type_SdtGroupProcessor.cs" />
@@ -57,7 +59,7 @@
 		<Compile Include = "$(WebDirectory)\gxdomainfckeditorobjectinterface.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainextendedkeytype.cs" />
 		<Compile Include = "$(WebDirectory)\gxdomaingamusergender.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\gxdomainconstants.cs" />
+		<Compile Include = "$(WebDirectory)\hsm\type_SdtHsmManager.cs" />
 		<Compile Include = "$(WebDirectory)\gxdomaintoastrtype.cs" />
 		<Compile Include = "$(WebDirectory)\GxFullTextSearchReindexer.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gxdomainintconstants.cs" />

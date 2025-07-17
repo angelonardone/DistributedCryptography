@@ -94,6 +94,10 @@ namespace GeneXus.Programs.wallet
 			{
 				AddObjectProperty("Password_tag", gxTv_SdtPassword_Password_tag, false);
 			}
+			if (gxTv_SdtPassword_Contact != null)
+			{
+				AddObjectProperty("Contact", gxTv_SdtPassword_Contact, false);
+			}
 			return;
 		}
 		#endregion
@@ -265,6 +269,60 @@ namespace GeneXus.Programs.wallet
 
 		}
 
+
+		[SoapElement(ElementName="Contact" )]
+		[XmlArray(ElementName="Contact"  )]
+		[XmlArrayItemAttribute(ElementName="Item" , IsNullable=false )]
+		public GxSimpleCollection<Guid> gxTpr_Contact_GxSimpleCollection
+		{
+			get {
+				if ( gxTv_SdtPassword_Contact == null )
+				{
+					gxTv_SdtPassword_Contact = new GxSimpleCollection<Guid>( );
+				}
+				return gxTv_SdtPassword_Contact;
+			}
+			set {
+				gxTv_SdtPassword_Contact_N = false;
+				gxTv_SdtPassword_Contact = value;
+			}
+		}
+
+		[XmlIgnore]
+		public GxSimpleCollection<Guid> gxTpr_Contact
+		{
+			get {
+				if ( gxTv_SdtPassword_Contact == null )
+				{
+					gxTv_SdtPassword_Contact = new GxSimpleCollection<Guid>();
+				}
+				gxTv_SdtPassword_Contact_N = false;
+				SetDirty("Contact");
+				return gxTv_SdtPassword_Contact ;
+			}
+			set {
+				gxTv_SdtPassword_Contact_N = false;
+				gxTv_SdtPassword_Contact = value;
+				SetDirty("Contact");
+			}
+		}
+
+		public void gxTv_SdtPassword_Contact_SetNull()
+		{
+			gxTv_SdtPassword_Contact_N = true;
+			gxTv_SdtPassword_Contact = null;
+		}
+
+		public bool gxTv_SdtPassword_Contact_IsNull()
+		{
+			return gxTv_SdtPassword_Contact == null;
+		}
+		public bool ShouldSerializegxTpr_Contact_GxSimpleCollection_Json()
+		{
+			return gxTv_SdtPassword_Contact != null && gxTv_SdtPassword_Contact.Count > 0;
+
+		}
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -294,6 +352,9 @@ namespace GeneXus.Programs.wallet
 			gxTv_SdtPassword_Note = "";
 
 			gxTv_SdtPassword_Password_tag_N = true;
+
+
+			gxTv_SdtPassword_Contact_N = true;
 
 			return  ;
 		}
@@ -326,6 +387,8 @@ namespace GeneXus.Programs.wallet
 		 
 		protected bool gxTv_SdtPassword_Password_tag_N;
 		protected GXBaseCollection<GeneXus.Programs.wallet.SdtPassword_tag> gxTv_SdtPassword_Password_tag = null;  
+		protected bool gxTv_SdtPassword_Contact_N;
+		protected GxSimpleCollection<Guid> gxTv_SdtPassword_Contact = null;  
 
 
 		#endregion
@@ -457,6 +520,24 @@ namespace GeneXus.Programs.wallet
 			}
 			set { 
 				value.LoadCollection(sdt.gxTpr_Password_tag);
+			}
+		}
+
+		[JsonPropertyName("Contact")]
+		[JsonPropertyOrder(8)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+		[DataMember(Name="Contact", Order=8, EmitDefaultValue=false)]
+		public  GxSimpleCollection<Guid> gxTpr_Contact
+		{
+			get { 
+				if (sdt.ShouldSerializegxTpr_Contact_GxSimpleCollection_Json())
+					return sdt.gxTpr_Contact;
+				else
+					return null;
+
+			}
+			set { 
+				sdt.gxTpr_Contact = value ;
 			}
 		}
 

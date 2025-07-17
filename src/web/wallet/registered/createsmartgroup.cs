@@ -708,17 +708,29 @@ namespace GeneXus.Programs.wallet.registered {
             else
             {
                AV7group_sdt.gxTpr_Grouptype = AV9groupType;
+               if ( AV9groupType == 40 )
+               {
+                  AV7group_sdt.gxTpr_Isactive = true;
+                  GXt_char1 = AV6error;
+                  GXt_char2 = AV7group_sdt.gxTpr_Encpassword;
+                  GXt_char3 = AV7group_sdt.gxTpr_Encryptedtextshare;
+                  new GeneXus.Programs.distributedcryptographylib.encryptjson(context ).execute(  "_empty_",  "", out  GXt_char2, out  GXt_char3, out  GXt_char1) ;
+                  AV7group_sdt.gxTpr_Encpassword = GXt_char2;
+                  AV7group_sdt.gxTpr_Encryptedtextshare = GXt_char3;
+                  AV6error = GXt_char1;
+                  AssignAttri("", false, "AV6error", AV6error);
+               }
                AV7group_sdt.gxTpr_Groupname = StringUtil.Trim( AV8groupName);
                AV7group_sdt.gxTpr_Amigroupowner = true;
                if ( (Guid.Empty==AV7group_sdt.gxTpr_Groupid) )
                {
-                  GXt_char1 = AV6error;
-                  new GeneXus.Programs.wallet.registered.creategroup(context ).execute(  AV7group_sdt, out  AV10grpupId, out  GXt_char1) ;
-                  AV6error = GXt_char1;
+                  GXt_char3 = AV6error;
+                  new GeneXus.Programs.wallet.registered.creategroup(context ).execute(  AV7group_sdt, out  AV10grpupId, out  GXt_char3) ;
+                  AV6error = GXt_char3;
                   AssignAttri("", false, "AV6error", AV6error);
-                  GXt_char1 = AV13encryptionKey;
-                  new GeneXus.Programs.wallet.getlastjasonencritionkey(context ).execute( out  GXt_char1) ;
-                  AV13encryptionKey = GXt_char1;
+                  GXt_char3 = AV13encryptionKey;
+                  new GeneXus.Programs.wallet.getlastjasonencritionkey(context ).execute( out  GXt_char3) ;
+                  AV13encryptionKey = GXt_char3;
                   if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
                   {
                      AV7group_sdt.gxTpr_Groupid = AV10grpupId;
@@ -818,7 +830,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202552012594112", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20257179274373", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -834,7 +846,7 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/registered/createsmartgroup.js", "?202552012594112", false, true);
+         context.AddJavascriptSource("wallet/registered/createsmartgroup.js", "?20257179274373", false, true);
          /* End function include_jscripts */
       }
 
@@ -844,11 +856,9 @@ namespace GeneXus.Programs.wallet.registered {
          cmbavGrouptype.WebTags = "";
          cmbavGrouptype.addItem("0", "Select Group Type", 0);
          cmbavGrouptype.addItem("10", "Wallet Backup", 0);
-         cmbavGrouptype.addItem("200", "Delegation Multi-Signature Wallet", 0);
-         cmbavGrouptype.addItem("300", "Shared based Multi-Signature Wallet", 0);
-         cmbavGrouptype.addItem("800", "Synchronous Delegation Mult-Signature Wallet", 0);
-         cmbavGrouptype.addItem("600", "Concensus File Vault", 0);
-         cmbavGrouptype.addItem("700", "Concensus Timed File Vault", 0);
+         cmbavGrouptype.addItem("30", "Delegation Multi-Signature Wallet", 0);
+         cmbavGrouptype.addItem("40", "Encrypted Passwords", 0);
+         cmbavGrouptype.addItem("20", "Time Encrypted Vault", 0);
          if ( cmbavGrouptype.ItemCount > 0 )
          {
             AV9groupType = (short)(Math.Round(NumberUtil.Val( cmbavGrouptype.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(AV9groupType), 4, 0))), "."), 18, MidpointRounding.ToEven));
@@ -938,9 +948,11 @@ namespace GeneXus.Programs.wallet.registered {
          EvtRowId = "";
          sEvtType = "";
          AV6error = "";
+         GXt_char1 = "";
+         GXt_char2 = "";
          AV10grpupId = Guid.Empty;
          AV13encryptionKey = "";
-         GXt_char1 = "";
+         GXt_char3 = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          /* GeneXus formulas. */
@@ -983,8 +995,10 @@ namespace GeneXus.Programs.wallet.registered {
       private string EvtRowId ;
       private string sEvtType ;
       private string AV6error ;
-      private string AV13encryptionKey ;
       private string GXt_char1 ;
+      private string GXt_char2 ;
+      private string AV13encryptionKey ;
+      private string GXt_char3 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool wbLoad ;
