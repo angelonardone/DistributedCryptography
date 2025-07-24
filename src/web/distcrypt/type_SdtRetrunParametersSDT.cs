@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtRetrunParametersSDT
 			Description: RetrunParametersSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -225,7 +225,7 @@ namespace GeneXus.Programs.distcrypt
 		public  string gxTpr_Externaltoken
 		{
 			get { 
-				return sdt.gxTpr_Externaltoken;
+				return StringUtil.RTrim( sdt.gxTpr_Externaltoken);
 
 			}
 			set { 

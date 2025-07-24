@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtSDTAddressHistory
 			Description: SDTAddressHistory
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -678,7 +678,7 @@ namespace GeneXus.Programs.wallet
 		public  string gxTpr_Receivedtransactionhex
 		{
 			get { 
-				return sdt.gxTpr_Receivedtransactionhex;
+				return StringUtil.RTrim( sdt.gxTpr_Receivedtransactionhex);
 
 			}
 			set { 
@@ -734,7 +734,7 @@ namespace GeneXus.Programs.wallet
 		public  string gxTpr_Description
 		{
 			get { 
-				return sdt.gxTpr_Description;
+				return StringUtil.RTrim( sdt.gxTpr_Description);
 
 			}
 			set { 

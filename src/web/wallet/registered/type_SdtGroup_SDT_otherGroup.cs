@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtGroup_SDT_otherGroup
 			Description: otherGroup
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -367,7 +367,7 @@ namespace GeneXus.Programs.wallet.registered
 		public  string gxTpr_Signature
 		{
 			get { 
-				return sdt.gxTpr_Signature;
+				return StringUtil.RTrim( sdt.gxTpr_Signature);
 
 			}
 			set { 

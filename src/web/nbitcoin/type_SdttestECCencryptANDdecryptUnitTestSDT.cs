@@ -1,7 +1,7 @@
 /*
 				   File: type_SdttestECCencryptANDdecryptUnitTestSDT
 			Description: testECCencryptANDdecryptUnitTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -236,7 +236,7 @@ namespace GeneXus.Programs.nbitcoin
 		public  string gxTpr_Testcaseid
 		{
 			get { 
-				return sdt.gxTpr_Testcaseid;
+				return StringUtil.RTrim( sdt.gxTpr_Testcaseid);
 
 			}
 			set { 
@@ -250,7 +250,7 @@ namespace GeneXus.Programs.nbitcoin
 		public  string gxTpr_Originalcleartext
 		{
 			get { 
-				return sdt.gxTpr_Originalcleartext;
+				return StringUtil.RTrim( sdt.gxTpr_Originalcleartext);
 
 			}
 			set { 
@@ -294,7 +294,7 @@ namespace GeneXus.Programs.nbitcoin
 		public  string gxTpr_Msgisverified
 		{
 			get { 
-				return sdt.gxTpr_Msgisverified;
+				return StringUtil.RTrim( sdt.gxTpr_Msgisverified);
 
 			}
 			set { 

@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtSDT_receive_msg
 			Description: SDT_receive_msg
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -228,7 +228,7 @@ namespace GeneXus.Programs.nostr
 		public  string gxTpr_Topic
 		{
 			get { 
-				return sdt.gxTpr_Topic;
+				return StringUtil.RTrim( sdt.gxTpr_Topic);
 
 			}
 			set { 
@@ -256,7 +256,7 @@ namespace GeneXus.Programs.nostr
 		public  string gxTpr_Msessageenc
 		{
 			get { 
-				return sdt.gxTpr_Msessageenc;
+				return StringUtil.RTrim( sdt.gxTpr_Msessageenc);
 
 			}
 			set { 

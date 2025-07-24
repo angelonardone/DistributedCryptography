@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtserializeEventUnitTestSDT
 			Description: serializeEventUnitTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -432,7 +432,7 @@ namespace GeneXus.Programs.nostr
 		public  string gxTpr_Testcaseid
 		{
 			get { 
-				return sdt.gxTpr_Testcaseid;
+				return StringUtil.RTrim( sdt.gxTpr_Testcaseid);
 
 			}
 			set { 
@@ -482,7 +482,7 @@ namespace GeneXus.Programs.nostr
 		public  string gxTpr_Msgnostrevent
 		{
 			get { 
-				return sdt.gxTpr_Msgnostrevent;
+				return StringUtil.RTrim( sdt.gxTpr_Msgnostrevent);
 
 			}
 			set { 
@@ -510,7 +510,7 @@ namespace GeneXus.Programs.nostr
 		public  string gxTpr_Serialized
 		{
 			get { 
-				return sdt.gxTpr_Serialized;
+				return StringUtil.RTrim( sdt.gxTpr_Serialized);
 
 			}
 			set { 
@@ -524,7 +524,7 @@ namespace GeneXus.Programs.nostr
 		public  string gxTpr_Expectedserialized
 		{
 			get { 
-				return sdt.gxTpr_Expectedserialized;
+				return StringUtil.RTrim( sdt.gxTpr_Expectedserialized);
 
 			}
 			set { 
@@ -538,7 +538,7 @@ namespace GeneXus.Programs.nostr
 		public  string gxTpr_Msgserialized
 		{
 			get { 
-				return sdt.gxTpr_Msgserialized;
+				return StringUtil.RTrim( sdt.gxTpr_Msgserialized);
 
 			}
 			set { 
@@ -580,7 +580,7 @@ namespace GeneXus.Programs.nostr
 		public  string gxTpr_Msgerror
 		{
 			get { 
-				return sdt.gxTpr_Msgerror;
+				return StringUtil.RTrim( sdt.gxTpr_Msgerror);
 
 			}
 			set { 

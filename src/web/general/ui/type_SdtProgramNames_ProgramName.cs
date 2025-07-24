@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtProgramNames_ProgramName
 			Description: ProgramNames
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -191,7 +191,7 @@ namespace GeneXus.Programs.general.ui
 		public  string gxTpr_Name
 		{
 			get { 
-				return sdt.gxTpr_Name;
+				return StringUtil.RTrim( sdt.gxTpr_Name);
 
 			}
 			set { 
@@ -205,7 +205,7 @@ namespace GeneXus.Programs.general.ui
 		public  string gxTpr_Description
 		{
 			get { 
-				return sdt.gxTpr_Description;
+				return StringUtil.RTrim( sdt.gxTpr_Description);
 
 			}
 			set { 
@@ -219,7 +219,7 @@ namespace GeneXus.Programs.general.ui
 		public  string gxTpr_Link
 		{
 			get { 
-				return sdt.gxTpr_Link;
+				return StringUtil.RTrim( sdt.gxTpr_Link);
 
 			}
 			set { 

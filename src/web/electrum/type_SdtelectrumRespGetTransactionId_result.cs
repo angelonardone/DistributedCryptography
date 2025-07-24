@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtelectrumRespGetTransactionId_result
 			Description: result
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -568,7 +568,7 @@ namespace GeneXus.Programs.electrum
 		public  string gxTpr_Blockhash
 		{
 			get { 
-				return sdt.gxTpr_Blockhash;
+				return StringUtil.RTrim( sdt.gxTpr_Blockhash);
 
 			}
 			set { 
@@ -610,7 +610,7 @@ namespace GeneXus.Programs.electrum
 		public  string gxTpr_Hash
 		{
 			get { 
-				return sdt.gxTpr_Hash;
+				return StringUtil.RTrim( sdt.gxTpr_Hash);
 
 			}
 			set { 
@@ -624,7 +624,7 @@ namespace GeneXus.Programs.electrum
 		public  string gxTpr_Hex
 		{
 			get { 
-				return sdt.gxTpr_Hex;
+				return StringUtil.RTrim( sdt.gxTpr_Hex);
 
 			}
 			set { 
@@ -680,7 +680,7 @@ namespace GeneXus.Programs.electrum
 		public  string gxTpr_Txid
 		{
 			get { 
-				return sdt.gxTpr_Txid;
+				return StringUtil.RTrim( sdt.gxTpr_Txid);
 
 			}
 			set { 

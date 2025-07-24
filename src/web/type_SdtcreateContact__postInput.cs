@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtcreateContact__postInput
 			Description: createContact__postInput
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -165,7 +165,7 @@ namespace GeneXus.Programs
 		public  string gxTpr_Encryptedkey
 		{
 			get { 
-				return sdt.gxTpr_Encryptedkey;
+				return StringUtil.RTrim( sdt.gxTpr_Encryptedkey);
 
 			}
 			set { 
@@ -179,7 +179,7 @@ namespace GeneXus.Programs
 		public  string gxTpr_Contactencrypted
 		{
 			get { 
-				return sdt.gxTpr_Contactencrypted;
+				return StringUtil.RTrim( sdt.gxTpr_Contactencrypted);
 
 			}
 			set { 

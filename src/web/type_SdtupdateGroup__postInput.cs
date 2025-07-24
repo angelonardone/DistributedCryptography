@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtupdateGroup__postInput
 			Description: updateGroup__postInput
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -201,7 +201,7 @@ namespace GeneXus.Programs
 		public  string gxTpr_Groupencryptedkey
 		{
 			get { 
-				return sdt.gxTpr_Groupencryptedkey;
+				return StringUtil.RTrim( sdt.gxTpr_Groupencryptedkey);
 
 			}
 			set { 
@@ -215,7 +215,7 @@ namespace GeneXus.Programs
 		public  string gxTpr_Groupencrypted
 		{
 			get { 
-				return sdt.gxTpr_Groupencrypted;
+				return StringUtil.RTrim( sdt.gxTpr_Groupencrypted);
 
 			}
 			set { 

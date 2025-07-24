@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtApiResponse
 			Description: ApiResponse
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -224,7 +224,7 @@ namespace GeneXus.Programs.openapicommon
 		public  string gxTpr_Content
 		{
 			get { 
-				return sdt.gxTpr_Content;
+				return StringUtil.RTrim( sdt.gxTpr_Content);
 
 			}
 			set { 

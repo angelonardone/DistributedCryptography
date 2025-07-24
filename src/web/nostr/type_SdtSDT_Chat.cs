@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtSDT_Chat
 			Description: SDT_Chat
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -273,7 +273,7 @@ namespace GeneXus.Programs.nostr
 		public  string gxTpr_From
 		{
 			get { 
-				return sdt.gxTpr_From;
+				return StringUtil.RTrim( sdt.gxTpr_From);
 
 			}
 			set { 
@@ -287,7 +287,7 @@ namespace GeneXus.Programs.nostr
 		public  string gxTpr_To
 		{
 			get { 
-				return sdt.gxTpr_To;
+				return StringUtil.RTrim( sdt.gxTpr_To);
 
 			}
 			set { 
@@ -315,7 +315,7 @@ namespace GeneXus.Programs.nostr
 		public  string gxTpr_Message
 		{
 			get { 
-				return sdt.gxTpr_Message;
+				return StringUtil.RTrim( sdt.gxTpr_Message);
 
 			}
 			set { 

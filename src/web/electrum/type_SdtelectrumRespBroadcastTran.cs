@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtelectrumRespBroadcastTran
 			Description: electrumRespBroadcastTran
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -238,7 +238,7 @@ namespace GeneXus.Programs.electrum
 		public  string gxTpr_Id
 		{
 			get { 
-				return sdt.gxTpr_Id;
+				return StringUtil.RTrim( sdt.gxTpr_Id);
 
 			}
 			set { 
@@ -252,7 +252,7 @@ namespace GeneXus.Programs.electrum
 		public  string gxTpr_Jsonrpc
 		{
 			get { 
-				return sdt.gxTpr_Jsonrpc;
+				return StringUtil.RTrim( sdt.gxTpr_Jsonrpc);
 
 			}
 			set { 
@@ -266,7 +266,7 @@ namespace GeneXus.Programs.electrum
 		public  string gxTpr_Result
 		{
 			get { 
-				return sdt.gxTpr_Result;
+				return StringUtil.RTrim( sdt.gxTpr_Result);
 
 			}
 			set { 

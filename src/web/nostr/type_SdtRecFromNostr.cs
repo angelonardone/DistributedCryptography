@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtRecFromNostr
 			Description: RecFromNostr
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -341,7 +341,7 @@ namespace GeneXus.Programs.nostr
 		public  string gxTpr_Messge
 		{
 			get { 
-				return sdt.gxTpr_Messge;
+				return StringUtil.RTrim( sdt.gxTpr_Messge);
 
 			}
 			set { 

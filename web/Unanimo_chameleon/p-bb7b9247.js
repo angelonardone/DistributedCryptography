@@ -1,0 +1,2 @@
+const i=()=>{if(typeof window!=="undefined"){window.chameleonControlsLibrary??={reports:{accessibility:true}};window.chameleonControlsLibrary.reports??={accessibility:true}}};i();const s=()=>{window.chameleonControlsLibrary.reports.accessibility=true};const o=()=>{window.chameleonControlsLibrary.reports.accessibility=false};const e=()=>window.chameleonControlsLibrary.reports.accessibility;export{i as a,e as c,o as d,s as e};
+//# sourceMappingURL=p-bb7b9247.js.map

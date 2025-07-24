@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtelectrumRespGetTransactionId_result_vinItem
 			Description: vin
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -352,7 +352,7 @@ namespace GeneXus.Programs.electrum
 		public  string gxTpr_Txid
 		{
 			get { 
-				return sdt.gxTpr_Txid;
+				return StringUtil.RTrim( sdt.gxTpr_Txid);
 
 			}
 			set { 

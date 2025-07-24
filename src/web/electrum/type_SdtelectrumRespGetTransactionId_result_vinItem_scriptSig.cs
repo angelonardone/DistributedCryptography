@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtelectrumRespGetTransactionId_result_vinItem_scriptSig
 			Description: scriptSig
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -165,7 +165,7 @@ namespace GeneXus.Programs.electrum
 		public  string gxTpr_Asm
 		{
 			get { 
-				return sdt.gxTpr_Asm;
+				return StringUtil.RTrim( sdt.gxTpr_Asm);
 
 			}
 			set { 
@@ -179,7 +179,7 @@ namespace GeneXus.Programs.electrum
 		public  string gxTpr_Hex
 		{
 			get { 
-				return sdt.gxTpr_Hex;
+				return StringUtil.RTrim( sdt.gxTpr_Hex);
 
 			}
 			set { 

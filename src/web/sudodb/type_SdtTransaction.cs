@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtTransaction
 			Description: Transaction
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -332,7 +332,7 @@ namespace GeneXus.Programs.sudodb
 		public  string gxTpr_Hex
 		{
 			get { 
-				return sdt.gxTpr_Hex;
+				return StringUtil.RTrim( sdt.gxTpr_Hex);
 
 			}
 			set { 

@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtMuSigSignatures
 			Description: MuSigSignatures
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -536,7 +536,7 @@ namespace GeneXus.Programs.wallet.registered
 		public  string gxTpr_Description
 		{
 			get { 
-				return sdt.gxTpr_Description;
+				return StringUtil.RTrim( sdt.gxTpr_Description);
 
 			}
 			set { 
@@ -678,7 +678,7 @@ namespace GeneXus.Programs.wallet.registered
 		public  string gxTpr_Sendersignature
 		{
 			get { 
-				return sdt.gxTpr_Sendersignature;
+				return StringUtil.RTrim( sdt.gxTpr_Sendersignature);
 
 			}
 			set { 

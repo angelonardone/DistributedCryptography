@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtCreateExPubtKeyUnitTestSDT
 			Description: CreateExPubtKeyUnitTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -407,7 +407,7 @@ namespace GeneXus.Programs.nbitcoin
 		public  string gxTpr_Testcaseid
 		{
 			get { 
-				return sdt.gxTpr_Testcaseid;
+				return StringUtil.RTrim( sdt.gxTpr_Testcaseid);
 
 			}
 			set { 
@@ -499,7 +499,7 @@ namespace GeneXus.Programs.nbitcoin
 		public  string gxTpr_Msgkeyinfo
 		{
 			get { 
-				return sdt.gxTpr_Msgkeyinfo;
+				return StringUtil.RTrim( sdt.gxTpr_Msgkeyinfo);
 
 			}
 			set { 
@@ -541,7 +541,7 @@ namespace GeneXus.Programs.nbitcoin
 		public  string gxTpr_Msgerror
 		{
 			get { 
-				return sdt.gxTpr_Msgerror;
+				return StringUtil.RTrim( sdt.gxTpr_Msgerror);
 
 			}
 			set { 

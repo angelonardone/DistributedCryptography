@@ -1,7 +1,7 @@
 /*
 				   File: type_Sdttest_BIP32_in
 			Description: test_BIP32_in
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */

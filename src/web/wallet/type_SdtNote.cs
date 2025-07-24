@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtNote
 			Description: Note
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -256,7 +256,7 @@ namespace GeneXus.Programs.wallet
 		public  string gxTpr_Notetext
 		{
 			get { 
-				return sdt.gxTpr_Notetext;
+				return StringUtil.RTrim( sdt.gxTpr_Notetext);
 
 			}
 			set { 

@@ -1566,6 +1566,7 @@ namespace GeneXus.Programs {
                                     bool bIsBlob ,
                                     bool bIsAttribute ,
                                     string sImgSrcSet ,
+                                    string sLoading ,
                                     string sCallerPgm )
       {
          string ClassHTML;
@@ -1576,7 +1577,7 @@ namespace GeneXus.Programs {
          }
          if ( ( nReadOnly == 1 ) || ( nEnabled == 0 ) )
          {
-            GxWebStd.gx_bitmap_readonly( context, sInternalName, sImageURL, sLinkURL, sLinkTarget, sAccesskey, sThemeName, nVisible, nEnabled, sAlternateText, sTooltipText, nBorderWidth, nAutoresize, nWidth, nWidthUnit, nHeight, nHeightUnit, nVerticalSpace, nHorizontalSpace, nJScriptCode, sUserOnClickCode, sEventName, sStyleString, ClassHTML, sColumnClassString, sColumnHeaderClassString, sAlign, sImageTags, sUseMap, sJsDynCode, sCallerPgm, sImgSrcSet);
+            GxWebStd.gx_bitmap_readonly( context, sInternalName, sImageURL, sLinkURL, sLinkTarget, sAccesskey, sThemeName, nVisible, nEnabled, sAlternateText, sTooltipText, nBorderWidth, nAutoresize, nWidth, nWidthUnit, nHeight, nHeightUnit, nVerticalSpace, nHorizontalSpace, nJScriptCode, sUserOnClickCode, sEventName, sStyleString, ClassHTML, sColumnClassString, sColumnHeaderClassString, sAlign, sImageTags, sUseMap, sJsDynCode, sCallerPgm, sImgSrcSet, sLoading);
          }
          else
          {
@@ -1653,7 +1654,8 @@ namespace GeneXus.Programs {
                                              string sUseMap ,
                                              string sJsDynCode ,
                                              string sCallerPgm ,
-                                             string sImgSrcSet )
+                                             string sImgSrcSet ,
+                                             string sLoading )
       {
          string sEventJsCode;
          string sCapAKey;
@@ -1787,6 +1789,14 @@ namespace GeneXus.Programs {
          context.WriteHtmlText( " alt=\"") ;
          context.SendWebValue( (String.IsNullOrEmpty(StringUtil.RTrim( sAlternateText)) ? sTooltipText : sAlternateText)) ;
          context.WriteHtmlText( "\"") ;
+         if ( StringUtil.StrCmp(sLoading, "eager") == 0 )
+         {
+            context.WriteHtmlText( " loading=\"eager\"") ;
+         }
+         if ( StringUtil.StrCmp(sLoading, "lazy") == 0 )
+         {
+            context.WriteHtmlText( " loading=\"lazy\"") ;
+         }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( sTooltipText)) )
          {
             context.WriteHtmlText( " title=\"") ;
@@ -2475,8 +2485,8 @@ namespace GeneXus.Programs {
                   {
                      context.WriteHtmlText( GXUtil.HtmlDocType( )) ;
                      context.WriteHtmlText( "<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\"><title>Close window</title>") ;
-                     context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 123260), false, true);
-                     context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 123260), false, true);
+                     context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 310420), false, true);
+                     context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 310420), false, true);
                      context.WriteHtmlText( "</head><body><script type=\"text/javascript\">") ;
                      context.WriteHtmlText( "gx.fn.closeWindowServerScript(") ;
                      context.WriteHtmlText( context.getWebReturnParmsJS( )) ;
@@ -2884,7 +2894,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_single_line_edit( context, sCtrlName, sValue, sFormatedValue, sTagsLocal, sEventName, sLinkURL, sLinkTarget, sTooltipText, sPlaceholder, sUserOnClickCode, nJScriptCode, sClassString, sStyleString, sROClassString, sColumnClassString, sColumnHeaderClassString, nVisible, nEnabled, nRTEnabled, sType, sStep, nWidth, nWidthUnit, nHeight, nHeightUnit, nLength, nIsPassword, nFormat, nParentId, bHasTheme, nAutoComplete, nAutoCorrection, bSendHidden, sDomainType, "", false, "", "");
          if ( ( nRTEnabled != 0 ) || ( nEnabled != 0 ) )
          {
-            GxWebStd.gx_bitmap_readonly( context, sCtrlName+"_geoLocMe", context.convertURL( "locateMe"), "", "", "", "", nVisible, 1, context.GetMessage( "GXM_locatemeoption", ""), context.GetMessage( "GXM_locatemeoption", ""), 0, 0, 0, nWidthUnit, 0, nHeightUnit, 0, 0, 4, sUserOnClickCode, sEventName, sStyleString, "GeoLocOption", "", "", "", "", "", "gx.geolocation.getMyPosition(this);", "", "");
+            GxWebStd.gx_bitmap_readonly( context, sCtrlName+"_geoLocMe", context.convertURL( "locateMe"), "", "", "", "", nVisible, 1, context.GetMessage( "GXM_locatemeoption", ""), context.GetMessage( "GXM_locatemeoption", ""), 0, 0, 0, nWidthUnit, 0, nHeightUnit, 0, 0, 4, sUserOnClickCode, sEventName, sStyleString, "GeoLocOption", "", "", "", "", "", "gx.geolocation.getMyPosition(this);", "", "", "none");
          }
       }
 

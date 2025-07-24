@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtExtKeyCreate
 			Description: ExtKeyCreate
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -422,7 +422,7 @@ namespace GeneXus.Programs.nbitcoin
 		public  string gxTpr_Createtext
 		{
 			get { 
-				return sdt.gxTpr_Createtext;
+				return StringUtil.RTrim( sdt.gxTpr_Createtext);
 
 			}
 			set { 

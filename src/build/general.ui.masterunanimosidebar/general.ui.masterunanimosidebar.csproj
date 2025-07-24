@@ -30,9 +30,6 @@
 		<Reference Include="GeneXusUnanimo.dll" > 
 			<HintPath>$(WebBinDirectory)\GeneXusUnanimo.dll</HintPath>
 		</Reference>
-		<Reference Include="GeneXusUnanimo.dll" > 
-			<HintPath>$(WebBinDirectory)\GeneXusUnanimo.dll</HintPath>
-		</Reference>
 		<Reference Include="Google.Authenticator.dll" > 
 			<HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
 		</Reference>

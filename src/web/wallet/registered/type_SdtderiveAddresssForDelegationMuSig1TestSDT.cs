@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtderiveAddresssForDelegationMuSig1TestSDT
 			Description: deriveAddresssForDelegationMuSig1TestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -530,7 +530,7 @@ namespace GeneXus.Programs.wallet.registered
 		public  string gxTpr_Testcaseid
 		{
 			get { 
-				return sdt.gxTpr_Testcaseid;
+				return StringUtil.RTrim( sdt.gxTpr_Testcaseid);
 
 			}
 			set { 
@@ -658,7 +658,7 @@ namespace GeneXus.Programs.wallet.registered
 		public  string gxTpr_Msgsdt_addressess
 		{
 			get { 
-				return sdt.gxTpr_Msgsdt_addressess;
+				return StringUtil.RTrim( sdt.gxTpr_Msgsdt_addressess);
 
 			}
 			set { 
@@ -700,7 +700,7 @@ namespace GeneXus.Programs.wallet.registered
 		public  string gxTpr_Msgerror
 		{
 			get { 
-				return sdt.gxTpr_Msgerror;
+				return StringUtil.RTrim( sdt.gxTpr_Msgerror);
 
 			}
 			set { 

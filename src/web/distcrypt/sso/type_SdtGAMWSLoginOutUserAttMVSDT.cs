@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtGAMWSLoginOutUserAttMVSDT
 			Description: GAMWSLoginOutUserAttMVSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -180,7 +180,7 @@ namespace GeneXus.Programs.distcrypt.sso
 		public  string gxTpr_Value
 		{
 			get { 
-				return sdt.gxTpr_Value;
+				return StringUtil.RTrim( sdt.gxTpr_Value);
 
 			}
 			set { 

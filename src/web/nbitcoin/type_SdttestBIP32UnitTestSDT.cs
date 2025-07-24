@@ -1,7 +1,7 @@
 /*
 				   File: type_SdttestBIP32UnitTestSDT
 			Description: testBIP32UnitTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -378,7 +378,7 @@ namespace GeneXus.Programs.nbitcoin
 		public  string gxTpr_Testcaseid
 		{
 			get { 
-				return sdt.gxTpr_Testcaseid;
+				return StringUtil.RTrim( sdt.gxTpr_Testcaseid);
 
 			}
 			set { 
@@ -446,7 +446,7 @@ namespace GeneXus.Programs.nbitcoin
 		public  string gxTpr_Msgtest_bip32_out
 		{
 			get { 
-				return sdt.gxTpr_Msgtest_bip32_out;
+				return StringUtil.RTrim( sdt.gxTpr_Msgtest_bip32_out);
 
 			}
 			set { 
@@ -488,7 +488,7 @@ namespace GeneXus.Programs.nbitcoin
 		public  string gxTpr_Msgerror
 		{
 			get { 
-				return sdt.gxTpr_Msgerror;
+				return StringUtil.RTrim( sdt.gxTpr_Msgerror);
 
 			}
 			set { 

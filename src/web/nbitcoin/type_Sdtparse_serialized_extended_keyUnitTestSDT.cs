@@ -1,7 +1,7 @@
 /*
 				   File: type_Sdtparse_serialized_extended_keyUnitTestSDT
 			Description: parse_serialized_extended_keyUnitTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -465,7 +465,7 @@ namespace GeneXus.Programs.nbitcoin
 		public  string gxTpr_Testcaseid
 		{
 			get { 
-				return sdt.gxTpr_Testcaseid;
+				return StringUtil.RTrim( sdt.gxTpr_Testcaseid);
 
 			}
 			set { 
@@ -521,7 +521,7 @@ namespace GeneXus.Programs.nbitcoin
 		public  string gxTpr_Msgout_extended_key
 		{
 			get { 
-				return sdt.gxTpr_Msgout_extended_key;
+				return StringUtil.RTrim( sdt.gxTpr_Msgout_extended_key);
 
 			}
 			set { 
@@ -563,7 +563,7 @@ namespace GeneXus.Programs.nbitcoin
 		public  string gxTpr_Msgnetworktype
 		{
 			get { 
-				return sdt.gxTpr_Msgnetworktype;
+				return StringUtil.RTrim( sdt.gxTpr_Msgnetworktype);
 
 			}
 			set { 
@@ -605,7 +605,7 @@ namespace GeneXus.Programs.nbitcoin
 		public  string gxTpr_Msgextendedkeytype
 		{
 			get { 
-				return sdt.gxTpr_Msgextendedkeytype;
+				return StringUtil.RTrim( sdt.gxTpr_Msgextendedkeytype);
 
 			}
 			set { 
@@ -647,7 +647,7 @@ namespace GeneXus.Programs.nbitcoin
 		public  string gxTpr_Msgerror
 		{
 			get { 
-				return sdt.gxTpr_Msgerror;
+				return StringUtil.RTrim( sdt.gxTpr_Msgerror);
 
 			}
 			set { 

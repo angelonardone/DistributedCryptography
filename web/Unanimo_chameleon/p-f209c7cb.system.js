@@ -1,0 +1,2 @@
+System.register(["./p-16b65a3e.system.js"],(function(n){"use strict";var t;return{setters:[function(n){t=n.g}],execute:function(){n("a",u);var e={SCROLLBAR:"chameleon/scrollbar"};var c=[e.SCROLLBAR];var r=1e4;function u(n){c.forEach((function(e){t({name:e},r).then((function(t){n.push(t.styleSheet)})).catch((function(){}))}))}}}}));
+//# sourceMappingURL=p-f209c7cb.system.js.map

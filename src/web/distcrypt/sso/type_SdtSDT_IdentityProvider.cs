@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtSDT_IdentityProvider
 			Description: SDT_IdentityProvider
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -421,7 +421,7 @@ namespace GeneXus.Programs.distcrypt.sso
 		public  string gxTpr_Identityproviderhost
 		{
 			get { 
-				return sdt.gxTpr_Identityproviderhost;
+				return StringUtil.RTrim( sdt.gxTpr_Identityproviderhost);
 
 			}
 			set { 
@@ -449,7 +449,7 @@ namespace GeneXus.Programs.distcrypt.sso
 		public  string gxTpr_Identityproviderapplication
 		{
 			get { 
-				return sdt.gxTpr_Identityproviderapplication;
+				return StringUtil.RTrim( sdt.gxTpr_Identityproviderapplication);
 
 			}
 			set { 
@@ -506,7 +506,7 @@ namespace GeneXus.Programs.distcrypt.sso
 		public  string gxTpr_Identityproviderredirurl
 		{
 			get { 
-				return sdt.gxTpr_Identityproviderredirurl;
+				return StringUtil.RTrim( sdt.gxTpr_Identityproviderredirurl);
 
 			}
 			set { 
@@ -520,7 +520,7 @@ namespace GeneXus.Programs.distcrypt.sso
 		public  string gxTpr_Identityproviderdynamiccallprocedure
 		{
 			get { 
-				return sdt.gxTpr_Identityproviderdynamiccallprocedure;
+				return StringUtil.RTrim( sdt.gxTpr_Identityproviderdynamiccallprocedure);
 
 			}
 			set { 

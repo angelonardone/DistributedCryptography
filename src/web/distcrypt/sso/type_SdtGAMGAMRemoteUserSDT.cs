@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtGAMGAMRemoteUserSDT
 			Description: GAMGAMRemoteUserSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -727,7 +727,7 @@ namespace GeneXus.Programs.distcrypt.sso
 		public  string gxTpr_Username
 		{
 			get { 
-				return sdt.gxTpr_Username;
+				return StringUtil.RTrim( sdt.gxTpr_Username);
 
 			}
 			set { 
@@ -741,7 +741,7 @@ namespace GeneXus.Programs.distcrypt.sso
 		public  string gxTpr_Email
 		{
 			get { 
-				return sdt.gxTpr_Email;
+				return StringUtil.RTrim( sdt.gxTpr_Email);
 
 			}
 			set { 
@@ -770,7 +770,7 @@ namespace GeneXus.Programs.distcrypt.sso
 		public  string gxTpr_First_name
 		{
 			get { 
-				return sdt.gxTpr_First_name;
+				return StringUtil.RTrim( sdt.gxTpr_First_name);
 
 			}
 			set { 
@@ -784,7 +784,7 @@ namespace GeneXus.Programs.distcrypt.sso
 		public  string gxTpr_Last_name
 		{
 			get { 
-				return sdt.gxTpr_Last_name;
+				return StringUtil.RTrim( sdt.gxTpr_Last_name);
 
 			}
 			set { 
@@ -798,7 +798,7 @@ namespace GeneXus.Programs.distcrypt.sso
 		public  string gxTpr_External_id
 		{
 			get { 
-				return sdt.gxTpr_External_id;
+				return StringUtil.RTrim( sdt.gxTpr_External_id);
 
 			}
 			set { 
@@ -840,7 +840,7 @@ namespace GeneXus.Programs.distcrypt.sso
 		public  string gxTpr_Url_image
 		{
 			get { 
-				return sdt.gxTpr_Url_image;
+				return StringUtil.RTrim( sdt.gxTpr_Url_image);
 
 			}
 			set { 
@@ -854,7 +854,7 @@ namespace GeneXus.Programs.distcrypt.sso
 		public  string gxTpr_Url_profile
 		{
 			get { 
-				return sdt.gxTpr_Url_profile;
+				return StringUtil.RTrim( sdt.gxTpr_Url_profile);
 
 			}
 			set { 
@@ -868,7 +868,7 @@ namespace GeneXus.Programs.distcrypt.sso
 		public  string gxTpr_Phone
 		{
 			get { 
-				return sdt.gxTpr_Phone;
+				return StringUtil.RTrim( sdt.gxTpr_Phone);
 
 			}
 			set { 
@@ -882,7 +882,7 @@ namespace GeneXus.Programs.distcrypt.sso
 		public  string gxTpr_Address
 		{
 			get { 
-				return sdt.gxTpr_Address;
+				return StringUtil.RTrim( sdt.gxTpr_Address);
 
 			}
 			set { 
@@ -896,7 +896,7 @@ namespace GeneXus.Programs.distcrypt.sso
 		public  string gxTpr_City
 		{
 			get { 
-				return sdt.gxTpr_City;
+				return StringUtil.RTrim( sdt.gxTpr_City);
 
 			}
 			set { 
@@ -910,7 +910,7 @@ namespace GeneXus.Programs.distcrypt.sso
 		public  string gxTpr_State
 		{
 			get { 
-				return sdt.gxTpr_State;
+				return StringUtil.RTrim( sdt.gxTpr_State);
 
 			}
 			set { 
@@ -924,7 +924,7 @@ namespace GeneXus.Programs.distcrypt.sso
 		public  string gxTpr_Post_code
 		{
 			get { 
-				return sdt.gxTpr_Post_code;
+				return StringUtil.RTrim( sdt.gxTpr_Post_code);
 
 			}
 			set { 
@@ -938,7 +938,7 @@ namespace GeneXus.Programs.distcrypt.sso
 		public  string gxTpr_Language
 		{
 			get { 
-				return sdt.gxTpr_Language;
+				return StringUtil.RTrim( sdt.gxTpr_Language);
 
 			}
 			set { 

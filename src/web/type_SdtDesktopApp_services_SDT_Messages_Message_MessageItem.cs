@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtDesktopApp_services_SDT_Messages_Message_MessageItem
 			Description: DesktopApp_services_SDT_Messages_Message_MessageItem
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -201,7 +201,7 @@ namespace GeneXus.Programs
 		public  string gxTpr_Messageencryptedkey
 		{
 			get { 
-				return sdt.gxTpr_Messageencryptedkey;
+				return StringUtil.RTrim( sdt.gxTpr_Messageencryptedkey);
 
 			}
 			set { 
@@ -215,7 +215,7 @@ namespace GeneXus.Programs
 		public  string gxTpr_Messageencrypted
 		{
 			get { 
-				return sdt.gxTpr_Messageencrypted;
+				return StringUtil.RTrim( sdt.gxTpr_Messageencrypted);
 
 			}
 			set { 

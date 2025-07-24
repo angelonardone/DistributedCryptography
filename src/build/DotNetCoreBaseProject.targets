@@ -58,10 +58,10 @@
     <PackageReference Include="GeneXus.Search.Core" Version="$(GenStdVersion)" Condition="'$(SearchSupport)'=='true'" />
   </ItemGroup>
   <ItemGroup Condition="'$(GrpcClientSupport)'=='true'">
-    <PackageReference Include="Grpc.AspNetCore" Version="2.27.0" />
-    <PackageReference Include="Grpc.Core.Api" Version="2.27.0" />
-    <PackageReference Include="Grpc.Net.Client" Version="2.27.0" />
-    <PackageReference Include="Grpc.Tools" Version="2.27.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.62.0" />
+    <PackageReference Include="Grpc.Core.Api" Version="2.62.0" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.62.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.62.0" />
   </ItemGroup>
   <ItemGroup Condition="'$(PDFSupport)'=='true'">
     <PackageReference Include="GeneXus.PdfReportsCS.Core" Version="$(GenStdVersion)" />

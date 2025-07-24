@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtECCverifyMsgUnitTestSDT
 			Description: ECCverifyMsgUnitTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -361,7 +361,7 @@ namespace GeneXus.Programs.nbitcoin
 		public  string gxTpr_Testcaseid
 		{
 			get { 
-				return sdt.gxTpr_Testcaseid;
+				return StringUtil.RTrim( sdt.gxTpr_Testcaseid);
 
 			}
 			set { 
@@ -389,7 +389,7 @@ namespace GeneXus.Programs.nbitcoin
 		public  string gxTpr_Message
 		{
 			get { 
-				return sdt.gxTpr_Message;
+				return StringUtil.RTrim( sdt.gxTpr_Message);
 
 			}
 			set { 
@@ -447,7 +447,7 @@ namespace GeneXus.Programs.nbitcoin
 		public  string gxTpr_Msgverified
 		{
 			get { 
-				return sdt.gxTpr_Msgverified;
+				return StringUtil.RTrim( sdt.gxTpr_Msgverified);
 
 			}
 			set { 
@@ -489,7 +489,7 @@ namespace GeneXus.Programs.nbitcoin
 		public  string gxTpr_Msgerror
 		{
 			get { 
-				return sdt.gxTpr_Msgerror;
+				return StringUtil.RTrim( sdt.gxTpr_Msgerror);
 
 			}
 			set { 

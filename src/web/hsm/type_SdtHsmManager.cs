@@ -10,6 +10,7 @@ using GeneXus.Http.Client;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.hsm {
    [Serializable]
    public class SdtHsmManager : GxUserType, IGxExternalObject
@@ -114,15 +115,10 @@ namespace GeneXus.Programs.hsm {
       public Object ExternalInstance
       {
          get {
-            if ( HSM_HsmManager_externalReference == null )
-            {
-               HSM_HsmManager_externalReference = new DistricutedCryptographyLib.DistricutedCryptographyLib.HsmManager();
-            }
-            return HSM_HsmManager_externalReference ;
+            return null ;
          }
 
          set {
-            HSM_HsmManager_externalReference = (DistricutedCryptographyLib.DistricutedCryptographyLib.HsmManager)(value);
          }
 
       }
@@ -146,7 +142,6 @@ namespace GeneXus.Programs.hsm {
          return  ;
       }
 
-      protected DistricutedCryptographyLib.DistricutedCryptographyLib.HsmManager HSM_HsmManager_externalReference=null ;
    }
 
 }

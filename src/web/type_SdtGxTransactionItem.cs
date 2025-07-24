@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtGxTransactionItem
 			Description: GxTransactionItem
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -352,7 +352,7 @@ namespace GeneXus.Programs
 		public  string gxTpr_Transactionid
 		{
 			get { 
-				return sdt.gxTpr_Transactionid;
+				return StringUtil.RTrim( sdt.gxTpr_Transactionid);
 
 			}
 			set { 
@@ -394,7 +394,7 @@ namespace GeneXus.Programs
 		public  string gxTpr_Scriptpubkey_address
 		{
 			get { 
-				return sdt.gxTpr_Scriptpubkey_address;
+				return StringUtil.RTrim( sdt.gxTpr_Scriptpubkey_address);
 
 			}
 			set { 

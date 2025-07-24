@@ -19,6 +19,7 @@ using GeneXus.Encryption;
 using GeneXus.Http.Client;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet {
    public class passwordswc : GXWebComponent
    {
@@ -296,10 +297,10 @@ namespace GeneXus.Programs.wallet {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 123260), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 310420), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 123260), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 123260), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 310420), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -719,7 +720,7 @@ namespace GeneXus.Programs.wallet {
             {
                if ( context.ExposeMetadata( ) )
                {
-                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_12-186073", 0) ;
+                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_13-186676", 0) ;
                }
             }
             Form.Meta.addItem("description", "Passwords WC", 0) ;
@@ -2434,7 +2435,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20257179265115", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202572416215362", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2450,7 +2451,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/passwordswc.js", "?20257179265116", false, true);
+         context.AddJavascriptSource("wallet/passwordswc.js", "?202572416215362", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          context.AddJavascriptSource("UserControls/Wallet.UC_Clipboard_v1Render.js", "", false, true);
          /* End function include_jscripts */
@@ -2587,7 +2588,7 @@ namespace GeneXus.Programs.wallet {
          StyleString = "";
          AV6copyLogin_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV6copyLogin))&&String.IsNullOrEmpty(StringUtil.RTrim( AV61Copylogin_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV6copyLogin)));
          sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV6copyLogin)) ? AV61Copylogin_GXI : context.PathToRelativeUrl( AV6copyLogin));
-         PasswordgridRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtavCopylogin_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(short)-1,(short)1,(string)"",(string)"copy login",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)5,(string)edtavCopylogin_Jsonclick,"'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'COPY LOGIN\\'."+sGXsfl_22_idx+"'",(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"",(string)"",(string)""+TempTags,(string)"",(string)"",(short)1,(bool)AV6copyLogin_IsBlob,(bool)false,context.GetImageSrcSet( sImgUrl)});
+         PasswordgridRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtavCopylogin_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(short)-1,(short)1,(string)"",(string)"copy login",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)5,(string)edtavCopylogin_Jsonclick,"'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'COPY LOGIN\\'."+sGXsfl_22_idx+"'",(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"",(string)"",(string)""+TempTags,(string)"",(string)"",(short)1,(bool)AV6copyLogin_IsBlob,(bool)false,context.GetImageSrcSet( sImgUrl),(string)"none"});
          /* Subfile cell */
          if ( PasswordgridContainer.GetWrapped() == 1 )
          {
@@ -2608,7 +2609,7 @@ namespace GeneXus.Programs.wallet {
          StyleString = "";
          AV7copyPassword_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV7copyPassword))&&String.IsNullOrEmpty(StringUtil.RTrim( AV62Copypassword_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV7copyPassword)));
          sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV7copyPassword)) ? AV62Copypassword_GXI : context.PathToRelativeUrl( AV7copyPassword));
-         PasswordgridRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtavCopypassword_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(short)-1,(short)1,(string)"",(string)"copy password",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)5,(string)edtavCopypassword_Jsonclick,"'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'COPY PASSWORD\\'."+sGXsfl_22_idx+"'",(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"",(string)"",(string)""+TempTags,(string)"",(string)"",(short)1,(bool)AV7copyPassword_IsBlob,(bool)false,context.GetImageSrcSet( sImgUrl)});
+         PasswordgridRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtavCopypassword_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(short)-1,(short)1,(string)"",(string)"copy password",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)5,(string)edtavCopypassword_Jsonclick,"'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'COPY PASSWORD\\'."+sGXsfl_22_idx+"'",(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"",(string)"",(string)""+TempTags,(string)"",(string)"",(short)1,(bool)AV7copyPassword_IsBlob,(bool)false,context.GetImageSrcSet( sImgUrl),(string)"none"});
          /* Subfile cell */
          if ( PasswordgridContainer.GetWrapped() == 1 )
          {
@@ -2620,7 +2621,7 @@ namespace GeneXus.Programs.wallet {
          StyleString = "";
          AV5copyAuthenticator_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV5copyAuthenticator))&&String.IsNullOrEmpty(StringUtil.RTrim( AV63Copyauthenticator_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV5copyAuthenticator)));
          sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV5copyAuthenticator)) ? AV63Copyauthenticator_GXI : context.PathToRelativeUrl( AV5copyAuthenticator));
-         PasswordgridRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtavCopyauthenticator_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(int)edtavCopyauthenticator_Visible,(short)1,(string)"",(string)"copy PIN",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)5,(string)edtavCopyauthenticator_Jsonclick,"'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'COPY AUTHENTICATOR\\'."+sGXsfl_22_idx+"'",(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"",(string)"",(string)""+TempTags,(string)"",(string)"",(short)1,(bool)AV5copyAuthenticator_IsBlob,(bool)false,context.GetImageSrcSet( sImgUrl)});
+         PasswordgridRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtavCopyauthenticator_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(int)edtavCopyauthenticator_Visible,(short)1,(string)"",(string)"copy PIN",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)5,(string)edtavCopyauthenticator_Jsonclick,"'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'COPY AUTHENTICATOR\\'."+sGXsfl_22_idx+"'",(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"",(string)"",(string)""+TempTags,(string)"",(string)"",(short)1,(bool)AV5copyAuthenticator_IsBlob,(bool)false,context.GetImageSrcSet( sImgUrl),(string)"none"});
          /* Subfile cell */
          if ( PasswordgridContainer.GetWrapped() == 1 )
          {
@@ -2632,7 +2633,7 @@ namespace GeneXus.Programs.wallet {
          StyleString = "";
          AV43viewNote_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV43viewNote))&&String.IsNullOrEmpty(StringUtil.RTrim( AV65Viewnote_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV43viewNote)));
          sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV43viewNote)) ? AV65Viewnote_GXI : context.PathToRelativeUrl( AV43viewNote));
-         PasswordgridRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtavViewnote_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(int)edtavViewnote_Visible,(short)1,(string)"",(string)"View Note",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)5,(string)edtavViewnote_Jsonclick,"'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'VIEW NOTE\\'."+sGXsfl_22_idx+"'",(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"",(string)"",(string)""+TempTags,(string)"",(string)"",(short)1,(bool)AV43viewNote_IsBlob,(bool)false,context.GetImageSrcSet( sImgUrl)});
+         PasswordgridRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtavViewnote_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(int)edtavViewnote_Visible,(short)1,(string)"",(string)"View Note",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)5,(string)edtavViewnote_Jsonclick,"'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'VIEW NOTE\\'."+sGXsfl_22_idx+"'",(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"",(string)"",(string)""+TempTags,(string)"",(string)"",(short)1,(bool)AV43viewNote_IsBlob,(bool)false,context.GetImageSrcSet( sImgUrl),(string)"none"});
          /* Subfile cell */
          if ( PasswordgridContainer.GetWrapped() == 1 )
          {
@@ -2644,7 +2645,7 @@ namespace GeneXus.Programs.wallet {
          StyleString = "";
          AV10editImage_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV10editImage))&&String.IsNullOrEmpty(StringUtil.RTrim( AV60Editimage_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV10editImage)));
          sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV10editImage)) ? AV60Editimage_GXI : context.PathToRelativeUrl( AV10editImage));
-         PasswordgridRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtavEditimage_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(int)edtavEditimage_Visible,(short)1,(string)"",(string)"edit",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)5,(string)edtavEditimage_Jsonclick,"'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'EDIT PASSWORD\\'."+sGXsfl_22_idx+"'",(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"",(string)"",(string)""+TempTags,(string)"",(string)"",(short)1,(bool)AV10editImage_IsBlob,(bool)false,context.GetImageSrcSet( sImgUrl)});
+         PasswordgridRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtavEditimage_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(int)edtavEditimage_Visible,(short)1,(string)"",(string)"edit",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)5,(string)edtavEditimage_Jsonclick,"'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'EDIT PASSWORD\\'."+sGXsfl_22_idx+"'",(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"",(string)"",(string)""+TempTags,(string)"",(string)"",(short)1,(bool)AV10editImage_IsBlob,(bool)false,context.GetImageSrcSet( sImgUrl),(string)"none"});
          /* Subfile cell */
          if ( PasswordgridContainer.GetWrapped() == 1 )
          {
@@ -2656,7 +2657,7 @@ namespace GeneXus.Programs.wallet {
          StyleString = "";
          AV8deleteImage_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV8deleteImage))&&String.IsNullOrEmpty(StringUtil.RTrim( AV59Deleteimage_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV8deleteImage)));
          sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV8deleteImage)) ? AV59Deleteimage_GXI : context.PathToRelativeUrl( AV8deleteImage));
-         PasswordgridRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtavDeleteimage_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(int)edtavDeleteimage_Visible,(short)1,(string)"",(string)"delete",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)5,(string)edtavDeleteimage_Jsonclick,"'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'DELETE PASSWORD\\'."+sGXsfl_22_idx+"'",(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"",(string)"",(string)""+TempTags,(string)"",(string)"",(short)1,(bool)AV8deleteImage_IsBlob,(bool)false,context.GetImageSrcSet( sImgUrl)});
+         PasswordgridRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtavDeleteimage_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(int)edtavDeleteimage_Visible,(short)1,(string)"",(string)"delete",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)5,(string)edtavDeleteimage_Jsonclick,"'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'DELETE PASSWORD\\'."+sGXsfl_22_idx+"'",(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"",(string)"",(string)""+TempTags,(string)"",(string)"",(short)1,(bool)AV8deleteImage_IsBlob,(bool)false,context.GetImageSrcSet( sImgUrl),(string)"none"});
          /* Subfile cell */
          if ( PasswordgridContainer.GetWrapped() == 1 )
          {
@@ -2668,7 +2669,7 @@ namespace GeneXus.Programs.wallet {
          StyleString = "";
          AV23wwTags_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV23wwTags))&&String.IsNullOrEmpty(StringUtil.RTrim( AV64Wwtags_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV23wwTags)));
          sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV23wwTags)) ? AV64Wwtags_GXI : context.PathToRelativeUrl( AV23wwTags));
-         PasswordgridRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtavWwtags_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(int)edtavWwtags_Visible,(short)1,(string)"",(string)"work with Tags",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)5,(string)edtavWwtags_Jsonclick,"'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'WWTAGS\\'."+sGXsfl_22_idx+"'",(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"",(string)"",(string)""+TempTags,(string)"",(string)"",(short)1,(bool)AV23wwTags_IsBlob,(bool)false,context.GetImageSrcSet( sImgUrl)});
+         PasswordgridRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtavWwtags_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(int)edtavWwtags_Visible,(short)1,(string)"",(string)"work with Tags",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)5,(string)edtavWwtags_Jsonclick,"'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'WWTAGS\\'."+sGXsfl_22_idx+"'",(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"",(string)"",(string)""+TempTags,(string)"",(string)"",(short)1,(bool)AV23wwTags_IsBlob,(bool)false,context.GetImageSrcSet( sImgUrl),(string)"none"});
          /* Subfile cell */
          if ( PasswordgridContainer.GetWrapped() == 1 )
          {
@@ -2680,7 +2681,7 @@ namespace GeneXus.Programs.wallet {
          StyleString = "";
          AV41wwConctacts_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV41wwConctacts))&&String.IsNullOrEmpty(StringUtil.RTrim( AV48Wwconctacts_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV41wwConctacts)));
          sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV41wwConctacts)) ? AV48Wwconctacts_GXI : context.PathToRelativeUrl( AV41wwConctacts));
-         PasswordgridRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtavWwconctacts_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(int)edtavWwconctacts_Visible,(short)1,(string)"",(string)"work with Contacts",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)5,(string)edtavWwconctacts_Jsonclick,"'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'WWCONTACTS\\'."+sGXsfl_22_idx+"'",(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"",(string)"",(string)""+TempTags,(string)"",(string)"",(short)1,(bool)AV41wwConctacts_IsBlob,(bool)false,context.GetImageSrcSet( sImgUrl)});
+         PasswordgridRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtavWwconctacts_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(int)edtavWwconctacts_Visible,(short)1,(string)"",(string)"work with Contacts",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)5,(string)edtavWwconctacts_Jsonclick,"'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'WWCONTACTS\\'."+sGXsfl_22_idx+"'",(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"",(string)"",(string)""+TempTags,(string)"",(string)"",(short)1,(bool)AV41wwConctacts_IsBlob,(bool)false,context.GetImageSrcSet( sImgUrl),(string)"none"});
          send_integrity_lvl_hashes2H2( ) ;
          PasswordgridContainer.AddRow(PasswordgridRow);
          nGXsfl_22_idx = ((subPasswordgrid_Islastpage==1)&&(nGXsfl_22_idx+1>subPasswordgrid_fnc_Recordsperpage( )) ? 1 : nGXsfl_22_idx+1);

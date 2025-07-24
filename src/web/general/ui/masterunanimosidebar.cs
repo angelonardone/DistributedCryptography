@@ -19,6 +19,7 @@ using GeneXus.Encryption;
 using GeneXus.Http.Client;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.general.ui {
    public class masterunanimosidebar : GXMasterPage
    {
@@ -159,7 +160,7 @@ namespace GeneXus.Programs.general.ui {
          context.AddJavascriptSource("Toastr/ToastrRender.js", "", false, true);
          context.AddJavascriptSource("Unanimo_chameleon/chameleon-loader.js", "", false, true);
          context.AddJavascriptSource("UserControls/GeneXusUnanimo.SidebarRender.js", "", false, true);
-         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?20257179273756", false, true);
+         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?202572416224677", false, true);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -234,7 +235,7 @@ namespace GeneXus.Programs.general.ui {
             ClassString = "sidebar__toggle-ico" + " " + ((StringUtil.StrCmp(imgImage2_gximage, "")==0) ? "GX_Image_GeneXusUnanimo_list_view_white_Class" : "GX_Image_"+imgImage2_gximage+"_Class");
             StyleString = "";
             sImgUrl = (string)(context.GetImagePath( "ef73725b-c186-4f57-94bc-867e0a183c3e", "", context.GetTheme( )));
-            GxWebStd.gx_bitmap( context, imgImage2_Internalname, sImgUrl, "", "", "", context.GetTheme( ), 1, 1, "", "", 0, 0, 0, "px", 0, "px", 0, 0, 0, "", "", StyleString, ClassString, "", "", "", "", " "+"data-gx-image"+" ", "", "", 1, false, false, context.GetImageSrcSet( sImgUrl), "HLP_General/UI/MasterUnanimoSidebar.htm");
+            GxWebStd.gx_bitmap( context, imgImage2_Internalname, sImgUrl, "", "", "", context.GetTheme( ), 1, 1, "", "", 0, 0, 0, "px", 0, "px", 0, 0, 0, "", "", StyleString, ClassString, "", "", "", "", " "+"data-gx-image"+" ", "", "", 1, false, false, context.GetImageSrcSet( sImgUrl), "none", "HLP_General/UI/MasterUnanimoSidebar.htm");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "min-height:20px;", "div");
@@ -243,7 +244,7 @@ namespace GeneXus.Programs.general.ui {
             ClassString = "header__logo" + " " + ((StringUtil.StrCmp(imgImage1_gximage, "")==0) ? "GX_Image_DClogohorizontal_Class" : "GX_Image_"+imgImage1_gximage+"_Class");
             StyleString = "";
             sImgUrl = (string)(context.GetImagePath( "d1cbde72-6a80-44eb-8b1b-132677480e7f", "", context.GetTheme( )));
-            GxWebStd.gx_bitmap( context, imgImage1_Internalname, sImgUrl, "", "", "", context.GetTheme( ), 1, 1, "", "", 0, 0, 0, "px", 0, "px", 0, 0, 7, imgImage1_Jsonclick, "'"+""+"'"+",true,"+"'"+"e110w1_client"+"'", StyleString, ClassString, "", "", "", "", " "+"data-gx-image"+" "+TempTags, "", "", 1, false, false, context.GetImageSrcSet( sImgUrl), "HLP_General/UI/MasterUnanimoSidebar.htm");
+            GxWebStd.gx_bitmap( context, imgImage1_Internalname, sImgUrl, "", "", "", context.GetTheme( ), 1, 1, "", "", 0, 0, 0, "px", 0, "px", 0, 0, 7, imgImage1_Jsonclick, "'"+""+"'"+",true,"+"'"+"e110w1_client"+"'", StyleString, ClassString, "", "", "", "", " "+"data-gx-image"+" "+TempTags, "", "", 1, false, false, context.GetImageSrcSet( sImgUrl), "none", "HLP_General/UI/MasterUnanimoSidebar.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "Center", "top", "", "flex-grow:1;min-height:20px;", "div");
@@ -814,7 +815,7 @@ namespace GeneXus.Programs.general.ui {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?20257179273790", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?202572416224710", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -829,7 +830,7 @@ namespace GeneXus.Programs.general.ui {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?20257179273790", false, true);
+         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?202572416224710", false, true);
          context.AddJavascriptSource("Unanimo_chameleon/chameleon-loader.js", "", false, true);
          context.AddJavascriptSource("UserControls/GeneXusUnanimo.IconRender.js", "", false, true);
          context.AddJavascriptSource("Toastr/toastr.min.js", "", false, true);

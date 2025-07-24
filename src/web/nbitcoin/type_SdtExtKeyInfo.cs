@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtExtKeyInfo
 			Description: ExtKeyInfo
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -355,7 +355,7 @@ namespace GeneXus.Programs.nbitcoin
 		public  string gxTpr_Mnemonic
 		{
 			get { 
-				return sdt.gxTpr_Mnemonic;
+				return StringUtil.RTrim( sdt.gxTpr_Mnemonic);
 
 			}
 			set { 

@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtupdateContact__postOutput
 			Description: updateContact__postOutput
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -176,7 +176,7 @@ namespace GeneXus.Programs
 		public  string gxTpr_Error
 		{
 			get { 
-				return sdt.gxTpr_Error;
+				return StringUtil.RTrim( sdt.gxTpr_Error);
 
 			}
 			set { 

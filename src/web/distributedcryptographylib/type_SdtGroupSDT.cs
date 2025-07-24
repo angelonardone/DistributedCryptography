@@ -10,6 +10,7 @@ using GeneXus.Http.Client;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.distributedcryptographylib {
    [Serializable]
    public class SdtGroupSDT : GxUserType, IGxExternalObject

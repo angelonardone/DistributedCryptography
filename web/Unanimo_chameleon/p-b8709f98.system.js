@@ -1,0 +1,2 @@
+System.register([],(function(r){"use strict";return{execute:function(){var t=r("P",(function(r){return"panel-".concat(r)}));var e=r("i",(function(r){return r==="block-start"||r==="block-end"}));var i=r("e",(function(r){return r==="block-start"||r==="inline-start"}));var n=r("D","block-start");var a=r("a","drag-preview");var c=r("b","drag-preview--outside-tab-list");var s=r("d","drag-preview--inside-tab-list__block");var u=r("c","drag-preview--inside-tab-list__inline")}}}));
+//# sourceMappingURL=p-b8709f98.system.js.map

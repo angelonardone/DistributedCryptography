@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtelectrumRespGetTransactionId_result_voutItem_scriptPubKey
 			Description: scriptPubKey
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -240,7 +240,7 @@ namespace GeneXus.Programs.electrum
 		public  string gxTpr_Address
 		{
 			get { 
-				return sdt.gxTpr_Address;
+				return StringUtil.RTrim( sdt.gxTpr_Address);
 
 			}
 			set { 
@@ -254,7 +254,7 @@ namespace GeneXus.Programs.electrum
 		public  string gxTpr_Asm
 		{
 			get { 
-				return sdt.gxTpr_Asm;
+				return StringUtil.RTrim( sdt.gxTpr_Asm);
 
 			}
 			set { 
@@ -268,7 +268,7 @@ namespace GeneXus.Programs.electrum
 		public  string gxTpr_Desc
 		{
 			get { 
-				return sdt.gxTpr_Desc;
+				return StringUtil.RTrim( sdt.gxTpr_Desc);
 
 			}
 			set { 
@@ -282,7 +282,7 @@ namespace GeneXus.Programs.electrum
 		public  string gxTpr_Hex
 		{
 			get { 
-				return sdt.gxTpr_Hex;
+				return StringUtil.RTrim( sdt.gxTpr_Hex);
 
 			}
 			set { 
@@ -296,7 +296,7 @@ namespace GeneXus.Programs.electrum
 		public  string gxTpr_Type
 		{
 			get { 
-				return sdt.gxTpr_Type;
+				return StringUtil.RTrim( sdt.gxTpr_Type);
 
 			}
 			set { 

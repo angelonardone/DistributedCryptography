@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtPassword
 			Description: Password
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -497,7 +497,7 @@ namespace GeneXus.Programs.wallet
 		public  string gxTpr_Note
 		{
 			get { 
-				return sdt.gxTpr_Note;
+				return StringUtil.RTrim( sdt.gxTpr_Note);
 
 			}
 			set { 

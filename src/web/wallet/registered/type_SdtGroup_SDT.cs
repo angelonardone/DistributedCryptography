@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtGroup_SDT
 			Description: Group_SDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -740,7 +740,7 @@ namespace GeneXus.Programs.wallet.registered
 		public  string gxTpr_Cleartextshare
 		{
 			get { 
-				return sdt.gxTpr_Cleartextshare;
+				return StringUtil.RTrim( sdt.gxTpr_Cleartextshare);
 
 			}
 			set { 
@@ -754,7 +754,7 @@ namespace GeneXus.Programs.wallet.registered
 		public  string gxTpr_Encryptedtextshare
 		{
 			get { 
-				return sdt.gxTpr_Encryptedtextshare;
+				return StringUtil.RTrim( sdt.gxTpr_Encryptedtextshare);
 
 			}
 			set { 

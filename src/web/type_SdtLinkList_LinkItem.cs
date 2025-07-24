@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtLinkList_LinkItem
 			Description: LinkList
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -165,7 +165,7 @@ namespace GeneXus.Programs
 		public  string gxTpr_Caption
 		{
 			get { 
-				return sdt.gxTpr_Caption;
+				return StringUtil.RTrim( sdt.gxTpr_Caption);
 
 			}
 			set { 
@@ -179,7 +179,7 @@ namespace GeneXus.Programs
 		public  string gxTpr_Url
 		{
 			get { 
-				return sdt.gxTpr_Url;
+				return StringUtil.RTrim( sdt.gxTpr_Url);
 
 			}
 			set { 

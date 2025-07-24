@@ -1,7 +1,7 @@
 /*
 				   File: type_SdttestCombinationsSDT
 			Description: testCombinationsSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.12.186073
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -377,7 +377,7 @@ namespace GeneXus.Programs.math
 		public  string gxTpr_Testcaseid
 		{
 			get { 
-				return sdt.gxTpr_Testcaseid;
+				return StringUtil.RTrim( sdt.gxTpr_Testcaseid);
 
 			}
 			set { 
@@ -459,7 +459,7 @@ namespace GeneXus.Programs.math
 		public  string gxTpr_Msgfinalcombinations
 		{
 			get { 
-				return sdt.gxTpr_Msgfinalcombinations;
+				return StringUtil.RTrim( sdt.gxTpr_Msgfinalcombinations);
 
 			}
 			set { 

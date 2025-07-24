@@ -42,8 +42,10 @@
 
 	<ItemGroup>
 		<Compile Include = "$(WebDirectory)\distcrypt\sso\weblogin.cs" />
-		<Compile Include = "$(WebDirectory)\distcrypt\desktopappip.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\desktopappiptestnet.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\desktopappipmainnet.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\sso\getidentprovbaseurl.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
 
 	</ItemGroup>
 
