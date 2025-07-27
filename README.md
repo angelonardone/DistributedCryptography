@@ -4,7 +4,7 @@
 Please go to our [WIKI](https://wiki.distributedcryptography.com/wiki.aspx?9,Toc%3aOur+application,) for instructions in how to build and use our product
 
 
-This is a Bitcoin Wallet designed to operate seamlessly on any PC or server. It is a versatile, multi-platform application that is compatible with Windows, Linux, and Mac operating systems. With its robust architecture, this wallet ensures secure and efficient management of Bitcoin transactions across different environments, making it an ideal choice for users seeking flexibility and reliability in their Bitcoin management.
+This is a Digital Vault/Wallet designed to operate seamlessly on any PC or server. It is a versatile, multi-platform application that is compatible with Windows, Linux, and Mac operating systems. With its robust architecture, this wallet ensures secure and efficient management of Bitcoin transactions across different environments, making it an ideal choice for users seeking flexibility and reliability in their Bitcoin management.
 
 In addition, we support a novel interactive backup process that enhances security and user experience. Furthermore, our wallet incorporates a custom Taproot algorithm that significantly reduces transaction fees for any K-of-N multisignature setup, making it many times cheaper than traditional multisignature mechanisms. This combination of advanced features ensures that users can enjoy both cutting-edge security and cost-efficiency in their Bitcoin transactions.
 
