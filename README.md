@@ -25,7 +25,7 @@ The wallet sopport the following Bitcoin standards:
 * K of N multisignature (using Huffman TapTrees)
 
 
-##Advanced Encryption Algorithms
+## Advanced Encryption Algorithms
 
 Our security measures employ well-known and highly trusted algorithms to ensure data protection:
 
