@@ -170,7 +170,7 @@
 					var file;
 					for (var i = 0; i < data.result.files.length; i++) {
 						file = data.result.files[i];
-						file._index = uploadedFilesCount;
+						file._index = uploadedFiles.length;
 						uploadedFiles.push(file);
 					}
 					return data.result.files;

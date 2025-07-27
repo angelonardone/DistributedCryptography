@@ -19,6 +19,7 @@ using GeneXus.Http.Client;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.sudodb {
    public class gettransactionsfromaddress : GXProcedure
    {
@@ -37,7 +38,7 @@ namespace GeneXus.Programs.sudodb {
       }
 
       public void execute( string aP0_address ,
-                           ref SdtGxExplorer_services_TxoutFromAddresses aP1_transactionsFromService )
+                           ref SdtGxTransactions aP1_transactionsFromService )
       {
          this.AV8address = aP0_address;
          this.AV22transactionsFromService = aP1_transactionsFromService;
@@ -46,14 +47,14 @@ namespace GeneXus.Programs.sudodb {
          aP1_transactionsFromService=this.AV22transactionsFromService;
       }
 
-      public SdtGxExplorer_services_TxoutFromAddresses executeUdp( string aP0_address )
+      public SdtGxTransactions executeUdp( string aP0_address )
       {
          execute(aP0_address, ref aP1_transactionsFromService);
          return AV22transactionsFromService ;
       }
 
       public void executeSubmit( string aP0_address ,
-                                 ref SdtGxExplorer_services_TxoutFromAddresses aP1_transactionsFromService )
+                                 ref SdtGxTransactions aP1_transactionsFromService )
       {
          this.AV8address = aP0_address;
          this.AV22transactionsFromService = aP1_transactionsFromService;
@@ -75,7 +76,7 @@ namespace GeneXus.Programs.sudodb {
             AV13oneDBvOUT = ((GeneXus.Programs.sudodb.SdtvOUT)AV10DBvOUTs.Item(AV24GXV1));
             if ( StringUtil.StrCmp(StringUtil.Trim( AV13oneDBvOUT.gxTpr_Scriptpubkey_address), StringUtil.Trim( AV8address)) == 0 )
             {
-               AV16oneTransactionFromService = new SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem(context);
+               AV16oneTransactionFromService = new SdtGxTransactionItem(context);
                AV16oneTransactionFromService.gxTpr_Transactionid = StringUtil.Trim( AV13oneDBvOUT.gxTpr_Transactionid);
                AV16oneTransactionFromService.gxTpr_N = AV13oneDBvOUT.gxTpr_N;
                AV16oneTransactionFromService.gxTpr_Value = AV13oneDBvOUT.gxTpr_Value;
@@ -96,7 +97,7 @@ namespace GeneXus.Programs.sudodb {
                   AV12oneDBvIN = ((GeneXus.Programs.sudodb.SdtvIN)AV9DBvINs.Item(AV25GXV2));
                   if ( ( StringUtil.StrCmp(AV12oneDBvIN.gxTpr_Vintransactionid, StringUtil.Trim( AV13oneDBvOUT.gxTpr_Transactionid)) == 0 ) && ( AV12oneDBvIN.gxTpr_Vinn == AV13oneDBvOUT.gxTpr_N ) )
                   {
-                     AV18transactionFromServiceUsed = new SdtGxExplorer_services_TxoutFromAddresses_Transaction_Used(context);
+                     AV18transactionFromServiceUsed = new SdtGxUsedIn(context);
                      AV18transactionFromServiceUsed.gxTpr_Usedid = StringUtil.Trim( AV12oneDBvIN.gxTpr_Transactionid);
                      AV18transactionFromServiceUsed.gxTpr_Usedn = AV12oneDBvIN.gxTpr_Vinn;
                      AV20TransactionId = StringUtil.Trim( AV12oneDBvIN.gxTpr_Transactionid);
@@ -114,7 +115,7 @@ namespace GeneXus.Programs.sudodb {
                         AV14oneDBvOUT1 = ((GeneXus.Programs.sudodb.SdtvOUT)AV10DBvOUTs.Item(AV26GXV3));
                         if ( StringUtil.StrCmp(AV14oneDBvOUT1.gxTpr_Transactionid, StringUtil.Trim( AV12oneDBvIN.gxTpr_Transactionid)) == 0 )
                         {
-                           AV19transactionFromServiceUsedItem = new SdtGxExplorer_services_TxoutFromAddresses_Transaction_Used_UsedTo_Item(context);
+                           AV19transactionFromServiceUsedItem = new SdtGXUsedToItem(context);
                            AV19transactionFromServiceUsedItem.gxTpr_N = AV14oneDBvOUT1.gxTpr_N;
                            AV19transactionFromServiceUsedItem.gxTpr_Value = AV14oneDBvOUT1.gxTpr_Value;
                            AV19transactionFromServiceUsedItem.gxTpr_Scriptpubkey_address = StringUtil.Trim( AV14oneDBvOUT1.gxTpr_Scriptpubkey_address);
@@ -171,13 +172,13 @@ namespace GeneXus.Programs.sudodb {
          AV10DBvOUTs = new GXBaseCollection<GeneXus.Programs.sudodb.SdtvOUT>( context, "vOUT", "distributedcryptography");
          AV9DBvINs = new GXBaseCollection<GeneXus.Programs.sudodb.SdtvIN>( context, "vIN", "distributedcryptography");
          AV13oneDBvOUT = new GeneXus.Programs.sudodb.SdtvOUT(context);
-         AV16oneTransactionFromService = new SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem(context);
+         AV16oneTransactionFromService = new SdtGxTransactionItem(context);
          AV20TransactionId = "";
          AV17transactionDateTime = (DateTime)(DateTime.MinValue);
          AV12oneDBvIN = new GeneXus.Programs.sudodb.SdtvIN(context);
-         AV18transactionFromServiceUsed = new SdtGxExplorer_services_TxoutFromAddresses_Transaction_Used(context);
+         AV18transactionFromServiceUsed = new SdtGxUsedIn(context);
          AV14oneDBvOUT1 = new GeneXus.Programs.sudodb.SdtvOUT(context);
-         AV19transactionFromServiceUsedItem = new SdtGxExplorer_services_TxoutFromAddresses_Transaction_Used_UsedTo_Item(context);
+         AV19transactionFromServiceUsedItem = new SdtGXUsedToItem(context);
          AV15oneTransaction = new GeneXus.Programs.sudodb.SdtTransaction(context);
          /* GeneXus formulas. */
       }
@@ -192,17 +193,17 @@ namespace GeneXus.Programs.sudodb {
       private string AV20TransactionId ;
       private DateTime AV17transactionDateTime ;
       private bool returnInSub ;
-      private SdtGxExplorer_services_TxoutFromAddresses AV22transactionsFromService ;
-      private SdtGxExplorer_services_TxoutFromAddresses aP1_transactionsFromService ;
+      private SdtGxTransactions AV22transactionsFromService ;
+      private SdtGxTransactions aP1_transactionsFromService ;
       private GXBaseCollection<GeneXus.Programs.sudodb.SdtTransaction> AV21transactions ;
       private GXBaseCollection<GeneXus.Programs.sudodb.SdtvOUT> AV10DBvOUTs ;
       private GXBaseCollection<GeneXus.Programs.sudodb.SdtvIN> AV9DBvINs ;
       private GeneXus.Programs.sudodb.SdtvOUT AV13oneDBvOUT ;
-      private SdtGxExplorer_services_TxoutFromAddresses_Transaction_TransactionItem AV16oneTransactionFromService ;
+      private SdtGxTransactionItem AV16oneTransactionFromService ;
       private GeneXus.Programs.sudodb.SdtvIN AV12oneDBvIN ;
-      private SdtGxExplorer_services_TxoutFromAddresses_Transaction_Used AV18transactionFromServiceUsed ;
+      private SdtGxUsedIn AV18transactionFromServiceUsed ;
       private GeneXus.Programs.sudodb.SdtvOUT AV14oneDBvOUT1 ;
-      private SdtGxExplorer_services_TxoutFromAddresses_Transaction_Used_UsedTo_Item AV19transactionFromServiceUsedItem ;
+      private SdtGXUsedToItem AV19transactionFromServiceUsedItem ;
       private GeneXus.Programs.sudodb.SdtTransaction AV15oneTransaction ;
    }
 

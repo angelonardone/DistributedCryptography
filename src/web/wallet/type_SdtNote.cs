@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtNote
 			Description: Note
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.wallet
@@ -221,6 +222,8 @@ namespace GeneXus.Programs.wallet
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("Description")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="Description", Order=0)]
 		public  string gxTpr_Description
 		{
@@ -233,6 +236,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("Created")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="Created", Order=1)]
 		public  string gxTpr_Created
 		{
@@ -245,11 +250,13 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("NoteText")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="NoteText", Order=2)]
 		public  string gxTpr_Notetext
 		{
 			get { 
-				return sdt.gxTpr_Notetext;
+				return StringUtil.RTrim( sdt.gxTpr_Notetext);
 
 			}
 			set { 
@@ -259,7 +266,7 @@ namespace GeneXus.Programs.wallet
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtNote sdt
 		{
 			get { 

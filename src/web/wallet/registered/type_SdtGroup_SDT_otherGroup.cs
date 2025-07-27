@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtGroup_SDT_otherGroup
 			Description: otherGroup
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 using GeneXus.Programs.wallet;
@@ -40,6 +41,8 @@ namespace GeneXus.Programs.wallet.registered
 			gxTv_SdtGroup_SDT_otherGroup_Extpubkeymultisigreceiving = "";
 
 			gxTv_SdtGroup_SDT_otherGroup_Extpubkeymultisigchange = "";
+
+			gxTv_SdtGroup_SDT_otherGroup_Extpubkeytimebountyreceiving = "";
 
 		}
 
@@ -87,6 +90,9 @@ namespace GeneXus.Programs.wallet.registered
 
 
 			AddObjectProperty("extPubKeyMultiSigChange", gxTpr_Extpubkeymultisigchange, false);
+
+
+			AddObjectProperty("extPubKeyTimeBountyReceiving", gxTpr_Extpubkeytimebountyreceiving, false);
 
 			return;
 		}
@@ -205,6 +211,22 @@ namespace GeneXus.Programs.wallet.registered
 
 
 
+
+		[SoapElement(ElementName="extPubKeyTimeBountyReceiving")]
+		[XmlElement(ElementName="extPubKeyTimeBountyReceiving")]
+		public string gxTpr_Extpubkeytimebountyreceiving
+		{
+			get {
+				return gxTv_SdtGroup_SDT_otherGroup_Extpubkeytimebountyreceiving; 
+			}
+			set {
+				gxTv_SdtGroup_SDT_otherGroup_Extpubkeytimebountyreceiving = value;
+				SetDirty("Extpubkeytimebountyreceiving");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -231,6 +253,7 @@ namespace GeneXus.Programs.wallet.registered
 			gxTv_SdtGroup_SDT_otherGroup_Signature = "";
 			gxTv_SdtGroup_SDT_otherGroup_Extpubkeymultisigreceiving = "";
 			gxTv_SdtGroup_SDT_otherGroup_Extpubkeymultisigchange = "";
+			gxTv_SdtGroup_SDT_otherGroup_Extpubkeytimebountyreceiving = "";
 			return  ;
 		}
 
@@ -261,6 +284,9 @@ namespace GeneXus.Programs.wallet.registered
 		protected string gxTv_SdtGroup_SDT_otherGroup_Extpubkeymultisigchange;
 		 
 
+		protected string gxTv_SdtGroup_SDT_otherGroup_Extpubkeytimebountyreceiving;
+		 
+
 
 		#endregion
 	}
@@ -278,6 +304,8 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("referenceGroupId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="referenceGroupId", Order=0)]
 		public Guid gxTpr_Referencegroupid
 		{
@@ -290,6 +318,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("invitationDeclined")]
+		[JsonPropertyOrder(1)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="invitationDeclined", Order=1)]
 		public bool gxTpr_Invitationdeclined
 		{
@@ -302,6 +333,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("encPassword")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="encPassword", Order=2)]
 		public  string gxTpr_Encpassword
 		{
@@ -314,6 +347,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("referenceUsernName")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="referenceUsernName", Order=3)]
 		public  string gxTpr_Referenceusernname
 		{
@@ -326,11 +361,13 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("signature")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="signature", Order=4)]
 		public  string gxTpr_Signature
 		{
 			get { 
-				return sdt.gxTpr_Signature;
+				return StringUtil.RTrim( sdt.gxTpr_Signature);
 
 			}
 			set { 
@@ -338,6 +375,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("extPubKeyMultiSigReceiving")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="extPubKeyMultiSigReceiving", Order=5)]
 		public  string gxTpr_Extpubkeymultisigreceiving
 		{
@@ -350,6 +389,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("extPubKeyMultiSigChange")]
+		[JsonPropertyOrder(6)]
 		[DataMember(Name="extPubKeyMultiSigChange", Order=6)]
 		public  string gxTpr_Extpubkeymultisigchange
 		{
@@ -362,9 +403,23 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("extPubKeyTimeBountyReceiving")]
+		[JsonPropertyOrder(7)]
+		[DataMember(Name="extPubKeyTimeBountyReceiving", Order=7)]
+		public  string gxTpr_Extpubkeytimebountyreceiving
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Extpubkeytimebountyreceiving);
+
+			}
+			set { 
+				 sdt.gxTpr_Extpubkeytimebountyreceiving = value;
+			}
+		}
+
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtGroup_SDT_otherGroup sdt
 		{
 			get { 

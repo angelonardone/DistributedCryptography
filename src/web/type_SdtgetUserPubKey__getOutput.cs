@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtgetUserPubKey__getOutput
 			Description: getUserPubKey__getOutput
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 
 namespace GeneXus.Programs
@@ -158,11 +159,13 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("UserPubKey")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="UserPubKey", Order=0)]
 		public  string gxTpr_Userpubkey
 		{
 			get { 
-				return sdt.gxTpr_Userpubkey;
+				return StringUtil.RTrim( sdt.gxTpr_Userpubkey);
 
 			}
 			set { 
@@ -170,11 +173,13 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("error")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="error", Order=1)]
 		public  string gxTpr_Error
 		{
 			get { 
-				return sdt.gxTpr_Error;
+				return StringUtil.RTrim( sdt.gxTpr_Error);
 
 			}
 			set { 
@@ -184,7 +189,7 @@ namespace GeneXus.Programs
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtgetUserPubKey__getOutput sdt
 		{
 			get { 

@@ -19,6 +19,7 @@ using GeneXus.Http.Client;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet.registered {
    public class receivedfinishedmusig : GXProcedure
    {
@@ -129,7 +130,7 @@ namespace GeneXus.Programs.wallet.registered {
                         AV24transactionFileName = StringUtil.Trim( AV21oneGroup.gxTpr_Groupid.ToString()) + ".gtrn";
                         AV26TransactionId = StringUtil.Trim( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV25transactionsToSend.Item(1)).gxTpr_Senttransactionid);
                         GXt_char1 = AV12error;
-                        new GeneXus.Programs.wallet.updatetransactionsaftercoinsent(context ).execute(  AV24transactionFileName,  AV26TransactionId, ref  AV25transactionsToSend, out  GXt_char1) ;
+                        new GeneXus.Programs.wallet.updatetransactionsaftercoinsent(context ).execute(  AV24transactionFileName,  AV26TransactionId,  AV25transactionsToSend, out  GXt_char1) ;
                         AV12error = GXt_char1;
                      }
                      if (true) break;

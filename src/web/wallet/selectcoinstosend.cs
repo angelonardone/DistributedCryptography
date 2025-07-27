@@ -19,6 +19,7 @@ using GeneXus.Http.Client;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet {
    public class selectcoinstosend : GXProcedure
    {
@@ -38,55 +39,60 @@ namespace GeneXus.Programs.wallet {
 
       public void execute( string aP0_description ,
                            decimal aP1_amountToSend ,
-                           out GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP2_transactionsToSend )
+                           decimal aP2_transactionFee ,
+                           out GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP3_transactionsToSend )
       {
          this.AV14description = aP0_description;
          this.AV8amountToSend = aP1_amountToSend;
+         this.AV15transactionFee = aP2_transactionFee;
          this.AV12transactionsToSend = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography") ;
          initialize();
          ExecuteImpl();
-         aP2_transactionsToSend=this.AV12transactionsToSend;
+         aP3_transactionsToSend=this.AV12transactionsToSend;
       }
 
       public GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> executeUdp( string aP0_description ,
-                                                                                        decimal aP1_amountToSend )
+                                                                                        decimal aP1_amountToSend ,
+                                                                                        decimal aP2_transactionFee )
       {
-         execute(aP0_description, aP1_amountToSend, out aP2_transactionsToSend);
+         execute(aP0_description, aP1_amountToSend, aP2_transactionFee, out aP3_transactionsToSend);
          return AV12transactionsToSend ;
       }
 
       public void executeSubmit( string aP0_description ,
                                  decimal aP1_amountToSend ,
-                                 out GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP2_transactionsToSend )
+                                 decimal aP2_transactionFee ,
+                                 out GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP3_transactionsToSend )
       {
          this.AV14description = aP0_description;
          this.AV8amountToSend = aP1_amountToSend;
+         this.AV15transactionFee = aP2_transactionFee;
          this.AV12transactionsToSend = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography") ;
          SubmitImpl();
-         aP2_transactionsToSend=this.AV12transactionsToSend;
+         aP3_transactionsToSend=this.AV12transactionsToSend;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV13feeUsedForEstimate = NumberUtil.Val( "0.00001000", ".");
          GXt_objcol_SdtSDTAddressHistory1 = AV9historyWithBalance;
          new GeneXus.Programs.wallet.gethistorywithbalance(context ).execute( out  GXt_objcol_SdtSDTAddressHistory1) ;
          AV9historyWithBalance = GXt_objcol_SdtSDTAddressHistory1;
          AV9historyWithBalance.Sort("Balance");
-         AV15GXV1 = 1;
-         while ( AV15GXV1 <= AV9historyWithBalance.Count )
+         AV11totalBalance = 0;
+         AV16GXV1 = 1;
+         while ( AV16GXV1 <= AV9historyWithBalance.Count )
          {
-            AV10oneAddressHistory = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV9historyWithBalance.Item(AV15GXV1));
+            AV10oneAddressHistory = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV9historyWithBalance.Item(AV16GXV1));
             AV10oneAddressHistory.gxTpr_Description = StringUtil.Trim( AV14description);
             AV11totalBalance = (decimal)(AV11totalBalance+(AV10oneAddressHistory.gxTpr_Balance));
             AV12transactionsToSend.Add(AV10oneAddressHistory, 0);
-            if ( AV11totalBalance > AV8amountToSend + AV13feeUsedForEstimate )
+            if ( AV11totalBalance >= AV8amountToSend + AV15transactionFee )
             {
                if (true) break;
             }
-            AV15GXV1 = (int)(AV15GXV1+1);
+            AV16GXV1 = (int)(AV16GXV1+1);
          }
          cleanup();
       }
@@ -110,16 +116,16 @@ namespace GeneXus.Programs.wallet {
          /* GeneXus formulas. */
       }
 
-      private int AV15GXV1 ;
+      private int AV16GXV1 ;
       private decimal AV8amountToSend ;
-      private decimal AV13feeUsedForEstimate ;
+      private decimal AV15transactionFee ;
       private decimal AV11totalBalance ;
       private string AV14description ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV12transactionsToSend ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV9historyWithBalance ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> GXt_objcol_SdtSDTAddressHistory1 ;
       private GeneXus.Programs.wallet.SdtSDTAddressHistory AV10oneAddressHistory ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP2_transactionsToSend ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP3_transactionsToSend ;
    }
 
 }

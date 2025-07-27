@@ -1,1 +1,0 @@
-function a(a){return navigator.userAgent.includes("Mac")?a.metaKey:a.ctrlKey}export{a as m}

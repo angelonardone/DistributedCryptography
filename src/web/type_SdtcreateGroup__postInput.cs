@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtcreateGroup__postInput
 			Description: createGroup__postInput
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 
 namespace GeneXus.Programs
@@ -31,8 +32,6 @@ namespace GeneXus.Programs
 		{
 			/* Constructor for serialization */
 			gxTv_SdtcreateGroup__postInput_Groupencryptedkey = "";
-
-			gxTv_SdtcreateGroup__postInput_Groupiv = "";
 
 			gxTv_SdtcreateGroup__postInput_Groupencrypted = "";
 
@@ -66,9 +65,6 @@ namespace GeneXus.Programs
 			AddObjectProperty("GroupEncryptedKey", gxTpr_Groupencryptedkey, false);
 
 
-			AddObjectProperty("GroupIV", gxTpr_Groupiv, false);
-
-
 			AddObjectProperty("GroupEncrypted", gxTpr_Groupencrypted, false);
 
 			return;
@@ -87,22 +83,6 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtcreateGroup__postInput_Groupencryptedkey = value;
 				SetDirty("Groupencryptedkey");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="GroupIV")]
-		[XmlElement(ElementName="GroupIV")]
-		public string gxTpr_Groupiv
-		{
-			get {
-				return gxTv_SdtcreateGroup__postInput_Groupiv; 
-			}
-			set {
-				gxTv_SdtcreateGroup__postInput_Groupiv = value;
-				SetDirty("Groupiv");
 			}
 		}
 
@@ -146,7 +126,6 @@ namespace GeneXus.Programs
 		public void initialize( )
 		{
 			gxTv_SdtcreateGroup__postInput_Groupencryptedkey = "";
-			gxTv_SdtcreateGroup__postInput_Groupiv = "";
 			gxTv_SdtcreateGroup__postInput_Groupencrypted = "";
 			return  ;
 		}
@@ -158,9 +137,6 @@ namespace GeneXus.Programs
 		#region Declaration
 
 		protected string gxTv_SdtcreateGroup__postInput_Groupencryptedkey;
-		 
-
-		protected string gxTv_SdtcreateGroup__postInput_Groupiv;
 		 
 
 		protected string gxTv_SdtcreateGroup__postInput_Groupencrypted;
@@ -183,11 +159,13 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("GroupEncryptedKey")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="GroupEncryptedKey", Order=0)]
 		public  string gxTpr_Groupencryptedkey
 		{
 			get { 
-				return sdt.gxTpr_Groupencryptedkey;
+				return StringUtil.RTrim( sdt.gxTpr_Groupencryptedkey);
 
 			}
 			set { 
@@ -195,23 +173,13 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="GroupIV", Order=1)]
-		public  string gxTpr_Groupiv
-		{
-			get { 
-				return sdt.gxTpr_Groupiv;
-
-			}
-			set { 
-				 sdt.gxTpr_Groupiv = value;
-			}
-		}
-
-		[DataMember(Name="GroupEncrypted", Order=2)]
+		[JsonPropertyName("GroupEncrypted")]
+		[JsonPropertyOrder(1)]
+		[DataMember(Name="GroupEncrypted", Order=1)]
 		public  string gxTpr_Groupencrypted
 		{
 			get { 
-				return sdt.gxTpr_Groupencrypted;
+				return StringUtil.RTrim( sdt.gxTpr_Groupencrypted);
 
 			}
 			set { 
@@ -221,7 +189,7 @@ namespace GeneXus.Programs
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtcreateGroup__postInput sdt
 		{
 			get { 

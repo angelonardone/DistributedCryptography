@@ -19,6 +19,7 @@ using GeneXus.Encryption;
 using GeneXus.Http.Client;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet.registered {
    public class chat : GXDataArea
    {
@@ -240,18 +241,18 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 310420), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 310420), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 310420), false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -276,7 +277,7 @@ namespace GeneXus.Programs.wallet.registered {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.chat.aspx") +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.chat") +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -442,7 +443,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wallet.registered.chat.aspx")  ;
+         return formatLink("wallet.registered.chat")  ;
       }
 
       public override string GetPgmname( )
@@ -607,7 +608,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_13-186676", 0) ;
             }
          }
          Form.Meta.addItem("description", "Chat", 0) ;
@@ -1123,23 +1124,21 @@ namespace GeneXus.Programs.wallet.registered {
             AV14sdt_message.gxTpr_Message = AV15sdt_chat.ToJSonString(false, true);
             GXt_char7 = AV5error;
             GXt_char8 = AV18json_enc.gxTpr_Encryptedkey;
-            GXt_char9 = AV18json_enc.gxTpr_Iv;
-            GXt_char10 = AV18json_enc.gxTpr_Encryptedtext;
-            new GeneXus.Programs.distributedcrypto.encryptjsonto(context ).execute(  AV14sdt_message.ToJSonString(false, true),  AV12contact.gxTpr_Userpubkey, out  GXt_char8, out  GXt_char9, out  GXt_char10, out  GXt_char7) ;
+            GXt_char9 = AV18json_enc.gxTpr_Encryptedtext;
+            new GeneXus.Programs.distributedcryptographylib.encryptjsonto(context ).execute(  AV14sdt_message.ToJSonString(false, true),  AV12contact.gxTpr_Userpubkey, out  GXt_char8, out  GXt_char9, out  GXt_char7) ;
             AV18json_enc.gxTpr_Encryptedkey = GXt_char8;
-            AV18json_enc.gxTpr_Iv = GXt_char9;
-            AV18json_enc.gxTpr_Encryptedtext = GXt_char10;
+            AV18json_enc.gxTpr_Encryptedtext = GXt_char9;
             AV5error = GXt_char7;
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV5error)) )
             {
-               GXt_char10 = AV5error;
-               new GeneXus.Programs.nbitcoin.tapprootaddresstoxonlypubkey(context ).execute(  AV12contact.gxTpr_Username,  AV21wallet.gxTpr_Networktype, out  AV20taprootPubKey, out  GXt_char10) ;
-               AV5error = GXt_char10;
+               GXt_char9 = AV5error;
+               new GeneXus.Programs.nbitcoin.tapprootaddresstoxonlypubkey(context ).execute(  AV12contact.gxTpr_Username,  AV21wallet.gxTpr_Networktype, out  AV20taprootPubKey, out  GXt_char9) ;
+               AV5error = GXt_char9;
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV5error)) )
                {
-                  GXt_char10 = AV5error;
-                  new GeneXus.Programs.nostr.publish(context ).execute(  AV20taprootPubKey,  AV18json_enc.ToJSonString(false, true), out  GXt_char10) ;
-                  AV5error = GXt_char10;
+                  GXt_char9 = AV5error;
+                  new GeneXus.Programs.nostr.publish(context ).execute(  AV20taprootPubKey,  AV18json_enc.ToJSonString(false, true), out  GXt_char9) ;
+                  AV5error = GXt_char9;
                   if ( String.IsNullOrEmpty(StringUtil.RTrim( AV5error)) )
                   {
                      /* Execute user subroutine: 'CONTACT_CHAT_TO_SCREEN' */
@@ -1243,7 +1242,7 @@ namespace GeneXus.Programs.wallet.registered {
             ClassString = "gxchaticon" + " " + ((StringUtil.StrCmp(imgChatsendimage_gximage, "")==0) ? "GX_Image_ChatSend_Class" : "GX_Image_"+imgChatsendimage_gximage+"_Class");
             StyleString = "";
             sImgUrl = (string)(context.GetImagePath( "a772b4b9-378a-4381-880b-793e6dfdca14", "", context.GetTheme( )));
-            GxWebStd.gx_bitmap( context, imgChatsendimage_Internalname, sImgUrl, "", "", "", context.GetTheme( ), 1, 1, "", "", 0, 0, 0, "px", 0, "px", 0, 0, 5, imgChatsendimage_Jsonclick, "'"+""+"'"+",false,"+"'"+"E\\'SEND\\'."+"'", StyleString, ClassString, "", "", "", "", " "+"data-gx-image"+" "+TempTags, "", "", 1, false, false, context.GetImageSrcSet( sImgUrl), "HLP_Wallet/registered/Chat.htm");
+            GxWebStd.gx_bitmap( context, imgChatsendimage_Internalname, sImgUrl, "", "", "", context.GetTheme( ), 1, 1, "", "", 0, 0, 0, "px", 0, "px", 0, 0, 5, imgChatsendimage_Jsonclick, "'"+""+"'"+",false,"+"'"+"E\\'SEND\\'."+"'", StyleString, ClassString, "", "", "", "", " "+"data-gx-image"+" "+TempTags, "", "", 1, false, false, context.GetImageSrcSet( sImgUrl), "none", "HLP_Wallet/registered/Chat.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -1296,7 +1295,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531412582549", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202572416225171", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1312,8 +1311,8 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("wallet/registered/chat.js", "?202531412582550", false, true);
+         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("wallet/registered/chat.js", "?202572416225172", false, true);
          /* End function include_jscripts */
       }
 
@@ -1586,12 +1585,12 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDCHAT_nFirstRecordOnPage"},{"av":"GRIDCHAT_nEOF"},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14},{"av":"AV16externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV21wallet","fld":"vWALLET","hsh":true},{"av":"GXV1","fld":"CTLUSERPRIVATENAME"}]}""");
-         setEventMetadata("GLOBALEVENTS.RECEIVECHAT","""{"handler":"E11182","iparms":[{"av":"AV12contact","fld":"vCONTACT"},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14},{"av":"GRIDCHAT_nEOF"},{"av":"AV16externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV21wallet","fld":"vWALLET","hsh":true},{"av":"GXV1","fld":"CTLUSERPRIVATENAME"}]""");
-         setEventMetadata("GLOBALEVENTS.RECEIVECHAT",""","oparms":[{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14}]}""");
-         setEventMetadata("'SEND'","""{"handler":"E12182","iparms":[{"av":"AV11sendClearText","fld":"vSENDCLEARTEXT"},{"av":"AV16externalUser","fld":"vEXTERNALUSER","hsh":true},{"av":"AV12contact","fld":"vCONTACT"},{"av":"AV14sdt_message","fld":"vSDT_MESSAGE"},{"av":"AV18json_enc","fld":"vJSON_ENC"},{"av":"AV21wallet","fld":"vWALLET","hsh":true},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14},{"av":"GRIDCHAT_nEOF"},{"av":"GXV1","fld":"CTLUSERPRIVATENAME"}]""");
-         setEventMetadata("'SEND'",""","oparms":[{"av":"AV14sdt_message","fld":"vSDT_MESSAGE"},{"av":"AV18json_enc","fld":"vJSON_ENC"},{"av":"AV11sendClearText","fld":"vSENDCLEARTEXT"},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14}]}""");
-         setEventMetadata("GRIDCHAT.LOAD","""{"handler":"E14182","iparms":[{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14},{"av":"AV16externalUser","fld":"vEXTERNALUSER","hsh":true}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"GRIDCHAT_nEOF","type":"int"},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"},{"av":"AV16externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""},{"av":"AV21wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"GXV1","fld":"CTLUSERPRIVATENAME","type":"char"}]}""");
+         setEventMetadata("GLOBALEVENTS.RECEIVECHAT","""{"handler":"E11182","iparms":[{"av":"AV12contact","fld":"vCONTACT","type":""},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"},{"av":"GRIDCHAT_nEOF","type":"int"},{"av":"AV16externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""},{"av":"AV21wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"GXV1","fld":"CTLUSERPRIVATENAME","type":"char"}]""");
+         setEventMetadata("GLOBALEVENTS.RECEIVECHAT",""","oparms":[{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"}]}""");
+         setEventMetadata("'SEND'","""{"handler":"E12182","iparms":[{"av":"AV11sendClearText","fld":"vSENDCLEARTEXT","type":"vchar"},{"av":"AV16externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""},{"av":"AV12contact","fld":"vCONTACT","type":""},{"av":"AV14sdt_message","fld":"vSDT_MESSAGE","type":""},{"av":"AV18json_enc","fld":"vJSON_ENC","type":""},{"av":"AV21wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"},{"av":"GRIDCHAT_nEOF","type":"int"},{"av":"GXV1","fld":"CTLUSERPRIVATENAME","type":"char"}]""");
+         setEventMetadata("'SEND'",""","oparms":[{"av":"AV14sdt_message","fld":"vSDT_MESSAGE","type":""},{"av":"AV18json_enc","fld":"vJSON_ENC","type":""},{"av":"AV11sendClearText","fld":"vSENDCLEARTEXT","type":"vchar"},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"}]}""");
+         setEventMetadata("GRIDCHAT.LOAD","""{"handler":"E14182","iparms":[{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"},{"av":"AV16externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""}]""");
          setEventMetadata("GRIDCHAT.LOAD",""","oparms":[{"av":"divGridmessagestable_Class","ctrl":"GRIDMESSAGESTABLE","prop":"Class"},{"av":"tblTablemessage_Class","ctrl":"TABLEMESSAGE","prop":"Class"}]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Gxv4","iparms":[]}""");
          return  ;
@@ -1646,9 +1645,8 @@ namespace GeneXus.Programs.wallet.registered {
          AV5error = "";
          GXt_char7 = "";
          GXt_char8 = "";
-         GXt_char9 = "";
          AV20taprootPubKey = "";
-         GXt_char10 = "";
+         GXt_char9 = "";
          GridchatRow = new GXWebRow();
          imgChatsendimage_gximage = "";
          sImgUrl = "";
@@ -1727,9 +1725,8 @@ namespace GeneXus.Programs.wallet.registered {
       private string AV5error ;
       private string GXt_char7 ;
       private string GXt_char8 ;
-      private string GXt_char9 ;
       private string AV20taprootPubKey ;
-      private string GXt_char10 ;
+      private string GXt_char9 ;
       private string divGridmessagestable_Class ;
       private string divGridmessagestable_Internalname ;
       private string tblTablemessage_Class ;

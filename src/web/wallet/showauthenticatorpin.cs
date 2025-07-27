@@ -19,6 +19,7 @@ using GeneXus.Encryption;
 using GeneXus.Http.Client;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet {
    public class showauthenticatorpin : GXDataArea
    {
@@ -198,10 +199,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 310420), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 310420), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -231,7 +232,7 @@ namespace GeneXus.Programs.wallet {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.showauthenticatorpin.aspx") +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.showauthenticatorpin") +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -329,7 +330,7 @@ namespace GeneXus.Programs.wallet {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wallet.showauthenticatorpin.aspx")  ;
+         return formatLink("wallet.showauthenticatorpin")  ;
       }
 
       public override string GetPgmname( )
@@ -407,7 +408,7 @@ namespace GeneXus.Programs.wallet {
             StyleString = "";
             AV10qrcode_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV10qrcode))&&String.IsNullOrEmpty(StringUtil.RTrim( AV15Qrcode_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV10qrcode)));
             sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV10qrcode)) ? AV15Qrcode_GXI : context.PathToRelativeUrl( AV10qrcode));
-            GxWebStd.gx_bitmap( context, imgavQrcode_Internalname, sImgUrl, "", "", "", context.GetTheme( ), 1, 0, "", "", 0, -1, 0, "", 0, "", 0, 0, 0, "", "", StyleString, ClassString, "", "", "", "", "", "", "", 1, AV10qrcode_IsBlob, false, context.GetImageSrcSet( sImgUrl), "HLP_Wallet/ShowAuthenticatorPin.htm");
+            GxWebStd.gx_bitmap( context, imgavQrcode_Internalname, sImgUrl, "", "", "", context.GetTheme( ), 1, 0, "", "", 0, -1, 0, "", 0, "", 0, 0, 0, "", "", StyleString, ClassString, "", "", "", "", "", "", "", 1, AV10qrcode_IsBlob, false, context.GetImageSrcSet( sImgUrl), "none", "HLP_Wallet/ShowAuthenticatorPin.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -461,7 +462,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_13-186676", 0) ;
             }
          }
          Form.Meta.addItem("description", "Show Authenticator Pin", 0) ;
@@ -837,7 +838,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531412581954", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202572416224661", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -853,7 +854,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/showauthenticatorpin.js", "?202531412581954", false, true);
+         context.AddJavascriptSource("wallet/showauthenticatorpin.js", "?202572416224661", false, true);
          /* End function include_jscripts */
       }
 
@@ -909,9 +910,9 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GXV1","fld":"CTLISSUER1"},{"av":"GXV2","fld":"CTLACCOUNTTITLE1"}]}""");
-         setEventMetadata("'REFRESH PIN'","""{"handler":"E120U2","iparms":[{"av":"AV5authenticator","fld":"vAUTHENTICATOR"}]""");
-         setEventMetadata("'REFRESH PIN'",""","oparms":[{"av":"AV8generatedPIN","fld":"vGENERATEDPIN"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GXV1","fld":"CTLISSUER1","type":"char"},{"av":"GXV2","fld":"CTLACCOUNTTITLE1","type":"char"}]}""");
+         setEventMetadata("'REFRESH PIN'","""{"handler":"E120U2","iparms":[{"av":"AV5authenticator","fld":"vAUTHENTICATOR","type":""}]""");
+         setEventMetadata("'REFRESH PIN'",""","oparms":[{"av":"AV8generatedPIN","fld":"vGENERATEDPIN","type":"char"}]}""");
          setEventMetadata("'CLOSE'","""{"handler":"E130U2","iparms":[]}""");
          return  ;
       }

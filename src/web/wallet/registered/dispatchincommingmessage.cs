@@ -19,6 +19,7 @@ using GeneXus.Encryption;
 using GeneXus.Http.Client;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet.registered {
    public class dispatchincommingmessage : GXWebComponent
    {
@@ -234,10 +235,10 @@ namespace GeneXus.Programs.wallet.registered {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 310420), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 310420), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -264,7 +265,7 @@ namespace GeneXus.Programs.wallet.registered {
             context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
             context.WriteHtmlText( FormProcess+">") ;
             context.skipLines(1);
-            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.dispatchincommingmessage.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV9screen_name))}, new string[] {"screen_name"}) +"\">") ;
+            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.dispatchincommingmessage", new object[] {UrlEncode(StringUtil.RTrim(AV9screen_name))}, new string[] {"screen_name"}) +"\">") ;
             GxWebStd.gx_hidden_field( context, "_EventName", "");
             GxWebStd.gx_hidden_field( context, "_EventGridId", "");
             GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -438,7 +439,7 @@ namespace GeneXus.Programs.wallet.registered {
             RenderHtmlOpenForm( ) ;
             if ( StringUtil.Len( sPrefix) != 0 )
             {
-               GxWebStd.gx_hidden_field( context, sPrefix+"_CMPPGM", "wallet.registered.dispatchincommingmessage.aspx");
+               GxWebStd.gx_hidden_field( context, sPrefix+"_CMPPGM", "wallet.registered.dispatchincommingmessage");
             }
             GxWebStd.gx_msg_list( context, "", context.GX_msglist.DisplayMode, "", "", sPrefix, "false");
             /* Div Control */
@@ -462,7 +463,7 @@ namespace GeneXus.Programs.wallet.registered {
             {
                if ( context.ExposeMetadata( ) )
                {
-                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_13-186676", 0) ;
                }
             }
             Form.Meta.addItem("description", "dispatch Incomming Message", 0) ;
@@ -825,7 +826,6 @@ namespace GeneXus.Programs.wallet.registered {
                AV21message = ((SdtDesktopApp_services_SDT_Messages_Message_MessageItem)AV19messages.gxTpr_Message.Item(AV31GXV3));
                AV13json_enc = new GeneXus.Programs.wallet.SdtSDT_Json_Enc(context);
                AV13json_enc.gxTpr_Encryptedkey = AV21message.gxTpr_Messageencryptedkey;
-               AV13json_enc.gxTpr_Iv = AV21message.gxTpr_Messageiv;
                AV13json_enc.gxTpr_Encryptedtext = AV21message.gxTpr_Messageencrypted;
                /* Execute user subroutine: 'DISPATCH ONE MESSAGE' */
                S112 ();
@@ -848,17 +848,17 @@ namespace GeneXus.Programs.wallet.registered {
          /* 'DISPATCH ONE MESSAGE' Routine */
          returnInSub = false;
          GXt_char3 = AV14error;
-         new GeneXus.Programs.distributedcrypto.decryptjsonfor(context ).execute(  AV13json_enc.gxTpr_Encryptedtext,  AV13json_enc.gxTpr_Encryptedkey,  AV13json_enc.gxTpr_Iv,  AV16externalUser.gxTpr_Chatkeyinfo.gxTpr_Privatekey, out  AV15clearText, out  GXt_char3) ;
+         new GeneXus.Programs.distributedcryptographylib.decryptjsonfor(context ).execute(  AV13json_enc.gxTpr_Encryptedtext,  AV13json_enc.gxTpr_Encryptedkey,  AV16externalUser.gxTpr_Chatkeyinfo.gxTpr_Privatekey, out  AV15clearText, out  GXt_char3) ;
          AV14error = GXt_char3;
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
          {
             GXt_char3 = AV14error;
-            new GeneXus.Programs.distributedcrypto.decryptjsonfor(context ).execute(  AV13json_enc.gxTpr_Encryptedtext,  AV13json_enc.gxTpr_Encryptedkey,  AV13json_enc.gxTpr_Iv,  AV16externalUser.gxTpr_Keyinfo.gxTpr_Privatekey, out  AV15clearText, out  GXt_char3) ;
+            new GeneXus.Programs.distributedcryptographylib.decryptjsonfor(context ).execute(  AV13json_enc.gxTpr_Encryptedtext,  AV13json_enc.gxTpr_Encryptedkey,  AV16externalUser.gxTpr_Keyinfo.gxTpr_Privatekey, out  AV15clearText, out  GXt_char3) ;
             AV14error = GXt_char3;
             if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
             {
                GXt_char3 = AV14error;
-               new GeneXus.Programs.distributedcrypto.decryptjsonfor(context ).execute(  AV13json_enc.gxTpr_Encryptedtext,  AV13json_enc.gxTpr_Encryptedkey,  AV13json_enc.gxTpr_Iv,  AV16externalUser.gxTpr_Groupskeyinfo.gxTpr_Privatekey, out  AV15clearText, out  GXt_char3) ;
+               new GeneXus.Programs.distributedcryptographylib.decryptjsonfor(context ).execute(  AV13json_enc.gxTpr_Encryptedtext,  AV13json_enc.gxTpr_Encryptedkey,  AV16externalUser.gxTpr_Groupskeyinfo.gxTpr_Privatekey, out  AV15clearText, out  GXt_char3) ;
                AV14error = GXt_char3;
             }
          }
@@ -1370,7 +1370,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531412573579", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20257241622356", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1386,7 +1386,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/dispatchincommingmessage.js", "?202531412573580", false, true);
+         context.AddJavascriptSource("wallet/registered/dispatchincommingmessage.js", "?20257241622357", false, true);
          /* End function include_jscripts */
       }
 
@@ -1431,9 +1431,9 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV12notificationInfo","fld":"vNOTIFICATIONINFO","hsh":true}]}""");
-         setEventMetadata("GLOBALEVENTS.DISTPACHINCOMMINGMESSAGES","""{"handler":"E11192","iparms":[{"av":"AV12notificationInfo","fld":"vNOTIFICATIONINFO","hsh":true},{"av":"AV13json_enc","fld":"vJSON_ENC"},{"av":"AV16externalUser","fld":"vEXTERNALUSER"},{"av":"AV9screen_name","fld":"vSCREEN_NAME"},{"av":"AV23lastMessageId","fld":"vLASTMESSAGEID"},{"av":"AV21message","fld":"vMESSAGE"}]""");
-         setEventMetadata("GLOBALEVENTS.DISTPACHINCOMMINGMESSAGES",""","oparms":[{"av":"AV16externalUser","fld":"vEXTERNALUSER"},{"av":"AV13json_enc","fld":"vJSON_ENC"},{"av":"AV21message","fld":"vMESSAGE"},{"av":"AV23lastMessageId","fld":"vLASTMESSAGEID"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV12notificationInfo","fld":"vNOTIFICATIONINFO","hsh":true,"type":""}]}""");
+         setEventMetadata("GLOBALEVENTS.DISTPACHINCOMMINGMESSAGES","""{"handler":"E11192","iparms":[{"av":"AV12notificationInfo","fld":"vNOTIFICATIONINFO","hsh":true,"type":""},{"av":"AV13json_enc","fld":"vJSON_ENC","type":""},{"av":"AV16externalUser","fld":"vEXTERNALUSER","type":""},{"av":"AV9screen_name","fld":"vSCREEN_NAME","type":"char"},{"av":"AV23lastMessageId","fld":"vLASTMESSAGEID","type":"guid"},{"av":"AV21message","fld":"vMESSAGE","type":""}]""");
+         setEventMetadata("GLOBALEVENTS.DISTPACHINCOMMINGMESSAGES",""","oparms":[{"av":"AV16externalUser","fld":"vEXTERNALUSER","type":""},{"av":"AV13json_enc","fld":"vJSON_ENC","type":""},{"av":"AV21message","fld":"vMESSAGE","type":""},{"av":"AV23lastMessageId","fld":"vLASTMESSAGEID","type":"guid"}]}""");
          return  ;
       }
 

@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtGAMGAMRemoteUserSDT
 			Description: GAMGAMRemoteUserSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 using GeneXus.Programs.distcrypt;
@@ -493,6 +494,7 @@ namespace GeneXus.Programs.distcrypt.sso
 					gxTv_SdtGAMGAMRemoteUserSDT_Attributes = new GXBaseCollection<GeneXus.Programs.distcrypt.sso.SdtGAMWSLoginOutUserAttSDT>( context, "GAMWSLoginOutUserAttSDT", "");
 				}
 				gxTv_SdtGAMGAMRemoteUserSDT_Attributes_N = false;
+				SetDirty("Attributes");
 				return gxTv_SdtGAMGAMRemoteUserSDT_Attributes ;
 			}
 			set {
@@ -546,6 +548,7 @@ namespace GeneXus.Programs.distcrypt.sso
 					gxTv_SdtGAMGAMRemoteUserSDT_Roles = new GxSimpleCollection<string>();
 				}
 				gxTv_SdtGAMGAMRemoteUserSDT_Roles_N = false;
+				SetDirty("Roles");
 				return gxTv_SdtGAMGAMRemoteUserSDT_Roles ;
 			}
 			set {
@@ -704,6 +707,8 @@ namespace GeneXus.Programs.distcrypt.sso
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("guid")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="guid", Order=0)]
 		public  string gxTpr_Guid
 		{
@@ -716,11 +721,13 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("username")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="username", Order=1)]
 		public  string gxTpr_Username
 		{
 			get { 
-				return sdt.gxTpr_Username;
+				return StringUtil.RTrim( sdt.gxTpr_Username);
 
 			}
 			set { 
@@ -728,11 +735,13 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("email")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="email", Order=2)]
 		public  string gxTpr_Email
 		{
 			get { 
-				return sdt.gxTpr_Email;
+				return StringUtil.RTrim( sdt.gxTpr_Email);
 
 			}
 			set { 
@@ -740,6 +749,9 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("verified_email")]
+		[JsonPropertyOrder(3)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="verified_email", Order=3)]
 		public bool gxTpr_Verified_email
 		{
@@ -752,11 +764,13 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("first_name")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="first_name", Order=4)]
 		public  string gxTpr_First_name
 		{
 			get { 
-				return sdt.gxTpr_First_name;
+				return StringUtil.RTrim( sdt.gxTpr_First_name);
 
 			}
 			set { 
@@ -764,11 +778,13 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("last_name")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="last_name", Order=5)]
 		public  string gxTpr_Last_name
 		{
 			get { 
-				return sdt.gxTpr_Last_name;
+				return StringUtil.RTrim( sdt.gxTpr_Last_name);
 
 			}
 			set { 
@@ -776,11 +792,13 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("external_id")]
+		[JsonPropertyOrder(6)]
 		[DataMember(Name="external_id", Order=6)]
 		public  string gxTpr_External_id
 		{
 			get { 
-				return sdt.gxTpr_External_id;
+				return StringUtil.RTrim( sdt.gxTpr_External_id);
 
 			}
 			set { 
@@ -788,6 +806,8 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("birthday")]
+		[JsonPropertyOrder(7)]
 		[DataMember(Name="birthday", Order=7)]
 		public  string gxTpr_Birthday
 		{
@@ -800,6 +820,8 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("gender")]
+		[JsonPropertyOrder(8)]
 		[DataMember(Name="gender", Order=8)]
 		public  string gxTpr_Gender
 		{
@@ -812,11 +834,13 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("url_image")]
+		[JsonPropertyOrder(9)]
 		[DataMember(Name="url_image", Order=9)]
 		public  string gxTpr_Url_image
 		{
 			get { 
-				return sdt.gxTpr_Url_image;
+				return StringUtil.RTrim( sdt.gxTpr_Url_image);
 
 			}
 			set { 
@@ -824,11 +848,13 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("url_profile")]
+		[JsonPropertyOrder(10)]
 		[DataMember(Name="url_profile", Order=10)]
 		public  string gxTpr_Url_profile
 		{
 			get { 
-				return sdt.gxTpr_Url_profile;
+				return StringUtil.RTrim( sdt.gxTpr_Url_profile);
 
 			}
 			set { 
@@ -836,11 +862,13 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("phone")]
+		[JsonPropertyOrder(11)]
 		[DataMember(Name="phone", Order=11)]
 		public  string gxTpr_Phone
 		{
 			get { 
-				return sdt.gxTpr_Phone;
+				return StringUtil.RTrim( sdt.gxTpr_Phone);
 
 			}
 			set { 
@@ -848,11 +876,13 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("address")]
+		[JsonPropertyOrder(12)]
 		[DataMember(Name="address", Order=12)]
 		public  string gxTpr_Address
 		{
 			get { 
-				return sdt.gxTpr_Address;
+				return StringUtil.RTrim( sdt.gxTpr_Address);
 
 			}
 			set { 
@@ -860,11 +890,13 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("city")]
+		[JsonPropertyOrder(13)]
 		[DataMember(Name="city", Order=13)]
 		public  string gxTpr_City
 		{
 			get { 
-				return sdt.gxTpr_City;
+				return StringUtil.RTrim( sdt.gxTpr_City);
 
 			}
 			set { 
@@ -872,11 +904,13 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("state")]
+		[JsonPropertyOrder(14)]
 		[DataMember(Name="state", Order=14)]
 		public  string gxTpr_State
 		{
 			get { 
-				return sdt.gxTpr_State;
+				return StringUtil.RTrim( sdt.gxTpr_State);
 
 			}
 			set { 
@@ -884,11 +918,13 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("post_code")]
+		[JsonPropertyOrder(15)]
 		[DataMember(Name="post_code", Order=15)]
 		public  string gxTpr_Post_code
 		{
 			get { 
-				return sdt.gxTpr_Post_code;
+				return StringUtil.RTrim( sdt.gxTpr_Post_code);
 
 			}
 			set { 
@@ -896,11 +932,13 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("language")]
+		[JsonPropertyOrder(16)]
 		[DataMember(Name="language", Order=16)]
 		public  string gxTpr_Language
 		{
 			get { 
-				return sdt.gxTpr_Language;
+				return StringUtil.RTrim( sdt.gxTpr_Language);
 
 			}
 			set { 
@@ -908,6 +946,8 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("timezone")]
+		[JsonPropertyOrder(17)]
 		[DataMember(Name="timezone", Order=17)]
 		public  string gxTpr_Timezone
 		{
@@ -920,6 +960,9 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("attributes")]
+		[JsonPropertyOrder(18)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="attributes", Order=18, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.distcrypt.sso.SdtGAMWSLoginOutUserAttSDT_RESTInterface> gxTpr_Attributes
 		{
@@ -935,6 +978,9 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("roles")]
+		[JsonPropertyOrder(19)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="roles", Order=19, EmitDefaultValue=false)]
 		public  GxSimpleCollection<string> gxTpr_Roles
 		{
@@ -952,7 +998,7 @@ namespace GeneXus.Programs.distcrypt.sso
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtGAMGAMRemoteUserSDT sdt
 		{
 			get { 

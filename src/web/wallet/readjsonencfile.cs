@@ -19,6 +19,7 @@ using GeneXus.Http.Client;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet {
    public class readjsonencfile : GXProcedure
    {
@@ -84,7 +85,7 @@ namespace GeneXus.Programs.wallet {
          {
             AV16json_enc.FromJSonFile(AV18file, null);
             GXt_char4 = AV13error;
-            new GeneXus.Programs.distributedcrypto.decryptjson(context ).execute(  AV16json_enc.gxTpr_Encryptedtext,  AV16json_enc.gxTpr_Encryptedkey,  AV16json_enc.gxTpr_Iv, out  AV8clearText, out  GXt_char4) ;
+            new GeneXus.Programs.distributedcryptographylib.decryptjson(context ).execute(  AV16json_enc.gxTpr_Encryptedtext,  AV16json_enc.gxTpr_Encryptedkey, out  AV8clearText, out  GXt_char4) ;
             AV13error = GXt_char4;
             if ( StringUtil.StrCmp(AV8clearText, "_empty_") == 0 )
             {
@@ -95,12 +96,10 @@ namespace GeneXus.Programs.wallet {
          {
             GXt_char4 = AV13error;
             GXt_char5 = AV16json_enc.gxTpr_Encryptedkey;
-            GXt_char6 = AV16json_enc.gxTpr_Iv;
-            GXt_char7 = AV16json_enc.gxTpr_Encryptedtext;
-            new GeneXus.Programs.distributedcrypto.encryptjson(context ).execute(  "_empty_",  "", out  GXt_char5, out  GXt_char6, out  GXt_char7, out  GXt_char4) ;
+            GXt_char6 = AV16json_enc.gxTpr_Encryptedtext;
+            new GeneXus.Programs.distributedcryptographylib.encryptjson(context ).execute(  "_empty_",  "", out  GXt_char5, out  GXt_char6, out  GXt_char4) ;
             AV16json_enc.gxTpr_Encryptedkey = GXt_char5;
-            AV16json_enc.gxTpr_Iv = GXt_char6;
-            AV16json_enc.gxTpr_Encryptedtext = GXt_char7;
+            AV16json_enc.gxTpr_Encryptedtext = GXt_char6;
             AV13error = GXt_char4;
             AV18file.WriteAllText(AV16json_enc.ToJSonString(false, true), "");
          }
@@ -128,7 +127,6 @@ namespace GeneXus.Programs.wallet {
          GXt_char4 = "";
          GXt_char5 = "";
          GXt_char6 = "";
-         GXt_char7 = "";
          /* GeneXus formulas. */
       }
 
@@ -137,7 +135,6 @@ namespace GeneXus.Programs.wallet {
       private string GXt_char4 ;
       private string GXt_char5 ;
       private string GXt_char6 ;
-      private string GXt_char7 ;
       private bool GXt_boolean2 ;
       private bool GXt_boolean3 ;
       private string AV8clearText ;

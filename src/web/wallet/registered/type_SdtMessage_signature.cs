@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtMessage_signature
 			Description: Message_signature
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 using GeneXus.Programs.wallet;
@@ -234,6 +235,8 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("UserName")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="UserName", Order=0)]
 		public  string gxTpr_Username
 		{
@@ -246,6 +249,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("PubKey")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="PubKey", Order=1)]
 		public  string gxTpr_Pubkey
 		{
@@ -258,6 +263,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("NewPubKey")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="NewPubKey", Order=2)]
 		public  string gxTpr_Newpubkey
 		{
@@ -270,6 +277,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("GroupPubKey")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="GroupPubKey", Order=3)]
 		public  string gxTpr_Grouppubkey
 		{
@@ -282,6 +291,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("Signature")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="Signature", Order=4)]
 		public  string gxTpr_Signature
 		{
@@ -296,7 +307,7 @@ namespace GeneXus.Programs.wallet.registered
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtMessage_signature sdt
 		{
 			get { 

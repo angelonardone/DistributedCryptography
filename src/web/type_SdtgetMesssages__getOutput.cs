@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtgetMesssages__getOutput
 			Description: getMesssages__getOutput
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 
 namespace GeneXus.Programs
@@ -30,6 +31,8 @@ namespace GeneXus.Programs
 		public SdtgetMesssages__getOutput( )
 		{
 			/* Constructor for serialization */
+			gxTv_SdtgetMesssages__getOutput_Mesages_N = true;
+
 			gxTv_SdtgetMesssages__getOutput_Error = "";
 
 		}
@@ -80,6 +83,7 @@ namespace GeneXus.Programs
 				if ( gxTv_SdtgetMesssages__getOutput_Mesages == null )
 				{
 					gxTv_SdtgetMesssages__getOutput_Mesages = new GeneXus.Programs.SdtDesktopApp_services_SDT_Messages(context);
+					SetDirty("Mesages");
 				}
 				return gxTv_SdtgetMesssages__getOutput_Mesages; 
 			}
@@ -177,6 +181,9 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("mesages")]
+		[JsonPropertyOrder(0)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="mesages", Order=0, EmitDefaultValue=false)]
 		public GeneXus.Programs.SdtDesktopApp_services_SDT_Messages_RESTInterface gxTpr_Mesages
 		{
@@ -192,11 +199,13 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("error")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="error", Order=1)]
 		public  string gxTpr_Error
 		{
 			get { 
-				return sdt.gxTpr_Error;
+				return StringUtil.RTrim( sdt.gxTpr_Error);
 
 			}
 			set { 
@@ -206,7 +215,7 @@ namespace GeneXus.Programs
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtgetMesssages__getOutput sdt
 		{
 			get { 

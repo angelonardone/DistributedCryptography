@@ -12,6 +12,8 @@
 		<MailSupport>false</MailSupport>
 		<GrpcClientSupport>false</GrpcClientSupport>
 		<PdfLibrary></PdfLibrary>
+		<PDFSupport>false</PDFSupport>
+		<SearchSupport>false</SearchSupport>
 	</PropertyGroup>
 	
 	<ItemGroup>
@@ -22,31 +24,27 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Reference Include="GeneXus.dll" > 
-			<HintPath>$(WebBinDirectory)\GeneXus.dll</HintPath>
-		</Reference>
 		<Reference Include="Google.Authenticator.dll" > 
 			<HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
 		</Reference>
 		<Reference Include="GxInternetLib.dll" > 
 			<HintPath>$(WebBinDirectory)\GxInternetLib.dll</HintPath>
 		</Reference>
+		<Reference Include="DistricutedCryptographyLib.dll" > 
+			<HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
+		</Reference>
 
 
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Include = "$(WebDirectory)\distributedcrypto\argon2encryption.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\createextkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\createkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setextkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\approvegroupactivation.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\readwallet.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\approveactionsetextkey.cs" />
 
-	</ItemGroup>
-	<ItemGroup Condition="'$(PostgresqlSupport)'=='true'">
-		<PackageReference Include="Npgsql" Version="8.0.3" PrivateAssets="All"/>
 	</ItemGroup>
 
 	<Import Project="..\DotNetCoreBaseProject.targets"/>	

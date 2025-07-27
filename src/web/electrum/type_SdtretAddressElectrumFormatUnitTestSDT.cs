@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtretAddressElectrumFormatUnitTestSDT
 			Description: retAddressElectrumFormatUnitTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.electrum
@@ -333,11 +334,13 @@ namespace GeneXus.Programs.electrum
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("TestCaseId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="TestCaseId", Order=0)]
 		public  string gxTpr_Testcaseid
 		{
 			get { 
-				return sdt.gxTpr_Testcaseid;
+				return StringUtil.RTrim( sdt.gxTpr_Testcaseid);
 
 			}
 			set { 
@@ -345,6 +348,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("address")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="address", Order=1)]
 		public  string gxTpr_Address
 		{
@@ -357,6 +362,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("networkType")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="networkType", Order=2)]
 		public  string gxTpr_Networktype
 		{
@@ -369,6 +376,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("electrumAddress")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="electrumAddress", Order=3)]
 		public  string gxTpr_Electrumaddress
 		{
@@ -381,6 +390,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("ExpectedelectrumAddress")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="ExpectedelectrumAddress", Order=4)]
 		public  string gxTpr_Expectedelectrumaddress
 		{
@@ -393,11 +404,13 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("MsgelectrumAddress")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="MsgelectrumAddress", Order=5)]
 		public  string gxTpr_Msgelectrumaddress
 		{
 			get { 
-				return sdt.gxTpr_Msgelectrumaddress;
+				return StringUtil.RTrim( sdt.gxTpr_Msgelectrumaddress);
 
 			}
 			set { 
@@ -405,6 +418,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("error")]
+		[JsonPropertyOrder(6)]
 		[DataMember(Name="error", Order=6)]
 		public  string gxTpr_Error
 		{
@@ -417,6 +432,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("Expectederror")]
+		[JsonPropertyOrder(7)]
 		[DataMember(Name="Expectederror", Order=7)]
 		public  string gxTpr_Expectederror
 		{
@@ -429,11 +446,13 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("Msgerror")]
+		[JsonPropertyOrder(8)]
 		[DataMember(Name="Msgerror", Order=8)]
 		public  string gxTpr_Msgerror
 		{
 			get { 
-				return sdt.gxTpr_Msgerror;
+				return StringUtil.RTrim( sdt.gxTpr_Msgerror);
 
 			}
 			set { 
@@ -443,7 +462,7 @@ namespace GeneXus.Programs.electrum
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtretAddressElectrumFormatUnitTestSDT sdt
 		{
 			get { 

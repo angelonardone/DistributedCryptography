@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtExtKeyCreate
 			Description: ExtKeyCreate
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nbitcoin
@@ -401,6 +402,8 @@ namespace GeneXus.Programs.nbitcoin
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("CreateExtKeyType")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="CreateExtKeyType", Order=0)]
 		public short gxTpr_Createextkeytype
 		{
@@ -413,11 +416,13 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("CreateText")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="CreateText", Order=1)]
 		public  string gxTpr_Createtext
 		{
 			get { 
-				return sdt.gxTpr_Createtext;
+				return StringUtil.RTrim( sdt.gxTpr_Createtext);
 
 			}
 			set { 
@@ -425,6 +430,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("PrivateKey")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="PrivateKey", Order=2)]
 		public  string gxTpr_Privatekey
 		{
@@ -437,6 +444,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("ChainCode")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="ChainCode", Order=3)]
 		public  string gxTpr_Chaincode
 		{
@@ -449,6 +458,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Seed")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="Seed", Order=4)]
 		public  string gxTpr_Seed
 		{
@@ -461,6 +472,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("KeyPath")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="KeyPath", Order=5)]
 		public  string gxTpr_Keypath
 		{
@@ -473,6 +486,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("EncryptedWIF")]
+		[JsonPropertyOrder(6)]
 		[DataMember(Name="EncryptedWIF", Order=6)]
 		public  string gxTpr_Encryptedwif
 		{
@@ -485,6 +500,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("MnemonicLanguage")]
+		[JsonPropertyOrder(7)]
 		[DataMember(Name="MnemonicLanguage", Order=7)]
 		public short gxTpr_Mnemoniclanguage
 		{
@@ -497,6 +514,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("MnemonicNumberWords")]
+		[JsonPropertyOrder(8)]
 		[DataMember(Name="MnemonicNumberWords", Order=8)]
 		public short gxTpr_Mnemonicnumberwords
 		{
@@ -509,6 +528,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("ExtendedPrivateKey")]
+		[JsonPropertyOrder(9)]
 		[DataMember(Name="ExtendedPrivateKey", Order=9)]
 		public  string gxTpr_Extendedprivatekey
 		{
@@ -521,6 +542,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("ExtendedPublicKey")]
+		[JsonPropertyOrder(10)]
 		[DataMember(Name="ExtendedPublicKey", Order=10)]
 		public  string gxTpr_Extendedpublickey
 		{
@@ -533,6 +556,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("NetworkType")]
+		[JsonPropertyOrder(11)]
 		[DataMember(Name="NetworkType", Order=11)]
 		public  string gxTpr_Networktype
 		{
@@ -547,7 +572,7 @@ namespace GeneXus.Programs.nbitcoin
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtExtKeyCreate sdt
 		{
 			get { 

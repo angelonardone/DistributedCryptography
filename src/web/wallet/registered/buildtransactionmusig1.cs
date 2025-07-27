@@ -19,6 +19,7 @@ using GeneXus.Http.Client;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet.registered {
    public class buildtransactionmusig1 : GXProcedure
    {
@@ -213,7 +214,7 @@ namespace GeneXus.Programs.wallet.registered {
                while ( AV81GXV2 <= AV17group_sdt.gxTpr_Contact.Count )
                {
                   AV34oneContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV17group_sdt.gxTpr_Contact.Item(AV81GXV2));
-                  if ( ( AV17group_sdt.gxTpr_Grouptype == 200 ) && ! ( AV34oneContact.gxTpr_Contactid == AV34oneContact.gxTpr_Contactgroupid ) )
+                  if ( ( AV17group_sdt.gxTpr_Grouptype == 30 ) && ! ( AV34oneContact.gxTpr_Contactid == AV34oneContact.gxTpr_Contactgroupid ) )
                   {
                      if ( (Convert.ToDecimal( AV16generatedType ) == NumberUtil.Val( "2", ".") ) )
                      {

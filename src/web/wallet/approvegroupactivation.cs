@@ -19,6 +19,7 @@ using GeneXus.Encryption;
 using GeneXus.Http.Client;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet {
    public class approvegroupactivation : GXDataArea
    {
@@ -198,10 +199,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 310420), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 310420), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -231,7 +232,7 @@ namespace GeneXus.Programs.wallet {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.approvegroupactivation.aspx") +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.approvegroupactivation") +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -254,22 +255,6 @@ namespace GeneXus.Programs.wallet {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vKEYCREATE", AV11keyCreate);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vKEYCREATE", AV11keyCreate);
-         }
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vEXTKEYCREATE", AV9extKeyCreate);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vEXTKEYCREATE", AV9extKeyCreate);
-         }
       }
 
       public override void RenderHtmlCloseForm( )
@@ -323,7 +308,7 @@ namespace GeneXus.Programs.wallet {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wallet.approvegroupactivation.aspx")  ;
+         return formatLink("wallet.approvegroupactivation")  ;
       }
 
       public override string GetPgmname( )
@@ -396,7 +381,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_13-186676", 0) ;
             }
          }
          Form.Meta.addItem("description", "Approve Group Activation", 0) ;
@@ -625,42 +610,11 @@ namespace GeneXus.Programs.wallet {
       {
          /* Enter Routine */
          returnInSub = false;
-         GXt_SdtWallet1 = AV14wallet;
-         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet1) ;
-         AV14wallet = GXt_SdtWallet1;
-         GXt_SdtWallet1 = AV14wallet;
-         new GeneXus.Programs.wallet.readwallet(context ).execute(  AV14wallet.gxTpr_Walletfilename, out  GXt_SdtWallet1) ;
-         AV14wallet = GXt_SdtWallet1;
-         AV11keyCreate.gxTpr_Createkeytype = 110;
-         AV11keyCreate.gxTpr_Createtext = AV14wallet.gxTpr_Encryptedsecret;
-         AV11keyCreate.gxTpr_Networktype = AV14wallet.gxTpr_Networktype;
-         GXt_char2 = AV7error;
-         new GeneXus.Programs.nbitcoin.createkey(context ).execute(  AV11keyCreate,  AV13password, out  AV12keyInfo, out  GXt_char2) ;
-         AV7error = GXt_char2;
-         AV9extKeyCreate.gxTpr_Createextkeytype = 70;
-         GXt_char2 = AV7error;
-         new GeneXus.Programs.nbitcoin.eccdecrypt(context ).execute(  AV12keyInfo.gxTpr_Privatekey,  AV14wallet.gxTpr_Extencryptedsecret, out  AV5clearText, out  GXt_char2) ;
-         AV7error = GXt_char2;
-         if ( AV14wallet.gxTpr_Useauthenticator )
+         GXt_char1 = AV7error;
+         new GeneXus.Programs.wallet.approveactionsetextkey(context ).execute(  AV13password, out  GXt_char1) ;
+         AV7error = GXt_char1;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV7error)) )
          {
-            AV15extendeSecretAndAuthenticator.FromJSonString(AV5clearText, null);
-            AV9extKeyCreate.gxTpr_Extendedprivatekey = AV15extendeSecretAndAuthenticator.gxTpr_Extencryptedsecret;
-         }
-         else
-         {
-            AV9extKeyCreate.gxTpr_Extendedprivatekey = AV5clearText;
-         }
-         AV9extKeyCreate.gxTpr_Networktype = AV14wallet.gxTpr_Networktype;
-         GXt_char2 = AV7error;
-         new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV9extKeyCreate,  AV13password, out  AV10extKeyInfo, out  GXt_char2) ;
-         AV7error = GXt_char2;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV7error)) )
-         {
-            GX_msglist.addItem("We couldn't decrypt the wallet with the password provided: "+AV7error);
-         }
-         else
-         {
-            new GeneXus.Programs.wallet.setextkey(context ).execute(  AV10extKeyInfo) ;
             context.setWebReturnParms(new Object[] {});
             context.setWebReturnParmsMetadata(new Object[] {});
             context.wjLocDisableFrm = 1;
@@ -668,9 +622,7 @@ namespace GeneXus.Programs.wallet {
             returnInSub = true;
             if (true) return;
          }
-         /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV11keyCreate", AV11keyCreate);
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV9extKeyCreate", AV9extKeyCreate);
+         GX_msglist.addItem(AV7error);
       }
 
       protected void nextLoad( )
@@ -722,7 +674,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531412582828", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202572416225547", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -738,7 +690,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/approvegroupactivation.js", "?202531412582828", false, true);
+         context.AddJavascriptSource("wallet/approvegroupactivation.js", "?202572416225547", false, true);
          /* End function include_jscripts */
       }
 
@@ -784,8 +736,7 @@ namespace GeneXus.Programs.wallet {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
-         setEventMetadata("ENTER","""{"handler":"E111Z2","iparms":[{"av":"AV11keyCreate","fld":"vKEYCREATE"},{"av":"AV13password","fld":"vPASSWORD"},{"av":"AV9extKeyCreate","fld":"vEXTKEYCREATE"}]""");
-         setEventMetadata("ENTER",""","oparms":[{"av":"AV11keyCreate","fld":"vKEYCREATE"},{"av":"AV9extKeyCreate","fld":"vEXTKEYCREATE"}]}""");
+         setEventMetadata("ENTER","""{"handler":"E111Z2","iparms":[{"av":"AV13password","fld":"vPASSWORD","type":"char"}]}""");
          return  ;
       }
 
@@ -806,8 +757,6 @@ namespace GeneXus.Programs.wallet {
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
-         AV11keyCreate = new GeneXus.Programs.nbitcoin.SdtKeyCreate(context);
-         AV9extKeyCreate = new GeneXus.Programs.nbitcoin.SdtExtKeyCreate(context);
          GX_FocusControl = "";
          Form = new GXWebForm();
          sPrefix = "";
@@ -820,14 +769,8 @@ namespace GeneXus.Programs.wallet {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
-         AV14wallet = new GeneXus.Programs.wallet.SdtWallet(context);
-         GXt_SdtWallet1 = new GeneXus.Programs.wallet.SdtWallet(context);
          AV7error = "";
-         AV12keyInfo = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
-         AV5clearText = "";
-         AV15extendeSecretAndAuthenticator = new GeneXus.Programs.wallet.SdtExtendeSecretAndAuthenticator(context);
-         GXt_char2 = "";
-         AV10extKeyInfo = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
+         GXt_char1 = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          /* GeneXus formulas. */
@@ -865,7 +808,7 @@ namespace GeneXus.Programs.wallet {
       private string EvtRowId ;
       private string sEvtType ;
       private string AV7error ;
-      private string GXt_char2 ;
+      private string GXt_char1 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool wbLoad ;
@@ -873,16 +816,8 @@ namespace GeneXus.Programs.wallet {
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
-      private string AV5clearText ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
-      private GeneXus.Programs.nbitcoin.SdtKeyCreate AV11keyCreate ;
-      private GeneXus.Programs.nbitcoin.SdtExtKeyCreate AV9extKeyCreate ;
-      private GeneXus.Programs.wallet.SdtWallet AV14wallet ;
-      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
-      private GeneXus.Programs.nbitcoin.SdtKeyInfo AV12keyInfo ;
-      private GeneXus.Programs.wallet.SdtExtendeSecretAndAuthenticator AV15extendeSecretAndAuthenticator ;
-      private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV10extKeyInfo ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

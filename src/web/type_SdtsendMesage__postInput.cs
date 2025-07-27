@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtsendMesage__postInput
 			Description: sendMesage__postInput
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 
 namespace GeneXus.Programs
@@ -33,8 +34,6 @@ namespace GeneXus.Programs
 			gxTv_SdtsendMesage__postInput_Username = "";
 
 			gxTv_SdtsendMesage__postInput_Messageencryptedkey = "";
-
-			gxTv_SdtsendMesage__postInput_Messageiv = "";
 
 			gxTv_SdtsendMesage__postInput_Messageencrypted = "";
 
@@ -71,9 +70,6 @@ namespace GeneXus.Programs
 			AddObjectProperty("MessageEncryptedKey", gxTpr_Messageencryptedkey, false);
 
 
-			AddObjectProperty("MessageIV", gxTpr_Messageiv, false);
-
-
 			AddObjectProperty("MessageEncrypted", gxTpr_Messageencrypted, false);
 
 			return;
@@ -108,22 +104,6 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtsendMesage__postInput_Messageencryptedkey = value;
 				SetDirty("Messageencryptedkey");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="MessageIV")]
-		[XmlElement(ElementName="MessageIV")]
-		public string gxTpr_Messageiv
-		{
-			get {
-				return gxTv_SdtsendMesage__postInput_Messageiv; 
-			}
-			set {
-				gxTv_SdtsendMesage__postInput_Messageiv = value;
-				SetDirty("Messageiv");
 			}
 		}
 
@@ -168,7 +148,6 @@ namespace GeneXus.Programs
 		{
 			gxTv_SdtsendMesage__postInput_Username = "";
 			gxTv_SdtsendMesage__postInput_Messageencryptedkey = "";
-			gxTv_SdtsendMesage__postInput_Messageiv = "";
 			gxTv_SdtsendMesage__postInput_Messageencrypted = "";
 			return  ;
 		}
@@ -183,9 +162,6 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtsendMesage__postInput_Messageencryptedkey;
-		 
-
-		protected string gxTv_SdtsendMesage__postInput_Messageiv;
 		 
 
 		protected string gxTv_SdtsendMesage__postInput_Messageencrypted;
@@ -208,11 +184,13 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("UserName")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="UserName", Order=0)]
 		public  string gxTpr_Username
 		{
 			get { 
-				return sdt.gxTpr_Username;
+				return StringUtil.RTrim( sdt.gxTpr_Username);
 
 			}
 			set { 
@@ -220,11 +198,13 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("MessageEncryptedKey")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="MessageEncryptedKey", Order=1)]
 		public  string gxTpr_Messageencryptedkey
 		{
 			get { 
-				return sdt.gxTpr_Messageencryptedkey;
+				return StringUtil.RTrim( sdt.gxTpr_Messageencryptedkey);
 
 			}
 			set { 
@@ -232,23 +212,13 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="MessageIV", Order=2)]
-		public  string gxTpr_Messageiv
-		{
-			get { 
-				return sdt.gxTpr_Messageiv;
-
-			}
-			set { 
-				 sdt.gxTpr_Messageiv = value;
-			}
-		}
-
-		[DataMember(Name="MessageEncrypted", Order=3)]
+		[JsonPropertyName("MessageEncrypted")]
+		[JsonPropertyOrder(2)]
+		[DataMember(Name="MessageEncrypted", Order=2)]
 		public  string gxTpr_Messageencrypted
 		{
 			get { 
-				return sdt.gxTpr_Messageencrypted;
+				return StringUtil.RTrim( sdt.gxTpr_Messageencrypted);
 
 			}
 			set { 
@@ -258,7 +228,7 @@ namespace GeneXus.Programs
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtsendMesage__postInput sdt
 		{
 			get { 

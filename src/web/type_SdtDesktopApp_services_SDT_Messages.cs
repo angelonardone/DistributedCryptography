@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtDesktopApp_services_SDT_Messages
 			Description: DesktopApp_services_SDT_Messages
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 
 namespace GeneXus.Programs
@@ -94,6 +95,7 @@ namespace GeneXus.Programs
 					gxTv_SdtDesktopApp_services_SDT_Messages_Message = new GXBaseCollection<GeneXus.Programs.SdtDesktopApp_services_SDT_Messages_Message_MessageItem>( context, "DesktopApp_services_SDT_Messages_Message_MessageItem", "");
 				}
 				gxTv_SdtDesktopApp_services_SDT_Messages_Message_N = false;
+				SetDirty("Message");
 				return gxTv_SdtDesktopApp_services_SDT_Messages_Message ;
 			}
 			set {
@@ -173,6 +175,9 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("Message")]
+		[JsonPropertyOrder(0)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="Message", Order=0, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.SdtDesktopApp_services_SDT_Messages_Message_MessageItem_RESTInterface> gxTpr_Message
 		{
@@ -190,7 +195,7 @@ namespace GeneXus.Programs
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtDesktopApp_services_SDT_Messages sdt
 		{
 			get { 

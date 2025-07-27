@@ -19,6 +19,7 @@ using GeneXus.Http.Client;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet.registered {
    public class insertinvitationongroup : GXProcedure
    {
@@ -112,6 +113,8 @@ namespace GeneXus.Programs.wallet.registered {
                   AV21oneGroup = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
                   AV21oneGroup.gxTpr_Groupname = AV19group_sdt.gxTpr_Groupname;
                   AV21oneGroup.gxTpr_Grouptype = AV19group_sdt.gxTpr_Grouptype;
+                  AV21oneGroup.gxTpr_Isactive = AV19group_sdt.gxTpr_Isactive;
+                  AV21oneGroup.gxTpr_Subgrouptype = AV19group_sdt.gxTpr_Subgrouptype;
                   AV21oneGroup.gxTpr_Othergroup.gxTpr_Referenceusernname = AV19group_sdt.gxTpr_Othergroup.gxTpr_Referenceusernname;
                   AV21oneGroup.gxTpr_Othergroup.gxTpr_Referencegroupid = AV19group_sdt.gxTpr_Othergroup.gxTpr_Referencegroupid;
                   AV21oneGroup.gxTpr_Othergroup.gxTpr_Encpassword = AV19group_sdt.gxTpr_Othergroup.gxTpr_Encpassword;

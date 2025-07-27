@@ -1,7 +1,7 @@
 /*
 				   File: type_Sdttest_SLIP0132_out
 			Description: test_SLIP0132_out
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nbitcoin
@@ -183,6 +184,8 @@ namespace GeneXus.Programs.nbitcoin
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("ExtPrivateKey")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="ExtPrivateKey", Order=0)]
 		public  string gxTpr_Extprivatekey
 		{
@@ -195,6 +198,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("ExtPublicKey")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="ExtPublicKey", Order=1)]
 		public  string gxTpr_Extpublickey
 		{
@@ -207,6 +212,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("DerivedAddress")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="DerivedAddress", Order=2)]
 		public  string gxTpr_Derivedaddress
 		{
@@ -221,7 +228,7 @@ namespace GeneXus.Programs.nbitcoin
 
 
 		#endregion
-
+		[JsonIgnore]
 		public Sdttest_SLIP0132_out sdt
 		{
 			get { 

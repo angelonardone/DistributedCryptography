@@ -19,6 +19,7 @@ using GeneXus.Encryption;
 using GeneXus.Http.Client;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet.registered {
    public class smartgroupwalletbackup : GXWebComponent
    {
@@ -288,18 +289,18 @@ namespace GeneXus.Programs.wallet.registered {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 310420), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 310420), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 310420), false, true);
          if ( StringUtil.Len( sPrefix) == 0 )
          {
             context.CloseHtmlHeader();
@@ -321,7 +322,7 @@ namespace GeneXus.Programs.wallet.registered {
             context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
             context.WriteHtmlText( FormProcess+">") ;
             context.skipLines(1);
-            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.smartgroupwalletbackup.aspx") +"\">") ;
+            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.smartgroupwalletbackup") +"\">") ;
             GxWebStd.gx_hidden_field( context, "_EventName", "");
             GxWebStd.gx_hidden_field( context, "_EventGridId", "");
             GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -512,7 +513,7 @@ namespace GeneXus.Programs.wallet.registered {
             RenderHtmlOpenForm( ) ;
             if ( StringUtil.Len( sPrefix) != 0 )
             {
-               GxWebStd.gx_hidden_field( context, sPrefix+"_CMPPGM", "wallet.registered.smartgroupwalletbackup.aspx");
+               GxWebStd.gx_hidden_field( context, sPrefix+"_CMPPGM", "wallet.registered.smartgroupwalletbackup");
             }
             GxWebStd.gx_msg_list( context, "", context.GX_msglist.DisplayMode, "", "", sPrefix, "false");
             /* Div Control */
@@ -526,7 +527,7 @@ namespace GeneXus.Programs.wallet.registered {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavCtlminimumshares_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavCtlminimumshares_Internalname, "Minimum amount of shares to recover the secret", "col-sm-3 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavCtlminimumshares_Internalname, "Minimum amount of votes to recover the backup", "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -666,7 +667,7 @@ namespace GeneXus.Programs.wallet.registered {
             {
                if ( context.ExposeMetadata( ) )
                {
-                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_13-186676", 0) ;
                }
             }
             Form.Meta.addItem("description", "Smart Group Wallet Backup", 0) ;
@@ -1318,7 +1319,7 @@ namespace GeneXus.Programs.wallet.registered {
          returnInSub = false;
          if ( AV11group_sdt.gxTpr_Minimumshares <= 1 )
          {
-            AV8error = "The \"Minimum amount of shares to recover the secret\" has to be at least 2";
+            AV8error = "The \"Minimum amount of votes to recover the secret\" has to be at least 2";
             AssignAttri(sPrefix, false, "AV8error", AV8error);
             GX_msglist.addItem(AV8error);
          }
@@ -1329,7 +1330,7 @@ namespace GeneXus.Programs.wallet.registered {
             if (returnInSub) return;
             if ( AV11group_sdt.gxTpr_Minimumshares > AV22totalUserShares )
             {
-               AV8error = "The \"Minimum amount of shares to recover the secret\" cannot be bigger that the total amont of shares for each contact";
+               AV8error = "The \"Minimum amount of votes to recover the secret\" cannot be bigger that the total amont of votes for each contact";
                AssignAttri(sPrefix, false, "AV8error", AV8error);
                GX_msglist.addItem(AV8error);
             }
@@ -1685,7 +1686,7 @@ namespace GeneXus.Programs.wallet.registered {
          returnInSub = false;
          if ( AV11group_sdt.gxTpr_Minimumshares <= 1 )
          {
-            GX_msglist.addItem("The \"Minimum amount of shares to recover the secret\" has to be bigger than 1");
+            GX_msglist.addItem("The \"Minimum amount of votes to recover the secret\" has to be bigger than 1");
          }
          else
          {
@@ -1694,7 +1695,7 @@ namespace GeneXus.Programs.wallet.registered {
             if (returnInSub) return;
             if ( AV11group_sdt.gxTpr_Minimumshares > AV22totalUserShares )
             {
-               GX_msglist.addItem("The \"Minimum amount of shares to recover the secret\" cannot be bigger that the total amont of shares for each contact");
+               GX_msglist.addItem("The \"Minimum amount of votes to recover the secret\" cannot be bigger that the total amount of votes for each contact");
             }
             else
             {
@@ -1708,7 +1709,7 @@ namespace GeneXus.Programs.wallet.registered {
                   new GeneXus.Programs.wallet.getextkey(context ).execute( out  GXt_SdtExtKeyInfo2) ;
                   AV36extKeyInfo = GXt_SdtExtKeyInfo2;
                   AV20secret = AV36extKeyInfo.gxTpr_Extended.gxTpr_Privatekeytaproot;
-                  new GeneXus.Programs.wallet.cleanextkey(context ).execute( ) ;
+                  new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
                   GXt_char4 = AV8error;
                   new GeneXus.Programs.shamirss.createshares(context ).execute(  AV20secret,  AV22totalUserShares,  AV11group_sdt.gxTpr_Minimumshares, out  AV21shares, ref  GXt_char4) ;
                   AV8error = GXt_char4;
@@ -1730,12 +1731,10 @@ namespace GeneXus.Programs.wallet.registered {
                         }
                         GXt_char4 = AV8error;
                         GXt_char1 = AV13groupContact.gxTpr_Contactencryptedkey;
-                        GXt_char6 = AV13groupContact.gxTpr_Contactiv;
-                        GXt_char7 = AV13groupContact.gxTpr_Contactencryptedtext;
-                        new GeneXus.Programs.distributedcrypto.encryptjsonto(context ).execute(  AV24userShares.ToJSonString(false),  StringUtil.Trim( AV13groupContact.gxTpr_Contactuserpubkey), out  GXt_char1, out  GXt_char6, out  GXt_char7, out  GXt_char4) ;
+                        GXt_char6 = AV13groupContact.gxTpr_Contactencryptedtext;
+                        new GeneXus.Programs.distributedcryptographylib.encryptjsonto(context ).execute(  AV24userShares.ToJSonString(false),  StringUtil.Trim( AV13groupContact.gxTpr_Contactuserpubkey), out  GXt_char1, out  GXt_char6, out  GXt_char4) ;
                         AV13groupContact.gxTpr_Contactencryptedkey = GXt_char1;
-                        AV13groupContact.gxTpr_Contactiv = GXt_char6;
-                        AV13groupContact.gxTpr_Contactencryptedtext = GXt_char7;
+                        AV13groupContact.gxTpr_Contactencryptedtext = GXt_char6;
                         AV8error = GXt_char4;
                         AssignAttri(sPrefix, false, "AV8error", AV8error);
                         AV73GXV15 = (int)(AV73GXV15+1);
@@ -1772,11 +1771,11 @@ namespace GeneXus.Programs.wallet.registered {
             AV30group_sdt_temp.gxTpr_Othergroup.gxTpr_Encpassword = AV11group_sdt.gxTpr_Othergroup.gxTpr_Encpassword;
             AV27message_signature.gxTpr_Username = StringUtil.Trim( AV29externalUser.gxTpr_Userinfo.gxTpr_Username);
             AV27message_signature.gxTpr_Grouppubkey = StringUtil.Trim( AV29externalUser.gxTpr_Groupskeyinfo.gxTpr_Publickey);
-            GXt_char7 = AV8error;
-            GXt_char6 = AV27message_signature.gxTpr_Signature;
-            new GeneXus.Programs.nbitcoin.eccsignmsg(context ).execute(  AV29externalUser.gxTpr_Groupskeyinfo.gxTpr_Privatekey,  StringUtil.Trim( AV27message_signature.gxTpr_Username)+StringUtil.Trim( AV27message_signature.gxTpr_Grouppubkey), out  GXt_char6, out  GXt_char7) ;
-            AV27message_signature.gxTpr_Signature = GXt_char6;
-            AV8error = GXt_char7;
+            GXt_char6 = AV8error;
+            GXt_char4 = AV27message_signature.gxTpr_Signature;
+            new GeneXus.Programs.nbitcoin.eccsignmsg(context ).execute(  AV29externalUser.gxTpr_Groupskeyinfo.gxTpr_Privatekey,  StringUtil.Trim( AV27message_signature.gxTpr_Username)+StringUtil.Trim( AV27message_signature.gxTpr_Grouppubkey), out  GXt_char4, out  GXt_char6) ;
+            AV27message_signature.gxTpr_Signature = GXt_char4;
+            AV8error = GXt_char6;
             AssignAttri(sPrefix, false, "AV8error", AV8error);
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
             {
@@ -1796,9 +1795,9 @@ namespace GeneXus.Programs.wallet.registered {
                   AV7contact = new GeneXus.Programs.wallet.registered.SdtContact_SDT(context);
                   AV7contact.gxTpr_Username = StringUtil.Trim( AV13groupContact.gxTpr_Contactusername);
                   AV7contact.gxTpr_Messagepubkey = StringUtil.Trim( AV13groupContact.gxTpr_Contactuserpubkey);
-                  GXt_char7 = AV8error;
-                  new GeneXus.Programs.wallet.registered.sendmessage(context ).execute(  AV7contact,  AV28sdt_message, out  GXt_char7) ;
-                  AV8error = GXt_char7;
+                  GXt_char6 = AV8error;
+                  new GeneXus.Programs.wallet.registered.sendmessage(context ).execute(  AV7contact,  AV28sdt_message, out  GXt_char6) ;
+                  AV8error = GXt_char6;
                   AssignAttri(sPrefix, false, "AV8error", AV8error);
                   if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
                   {
@@ -1809,9 +1808,9 @@ namespace GeneXus.Programs.wallet.registered {
                }
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
                {
-                  GXt_char7 = AV8error;
-                  new GeneXus.Programs.wallet.registered.updategroup(context ).execute(  AV11group_sdt,  StringUtil.Trim( AV11group_sdt.gxTpr_Othergroup.gxTpr_Encpassword), out  AV15grpupId, out  GXt_char7) ;
-                  AV8error = GXt_char7;
+                  GXt_char6 = AV8error;
+                  new GeneXus.Programs.wallet.registered.updategroup(context ).execute(  AV11group_sdt,  StringUtil.Trim( AV11group_sdt.gxTpr_Othergroup.gxTpr_Encpassword), out  AV15grpupId, out  GXt_char6) ;
+                  AV8error = GXt_char6;
                   AssignAttri(sPrefix, false, "AV8error", AV8error);
                   if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
                   {
@@ -1834,6 +1833,7 @@ namespace GeneXus.Programs.wallet.registered {
                      {
                         AV5websession.Set("Group_EDIT", "");
                         this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"success",(string)"Group Activation",(string)"All notifications sent"}, true);
+                        new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
                         context.setWebReturnParms(new Object[] {});
                         context.setWebReturnParmsMetadata(new Object[] {});
                         context.wjLocDisableFrm = 1;
@@ -2030,7 +2030,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20253141257391", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20257241622257", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2046,7 +2046,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/smartgroupwalletbackup.js", "?20253141257391", false, true);
+         context.AddJavascriptSource("wallet/registered/smartgroupwalletbackup.js", "?20257241622257", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -2257,7 +2257,7 @@ namespace GeneXus.Programs.wallet.registered {
             context.SendWebValue( "Contact Name") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"end"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "Number of shares") ;
+            context.SendWebValue( "Number of votes") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"end"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
             context.SendWebValue( "Invitation Sent") ;
@@ -2402,19 +2402,19 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDCONTACTS_nFirstRecordOnPage"},{"av":"GRIDCONTACTS_nEOF"},{"av":"AV19removeContact","fld":"vREMOVECONTACT"},{"av":"AV11group_sdt","fld":"vGROUP_SDT"},{"av":"AV14groupContacts","fld":"vGROUPCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"nRC_GXsfl_11","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":11},{"av":"sPrefix"}]}""");
-         setEventMetadata("'SAVE'","""{"handler":"E131J2","iparms":[{"av":"AV11group_sdt","fld":"vGROUP_SDT"},{"av":"AV22totalUserShares","fld":"vTOTALUSERSHARES","pic":"ZZZ9"},{"av":"AV34hasContactEmptyShares","fld":"vHASCONTACTEMPTYSHARES"},{"av":"AV14groupContacts","fld":"vGROUPCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDCONTACTS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":11},{"av":"AV35saveAndReturn","fld":"vSAVEANDRETURN"}]""");
-         setEventMetadata("'SAVE'",""","oparms":[{"av":"AV35saveAndReturn","fld":"vSAVEANDRETURN"},{"av":"AV11group_sdt","fld":"vGROUP_SDT"},{"av":"AV8error","fld":"vERROR"},{"av":"AV34hasContactEmptyShares","fld":"vHASCONTACTEMPTYSHARES"},{"av":"AV22totalUserShares","fld":"vTOTALUSERSHARES","pic":"ZZZ9"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDCONTACTS_nFirstRecordOnPage","type":"int"},{"av":"GRIDCONTACTS_nEOF","type":"int"},{"av":"AV19removeContact","fld":"vREMOVECONTACT","type":"char"},{"av":"AV11group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV14groupContacts","fld":"vGROUPCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"nRC_GXsfl_11","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":11,"type":"int"},{"av":"sPrefix","type":"char"}]}""");
+         setEventMetadata("'SAVE'","""{"handler":"E131J2","iparms":[{"av":"AV11group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV22totalUserShares","fld":"vTOTALUSERSHARES","pic":"ZZZ9","type":"int"},{"av":"AV34hasContactEmptyShares","fld":"vHASCONTACTEMPTYSHARES","type":"boolean"},{"av":"AV14groupContacts","fld":"vGROUPCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDCONTACTS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":11,"type":"int"},{"av":"AV35saveAndReturn","fld":"vSAVEANDRETURN","type":"boolean"}]""");
+         setEventMetadata("'SAVE'",""","oparms":[{"av":"AV35saveAndReturn","fld":"vSAVEANDRETURN","type":"boolean"},{"av":"AV11group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV8error","fld":"vERROR","type":"char"},{"av":"AV34hasContactEmptyShares","fld":"vHASCONTACTEMPTYSHARES","type":"boolean"},{"av":"AV22totalUserShares","fld":"vTOTALUSERSHARES","pic":"ZZZ9","type":"int"}]}""");
          setEventMetadata("'CANCEL EDIT'","""{"handler":"E141J2","iparms":[]}""");
          setEventMetadata("'ADD A CONTACT'","""{"handler":"E111J1","iparms":[]}""");
-         setEventMetadata("GRIDCONTACTS.LOAD","""{"handler":"E181J2","iparms":[{"av":"AV11group_sdt","fld":"vGROUP_SDT"},{"av":"AV14groupContacts","fld":"vGROUPCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDCONTACTS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":11}]""");
+         setEventMetadata("GRIDCONTACTS.LOAD","""{"handler":"E181J2","iparms":[{"av":"AV11group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV14groupContacts","fld":"vGROUPCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDCONTACTS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":11,"type":"int"}]""");
          setEventMetadata("GRIDCONTACTS.LOAD",""","oparms":[{"ctrl":"CTLCONTACTPRIVATENAME","prop":"Visible"},{"ctrl":"CTLCONTACTUSERNAME","prop":"Visible"},{"av":"edtavRemovecontact_Visible","ctrl":"vREMOVECONTACT","prop":"Visible"}]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E151J2","iparms":[{"av":"AV18PopupName","fld":"vPOPUPNAME"},{"av":"AV14groupContacts","fld":"vGROUPCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDCONTACTS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":11},{"av":"AV32groupContactAdd","fld":"vGROUPCONTACTADD"},{"av":"AV11group_sdt","fld":"vGROUP_SDT"},{"av":"AV22totalUserShares","fld":"vTOTALUSERSHARES","pic":"ZZZ9"},{"av":"AV34hasContactEmptyShares","fld":"vHASCONTACTEMPTYSHARES"},{"av":"AV8error","fld":"vERROR"},{"av":"AV27message_signature","fld":"vMESSAGE_SIGNATURE"},{"av":"AV28sdt_message","fld":"vSDT_MESSAGE"},{"av":"GRIDCONTACTS_nEOF"},{"av":"AV19removeContact","fld":"vREMOVECONTACT"},{"av":"sPrefix"}]""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV19removeContact","fld":"vREMOVECONTACT"},{"av":"AV32groupContactAdd","fld":"vGROUPCONTACTADD"},{"av":"AV14groupContacts","fld":"vGROUPCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDCONTACTS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":11},{"av":"AV8error","fld":"vERROR"},{"av":"AV11group_sdt","fld":"vGROUP_SDT"},{"av":"AV34hasContactEmptyShares","fld":"vHASCONTACTEMPTYSHARES"},{"av":"AV22totalUserShares","fld":"vTOTALUSERSHARES","pic":"ZZZ9"},{"av":"AV27message_signature","fld":"vMESSAGE_SIGNATURE"},{"av":"AV28sdt_message","fld":"vSDT_MESSAGE"}]}""");
-         setEventMetadata("'REMOVE CONTACT'","""{"handler":"E191J2","iparms":[{"av":"AV14groupContacts","fld":"vGROUPCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDCONTACTS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":11},{"av":"GRIDCONTACTS_nEOF"},{"av":"AV19removeContact","fld":"vREMOVECONTACT"},{"av":"AV11group_sdt","fld":"vGROUP_SDT"},{"av":"sPrefix"}]""");
-         setEventMetadata("'REMOVE CONTACT'",""","oparms":[{"av":"AV14groupContacts","fld":"vGROUPCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDCONTACTS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":11}]}""");
-         setEventMetadata("'SEND INVITATION TO GROUP MEMBERS'","""{"handler":"E161J2","iparms":[{"av":"AV8error","fld":"vERROR"},{"av":"AV11group_sdt","fld":"vGROUP_SDT"},{"av":"AV27message_signature","fld":"vMESSAGE_SIGNATURE"},{"av":"AV28sdt_message","fld":"vSDT_MESSAGE"},{"av":"AV22totalUserShares","fld":"vTOTALUSERSHARES","pic":"ZZZ9"},{"av":"AV34hasContactEmptyShares","fld":"vHASCONTACTEMPTYSHARES"},{"av":"AV14groupContacts","fld":"vGROUPCONTACTS","grid":11},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDCONTACTS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_11","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":11},{"av":"AV35saveAndReturn","fld":"vSAVEANDRETURN"}]""");
-         setEventMetadata("'SEND INVITATION TO GROUP MEMBERS'",""","oparms":[{"av":"AV35saveAndReturn","fld":"vSAVEANDRETURN"},{"av":"AV27message_signature","fld":"vMESSAGE_SIGNATURE"},{"av":"AV8error","fld":"vERROR"},{"av":"AV11group_sdt","fld":"vGROUP_SDT"},{"av":"AV28sdt_message","fld":"vSDT_MESSAGE"},{"av":"AV34hasContactEmptyShares","fld":"vHASCONTACTEMPTYSHARES"},{"av":"AV22totalUserShares","fld":"vTOTALUSERSHARES","pic":"ZZZ9"}]}""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E151J2","iparms":[{"av":"AV18PopupName","fld":"vPOPUPNAME","type":"char"},{"av":"AV14groupContacts","fld":"vGROUPCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDCONTACTS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":11,"type":"int"},{"av":"AV32groupContactAdd","fld":"vGROUPCONTACTADD","type":""},{"av":"AV11group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV22totalUserShares","fld":"vTOTALUSERSHARES","pic":"ZZZ9","type":"int"},{"av":"AV34hasContactEmptyShares","fld":"vHASCONTACTEMPTYSHARES","type":"boolean"},{"av":"AV8error","fld":"vERROR","type":"char"},{"av":"AV27message_signature","fld":"vMESSAGE_SIGNATURE","type":""},{"av":"AV28sdt_message","fld":"vSDT_MESSAGE","type":""},{"av":"GRIDCONTACTS_nEOF","type":"int"},{"av":"AV19removeContact","fld":"vREMOVECONTACT","type":"char"},{"av":"sPrefix","type":"char"}]""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV19removeContact","fld":"vREMOVECONTACT","type":"char"},{"av":"AV32groupContactAdd","fld":"vGROUPCONTACTADD","type":""},{"av":"AV14groupContacts","fld":"vGROUPCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDCONTACTS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":11,"type":"int"},{"av":"AV8error","fld":"vERROR","type":"char"},{"av":"AV11group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV34hasContactEmptyShares","fld":"vHASCONTACTEMPTYSHARES","type":"boolean"},{"av":"AV22totalUserShares","fld":"vTOTALUSERSHARES","pic":"ZZZ9","type":"int"},{"av":"AV27message_signature","fld":"vMESSAGE_SIGNATURE","type":""},{"av":"AV28sdt_message","fld":"vSDT_MESSAGE","type":""}]}""");
+         setEventMetadata("'REMOVE CONTACT'","""{"handler":"E191J2","iparms":[{"av":"AV14groupContacts","fld":"vGROUPCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDCONTACTS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":11,"type":"int"},{"av":"GRIDCONTACTS_nEOF","type":"int"},{"av":"AV19removeContact","fld":"vREMOVECONTACT","type":"char"},{"av":"AV11group_sdt","fld":"vGROUP_SDT","type":""},{"av":"sPrefix","type":"char"}]""");
+         setEventMetadata("'REMOVE CONTACT'",""","oparms":[{"av":"AV14groupContacts","fld":"vGROUPCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDCONTACTS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":11,"type":"int"}]}""");
+         setEventMetadata("'SEND INVITATION TO GROUP MEMBERS'","""{"handler":"E161J2","iparms":[{"av":"AV8error","fld":"vERROR","type":"char"},{"av":"AV11group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV27message_signature","fld":"vMESSAGE_SIGNATURE","type":""},{"av":"AV28sdt_message","fld":"vSDT_MESSAGE","type":""},{"av":"AV22totalUserShares","fld":"vTOTALUSERSHARES","pic":"ZZZ9","type":"int"},{"av":"AV34hasContactEmptyShares","fld":"vHASCONTACTEMPTYSHARES","type":"boolean"},{"av":"AV14groupContacts","fld":"vGROUPCONTACTS","grid":11,"type":""},{"av":"nGXsfl_11_idx","ctrl":"GRID","prop":"GridCurrRow","grid":11},{"av":"GRIDCONTACTS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_11","ctrl":"GRIDCONTACTS","prop":"GridRC","grid":11,"type":"int"},{"av":"AV35saveAndReturn","fld":"vSAVEANDRETURN","type":"boolean"}]""");
+         setEventMetadata("'SEND INVITATION TO GROUP MEMBERS'",""","oparms":[{"av":"AV35saveAndReturn","fld":"vSAVEANDRETURN","type":"boolean"},{"av":"AV27message_signature","fld":"vMESSAGE_SIGNATURE","type":""},{"av":"AV8error","fld":"vERROR","type":"char"},{"av":"AV11group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV28sdt_message","fld":"vSDT_MESSAGE","type":""},{"av":"AV34hasContactEmptyShares","fld":"vHASCONTACTEMPTYSHARES","type":"boolean"},{"av":"AV22totalUserShares","fld":"vTOTALUSERSHARES","pic":"ZZZ9","type":"int"}]}""");
          setEventMetadata("'ACTIVATE GROUP'","""{"handler":"E121J1","iparms":[]}""");
          setEventMetadata("VALIDV_GXV3","""{"handler":"Validv_Gxv3","iparms":[]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Removecontact","iparms":[]}""");
@@ -2480,11 +2480,10 @@ namespace GeneXus.Programs.wallet.registered {
          AV20secret = "";
          AV21shares = new GxSimpleCollection<string>();
          AV24userShares = new GxSimpleCollection<string>();
-         GXt_char4 = "";
          GXt_char1 = "";
          GXt_SdtExternalUser3 = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
+         GXt_char4 = "";
          GXt_char6 = "";
-         GXt_char7 = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          subGridcontacts_Linesclass = "";
@@ -2609,10 +2608,9 @@ namespace GeneXus.Programs.wallet.registered {
       private string sGXsfl_11_fel_idx="0001" ;
       private string edtavCtlnumshares_Internalname ;
       private string AV9expectedPopupName ;
-      private string GXt_char4 ;
       private string GXt_char1 ;
+      private string GXt_char4 ;
       private string GXt_char6 ;
-      private string GXt_char7 ;
       private string subGridcontacts_Class ;
       private string subGridcontacts_Linesclass ;
       private string ROClassString ;

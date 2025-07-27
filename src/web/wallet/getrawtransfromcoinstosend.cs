@@ -19,6 +19,7 @@ using GeneXus.Http.Client;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet {
    public class getrawtransfromcoinstosend : GXProcedure
    {
@@ -71,15 +72,11 @@ namespace GeneXus.Programs.wallet {
          while ( AV16GXV1 <= AV8transactionsToSend.Count )
          {
             AV9oneAddressHistory = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV8transactionsToSend.Item(AV16GXV1));
-            new gxexplorerservicesrestgetrawtransactionget(context ).execute(  AV11ServerUrlTemplatingVar,  StringUtil.Trim( AV9oneAddressHistory.gxTpr_Receivedtransactionid), out  GxExplorer_services_resultGetRawTransactionOUT, out  AV13HttpMessage, out  AV14IsSuccess) ;
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( GxExplorer_services_resultGetRawTransactionOUT.gxTpr_Error)) )
-            {
-               AV9oneAddressHistory.gxTpr_Receivedtransactionhex = GxExplorer_services_resultGetRawTransactionOUT.gxTpr_Hextransaction;
-            }
-            else
-            {
-               AV15error = GxExplorer_services_resultGetRawTransactionOUT.gxTpr_Error;
-            }
+            GXt_char1 = AV15error;
+            GXt_char2 = AV9oneAddressHistory.gxTpr_Receivedtransactionhex;
+            new GeneXus.Programs.sudodb.getrawtransactionfromdb(context ).execute(  StringUtil.Trim( AV9oneAddressHistory.gxTpr_Receivedtransactionid), out  GXt_char2, out  GXt_char1) ;
+            AV9oneAddressHistory.gxTpr_Receivedtransactionhex = GXt_char2;
+            AV15error = GXt_char1;
             AV16GXV1 = (int)(AV16GXV1+1);
          }
          cleanup();
@@ -99,21 +96,18 @@ namespace GeneXus.Programs.wallet {
       {
          AV15error = "";
          AV9oneAddressHistory = new GeneXus.Programs.wallet.SdtSDTAddressHistory(context);
-         AV11ServerUrlTemplatingVar = new GXProperties();
-         GxExplorer_services_resultGetRawTransactionOUT = new SdtGxExplorer_services_resultGetRawTransaction(context);
-         AV13HttpMessage = new GeneXus.Utils.SdtMessages_Message(context);
+         GXt_char1 = "";
+         GXt_char2 = "";
          /* GeneXus formulas. */
       }
 
       private int AV16GXV1 ;
       private string AV15error ;
-      private bool AV14IsSuccess ;
-      private GXProperties AV11ServerUrlTemplatingVar ;
+      private string GXt_char1 ;
+      private string GXt_char2 ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV8transactionsToSend ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP0_transactionsToSend ;
       private GeneXus.Programs.wallet.SdtSDTAddressHistory AV9oneAddressHistory ;
-      private SdtGxExplorer_services_resultGetRawTransaction GxExplorer_services_resultGetRawTransactionOUT ;
-      private GeneXus.Utils.SdtMessages_Message AV13HttpMessage ;
       private string aP1_error ;
    }
 

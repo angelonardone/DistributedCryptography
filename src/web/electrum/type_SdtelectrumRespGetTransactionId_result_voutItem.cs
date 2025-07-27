@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtelectrumRespGetTransactionId_result_voutItem
 			Description: vout
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.electrum
@@ -80,7 +81,7 @@ namespace GeneXus.Programs.electrum
 				return Convert.ToString(gxTv_SdtelectrumRespGetTransactionId_result_voutItem_N, System.Globalization.CultureInfo.InvariantCulture);
 			}
 			set {
-				gxTv_SdtelectrumRespGetTransactionId_result_voutItem_N = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+				gxTv_SdtelectrumRespGetTransactionId_result_voutItem_N = NumberUtil.Val(value);
 			}
 		}
 		[XmlIgnore]
@@ -107,6 +108,7 @@ namespace GeneXus.Programs.electrum
 					gxTv_SdtelectrumRespGetTransactionId_result_voutItem_Scriptpubkey = new SdtelectrumRespGetTransactionId_result_voutItem_scriptPubKey(context);
 				}
 				gxTv_SdtelectrumRespGetTransactionId_result_voutItem_Scriptpubkey_N = false;
+				SetDirty("Scriptpubkey");
 				return gxTv_SdtelectrumRespGetTransactionId_result_voutItem_Scriptpubkey;
 			}
 			set {
@@ -142,7 +144,7 @@ namespace GeneXus.Programs.electrum
 				return Convert.ToString(gxTv_SdtelectrumRespGetTransactionId_result_voutItem_Value, System.Globalization.CultureInfo.InvariantCulture);
 			}
 			set {
-				gxTv_SdtelectrumRespGetTransactionId_result_voutItem_Value = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+				gxTv_SdtelectrumRespGetTransactionId_result_voutItem_Value = NumberUtil.Val(value);
 			}
 		}
 		[XmlIgnore]
@@ -218,6 +220,8 @@ namespace GeneXus.Programs.electrum
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("n")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="n", Order=0)]
 		public  string gxTpr_N
 		{
@@ -230,6 +234,9 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("scriptPubKey")]
+		[JsonPropertyOrder(1)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="scriptPubKey", Order=1, EmitDefaultValue=false)]
 		public SdtelectrumRespGetTransactionId_result_voutItem_scriptPubKey_RESTInterface gxTpr_Scriptpubkey
 		{
@@ -247,6 +254,8 @@ namespace GeneXus.Programs.electrum
 
 		}
 
+		[JsonPropertyName("value")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="value", Order=2)]
 		public  string gxTpr_Value
 		{
@@ -261,7 +270,7 @@ namespace GeneXus.Programs.electrum
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtelectrumRespGetTransactionId_result_voutItem sdt
 		{
 			get { 

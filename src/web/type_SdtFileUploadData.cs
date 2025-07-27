@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtFileUploadData
 			Description: FileUploadData
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 
 namespace GeneXus.Programs
@@ -242,6 +243,8 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("FullName")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="FullName", Order=0)]
 		public  string gxTpr_Fullname
 		{
@@ -254,6 +257,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("Name")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="Name", Order=1)]
 		public  string gxTpr_Name
 		{
@@ -266,6 +271,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("Extension")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="Extension", Order=2)]
 		public  string gxTpr_Extension
 		{
@@ -278,6 +285,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("Size")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="Size", Order=3)]
 		public  string gxTpr_Size
 		{
@@ -290,6 +299,8 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("File")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="File", Order=4)]
 		[GxUpload()]
 		public  string gxTpr_File
@@ -305,7 +316,7 @@ namespace GeneXus.Programs
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtFileUploadData sdt
 		{
 			get { 

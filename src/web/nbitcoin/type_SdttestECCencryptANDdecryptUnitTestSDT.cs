@@ -1,7 +1,7 @@
 /*
 				   File: type_SdttestECCencryptANDdecryptUnitTestSDT
 			Description: testECCencryptANDdecryptUnitTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nbitcoin
@@ -229,11 +230,13 @@ namespace GeneXus.Programs.nbitcoin
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("TestCaseId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="TestCaseId", Order=0)]
 		public  string gxTpr_Testcaseid
 		{
 			get { 
-				return sdt.gxTpr_Testcaseid;
+				return StringUtil.RTrim( sdt.gxTpr_Testcaseid);
 
 			}
 			set { 
@@ -241,11 +244,13 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("originalClearText")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="originalClearText", Order=1)]
 		public  string gxTpr_Originalcleartext
 		{
 			get { 
-				return sdt.gxTpr_Originalcleartext;
+				return StringUtil.RTrim( sdt.gxTpr_Originalcleartext);
 
 			}
 			set { 
@@ -253,6 +258,9 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("isVerified")]
+		[JsonPropertyOrder(2)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="isVerified", Order=2)]
 		public bool gxTpr_Isverified
 		{
@@ -265,6 +273,9 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("ExpectedisVerified")]
+		[JsonPropertyOrder(3)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="ExpectedisVerified", Order=3)]
 		public bool gxTpr_Expectedisverified
 		{
@@ -277,11 +288,13 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("MsgisVerified")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="MsgisVerified", Order=4)]
 		public  string gxTpr_Msgisverified
 		{
 			get { 
-				return sdt.gxTpr_Msgisverified;
+				return StringUtil.RTrim( sdt.gxTpr_Msgisverified);
 
 			}
 			set { 
@@ -291,7 +304,7 @@ namespace GeneXus.Programs.nbitcoin
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdttestECCencryptANDdecryptUnitTestSDT sdt
 		{
 			get { 

@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtMultiSigSignatureData
 			Description: MultiSigSignatureData
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.wallet
@@ -97,6 +98,7 @@ namespace GeneXus.Programs.wallet
 				{
 					gxTv_SdtMultiSigSignatureData_Data = new GXBaseCollection<SdtMultiSigSignatureData_DataItem>( context, "MultiSigSignatureData.DataItem", "");
 				}
+				SetDirty("Data");
 				return gxTv_SdtMultiSigSignatureData_Data;
 			}
 			set {
@@ -180,6 +182,8 @@ namespace GeneXus.Programs.wallet
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("contactUserName")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="contactUserName", Order=0)]
 		public  string gxTpr_Contactusername
 		{
@@ -192,6 +196,9 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("Data")]
+		[JsonPropertyOrder(1)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="Data", Order=1, EmitDefaultValue=false)]
 		public GxGenericCollection<SdtMultiSigSignatureData_DataItem_RESTInterface> gxTpr_Data
 		{
@@ -209,7 +216,7 @@ namespace GeneXus.Programs.wallet
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtMultiSigSignatureData sdt
 		{
 			get { 

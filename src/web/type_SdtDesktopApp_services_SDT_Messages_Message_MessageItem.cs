@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtDesktopApp_services_SDT_Messages_Message_MessageItem
 			Description: DesktopApp_services_SDT_Messages_Message_MessageItem
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 
 namespace GeneXus.Programs
@@ -31,8 +32,6 @@ namespace GeneXus.Programs
 		{
 			/* Constructor for serialization */
 			gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageencryptedkey = "";
-
-			gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageiv = "";
 
 			gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageencrypted = "";
 
@@ -69,9 +68,6 @@ namespace GeneXus.Programs
 			AddObjectProperty("MessageEncryptedKey", gxTpr_Messageencryptedkey, false);
 
 
-			AddObjectProperty("MessageIV", gxTpr_Messageiv, false);
-
-
 			AddObjectProperty("MessageEncrypted", gxTpr_Messageencrypted, false);
 
 			return;
@@ -106,22 +102,6 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageencryptedkey = value;
 				SetDirty("Messageencryptedkey");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="MessageIV")]
-		[XmlElement(ElementName="MessageIV")]
-		public string gxTpr_Messageiv
-		{
-			get {
-				return gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageiv; 
-			}
-			set {
-				gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageiv = value;
-				SetDirty("Messageiv");
 			}
 		}
 
@@ -165,7 +145,6 @@ namespace GeneXus.Programs
 		public void initialize( )
 		{
 			gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageencryptedkey = "";
-			gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageiv = "";
 			gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageencrypted = "";
 			return  ;
 		}
@@ -180,9 +159,6 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageencryptedkey;
-		 
-
-		protected string gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageiv;
 		 
 
 		protected string gxTv_SdtDesktopApp_services_SDT_Messages_Message_MessageItem_Messageencrypted;
@@ -205,6 +181,8 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("MessageId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="MessageId", Order=0)]
 		public Guid gxTpr_Messageid
 		{
@@ -217,11 +195,13 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("MessageEncryptedKey")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="MessageEncryptedKey", Order=1)]
 		public  string gxTpr_Messageencryptedkey
 		{
 			get { 
-				return sdt.gxTpr_Messageencryptedkey;
+				return StringUtil.RTrim( sdt.gxTpr_Messageencryptedkey);
 
 			}
 			set { 
@@ -229,23 +209,13 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="MessageIV", Order=2)]
-		public  string gxTpr_Messageiv
-		{
-			get { 
-				return sdt.gxTpr_Messageiv;
-
-			}
-			set { 
-				 sdt.gxTpr_Messageiv = value;
-			}
-		}
-
-		[DataMember(Name="MessageEncrypted", Order=3)]
+		[JsonPropertyName("MessageEncrypted")]
+		[JsonPropertyOrder(2)]
+		[DataMember(Name="MessageEncrypted", Order=2)]
 		public  string gxTpr_Messageencrypted
 		{
 			get { 
-				return sdt.gxTpr_Messageencrypted;
+				return StringUtil.RTrim( sdt.gxTpr_Messageencrypted);
 
 			}
 			set { 
@@ -255,7 +225,7 @@ namespace GeneXus.Programs
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtDesktopApp_services_SDT_Messages_Message_MessageItem sdt
 		{
 			get { 

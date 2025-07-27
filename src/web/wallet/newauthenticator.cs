@@ -19,6 +19,7 @@ using GeneXus.Encryption;
 using GeneXus.Http.Client;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet {
    public class newauthenticator : GXDataArea
    {
@@ -198,10 +199,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 310420), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 310420), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -231,7 +232,7 @@ namespace GeneXus.Programs.wallet {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.newauthenticator.aspx") +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.newauthenticator") +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -331,7 +332,7 @@ namespace GeneXus.Programs.wallet {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wallet.newauthenticator.aspx")  ;
+         return formatLink("wallet.newauthenticator")  ;
       }
 
       public override string GetPgmname( )
@@ -445,7 +446,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_13-186676", 0) ;
             }
          }
          Form.Meta.addItem("description", "New Authenticator", 0) ;
@@ -824,7 +825,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531412581926", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20257241622469", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -840,7 +841,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/newauthenticator.js", "?202531412581926", false, true);
+         context.AddJavascriptSource("wallet/newauthenticator.js", "?202572416224610", false, true);
          /* End function include_jscripts */
       }
 
@@ -893,8 +894,8 @@ namespace GeneXus.Programs.wallet {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
-         setEventMetadata("'CONFIRM'","""{"handler":"E120T2","iparms":[{"av":"AV8authenticator","fld":"vAUTHENTICATOR"},{"av":"AV6authenticators","fld":"vAUTHENTICATORS"}]""");
-         setEventMetadata("'CONFIRM'",""","oparms":[{"av":"AV7error","fld":"vERROR"},{"av":"AV8authenticator","fld":"vAUTHENTICATOR"},{"av":"AV6authenticators","fld":"vAUTHENTICATORS"}]}""");
+         setEventMetadata("'CONFIRM'","""{"handler":"E120T2","iparms":[{"av":"AV8authenticator","fld":"vAUTHENTICATOR","type":""},{"av":"AV6authenticators","fld":"vAUTHENTICATORS","type":""}]""");
+         setEventMetadata("'CONFIRM'",""","oparms":[{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"AV8authenticator","fld":"vAUTHENTICATOR","type":""},{"av":"AV6authenticators","fld":"vAUTHENTICATORS","type":""}]}""");
          setEventMetadata("'CANCEL'","""{"handler":"E130T2","iparms":[]}""");
          return  ;
       }

@@ -10,6 +10,7 @@ using GeneXus.Http.Client;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.googleauthenticator {
    [Serializable]
    public class SdtSetupCode : GxUserType, IGxExternalObject

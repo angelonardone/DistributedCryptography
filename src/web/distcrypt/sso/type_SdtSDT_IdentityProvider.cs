@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtSDT_IdentityProvider
 			Description: SDT_IdentityProvider
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 using GeneXus.Programs.distcrypt;
@@ -400,6 +401,8 @@ namespace GeneXus.Programs.distcrypt.sso
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("IdentityProviderId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="IdentityProviderId", Order=0)]
 		public short gxTpr_Identityproviderid
 		{
@@ -412,11 +415,13 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("IdentityProviderHost")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="IdentityProviderHost", Order=1)]
 		public  string gxTpr_Identityproviderhost
 		{
 			get { 
-				return sdt.gxTpr_Identityproviderhost;
+				return StringUtil.RTrim( sdt.gxTpr_Identityproviderhost);
 
 			}
 			set { 
@@ -424,6 +429,8 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("IdentityProviderPort")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="IdentityProviderPort", Order=2)]
 		public short gxTpr_Identityproviderport
 		{
@@ -436,11 +443,13 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("IdentityProviderApplication")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="IdentityProviderApplication", Order=3)]
 		public  string gxTpr_Identityproviderapplication
 		{
 			get { 
-				return sdt.gxTpr_Identityproviderapplication;
+				return StringUtil.RTrim( sdt.gxTpr_Identityproviderapplication);
 
 			}
 			set { 
@@ -448,6 +457,8 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("IdentityProviderClientId")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="IdentityProviderClientId", Order=4)]
 		public  string gxTpr_Identityproviderclientid
 		{
@@ -460,6 +471,8 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("IdentityProviderClientSecret")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="IdentityProviderClientSecret", Order=5)]
 		public  string gxTpr_Identityproviderclientsecret
 		{
@@ -472,6 +485,9 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("IdentityProviderSecure")]
+		[JsonPropertyOrder(6)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="IdentityProviderSecure", Order=6)]
 		public bool gxTpr_Identityprovidersecure
 		{
@@ -484,11 +500,13 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("IdentityProviderRedirUrl")]
+		[JsonPropertyOrder(7)]
 		[DataMember(Name="IdentityProviderRedirUrl", Order=7)]
 		public  string gxTpr_Identityproviderredirurl
 		{
 			get { 
-				return sdt.gxTpr_Identityproviderredirurl;
+				return StringUtil.RTrim( sdt.gxTpr_Identityproviderredirurl);
 
 			}
 			set { 
@@ -496,11 +514,13 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("IdentityProviderDynamicCallProcedure")]
+		[JsonPropertyOrder(8)]
 		[DataMember(Name="IdentityProviderDynamicCallProcedure", Order=8)]
 		public  string gxTpr_Identityproviderdynamiccallprocedure
 		{
 			get { 
-				return sdt.gxTpr_Identityproviderdynamiccallprocedure;
+				return StringUtil.RTrim( sdt.gxTpr_Identityproviderdynamiccallprocedure);
 
 			}
 			set { 
@@ -508,6 +528,9 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("IdentityProviderEncryptParameter")]
+		[JsonPropertyOrder(9)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="IdentityProviderEncryptParameter", Order=9)]
 		public bool gxTpr_Identityproviderencryptparameter
 		{
@@ -520,6 +543,8 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("IdentityProviderRepository")]
+		[JsonPropertyOrder(10)]
 		[DataMember(Name="IdentityProviderRepository", Order=10)]
 		public  string gxTpr_Identityproviderrepository
 		{
@@ -532,6 +557,8 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("IdentityProviderEncryptionKey")]
+		[JsonPropertyOrder(11)]
 		[DataMember(Name="IdentityProviderEncryptionKey", Order=11)]
 		public  string gxTpr_Identityproviderencryptionkey
 		{
@@ -546,7 +573,7 @@ namespace GeneXus.Programs.distcrypt.sso
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtSDT_IdentityProvider sdt
 		{
 			get { 

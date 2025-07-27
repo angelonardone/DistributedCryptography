@@ -19,6 +19,7 @@ using GeneXus.Http.Client;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet.registered {
    public class creategroup : GXProcedure
    {
@@ -79,12 +80,10 @@ namespace GeneXus.Programs.wallet.registered {
          {
             GXt_char2 = AV8error;
             GXt_char3 = AV12body.gxTpr_Groupencryptedkey;
-            GXt_char4 = AV12body.gxTpr_Groupiv;
-            GXt_char5 = AV12body.gxTpr_Groupencrypted;
-            new GeneXus.Programs.distributedcrypto.encryptjson(context ).execute(  AV10group.ToJSonString(false, true),  "", out  GXt_char3, out  GXt_char4, out  GXt_char5, out  GXt_char2) ;
+            GXt_char4 = AV12body.gxTpr_Groupencrypted;
+            new GeneXus.Programs.distributedcryptographylib.encryptjson(context ).execute(  AV10group.ToJSonString(false, true),  "", out  GXt_char3, out  GXt_char4, out  GXt_char2) ;
             AV12body.gxTpr_Groupencryptedkey = GXt_char3;
-            AV12body.gxTpr_Groupiv = GXt_char4;
-            AV12body.gxTpr_Groupencrypted = GXt_char5;
+            AV12body.gxTpr_Groupencrypted = GXt_char4;
             AV8error = GXt_char2;
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
             {
@@ -127,7 +126,6 @@ namespace GeneXus.Programs.wallet.registered {
          AV12body = new SdtcreateGroup__postInput(context);
          GXt_char3 = "";
          GXt_char4 = "";
-         GXt_char5 = "";
          AV16properties = new GXProperties();
          AV13createGroup__postOutputOUT = new SdtcreateGroup__postOutput(context);
          AV14HttpMessage = new GeneXus.Utils.SdtMessages_Message(context);
@@ -138,7 +136,6 @@ namespace GeneXus.Programs.wallet.registered {
       private string GXt_char2 ;
       private string GXt_char3 ;
       private string GXt_char4 ;
-      private string GXt_char5 ;
       private bool AV15IsSuccess ;
       private Guid AV11groupId ;
       private GXProperties AV16properties ;

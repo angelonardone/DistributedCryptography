@@ -19,6 +19,7 @@ using GeneXus.Encryption;
 using GeneXus.Http.Client;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.qrcoder {
    public class createqrcode : GXDataArea
    {
@@ -198,10 +199,10 @@ namespace GeneXus.Programs.qrcoder {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 310420), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 310420), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -231,7 +232,7 @@ namespace GeneXus.Programs.qrcoder {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("qrcoder.createqrcode.aspx") +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("qrcoder.createqrcode") +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -307,7 +308,7 @@ namespace GeneXus.Programs.qrcoder {
 
       public override string GetSelfLink( )
       {
-         return formatLink("qrcoder.createqrcode.aspx")  ;
+         return formatLink("qrcoder.createqrcode")  ;
       }
 
       public override string GetPgmname( )
@@ -380,7 +381,7 @@ namespace GeneXus.Programs.qrcoder {
             StyleString = "";
             AV6image_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV6image))&&String.IsNullOrEmpty(StringUtil.RTrim( AV11Image_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV6image)));
             sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV6image)) ? AV11Image_GXI : context.PathToRelativeUrl( AV6image));
-            GxWebStd.gx_bitmap( context, imgavImage_Internalname, sImgUrl, "", "", "", context.GetTheme( ), imgavImage_Visible, 0, "", "", 0, 1, 250, "px", 0, "px", 0, 0, 0, "", "", StyleString, ClassString, "", "", "", "", "", "", "", 1, AV6image_IsBlob, false, context.GetImageSrcSet( sImgUrl), "HLP_QRCoder/CreateQRCode.htm");
+            GxWebStd.gx_bitmap( context, imgavImage_Internalname, sImgUrl, "", "", "", context.GetTheme( ), imgavImage_Visible, 0, "", "", 0, 1, 250, "px", 0, "px", 0, 0, 0, "", "", StyleString, ClassString, "", "", "", "", "", "", "", 1, AV6image_IsBlob, false, context.GetImageSrcSet( sImgUrl), "none", "HLP_QRCoder/CreateQRCode.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -408,7 +409,7 @@ namespace GeneXus.Programs.qrcoder {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_13-186676", 0) ;
             }
          }
          Form.Meta.addItem("description", "Create QRCode", 0) ;
@@ -695,7 +696,7 @@ namespace GeneXus.Programs.qrcoder {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531412582730", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202572416225421", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -711,7 +712,7 @@ namespace GeneXus.Programs.qrcoder {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("qrcoder/createqrcode.js", "?202531412582730", false, true);
+         context.AddJavascriptSource("qrcoder/createqrcode.js", "?202572416225421", false, true);
          /* End function include_jscripts */
       }
 
@@ -761,7 +762,7 @@ namespace GeneXus.Programs.qrcoder {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
-         setEventMetadata("'GENERATE'","""{"handler":"E111Q2","iparms":[{"av":"AV10text","fld":"vTEXT"}]""");
+         setEventMetadata("'GENERATE'","""{"handler":"E111Q2","iparms":[{"av":"AV10text","fld":"vTEXT","type":"vchar"}]""");
          setEventMetadata("'GENERATE'",""","oparms":[{"av":"imgavImage_Visible","ctrl":"vIMAGE","prop":"Visible"},{"av":"lblSalida_Caption","ctrl":"SALIDA","prop":"Caption"}]}""");
          return  ;
       }

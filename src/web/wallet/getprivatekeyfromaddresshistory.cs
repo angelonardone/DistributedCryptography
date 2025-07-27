@@ -19,6 +19,7 @@ using GeneXus.Http.Client;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet {
    public class getprivatekeyfromaddresshistory : GXProcedure
    {
@@ -111,14 +112,14 @@ namespace GeneXus.Programs.wallet {
                AV10error = GXt_char4;
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV10error)) )
                {
-                  AV76GXV1 = 1;
-                  while ( AV76GXV1 <= AV32recAllKeyInfo.Count )
+                  AV47GXV1 = 1;
+                  while ( AV47GXV1 <= AV32recAllKeyInfo.Count )
                   {
-                     AV30oneKeyInfo = ((GeneXus.Programs.nbitcoin.SdtKeyInfo)AV32recAllKeyInfo.Item(AV76GXV1));
+                     AV30oneKeyInfo = ((GeneXus.Programs.nbitcoin.SdtKeyInfo)AV32recAllKeyInfo.Item(AV47GXV1));
                      AV9privateKey = AV30oneKeyInfo.gxTpr_Privatekey;
                      cleanup();
                      if (true) return;
-                     AV76GXV1 = (int)(AV76GXV1+1);
+                     AV47GXV1 = (int)(AV47GXV1+1);
                   }
                }
             }
@@ -154,7 +155,7 @@ namespace GeneXus.Programs.wallet {
          /* GeneXus formulas. */
       }
 
-      private int AV76GXV1 ;
+      private int AV47GXV1 ;
       private string AV9privateKey ;
       private string AV19deserializedExtPubKey ;
       private string AV18deserializedExtKey ;

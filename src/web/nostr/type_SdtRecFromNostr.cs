@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtRecFromNostr
 			Description: RecFromNostr
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nostr
@@ -37,6 +38,8 @@ namespace GeneXus.Programs.nostr
 			gxTv_SdtRecFromNostr_Event_id = "";
 
 			gxTv_SdtRecFromNostr_Messge = "";
+
+			gxTv_SdtRecFromNostr_Event_N = true;
 
 		}
 
@@ -176,6 +179,7 @@ namespace GeneXus.Programs.nostr
 				if ( gxTv_SdtRecFromNostr_Event == null )
 				{
 					gxTv_SdtRecFromNostr_Event = new GeneXus.Programs.nostr.SdtEvent(context);
+					SetDirty("Event");
 				}
 				return gxTv_SdtRecFromNostr_Event; 
 			}
@@ -274,6 +278,8 @@ namespace GeneXus.Programs.nostr
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("responseType")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="responseType", Order=0)]
 		public  string gxTpr_Responsetype
 		{
@@ -286,6 +292,8 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("subscription_id")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="subscription_id", Order=1)]
 		public  string gxTpr_Subscription_id
 		{
@@ -298,6 +306,8 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("event_id")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="event_id", Order=2)]
 		public  string gxTpr_Event_id
 		{
@@ -310,6 +320,9 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("event_accepted")]
+		[JsonPropertyOrder(3)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="event_accepted", Order=3)]
 		public bool gxTpr_Event_accepted
 		{
@@ -322,11 +335,13 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("messge")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="messge", Order=4)]
 		public  string gxTpr_Messge
 		{
 			get { 
-				return sdt.gxTpr_Messge;
+				return StringUtil.RTrim( sdt.gxTpr_Messge);
 
 			}
 			set { 
@@ -334,6 +349,9 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("event")]
+		[JsonPropertyOrder(5)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="event", Order=5, EmitDefaultValue=false)]
 		public GeneXus.Programs.nostr.SdtEvent_RESTInterface gxTpr_Event
 		{
@@ -351,7 +369,7 @@ namespace GeneXus.Programs.nostr
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtRecFromNostr sdt
 		{
 			get { 

@@ -19,6 +19,7 @@ using GeneXus.Encryption;
 using GeneXus.Http.Client;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.distcrypt.sso {
    public class weblogin : GXHttpHandler
    {
@@ -139,7 +140,7 @@ namespace GeneXus.Programs.distcrypt.sso {
             if ( ( GxWebError == 0 ) && ! isAjaxCallMode( ) )
             {
                /* GeneXus formulas. */
-               AV15Pgmname = "DistCrypt.SSO.WebLogin";
+               AV16Pgmname = "DistCrypt.SSO.WebLogin";
                WS0P2( ) ;
                if ( ! isAjaxCallMode( ) )
                {
@@ -198,10 +199,10 @@ namespace GeneXus.Programs.distcrypt.sso {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 310420), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 310420), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -228,7 +229,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          context.skipLines(1);
          if ( nGXWrapped != 1 )
          {
-            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"Form\" data-gx-class=\"Form\" novalidate action=\""+formatLink("distcrypt.sso.weblogin.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV5caller))}, new string[] {"caller"}) +"\">") ;
+            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"Form\" data-gx-class=\"Form\" novalidate action=\""+formatLink("distcrypt.sso.weblogin", new object[] {UrlEncode(StringUtil.RTrim(AV5caller))}, new string[] {"caller"}) +"\">") ;
             GxWebStd.gx_hidden_field( context, "_EventName", "");
             GxWebStd.gx_hidden_field( context, "_EventGridId", "");
             GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -322,7 +323,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_13-186676", 0) ;
             }
          }
          Form.Meta.addItem("description", "Web Login", 0) ;
@@ -488,7 +489,7 @@ namespace GeneXus.Programs.distcrypt.sso {
       protected void initialize_formulas( )
       {
          /* GeneXus formulas. */
-         AV15Pgmname = "DistCrypt.SSO.WebLogin";
+         AV16Pgmname = "DistCrypt.SSO.WebLogin";
       }
 
       protected void RF0P2( )
@@ -512,7 +513,7 @@ namespace GeneXus.Programs.distcrypt.sso {
 
       protected void before_start_formulas( )
       {
-         AV15Pgmname = "DistCrypt.SSO.WebLogin";
+         AV16Pgmname = "DistCrypt.SSO.WebLogin";
          fix_multi_value_controls( ) ;
       }
 
@@ -552,18 +553,30 @@ namespace GeneXus.Programs.distcrypt.sso {
       {
          /* Start Routine */
          returnInSub = false;
-         GXt_SdtSDT_IdentityProvider1 = AV9IdentityProvider;
-         new GeneXus.Programs.distcrypt.desktopappip(context ).execute( out  GXt_SdtSDT_IdentityProvider1) ;
-         AV9IdentityProvider = GXt_SdtSDT_IdentityProvider1;
+         GXt_SdtWallet1 = AV15wallet;
+         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet1) ;
+         AV15wallet = GXt_SdtWallet1;
+         if ( StringUtil.StrCmp(AV15wallet.gxTpr_Networktype, "MainNet") == 0 )
+         {
+            GXt_SdtSDT_IdentityProvider2 = AV9IdentityProvider;
+            new GeneXus.Programs.distcrypt.desktopappipmainnet(context ).execute( out  GXt_SdtSDT_IdentityProvider2) ;
+            AV9IdentityProvider = GXt_SdtSDT_IdentityProvider2;
+         }
+         else
+         {
+            GXt_SdtSDT_IdentityProvider2 = AV9IdentityProvider;
+            new GeneXus.Programs.distcrypt.desktopappiptestnet(context ).execute( out  GXt_SdtSDT_IdentityProvider2) ;
+            AV9IdentityProvider = GXt_SdtSDT_IdentityProvider2;
+         }
          AV7ClienteId = AV9IdentityProvider.gxTpr_Identityproviderclientid;
          AV8GXGUID = Guid.NewGuid( );
          AV12state = "GRESTD" + AV8GXGUID.ToString();
          AV14WebSession.Set("State", AV12state);
          AV14WebSession.Set("LoginCaller", AV5caller);
-         new GeneXus.Core.genexus.common.SdtLog(context).debug("LoginCaller "+AV5caller, AV15Pgmname) ;
-         GXt_char2 = AV13url;
-         new GeneXus.Programs.distcrypt.sso.getidentprovbaseurl(context ).execute(  AV9IdentityProvider, out  GXt_char2) ;
-         AV13url = GXt_char2 + "oauth/gam/signin";
+         new GeneXus.Core.genexus.common.SdtLog(context).debug("LoginCaller "+AV5caller, AV16Pgmname) ;
+         GXt_char3 = AV13url;
+         new GeneXus.Programs.distcrypt.sso.getidentprovbaseurl(context ).execute(  AV9IdentityProvider, out  GXt_char3) ;
+         AV13url = GXt_char3 + "oauth/gam/signin";
          AV10params = "oauth=auth&client_id=" + StringUtil.Trim( AV7ClienteId);
          AV11paramsEnctypted = "redirect_uri=" + AV9IdentityProvider.gxTpr_Identityproviderredirurl + "&scope=gam_user_data+gam_user_roles+gam_user_additional_data+&state=" + StringUtil.Trim( AV12state);
          if ( AV9IdentityProvider.gxTpr_Identityproviderencryptparameter )
@@ -572,7 +585,7 @@ namespace GeneXus.Programs.distcrypt.sso {
             AV11paramsEnctypted = "key=" + AV11paramsEnctypted;
          }
          AV10params += "&" + AV11paramsEnctypted;
-         new GeneXus.Core.genexus.common.SdtLog(context).debug("&url="+StringUtil.Trim( AV13url)+" &params="+StringUtil.Trim( AV10params), AV15Pgmname) ;
+         new GeneXus.Core.genexus.common.SdtLog(context).debug("&url="+StringUtil.Trim( AV13url)+" &params="+StringUtil.Trim( AV10params), AV16Pgmname) ;
          CallWebObject(formatLink(AV13url, new object[] {UrlEncode(StringUtil.RTrim(AV10params))}, new string[] {}) );
          context.wjLocDisableFrm = 0;
       }
@@ -629,7 +642,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531412581821", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202572416224549", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -647,7 +660,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("distcrypt/sso/weblogin.js", "?202531412581821", false, true);
+            context.AddJavascriptSource("distcrypt/sso/weblogin.js", "?202572416224549", false, true);
          }
          /* End function include_jscripts */
       }
@@ -683,7 +696,7 @@ namespace GeneXus.Programs.distcrypt.sso {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV5caller","fld":"vCALLER","hsh":true}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV5caller","fld":"vCALLER","hsh":true,"type":"char"}]}""");
          return  ;
       }
 
@@ -701,7 +714,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          wcpOAV5caller = "";
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
-         AV15Pgmname = "";
+         AV16Pgmname = "";
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
@@ -713,21 +726,23 @@ namespace GeneXus.Programs.distcrypt.sso {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
+         AV15wallet = new GeneXus.Programs.wallet.SdtWallet(context);
+         GXt_SdtWallet1 = new GeneXus.Programs.wallet.SdtWallet(context);
          AV9IdentityProvider = new GeneXus.Programs.distcrypt.sso.SdtSDT_IdentityProvider(context);
-         GXt_SdtSDT_IdentityProvider1 = new GeneXus.Programs.distcrypt.sso.SdtSDT_IdentityProvider(context);
+         GXt_SdtSDT_IdentityProvider2 = new GeneXus.Programs.distcrypt.sso.SdtSDT_IdentityProvider(context);
          AV7ClienteId = "";
          AV8GXGUID = Guid.Empty;
          AV12state = "";
          AV14WebSession = context.GetSession();
          AV13url = "";
-         GXt_char2 = "";
+         GXt_char3 = "";
          AV10params = "";
          AV11paramsEnctypted = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
-         AV15Pgmname = "DistCrypt.SSO.WebLogin";
+         AV16Pgmname = "DistCrypt.SSO.WebLogin";
          /* GeneXus formulas. */
-         AV15Pgmname = "DistCrypt.SSO.WebLogin";
+         AV16Pgmname = "DistCrypt.SSO.WebLogin";
       }
 
       private short nGotPars ;
@@ -742,7 +757,7 @@ namespace GeneXus.Programs.distcrypt.sso {
       private string wcpOAV5caller ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
-      private string AV15Pgmname ;
+      private string AV16Pgmname ;
       private string sDynURL ;
       private string FormProcess ;
       private string bodyStyle ;
@@ -756,7 +771,7 @@ namespace GeneXus.Programs.distcrypt.sso {
       private string AV7ClienteId ;
       private string AV12state ;
       private string AV13url ;
-      private string GXt_char2 ;
+      private string GXt_char3 ;
       private string AV10params ;
       private string AV11paramsEnctypted ;
       private bool entryPointCalled ;
@@ -770,8 +785,10 @@ namespace GeneXus.Programs.distcrypt.sso {
       private GXWebForm Form ;
       private IGxSession AV14WebSession ;
       private IGxDataStore dsDefault ;
+      private GeneXus.Programs.wallet.SdtWallet AV15wallet ;
+      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
       private GeneXus.Programs.distcrypt.sso.SdtSDT_IdentityProvider AV9IdentityProvider ;
-      private GeneXus.Programs.distcrypt.sso.SdtSDT_IdentityProvider GXt_SdtSDT_IdentityProvider1 ;
+      private GeneXus.Programs.distcrypt.sso.SdtSDT_IdentityProvider GXt_SdtSDT_IdentityProvider2 ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtelectrumRespGetTransactionId_result
 			Description: result
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.electrum
@@ -37,6 +38,7 @@ namespace GeneXus.Programs.electrum
 			gxTv_SdtelectrumRespGetTransactionId_result_Hex = "";
 
 			gxTv_SdtelectrumRespGetTransactionId_result_Txid = "";
+
 
 		}
 
@@ -137,7 +139,7 @@ namespace GeneXus.Programs.electrum
 				return Convert.ToString(gxTv_SdtelectrumRespGetTransactionId_result_Blocktime, System.Globalization.CultureInfo.InvariantCulture);
 			}
 			set {
-				gxTv_SdtelectrumRespGetTransactionId_result_Blocktime = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+				gxTv_SdtelectrumRespGetTransactionId_result_Blocktime = NumberUtil.Val(value);
 			}
 		}
 		[XmlIgnore]
@@ -162,7 +164,7 @@ namespace GeneXus.Programs.electrum
 				return Convert.ToString(gxTv_SdtelectrumRespGetTransactionId_result_Confirmations, System.Globalization.CultureInfo.InvariantCulture);
 			}
 			set {
-				gxTv_SdtelectrumRespGetTransactionId_result_Confirmations = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+				gxTv_SdtelectrumRespGetTransactionId_result_Confirmations = NumberUtil.Val(value);
 			}
 		}
 		[XmlIgnore]
@@ -219,7 +221,7 @@ namespace GeneXus.Programs.electrum
 				return Convert.ToString(gxTv_SdtelectrumRespGetTransactionId_result_Locktime, System.Globalization.CultureInfo.InvariantCulture);
 			}
 			set {
-				gxTv_SdtelectrumRespGetTransactionId_result_Locktime = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+				gxTv_SdtelectrumRespGetTransactionId_result_Locktime = NumberUtil.Val(value);
 			}
 		}
 		[XmlIgnore]
@@ -244,7 +246,7 @@ namespace GeneXus.Programs.electrum
 				return Convert.ToString(gxTv_SdtelectrumRespGetTransactionId_result_Size, System.Globalization.CultureInfo.InvariantCulture);
 			}
 			set {
-				gxTv_SdtelectrumRespGetTransactionId_result_Size = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+				gxTv_SdtelectrumRespGetTransactionId_result_Size = NumberUtil.Val(value);
 			}
 		}
 		[XmlIgnore]
@@ -269,7 +271,7 @@ namespace GeneXus.Programs.electrum
 				return Convert.ToString(gxTv_SdtelectrumRespGetTransactionId_result_Time, System.Globalization.CultureInfo.InvariantCulture);
 			}
 			set {
-				gxTv_SdtelectrumRespGetTransactionId_result_Time = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+				gxTv_SdtelectrumRespGetTransactionId_result_Time = NumberUtil.Val(value);
 			}
 		}
 		[XmlIgnore]
@@ -310,7 +312,7 @@ namespace GeneXus.Programs.electrum
 				return Convert.ToString(gxTv_SdtelectrumRespGetTransactionId_result_Version, System.Globalization.CultureInfo.InvariantCulture);
 			}
 			set {
-				gxTv_SdtelectrumRespGetTransactionId_result_Version = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+				gxTv_SdtelectrumRespGetTransactionId_result_Version = NumberUtil.Val(value);
 			}
 		}
 		[XmlIgnore]
@@ -338,6 +340,7 @@ namespace GeneXus.Programs.electrum
 				{
 					gxTv_SdtelectrumRespGetTransactionId_result_Vin = new GXBaseCollection<SdtelectrumRespGetTransactionId_result_vinItem>( context, "electrumRespGetTransactionId.result.vinItem", "");
 				}
+				SetDirty("Vin");
 				return gxTv_SdtelectrumRespGetTransactionId_result_Vin;
 			}
 			set {
@@ -375,6 +378,7 @@ namespace GeneXus.Programs.electrum
 				{
 					gxTv_SdtelectrumRespGetTransactionId_result_Vout = new GXBaseCollection<SdtelectrumRespGetTransactionId_result_voutItem>( context, "electrumRespGetTransactionId.result.voutItem", "");
 				}
+				SetDirty("Vout");
 				return gxTv_SdtelectrumRespGetTransactionId_result_Vout;
 			}
 			set {
@@ -409,7 +413,7 @@ namespace GeneXus.Programs.electrum
 				return Convert.ToString(gxTv_SdtelectrumRespGetTransactionId_result_Vsize, System.Globalization.CultureInfo.InvariantCulture);
 			}
 			set {
-				gxTv_SdtelectrumRespGetTransactionId_result_Vsize = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+				gxTv_SdtelectrumRespGetTransactionId_result_Vsize = NumberUtil.Val(value);
 			}
 		}
 		[XmlIgnore]
@@ -434,7 +438,7 @@ namespace GeneXus.Programs.electrum
 				return Convert.ToString(gxTv_SdtelectrumRespGetTransactionId_result_Weight, System.Globalization.CultureInfo.InvariantCulture);
 			}
 			set {
-				gxTv_SdtelectrumRespGetTransactionId_result_Weight = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+				gxTv_SdtelectrumRespGetTransactionId_result_Weight = NumberUtil.Val(value);
 			}
 		}
 		[XmlIgnore]
@@ -558,11 +562,13 @@ namespace GeneXus.Programs.electrum
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("blockhash")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="blockhash", Order=0)]
 		public  string gxTpr_Blockhash
 		{
 			get { 
-				return sdt.gxTpr_Blockhash;
+				return StringUtil.RTrim( sdt.gxTpr_Blockhash);
 
 			}
 			set { 
@@ -570,6 +576,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("blocktime")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="blocktime", Order=1)]
 		public  string gxTpr_Blocktime
 		{
@@ -582,6 +590,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("confirmations")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="confirmations", Order=2)]
 		public  string gxTpr_Confirmations
 		{
@@ -594,11 +604,13 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("hash")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="hash", Order=3)]
 		public  string gxTpr_Hash
 		{
 			get { 
-				return sdt.gxTpr_Hash;
+				return StringUtil.RTrim( sdt.gxTpr_Hash);
 
 			}
 			set { 
@@ -606,11 +618,13 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("hex")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="hex", Order=4)]
 		public  string gxTpr_Hex
 		{
 			get { 
-				return sdt.gxTpr_Hex;
+				return StringUtil.RTrim( sdt.gxTpr_Hex);
 
 			}
 			set { 
@@ -618,6 +632,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("locktime")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="locktime", Order=5)]
 		public  string gxTpr_Locktime
 		{
@@ -630,6 +646,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("size")]
+		[JsonPropertyOrder(6)]
 		[DataMember(Name="size", Order=6)]
 		public  string gxTpr_Size
 		{
@@ -642,6 +660,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("time")]
+		[JsonPropertyOrder(7)]
 		[DataMember(Name="time", Order=7)]
 		public  string gxTpr_Time
 		{
@@ -654,11 +674,13 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("txid")]
+		[JsonPropertyOrder(8)]
 		[DataMember(Name="txid", Order=8)]
 		public  string gxTpr_Txid
 		{
 			get { 
-				return sdt.gxTpr_Txid;
+				return StringUtil.RTrim( sdt.gxTpr_Txid);
 
 			}
 			set { 
@@ -666,6 +688,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("version")]
+		[JsonPropertyOrder(9)]
 		[DataMember(Name="version", Order=9)]
 		public  string gxTpr_Version
 		{
@@ -678,6 +702,9 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("vin")]
+		[JsonPropertyOrder(10)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="vin", Order=10, EmitDefaultValue=false)]
 		public GxGenericCollection<SdtelectrumRespGetTransactionId_result_vinItem_RESTInterface> gxTpr_Vin
 		{
@@ -693,6 +720,9 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("vout")]
+		[JsonPropertyOrder(11)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="vout", Order=11, EmitDefaultValue=false)]
 		public GxGenericCollection<SdtelectrumRespGetTransactionId_result_voutItem_RESTInterface> gxTpr_Vout
 		{
@@ -708,6 +738,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("vsize")]
+		[JsonPropertyOrder(12)]
 		[DataMember(Name="vsize", Order=12)]
 		public  string gxTpr_Vsize
 		{
@@ -720,6 +752,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("weight")]
+		[JsonPropertyOrder(13)]
 		[DataMember(Name="weight", Order=13)]
 		public  string gxTpr_Weight
 		{
@@ -734,7 +768,7 @@ namespace GeneXus.Programs.electrum
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtelectrumRespGetTransactionId_result sdt
 		{
 			get { 

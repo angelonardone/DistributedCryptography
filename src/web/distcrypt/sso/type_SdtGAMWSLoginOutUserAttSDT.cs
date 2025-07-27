@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtGAMWSLoginOutUserAttSDT
 			Description: GAMWSLoginOutUserAttSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 using GeneXus.Programs.distcrypt;
@@ -155,6 +156,7 @@ namespace GeneXus.Programs.distcrypt.sso
 					gxTv_SdtGAMWSLoginOutUserAttSDT_Multivalues = new GXBaseCollection<GeneXus.Programs.distcrypt.sso.SdtGAMWSLoginOutUserAttMVSDT>( context, "GAMWSLoginOutUserAttMVSDT", "");
 				}
 				gxTv_SdtGAMWSLoginOutUserAttSDT_Multivalues_N = false;
+				SetDirty("Multivalues");
 				return gxTv_SdtGAMWSLoginOutUserAttSDT_Multivalues ;
 			}
 			set {
@@ -244,6 +246,8 @@ namespace GeneXus.Programs.distcrypt.sso
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("Id")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="Id", Order=0)]
 		public  string gxTpr_Id
 		{
@@ -256,6 +260,9 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("IsMultiValue")]
+		[JsonPropertyOrder(1)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="IsMultiValue", Order=1)]
 		public bool gxTpr_Ismultivalue
 		{
@@ -268,11 +275,13 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("Value")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="Value", Order=2)]
 		public  string gxTpr_Value
 		{
 			get { 
-				return sdt.gxTpr_Value;
+				return StringUtil.RTrim( sdt.gxTpr_Value);
 
 			}
 			set { 
@@ -280,6 +289,9 @@ namespace GeneXus.Programs.distcrypt.sso
 			}
 		}
 
+		[JsonPropertyName("MultiValues")]
+		[JsonPropertyOrder(3)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="MultiValues", Order=3, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.distcrypt.sso.SdtGAMWSLoginOutUserAttMVSDT_RESTInterface> gxTpr_Multivalues
 		{
@@ -297,7 +309,7 @@ namespace GeneXus.Programs.distcrypt.sso
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtGAMWSLoginOutUserAttSDT sdt
 		{
 			get { 

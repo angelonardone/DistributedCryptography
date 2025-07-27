@@ -19,6 +19,7 @@ using GeneXus.Http.Client;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet.registered {
    public class updateactivatedgroup : GXProcedure
    {
@@ -97,18 +98,17 @@ namespace GeneXus.Programs.wallet.registered {
                   {
                      AV17oneGroup.gxTpr_Isactive = true;
                      AV17oneGroup.gxTpr_Minimumshares = AV12group_sdt.gxTpr_Minimumshares;
-                     if ( ( AV17oneGroup.gxTpr_Grouptype == 200 ) || ( AV17oneGroup.gxTpr_Grouptype == 800 ) )
+                     AV17oneGroup.gxTpr_Encryptedtextshare = AV12group_sdt.gxTpr_Encryptedtextshare;
+                     AV26GXV3 = 1;
+                     while ( AV26GXV3 <= AV12group_sdt.gxTpr_Contact.Count )
                      {
-                        AV26GXV3 = 1;
-                        while ( AV26GXV3 <= AV12group_sdt.gxTpr_Contact.Count )
-                        {
-                           AV23oneGroupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV12group_sdt.gxTpr_Contact.Item(AV26GXV3));
-                           AV17oneGroup.gxTpr_Contact.Add(AV23oneGroupContact, 0);
-                           AV26GXV3 = (int)(AV26GXV3+1);
-                        }
-                        AV17oneGroup.gxTpr_Othergroup.gxTpr_Extpubkeymultisigreceiving = AV12group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeymultisigreceiving;
-                        AV17oneGroup.gxTpr_Othergroup.gxTpr_Extpubkeymultisigchange = AV12group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeymultisigchange;
+                        AV23oneGroupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV12group_sdt.gxTpr_Contact.Item(AV26GXV3));
+                        AV17oneGroup.gxTpr_Contact.Add((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)(AV23oneGroupContact.Clone()), 0);
+                        AV26GXV3 = (int)(AV26GXV3+1);
                      }
+                     AV17oneGroup.gxTpr_Othergroup.gxTpr_Extpubkeymultisigreceiving = AV12group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeymultisigreceiving;
+                     AV17oneGroup.gxTpr_Othergroup.gxTpr_Extpubkeymultisigchange = AV12group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeymultisigchange;
+                     AV17oneGroup.gxTpr_Othergroup.gxTpr_Extpubkeytimebountyreceiving = AV12group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeytimebountyreceiving;
                      GXt_char1 = AV11error;
                      new GeneXus.Programs.wallet.registered.updategroup(context ).execute(  AV17oneGroup,  StringUtil.Trim( AV17oneGroup.gxTpr_Encpassword), out  AV14grpupId, out  GXt_char1) ;
                      AV11error = GXt_char1;

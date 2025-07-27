@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtisAddressValidUnitTestSDT
 			Description: isAddressValidUnitTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nbitcoin
@@ -258,11 +259,13 @@ namespace GeneXus.Programs.nbitcoin
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("TestCaseId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="TestCaseId", Order=0)]
 		public  string gxTpr_Testcaseid
 		{
 			get { 
-				return sdt.gxTpr_Testcaseid;
+				return StringUtil.RTrim( sdt.gxTpr_Testcaseid);
 
 			}
 			set { 
@@ -270,6 +273,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("address")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="address", Order=1)]
 		public  string gxTpr_Address
 		{
@@ -282,6 +287,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("networkType")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="networkType", Order=2)]
 		public  string gxTpr_Networktype
 		{
@@ -294,6 +301,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("error")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="error", Order=3)]
 		public  string gxTpr_Error
 		{
@@ -306,6 +315,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Expectederror")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="Expectederror", Order=4)]
 		public  string gxTpr_Expectederror
 		{
@@ -318,11 +329,13 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Msgerror")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="Msgerror", Order=5)]
 		public  string gxTpr_Msgerror
 		{
 			get { 
-				return sdt.gxTpr_Msgerror;
+				return StringUtil.RTrim( sdt.gxTpr_Msgerror);
 
 			}
 			set { 
@@ -332,7 +345,7 @@ namespace GeneXus.Programs.nbitcoin
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtisAddressValidUnitTestSDT sdt
 		{
 			get { 

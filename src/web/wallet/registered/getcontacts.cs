@@ -19,6 +19,7 @@ using GeneXus.Http.Client;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet.registered {
    public class getcontacts : GXProcedure
    {
@@ -88,7 +89,7 @@ namespace GeneXus.Programs.wallet.registered {
                   {
                      AV26contact = ((SdtDesktopApp_services_SDT_Contacts_Contact_ContactItem)AV25contacts.gxTpr_Contact.Item(AV33GXV1));
                      GXt_char2 = AV9error;
-                     new GeneXus.Programs.distributedcrypto.decryptjson(context ).execute(  AV26contact.gxTpr_Contactencrypted,  AV26contact.gxTpr_Encryptedkey,  AV26contact.gxTpr_Iv, out  AV27clearText, out  GXt_char2) ;
+                     new GeneXus.Programs.distributedcryptographylib.decryptjson(context ).execute(  AV26contact.gxTpr_Contactencrypted,  AV26contact.gxTpr_Encryptedkey, out  AV27clearText, out  GXt_char2) ;
                      AV9error = GXt_char2;
                      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
                      {

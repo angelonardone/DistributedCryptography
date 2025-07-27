@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtExternalUser
 			Description: ExternalUser
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.distcrypt
@@ -31,6 +32,14 @@ namespace GeneXus.Programs.distcrypt
 		{
 			/* Constructor for serialization */
 			gxTv_SdtExternalUser_Externaltoken = "";
+
+			gxTv_SdtExternalUser_Userinfo_N = true;
+
+			gxTv_SdtExternalUser_Keyinfo_N = true;
+
+			gxTv_SdtExternalUser_Chatkeyinfo_N = true;
+
+			gxTv_SdtExternalUser_Groupskeyinfo_N = true;
 
 		}
 
@@ -106,6 +115,7 @@ namespace GeneXus.Programs.distcrypt
 				if ( gxTv_SdtExternalUser_Userinfo == null )
 				{
 					gxTv_SdtExternalUser_Userinfo = new GeneXus.Programs.distcrypt.sso.SdtGAMGAMRemoteUserSDT(context);
+					SetDirty("Userinfo");
 				}
 				return gxTv_SdtExternalUser_Userinfo; 
 			}
@@ -138,6 +148,7 @@ namespace GeneXus.Programs.distcrypt
 				if ( gxTv_SdtExternalUser_Keyinfo == null )
 				{
 					gxTv_SdtExternalUser_Keyinfo = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
+					SetDirty("Keyinfo");
 				}
 				return gxTv_SdtExternalUser_Keyinfo; 
 			}
@@ -170,6 +181,7 @@ namespace GeneXus.Programs.distcrypt
 				if ( gxTv_SdtExternalUser_Chatkeyinfo == null )
 				{
 					gxTv_SdtExternalUser_Chatkeyinfo = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
+					SetDirty("Chatkeyinfo");
 				}
 				return gxTv_SdtExternalUser_Chatkeyinfo; 
 			}
@@ -202,6 +214,7 @@ namespace GeneXus.Programs.distcrypt
 				if ( gxTv_SdtExternalUser_Groupskeyinfo == null )
 				{
 					gxTv_SdtExternalUser_Groupskeyinfo = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
+					SetDirty("Groupskeyinfo");
 				}
 				return gxTv_SdtExternalUser_Groupskeyinfo; 
 			}
@@ -305,11 +318,13 @@ namespace GeneXus.Programs.distcrypt
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("ExternalToken")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="ExternalToken", Order=0)]
 		public  string gxTpr_Externaltoken
 		{
 			get { 
-				return sdt.gxTpr_Externaltoken;
+				return StringUtil.RTrim( sdt.gxTpr_Externaltoken);
 
 			}
 			set { 
@@ -317,6 +332,9 @@ namespace GeneXus.Programs.distcrypt
 			}
 		}
 
+		[JsonPropertyName("UserInfo")]
+		[JsonPropertyOrder(1)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="UserInfo", Order=1, EmitDefaultValue=false)]
 		public GeneXus.Programs.distcrypt.sso.SdtGAMGAMRemoteUserSDT_RESTInterface gxTpr_Userinfo
 		{
@@ -332,6 +350,9 @@ namespace GeneXus.Programs.distcrypt
 			}
 		}
 
+		[JsonPropertyName("KeyInfo")]
+		[JsonPropertyOrder(2)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="KeyInfo", Order=2, EmitDefaultValue=false)]
 		public GeneXus.Programs.nbitcoin.SdtKeyInfo_RESTInterface gxTpr_Keyinfo
 		{
@@ -347,6 +368,9 @@ namespace GeneXus.Programs.distcrypt
 			}
 		}
 
+		[JsonPropertyName("ChatKeyInfo")]
+		[JsonPropertyOrder(3)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="ChatKeyInfo", Order=3, EmitDefaultValue=false)]
 		public GeneXus.Programs.nbitcoin.SdtKeyInfo_RESTInterface gxTpr_Chatkeyinfo
 		{
@@ -362,6 +386,9 @@ namespace GeneXus.Programs.distcrypt
 			}
 		}
 
+		[JsonPropertyName("GroupsKeyInfo")]
+		[JsonPropertyOrder(4)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="GroupsKeyInfo", Order=4, EmitDefaultValue=false)]
 		public GeneXus.Programs.nbitcoin.SdtKeyInfo_RESTInterface gxTpr_Groupskeyinfo
 		{
@@ -379,7 +406,7 @@ namespace GeneXus.Programs.distcrypt
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtExternalUser sdt
 		{
 			get { 

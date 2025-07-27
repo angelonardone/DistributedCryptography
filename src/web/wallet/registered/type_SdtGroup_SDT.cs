@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtGroup_SDT
 			Description: Group_SDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 using GeneXus.Programs.wallet;
@@ -37,9 +38,13 @@ namespace GeneXus.Programs.wallet.registered
 
 			gxTv_SdtGroup_SDT_Cleartextshare = "";
 
+			gxTv_SdtGroup_SDT_Encryptedtextshare = "";
+
 			gxTv_SdtGroup_SDT_Extpubkeymultisigreceiving = "";
 
 			gxTv_SdtGroup_SDT_Extpubkeymultisigchange = "";
+
+			gxTv_SdtGroup_SDT_Extpubkeytimebountyreceiving = "";
 
 		}
 
@@ -92,6 +97,9 @@ namespace GeneXus.Programs.wallet.registered
 			AddObjectProperty("clearTextShare", gxTpr_Cleartextshare, false);
 
 
+			AddObjectProperty("encryptedTextShare", gxTpr_Encryptedtextshare, false);
+
+
 			AddObjectProperty("numOfSharesReached", gxTpr_Numofsharesreached, false);
 
 
@@ -100,6 +108,22 @@ namespace GeneXus.Programs.wallet.registered
 
 			AddObjectProperty("extPubKeyMultiSigChange", gxTpr_Extpubkeymultisigchange, false);
 
+
+			AddObjectProperty("subGroupType", gxTpr_Subgrouptype, false);
+
+
+			AddObjectProperty("bountyGroupId", gxTpr_Bountygroupid, false);
+
+
+			AddObjectProperty("dataGroupId", gxTpr_Datagroupid, false);
+
+
+			AddObjectProperty("extPubKeyTimeBountyReceiving", gxTpr_Extpubkeytimebountyreceiving, false);
+
+			if (gxTv_SdtGroup_SDT_Timeconstrain != null)
+			{
+				AddObjectProperty("TimeConstrain", gxTv_SdtGroup_SDT_Timeconstrain, false);
+			}
 			if (gxTv_SdtGroup_SDT_Contact != null)
 			{
 				AddObjectProperty("Contact", gxTv_SdtGroup_SDT_Contact, false);
@@ -242,6 +266,22 @@ namespace GeneXus.Programs.wallet.registered
 
 
 
+		[SoapElement(ElementName="encryptedTextShare")]
+		[XmlElement(ElementName="encryptedTextShare")]
+		public string gxTpr_Encryptedtextshare
+		{
+			get {
+				return gxTv_SdtGroup_SDT_Encryptedtextshare; 
+			}
+			set {
+				gxTv_SdtGroup_SDT_Encryptedtextshare = value;
+				SetDirty("Encryptedtextshare");
+			}
+		}
+
+
+
+
 		[SoapElement(ElementName="numOfSharesReached")]
 		[XmlElement(ElementName="numOfSharesReached")]
 		public bool gxTpr_Numofsharesreached
@@ -290,6 +330,108 @@ namespace GeneXus.Programs.wallet.registered
 
 
 
+		[SoapElement(ElementName="subGroupType")]
+		[XmlElement(ElementName="subGroupType")]
+		public short gxTpr_Subgrouptype
+		{
+			get {
+				return gxTv_SdtGroup_SDT_Subgrouptype; 
+			}
+			set {
+				gxTv_SdtGroup_SDT_Subgrouptype = value;
+				SetDirty("Subgrouptype");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="bountyGroupId")]
+		[XmlElement(ElementName="bountyGroupId")]
+		public Guid gxTpr_Bountygroupid
+		{
+			get {
+				return gxTv_SdtGroup_SDT_Bountygroupid; 
+			}
+			set {
+				gxTv_SdtGroup_SDT_Bountygroupid = value;
+				SetDirty("Bountygroupid");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="dataGroupId")]
+		[XmlElement(ElementName="dataGroupId")]
+		public Guid gxTpr_Datagroupid
+		{
+			get {
+				return gxTv_SdtGroup_SDT_Datagroupid; 
+			}
+			set {
+				gxTv_SdtGroup_SDT_Datagroupid = value;
+				SetDirty("Datagroupid");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="extPubKeyTimeBountyReceiving")]
+		[XmlElement(ElementName="extPubKeyTimeBountyReceiving")]
+		public string gxTpr_Extpubkeytimebountyreceiving
+		{
+			get {
+				return gxTv_SdtGroup_SDT_Extpubkeytimebountyreceiving; 
+			}
+			set {
+				gxTv_SdtGroup_SDT_Extpubkeytimebountyreceiving = value;
+				SetDirty("Extpubkeytimebountyreceiving");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="TimeConstrain" )]
+		[XmlArray(ElementName="TimeConstrain"  )]
+		[XmlArrayItemAttribute(ElementName="TimeConstrainItem" , IsNullable=false )]
+		public GXBaseCollection<SdtGroup_SDT_TimeConstrainItem> gxTpr_Timeconstrain
+		{
+			get {
+				if ( gxTv_SdtGroup_SDT_Timeconstrain == null )
+				{
+					gxTv_SdtGroup_SDT_Timeconstrain = new GXBaseCollection<SdtGroup_SDT_TimeConstrainItem>( context, "Group_SDT.TimeConstrainItem", "");
+				}
+				SetDirty("Timeconstrain");
+				return gxTv_SdtGroup_SDT_Timeconstrain;
+			}
+			set {
+				gxTv_SdtGroup_SDT_Timeconstrain_N = false;
+				gxTv_SdtGroup_SDT_Timeconstrain = value;
+				SetDirty("Timeconstrain");
+			}
+		}
+
+		public void gxTv_SdtGroup_SDT_Timeconstrain_SetNull()
+		{
+			gxTv_SdtGroup_SDT_Timeconstrain_N = true;
+			gxTv_SdtGroup_SDT_Timeconstrain = null;
+		}
+
+		public bool gxTv_SdtGroup_SDT_Timeconstrain_IsNull()
+		{
+			return gxTv_SdtGroup_SDT_Timeconstrain == null;
+		}
+		public bool ShouldSerializegxTpr_Timeconstrain_GxSimpleCollection_Json()
+		{
+			return gxTv_SdtGroup_SDT_Timeconstrain != null && gxTv_SdtGroup_SDT_Timeconstrain.Count > 0;
+
+		}
+
+
+
 		[SoapElement(ElementName="Contact" )]
 		[XmlArray(ElementName="Contact"  )]
 		[XmlArrayItemAttribute(ElementName="ContactItem" , IsNullable=false )]
@@ -300,6 +442,7 @@ namespace GeneXus.Programs.wallet.registered
 				{
 					gxTv_SdtGroup_SDT_Contact = new GXBaseCollection<SdtGroup_SDT_ContactItem>( context, "Group_SDT.ContactItem", "");
 				}
+				SetDirty("Contact");
 				return gxTv_SdtGroup_SDT_Contact;
 			}
 			set {
@@ -336,6 +479,7 @@ namespace GeneXus.Programs.wallet.registered
 					gxTv_SdtGroup_SDT_Othergroup = new SdtGroup_SDT_otherGroup(context);
 				}
 				gxTv_SdtGroup_SDT_Othergroup_N = false;
+				SetDirty("Othergroup");
 				return gxTv_SdtGroup_SDT_Othergroup;
 			}
 			set {
@@ -390,9 +534,17 @@ namespace GeneXus.Programs.wallet.registered
 
 			gxTv_SdtGroup_SDT_Encpassword = "";
 			gxTv_SdtGroup_SDT_Cleartextshare = "";
+			gxTv_SdtGroup_SDT_Encryptedtextshare = "";
 
 			gxTv_SdtGroup_SDT_Extpubkeymultisigreceiving = "";
 			gxTv_SdtGroup_SDT_Extpubkeymultisigchange = "";
+
+
+
+			gxTv_SdtGroup_SDT_Extpubkeytimebountyreceiving = "";
+
+			gxTv_SdtGroup_SDT_Timeconstrain_N = true;
+
 
 			gxTv_SdtGroup_SDT_Contact_N = true;
 
@@ -432,6 +584,9 @@ namespace GeneXus.Programs.wallet.registered
 		protected string gxTv_SdtGroup_SDT_Cleartextshare;
 		 
 
+		protected string gxTv_SdtGroup_SDT_Encryptedtextshare;
+		 
+
 		protected bool gxTv_SdtGroup_SDT_Numofsharesreached;
 		 
 
@@ -440,6 +595,21 @@ namespace GeneXus.Programs.wallet.registered
 
 		protected string gxTv_SdtGroup_SDT_Extpubkeymultisigchange;
 		 
+
+		protected short gxTv_SdtGroup_SDT_Subgrouptype;
+		 
+
+		protected Guid gxTv_SdtGroup_SDT_Bountygroupid;
+		 
+
+		protected Guid gxTv_SdtGroup_SDT_Datagroupid;
+		 
+
+		protected string gxTv_SdtGroup_SDT_Extpubkeytimebountyreceiving;
+		 
+		protected bool gxTv_SdtGroup_SDT_Timeconstrain_N;
+		protected GXBaseCollection<SdtGroup_SDT_TimeConstrainItem> gxTv_SdtGroup_SDT_Timeconstrain = null; 
+
 		protected bool gxTv_SdtGroup_SDT_Contact_N;
 		protected GXBaseCollection<SdtGroup_SDT_ContactItem> gxTv_SdtGroup_SDT_Contact = null; 
 
@@ -464,6 +634,8 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("groupId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="groupId", Order=0)]
 		public Guid gxTpr_Groupid
 		{
@@ -476,6 +648,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("groupType")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="groupType", Order=1)]
 		public short gxTpr_Grouptype
 		{
@@ -488,6 +662,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("groupName")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="groupName", Order=2)]
 		public  string gxTpr_Groupname
 		{
@@ -500,6 +676,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("amIgroupOwner")]
+		[JsonPropertyOrder(3)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="amIgroupOwner", Order=3)]
 		public bool gxTpr_Amigroupowner
 		{
@@ -512,6 +691,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("isActive")]
+		[JsonPropertyOrder(4)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="isActive", Order=4)]
 		public bool gxTpr_Isactive
 		{
@@ -524,6 +706,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("minimumShares")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="minimumShares", Order=5)]
 		public short gxTpr_Minimumshares
 		{
@@ -536,6 +720,8 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("encPassword")]
+		[JsonPropertyOrder(6)]
 		[DataMember(Name="encPassword", Order=6)]
 		public  string gxTpr_Encpassword
 		{
@@ -548,11 +734,13 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
+		[JsonPropertyName("clearTextShare")]
+		[JsonPropertyOrder(7)]
 		[DataMember(Name="clearTextShare", Order=7)]
 		public  string gxTpr_Cleartextshare
 		{
 			get { 
-				return sdt.gxTpr_Cleartextshare;
+				return StringUtil.RTrim( sdt.gxTpr_Cleartextshare);
 
 			}
 			set { 
@@ -560,7 +748,24 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
-		[DataMember(Name="numOfSharesReached", Order=8)]
+		[JsonPropertyName("encryptedTextShare")]
+		[JsonPropertyOrder(8)]
+		[DataMember(Name="encryptedTextShare", Order=8)]
+		public  string gxTpr_Encryptedtextshare
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Encryptedtextshare);
+
+			}
+			set { 
+				 sdt.gxTpr_Encryptedtextshare = value;
+			}
+		}
+
+		[JsonPropertyName("numOfSharesReached")]
+		[JsonPropertyOrder(9)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
+		[DataMember(Name="numOfSharesReached", Order=9)]
 		public bool gxTpr_Numofsharesreached
 		{
 			get { 
@@ -572,7 +777,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
-		[DataMember(Name="extPubKeyMultiSigReceiving", Order=9)]
+		[JsonPropertyName("extPubKeyMultiSigReceiving")]
+		[JsonPropertyOrder(10)]
+		[DataMember(Name="extPubKeyMultiSigReceiving", Order=10)]
 		public  string gxTpr_Extpubkeymultisigreceiving
 		{
 			get { 
@@ -584,7 +791,9 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
-		[DataMember(Name="extPubKeyMultiSigChange", Order=10)]
+		[JsonPropertyName("extPubKeyMultiSigChange")]
+		[JsonPropertyOrder(11)]
+		[DataMember(Name="extPubKeyMultiSigChange", Order=11)]
 		public  string gxTpr_Extpubkeymultisigchange
 		{
 			get { 
@@ -596,7 +805,84 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
-		[DataMember(Name="Contact", Order=11, EmitDefaultValue=false)]
+		[JsonPropertyName("subGroupType")]
+		[JsonPropertyOrder(12)]
+		[DataMember(Name="subGroupType", Order=12)]
+		public short gxTpr_Subgrouptype
+		{
+			get { 
+				return sdt.gxTpr_Subgrouptype;
+
+			}
+			set { 
+				sdt.gxTpr_Subgrouptype = value;
+			}
+		}
+
+		[JsonPropertyName("bountyGroupId")]
+		[JsonPropertyOrder(13)]
+		[DataMember(Name="bountyGroupId", Order=13)]
+		public Guid gxTpr_Bountygroupid
+		{
+			get { 
+				return sdt.gxTpr_Bountygroupid;
+
+			}
+			set { 
+				sdt.gxTpr_Bountygroupid = value;
+			}
+		}
+
+		[JsonPropertyName("dataGroupId")]
+		[JsonPropertyOrder(14)]
+		[DataMember(Name="dataGroupId", Order=14)]
+		public Guid gxTpr_Datagroupid
+		{
+			get { 
+				return sdt.gxTpr_Datagroupid;
+
+			}
+			set { 
+				sdt.gxTpr_Datagroupid = value;
+			}
+		}
+
+		[JsonPropertyName("extPubKeyTimeBountyReceiving")]
+		[JsonPropertyOrder(15)]
+		[DataMember(Name="extPubKeyTimeBountyReceiving", Order=15)]
+		public  string gxTpr_Extpubkeytimebountyreceiving
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Extpubkeytimebountyreceiving);
+
+			}
+			set { 
+				 sdt.gxTpr_Extpubkeytimebountyreceiving = value;
+			}
+		}
+
+		[JsonPropertyName("TimeConstrain")]
+		[JsonPropertyOrder(16)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+		[DataMember(Name="TimeConstrain", Order=16, EmitDefaultValue=false)]
+		public GxGenericCollection<SdtGroup_SDT_TimeConstrainItem_RESTInterface> gxTpr_Timeconstrain
+		{
+			get {
+				if (sdt.ShouldSerializegxTpr_Timeconstrain_GxSimpleCollection_Json())
+					return new GxGenericCollection<SdtGroup_SDT_TimeConstrainItem_RESTInterface>(sdt.gxTpr_Timeconstrain);
+				else
+					return null;
+
+			}
+			set {
+				value.LoadCollection(sdt.gxTpr_Timeconstrain);
+			}
+		}
+
+		[JsonPropertyName("Contact")]
+		[JsonPropertyOrder(17)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+		[DataMember(Name="Contact", Order=17, EmitDefaultValue=false)]
 		public GxGenericCollection<SdtGroup_SDT_ContactItem_RESTInterface> gxTpr_Contact
 		{
 			get {
@@ -611,7 +897,10 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
-		[DataMember(Name="otherGroup", Order=12, EmitDefaultValue=false)]
+		[JsonPropertyName("otherGroup")]
+		[JsonPropertyOrder(18)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+		[DataMember(Name="otherGroup", Order=18, EmitDefaultValue=false)]
 		public SdtGroup_SDT_otherGroup_RESTInterface gxTpr_Othergroup
 		{
 			get {
@@ -630,7 +919,7 @@ namespace GeneXus.Programs.wallet.registered
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtGroup_SDT sdt
 		{
 			get { 

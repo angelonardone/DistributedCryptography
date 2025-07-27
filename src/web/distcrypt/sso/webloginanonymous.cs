@@ -19,6 +19,7 @@ using GeneXus.Encryption;
 using GeneXus.Http.Client;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.distcrypt.sso {
    public class webloginanonymous : GXHttpHandler
    {
@@ -197,10 +198,10 @@ namespace GeneXus.Programs.distcrypt.sso {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 310420), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 310420), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -227,7 +228,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          context.skipLines(1);
          if ( nGXWrapped != 1 )
          {
-            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"Form\" data-gx-class=\"Form\" novalidate action=\""+formatLink("distcrypt.sso.webloginanonymous.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV20hexaParameters))}, new string[] {"hexaParameters"}) +"\">") ;
+            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"Form\" data-gx-class=\"Form\" novalidate action=\""+formatLink("distcrypt.sso.webloginanonymous", new object[] {UrlEncode(StringUtil.RTrim(AV20hexaParameters))}, new string[] {"hexaParameters"}) +"\">") ;
             GxWebStd.gx_hidden_field( context, "_EventName", "");
             GxWebStd.gx_hidden_field( context, "_EventGridId", "");
             GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -321,7 +322,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_13-186676", 0) ;
             }
          }
          Form.Meta.addItem("description", "Web Login Anonymous", 0) ;
@@ -549,45 +550,57 @@ namespace GeneXus.Programs.distcrypt.sso {
       {
          /* Start Routine */
          returnInSub = false;
+         GXt_SdtWallet1 = AV25wallet;
+         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet1) ;
+         AV25wallet = GXt_SdtWallet1;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV20hexaParameters)) )
          {
-            GXt_SdtKeyInfo1 = AV16keyInfo;
-            new GeneXus.Programs.wallet.getlogindistcrypt(context ).execute( out  GXt_SdtKeyInfo1) ;
-            AV16keyInfo = GXt_SdtKeyInfo1;
+            GXt_SdtKeyInfo2 = AV16keyInfo;
+            new GeneXus.Programs.wallet.getlogindistcrypt(context ).execute( out  GXt_SdtKeyInfo2) ;
+            AV16keyInfo = GXt_SdtKeyInfo2;
             AV17parametersSDT.gxTpr_Address = AV16keyInfo.gxTpr_Address;
             AV17parametersSDT.gxTpr_Publickey = AV16keyInfo.gxTpr_Publickey;
-            GXt_char2 = AV11error;
-            GXt_char3 = AV17parametersSDT.gxTpr_Password;
-            new GeneXus.Programs.nbitcoin.eccsignmsg(context ).execute(  AV16keyInfo.gxTpr_Privatekey,  AV16keyInfo.gxTpr_Publickey, out  GXt_char3, out  GXt_char2) ;
-            AV17parametersSDT.gxTpr_Password = GXt_char3;
-            AV11error = GXt_char2;
+            GXt_char3 = AV11error;
+            GXt_char4 = AV17parametersSDT.gxTpr_Password;
+            new GeneXus.Programs.nbitcoin.eccsignmsg(context ).execute(  AV16keyInfo.gxTpr_Privatekey,  AV16keyInfo.gxTpr_Publickey, out  GXt_char4, out  GXt_char3) ;
+            AV17parametersSDT.gxTpr_Password = GXt_char4;
+            AV11error = GXt_char3;
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
             {
-               GXt_char3 = AV11error;
-               GXt_char2 = AV17parametersSDT.gxTpr_Signature;
-               new GeneXus.Programs.nbitcoin.schnorrsignmsg(context ).execute(  AV16keyInfo.gxTpr_Privatekey,  AV16keyInfo.gxTpr_Publickey, out  GXt_char2, out  GXt_char3) ;
-               AV17parametersSDT.gxTpr_Signature = GXt_char2;
-               AV11error = GXt_char3;
+               GXt_char4 = AV11error;
+               GXt_char3 = AV17parametersSDT.gxTpr_Signature;
+               new GeneXus.Programs.nbitcoin.schnorrsignmsg(context ).execute(  AV16keyInfo.gxTpr_Privatekey,  AV16keyInfo.gxTpr_Publickey, out  GXt_char3, out  GXt_char4) ;
+               AV17parametersSDT.gxTpr_Signature = GXt_char3;
+               AV11error = GXt_char4;
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
                {
+                  GXt_char4 = AV11error;
                   GXt_char3 = AV11error;
-                  GXt_char2 = AV11error;
-                  new GeneXus.Programs.distcrypt.getdistcryptpublickey(context ).execute( out  GXt_char2) ;
-                  new GeneXus.Programs.nbitcoin.eccenctrypt(context ).execute(  GXt_char2,  AV17parametersSDT.ToJSonString(false, true), out  AV10encParameters, out  GXt_char3) ;
-                  AV11error = GXt_char3;
+                  new GeneXus.Programs.distcrypt.getdistcryptpublickey(context ).execute( out  GXt_char3) ;
+                  new GeneXus.Programs.nbitcoin.eccenctrypt(context ).execute(  GXt_char3,  AV17parametersSDT.ToJSonString(false, true), out  AV10encParameters, out  GXt_char4) ;
+                  AV11error = GXt_char4;
                   if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
                   {
                      GX_msglist.addItem(AV10encParameters);
-                     GXt_SdtSDT_IdentityProvider4 = AV15IdentityProvider;
-                     new GeneXus.Programs.distcrypt.anonymousdesktopappip(context ).execute( out  GXt_SdtSDT_IdentityProvider4) ;
-                     AV15IdentityProvider = GXt_SdtSDT_IdentityProvider4;
+                     if ( StringUtil.StrCmp(AV25wallet.gxTpr_Networktype, "MainNet") == 0 )
+                     {
+                        GXt_SdtSDT_IdentityProvider5 = AV15IdentityProvider;
+                        new GeneXus.Programs.distcrypt.anonymousdesktopappipmainnet(context ).execute( out  GXt_SdtSDT_IdentityProvider5) ;
+                        AV15IdentityProvider = GXt_SdtSDT_IdentityProvider5;
+                     }
+                     else
+                     {
+                        GXt_SdtSDT_IdentityProvider5 = AV15IdentityProvider;
+                        new GeneXus.Programs.distcrypt.anonymousdesktopappiptestnet(context ).execute( out  GXt_SdtSDT_IdentityProvider5) ;
+                        AV15IdentityProvider = GXt_SdtSDT_IdentityProvider5;
+                     }
                      AV8ClienteId = AV15IdentityProvider.gxTpr_Identityproviderclientid;
-                     GXt_char3 = AV24hexText;
-                     new GeneXus.Programs.distcrypt.texttohex(context ).execute(  StringUtil.Trim( AV10encParameters), out  GXt_char3) ;
-                     AV24hexText = GXt_char3;
-                     GXt_char3 = AV19url;
-                     new GeneXus.Programs.distcrypt.sso.getidentprovbaseurl(context ).execute(  AV15IdentityProvider, out  GXt_char3) ;
-                     AV19url = GXt_char3 + "?" + StringUtil.Trim( AV8ClienteId) + "," + StringUtil.Trim( AV24hexText);
+                     GXt_char4 = AV24hexText;
+                     new GeneXus.Programs.distcrypt.texttohex(context ).execute(  StringUtil.Trim( AV10encParameters), out  GXt_char4) ;
+                     AV24hexText = GXt_char4;
+                     GXt_char4 = AV19url;
+                     new GeneXus.Programs.distcrypt.sso.getidentprovbaseurl(context ).execute(  AV15IdentityProvider, out  GXt_char4) ;
+                     AV19url = GXt_char4 + "?" + StringUtil.Trim( AV8ClienteId) + "," + StringUtil.Trim( AV24hexText);
                      CallWebObject(formatLink(AV19url) );
                      context.wjLocDisableFrm = 0;
                   }
@@ -608,26 +621,26 @@ namespace GeneXus.Programs.distcrypt.sso {
          }
          else
          {
-            GXt_SdtExternalUser5 = AV12externalUser;
-            new GeneXus.Programs.distcrypt.getexternaluser(context ).execute( out  GXt_SdtExternalUser5) ;
-            AV12externalUser = GXt_SdtExternalUser5;
+            GXt_SdtExternalUser6 = AV12externalUser;
+            new GeneXus.Programs.distcrypt.getexternaluser(context ).execute( out  GXt_SdtExternalUser6) ;
+            AV12externalUser = GXt_SdtExternalUser6;
             AV7callerURL = AV21WebSession.Get("LoginCaller");
-            GXt_SdtKeyInfo1 = AV16keyInfo;
-            new GeneXus.Programs.wallet.getlogindistcrypt(context ).execute( out  GXt_SdtKeyInfo1) ;
-            AV16keyInfo = GXt_SdtKeyInfo1;
-            GXt_char3 = AV10encParameters;
-            new GeneXus.Programs.distcrypt.hextotext(context ).execute(  StringUtil.Trim( AV20hexaParameters), out  GXt_char3) ;
-            AV10encParameters = GXt_char3;
-            GXt_char3 = AV11error;
-            new GeneXus.Programs.nbitcoin.eccdecrypt(context ).execute(  StringUtil.Trim( AV16keyInfo.gxTpr_Privatekey),  StringUtil.Trim( AV10encParameters), out  AV23retParametersTxt, out  GXt_char3) ;
-            AV11error = GXt_char3;
+            GXt_SdtKeyInfo2 = AV16keyInfo;
+            new GeneXus.Programs.wallet.getlogindistcrypt(context ).execute( out  GXt_SdtKeyInfo2) ;
+            AV16keyInfo = GXt_SdtKeyInfo2;
+            GXt_char4 = AV10encParameters;
+            new GeneXus.Programs.distcrypt.hextotext(context ).execute(  StringUtil.Trim( AV20hexaParameters), out  GXt_char4) ;
+            AV10encParameters = GXt_char4;
+            GXt_char4 = AV11error;
+            new GeneXus.Programs.nbitcoin.eccdecrypt(context ).execute(  StringUtil.Trim( AV16keyInfo.gxTpr_Privatekey),  StringUtil.Trim( AV10encParameters), out  AV23retParametersTxt, out  GXt_char4) ;
+            AV11error = GXt_char4;
             AV22retParameters.FromJSonString(AV23retParametersTxt, null);
             AV12externalUser.gxTpr_Externaltoken = AV22retParameters.gxTpr_Externaltoken;
             AV12externalUser.gxTpr_Userinfo = AV22retParameters.gxTpr_Userinfo;
             AV12externalUser.gxTpr_Keyinfo = AV16keyInfo;
-            GXt_char3 = AV11error;
-            new GeneXus.Programs.distcrypt.sso.updateandsaveexternaluser(context ).execute(  AV12externalUser, out  GXt_char3) ;
-            AV11error = GXt_char3;
+            GXt_char4 = AV11error;
+            new GeneXus.Programs.distcrypt.sso.updateandsaveexternaluser(context ).execute(  AV12externalUser, out  GXt_char4) ;
+            AV11error = GXt_char4;
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
             {
                CallWebObject(formatLink(AV7callerURL) );
@@ -692,7 +705,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531412582194", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202572416224867", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -710,7 +723,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("distcrypt/sso/webloginanonymous.js", "?202531412582194", false, true);
+            context.AddJavascriptSource("distcrypt/sso/webloginanonymous.js", "?202572416224869", false, true);
          }
          /* End function include_jscripts */
       }
@@ -746,7 +759,7 @@ namespace GeneXus.Programs.distcrypt.sso {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV20hexaParameters","fld":"vHEXAPARAMETERS","hsh":true}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV20hexaParameters","fld":"vHEXAPARAMETERS","hsh":true,"type":"vchar"}]}""");
          return  ;
       }
 
@@ -775,24 +788,26 @@ namespace GeneXus.Programs.distcrypt.sso {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
+         AV25wallet = new GeneXus.Programs.wallet.SdtWallet(context);
+         GXt_SdtWallet1 = new GeneXus.Programs.wallet.SdtWallet(context);
          AV16keyInfo = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
          AV17parametersSDT = new GeneXus.Programs.distcrypt.SdtParametersSDT(context);
          AV11error = "";
-         GXt_char2 = "";
+         GXt_char3 = "";
          AV10encParameters = "";
          AV15IdentityProvider = new GeneXus.Programs.distcrypt.sso.SdtSDT_IdentityProvider(context);
-         GXt_SdtSDT_IdentityProvider4 = new GeneXus.Programs.distcrypt.sso.SdtSDT_IdentityProvider(context);
+         GXt_SdtSDT_IdentityProvider5 = new GeneXus.Programs.distcrypt.sso.SdtSDT_IdentityProvider(context);
          AV8ClienteId = "";
          AV24hexText = "";
          AV19url = "";
          AV12externalUser = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
-         GXt_SdtExternalUser5 = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
+         GXt_SdtExternalUser6 = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
          AV7callerURL = "";
          AV21WebSession = context.GetSession();
-         GXt_SdtKeyInfo1 = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
+         GXt_SdtKeyInfo2 = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
          AV23retParametersTxt = "";
          AV22retParameters = new GeneXus.Programs.distcrypt.SdtRetrunParametersSDT(context);
-         GXt_char3 = "";
+         GXt_char4 = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          /* GeneXus formulas. */
@@ -819,11 +834,11 @@ namespace GeneXus.Programs.distcrypt.sso {
       private string EvtRowId ;
       private string sEvtType ;
       private string AV11error ;
-      private string GXt_char2 ;
+      private string GXt_char3 ;
       private string AV8ClienteId ;
       private string AV19url ;
       private string AV7callerURL ;
-      private string GXt_char3 ;
+      private string GXt_char4 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool wbLoad ;
@@ -839,13 +854,15 @@ namespace GeneXus.Programs.distcrypt.sso {
       private IGxSession AV21WebSession ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
+      private GeneXus.Programs.wallet.SdtWallet AV25wallet ;
+      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo AV16keyInfo ;
       private GeneXus.Programs.distcrypt.SdtParametersSDT AV17parametersSDT ;
       private GeneXus.Programs.distcrypt.sso.SdtSDT_IdentityProvider AV15IdentityProvider ;
-      private GeneXus.Programs.distcrypt.sso.SdtSDT_IdentityProvider GXt_SdtSDT_IdentityProvider4 ;
+      private GeneXus.Programs.distcrypt.sso.SdtSDT_IdentityProvider GXt_SdtSDT_IdentityProvider5 ;
       private GeneXus.Programs.distcrypt.SdtExternalUser AV12externalUser ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser5 ;
-      private GeneXus.Programs.nbitcoin.SdtKeyInfo GXt_SdtKeyInfo1 ;
+      private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser6 ;
+      private GeneXus.Programs.nbitcoin.SdtKeyInfo GXt_SdtKeyInfo2 ;
       private GeneXus.Programs.distcrypt.SdtRetrunParametersSDT AV22retParameters ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;

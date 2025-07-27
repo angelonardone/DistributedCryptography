@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtStoredTransactions_TransactionItem_UsedIn_UsedToItem
 			Description: UsedTo
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.wallet
@@ -31,6 +32,7 @@ namespace GeneXus.Programs.wallet
 		{
 			/* Constructor for serialization */
 			gxTv_SdtStoredTransactions_TransactionItem_UsedIn_UsedToItem_Scriptpubkey_address = "";
+
 
 		}
 
@@ -112,7 +114,7 @@ namespace GeneXus.Programs.wallet
 				return Convert.ToString(gxTv_SdtStoredTransactions_TransactionItem_UsedIn_UsedToItem_Value, System.Globalization.CultureInfo.InvariantCulture);
 			}
 			set {
-				gxTv_SdtStoredTransactions_TransactionItem_UsedIn_UsedToItem_Value = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+				gxTv_SdtStoredTransactions_TransactionItem_UsedIn_UsedToItem_Value = NumberUtil.Val(value);
 			}
 		}
 		[XmlIgnore]
@@ -188,6 +190,8 @@ namespace GeneXus.Programs.wallet
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("scriptPubKey_address")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="scriptPubKey_address", Order=0)]
 		public  string gxTpr_Scriptpubkey_address
 		{
@@ -200,6 +204,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("n")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="n", Order=1)]
 		public  string gxTpr_N
 		{
@@ -212,6 +218,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("value")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="value", Order=2)]
 		public  string gxTpr_Value
 		{
@@ -226,7 +234,7 @@ namespace GeneXus.Programs.wallet
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtStoredTransactions_TransactionItem_UsedIn_UsedToItem sdt
 		{
 			get { 

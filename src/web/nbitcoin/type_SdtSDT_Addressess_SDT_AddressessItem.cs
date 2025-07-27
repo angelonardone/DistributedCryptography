@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtSDT_Addressess_SDT_AddressessItem
 			Description: SDT_Addressess
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nbitcoin
@@ -31,6 +32,7 @@ namespace GeneXus.Programs.nbitcoin
 		{
 			/* Constructor for serialization */
 			gxTv_SdtSDT_Addressess_SDT_AddressessItem_Address = "";
+
 
 		}
 
@@ -202,6 +204,8 @@ namespace GeneXus.Programs.nbitcoin
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("Address")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="Address", Order=0)]
 		public  string gxTpr_Address
 		{
@@ -214,6 +218,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("GeneratedType")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="GeneratedType", Order=1)]
 		public short gxTpr_Generatedtype
 		{
@@ -226,6 +232,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("CreationSequence")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="CreationSequence", Order=2)]
 		public  string gxTpr_Creationsequence
 		{
@@ -238,6 +246,9 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("isUsed")]
+		[JsonPropertyOrder(3)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="isUsed", Order=3)]
 		public bool gxTpr_Isused
 		{
@@ -252,7 +263,7 @@ namespace GeneXus.Programs.nbitcoin
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtSDT_Addressess_SDT_AddressessItem sdt
 		{
 			get { 

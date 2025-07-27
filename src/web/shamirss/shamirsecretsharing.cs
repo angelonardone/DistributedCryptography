@@ -19,6 +19,7 @@ using GeneXus.Encryption;
 using GeneXus.Http.Client;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.shamirss {
    public class shamirsecretsharing : GXDataArea
    {
@@ -237,10 +238,10 @@ namespace GeneXus.Programs.shamirss {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 310420), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 310420), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -272,7 +273,7 @@ namespace GeneXus.Programs.shamirss {
          context.skipLines(1);
          if ( nGXWrapped != 1 )
          {
-            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("shamirss.shamirsecretsharing.aspx") +"\">") ;
+            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("shamirss.shamirsecretsharing") +"\">") ;
             GxWebStd.gx_hidden_field( context, "_EventName", "");
             GxWebStd.gx_hidden_field( context, "_EventGridId", "");
             GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -362,7 +363,7 @@ namespace GeneXus.Programs.shamirss {
 
       public override string GetSelfLink( )
       {
-         return formatLink("shamirss.shamirsecretsharing.aspx")  ;
+         return formatLink("shamirss.shamirsecretsharing")  ;
       }
 
       public override string GetPgmname( )
@@ -599,7 +600,7 @@ namespace GeneXus.Programs.shamirss {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_13-186676", 0) ;
             }
          }
          Form.Meta.addItem("description", "Shamir Secret Sharing", 0) ;
@@ -1100,7 +1101,7 @@ namespace GeneXus.Programs.shamirss {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531412582596", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202572416225276", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1118,7 +1119,7 @@ namespace GeneXus.Programs.shamirss {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("shamirss/shamirsecretsharing.js", "?202531412582598", false, true);
+            context.AddJavascriptSource("shamirss/shamirsecretsharing.js", "?202572416225276", false, true);
          }
          /* End function include_jscripts */
       }
@@ -1339,13 +1340,13 @@ namespace GeneXus.Programs.shamirss {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID1_nFirstRecordOnPage"},{"av":"GRID1_nEOF"},{"av":"AV10shares","fld":"vSHARES"}]}""");
-         setEventMetadata("'CREATE SHARES'","""{"handler":"E111H2","iparms":[{"av":"GRID1_nFirstRecordOnPage"},{"av":"GRID1_nEOF"},{"av":"AV10shares","fld":"vSHARES"},{"av":"AV5secret","fld":"vSECRET"},{"av":"AV6totalShares","fld":"vTOTALSHARES","pic":"ZZZ9"},{"av":"AV7minimumShares","fld":"vMINIMUMSHARES","pic":"ZZZ9"}]""");
-         setEventMetadata("'CREATE SHARES'",""","oparms":[{"av":"AV10shares","fld":"vSHARES"}]}""");
-         setEventMetadata("'RECOVER SECRET'","""{"handler":"E121H2","iparms":[{"av":"AV18enterShares","fld":"vENTERSHARES"}]""");
-         setEventMetadata("'RECOVER SECRET'",""","oparms":[{"av":"AV11recoveredSecret","fld":"vRECOVEREDSECRET"}]}""");
-         setEventMetadata("GRID1.LOAD","""{"handler":"E141H2","iparms":[{"av":"AV10shares","fld":"vSHARES"}]""");
-         setEventMetadata("GRID1.LOAD",""","oparms":[{"av":"AV17sharesOnScreen","fld":"vSHARESONSCREEN"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID1_nFirstRecordOnPage","type":"int"},{"av":"GRID1_nEOF","type":"int"},{"av":"AV10shares","fld":"vSHARES","type":""}]}""");
+         setEventMetadata("'CREATE SHARES'","""{"handler":"E111H2","iparms":[{"av":"GRID1_nFirstRecordOnPage","type":"int"},{"av":"GRID1_nEOF","type":"int"},{"av":"AV10shares","fld":"vSHARES","type":""},{"av":"AV5secret","fld":"vSECRET","type":"vchar"},{"av":"AV6totalShares","fld":"vTOTALSHARES","pic":"ZZZ9","type":"int"},{"av":"AV7minimumShares","fld":"vMINIMUMSHARES","pic":"ZZZ9","type":"int"}]""");
+         setEventMetadata("'CREATE SHARES'",""","oparms":[{"av":"AV10shares","fld":"vSHARES","type":""}]}""");
+         setEventMetadata("'RECOVER SECRET'","""{"handler":"E121H2","iparms":[{"av":"AV18enterShares","fld":"vENTERSHARES","type":"vchar"}]""");
+         setEventMetadata("'RECOVER SECRET'",""","oparms":[{"av":"AV11recoveredSecret","fld":"vRECOVEREDSECRET","type":"vchar"}]}""");
+         setEventMetadata("GRID1.LOAD","""{"handler":"E141H2","iparms":[{"av":"AV10shares","fld":"vSHARES","type":""}]""");
+         setEventMetadata("GRID1.LOAD",""","oparms":[{"av":"AV17sharesOnScreen","fld":"vSHARESONSCREEN","type":"vchar"}]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Sharesonscreen","iparms":[]}""");
          return  ;
       }

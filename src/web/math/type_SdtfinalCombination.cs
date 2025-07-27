@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtfinalCombination
 			Description: finalCombination
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.math
@@ -94,6 +95,7 @@ namespace GeneXus.Programs.math
 					gxTv_SdtfinalCombination_Items = new GxSimpleCollection<string>();
 				}
 				gxTv_SdtfinalCombination_Items_N = false;
+				SetDirty("Items");
 				return gxTv_SdtfinalCombination_Items ;
 			}
 			set {
@@ -173,6 +175,9 @@ namespace GeneXus.Programs.math
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("Items")]
+		[JsonPropertyOrder(0)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="Items", Order=0, EmitDefaultValue=false)]
 		public  GxSimpleCollection<string> gxTpr_Items
 		{
@@ -190,7 +195,7 @@ namespace GeneXus.Programs.math
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtfinalCombination sdt
 		{
 			get { 

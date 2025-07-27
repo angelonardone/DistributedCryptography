@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtcreateContact__postInput
 			Description: createContact__postInput
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 
 namespace GeneXus.Programs
@@ -31,8 +32,6 @@ namespace GeneXus.Programs
 		{
 			/* Constructor for serialization */
 			gxTv_SdtcreateContact__postInput_Encryptedkey = "";
-
-			gxTv_SdtcreateContact__postInput_Iv = "";
 
 			gxTv_SdtcreateContact__postInput_Contactencrypted = "";
 
@@ -66,9 +65,6 @@ namespace GeneXus.Programs
 			AddObjectProperty("EncryptedKey", gxTpr_Encryptedkey, false);
 
 
-			AddObjectProperty("IV", gxTpr_Iv, false);
-
-
 			AddObjectProperty("ContactEncrypted", gxTpr_Contactencrypted, false);
 
 			return;
@@ -87,22 +83,6 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtcreateContact__postInput_Encryptedkey = value;
 				SetDirty("Encryptedkey");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="IV")]
-		[XmlElement(ElementName="IV")]
-		public string gxTpr_Iv
-		{
-			get {
-				return gxTv_SdtcreateContact__postInput_Iv; 
-			}
-			set {
-				gxTv_SdtcreateContact__postInput_Iv = value;
-				SetDirty("Iv");
 			}
 		}
 
@@ -146,7 +126,6 @@ namespace GeneXus.Programs
 		public void initialize( )
 		{
 			gxTv_SdtcreateContact__postInput_Encryptedkey = "";
-			gxTv_SdtcreateContact__postInput_Iv = "";
 			gxTv_SdtcreateContact__postInput_Contactencrypted = "";
 			return  ;
 		}
@@ -158,9 +137,6 @@ namespace GeneXus.Programs
 		#region Declaration
 
 		protected string gxTv_SdtcreateContact__postInput_Encryptedkey;
-		 
-
-		protected string gxTv_SdtcreateContact__postInput_Iv;
 		 
 
 		protected string gxTv_SdtcreateContact__postInput_Contactencrypted;
@@ -183,11 +159,13 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("EncryptedKey")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="EncryptedKey", Order=0)]
 		public  string gxTpr_Encryptedkey
 		{
 			get { 
-				return sdt.gxTpr_Encryptedkey;
+				return StringUtil.RTrim( sdt.gxTpr_Encryptedkey);
 
 			}
 			set { 
@@ -195,23 +173,13 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="IV", Order=1)]
-		public  string gxTpr_Iv
-		{
-			get { 
-				return sdt.gxTpr_Iv;
-
-			}
-			set { 
-				 sdt.gxTpr_Iv = value;
-			}
-		}
-
-		[DataMember(Name="ContactEncrypted", Order=2)]
+		[JsonPropertyName("ContactEncrypted")]
+		[JsonPropertyOrder(1)]
+		[DataMember(Name="ContactEncrypted", Order=1)]
 		public  string gxTpr_Contactencrypted
 		{
 			get { 
-				return sdt.gxTpr_Contactencrypted;
+				return StringUtil.RTrim( sdt.gxTpr_Contactencrypted);
 
 			}
 			set { 
@@ -221,7 +189,7 @@ namespace GeneXus.Programs
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtcreateContact__postInput sdt
 		{
 			get { 

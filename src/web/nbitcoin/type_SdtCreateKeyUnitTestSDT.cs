@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtCreateKeyUnitTestSDT
 			Description: CreateKeyUnitTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nbitcoin
@@ -32,7 +33,13 @@ namespace GeneXus.Programs.nbitcoin
 			/* Constructor for serialization */
 			gxTv_SdtCreateKeyUnitTestSDT_Testcaseid = "";
 
+			gxTv_SdtCreateKeyUnitTestSDT_Keycreate_N = true;
+
 			gxTv_SdtCreateKeyUnitTestSDT_Password = "";
+
+			gxTv_SdtCreateKeyUnitTestSDT_Keyinfo_N = true;
+
+			gxTv_SdtCreateKeyUnitTestSDT_Expectedkeyinfo_N = true;
 
 			gxTv_SdtCreateKeyUnitTestSDT_Msgkeyinfo = "";
 
@@ -127,6 +134,7 @@ namespace GeneXus.Programs.nbitcoin
 				if ( gxTv_SdtCreateKeyUnitTestSDT_Keycreate == null )
 				{
 					gxTv_SdtCreateKeyUnitTestSDT_Keycreate = new GeneXus.Programs.nbitcoin.SdtKeyCreate(context);
+					SetDirty("Keycreate");
 				}
 				return gxTv_SdtCreateKeyUnitTestSDT_Keycreate; 
 			}
@@ -175,6 +183,7 @@ namespace GeneXus.Programs.nbitcoin
 				if ( gxTv_SdtCreateKeyUnitTestSDT_Keyinfo == null )
 				{
 					gxTv_SdtCreateKeyUnitTestSDT_Keyinfo = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
+					SetDirty("Keyinfo");
 				}
 				return gxTv_SdtCreateKeyUnitTestSDT_Keyinfo; 
 			}
@@ -207,6 +216,7 @@ namespace GeneXus.Programs.nbitcoin
 				if ( gxTv_SdtCreateKeyUnitTestSDT_Expectedkeyinfo == null )
 				{
 					gxTv_SdtCreateKeyUnitTestSDT_Expectedkeyinfo = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
+					SetDirty("Expectedkeyinfo");
 				}
 				return gxTv_SdtCreateKeyUnitTestSDT_Expectedkeyinfo; 
 			}
@@ -387,11 +397,13 @@ namespace GeneXus.Programs.nbitcoin
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("TestCaseId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="TestCaseId", Order=0)]
 		public  string gxTpr_Testcaseid
 		{
 			get { 
-				return sdt.gxTpr_Testcaseid;
+				return StringUtil.RTrim( sdt.gxTpr_Testcaseid);
 
 			}
 			set { 
@@ -399,6 +411,9 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("keyCreate")]
+		[JsonPropertyOrder(1)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="keyCreate", Order=1, EmitDefaultValue=false)]
 		public GeneXus.Programs.nbitcoin.SdtKeyCreate_RESTInterface gxTpr_Keycreate
 		{
@@ -414,6 +429,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("password")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="password", Order=2)]
 		public  string gxTpr_Password
 		{
@@ -426,6 +443,9 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("keyInfo")]
+		[JsonPropertyOrder(3)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="keyInfo", Order=3, EmitDefaultValue=false)]
 		public GeneXus.Programs.nbitcoin.SdtKeyInfo_RESTInterface gxTpr_Keyinfo
 		{
@@ -441,6 +461,9 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("ExpectedkeyInfo")]
+		[JsonPropertyOrder(4)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="ExpectedkeyInfo", Order=4, EmitDefaultValue=false)]
 		public GeneXus.Programs.nbitcoin.SdtKeyInfo_RESTInterface gxTpr_Expectedkeyinfo
 		{
@@ -456,11 +479,13 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("MsgkeyInfo")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="MsgkeyInfo", Order=5)]
 		public  string gxTpr_Msgkeyinfo
 		{
 			get { 
-				return sdt.gxTpr_Msgkeyinfo;
+				return StringUtil.RTrim( sdt.gxTpr_Msgkeyinfo);
 
 			}
 			set { 
@@ -468,6 +493,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("error")]
+		[JsonPropertyOrder(6)]
 		[DataMember(Name="error", Order=6)]
 		public  string gxTpr_Error
 		{
@@ -480,6 +507,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Expectederror")]
+		[JsonPropertyOrder(7)]
 		[DataMember(Name="Expectederror", Order=7)]
 		public  string gxTpr_Expectederror
 		{
@@ -492,11 +521,13 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Msgerror")]
+		[JsonPropertyOrder(8)]
 		[DataMember(Name="Msgerror", Order=8)]
 		public  string gxTpr_Msgerror
 		{
 			get { 
-				return sdt.gxTpr_Msgerror;
+				return StringUtil.RTrim( sdt.gxTpr_Msgerror);
 
 			}
 			set { 
@@ -506,7 +537,7 @@ namespace GeneXus.Programs.nbitcoin
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtCreateKeyUnitTestSDT sdt
 		{
 			get { 

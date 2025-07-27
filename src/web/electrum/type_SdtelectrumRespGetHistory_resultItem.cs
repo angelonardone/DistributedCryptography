@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtelectrumRespGetHistory_resultItem
 			Description: result
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.electrum
@@ -31,6 +32,7 @@ namespace GeneXus.Programs.electrum
 		{
 			/* Constructor for serialization */
 			gxTv_SdtelectrumRespGetHistory_resultItem_Tx_hash = "";
+
 
 		}
 
@@ -178,6 +180,8 @@ namespace GeneXus.Programs.electrum
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("height")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="height", Order=0)]
 		public  string gxTpr_Height
 		{
@@ -190,11 +194,13 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("tx_hash")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="tx_hash", Order=1)]
 		public  string gxTpr_Tx_hash
 		{
 			get { 
-				return sdt.gxTpr_Tx_hash;
+				return StringUtil.RTrim( sdt.gxTpr_Tx_hash);
 
 			}
 			set { 
@@ -202,6 +208,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("fee")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="fee", Order=2)]
 		public  string gxTpr_Fee
 		{
@@ -216,7 +224,7 @@ namespace GeneXus.Programs.electrum
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtelectrumRespGetHistory_resultItem sdt
 		{
 			get { 

@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtExtendeSecretAndAuthenticator
 			Description: ExtendeSecretAndAuthenticator
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.wallet
@@ -30,9 +31,11 @@ namespace GeneXus.Programs.wallet
 		public SdtExtendeSecretAndAuthenticator( )
 		{
 			/* Constructor for serialization */
-			gxTv_SdtExtendeSecretAndAuthenticator_Extencryptedsecret = "";
+			gxTv_SdtExtendeSecretAndAuthenticator_Extendedprivatekey = "";
 
 			gxTv_SdtExtendeSecretAndAuthenticator_Authenticatorbase32 = "";
+
+			gxTv_SdtExtendeSecretAndAuthenticator_Networktype = "";
 
 		}
 
@@ -61,10 +64,13 @@ namespace GeneXus.Programs.wallet
 
 		public override void ToJSON(bool includeState)
 		{
-			AddObjectProperty("ExtEncryptedSecret", gxTpr_Extencryptedsecret, false);
+			AddObjectProperty("ExtendedPrivateKey", gxTpr_Extendedprivatekey, false);
 
 
 			AddObjectProperty("AuthenticatorBase32", gxTpr_Authenticatorbase32, false);
+
+
+			AddObjectProperty("NetworkType", gxTpr_Networktype, false);
 
 			return;
 		}
@@ -72,16 +78,16 @@ namespace GeneXus.Programs.wallet
 
 		#region Properties
 
-		[SoapElement(ElementName="ExtEncryptedSecret")]
-		[XmlElement(ElementName="ExtEncryptedSecret")]
-		public string gxTpr_Extencryptedsecret
+		[SoapElement(ElementName="ExtendedPrivateKey")]
+		[XmlElement(ElementName="ExtendedPrivateKey")]
+		public string gxTpr_Extendedprivatekey
 		{
 			get {
-				return gxTv_SdtExtendeSecretAndAuthenticator_Extencryptedsecret; 
+				return gxTv_SdtExtendeSecretAndAuthenticator_Extendedprivatekey; 
 			}
 			set {
-				gxTv_SdtExtendeSecretAndAuthenticator_Extencryptedsecret = value;
-				SetDirty("Extencryptedsecret");
+				gxTv_SdtExtendeSecretAndAuthenticator_Extendedprivatekey = value;
+				SetDirty("Extendedprivatekey");
 			}
 		}
 
@@ -98,6 +104,22 @@ namespace GeneXus.Programs.wallet
 			set {
 				gxTv_SdtExtendeSecretAndAuthenticator_Authenticatorbase32 = value;
 				SetDirty("Authenticatorbase32");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="NetworkType")]
+		[XmlElement(ElementName="NetworkType")]
+		public string gxTpr_Networktype
+		{
+			get {
+				return gxTv_SdtExtendeSecretAndAuthenticator_Networktype; 
+			}
+			set {
+				gxTv_SdtExtendeSecretAndAuthenticator_Networktype = value;
+				SetDirty("Networktype");
 			}
 		}
 
@@ -124,8 +146,9 @@ namespace GeneXus.Programs.wallet
 
 		public void initialize( )
 		{
-			gxTv_SdtExtendeSecretAndAuthenticator_Extencryptedsecret = "";
+			gxTv_SdtExtendeSecretAndAuthenticator_Extendedprivatekey = "";
 			gxTv_SdtExtendeSecretAndAuthenticator_Authenticatorbase32 = "";
+			gxTv_SdtExtendeSecretAndAuthenticator_Networktype = "";
 			return  ;
 		}
 
@@ -135,10 +158,13 @@ namespace GeneXus.Programs.wallet
 
 		#region Declaration
 
-		protected string gxTv_SdtExtendeSecretAndAuthenticator_Extencryptedsecret;
+		protected string gxTv_SdtExtendeSecretAndAuthenticator_Extendedprivatekey;
 		 
 
 		protected string gxTv_SdtExtendeSecretAndAuthenticator_Authenticatorbase32;
+		 
+
+		protected string gxTv_SdtExtendeSecretAndAuthenticator_Networktype;
 		 
 
 
@@ -158,18 +184,22 @@ namespace GeneXus.Programs.wallet
 		}
 
 		#region Rest Properties
-		[DataMember(Name="ExtEncryptedSecret", Order=0)]
-		public  string gxTpr_Extencryptedsecret
+		[JsonPropertyName("ExtendedPrivateKey")]
+		[JsonPropertyOrder(0)]
+		[DataMember(Name="ExtendedPrivateKey", Order=0)]
+		public  string gxTpr_Extendedprivatekey
 		{
 			get { 
-				return StringUtil.RTrim( sdt.gxTpr_Extencryptedsecret);
+				return StringUtil.RTrim( sdt.gxTpr_Extendedprivatekey);
 
 			}
 			set { 
-				 sdt.gxTpr_Extencryptedsecret = value;
+				 sdt.gxTpr_Extendedprivatekey = value;
 			}
 		}
 
+		[JsonPropertyName("AuthenticatorBase32")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="AuthenticatorBase32", Order=1)]
 		public  string gxTpr_Authenticatorbase32
 		{
@@ -182,9 +212,23 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("NetworkType")]
+		[JsonPropertyOrder(2)]
+		[DataMember(Name="NetworkType", Order=2)]
+		public  string gxTpr_Networktype
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Networktype);
+
+			}
+			set { 
+				 sdt.gxTpr_Networktype = value;
+			}
+		}
+
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtExtendeSecretAndAuthenticator sdt
 		{
 			get { 

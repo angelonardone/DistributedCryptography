@@ -10,6 +10,7 @@ using GeneXus.Http.Client;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.googleauthenticator {
    [Serializable]
    public class SdtBase32Encoding : GxUserType, IGxExternalObject
@@ -55,15 +56,10 @@ namespace GeneXus.Programs.googleauthenticator {
       public Object ExternalInstance
       {
          get {
-            if ( GoogleAuthenticator_Base32Encoding_externalReference == null )
-            {
-               GoogleAuthenticator_Base32Encoding_externalReference = new Google.Authenticator.Base32Encoding();
-            }
-            return GoogleAuthenticator_Base32Encoding_externalReference ;
+            return null ;
          }
 
          set {
-            GoogleAuthenticator_Base32Encoding_externalReference = (Google.Authenticator.Base32Encoding)(value);
          }
 
       }
@@ -87,7 +83,6 @@ namespace GeneXus.Programs.googleauthenticator {
          return  ;
       }
 
-      protected Google.Authenticator.Base32Encoding GoogleAuthenticator_Base32Encoding_externalReference=null ;
    }
 
 }

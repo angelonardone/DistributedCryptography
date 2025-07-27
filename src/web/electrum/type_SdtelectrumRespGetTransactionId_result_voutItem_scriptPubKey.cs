@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtelectrumRespGetTransactionId_result_voutItem_scriptPubKey
 			Description: scriptPubKey
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.electrum
@@ -233,11 +234,13 @@ namespace GeneXus.Programs.electrum
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("address")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="address", Order=0)]
 		public  string gxTpr_Address
 		{
 			get { 
-				return sdt.gxTpr_Address;
+				return StringUtil.RTrim( sdt.gxTpr_Address);
 
 			}
 			set { 
@@ -245,11 +248,13 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("asm")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="asm", Order=1)]
 		public  string gxTpr_Asm
 		{
 			get { 
-				return sdt.gxTpr_Asm;
+				return StringUtil.RTrim( sdt.gxTpr_Asm);
 
 			}
 			set { 
@@ -257,11 +262,13 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("desc")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="desc", Order=2)]
 		public  string gxTpr_Desc
 		{
 			get { 
-				return sdt.gxTpr_Desc;
+				return StringUtil.RTrim( sdt.gxTpr_Desc);
 
 			}
 			set { 
@@ -269,11 +276,13 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("hex")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="hex", Order=3)]
 		public  string gxTpr_Hex
 		{
 			get { 
-				return sdt.gxTpr_Hex;
+				return StringUtil.RTrim( sdt.gxTpr_Hex);
 
 			}
 			set { 
@@ -281,11 +290,13 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("type")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="type", Order=4)]
 		public  string gxTpr_Type
 		{
 			get { 
-				return sdt.gxTpr_Type;
+				return StringUtil.RTrim( sdt.gxTpr_Type);
 
 			}
 			set { 
@@ -295,7 +306,7 @@ namespace GeneXus.Programs.electrum
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtelectrumRespGetTransactionId_result_voutItem_scriptPubKey sdt
 		{
 			get { 

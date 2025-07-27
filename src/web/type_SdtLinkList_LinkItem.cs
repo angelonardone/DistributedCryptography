@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtLinkList_LinkItem
 			Description: LinkList
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 
 namespace GeneXus.Programs
@@ -158,11 +159,13 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("Caption")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="Caption", Order=0)]
 		public  string gxTpr_Caption
 		{
 			get { 
-				return sdt.gxTpr_Caption;
+				return StringUtil.RTrim( sdt.gxTpr_Caption);
 
 			}
 			set { 
@@ -170,11 +173,13 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[JsonPropertyName("URL")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="URL", Order=1)]
 		public  string gxTpr_Url
 		{
 			get { 
-				return sdt.gxTpr_Url;
+				return StringUtil.RTrim( sdt.gxTpr_Url);
 
 			}
 			set { 
@@ -184,7 +189,7 @@ namespace GeneXus.Programs
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtLinkList_LinkItem sdt
 		{
 			get { 

@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtelectrumRespBroadcastTran_error
 			Description: error
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.electrum
@@ -155,6 +156,8 @@ namespace GeneXus.Programs.electrum
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("code")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="code", Order=0)]
 		public short gxTpr_Code
 		{
@@ -167,11 +170,13 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("message")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="message", Order=1)]
 		public  string gxTpr_Message
 		{
 			get { 
-				return sdt.gxTpr_Message;
+				return StringUtil.RTrim( sdt.gxTpr_Message);
 
 			}
 			set { 
@@ -181,7 +186,7 @@ namespace GeneXus.Programs.electrum
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtelectrumRespBroadcastTran_error sdt
 		{
 			get { 

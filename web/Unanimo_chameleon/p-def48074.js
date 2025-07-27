@@ -1,0 +1,2 @@
+const s=s=>`panel-${s}`;const t=s=>s==="block-start"||s==="block-end";const a=s=>s==="block-start"||s==="inline-start";const e="block-start";const i="drag-preview";const n="drag-preview--outside-tab-list";const o="drag-preview--inside-tab-list__block";const c="drag-preview--inside-tab-list__inline";export{e as D,s as P,i as a,n as b,c,o as d,a as e,t as i};
+//# sourceMappingURL=p-def48074.js.map

@@ -19,6 +19,7 @@ using GeneXus.Http.Client;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet.registered {
    public class updateacceptedinvitationongroup : GXProcedure
    {
@@ -106,11 +107,9 @@ namespace GeneXus.Programs.wallet.registered {
                            AV19groupContact.gxTpr_Contactinvrec = true;
                            AV19groupContact.gxTpr_Contactgroupid = AV12group_sdt.gxTpr_Groupid;
                            AV19groupContact.gxTpr_Contactgroupencpassword = AV12group_sdt.gxTpr_Encpassword;
-                           if ( ( AV17oneGroup.gxTpr_Grouptype == 200 ) || ( AV17oneGroup.gxTpr_Grouptype == 800 ) )
-                           {
-                              AV19groupContact.gxTpr_Extpubkeymultisigreceiving = AV12group_sdt.gxTpr_Extpubkeymultisigreceiving;
-                              AV19groupContact.gxTpr_Extpubkeymultisigchange = AV12group_sdt.gxTpr_Extpubkeymultisigchange;
-                           }
+                           AV19groupContact.gxTpr_Extpubkeymultisigreceiving = AV12group_sdt.gxTpr_Extpubkeymultisigreceiving;
+                           AV19groupContact.gxTpr_Extpubkeymultisigchange = AV12group_sdt.gxTpr_Extpubkeymultisigchange;
+                           AV19groupContact.gxTpr_Extpubkeytimebountyreceiving = AV12group_sdt.gxTpr_Extpubkeytimebountyreceiving;
                         }
                         AV23GXV3 = (int)(AV23GXV3+1);
                      }

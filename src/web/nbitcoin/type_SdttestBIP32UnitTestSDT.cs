@@ -1,7 +1,7 @@
 /*
 				   File: type_SdttestBIP32UnitTestSDT
 			Description: testBIP32UnitTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nbitcoin
@@ -31,6 +32,12 @@ namespace GeneXus.Programs.nbitcoin
 		{
 			/* Constructor for serialization */
 			gxTv_SdttestBIP32UnitTestSDT_Testcaseid = "";
+
+			gxTv_SdttestBIP32UnitTestSDT_Test_bip32_in_N = true;
+
+			gxTv_SdttestBIP32UnitTestSDT_Test_bip32_out_N = true;
+
+			gxTv_SdttestBIP32UnitTestSDT_Expectedtest_bip32_out_N = true;
 
 			gxTv_SdttestBIP32UnitTestSDT_Msgtest_bip32_out = "";
 
@@ -122,6 +129,7 @@ namespace GeneXus.Programs.nbitcoin
 				if ( gxTv_SdttestBIP32UnitTestSDT_Test_bip32_in == null )
 				{
 					gxTv_SdttestBIP32UnitTestSDT_Test_bip32_in = new GeneXus.Programs.nbitcoin.Sdttest_BIP32_in(context);
+					SetDirty("Test_bip32_in");
 				}
 				return gxTv_SdttestBIP32UnitTestSDT_Test_bip32_in; 
 			}
@@ -154,6 +162,7 @@ namespace GeneXus.Programs.nbitcoin
 				if ( gxTv_SdttestBIP32UnitTestSDT_Test_bip32_out == null )
 				{
 					gxTv_SdttestBIP32UnitTestSDT_Test_bip32_out = new GeneXus.Programs.nbitcoin.Sdttest_BIP32_out(context);
+					SetDirty("Test_bip32_out");
 				}
 				return gxTv_SdttestBIP32UnitTestSDT_Test_bip32_out; 
 			}
@@ -186,6 +195,7 @@ namespace GeneXus.Programs.nbitcoin
 				if ( gxTv_SdttestBIP32UnitTestSDT_Expectedtest_bip32_out == null )
 				{
 					gxTv_SdttestBIP32UnitTestSDT_Expectedtest_bip32_out = new GeneXus.Programs.nbitcoin.Sdttest_BIP32_out(context);
+					SetDirty("Expectedtest_bip32_out");
 				}
 				return gxTv_SdttestBIP32UnitTestSDT_Expectedtest_bip32_out; 
 			}
@@ -362,11 +372,13 @@ namespace GeneXus.Programs.nbitcoin
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("TestCaseId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="TestCaseId", Order=0)]
 		public  string gxTpr_Testcaseid
 		{
 			get { 
-				return sdt.gxTpr_Testcaseid;
+				return StringUtil.RTrim( sdt.gxTpr_Testcaseid);
 
 			}
 			set { 
@@ -374,6 +386,9 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("test_BIP32_in")]
+		[JsonPropertyOrder(1)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="test_BIP32_in", Order=1, EmitDefaultValue=false)]
 		public GeneXus.Programs.nbitcoin.Sdttest_BIP32_in_RESTInterface gxTpr_Test_bip32_in
 		{
@@ -389,6 +404,9 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("test_BIP32_out")]
+		[JsonPropertyOrder(2)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="test_BIP32_out", Order=2, EmitDefaultValue=false)]
 		public GeneXus.Programs.nbitcoin.Sdttest_BIP32_out_RESTInterface gxTpr_Test_bip32_out
 		{
@@ -404,6 +422,9 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Expectedtest_BIP32_out")]
+		[JsonPropertyOrder(3)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="Expectedtest_BIP32_out", Order=3, EmitDefaultValue=false)]
 		public GeneXus.Programs.nbitcoin.Sdttest_BIP32_out_RESTInterface gxTpr_Expectedtest_bip32_out
 		{
@@ -419,11 +440,13 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Msgtest_BIP32_out")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="Msgtest_BIP32_out", Order=4)]
 		public  string gxTpr_Msgtest_bip32_out
 		{
 			get { 
-				return sdt.gxTpr_Msgtest_bip32_out;
+				return StringUtil.RTrim( sdt.gxTpr_Msgtest_bip32_out);
 
 			}
 			set { 
@@ -431,6 +454,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("error")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="error", Order=5)]
 		public  string gxTpr_Error
 		{
@@ -443,6 +468,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Expectederror")]
+		[JsonPropertyOrder(6)]
 		[DataMember(Name="Expectederror", Order=6)]
 		public  string gxTpr_Expectederror
 		{
@@ -455,11 +482,13 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Msgerror")]
+		[JsonPropertyOrder(7)]
 		[DataMember(Name="Msgerror", Order=7)]
 		public  string gxTpr_Msgerror
 		{
 			get { 
-				return sdt.gxTpr_Msgerror;
+				return StringUtil.RTrim( sdt.gxTpr_Msgerror);
 
 			}
 			set { 
@@ -469,7 +498,7 @@ namespace GeneXus.Programs.nbitcoin
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdttestBIP32UnitTestSDT sdt
 		{
 			get { 

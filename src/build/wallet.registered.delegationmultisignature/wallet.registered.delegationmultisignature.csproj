@@ -12,6 +12,8 @@
 		<MailSupport>false</MailSupport>
 		<GrpcClientSupport>false</GrpcClientSupport>
 		<PdfLibrary></PdfLibrary>
+		<PDFSupport>false</PDFSupport>
+		<SearchSupport>false</SearchSupport>
 	</PropertyGroup>
 	
 	<ItemGroup>
@@ -34,18 +36,19 @@
 		<Reference Include="GxInternetLib.dll" > 
 			<HintPath>$(WebBinDirectory)\GxInternetLib.dll</HintPath>
 		</Reference>
+		<Reference Include="DistricutedCryptographyLib.dll" > 
+			<HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
+		</Reference>
 
 
 	</ItemGroup>
 
 	<ItemGroup>
 		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluser.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\aesencryptstring.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\getunixtimemilisecondsutc.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\updategroup.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getextkey.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\aesdecryptstring.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\apibaseurlauth.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
@@ -58,19 +61,16 @@
 		<Compile Include = "$(WebDirectory)\wallet\registered\sendmessage.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\varchartojsonformat.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\encryptjsonto.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getextkey.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\processserver.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\decryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\callapi.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjsonto.cs" />
 		<Compile Include = "$(WebDirectory)\desktopappservicesrestupdategrouppost.cs" />
 		<Compile Include = "$(WebDirectory)\desktopappservicesrestsendmesagepost.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\encryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\delegationmultisignature.cs" />
 
-	</ItemGroup>
-	<ItemGroup Condition="'$(PostgresqlSupport)'=='true'">
-		<PackageReference Include="Npgsql" Version="8.0.3" PrivateAssets="All"/>
 	</ItemGroup>
 
 	<Import Project="..\DotNetCoreBaseProject.targets"/>	

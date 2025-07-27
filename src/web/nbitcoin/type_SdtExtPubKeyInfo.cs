@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtExtPubKeyInfo
 			Description: ExtPubKeyInfo
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nbitcoin
@@ -477,6 +478,8 @@ namespace GeneXus.Programs.nbitcoin
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("PublicKey")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="PublicKey", Order=0)]
 		public  string gxTpr_Publickey
 		{
@@ -489,6 +492,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("PublicKeySegwitP2SH")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="PublicKeySegwitP2SH", Order=1)]
 		public  string gxTpr_Publickeysegwitp2sh
 		{
@@ -501,6 +506,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("PublicKeySegwit")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="PublicKeySegwit", Order=2)]
 		public  string gxTpr_Publickeysegwit
 		{
@@ -513,6 +520,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("PublicKeyTaproot")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="PublicKeyTaproot", Order=3)]
 		public  string gxTpr_Publickeytaproot
 		{
@@ -525,6 +534,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("AddressLegacy")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="AddressLegacy", Order=4)]
 		public  string gxTpr_Addresslegacy
 		{
@@ -537,6 +548,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("AddressSegwitP2SH")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="AddressSegwitP2SH", Order=5)]
 		public  string gxTpr_Addresssegwitp2sh
 		{
@@ -549,6 +562,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("AddressSegwit")]
+		[JsonPropertyOrder(6)]
 		[DataMember(Name="AddressSegwit", Order=6)]
 		public  string gxTpr_Addresssegwit
 		{
@@ -561,6 +576,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("AddressTaproot")]
+		[JsonPropertyOrder(7)]
 		[DataMember(Name="AddressTaproot", Order=7)]
 		public  string gxTpr_Addresstaproot
 		{
@@ -573,6 +590,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("EC_PublicKey")]
+		[JsonPropertyOrder(8)]
 		[DataMember(Name="EC_PublicKey", Order=8)]
 		public  string gxTpr_Ec_publickey
 		{
@@ -585,6 +604,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Fingerprint")]
+		[JsonPropertyOrder(9)]
 		[DataMember(Name="Fingerprint", Order=9)]
 		public  string gxTpr_Fingerprint
 		{
@@ -597,6 +618,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("ParentFingerprint")]
+		[JsonPropertyOrder(10)]
 		[DataMember(Name="ParentFingerprint", Order=10)]
 		public  string gxTpr_Parentfingerprint
 		{
@@ -609,6 +632,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Depth")]
+		[JsonPropertyOrder(11)]
 		[DataMember(Name="Depth", Order=11)]
 		public short gxTpr_Depth
 		{
@@ -621,6 +646,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("Child")]
+		[JsonPropertyOrder(12)]
 		[DataMember(Name="Child", Order=12)]
 		public  string gxTpr_Child
 		{
@@ -633,6 +660,9 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("isHardended")]
+		[JsonPropertyOrder(13)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="isHardended", Order=13)]
 		public bool gxTpr_Ishardended
 		{
@@ -645,6 +675,8 @@ namespace GeneXus.Programs.nbitcoin
 			}
 		}
 
+		[JsonPropertyName("keyPath")]
+		[JsonPropertyOrder(14)]
 		[DataMember(Name="keyPath", Order=14)]
 		public  string gxTpr_Keypath
 		{
@@ -659,7 +691,7 @@ namespace GeneXus.Programs.nbitcoin
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtExtPubKeyInfo sdt
 		{
 			get { 

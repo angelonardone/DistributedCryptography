@@ -19,6 +19,7 @@ using GeneXus.Http.Client;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet.registered {
    public class updategroup : GXProcedure
    {
@@ -85,12 +86,10 @@ namespace GeneXus.Programs.wallet.registered {
             AV11body.gxTpr_Groupid = AV10group.gxTpr_Groupid;
             GXt_char2 = AV9error;
             GXt_char3 = AV11body.gxTpr_Groupencryptedkey;
-            GXt_char4 = AV11body.gxTpr_Groupiv;
-            GXt_char5 = AV11body.gxTpr_Groupencrypted;
-            new GeneXus.Programs.distributedcrypto.encryptjson(context ).execute(  AV10group.ToJSonString(false, true),  AV27encryptKey, out  GXt_char3, out  GXt_char4, out  GXt_char5, out  GXt_char2) ;
+            GXt_char4 = AV11body.gxTpr_Groupencrypted;
+            new GeneXus.Programs.distributedcryptographylib.encryptjson(context ).execute(  AV10group.ToJSonString(false, true),  AV27encryptKey, out  GXt_char3, out  GXt_char4, out  GXt_char2) ;
             AV11body.gxTpr_Groupencryptedkey = GXt_char3;
-            AV11body.gxTpr_Groupiv = GXt_char4;
-            AV11body.gxTpr_Groupencrypted = GXt_char5;
+            AV11body.gxTpr_Groupencrypted = GXt_char4;
             AV9error = GXt_char2;
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
             {
@@ -133,7 +132,6 @@ namespace GeneXus.Programs.wallet.registered {
          GXt_char2 = "";
          GXt_char3 = "";
          GXt_char4 = "";
-         GXt_char5 = "";
          AV25properties = new GXProperties();
          AV24updateGroup__postOutputOUT = new SdtupdateGroup__postOutput(context);
          AV12HttpMessage = new GeneXus.Utils.SdtMessages_Message(context);
@@ -145,7 +143,6 @@ namespace GeneXus.Programs.wallet.registered {
       private string GXt_char2 ;
       private string GXt_char3 ;
       private string GXt_char4 ;
-      private string GXt_char5 ;
       private bool AV13IsSuccess ;
       private Guid AV26outGroupId ;
       private GXProperties AV25properties ;

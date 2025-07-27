@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtelectrumRespGetTransactionId_result_vinItem
 			Description: vin
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.electrum
@@ -31,6 +32,7 @@ namespace GeneXus.Programs.electrum
 		{
 			/* Constructor for serialization */
 			gxTv_SdtelectrumRespGetTransactionId_result_vinItem_Txid = "";
+
 
 		}
 
@@ -92,6 +94,7 @@ namespace GeneXus.Programs.electrum
 					gxTv_SdtelectrumRespGetTransactionId_result_vinItem_Scriptsig = new SdtelectrumRespGetTransactionId_result_vinItem_scriptSig(context);
 				}
 				gxTv_SdtelectrumRespGetTransactionId_result_vinItem_Scriptsig_N = false;
+				SetDirty("Scriptsig");
 				return gxTv_SdtelectrumRespGetTransactionId_result_vinItem_Scriptsig;
 			}
 			set {
@@ -127,7 +130,7 @@ namespace GeneXus.Programs.electrum
 				return Convert.ToString(gxTv_SdtelectrumRespGetTransactionId_result_vinItem_Sequence, System.Globalization.CultureInfo.InvariantCulture);
 			}
 			set {
-				gxTv_SdtelectrumRespGetTransactionId_result_vinItem_Sequence = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+				gxTv_SdtelectrumRespGetTransactionId_result_vinItem_Sequence = NumberUtil.Val(value);
 			}
 		}
 		[XmlIgnore]
@@ -188,6 +191,7 @@ namespace GeneXus.Programs.electrum
 					gxTv_SdtelectrumRespGetTransactionId_result_vinItem_Txinwitness = new GxSimpleCollection<string>();
 				}
 				gxTv_SdtelectrumRespGetTransactionId_result_vinItem_Txinwitness_N = false;
+				SetDirty("Txinwitness");
 				return gxTv_SdtelectrumRespGetTransactionId_result_vinItem_Txinwitness ;
 			}
 			set {
@@ -221,7 +225,7 @@ namespace GeneXus.Programs.electrum
 				return Convert.ToString(gxTv_SdtelectrumRespGetTransactionId_result_vinItem_Vout, System.Globalization.CultureInfo.InvariantCulture);
 			}
 			set {
-				gxTv_SdtelectrumRespGetTransactionId_result_vinItem_Vout = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+				gxTv_SdtelectrumRespGetTransactionId_result_vinItem_Vout = NumberUtil.Val(value);
 			}
 		}
 		[XmlIgnore]
@@ -308,6 +312,9 @@ namespace GeneXus.Programs.electrum
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("scriptSig")]
+		[JsonPropertyOrder(0)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="scriptSig", Order=0, EmitDefaultValue=false)]
 		public SdtelectrumRespGetTransactionId_result_vinItem_scriptSig_RESTInterface gxTpr_Scriptsig
 		{
@@ -325,6 +332,8 @@ namespace GeneXus.Programs.electrum
 
 		}
 
+		[JsonPropertyName("sequence")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="sequence", Order=1)]
 		public  string gxTpr_Sequence
 		{
@@ -337,11 +346,13 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("txid")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="txid", Order=2)]
 		public  string gxTpr_Txid
 		{
 			get { 
-				return sdt.gxTpr_Txid;
+				return StringUtil.RTrim( sdt.gxTpr_Txid);
 
 			}
 			set { 
@@ -349,6 +360,9 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("txinwitness")]
+		[JsonPropertyOrder(3)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="txinwitness", Order=3, EmitDefaultValue=false)]
 		public  GxSimpleCollection<string> gxTpr_Txinwitness
 		{
@@ -364,6 +378,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("vout")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="vout", Order=4)]
 		public  string gxTpr_Vout
 		{
@@ -378,7 +394,7 @@ namespace GeneXus.Programs.electrum
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtelectrumRespGetTransactionId_result_vinItem sdt
 		{
 			get { 

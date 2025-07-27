@@ -12,6 +12,8 @@
 		<MailSupport>false</MailSupport>
 		<GrpcClientSupport>false</GrpcClientSupport>
 		<PdfLibrary></PdfLibrary>
+		<PDFSupport>false</PDFSupport>
+		<SearchSupport>false</SearchSupport>
 	</PropertyGroup>
 	
 	<ItemGroup>
@@ -28,6 +30,9 @@
 		<Reference Include="GxInternetLib.dll" > 
 			<HintPath>$(WebBinDirectory)\GxInternetLib.dll</HintPath>
 		</Reference>
+		<Reference Include="DistricutedCryptographyLib.dll" > 
+			<HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
+		</Reference>
 
 
 	</ItemGroup>
@@ -35,9 +40,6 @@
 	<ItemGroup>
 		<Compile Include = "$(WebDirectory)\rwdmasterpage.cs" />
 
-	</ItemGroup>
-	<ItemGroup Condition="'$(PostgresqlSupport)'=='true'">
-		<PackageReference Include="Npgsql" Version="8.0.3" PrivateAssets="All"/>
 	</ItemGroup>
 
 	<Import Project="..\DotNetCoreBaseProject.targets"/>	

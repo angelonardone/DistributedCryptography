@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtNBitcoin_SDT_Addressess
 			Description: NBitcoin_SDT_Addressess
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 
 namespace GeneXus.Programs
@@ -94,6 +95,7 @@ namespace GeneXus.Programs
 					gxTv_SdtNBitcoin_SDT_Addressess_Address = new GxSimpleCollection<string>();
 				}
 				gxTv_SdtNBitcoin_SDT_Addressess_Address_N = false;
+				SetDirty("Address");
 				return gxTv_SdtNBitcoin_SDT_Addressess_Address ;
 			}
 			set {
@@ -173,6 +175,9 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("Address")]
+		[JsonPropertyOrder(0)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="Address", Order=0, EmitDefaultValue=false)]
 		public  GxSimpleCollection<string> gxTpr_Address
 		{
@@ -190,7 +195,7 @@ namespace GeneXus.Programs
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtNBitcoin_SDT_Addressess sdt
 		{
 			get { 

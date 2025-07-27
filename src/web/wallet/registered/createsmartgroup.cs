@@ -19,6 +19,7 @@ using GeneXus.Encryption;
 using GeneXus.Http.Client;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet.registered {
    public class createsmartgroup : GXDataArea
    {
@@ -199,10 +200,10 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 310420), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 310420), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -232,7 +233,7 @@ namespace GeneXus.Programs.wallet.registered {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.createsmartgroup.aspx") +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.createsmartgroup") +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -324,7 +325,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wallet.registered.createsmartgroup.aspx")  ;
+         return formatLink("wallet.registered.createsmartgroup")  ;
       }
 
       public override string GetPgmname( )
@@ -423,7 +424,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_13-186676", 0) ;
             }
          }
          Form.Meta.addItem("description", "Create Smart Group", 0) ;
@@ -708,17 +709,29 @@ namespace GeneXus.Programs.wallet.registered {
             else
             {
                AV7group_sdt.gxTpr_Grouptype = AV9groupType;
+               if ( AV9groupType == 40 )
+               {
+                  AV7group_sdt.gxTpr_Isactive = true;
+                  GXt_char1 = AV6error;
+                  GXt_char2 = AV7group_sdt.gxTpr_Encpassword;
+                  GXt_char3 = AV7group_sdt.gxTpr_Encryptedtextshare;
+                  new GeneXus.Programs.distributedcryptographylib.encryptjson(context ).execute(  "_empty_",  "", out  GXt_char2, out  GXt_char3, out  GXt_char1) ;
+                  AV7group_sdt.gxTpr_Encpassword = GXt_char2;
+                  AV7group_sdt.gxTpr_Encryptedtextshare = GXt_char3;
+                  AV6error = GXt_char1;
+                  AssignAttri("", false, "AV6error", AV6error);
+               }
                AV7group_sdt.gxTpr_Groupname = StringUtil.Trim( AV8groupName);
                AV7group_sdt.gxTpr_Amigroupowner = true;
                if ( (Guid.Empty==AV7group_sdt.gxTpr_Groupid) )
                {
-                  GXt_char1 = AV6error;
-                  new GeneXus.Programs.wallet.registered.creategroup(context ).execute(  AV7group_sdt, out  AV10grpupId, out  GXt_char1) ;
-                  AV6error = GXt_char1;
+                  GXt_char3 = AV6error;
+                  new GeneXus.Programs.wallet.registered.creategroup(context ).execute(  AV7group_sdt, out  AV10grpupId, out  GXt_char3) ;
+                  AV6error = GXt_char3;
                   AssignAttri("", false, "AV6error", AV6error);
-                  GXt_char1 = AV13encryptionKey;
-                  new GeneXus.Programs.wallet.getlastjasonencritionkey(context ).execute( out  GXt_char1) ;
-                  AV13encryptionKey = GXt_char1;
+                  GXt_char3 = AV13encryptionKey;
+                  new GeneXus.Programs.wallet.getlastjasonencritionkey(context ).execute( out  GXt_char3) ;
+                  AV13encryptionKey = GXt_char3;
                   if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
                   {
                      AV7group_sdt.gxTpr_Groupid = AV10grpupId;
@@ -818,7 +831,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531412582626", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202572416225351", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -834,7 +847,7 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/registered/createsmartgroup.js", "?202531412582626", false, true);
+         context.AddJavascriptSource("wallet/registered/createsmartgroup.js", "?202572416225352", false, true);
          /* End function include_jscripts */
       }
 
@@ -844,11 +857,9 @@ namespace GeneXus.Programs.wallet.registered {
          cmbavGrouptype.WebTags = "";
          cmbavGrouptype.addItem("0", "Select Group Type", 0);
          cmbavGrouptype.addItem("10", "Wallet Backup", 0);
-         cmbavGrouptype.addItem("200", "Delegation Multi-Signature Wallet", 0);
-         cmbavGrouptype.addItem("300", "Shared based Multi-Signature Wallet", 0);
-         cmbavGrouptype.addItem("800", "Synchronous Delegation Mult-Signature Wallet", 0);
-         cmbavGrouptype.addItem("600", "Concensus File Vault", 0);
-         cmbavGrouptype.addItem("700", "Concensus Timed File Vault", 0);
+         cmbavGrouptype.addItem("30", "Delegation Multi-Signature Wallet", 0);
+         cmbavGrouptype.addItem("40", "Encrypted Passwords", 0);
+         cmbavGrouptype.addItem("20", "Time Encrypted Vault", 0);
          if ( cmbavGrouptype.ItemCount > 0 )
          {
             AV9groupType = (short)(Math.Round(NumberUtil.Val( cmbavGrouptype.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(AV9groupType), 4, 0))), "."), 18, MidpointRounding.ToEven));
@@ -898,8 +909,8 @@ namespace GeneXus.Programs.wallet.registered {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
-         setEventMetadata("'CREATE'","""{"handler":"E121I2","iparms":[{"av":"cmbavGrouptype"},{"av":"AV9groupType","fld":"vGROUPTYPE","pic":"ZZZ9"},{"av":"AV8groupName","fld":"vGROUPNAME"},{"av":"AV7group_sdt","fld":"vGROUP_SDT"},{"av":"AV5all_groups_sdt","fld":"vALL_GROUPS_SDT"}]""");
-         setEventMetadata("'CREATE'",""","oparms":[{"av":"AV7group_sdt","fld":"vGROUP_SDT"},{"av":"AV6error","fld":"vERROR"},{"av":"AV5all_groups_sdt","fld":"vALL_GROUPS_SDT"}]}""");
+         setEventMetadata("'CREATE'","""{"handler":"E121I2","iparms":[{"av":"cmbavGrouptype"},{"av":"AV9groupType","fld":"vGROUPTYPE","pic":"ZZZ9","type":"int"},{"av":"AV8groupName","fld":"vGROUPNAME","type":"char"},{"av":"AV7group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV5all_groups_sdt","fld":"vALL_GROUPS_SDT","type":""}]""");
+         setEventMetadata("'CREATE'",""","oparms":[{"av":"AV7group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV6error","fld":"vERROR","type":"char"},{"av":"AV5all_groups_sdt","fld":"vALL_GROUPS_SDT","type":""}]}""");
          setEventMetadata("'CANCEL EDIT'","""{"handler":"E131I2","iparms":[]}""");
          setEventMetadata("VALIDV_GROUPTYPE","""{"handler":"Validv_Grouptype","iparms":[]}""");
          return  ;
@@ -938,9 +949,11 @@ namespace GeneXus.Programs.wallet.registered {
          EvtRowId = "";
          sEvtType = "";
          AV6error = "";
+         GXt_char1 = "";
+         GXt_char2 = "";
          AV10grpupId = Guid.Empty;
          AV13encryptionKey = "";
-         GXt_char1 = "";
+         GXt_char3 = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          /* GeneXus formulas. */
@@ -983,8 +996,10 @@ namespace GeneXus.Programs.wallet.registered {
       private string EvtRowId ;
       private string sEvtType ;
       private string AV6error ;
-      private string AV13encryptionKey ;
       private string GXt_char1 ;
+      private string GXt_char2 ;
+      private string AV13encryptionKey ;
+      private string GXt_char3 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool wbLoad ;

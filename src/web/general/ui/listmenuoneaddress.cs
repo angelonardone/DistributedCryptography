@@ -19,6 +19,7 @@ using GeneXus.Http.Client;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.general.ui {
    public class listmenuoneaddress : GXProcedure
    {
@@ -63,7 +64,7 @@ namespace GeneXus.Programs.general.ui {
          /* Output device settings */
          AV12Name = "ReturnToWallets";
          AV10description = "Return to Wallets";
-         AV13Link = formatLink("wallet.returntowallets.aspx") ;
+         AV13Link = formatLink("wallet.returntowallets") ;
          /* Execute user subroutine: 'ADDPROGRAM' */
          S111 ();
          if ( returnInSub )

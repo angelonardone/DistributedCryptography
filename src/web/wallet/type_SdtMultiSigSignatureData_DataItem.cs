@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtMultiSigSignatureData_DataItem
 			Description: Data
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.wallet
@@ -33,6 +34,8 @@ namespace GeneXus.Programs.wallet
 			gxTv_SdtMultiSigSignatureData_DataItem_Transactionid = "";
 
 			gxTv_SdtMultiSigSignatureData_DataItem_Ec_pubkey = "";
+
+			gxTv_SdtMultiSigSignatureData_DataItem_Finalcombination_N = true;
 
 		}
 
@@ -152,6 +155,7 @@ namespace GeneXus.Programs.wallet
 					gxTv_SdtMultiSigSignatureData_DataItem_Pubnonces = new GxSimpleCollection<string>();
 				}
 				gxTv_SdtMultiSigSignatureData_DataItem_Pubnonces_N = false;
+				SetDirty("Pubnonces");
 				return gxTv_SdtMultiSigSignatureData_DataItem_Pubnonces ;
 			}
 			set {
@@ -233,6 +237,7 @@ namespace GeneXus.Programs.wallet
 				if ( gxTv_SdtMultiSigSignatureData_DataItem_Finalcombination == null )
 				{
 					gxTv_SdtMultiSigSignatureData_DataItem_Finalcombination = new GeneXus.Programs.math.SdtfinalCombination(context);
+					SetDirty("Finalcombination");
 				}
 				return gxTv_SdtMultiSigSignatureData_DataItem_Finalcombination; 
 			}
@@ -268,6 +273,7 @@ namespace GeneXus.Programs.wallet
 				{
 					gxTv_SdtMultiSigSignatureData_DataItem_Signatures = new GXBaseCollection<SdtMultiSigSignatureData_DataItem_signaturesItem>( context, "MultiSigSignatureData.DataItem.signaturesItem", "");
 				}
+				SetDirty("Signatures");
 				return gxTv_SdtMultiSigSignatureData_DataItem_Signatures;
 			}
 			set {
@@ -376,6 +382,8 @@ namespace GeneXus.Programs.wallet
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("i")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="i", Order=0)]
 		public int gxTpr_I
 		{
@@ -388,6 +396,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("p")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="p", Order=1)]
 		public int gxTpr_P
 		{
@@ -400,6 +410,9 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("pubNonces")]
+		[JsonPropertyOrder(2)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="pubNonces", Order=2, EmitDefaultValue=false)]
 		public  GxSimpleCollection<string> gxTpr_Pubnonces
 		{
@@ -415,6 +428,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("transactionId")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="transactionId", Order=3)]
 		public  string gxTpr_Transactionid
 		{
@@ -427,6 +442,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("n")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="n", Order=4)]
 		public  string gxTpr_N
 		{
@@ -439,6 +456,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("Ec_pubKey")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="Ec_pubKey", Order=5)]
 		public  string gxTpr_Ec_pubkey
 		{
@@ -451,6 +470,9 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("finalCombination")]
+		[JsonPropertyOrder(6)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="finalCombination", Order=6, EmitDefaultValue=false)]
 		public GeneXus.Programs.math.SdtfinalCombination_RESTInterface gxTpr_Finalcombination
 		{
@@ -466,6 +488,9 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("signatures")]
+		[JsonPropertyOrder(7)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="signatures", Order=7, EmitDefaultValue=false)]
 		public GxGenericCollection<SdtMultiSigSignatureData_DataItem_signaturesItem_RESTInterface> gxTpr_Signatures
 		{
@@ -483,7 +508,7 @@ namespace GeneXus.Programs.wallet
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtMultiSigSignatureData_DataItem sdt
 		{
 			get { 

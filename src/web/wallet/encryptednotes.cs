@@ -19,6 +19,7 @@ using GeneXus.Encryption;
 using GeneXus.Http.Client;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet {
    public class encryptednotes : GXDataArea
    {
@@ -237,18 +238,18 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 310420), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 310420), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 310420), false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -273,7 +274,7 @@ namespace GeneXus.Programs.wallet {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.encryptednotes.aspx") +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.encryptednotes") +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -389,7 +390,7 @@ namespace GeneXus.Programs.wallet {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wallet.encryptednotes.aspx")  ;
+         return formatLink("wallet.encryptednotes")  ;
       }
 
       public override string GetPgmname( )
@@ -449,7 +450,7 @@ namespace GeneXus.Programs.wallet {
             }
             else
             {
-               AV13GXV1 = nGXsfl_9_idx;
+               AV14GXV1 = nGXsfl_9_idx;
                if ( subGridnotes_Visible != 0 )
                {
                   sStyleString = "";
@@ -521,7 +522,7 @@ namespace GeneXus.Programs.wallet {
                }
                else
                {
-                  AV13GXV1 = nGXsfl_9_idx;
+                  AV14GXV1 = nGXsfl_9_idx;
                   if ( subGridnotes_Visible != 0 )
                   {
                      sStyleString = "";
@@ -559,7 +560,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_13-186676", 0) ;
             }
          }
          Form.Meta.addItem("description", "Encrypted Notes", 0) ;
@@ -641,12 +642,13 @@ namespace GeneXus.Programs.wallet {
                               nGXsfl_9_idx = (int)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
                               sGXsfl_9_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_idx), 4, 0), 4, "0");
                               SubsflControlProps_92( ) ;
-                              AV13GXV1 = nGXsfl_9_idx;
-                              if ( ( AV8notesRead.Count >= AV13GXV1 ) && ( AV13GXV1 > 0 ) )
+                              AV14GXV1 = nGXsfl_9_idx;
+                              if ( ( AV8notesRead.Count >= AV14GXV1 ) && ( AV14GXV1 > 0 ) )
                               {
-                                 AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV13GXV1));
-                                 AV10delete = cgiGet( edtavDelete_Internalname);
-                                 AssignAttri("", false, edtavDelete_Internalname, AV10delete);
+                                 AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV14GXV1));
+                                 AV13deleteImage = cgiGet( edtavDeleteimage_Internalname);
+                                 AssignProp("", false, edtavDeleteimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV13deleteImage)) ? AV17Deleteimage_GXI : context.convertURL( context.PathToRelativeUrl( AV13deleteImage))), !bGXsfl_9_Refreshing);
+                                 AssignProp("", false, edtavDeleteimage_Internalname, "SrcSet", context.GetImageSrcSet( AV13deleteImage), true);
                               }
                               sEvtType = StringUtil.Right( sEvt, 1);
                               if ( StringUtil.StrCmp(sEvtType, ".") == 0 )
@@ -850,7 +852,6 @@ namespace GeneXus.Programs.wallet {
          /* GeneXus formulas. */
          edtavCtldescription1_Enabled = 0;
          edtavCtlcreated1_Enabled = 0;
-         edtavDelete_Enabled = 0;
       }
 
       protected void RF102( )
@@ -938,7 +939,6 @@ namespace GeneXus.Programs.wallet {
       {
          edtavCtldescription1_Enabled = 0;
          edtavCtlcreated1_Enabled = 0;
-         edtavDelete_Enabled = 0;
          fix_multi_value_controls( ) ;
       }
 
@@ -966,11 +966,11 @@ namespace GeneXus.Programs.wallet {
                nGXsfl_9_fel_idx = ((subGridnotes_Islastpage==1)&&(nGXsfl_9_fel_idx+1>subGridnotes_fnc_Recordsperpage( )) ? 1 : nGXsfl_9_fel_idx+1);
                sGXsfl_9_fel_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_fel_idx), 4, 0), 4, "0");
                SubsflControlProps_fel_92( ) ;
-               AV13GXV1 = nGXsfl_9_fel_idx;
-               if ( ( AV8notesRead.Count >= AV13GXV1 ) && ( AV13GXV1 > 0 ) )
+               AV14GXV1 = nGXsfl_9_fel_idx;
+               if ( ( AV8notesRead.Count >= AV14GXV1 ) && ( AV14GXV1 > 0 ) )
                {
-                  AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV13GXV1));
-                  AV10delete = cgiGet( edtavDelete_Internalname);
+                  AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV14GXV1));
+                  AV13deleteImage = cgiGet( edtavDeleteimage_Internalname);
                }
             }
             if ( nGXsfl_9_fel_idx == 0 )
@@ -1016,12 +1016,18 @@ namespace GeneXus.Programs.wallet {
          gx_refresh_fired = true;
          /* Refresh Routine */
          returnInSub = false;
-         AV10delete = "Delete";
-         AssignAttri("", false, edtavDelete_Internalname, AV10delete);
          GXt_objcol_SdtNoteRead2 = AV8notesRead;
          new GeneXus.Programs.wallet.readallnotes(context ).execute( out  GXt_objcol_SdtNoteRead2) ;
          AV8notesRead = GXt_objcol_SdtNoteRead2;
          gx_BV9 = true;
+         edtavDeleteimage_gximage = "GeneXusUnanimo_delete_light";
+         AssignProp("", false, edtavDeleteimage_Internalname, "gximage", edtavDeleteimage_gximage, !bGXsfl_9_Refreshing);
+         AV13deleteImage = context.GetImagePath( "db0f63cd-dde8-4bf7-aca2-01cdf8d3c157", "", context.GetTheme( ));
+         AssignProp("", false, edtavDeleteimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV13deleteImage)) ? AV17Deleteimage_GXI : context.convertURL( context.PathToRelativeUrl( AV13deleteImage))), !bGXsfl_9_Refreshing);
+         AssignProp("", false, edtavDeleteimage_Internalname, "SrcSet", context.GetImageSrcSet( AV13deleteImage), true);
+         AV17Deleteimage_GXI = GXDbFile.PathToUrl( context.GetImagePath( "db0f63cd-dde8-4bf7-aca2-01cdf8d3c157", "", context.GetTheme( )), context);
+         AssignProp("", false, edtavDeleteimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV13deleteImage)) ? AV17Deleteimage_GXI : context.convertURL( context.PathToRelativeUrl( AV13deleteImage))), !bGXsfl_9_Refreshing);
+         AssignProp("", false, edtavDeleteimage_Internalname, "SrcSet", context.GetImageSrcSet( AV13deleteImage), true);
          /*  Sending Event outputs  */
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV8notesRead", AV8notesRead);
       }
@@ -1075,10 +1081,10 @@ namespace GeneXus.Programs.wallet {
 
       protected void E16102( )
       {
-         AV13GXV1 = nGXsfl_9_idx;
-         if ( ( AV13GXV1 > 0 ) && ( AV8notesRead.Count >= AV13GXV1 ) )
+         AV14GXV1 = nGXsfl_9_idx;
+         if ( ( AV14GXV1 > 0 ) && ( AV8notesRead.Count >= AV14GXV1 ) )
          {
-            AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV13GXV1));
+            AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV14GXV1));
          }
          /* 'Open Note' Routine */
          returnInSub = false;
@@ -1124,10 +1130,10 @@ namespace GeneXus.Programs.wallet {
 
       protected void E12102( )
       {
-         AV13GXV1 = nGXsfl_9_idx;
-         if ( ( AV13GXV1 > 0 ) && ( AV8notesRead.Count >= AV13GXV1 ) )
+         AV14GXV1 = nGXsfl_9_idx;
+         if ( ( AV14GXV1 > 0 ) && ( AV8notesRead.Count >= AV14GXV1 ) )
          {
-            AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV13GXV1));
+            AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV14GXV1));
          }
          /* GlobalEvents_Donewithnotes Routine */
          returnInSub = false;
@@ -1156,10 +1162,10 @@ namespace GeneXus.Programs.wallet {
 
       protected void E17102( )
       {
-         AV13GXV1 = nGXsfl_9_idx;
-         if ( ( AV13GXV1 > 0 ) && ( AV8notesRead.Count >= AV13GXV1 ) )
+         AV14GXV1 = nGXsfl_9_idx;
+         if ( ( AV14GXV1 > 0 ) && ( AV8notesRead.Count >= AV14GXV1 ) )
          {
-            AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV13GXV1));
+            AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV14GXV1));
          }
          /* 'Delete Note' Routine */
          returnInSub = false;
@@ -1168,10 +1174,10 @@ namespace GeneXus.Programs.wallet {
 
       protected void E13102( )
       {
-         AV13GXV1 = nGXsfl_9_idx;
-         if ( ( AV13GXV1 > 0 ) && ( AV8notesRead.Count >= AV13GXV1 ) )
+         AV14GXV1 = nGXsfl_9_idx;
+         if ( ( AV14GXV1 > 0 ) && ( AV8notesRead.Count >= AV14GXV1 ) )
          {
-            AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV13GXV1));
+            AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV14GXV1));
          }
          /* Extensions\Web\Dialog_Onconfirmclosed Routine */
          returnInSub = false;
@@ -1208,10 +1214,10 @@ namespace GeneXus.Programs.wallet {
       {
          /* Gridnotes_Load Routine */
          returnInSub = false;
-         AV13GXV1 = 1;
-         while ( AV13GXV1 <= AV8notesRead.Count )
+         AV14GXV1 = 1;
+         while ( AV14GXV1 <= AV8notesRead.Count )
          {
-            AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV13GXV1));
+            AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV14GXV1));
             /* Load Method */
             if ( wbStart != -1 )
             {
@@ -1222,7 +1228,7 @@ namespace GeneXus.Programs.wallet {
             {
                DoAjaxLoad(9, GridnotesRow);
             }
-            AV13GXV1 = (int)(AV13GXV1+1);
+            AV14GXV1 = (int)(AV14GXV1+1);
          }
       }
 
@@ -1273,7 +1279,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531412582031", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202572416224735", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1289,7 +1295,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/encryptednotes.js", "?202531412582031", false, true);
+         context.AddJavascriptSource("wallet/encryptednotes.js", "?202572416224735", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -1298,14 +1304,14 @@ namespace GeneXus.Programs.wallet {
       {
          edtavCtldescription1_Internalname = "CTLDESCRIPTION1_"+sGXsfl_9_idx;
          edtavCtlcreated1_Internalname = "CTLCREATED1_"+sGXsfl_9_idx;
-         edtavDelete_Internalname = "vDELETE_"+sGXsfl_9_idx;
+         edtavDeleteimage_Internalname = "vDELETEIMAGE_"+sGXsfl_9_idx;
       }
 
       protected void SubsflControlProps_fel_92( )
       {
          edtavCtldescription1_Internalname = "CTLDESCRIPTION1_"+sGXsfl_9_fel_idx;
          edtavCtlcreated1_Internalname = "CTLCREATED1_"+sGXsfl_9_fel_idx;
-         edtavDelete_Internalname = "vDELETE_"+sGXsfl_9_fel_idx;
+         edtavDeleteimage_Internalname = "vDELETEIMAGE_"+sGXsfl_9_fel_idx;
       }
 
       protected void sendrow_92( )
@@ -1378,7 +1384,7 @@ namespace GeneXus.Programs.wallet {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 10,'',false,'" + sGXsfl_9_idx + "',9)\"";
          ROClassString = "Attribute";
-         GridnotesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtldescription1_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV13GXV1)).gxTpr_Description),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,10);\"","'"+""+"'"+",false,"+"'"+"E\\'OPEN NOTE\\'."+sGXsfl_9_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtldescription1_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtldescription1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)80,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         GridnotesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtldescription1_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV14GXV1)).gxTpr_Description),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,10);\"","'"+""+"'"+",false,"+"'"+"E\\'OPEN NOTE\\'."+sGXsfl_9_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtldescription1_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtldescription1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)80,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          if ( GridnotesContainer.GetWrapped() == 1 )
          {
@@ -1387,16 +1393,19 @@ namespace GeneXus.Programs.wallet {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 11,'',false,'" + sGXsfl_9_idx + "',9)\"";
          ROClassString = "Attribute";
-         GridnotesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlcreated1_Internalname,context.localUtil.TToC( ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV13GXV1)).gxTpr_Created, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV13GXV1)).gxTpr_Created, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onblur(this,11);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlcreated1_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlcreated1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)17,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         GridnotesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlcreated1_Internalname,context.localUtil.TToC( ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV14GXV1)).gxTpr_Created, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV14GXV1)).gxTpr_Created, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onblur(this,11);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlcreated1_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlcreated1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)17,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          /* Subfile cell */
          if ( GridnotesContainer.GetWrapped() == 1 )
          {
-            context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
+            context.WriteHtmlText( "<td valign=\"middle\" align=\""+""+"\""+" style=\""+""+"\">") ;
          }
-         /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 12,'',false,'" + sGXsfl_9_idx + "',9)\"";
-         ROClassString = "Attribute";
-         GridnotesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavDelete_Internalname,StringUtil.RTrim( AV10delete),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,12);\"","'"+""+"'"+",false,"+"'"+"E\\'DELETE NOTE\\'."+sGXsfl_9_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavDelete_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavDelete_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         /* Active Bitmap Variable */
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 12,'',false,'',9)\"";
+         ClassString = "Image" + " " + ((StringUtil.StrCmp(edtavDeleteimage_gximage, "")==0) ? "" : "GX_Image_"+edtavDeleteimage_gximage+"_Class");
+         StyleString = "";
+         AV13deleteImage_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV13deleteImage))&&String.IsNullOrEmpty(StringUtil.RTrim( AV17Deleteimage_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV13deleteImage)));
+         sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV13deleteImage)) ? AV17Deleteimage_GXI : context.PathToRelativeUrl( AV13deleteImage));
+         GridnotesRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtavDeleteimage_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(short)-1,(short)1,(string)"",(string)"",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)5,(string)edtavDeleteimage_Jsonclick,"'"+""+"'"+",false,"+"'"+"E\\'DELETE NOTE\\'."+sGXsfl_9_idx+"'",(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"",(string)"",(string)""+TempTags,(string)"",(string)"",(short)1,(bool)AV13deleteImage_IsBlob,(bool)false,context.GetImageSrcSet( sImgUrl),(string)"none"});
          send_integrity_lvl_hashes102( ) ;
          GridnotesContainer.AddRow(GridnotesRow);
          nGXsfl_9_idx = ((subGridnotes_Islastpage==1)&&(nGXsfl_9_idx+1>subGridnotes_fnc_Recordsperpage( )) ? 1 : nGXsfl_9_idx+1);
@@ -1457,7 +1466,7 @@ namespace GeneXus.Programs.wallet {
             context.WriteHtmlText( "<th align=\""+"end"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
             context.SendWebValue( "Created") ;
             context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
+            context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Image"+" "+((StringUtil.StrCmp(edtavDeleteimage_gximage, "")==0) ? "" : "GX_Image_"+edtavDeleteimage_gximage+"_Class")+"\" "+" style=\""+""+""+"\" "+">") ;
             context.SendWebValue( "") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlTextNl( "</tr>") ;
@@ -1481,8 +1490,8 @@ namespace GeneXus.Programs.wallet {
             GridnotesColumn.AddObjectProperty("Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtavCtlcreated1_Enabled), 5, 0, ".", "")));
             GridnotesContainer.AddColumnProperties(GridnotesColumn);
             GridnotesColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
-            GridnotesColumn.AddObjectProperty("Value", GXUtil.ValueEncode( StringUtil.RTrim( AV10delete)));
-            GridnotesColumn.AddObjectProperty("Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtavDelete_Enabled), 5, 0, ".", "")));
+            GridnotesColumn.AddObjectProperty("Value", context.convertURL( AV13deleteImage));
+            GridnotesColumn.AddObjectProperty("Link", StringUtil.RTrim( edtavDeleteimage_Link));
             GridnotesContainer.AddColumnProperties(GridnotesColumn);
             GridnotesContainer.AddObjectProperty("Selectedindex", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridnotes_Selectedindex), 4, 0, ".", "")));
             GridnotesContainer.AddObjectProperty("Allowselection", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridnotes_Allowselection), 1, 0, ".", "")));
@@ -1499,7 +1508,7 @@ namespace GeneXus.Programs.wallet {
          bttCreateanewnote_Internalname = "CREATEANEWNOTE";
          edtavCtldescription1_Internalname = "CTLDESCRIPTION1";
          edtavCtlcreated1_Internalname = "CTLCREATED1";
-         edtavDelete_Internalname = "vDELETE";
+         edtavDeleteimage_Internalname = "vDELETEIMAGE";
          divMaintable_Internalname = "MAINTABLE";
          Form.Internalname = "FORM";
          subGridnotes_Internalname = "GRIDNOTES";
@@ -1515,15 +1524,16 @@ namespace GeneXus.Programs.wallet {
          init_default_properties( ) ;
          subGridnotes_Allowcollapsing = 0;
          subGridnotes_Allowselection = 0;
+         edtavDeleteimage_Link = "";
          subGridnotes_Header = "";
-         edtavDelete_Jsonclick = "";
-         edtavDelete_Enabled = 1;
+         edtavDeleteimage_Jsonclick = "";
          edtavCtlcreated1_Jsonclick = "";
          edtavCtlcreated1_Enabled = 0;
          edtavCtldescription1_Jsonclick = "";
          edtavCtldescription1_Enabled = 0;
          subGridnotes_Class = "Grid";
          subGridnotes_Backcolorstyle = 0;
+         edtavDeleteimage_gximage = "";
          edtavCtlcreated1_Enabled = -1;
          edtavCtldescription1_Enabled = -1;
          WebComp_Compnewnote_Visible = 1;
@@ -1548,18 +1558,18 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"GRIDNOTES_nEOF"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9},{"av":"AV12wallet","fld":"vWALLET","hsh":true}]""");
-         setEventMetadata("REFRESH",""","oparms":[{"av":"AV10delete","fld":"vDELETE"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9}]}""");
-         setEventMetadata("'CREATE A NEW NOTE'","""{"handler":"E11102","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"GRIDNOTES_nEOF"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9},{"av":"AV12wallet","fld":"vWALLET","hsh":true}]""");
-         setEventMetadata("'CREATE A NEW NOTE'",""","oparms":[{"av":"subGridnotes_Visible","ctrl":"GRIDNOTES","prop":"Visible"},{"ctrl":"CREATEANEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE"},{"av":"AV10delete","fld":"vDELETE"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9}]}""");
-         setEventMetadata("'OPEN NOTE'","""{"handler":"E16102","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"GRIDNOTES_nEOF"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9},{"av":"AV12wallet","fld":"vWALLET","hsh":true}]""");
-         setEventMetadata("'OPEN NOTE'",""","oparms":[{"av":"subGridnotes_Visible","ctrl":"GRIDNOTES","prop":"Visible"},{"ctrl":"CREATEANEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE"},{"av":"AV10delete","fld":"vDELETE"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9}]}""");
-         setEventMetadata("GLOBALEVENTS.DONEWITHNOTES","""{"handler":"E12102","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"GRIDNOTES_nEOF"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9},{"av":"AV12wallet","fld":"vWALLET","hsh":true}]""");
-         setEventMetadata("GLOBALEVENTS.DONEWITHNOTES",""","oparms":[{"av":"subGridnotes_Visible","ctrl":"GRIDNOTES","prop":"Visible"},{"ctrl":"CREATEANEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE","prop":"Visible"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9},{"av":"AV10delete","fld":"vDELETE"}]}""");
-         setEventMetadata("'DELETE NOTE'","""{"handler":"E17102","iparms":[{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9}]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED","""{"handler":"E13102","iparms":[{"av":"AV9UserResponse","fld":"vUSERRESPONSE"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9},{"av":"AV12wallet","fld":"vWALLET","hsh":true},{"av":"GRIDNOTES_nEOF"}]""");
-         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED",""","oparms":[{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9}]}""");
-         setEventMetadata("NULL","""{"handler":"Validv_Delete","iparms":[]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"GRIDNOTES_nEOF","type":"int"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV12wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("REFRESH",""","oparms":[{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV13deleteImage","fld":"vDELETEIMAGE","type":"bits"}]}""");
+         setEventMetadata("'CREATE A NEW NOTE'","""{"handler":"E11102","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"GRIDNOTES_nEOF","type":"int"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV12wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("'CREATE A NEW NOTE'",""","oparms":[{"av":"subGridnotes_Visible","ctrl":"GRIDNOTES","prop":"Visible"},{"ctrl":"CREATEANEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV13deleteImage","fld":"vDELETEIMAGE","type":"bits"}]}""");
+         setEventMetadata("'OPEN NOTE'","""{"handler":"E16102","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"GRIDNOTES_nEOF","type":"int"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV12wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("'OPEN NOTE'",""","oparms":[{"av":"subGridnotes_Visible","ctrl":"GRIDNOTES","prop":"Visible"},{"ctrl":"CREATEANEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV13deleteImage","fld":"vDELETEIMAGE","type":"bits"}]}""");
+         setEventMetadata("GLOBALEVENTS.DONEWITHNOTES","""{"handler":"E12102","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"GRIDNOTES_nEOF","type":"int"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV12wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("GLOBALEVENTS.DONEWITHNOTES",""","oparms":[{"av":"subGridnotes_Visible","ctrl":"GRIDNOTES","prop":"Visible"},{"ctrl":"CREATEANEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE","prop":"Visible"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV13deleteImage","fld":"vDELETEIMAGE","type":"bits"}]}""");
+         setEventMetadata("'DELETE NOTE'","""{"handler":"E17102","iparms":[{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"}]}""");
+         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED","""{"handler":"E13102","iparms":[{"av":"AV9UserResponse","fld":"vUSERRESPONSE","type":"boolean"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV12wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"GRIDNOTES_nEOF","type":"int"}]""");
+         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED",""","oparms":[{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"}]}""");
+         setEventMetadata("NULL","""{"handler":"Validv_Deleteimage","iparms":[]}""");
          return  ;
       }
 
@@ -1597,7 +1607,8 @@ namespace GeneXus.Programs.wallet {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
-         AV10delete = "";
+         AV13deleteImage = "";
+         AV17Deleteimage_GXI = "";
          GXt_SdtWallet1 = new GeneXus.Programs.wallet.SdtWallet(context);
          AV11file = new GxFile(context.GetPhysicalPath());
          GXt_objcol_SdtNoteRead2 = new GXBaseCollection<GeneXus.Programs.wallet.SdtNoteRead>( context, "NoteRead", "distributedcryptography");
@@ -1606,12 +1617,12 @@ namespace GeneXus.Programs.wallet {
          LclMsgLst = new msglist();
          subGridnotes_Linesclass = "";
          ROClassString = "";
+         sImgUrl = "";
          GridnotesColumn = new GXWebColumn();
          WebComp_Compnewnote = new GeneXus.Http.GXNullWebComponent();
          /* GeneXus formulas. */
          edtavCtldescription1_Enabled = 0;
          edtavCtlcreated1_Enabled = 0;
-         edtavDelete_Enabled = 0;
       }
 
       private short nGotPars ;
@@ -1634,13 +1645,12 @@ namespace GeneXus.Programs.wallet {
       private int nRC_GXsfl_9 ;
       private int nGXsfl_9_idx=1 ;
       private int bttCreateanewnote_Visible ;
-      private int AV13GXV1 ;
+      private int AV14GXV1 ;
       private int subGridnotes_Visible ;
       private int WebComp_Compnewnote_Visible ;
       private int subGridnotes_Islastpage ;
       private int edtavCtldescription1_Enabled ;
       private int edtavCtlcreated1_Enabled ;
-      private int edtavDelete_Enabled ;
       private int nGXsfl_9_fel_idx=1 ;
       private int nGXsfl_9_bak_idx=1 ;
       private int idxLst ;
@@ -1675,9 +1685,9 @@ namespace GeneXus.Programs.wallet {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
-      private string AV10delete ;
-      private string edtavDelete_Internalname ;
+      private string edtavDeleteimage_Internalname ;
       private string sGXsfl_9_fel_idx="0001" ;
+      private string edtavDeleteimage_gximage ;
       private string edtavCtldescription1_Internalname ;
       private string edtavCtlcreated1_Internalname ;
       private string subGridnotes_Class ;
@@ -1685,8 +1695,10 @@ namespace GeneXus.Programs.wallet {
       private string ROClassString ;
       private string edtavCtldescription1_Jsonclick ;
       private string edtavCtlcreated1_Jsonclick ;
-      private string edtavDelete_Jsonclick ;
+      private string sImgUrl ;
+      private string edtavDeleteimage_Jsonclick ;
       private string subGridnotes_Header ;
+      private string edtavDeleteimage_Link ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool AV9UserResponse ;
@@ -1701,6 +1713,9 @@ namespace GeneXus.Programs.wallet {
       private bool bDynCreated_Compnewnote ;
       private bool GXt_boolean3 ;
       private bool GXt_boolean4 ;
+      private bool AV13deleteImage_IsBlob ;
+      private string AV17Deleteimage_GXI ;
+      private string AV13deleteImage ;
       private GXWebComponent WebComp_Compnewnote ;
       private GXWebGrid GridnotesContainer ;
       private GXWebRow GridnotesRow ;

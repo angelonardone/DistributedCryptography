@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtStoredTransactions_TransactionItem_UsedIn
 			Description: UsedIn
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.wallet
@@ -168,6 +169,7 @@ namespace GeneXus.Programs.wallet
 				{
 					gxTv_SdtStoredTransactions_TransactionItem_UsedIn_Usedto = new GXBaseCollection<SdtStoredTransactions_TransactionItem_UsedIn_UsedToItem>( context, "StoredTransactions.TransactionItem.UsedIn.UsedToItem", "");
 				}
+				SetDirty("Usedto");
 				return gxTv_SdtStoredTransactions_TransactionItem_UsedIn_Usedto;
 			}
 			set {
@@ -266,6 +268,8 @@ namespace GeneXus.Programs.wallet
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("TransactionId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="TransactionId", Order=0)]
 		public  string gxTpr_Transactionid
 		{
@@ -278,6 +282,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("n")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="n", Order=1)]
 		public  string gxTpr_N
 		{
@@ -290,6 +296,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("datetime")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="datetime", Order=2)]
 		public  string gxTpr_Datetime
 		{
@@ -302,6 +310,9 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("UsedTo")]
+		[JsonPropertyOrder(3)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="UsedTo", Order=3, EmitDefaultValue=false)]
 		public GxGenericCollection<SdtStoredTransactions_TransactionItem_UsedIn_UsedToItem_RESTInterface> gxTpr_Usedto
 		{
@@ -319,7 +330,7 @@ namespace GeneXus.Programs.wallet
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtStoredTransactions_TransactionItem_UsedIn sdt
 		{
 			get { 

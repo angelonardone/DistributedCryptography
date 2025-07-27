@@ -19,6 +19,7 @@ using GeneXus.Http.Client;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet.registered {
    public class deriveaddresssfordelegationmusig1 : GXProcedure
    {
@@ -153,7 +154,7 @@ namespace GeneXus.Programs.wallet.registered {
          while ( AV39GXV2 <= AV13group_sdt.gxTpr_Contact.Count )
          {
             AV32oneContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV13group_sdt.gxTpr_Contact.Item(AV39GXV2));
-            if ( ( AV13group_sdt.gxTpr_Grouptype == 200 ) && ! ( AV32oneContact.gxTpr_Contactid == AV32oneContact.gxTpr_Contactgroupid ) )
+            if ( ( AV13group_sdt.gxTpr_Grouptype == 30 ) && ! ( AV32oneContact.gxTpr_Contactid == AV32oneContact.gxTpr_Contactgroupid ) )
             {
                if ( (Convert.ToDecimal( AV12generatedType ) == NumberUtil.Val( "2", ".") ) )
                {

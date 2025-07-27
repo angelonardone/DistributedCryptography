@@ -1,7 +1,7 @@
 /*
 				   File: type_SdttestCombinationsSDT
 			Description: testCombinationsSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.math
@@ -130,6 +131,7 @@ namespace GeneXus.Programs.math
 					gxTv_SdttestCombinationsSDT_Items = new GxSimpleCollection<string>();
 				}
 				gxTv_SdttestCombinationsSDT_Items_N = false;
+				SetDirty("Items");
 				return gxTv_SdttestCombinationsSDT_Items ;
 			}
 			set {
@@ -199,6 +201,7 @@ namespace GeneXus.Programs.math
 					gxTv_SdttestCombinationsSDT_Finalcombinations = new GXBaseCollection<GeneXus.Programs.math.SdtfinalCombination>( context, "finalCombination", "");
 				}
 				gxTv_SdttestCombinationsSDT_Finalcombinations_N = false;
+				SetDirty("Finalcombinations");
 				return gxTv_SdttestCombinationsSDT_Finalcombinations ;
 			}
 			set {
@@ -252,6 +255,7 @@ namespace GeneXus.Programs.math
 					gxTv_SdttestCombinationsSDT_Expectedfinalcombinations = new GXBaseCollection<GeneXus.Programs.math.SdtfinalCombination>( context, "finalCombination", "");
 				}
 				gxTv_SdttestCombinationsSDT_Expectedfinalcombinations_N = false;
+				SetDirty("Expectedfinalcombinations");
 				return gxTv_SdttestCombinationsSDT_Expectedfinalcombinations ;
 			}
 			set {
@@ -367,11 +371,13 @@ namespace GeneXus.Programs.math
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("TestCaseId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="TestCaseId", Order=0)]
 		public  string gxTpr_Testcaseid
 		{
 			get { 
-				return sdt.gxTpr_Testcaseid;
+				return StringUtil.RTrim( sdt.gxTpr_Testcaseid);
 
 			}
 			set { 
@@ -379,6 +385,9 @@ namespace GeneXus.Programs.math
 			}
 		}
 
+		[JsonPropertyName("items")]
+		[JsonPropertyOrder(1)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="items", Order=1, EmitDefaultValue=false)]
 		public  GxSimpleCollection<string> gxTpr_Items
 		{
@@ -394,6 +403,8 @@ namespace GeneXus.Programs.math
 			}
 		}
 
+		[JsonPropertyName("minSignatures")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="minSignatures", Order=2)]
 		public short gxTpr_Minsignatures
 		{
@@ -406,6 +417,9 @@ namespace GeneXus.Programs.math
 			}
 		}
 
+		[JsonPropertyName("finalCombinations")]
+		[JsonPropertyOrder(3)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="finalCombinations", Order=3, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.math.SdtfinalCombination_RESTInterface> gxTpr_Finalcombinations
 		{
@@ -421,6 +435,9 @@ namespace GeneXus.Programs.math
 			}
 		}
 
+		[JsonPropertyName("ExpectedfinalCombinations")]
+		[JsonPropertyOrder(4)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="ExpectedfinalCombinations", Order=4, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.math.SdtfinalCombination_RESTInterface> gxTpr_Expectedfinalcombinations
 		{
@@ -436,11 +453,13 @@ namespace GeneXus.Programs.math
 			}
 		}
 
+		[JsonPropertyName("MsgfinalCombinations")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="MsgfinalCombinations", Order=5)]
 		public  string gxTpr_Msgfinalcombinations
 		{
 			get { 
-				return sdt.gxTpr_Msgfinalcombinations;
+				return StringUtil.RTrim( sdt.gxTpr_Msgfinalcombinations);
 
 			}
 			set { 
@@ -450,7 +469,7 @@ namespace GeneXus.Programs.math
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdttestCombinationsSDT sdt
 		{
 			get { 

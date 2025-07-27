@@ -1,0 +1,2 @@
+System.register(["./p-62fc4e49.system.js"],(function(t){"use strict";var e,n;return{setters:[function(t){e=t.r;n=t.g}],execute:function(){var r="";var u=r;var c=t("ch_tabular_grid_actionbar",function(){function t(t){e(this,t)}Object.defineProperty(t.prototype,"el",{get:function(){return n(this)},enumerable:false,configurable:true});return t}());c.style=u}}}));
+//# sourceMappingURL=p-90b08079.system.entry.js.map

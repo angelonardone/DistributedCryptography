@@ -19,6 +19,7 @@ using GeneXus.Http.Client;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.nbitcoin {
    public class sha256 : GXProcedure
    {
@@ -77,18 +78,15 @@ namespace GeneXus.Programs.nbitcoin {
          /* User Code */
           {
          /* User Code */
-          string brain_text = AV14textToSha;
+          string text = AV14textToSha;
          /* User Code */
-          byte[] bytes = NBitcoin.DataEncoders.Encoders.ASCII.DecodeData(brain_text);
+          byte[] bytes = NBitcoin.DataEncoders.Encoders.ASCII.DecodeData(text);
          /* User Code */
           var HashedText =  NBitcoin.Crypto.Hashes.SHA256(bytes);
          /* User Code */
-          NBitcoin.Key privateKey = new NBitcoin.Key(HashedText);
+          string val = System.Convert.ToHexString(HashedText);
          /* User Code */
-          string val = privateKey.ToHex().ToString();
-         /* User Code */
-          	AV13val = val;
-         AV15sha = AV13val;
+          	AV15sha = val;
          /* User Code */
          	}
          /* User Code */
@@ -116,13 +114,11 @@ namespace GeneXus.Programs.nbitcoin {
       {
          AV15sha = "";
          AV9error = "";
-         AV13val = "";
          /* GeneXus formulas. */
       }
 
       private string AV15sha ;
       private string AV9error ;
-      private string AV13val ;
       private string AV14textToSha ;
       private string aP1_sha ;
       private string aP2_error ;

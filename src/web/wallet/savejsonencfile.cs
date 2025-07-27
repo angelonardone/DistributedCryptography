@@ -19,6 +19,7 @@ using GeneXus.Http.Client;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet {
    public class savejsonencfile : GXProcedure
    {
@@ -75,18 +76,16 @@ namespace GeneXus.Programs.wallet {
          AV17wallet = GXt_SdtWallet1;
          GXt_char2 = AV13error;
          GXt_char3 = AV16json_enc.gxTpr_Encryptedkey;
-         GXt_char4 = AV16json_enc.gxTpr_Iv;
-         GXt_char5 = AV16json_enc.gxTpr_Encryptedtext;
-         new GeneXus.Programs.distributedcrypto.encryptjson(context ).execute(  AV8clearText,  "", out  GXt_char3, out  GXt_char4, out  GXt_char5, out  GXt_char2) ;
+         GXt_char4 = AV16json_enc.gxTpr_Encryptedtext;
+         new GeneXus.Programs.distributedcryptographylib.encryptjson(context ).execute(  AV8clearText,  "", out  GXt_char3, out  GXt_char4, out  GXt_char2) ;
          AV16json_enc.gxTpr_Encryptedkey = GXt_char3;
-         AV16json_enc.gxTpr_Iv = GXt_char4;
-         AV16json_enc.gxTpr_Encryptedtext = GXt_char5;
+         AV16json_enc.gxTpr_Encryptedtext = GXt_char4;
          AV13error = GXt_char2;
+         GXt_boolean5 = false;
+         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean5) ;
          GXt_boolean6 = false;
          new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean6) ;
-         GXt_boolean7 = false;
-         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean7) ;
-         AV18file.Source = AV17wallet.gxTpr_Walletbasedirectory+(GXt_boolean7 ? "/" : "\\")+StringUtil.Trim( AV9fileName);
+         AV18file.Source = AV17wallet.gxTpr_Walletbasedirectory+(GXt_boolean6 ? "/" : "\\")+StringUtil.Trim( AV9fileName);
          AV18file.WriteAllText(AV16json_enc.ToJSonString(false, true), "");
          cleanup();
       }
@@ -110,7 +109,6 @@ namespace GeneXus.Programs.wallet {
          AV16json_enc = new GeneXus.Programs.wallet.SdtSDT_Json_Enc(context);
          GXt_char3 = "";
          GXt_char4 = "";
-         GXt_char5 = "";
          AV18file = new GxFile(context.GetPhysicalPath());
          /* GeneXus formulas. */
       }
@@ -120,9 +118,8 @@ namespace GeneXus.Programs.wallet {
       private string GXt_char2 ;
       private string GXt_char3 ;
       private string GXt_char4 ;
-      private string GXt_char5 ;
+      private bool GXt_boolean5 ;
       private bool GXt_boolean6 ;
-      private bool GXt_boolean7 ;
       private string AV8clearText ;
       private GxFile AV18file ;
       private GeneXus.Programs.wallet.SdtWallet AV17wallet ;

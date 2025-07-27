@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtConnectionParameters_ConnectionParametersItem
 			Description: ConnectionParameters
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.electrum
@@ -35,6 +36,7 @@ namespace GeneXus.Programs.electrum
 			gxTv_SdtConnectionParameters_ConnectionParametersItem_Hostname = "";
 
 			gxTv_SdtConnectionParameters_ConnectionParametersItem_Networktype = "";
+
 
 		}
 
@@ -252,6 +254,8 @@ namespace GeneXus.Programs.electrum
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("ConnectionType")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="ConnectionType", Order=0)]
 		public  string gxTpr_Connectiontype
 		{
@@ -264,6 +268,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("HostName")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="HostName", Order=1)]
 		public  string gxTpr_Hostname
 		{
@@ -276,6 +282,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("Port")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="Port", Order=2)]
 		public int gxTpr_Port
 		{
@@ -288,6 +296,9 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("Secure")]
+		[JsonPropertyOrder(3)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
 		[DataMember(Name="Secure", Order=3)]
 		public bool gxTpr_Secure
 		{
@@ -300,6 +311,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("NetworkType")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="NetworkType", Order=4)]
 		public  string gxTpr_Networktype
 		{
@@ -312,6 +325,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("timeOutMiliseconds")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="timeOutMiliseconds", Order=5)]
 		public int gxTpr_Timeoutmiliseconds
 		{
@@ -326,7 +341,7 @@ namespace GeneXus.Programs.electrum
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtConnectionParameters_ConnectionParametersItem sdt
 		{
 			get { 

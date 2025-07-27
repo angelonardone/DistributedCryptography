@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtSDT_receive_msg
 			Description: SDT_receive_msg
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.nostr
@@ -221,11 +222,13 @@ namespace GeneXus.Programs.nostr
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("topic")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="topic", Order=0)]
 		public  string gxTpr_Topic
 		{
 			get { 
-				return sdt.gxTpr_Topic;
+				return StringUtil.RTrim( sdt.gxTpr_Topic);
 
 			}
 			set { 
@@ -233,6 +236,8 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("dateTime")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="dateTime", Order=1)]
 		public  string gxTpr_Datetime
 		{
@@ -245,11 +250,13 @@ namespace GeneXus.Programs.nostr
 			}
 		}
 
+		[JsonPropertyName("msessageEnc")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="msessageEnc", Order=2)]
 		public  string gxTpr_Msessageenc
 		{
 			get { 
-				return sdt.gxTpr_Msessageenc;
+				return StringUtil.RTrim( sdt.gxTpr_Msessageenc);
 
 			}
 			set { 
@@ -259,7 +266,7 @@ namespace GeneXus.Programs.nostr
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtSDT_receive_msg sdt
 		{
 			get { 

@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtSDTAddressHistory
 			Description: SDTAddressHistory
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.wallet
@@ -43,6 +44,7 @@ namespace GeneXus.Programs.wallet
 			gxTv_SdtSDTAddressHistory_Senttransactionid = "";
 
 			gxTv_SdtSDTAddressHistory_Description = "";
+
 
 		}
 
@@ -242,7 +244,7 @@ namespace GeneXus.Programs.wallet
 				return Convert.ToString(gxTv_SdtSDTAddressHistory_Receivedamount, System.Globalization.CultureInfo.InvariantCulture);
 			}
 			set {
-				gxTv_SdtSDTAddressHistory_Receivedamount = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+				gxTv_SdtSDTAddressHistory_Receivedamount = NumberUtil.Val(value);
 			}
 		}
 		[XmlIgnore]
@@ -358,7 +360,7 @@ namespace GeneXus.Programs.wallet
 				return Convert.ToString(gxTv_SdtSDTAddressHistory_Balance, System.Globalization.CultureInfo.InvariantCulture);
 			}
 			set {
-				gxTv_SdtSDTAddressHistory_Balance = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+				gxTv_SdtSDTAddressHistory_Balance = NumberUtil.Val(value);
 			}
 		}
 		[XmlIgnore]
@@ -435,6 +437,7 @@ namespace GeneXus.Programs.wallet
 					gxTv_SdtSDTAddressHistory_Multisignaturedata = new GXBaseCollection<GeneXus.Programs.wallet.SdtMultiSigSignatureData>( context, "MultiSigSignatureData", "");
 				}
 				gxTv_SdtSDTAddressHistory_Multisignaturedata_N = false;
+				SetDirty("Multisignaturedata");
 				return gxTv_SdtSDTAddressHistory_Multisignaturedata ;
 			}
 			set {
@@ -571,6 +574,8 @@ namespace GeneXus.Programs.wallet
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("ReceivedDateTime")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="ReceivedDateTime", Order=0)]
 		public  string gxTpr_Receiveddatetime
 		{
@@ -583,6 +588,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("ReceivedAddress")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="ReceivedAddress", Order=1)]
 		public  string gxTpr_Receivedaddress
 		{
@@ -595,6 +602,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("AddressGeneratedType")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="AddressGeneratedType", Order=2)]
 		public short gxTpr_Addressgeneratedtype
 		{
@@ -607,6 +616,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("AddressCreationSequence")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="AddressCreationSequence", Order=3)]
 		public  string gxTpr_Addresscreationsequence
 		{
@@ -619,6 +630,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("ReceivedAmount")]
+		[JsonPropertyOrder(4)]
 		[DataMember(Name="ReceivedAmount", Order=4)]
 		public  string gxTpr_Receivedamount
 		{
@@ -631,6 +644,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("ReceivedTransactionId")]
+		[JsonPropertyOrder(5)]
 		[DataMember(Name="ReceivedTransactionId", Order=5)]
 		public  string gxTpr_Receivedtransactionid
 		{
@@ -643,6 +658,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("RecivedN")]
+		[JsonPropertyOrder(6)]
 		[DataMember(Name="RecivedN", Order=6)]
 		public  string gxTpr_Recivedn
 		{
@@ -655,11 +672,13 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("ReceivedTransactionHex")]
+		[JsonPropertyOrder(7)]
 		[DataMember(Name="ReceivedTransactionHex", Order=7)]
 		public  string gxTpr_Receivedtransactionhex
 		{
 			get { 
-				return sdt.gxTpr_Receivedtransactionhex;
+				return StringUtil.RTrim( sdt.gxTpr_Receivedtransactionhex);
 
 			}
 			set { 
@@ -667,6 +686,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("SentDateTime")]
+		[JsonPropertyOrder(8)]
 		[DataMember(Name="SentDateTime", Order=8)]
 		public  string gxTpr_Sentdatetime
 		{
@@ -679,6 +700,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("SentTransactionId")]
+		[JsonPropertyOrder(9)]
 		[DataMember(Name="SentTransactionId", Order=9)]
 		public  string gxTpr_Senttransactionid
 		{
@@ -691,6 +714,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("Balance")]
+		[JsonPropertyOrder(10)]
 		[DataMember(Name="Balance", Order=10)]
 		public  string gxTpr_Balance
 		{
@@ -703,11 +728,13 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("Description")]
+		[JsonPropertyOrder(11)]
 		[DataMember(Name="Description", Order=11)]
 		public  string gxTpr_Description
 		{
 			get { 
-				return sdt.gxTpr_Description;
+				return StringUtil.RTrim( sdt.gxTpr_Description);
 
 			}
 			set { 
@@ -715,6 +742,8 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("Confirmations")]
+		[JsonPropertyOrder(12)]
 		[DataMember(Name="Confirmations", Order=12)]
 		public  string gxTpr_Confirmations
 		{
@@ -727,6 +756,9 @@ namespace GeneXus.Programs.wallet
 			}
 		}
 
+		[JsonPropertyName("MultisignatureData")]
+		[JsonPropertyOrder(13)]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="MultisignatureData", Order=13, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.wallet.SdtMultiSigSignatureData_RESTInterface> gxTpr_Multisignaturedata
 		{
@@ -744,7 +776,7 @@ namespace GeneXus.Programs.wallet
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtSDTAddressHistory sdt
 		{
 			get { 

@@ -19,6 +19,7 @@ using GeneXus.Http.Client;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet.registered {
    public class sendmessage : GXProcedure
    {
@@ -77,12 +78,10 @@ namespace GeneXus.Programs.wallet.registered {
          {
             GXt_char2 = AV9error;
             GXt_char3 = AV13body.gxTpr_Messageencryptedkey;
-            GXt_char4 = AV13body.gxTpr_Messageiv;
-            GXt_char5 = AV13body.gxTpr_Messageencrypted;
-            new GeneXus.Programs.distributedcrypto.encryptjsonto(context ).execute(  AV10sdt_message.ToJSonString(false, true),  StringUtil.Trim( AV21contact.gxTpr_Messagepubkey), out  GXt_char3, out  GXt_char4, out  GXt_char5, out  GXt_char2) ;
+            GXt_char4 = AV13body.gxTpr_Messageencrypted;
+            new GeneXus.Programs.distributedcryptographylib.encryptjsonto(context ).execute(  AV10sdt_message.ToJSonString(false, true),  StringUtil.Trim( AV21contact.gxTpr_Messagepubkey), out  GXt_char3, out  GXt_char4, out  GXt_char2) ;
             AV13body.gxTpr_Messageencryptedkey = GXt_char3;
-            AV13body.gxTpr_Messageiv = GXt_char4;
-            AV13body.gxTpr_Messageencrypted = GXt_char5;
+            AV13body.gxTpr_Messageencrypted = GXt_char4;
             AV9error = GXt_char2;
             AV13body.gxTpr_Username = StringUtil.Trim( AV21contact.gxTpr_Username);
             new desktopappservicesrestsendmesagepost(context ).execute(  AV14ServerUrlTemplatingVar,  AV13body,  StringUtil.Trim( AV17externalUser.gxTpr_Externaltoken), out  AV16sendMesage__postOutputOUT, out  AV11HttpMessage, out  AV12IsSuccess) ;
@@ -122,7 +121,6 @@ namespace GeneXus.Programs.wallet.registered {
          AV13body = new SdtsendMesage__postInput(context);
          GXt_char3 = "";
          GXt_char4 = "";
-         GXt_char5 = "";
          AV14ServerUrlTemplatingVar = new GXProperties();
          AV16sendMesage__postOutputOUT = new SdtsendMesage__postOutput(context);
          AV11HttpMessage = new GeneXus.Utils.SdtMessages_Message(context);
@@ -134,7 +132,6 @@ namespace GeneXus.Programs.wallet.registered {
       private string GXt_char2 ;
       private string GXt_char3 ;
       private string GXt_char4 ;
-      private string GXt_char5 ;
       private bool AV12IsSuccess ;
       private Guid AV19MessageId ;
       private GXProperties AV14ServerUrlTemplatingVar ;

@@ -19,6 +19,7 @@ using GeneXus.Http.Client;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet.registered {
    public class createcontact : GXProcedure
    {
@@ -79,12 +80,10 @@ namespace GeneXus.Programs.wallet.registered {
          {
             GXt_char2 = AV8error;
             GXt_char3 = AV13createContact__postInput.gxTpr_Encryptedkey;
-            GXt_char4 = AV13createContact__postInput.gxTpr_Iv;
-            GXt_char5 = AV13createContact__postInput.gxTpr_Contactencrypted;
-            new GeneXus.Programs.distributedcrypto.encryptjson(context ).execute(  AV26contact.ToJSonString(false, true),  "", out  GXt_char3, out  GXt_char4, out  GXt_char5, out  GXt_char2) ;
+            GXt_char4 = AV13createContact__postInput.gxTpr_Contactencrypted;
+            new GeneXus.Programs.distributedcryptographylib.encryptjson(context ).execute(  AV26contact.ToJSonString(false, true),  "", out  GXt_char3, out  GXt_char4, out  GXt_char2) ;
             AV13createContact__postInput.gxTpr_Encryptedkey = GXt_char3;
-            AV13createContact__postInput.gxTpr_Iv = GXt_char4;
-            AV13createContact__postInput.gxTpr_Contactencrypted = GXt_char5;
+            AV13createContact__postInput.gxTpr_Contactencrypted = GXt_char4;
             AV8error = GXt_char2;
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
             {
@@ -127,7 +126,6 @@ namespace GeneXus.Programs.wallet.registered {
          AV13createContact__postInput = new SdtcreateContact__postInput(context);
          GXt_char3 = "";
          GXt_char4 = "";
-         GXt_char5 = "";
          AV12properties = new GXProperties();
          AV24createContact__postOutput = new SdtcreateContact__postOutput(context);
          AV10HttpMessage = new GeneXus.Utils.SdtMessages_Message(context);
@@ -138,7 +136,6 @@ namespace GeneXus.Programs.wallet.registered {
       private string GXt_char2 ;
       private string GXt_char3 ;
       private string GXt_char4 ;
-      private string GXt_char5 ;
       private bool AV11IsSuccess ;
       private Guid AV25ContactId ;
       private GXProperties AV12properties ;

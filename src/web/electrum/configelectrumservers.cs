@@ -19,6 +19,7 @@ using GeneXus.Encryption;
 using GeneXus.Http.Client;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.electrum {
    public class configelectrumservers : GXWebComponent
    {
@@ -277,10 +278,10 @@ namespace GeneXus.Programs.electrum {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1218140), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 310420), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1218140), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1218140), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 310420), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -307,7 +308,7 @@ namespace GeneXus.Programs.electrum {
             context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
             context.WriteHtmlText( FormProcess+">") ;
             context.skipLines(1);
-            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("electrum.configelectrumservers.aspx") +"\">") ;
+            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("electrum.configelectrumservers") +"\">") ;
             GxWebStd.gx_hidden_field( context, "_EventName", "");
             GxWebStd.gx_hidden_field( context, "_EventGridId", "");
             GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -453,7 +454,7 @@ namespace GeneXus.Programs.electrum {
             RenderHtmlOpenForm( ) ;
             if ( StringUtil.Len( sPrefix) != 0 )
             {
-               GxWebStd.gx_hidden_field( context, sPrefix+"_CMPPGM", "electrum.configelectrumservers.aspx");
+               GxWebStd.gx_hidden_field( context, sPrefix+"_CMPPGM", "electrum.configelectrumservers");
             }
             GxWebStd.gx_msg_list( context, "", context.GX_msglist.DisplayMode, "", "", sPrefix, "false");
             /* Div Control */
@@ -578,7 +579,7 @@ namespace GeneXus.Programs.electrum {
             {
                if ( context.ExposeMetadata( ) )
                {
-                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
+                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_13-186676", 0) ;
                }
             }
             Form.Meta.addItem("description", "Config Electrum Servers", 0) ;
@@ -1358,7 +1359,7 @@ namespace GeneXus.Programs.electrum {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531412572674", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202572416215278", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1374,7 +1375,7 @@ namespace GeneXus.Programs.electrum {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("electrum/configelectrumservers.js", "?202531412572674", false, true);
+         context.AddJavascriptSource("electrum/configelectrumservers.js", "?202572416215278", false, true);
          /* End function include_jscripts */
       }
 
@@ -1749,12 +1750,12 @@ namespace GeneXus.Programs.electrum {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID1_nFirstRecordOnPage"},{"av":"GRID1_nEOF"},{"av":"AV5ConnectionParameters","fld":"vCONNECTIONPARAMETERS","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRID1","prop":"GridRC","grid":9},{"av":"sPrefix"}]}""");
-         setEventMetadata("'EDIT CONNECTION'","""{"handler":"E15222","iparms":[{"av":"AV5ConnectionParameters","fld":"vCONNECTIONPARAMETERS","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRID1_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRID1","prop":"GridRC","grid":9}]}""");
-         setEventMetadata("'SAVE CHANGES'","""{"handler":"E11222","iparms":[{"av":"AV5ConnectionParameters","fld":"vCONNECTIONPARAMETERS","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRID1_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRID1","prop":"GridRC","grid":9}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID1_nFirstRecordOnPage","type":"int"},{"av":"GRID1_nEOF","type":"int"},{"av":"AV5ConnectionParameters","fld":"vCONNECTIONPARAMETERS","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRID1","prop":"GridRC","grid":9,"type":"int"},{"av":"sPrefix","type":"char"}]}""");
+         setEventMetadata("'EDIT CONNECTION'","""{"handler":"E15222","iparms":[{"av":"AV5ConnectionParameters","fld":"vCONNECTIONPARAMETERS","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRID1_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRID1","prop":"GridRC","grid":9,"type":"int"}]}""");
+         setEventMetadata("'SAVE CHANGES'","""{"handler":"E11222","iparms":[{"av":"AV5ConnectionParameters","fld":"vCONNECTIONPARAMETERS","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRID1_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRID1","prop":"GridRC","grid":9,"type":"int"}]}""");
          setEventMetadata("'CANCEL'","""{"handler":"E12222","iparms":[]}""");
-         setEventMetadata("'RESTORE DEFAULTS'","""{"handler":"E13222","iparms":[{"av":"AV5ConnectionParameters","fld":"vCONNECTIONPARAMETERS","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRID1_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRID1","prop":"GridRC","grid":9},{"av":"GRID1_nEOF"},{"av":"sPrefix"}]""");
-         setEventMetadata("'RESTORE DEFAULTS'",""","oparms":[{"av":"AV5ConnectionParameters","fld":"vCONNECTIONPARAMETERS","grid":9},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRID1_nFirstRecordOnPage"},{"av":"nRC_GXsfl_9","ctrl":"GRID1","prop":"GridRC","grid":9}]}""");
+         setEventMetadata("'RESTORE DEFAULTS'","""{"handler":"E13222","iparms":[{"av":"AV5ConnectionParameters","fld":"vCONNECTIONPARAMETERS","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRID1_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRID1","prop":"GridRC","grid":9,"type":"int"},{"av":"GRID1_nEOF","type":"int"},{"av":"sPrefix","type":"char"}]""");
+         setEventMetadata("'RESTORE DEFAULTS'",""","oparms":[{"av":"AV5ConnectionParameters","fld":"vCONNECTIONPARAMETERS","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRID1_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRID1","prop":"GridRC","grid":9,"type":"int"}]}""");
          setEventMetadata("VALIDV_GXV2","""{"handler":"Validv_Gxv2","iparms":[]}""");
          setEventMetadata("VALIDV_GXV3","""{"handler":"Validv_Gxv3","iparms":[]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Gxv7","iparms":[]}""");

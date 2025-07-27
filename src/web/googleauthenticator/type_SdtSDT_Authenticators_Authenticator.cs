@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtSDT_Authenticators_Authenticator
 			Description: SDT_Authenticators
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.googleauthenticator
@@ -246,6 +247,8 @@ namespace GeneXus.Programs.googleauthenticator
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("issuer")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="issuer", Order=0)]
 		public  string gxTpr_Issuer
 		{
@@ -258,6 +261,8 @@ namespace GeneXus.Programs.googleauthenticator
 			}
 		}
 
+		[JsonPropertyName("accountTitle")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="accountTitle", Order=1)]
 		public  string gxTpr_Accounttitle
 		{
@@ -270,6 +275,8 @@ namespace GeneXus.Programs.googleauthenticator
 			}
 		}
 
+		[JsonPropertyName("based32Key")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="based32Key", Order=2)]
 		public  string gxTpr_Based32key
 		{
@@ -282,6 +289,8 @@ namespace GeneXus.Programs.googleauthenticator
 			}
 		}
 
+		[JsonPropertyName("createdDateTime")]
+		[JsonPropertyOrder(3)]
 		[DataMember(Name="createdDateTime", Order=3)]
 		public  string gxTpr_Createddatetime
 		{
@@ -296,7 +305,7 @@ namespace GeneXus.Programs.googleauthenticator
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtSDT_Authenticators_Authenticator sdt
 		{
 			get { 

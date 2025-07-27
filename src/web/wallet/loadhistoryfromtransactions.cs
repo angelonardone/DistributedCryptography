@@ -19,6 +19,7 @@ using GeneXus.Http.Client;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet {
    public class loadhistoryfromtransactions : GXProcedure
    {
@@ -73,6 +74,7 @@ namespace GeneXus.Programs.wallet {
          /* GeneXus formulas */
          /* Output device settings */
          AV12SDTAddressHistory = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
+         AV9historyWithBalance = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
          AV21GXV1 = 1;
          while ( AV21GXV1 <= AV20StoredTransactions.gxTpr_Transaction.Count )
          {
@@ -100,9 +102,10 @@ namespace GeneXus.Programs.wallet {
             {
                AV9historyWithBalance.Add(AV11oneAddressHistory, 0);
             }
+            new GeneXus.Programs.wallet.markinalladdressasused(context ).execute(  StringUtil.Trim( AV11oneAddressHistory.gxTpr_Receivedaddress)) ;
             AV21GXV1 = (int)(AV21GXV1+1);
          }
-         AV12SDTAddressHistory.Sort("[ReceivedDateTime]");
+         AV12SDTAddressHistory.Sort("[ReceivedDateTime],ReceivedAddress");
          AV9historyWithBalance.Sort("Balance");
          new GeneXus.Programs.wallet.sethistorywithbalance(context ).execute(  AV9historyWithBalance) ;
          cleanup();
@@ -121,9 +124,9 @@ namespace GeneXus.Programs.wallet {
       public override void initialize( )
       {
          AV12SDTAddressHistory = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
+         AV9historyWithBalance = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
          AV14TransactionItem = new GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem(context);
          AV11oneAddressHistory = new GeneXus.Programs.wallet.SdtSDTAddressHistory(context);
-         AV9historyWithBalance = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
          /* GeneXus formulas. */
       }
 
@@ -131,9 +134,9 @@ namespace GeneXus.Programs.wallet {
       private decimal AV13totalBalance ;
       private GeneXus.Programs.wallet.SdtStoredTransactions AV20StoredTransactions ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV12SDTAddressHistory ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV9historyWithBalance ;
       private GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem AV14TransactionItem ;
       private GeneXus.Programs.wallet.SdtSDTAddressHistory AV11oneAddressHistory ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV9historyWithBalance ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP1_SDTAddressHistory ;
       private decimal aP2_totalBalance ;
    }

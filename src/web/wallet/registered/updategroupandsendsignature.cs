@@ -19,6 +19,7 @@ using GeneXus.Http.Client;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 namespace GeneXus.Programs.wallet.registered {
    public class updategroupandsendsignature : GXProcedure
    {
@@ -228,7 +229,7 @@ namespace GeneXus.Programs.wallet.registered {
                AV30transactionFileName = StringUtil.Trim( AV17group_sdt.gxTpr_Groupid.ToString()) + ".gtrn";
                AV31TransactionId = "MULTISIGNATURE IN PROGRESS";
                GXt_char3 = AV14error;
-               new GeneXus.Programs.wallet.updatetransactionsaftercoinsent(context ).execute(  AV30transactionFileName,  AV31TransactionId, ref  AV32transactionsToSend, out  GXt_char3) ;
+               new GeneXus.Programs.wallet.updatetransactionsaftercoinsent(context ).execute(  AV30transactionFileName,  AV31TransactionId,  AV32transactionsToSend, out  GXt_char3) ;
                AV14error = GXt_char3;
                if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
                {

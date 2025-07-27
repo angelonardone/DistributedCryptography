@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtvIN
 			Description: vIN
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.sudodb
@@ -181,6 +182,8 @@ namespace GeneXus.Programs.sudodb
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("vINTransactionId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="vINTransactionId", Order=0)]
 		public  string gxTpr_Vintransactionid
 		{
@@ -193,6 +196,8 @@ namespace GeneXus.Programs.sudodb
 			}
 		}
 
+		[JsonPropertyName("vINn")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="vINn", Order=1)]
 		public  string gxTpr_Vinn
 		{
@@ -205,6 +210,8 @@ namespace GeneXus.Programs.sudodb
 			}
 		}
 
+		[JsonPropertyName("TransactionId")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="TransactionId", Order=2)]
 		public  string gxTpr_Transactionid
 		{
@@ -219,7 +226,7 @@ namespace GeneXus.Programs.sudodb
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtvIN sdt
 		{
 			get { 

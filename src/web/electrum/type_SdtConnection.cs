@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtConnection
 			Description: Connection
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 namespace GeneXus.Programs.electrum
@@ -155,6 +156,8 @@ namespace GeneXus.Programs.electrum
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("ConnectionId")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="ConnectionId", Order=0)]
 		public Guid gxTpr_Connectionid
 		{
@@ -167,6 +170,8 @@ namespace GeneXus.Programs.electrum
 			}
 		}
 
+		[JsonPropertyName("ConnectionType")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="ConnectionType", Order=1)]
 		public  string gxTpr_Connectiontype
 		{
@@ -181,7 +186,7 @@ namespace GeneXus.Programs.electrum
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtConnection sdt
 		{
 			get { 

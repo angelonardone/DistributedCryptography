@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtProgramNames_ProgramName
 			Description: ProgramNames
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.10.184260
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -18,6 +18,7 @@ using GeneXus.Http.Server;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 using GeneXus.Programs.general;
@@ -184,11 +185,13 @@ namespace GeneXus.Programs.general.ui
 		}
 
 		#region Rest Properties
+		[JsonPropertyName("Name")]
+		[JsonPropertyOrder(0)]
 		[DataMember(Name="Name", Order=0)]
 		public  string gxTpr_Name
 		{
 			get { 
-				return sdt.gxTpr_Name;
+				return StringUtil.RTrim( sdt.gxTpr_Name);
 
 			}
 			set { 
@@ -196,11 +199,13 @@ namespace GeneXus.Programs.general.ui
 			}
 		}
 
+		[JsonPropertyName("Description")]
+		[JsonPropertyOrder(1)]
 		[DataMember(Name="Description", Order=1)]
 		public  string gxTpr_Description
 		{
 			get { 
-				return sdt.gxTpr_Description;
+				return StringUtil.RTrim( sdt.gxTpr_Description);
 
 			}
 			set { 
@@ -208,11 +213,13 @@ namespace GeneXus.Programs.general.ui
 			}
 		}
 
+		[JsonPropertyName("Link")]
+		[JsonPropertyOrder(2)]
 		[DataMember(Name="Link", Order=2)]
 		public  string gxTpr_Link
 		{
 			get { 
-				return sdt.gxTpr_Link;
+				return StringUtil.RTrim( sdt.gxTpr_Link);
 
 			}
 			set { 
@@ -222,7 +229,7 @@ namespace GeneXus.Programs.general.ui
 
 
 		#endregion
-
+		[JsonIgnore]
 		public SdtProgramNames_ProgramName sdt
 		{
 			get { 
