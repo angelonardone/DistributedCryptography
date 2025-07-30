@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtgetGroup__getOutput
 			Description: getGroup__getOutput
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -221,7 +221,7 @@ namespace GeneXus.Programs
 			get { 
 				return (SdtgetGroup__getOutput)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

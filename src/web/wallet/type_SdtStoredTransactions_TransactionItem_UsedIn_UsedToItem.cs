@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtStoredTransactions_TransactionItem_UsedIn_UsedToItem
 			Description: UsedTo
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -240,7 +240,7 @@ namespace GeneXus.Programs.wallet
 			get { 
 				return (SdtStoredTransactions_TransactionItem_UsedIn_UsedToItem)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

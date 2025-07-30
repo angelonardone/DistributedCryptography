@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtupdateGroup__postOutput
 			Description: updateGroup__postOutput
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -192,7 +192,7 @@ namespace GeneXus.Programs
 			get { 
 				return (SdtupdateGroup__postOutput)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

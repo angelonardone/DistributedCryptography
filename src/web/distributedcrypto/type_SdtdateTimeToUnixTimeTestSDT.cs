@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtdateTimeToUnixTimeTestSDT
 			Description: dateTimeToUnixTimeTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -346,7 +346,7 @@ namespace GeneXus.Programs.distributedcrypto
 			get { 
 				return (SdtdateTimeToUnixTimeTestSDT)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

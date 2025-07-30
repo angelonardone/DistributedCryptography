@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtelectrumRespGetTransactionId_result_vinItem
 			Description: vin
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -400,7 +400,7 @@ namespace GeneXus.Programs.electrum
 			get { 
 				return (SdtelectrumRespGetTransactionId_result_vinItem)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

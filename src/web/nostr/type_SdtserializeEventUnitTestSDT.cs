@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtserializeEventUnitTestSDT
 			Description: serializeEventUnitTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -596,7 +596,7 @@ namespace GeneXus.Programs.nostr
 			get { 
 				return (SdtserializeEventUnitTestSDT)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

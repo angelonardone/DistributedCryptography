@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtFromPassphraseCode
 			Description: FromPassphraseCode
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -234,7 +234,7 @@ namespace GeneXus.Programs.nbitcoin
 			get { 
 				return (SdtFromPassphraseCode)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

@@ -1,7 +1,7 @@
 /*
 				   File: type_Sdttest_SLIP0132_in
 			Description: test_SLIP0132_in
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -348,7 +348,7 @@ namespace GeneXus.Programs.nbitcoin
 			get { 
 				return (Sdttest_SLIP0132_in)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

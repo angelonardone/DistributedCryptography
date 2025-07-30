@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtSDT_Json_Enc
 			Description: SDT_Json_Enc
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -195,7 +195,7 @@ namespace GeneXus.Programs.wallet
 			get { 
 				return (SdtSDT_Json_Enc)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

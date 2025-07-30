@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtvOUT
 			Description: vOUT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -317,7 +317,7 @@ namespace GeneXus.Programs.sudodb
 			get { 
 				return (SdtvOUT)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

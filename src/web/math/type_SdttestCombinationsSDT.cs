@@ -1,7 +1,7 @@
 /*
 				   File: type_SdttestCombinationsSDT
 			Description: testCombinationsSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -475,7 +475,7 @@ namespace GeneXus.Programs.math
 			get { 
 				return (SdttestCombinationsSDT)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

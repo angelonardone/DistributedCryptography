@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtSDT_Addressess_SDT_AddressessItem
 			Description: SDT_Addressess
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -269,7 +269,7 @@ namespace GeneXus.Programs.nbitcoin
 			get { 
 				return (SdtSDT_Addressess_SDT_AddressessItem)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

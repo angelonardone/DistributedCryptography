@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtMuSigSignatures
 			Description: MuSigSignatures
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -712,7 +712,7 @@ namespace GeneXus.Programs.wallet.registered
 			get { 
 				return (SdtMuSigSignatures)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

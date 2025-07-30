@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtderiveAddresssForDelegationMuSig1TestSDT
 			Description: deriveAddresssForDelegationMuSig1TestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -716,7 +716,7 @@ namespace GeneXus.Programs.wallet.registered
 			get { 
 				return (SdtderiveAddresssForDelegationMuSig1TestSDT)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

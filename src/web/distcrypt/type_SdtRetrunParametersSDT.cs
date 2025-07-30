@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtRetrunParametersSDT
 			Description: RetrunParametersSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -259,7 +259,7 @@ namespace GeneXus.Programs.distcrypt
 			get { 
 				return (SdtRetrunParametersSDT)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

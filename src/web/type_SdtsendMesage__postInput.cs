@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtsendMesage__postInput
 			Description: sendMesage__postInput
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -234,7 +234,7 @@ namespace GeneXus.Programs
 			get { 
 				return (SdtsendMesage__postInput)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

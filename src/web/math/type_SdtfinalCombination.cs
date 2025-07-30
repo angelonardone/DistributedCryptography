@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtfinalCombination
 			Description: finalCombination
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -201,7 +201,7 @@ namespace GeneXus.Programs.math
 			get { 
 				return (SdtfinalCombination)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

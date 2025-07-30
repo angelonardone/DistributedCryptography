@@ -1,7 +1,7 @@
 /*
 				   File: type_Sdtparse_serialized_extended_keyUnitTestSDT
 			Description: parse_serialized_extended_keyUnitTestSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -663,7 +663,7 @@ namespace GeneXus.Programs.nbitcoin
 			get { 
 				return (Sdtparse_serialized_extended_keyUnitTestSDT)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

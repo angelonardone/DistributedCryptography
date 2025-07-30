@@ -199,10 +199,10 @@ namespace GeneXus.Programs.distcrypt.sso {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 310420), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1759500), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 310420), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1759500), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1759500), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -323,7 +323,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_13-186676", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_13-186702", 0) ;
             }
          }
          Form.Meta.addItem("description", "Web Login", 0) ;
@@ -642,7 +642,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202572416224549", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202573011564423", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -660,7 +660,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("distcrypt/sso/weblogin.js", "?202572416224549", false, true);
+            context.AddJavascriptSource("distcrypt/sso/weblogin.js", "?202573011564423", false, true);
          }
          /* End function include_jscripts */
       }

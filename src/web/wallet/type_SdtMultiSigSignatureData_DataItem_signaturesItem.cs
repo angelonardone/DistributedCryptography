@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtMultiSigSignatureData_DataItem_signaturesItem
 			Description: signatures
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -195,7 +195,7 @@ namespace GeneXus.Programs.wallet
 			get { 
 				return (SdtMultiSigSignatureData_DataItem_signaturesItem)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

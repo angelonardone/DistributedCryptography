@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtSDT_receive_msg
 			Description: SDT_receive_msg
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -272,7 +272,7 @@ namespace GeneXus.Programs.nostr
 			get { 
 				return (SdtSDT_receive_msg)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

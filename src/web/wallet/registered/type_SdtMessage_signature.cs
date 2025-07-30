@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtMessage_signature
 			Description: Message_signature
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -313,7 +313,7 @@ namespace GeneXus.Programs.wallet.registered
 			get { 
 				return (SdtMessage_signature)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

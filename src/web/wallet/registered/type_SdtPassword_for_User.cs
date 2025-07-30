@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtPassword_for_User
 			Description: Password_for_User
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -315,7 +315,7 @@ namespace GeneXus.Programs.wallet.registered
 			get { 
 				return (SdtPassword_for_User)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

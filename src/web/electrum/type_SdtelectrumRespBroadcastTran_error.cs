@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtelectrumRespBroadcastTran_error
 			Description: error
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -192,7 +192,7 @@ namespace GeneXus.Programs.electrum
 			get { 
 				return (SdtelectrumRespBroadcastTran_error)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

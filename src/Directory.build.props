@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <GenStdVersion>[1.34.10]</GenStdVersion>
+    <GenStdVersion>[1.34.11]</GenStdVersion>
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 </Project>

@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtDesktopApp_services_SDT_Messages_Message_MessageItem
 			Description: DesktopApp_services_SDT_Messages_Message_MessageItem
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -231,7 +231,7 @@ namespace GeneXus.Programs
 			get { 
 				return (SdtDesktopApp_services_SDT_Messages_Message_MessageItem)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

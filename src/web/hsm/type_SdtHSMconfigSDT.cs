@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtHSMconfigSDT
 			Description: HSMconfigSDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -154,7 +154,7 @@ namespace GeneXus.Programs.hsm
 			get { 
 				return (SdtHSMconfigSDT)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

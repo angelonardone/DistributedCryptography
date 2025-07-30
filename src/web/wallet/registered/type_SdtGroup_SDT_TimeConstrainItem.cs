@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtGroup_SDT_TimeConstrainItem
 			Description: TimeConstrain
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186676
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -333,7 +333,7 @@ namespace GeneXus.Programs.wallet.registered
 			get { 
 				return (SdtGroup_SDT_TimeConstrainItem)Sdt;
 			}
-			set { 
+			set {
 				Sdt = value;
 			}
 		}

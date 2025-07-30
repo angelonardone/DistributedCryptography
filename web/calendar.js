@@ -1,1 +1,1655 @@
-if(Date._MD=[31,28,31,30,31,30,31,31,30,31,30,31],Date.SECOND=1e3,Date.MINUTE=60*Date.SECOND,Date.HOUR=60*Date.MINUTE,Date.DAY=24*Date.HOUR,Date.WEEK=7*Date.DAY,Date.prototype.getMonthDays=function(n){var t=this.getFullYear();return typeof n=="undefined"&&(n=this.getMonth()),0==t%4&&(0!=t%100||0==t%400)&&n==1?29:Date._MD[n]},Date.prototype.getDayOfYear=function(){var n=new Date(this.getFullYear(),this.getMonth(),this.getDate(),0,0,0),t=new Date(this.getFullYear(),0,1,0,0,0),i=n-t;return Math.floor(i/Date.DAY)},Date.prototype.getWeekNumber=function(){var i=new Date(this.getFullYear(),this.getMonth(),this.getDate(),0,0,0),t=new Date(this.getFullYear(),0,1,0,0,0),r=i-t,n=t.getDay();return n==0&&(n=7),n>4&&(n-=4)||(n+=3),Math.round((r/Date.DAY+n)/7)},Date.prototype.equalsTo=function(n){return this.getFullYear()==n.getFullYear()&&this.getMonth()==n.getMonth()&&this.getDate()==n.getDate()&&this.getHours()==n.getHours()&&this.getMinutes()==n.getMinutes()},Date.prototype.print=function(n){var u=this.getMonth(),e=this.getDate(),a=this.getFullYear(),v=this.getWeekNumber(),o=this.getDay(),t={},i=this.getHours(),y=i>=12,r=y?i-12:i,f=this.getDayOfYear(),s,h,c,l,p;if(r==0&&(r=12),s=this.getMinutes(),h=this.getSeconds(),t["%a"]=Calendar._SDN[o],t["%A"]=Calendar._DN[o],t["%b"]=Calendar._SMN[u],t["%B"]=Calendar._MN[u],t["%C"]=1+Math.floor(a/100),t["%d"]=e<10?"0"+e:e,t["%e"]=e,t["%H"]=i<10?"0"+i:i,t["%I"]=r<10?"0"+r:r,t["%j"]=f<100?f<10?"00"+f:"0"+f:f,t["%k"]=i,t["%l"]=r,t["%m"]=u<9?"0"+(1+u):1+u,t["%M"]=s<10?"0"+s:s,t["%n"]="\n",t["%p"]=y?"PM":"AM",t["%P"]=y?"pm":"am",t["%s"]=Math.floor(this.getTime()/1e3),t["%S"]=h<10?"0"+h:h,t["%t"]="\t",t["%U"]=t["%W"]=t["%V"]=v<10?"0"+v:v,t["%u"]=o+1,t["%w"]=o,t["%y"]=(""+a).substr(2,2),t["%Y"]=a,t["%%"]="%",c=Date._msh_formatRegexp,typeof c=="undefined"){l="";for(p in t)l+=l?"|"+p:p;Date._msh_formatRegexp=c=new RegExp("("+l+")","g")}return n.replace(c,function(n,i){return t[i]})},!window.Calendar){Calendar=function(n,t,i,r){this.activeDiv=null;this.currentDateEl=null;this.getDateStatus=null;this.timeout=null;this.onSelected=i||null;this.onClose=r||null;this.dragging=!1;this.hidden=!1;this.minYear=1970;this.maxYear=2050;this.dateFormat=Calendar._TT.DEF_DATE_FORMAT;this.ttDateFormat=Calendar._TT.TT_DATE_FORMAT;this.isPopup=!0;this.weekNumbers=!0;this.mondayFirst=n;this.dateStr=t;this.ar_days=null;this.showsTime=!1;this.time24=!0;this.table=null;this.element=null;this.tbody=null;this.firstdayname=null;this.monthsCombo=null;this.yearsCombo=null;this.hilitedMonth=null;this.activeMonth=null;this.hilitedYear=null;this.activeYear=null;this.dateClicked=!1};gx.evt.on_ready(this,function(){var t,n;if(typeof Calendar._SDN=="undefined"){for(typeof Calendar._SDN_len=="undefined"&&(Calendar._SDN_len=3),t=[],n=8;n>0;)t[--n]=Calendar._DN[n].substr(0,Calendar._SDN_len);for(Calendar._SDN=t,typeof Calendar._SMN_len=="undefined"&&(Calendar._SMN_len=3),t=[],n=12;n>0;)t[--n]=Calendar._MN[n].substr(0,Calendar._SMN_len);Calendar._SMN=t}});Calendar._C=null;Calendar.is_ie=/msie|trident/i.test(navigator.userAgent)&&!/opera/i.test(navigator.userAgent);Calendar.is_opera=/opera/i.test(navigator.userAgent);Calendar.is_khtml=/Konqueror|Safari|KHTML/i.test(navigator.userAgent);Calendar.getAbsolutePos=function(n){return gx.dom.position(n)};Calendar.isRelated=function(n,t){var i=t.relatedTarget,r;for(i||(r=t.type,r=="mouseover"?i=t.fromElement:r=="mouseout"&&(i=t.toElement));i;){if(i==n)return!0;i=i.parentNode}return!1};Calendar.removeClass=function(n,t){var i,r,u;if(n&&n.className){for(i=n.className.split(" "),r=[],u=i.length;u>0;)i[--u]!=t&&(r[r.length]=i[u]);n.className=r.join(" ")}};Calendar.addClass=function(n,t){Calendar.removeClass(n,t);n.className+=" "+t};Calendar.getElement=function(n){return Calendar.is_ie?window.event.srcElement:n.currentTarget};Calendar.getTargetElement=function(n){return Calendar.is_ie?window.event.srcElement:n.explicitOriginalTarget?n.explicitOriginalTarget:n.target};Calendar.setFocus=function(n){try{typeof n.onfocus=="function"&&gx.fn.setFocus(n)}catch(t){gx.dbg.logEx(t,"calendar.js","Calendar.setFocus")}};Calendar.stopEvent=function(n){return n||(n=window.event),Calendar.is_ie?(n.cancelBubble=!0,n.returnValue=!1):(n.preventDefault(),n.stopPropagation()),!1};Calendar.addEvent=function(n,t,i){n.attachEvent?n.attachEvent("on"+t,i):n.addEventListener?n.addEventListener(t,i,!0):n["on"+t]=i};Calendar.removeEvent=function(n,t,i){n.detachEvent?n.detachEvent("on"+t,i):n.removeEventListener?n.removeEventListener(t,i,!0):n["on"+t]=null};Calendar.createElement=function(n,t){var i=null;return i=document.createElementNS?document.createElementNS("http://www.w3.org/1999/xhtml",n):document.createElement(n),typeof t!="undefined"&&t.appendChild(i),i};Calendar._add_evs=function(el){with(Calendar)addEvent(el,"mouseover",dayMouseOver),addEvent(el,"mousedown",dayMouseDown),addEvent(el,"mouseout",dayMouseOut),gx.util.browser.isIE()&&gx.util.browser.ieVersion()<=8&&(addEvent(el,"dblclick",dayMouseDblClick),el.setAttribute("unselectable",!0))};Calendar.findMonth=function(n){return typeof n.month!="undefined"?n:typeof n.parentNode.month!="undefined"?n.parentNode:null};Calendar.findYear=function(n){return typeof n.year!="undefined"?n:typeof n.parentNode.year!="undefined"?n.parentNode:null};Calendar.showMonthsCombo=function(){var n=Calendar._C,r,i;if(!n)return!1;var n=n,t=n.activeDiv,u=n.monthsCombo;n.hilitedMonth&&Calendar.removeClass(n.hilitedMonth,"hilite");n.activeMonth&&Calendar.removeClass(n.activeMonth,"active");r=n.monthsCombo.getElementsByTagName("div")[n.date.getMonth()];Calendar.addClass(r,"active");n.activeMonth=r;i=u.style;i.display="block";i.left=t.navtype<0?t.offsetLeft+"px":t.offsetLeft+t.offsetWidth-u.offsetWidth+"px";i.top=t.offsetTop+t.offsetHeight+"px"};Calendar.showYearsCombo=function(n){var t=Calendar._C,o,f;if(!t)return!1;var t=t,i=t.activeDiv,e=t.yearsCombo;t.hilitedYear&&Calendar.removeClass(t.hilitedYear,"hilite");t.activeYear&&Calendar.removeClass(t.activeYear,"active");t.activeYear=null;var u=t.date.getFullYear()+(n?1:-1),r=e.firstChild,s=!1;for(o=12;o>0;--o)u>=t.minYear&&u<=t.maxYear?(r.firstChild.data=u,r.year=u,r.style.display="block",s=!0):r.style.display="none",r=r.nextSibling,u+=n?2:-2;s&&(f=e.style,f.display="block",f.left=i.navtype<0?i.offsetLeft+"px":i.offsetLeft+i.offsetWidth-e.offsetWidth+"px",f.top=i.offsetTop+i.offsetHeight+"px")};Calendar.tableMouseUp=function(ev){var cal=Calendar._C,t,i,r,n,u;if(!cal||(cal.timeout&&clearTimeout(cal.timeout),t=cal.activeDiv,!t))return!1;i=Calendar.getTargetElement(ev);ev||(ev=window.event);Calendar.removeClass(t,"active");(i==t||i.parentNode==t)&&Calendar.cellClick(t,ev);r=Calendar.findMonth(i);n=null;r?(n=new Date(cal.date),r.month!=n.getMonth()&&(n.setMonth(r.month),cal.setDate(n),cal.dateClicked=!1,cal.callHandler())):(u=Calendar.findYear(i),u&&(n=new Date(cal.date),u.year!=n.getFullYear()&&(n.setFullYear(u.year),cal.setDate(n),cal.dateClicked=!1,cal.callHandler())));with(Calendar)return removeEvent(document,"mouseup",tableMouseUp),removeEvent(document,"mouseover",tableMouseOver),removeEvent(document,"mousemove",tableMouseOver),cal._hideCombos(),_C=null,stopEvent(ev)};Calendar.tableMouseOver=function(n){var t=Calendar._C,i,f,r,v,o,s;if(t){if(i=t.activeDiv,f=Calendar.getTargetElement(n),f==i||f.parentNode==i?(Calendar.addClass(i,"hilite active"),Calendar.addClass(i.parentNode,"rowhilite")):((typeof i.navtype=="undefined"||i.navtype!=50&&(i.navtype==0||Math.abs(i.navtype)>2))&&Calendar.removeClass(i,"active"),Calendar.removeClass(i,"hilite"),Calendar.removeClass(i.parentNode,"rowhilite")),n||(n=window.event),i.navtype==50&&f!=i){var h=Calendar.getAbsolutePos(i),l=i.offsetWidth,c=n.clientX,e,a=!0;c>h.x+l?(e=c-h.x-l,a=!1):e=h.x-c;e<0&&(e=0);var u=i._range,y=i._current,p=Math.floor(e/10)%u.length;for(r=u.length;--r>=0;)if(u[r]==y)break;while(p-->0)a?--r in u||(r=u.length-1):++r in u||(r=0);v=u[r];i.firstChild.data=v;t.onUpdateTime()}return o=Calendar.findMonth(f),o?o.month!=t.date.getMonth()?(t.hilitedMonth&&Calendar.removeClass(t.hilitedMonth,"hilite"),Calendar.addClass(o,"hilite"),t.hilitedMonth=o):t.hilitedMonth&&Calendar.removeClass(t.hilitedMonth,"hilite"):(t.hilitedMonth&&Calendar.removeClass(t.hilitedMonth,"hilite"),s=Calendar.findYear(f),s?s.year!=t.date.getFullYear()?(t.hilitedYear&&Calendar.removeClass(t.hilitedYear,"hilite"),Calendar.addClass(s,"hilite"),t.hilitedYear=s):t.hilitedYear&&Calendar.removeClass(t.hilitedYear,"hilite"):t.hilitedYear&&Calendar.removeClass(t.hilitedYear,"hilite")),Calendar.stopEvent(n)}};Calendar.tableMouseDown=function(n){if(Calendar.getTargetElement(n)==Calendar.getElement(n))return Calendar.stopEvent(n)};Calendar.calDragIt=function(n){var t=Calendar._C,i,r,u;return(t&&t.dragging)?(Calendar.is_ie?(r=window.event.clientY+document.body.scrollTop,i=window.event.clientX+document.body.scrollLeft):(i=n.pageX,r=n.pageY),t.hideShowCovered(),u=t.element.style,u.left=i-t.xOffs+"px",u.top=r-t.yOffs+"px",Calendar.stopEvent(n)):!1};Calendar.calDragEnd=function(ev){var n=Calendar._C;if(!n)return!1;n.dragging=!1;with(Calendar)removeEvent(document,"mousemove",calDragIt),removeEvent(document,"mouseover",stopEvent),removeEvent(document,"mouseup",calDragEnd),tableMouseUp(ev);n.hideShowCovered()};Calendar.dayMouseDown=function(n){var el=Calendar.getElement(n),t;if(el.disabled)return!1;if(t=el.calendar,this.isPopup||Calendar.setFocus(t.params.inputField),t.activeDiv=el,Calendar._C=t,el.navtype!=300)with(Calendar)el.navtype==50&&(el._current=el.firstChild.data),addClass(el,"hilite active"),addEvent(document,"mouseover",tableMouseOver),addEvent(document,"mousemove",tableMouseOver),addEvent(document,"mouseup",tableMouseUp);else t.isPopup&&t._dragStart(n);return el.navtype==-1||el.navtype==1?(t.timeout&&clearTimeout(t.timeout),t.timeout=setTimeout("Calendar.showMonthsCombo()",250)):el.navtype==-2||el.navtype==2?(t.timeout&&clearTimeout(t.timeout),t.timeout=setTimeout(el.navtype>0?"Calendar.showYearsCombo(true)":"Calendar.showYearsCombo(false)",250)):t.timeout=null,Calendar.stopEvent(n)};Calendar.dayMouseDblClick=function(n){if(Calendar.cellClick(Calendar.getElement(n),n||window.event),Calendar.is_ie){var t=window.getSelection?window.getSelection():document.selection;t&&(t.removeAllRanges?t.removeAllRanges():t.empty&&t.empty())}};Calendar.dayMouseOver=function(n){var el=Calendar.getElement(n),date;if(Calendar.isRelated(el,n)||Calendar._C||el.disabled)return!1;if(el.ttip){if(el.ttip.substr(0,1)=="_"){date=null;with(el.calendar.date)date=new Date(getFullYear(),getMonth(),el.caldate,12,0,0,0);el.ttip=date.print(el.calendar.ttDateFormat)+el.ttip.substr(1)}el.calendar.tooltips.firstChild.data=el.ttip}return el.navtype!=300&&(Calendar.addClass(el,"hilite"),el.caldate&&Calendar.addClass(el.parentNode,"rowhilite")),Calendar.stopEvent(n)};Calendar.dayMouseOut=function(ev){with(Calendar){var el=getElement(ev);return isRelated(el,ev)||_C||el.disabled?!1:(removeClass(el,"hilite"),el.caldate&&removeClass(el.parentNode,"rowhilite"),el.calendar.tooltips.firstChild.data=_TT.SEL_DATE,stopEvent(ev))}};Calendar.cellClick=function(n,t){var i=n.calendar,l=!1,h=!1,r=null,a=!1,u,o,s,e,v,f,y;if(typeof n.navtype=="undefined")Calendar.removeClass(i.currentDateEl,"selected"),Calendar.addClass(n,"selected"),l=i.currentDateEl==n,l||(i.currentDateEl=n),i.date.setDate(n.caldate),i.showsTime||i.date.getDate()==n.caldate||(i.date.setHours(12),i.date.setDate(n.caldate)),r=i.date,h=!0,i.dateClicked=!0;else{if(n.navtype==200){Calendar.removeClass(n,"hilite");i.callCloseHandler();return}r=n.navtype==0||n.navtype==1e3?new Date:new Date(i.date);i.dateClicked=!1;u=r.getFullYear();o=r.getMonth();function c(n){var i=r.getDate(),t=r.getMonthDays(n);i>t&&r.setDate(t);r.setMonth(n)}switch(n.navtype){case 400:Calendar.removeClass(n,"hilite");s=Calendar._TT.ABOUT;typeof s!="undefined"?s+=i.showsTime?Calendar._TT.ABOUT_TIME:"":s='Help and about box text is not translated into this language.\nIf you know this language and you feel generous please update\nthe corresponding file in "lang" subdir to match calendar-en.js\nand send it back to <mishoo@infoiasi.ro> to get it into the distribution  ;-)\n\nThank you!\nhttp://dynarch.com/mishoo/calendar.epl\n';alert(s);return;case-2:u>i.minYear&&r.setFullYear(u-1);break;case-1:o>0?c(o-1):u-->i.minYear&&(r.setFullYear(u),c(11));break;case 1:o<11?c(o+1):u<i.maxYear&&(r.setFullYear(u+1),c(0));break;case 2:u<i.maxYear&&r.setFullYear(u+1);break;case 100:i.setMondayFirst(!i.mondayFirst);return;case 50:for(e=n._range,v=n.firstChild.data,f=e.length;--f>=0;)if(e[f]==v)break;t&&t.shiftKey?--f in e||(f=e.length-1):++f in e||(f=0);y=e[f];n.firstChild.data=y;i.onUpdateTime();return;case 0:if(typeof i.getDateStatus=="function"&&i.getDateStatus(r,r.getFullYear(),r.getMonth(),r.getDate()))return!1;break;case 1e3:a=!0;h=!0;i.dateClicked=!0}r.equalsTo(i.date)||(i.setDate(r,a),h=!0)}i.dateIsEmpty=a;h&&i.callHandler();l&&(Calendar.removeClass(n,"hilite"),i.callCloseHandler())};Calendar.prototype.create=function(n){var a=null,f,r,h,u,c,y,p,s,l;n?(a=n,this.isPopup=this.params.flat!=null?!1:!0):(a=document.getElementsByTagName("body")[0],this.isPopup=!0);this.date=this.dateStr?new Date(this.dateStr):new Date;this.dateIsEmpty=!this.dateStr;f=Calendar.createElement("table");this.table=f;f.cellSpacing=0;f.cellPadding=0;f.calendar=this;Calendar.addEvent(f,"mousedown",Calendar.tableMouseDown);r=Calendar.createElement("div");this.element=r;r.className="calendar Calendar";this.isPopup&&(r.style.position="absolute",r.style.zIndex="6",r.style.display="none");r.appendChild(f);var v=Calendar.createElement("thead",f),t=null,i=null,o=this,e=function(n,r,u){return t=Calendar.createElement("td",i),t.colSpan=r,t.className="calendarbutton",u!=0&&Math.abs(u)<=2&&(t.className+=" calendar-nav"),Calendar._add_evs(t),t.calendar=o,t.navtype=u,n.substr(0,1)!="&"?t.appendChild(document.createTextNode(n)):t.innerHTML=n,t};for(i=Calendar.createElement("tr",v),h=6,this.isPopup&&--h,this.weekNumbers&&++h,e("?",1,400).ttip=Calendar._TT.INFO,this.title=e("",h,300),this.title.className="calendartitle",this.isPopup&&(this.title.ttip=Calendar._TT.DRAG_TO_MOVE,this.title.style.cursor="move",e("&#x00d7;",1,200).ttip=Calendar._TT.CLOSE),i=Calendar.createElement("tr",v),i.className="headrow",this._nav_py=e("&#x00ab;",1,-2),this._nav_py.ttip=Calendar._TT.PREV_YEAR,this._nav_pm=e("&#x2039;",1,-1),this._nav_pm.ttip=Calendar._TT.PREV_MONTH,this._nav_now=e(Calendar._TT.TODAY,this.weekNumbers?4:3,0),this._nav_now.ttip=Calendar._TT.GO_TODAY,this._nav_nm=e("&#x203a;",1,1),this._nav_nm.ttip=Calendar._TT.NEXT_MONTH,this._nav_ny=e("&#x00bb;",1,2),this._nav_ny.ttip=Calendar._TT.NEXT_YEAR,i=Calendar.createElement("tr",v),i.className="daynames",this.weekNumbers&&(t=Calendar.createElement("td",i),t.className="name wn",t.appendChild(document.createTextNode(Calendar._TT.WK))),u=7;u>0;--u)t=Calendar.createElement("td",i),t.appendChild(document.createTextNode("")),u||(t.navtype=100,t.calendar=this,Calendar._add_evs(t));for(this.firstdayname=this.weekNumbers?i.firstChild.nextSibling:i.firstChild,this._displayWeekdays(),c=Calendar.createElement("tbody",f),this.tbody=c,u=6;u>0;--u)for(i=Calendar.createElement("tr",c),this.weekNumbers&&(t=Calendar.createElement("td",i),t.appendChild(document.createTextNode(""))),y=7;y>0;--y)t=Calendar.createElement("td",i),t.appendChild(document.createTextNode("")),t.calendar=this,Calendar._add_evs(t);for(this.showsTime?(i=Calendar.createElement("tr",c),i.className="time",t=Calendar.createElement("td",i),t.className="time",t.colSpan=2,t.innerHTML="&nbsp;",t=Calendar.createElement("td",i),t.className="time",t.colSpan=this.weekNumbers?4:3,function(){function u(n,i,r,u){var f=Calendar.createElement("span",t),e,s;if(f.className=n,f.appendChild(document.createTextNode(i)),f.calendar=o,f.ttip=Calendar._TT.TIME_PART,f.navtype=50,f._range=[],typeof r!="number")f._range=r;else for(e=r;e<=u;++e)s=e<10&&u>=10?"0"+e:""+e,f._range[f._range.length]=s;return Calendar._add_evs(f),f}var f=o.date.getHours(),l=o.date.getMinutes(),n=!o.time24,c=f>12,e,s,h,r;n&&c&&(f-=12);e=u("hour",f,n?1:0,n?12:23);s=Calendar.createElement("span",t);s.appendChild(document.createTextNode(":"));s.className="colon";h=u("minute",l,0,59);r=null;t=Calendar.createElement("td",i);t.className="time";t.colSpan=2;n?r=u("ampm",c?"pm":"am",["am","pm"]):t.innerHTML="&nbsp;";o.onSetTime=function(){var t=this.date.getHours(),i=this.date.getMinutes(),u=t>12;u&&n&&(t-=12);e.firstChild.data=t<10?"0"+t:t;h.firstChild.data=i<10?"0"+i:i;n&&(r.firstChild.data=u?"pm":"am")};o.onUpdateTime=function(){var t=this.date,i=parseInt(e.firstChild.data,10);n&&(/pm/i.test(r.firstChild.data)&&i<12?i+=12:/am/i.test(r.firstChild.data)&&i==12&&(i=0));var u=t.getDate(),f=t.getMonth(),o=t.getFullYear();t.setHours(i);t.setMinutes(parseInt(h.firstChild.data,10));t.setFullYear(o);t.setMonth(f);t.setDate(u);this.dateClicked=!1;this.callHandler()}}()):this.onSetTime=this.onUpdateTime=function(){},p=Calendar.createElement("tfoot",f),this.isPopup||(i=Calendar.createElement("tr",p),i.className="clearrow",t=e(Calendar._TT.CLEAR_DATE,this.weekNumbers?8:7,1e3),i.appendChild(t)),i=Calendar.createElement("tr",p),i.className="footrow",t=e(Calendar._TT.SEL_DATE,this.weekNumbers?8:7,300),t.className="ttip",this.isPopup&&(t.ttip=Calendar._TT.DRAG_TO_MOVE,t.style.cursor="move"),this.tooltips=t,r=Calendar.createElement("div",this.element),this.monthsCombo=r,r.className="calendarcombo",u=0;u<Calendar._MN.length;++u)s=Calendar.createElement("div"),s.className=Calendar.is_ie?"label-IEfix":"label",s.month=u,s.appendChild(document.createTextNode(Calendar._SMN[u])),r.appendChild(s);for(r=Calendar.createElement("div",this.element),this.yearsCombo=r,r.className="calendarcombo",u=12;u>0;--u)l=Calendar.createElement("div"),l.className=Calendar.is_ie?"label-IEfix":"label",l.appendChild(document.createTextNode("")),r.appendChild(l);this._init(this.mondayFirst,this.date);a.appendChild(this.element)};Calendar._keyEvent=function(n){var t,u;if(!window.calendar)return!1;if(Calendar.is_ie&&(n=window.event),t=window.calendar,u=Calendar.is_ie||n.type=="keydown",n.ctrlKey)switch(n.keyCode){case 37:u&&Calendar.cellClick(t._nav_pm);break;case 38:u&&Calendar.cellClick(t._nav_py);break;case 39:u&&Calendar.cellClick(t._nav_nm);break;case 40:u&&Calendar.cellClick(t._nav_ny);break;default:return!1}else switch(n.keyCode){case 9:t.hide();return;case 32:Calendar.cellClick(t._nav_now);break;case 27:u&&t.hide();break;case 37:case 38:case 39:case 40:if(u){var i=t.date.getDate()-1,f=t.currentDateEl,r=null,e=n.keyCode==37||n.keyCode==38;switch(n.keyCode){case 37:--i>=0&&(r=t.ar_days[i]);break;case 38:i-=7;i>=0&&(r=t.ar_days[i]);break;case 39:++i<t.ar_days.length&&(r=t.ar_days[i]);break;case 40:i+=7;i<t.ar_days.length&&(r=t.ar_days[i])}r||(e?Calendar.cellClick(t._nav_pm):Calendar.cellClick(t._nav_nm),i=e?t.date.getMonthDays():1,f=t.currentDateEl,r=t.ar_days[i-1]);Calendar.removeClass(f,"selected");Calendar.addClass(r,"selected");t.date.setDate(r.caldate);t.callHandler();t.currentDateEl=r}break;case 13:u&&(t.callHandler(),t.hide());break;default:return!1}return Calendar.stopEvent(n)};Calendar.prototype._init=function(n,t,i){var a=new Date,u=t.getFullYear(),h,r,c,l;u<this.minYear?(u=this.minYear,t.setFullYear(u)):u>this.maxYear&&(u=this.maxYear,t.setFullYear(u));this.mondayFirst=n;this.date=new Date(t);this.dateIsEmpty=!!i;var s=t.getMonth(),w=t.getDate(),y=t.getMonthDays();t.setDate(1);var e=t.getDay(),nt=n?1:0,b=n?5:6,k=n?6:0;n&&(e=e>0?e-1:6);var f=1,o=this.tbody.firstChild,tt=Calendar._SMN[s],d=a.getFullYear()==u&&a.getMonth()==s,g=a.getDate(),p=t.getWeekNumber(),v=[];for(h=0;h<6;++h){if(f>y){o.className="emptyrow";o=o.nextSibling;continue}for(r=o.firstChild,this.weekNumbers&&(r.className="day wn",r.firstChild.data=p,r=r.nextSibling),++p,o.className="daysrow",c=0;c<7;++c){if(r.className="day",!h&&c<e||f>y){r.className="emptycell";try{r.innerHTML="&nbsp;"}catch(it){}r.disabled=!0;r=r.nextSibling;continue}r.disabled=!1;r.firstChild.data=f;typeof this.getDateStatus=="function"&&(t.setDate(f),l=this.getDateStatus(t,u,s,f),l===!0?(r.className+=" disabled",r.disabled=!0):(/disabled/i.test(l)&&(r.disabled=!0),r.className+=" "+l));r.disabled||this.dateIsEmpty||(v[v.length]=r,r.caldate=f,r.ttip="_",f==w&&(r.className+=" selected",this.currentDateEl=r),d&&f==g&&(r.className+=" today",r.ttip+=Calendar._TT.PART_TODAY),(e==b||e==k)&&(r.className+=" weekend"));++f;++e^7||(e=0);r=r.nextSibling}o=o.nextSibling}this.ar_days=v;this.title.firstChild.data=Calendar._MN[s]+", "+u+(Calendar._YN||"");this.onSetTime()};Calendar.prototype.setDate=function(n,t){n.equalsTo(this.date)||this._init(this.mondayFirst,n,t)};Calendar.prototype.refresh=function(){this._init(this.mondayFirst,this.date)};Calendar.prototype.setMondayFirst=function(n){this._init(n,this.date);this._displayWeekdays()};Calendar.prototype.setDateStatusHandler=Calendar.prototype.setDisabledHandler=function(n){this.getDateStatus=n};Calendar.prototype.setRange=function(n,t){this.minYear=n;this.maxYear=t};Calendar.prototype.callHandler=function(){if(this.onSelected){this.onSelected(this,this.dateIsEmpty?gx.date.nullDate():this.date,this.params.inputField);gx.fn.setFocus(this.params.inputField)}};Calendar.prototype.callCloseHandler=function(){if(this.onClose)this.onClose(this);this.hideShowCovered()};Calendar.prototype.destroy=function(){var n=this.element.parentNode;n.removeChild(this.element);Calendar._C=null;window.calendar=null};Calendar.prototype.reparent=function(n){var t=this.element;t.parentNode.removeChild(t);n.appendChild(t)};Calendar._checkCalendar=function(n){if(!window.calendar)return!1;if(Calendar.is_ie==!0){if(gx.evt.mouse.update(n),!gx.fx.isUnderMouse(calendar.element))return window.calendar.callCloseHandler(),Calendar.stopEvent(n)}else{for(var t=Calendar.getTargetElement(n);t!=null&&t!=calendar.element;t=t.parentNode);if(t==null)return window.calendar.callCloseHandler(),Calendar.stopEvent(n)}};Calendar.prototype.show=function(){var e=this.params.inputField,n,t,i,r,u,f;if(e.disabled)return!1;for(Calendar.setFocus(e),n=this.table.getElementsByTagName("tr"),t=n.length;t>0;)for(i=n[--t],Calendar.removeClass(i,"rowhilite"),r=i.getElementsByTagName("td"),u=r.length;u>0;)f=r[--u],Calendar.removeClass(f,"hilite"),Calendar.removeClass(f,"active");this.element.style.display="block";this.hidden=!1;this.isPopup&&(window.calendar=this,Calendar.addEvent(document,"keydown",Calendar._keyEvent),Calendar.addEvent(document,"keypress",Calendar._keyEvent),Calendar.addEvent(document,"mousedown",Calendar._checkCalendar));this.hideShowCovered()};Calendar.prototype.hide=function(){this.isPopup&&(Calendar.removeEvent(document,"keydown",Calendar._keyEvent),Calendar.removeEvent(document,"keypress",Calendar._keyEvent),Calendar.removeEvent(document,"mousedown",Calendar._checkCalendar));this.element.style.display="none";this.hidden=!0;this.hideShowCovered()};Calendar.prototype.showAt=function(n,t){var i=this.element.style;this.params.displayRight?i.right=n+"px":i.left=n+"px";i.top=t+"px";this.show()};Calendar.prototype.showAtElement=function(n,t){var r=this,i=gx.dom.position(n),e;if(!t||typeof t!="string")return this.showAt(i.x,i.y+gx.dom.dimensions(n).h),$(r.element).position({"of":n,my:"left top",at:"left bottom",collision:"flip"}),!0;var u=gx.dom.dimensions(r.element).w,f=gx.dom.dimensions(r.element).h,s=t.substr(0,1),o="l";t.length>1&&(o=t.substr(1,1));switch(s){case"T":i.y-=f;break;case"B":i.y+=n.offsetHeight;break;case"C":i.y+=(n.offsetHeight-f)/2;break;case"t":i.y+=n.offsetHeight-f}switch(o){case"L":i.x-=u;break;case"R":i.x+=n.offsetWidth;break;case"C":i.x+=(n.offsetWidth-u)/2;break;case"r":i.x+=n.offsetWidth-u}e=gx.dom.position(r.element.parentNode);r.showAt(i.x-e.x,i.y-e.y);$(r.element).position({"of":n,my:"left top",at:"left bottom",collision:"flip"})};Calendar.prototype.setDateFormat=function(n){this.dateFormat=n};Calendar.prototype.setTtDateFormat=function(n){this.ttDateFormat=n};Calendar.prototype.parseDate=function(n){var t=gx.date.dateObject(n);gx.date.isNullDate(t)&&(t=new Date);this.setDate(t)};Calendar.prototype.hideShowCovered=function(){var t=gx.util.browser.isIE()&&gx.util.browser.ieVersion()<=8,n;this.isPopup&&t&&(n=this,Calendar.continuation_for_the_fucking_khtml_browser=function(){function e(n){var t=n.style.visibility;return t||(t=document.defaultView&&typeof document.defaultView.getComputedStyle=="function"?Calendar.is_khtml?"":document.defaultView.getComputedStyle(n,"").getPropertyValue("visibility"):n.currentStyle?n.currentStyle.visibility:""),t}for(var u,t,f,o=["object","applet","iframe","select"],r=n.element,i=Calendar.getAbsolutePos(r),s=i.x,v=r.offsetWidth+s,h=i.y,y=r.offsetHeight+h,c=o.length;c>0;)for(u=document.getElementsByTagName(o[--c]),t=null,f=u.length;f>0;){t=u[--f];i=Calendar.getAbsolutePos(t);var l=i.x,p=t.offsetWidth+l,a=i.y,w=t.offsetHeight+a;n.hidden||l>v||p<s||a>y||w<h?(t.__msh_save_visibility||t.__msh_save_visibility==""||(t.__msh_save_visibility=e(t)),t.style.visibility=typeof t.__msh_save_visibility!="undefined"?t.__msh_save_visibility:""):(t.__msh_save_visibility||(t.__msh_save_visibility=e(t)),t.style.visibility="hidden")}},Calendar.is_khtml?setTimeout("Calendar.continuation_for_the_fucking_khtml_browser()",10):Calendar.continuation_for_the_fucking_khtml_browser())};Calendar.prototype._displayWeekdays=function(){for(var i=this.mondayFirst?0:1,r=this.mondayFirst?6:0,u=this.mondayFirst?5:6,n=this.firstdayname,t=0;t<7;++t)n.className="day name",t||(n.ttip=this.mondayFirst?Calendar._TT.SUN_FIRST:Calendar._TT.MON_FIRST,n.navtype=100,n.calendar=this,Calendar._add_evs(n)),(t==r||t==u)&&Calendar.addClass(n,"weekend"),n.firstChild.data=Calendar._SDN[t+1-i],n=n.nextSibling};Calendar.prototype._hideCombos=function(){this.monthsCombo.style.display="none";this.yearsCombo.style.display="none"};Calendar.prototype._dragStart=function(n){var t,i,r;if(!this.dragging){this.dragging=!0;Calendar.is_ie?(i=window.event.clientY+document.body.scrollTop,t=window.event.clientX+document.body.scrollLeft):(i=n.clientY+window.scrollY,t=n.clientX+window.scrollX);r=this.element.style;this.xOffs=t-parseInt(r.left);this.yOffs=i-parseInt(r.top);with(Calendar)addEvent(document,"mousemove",calDragIt),addEvent(document,"mouseover",stopEvent),addEvent(document,"mouseup",calDragEnd)}};window.calendar=null}
+﻿/*  Copyright Mihai Bazon, 2002, 2003  |  http://dynarch.com/mishoo/
+ * ------------------------------------------------------------------
+ *
+ * The DHTML Calendar, version 0.9.5 "Your favorite time, bis"
+ *
+ * Details and latest version at:
+ * http://dynarch.com/mishoo/calendar.epl
+ *
+ * This script is distributed under the GNU Lesser General Public License.
+ * Read the entire license text here: http://www.gnu.org/licenses/lgpl.html
+ */
+
+// $Id: calendar.js,v 1.22 2003/11/05 17:30:12 mishoo Exp $
+
+
+// BEGIN: DATE OBJECT PATCHES
+
+/** Adds the number of days array to the Date object. */
+Date._MD = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+
+/** Constants used for time computations */
+Date.SECOND = 1000 /* milliseconds */;
+Date.MINUTE = 60 * Date.SECOND;
+Date.HOUR = 60 * Date.MINUTE;
+Date.DAY = 24 * Date.HOUR;
+Date.WEEK = 7 * Date.DAY;
+
+/** Returns the number of days in the current month */
+Date.prototype.getMonthDays = function (month) {
+	var year = this.getFullYear();
+	if (typeof month == "undefined") {
+		month = this.getMonth();
+	}
+	if (((0 == (year % 4)) && ((0 != (year % 100)) || (0 == (year % 400)))) && month == 1) {
+		return 29;
+	} else {
+		return Date._MD[month];
+	}
+};
+
+/** Returns the number of day in the year. */
+Date.prototype.getDayOfYear = function () {
+	var now = new Date(this.getFullYear(), this.getMonth(), this.getDate(), 0, 0, 0);
+	var then = new Date(this.getFullYear(), 0, 1, 0, 0, 0);
+	var time = now - then;
+	return Math.floor(time / Date.DAY);
+};
+
+/** Returns the number of the week in year, as defined in ISO 8601. */
+Date.prototype.getWeekNumber = function () {
+	var now = new Date(this.getFullYear(), this.getMonth(), this.getDate(), 0, 0, 0);
+	var then = new Date(this.getFullYear(), 0, 1, 0, 0, 0);
+	var time = now - then;
+	var day = then.getDay(); // 0 means Sunday
+	if (day == 0) day = 7;
+	(day > 4) && (day -= 4) || (day += 3);
+	return Math.round(((time / Date.DAY) + day) / 7);
+};
+
+/** Checks dates equality (ignores time) */
+Date.prototype.equalsTo = function (date) {
+	return ((this.getFullYear() == date.getFullYear()) &&
+		(this.getMonth() == date.getMonth()) &&
+		(this.getDate() == date.getDate()) &&
+		(this.getHours() == date.getHours()) &&
+		(this.getMinutes() == date.getMinutes()));
+};
+
+/** Prints the date in a string according to the given format. */
+Date.prototype.print = function (str) {
+	var m = this.getMonth();
+	var d = this.getDate();
+	var y = this.getFullYear();
+	var wn = this.getWeekNumber();
+	var w = this.getDay();
+	var s = {};
+	var hr = this.getHours();
+	var pm = (hr >= 12);
+	var ir = (pm) ? (hr - 12) : hr;
+	var dy = this.getDayOfYear();
+	if (ir == 0)
+		ir = 12;
+	var min = this.getMinutes();
+	var sec = this.getSeconds();
+	s["%a"] = Calendar._SDN[w]; // abbreviated weekday name [FIXME: I18N]
+	s["%A"] = Calendar._DN[w]; // full weekday name
+	s["%b"] = Calendar._SMN[m]; // abbreviated month name [FIXME: I18N]
+	s["%B"] = Calendar._MN[m]; // full month name
+	// FIXME: %c : preferred date and time representation for the current locale
+	s["%C"] = 1 + Math.floor(y / 100); // the century number
+	s["%d"] = (d < 10) ? ("0" + d) : d; // the day of the month (range 01 to 31)
+	s["%e"] = d; // the day of the month (range 1 to 31)
+	// FIXME: %D : american date style: %m/%d/%y
+	// FIXME: %E, %F, %G, %g, %h (man strftime)
+	s["%H"] = (hr < 10) ? ("0" + hr) : hr; // hour, range 00 to 23 (24h format)
+	s["%I"] = (ir < 10) ? ("0" + ir) : ir; // hour, range 01 to 12 (12h format)
+	s["%j"] = (dy < 100) ? ((dy < 10) ? ("00" + dy) : ("0" + dy)) : dy; // day of the year (range 001 to 366)
+	s["%k"] = hr;		// hour, range 0 to 23 (24h format)
+	s["%l"] = ir;		// hour, range 1 to 12 (12h format)
+	s["%m"] = (m < 9) ? ("0" + (1 + m)) : (1 + m); // month, range 01 to 12
+	s["%M"] = (min < 10) ? ("0" + min) : min; // minute, range 00 to 59
+	s["%n"] = "\n";		// a newline character
+	s["%p"] = pm ? "PM" : "AM";
+	s["%P"] = pm ? "pm" : "am";
+	// FIXME: %r : the time in am/pm notation %I:%M:%S %p
+	// FIXME: %R : the time in 24-hour notation %H:%M
+	s["%s"] = Math.floor(this.getTime() / 1000);
+	s["%S"] = (sec < 10) ? ("0" + sec) : sec; // seconds, range 00 to 59
+	s["%t"] = "\t";		// a tab character
+	// FIXME: %T : the time in 24-hour notation (%H:%M:%S)
+	s["%U"] = s["%W"] = s["%V"] = (wn < 10) ? ("0" + wn) : wn;
+	s["%u"] = w + 1;	// the day of the week (range 1 to 7, 1 = MON)
+	s["%w"] = w;		// the day of the week (range 0 to 6, 0 = SUN)
+	// FIXME: %x : preferred date representation for the current locale without the time
+	// FIXME: %X : preferred time representation for the current locale without the date
+	s["%y"] = ('' + y).substr(2, 2); // year without the century (range 00 to 99)
+	s["%Y"] = y;		// year with the century
+	s["%%"] = "%";		// a literal '%' character
+	var re = Date._msh_formatRegexp;
+	if (typeof re == "undefined") {
+		var tmp = "";
+		for (var i in s)
+			tmp += tmp ? ("|" + i) : i;
+		Date._msh_formatRegexp = re = new RegExp("(" + tmp + ")", 'g');
+	}
+	return str.replace(re, function (match, par) { return s[par]; });
+};
+
+// END: DATE OBJECT PATCHES
+
+if (!window['Calendar']) {
+/** The Calendar object constructor. */
+Calendar = function (mondayFirst, dateStr, onSelected, onClose) {
+	// member variables
+	this.activeDiv = null;
+	this.currentDateEl = null;
+	this.getDateStatus = null;
+	this.timeout = null;
+	this.onSelected = onSelected || null;
+	this.onClose = onClose || null;
+	this.dragging = false;
+	this.hidden = false;
+	this.minYear = 1970;
+	this.maxYear = 2050;
+	this.dateFormat = Calendar._TT["DEF_DATE_FORMAT"];
+	this.ttDateFormat = Calendar._TT["TT_DATE_FORMAT"];
+	this.isPopup = true;
+	this.weekNumbers = true;
+	this.mondayFirst = mondayFirst;
+	this.dateStr = dateStr;
+	this.ar_days = null;
+	this.showsTime = false;
+	this.time24 = true;
+	// HTML elements
+	this.table = null;
+	this.element = null;
+	this.tbody = null;
+	this.firstdayname = null;
+	// Combo boxes
+	this.monthsCombo = null;
+	this.yearsCombo = null;
+	this.hilitedMonth = null;
+	this.activeMonth = null;
+	this.hilitedYear = null;
+	this.activeYear = null;
+	// Information
+	this.dateClicked = false;
+};
+
+gx.evt.on_ready(this, function() {
+	// one-time initializations
+	if (typeof Calendar._SDN == "undefined") {
+		// table of short day names
+		if (typeof Calendar._SDN_len == "undefined")
+			Calendar._SDN_len = 3;
+		var ar = new Array();
+		for (var i = 8; i > 0;) {
+			ar[--i] = Calendar._DN[i].substr(0, Calendar._SDN_len);
+		}
+		Calendar._SDN = ar;
+		// table of short month names
+		if (typeof Calendar._SMN_len == "undefined")
+			Calendar._SMN_len = 3;
+		ar = new Array();
+		for (var i = 12; i > 0;) {
+			ar[--i] = Calendar._MN[i].substr(0, Calendar._SMN_len);
+		}
+		Calendar._SMN = ar;
+	}
+});
+// ** constants
+
+/// "static", needed for event handlers.
+Calendar._C = null;
+
+/// detect a special case of "web browser"
+Calendar.is_ie = (/msie|trident/i.test(navigator.userAgent) &&
+		   !/opera/i.test(navigator.userAgent));
+
+/// detect Opera browser
+Calendar.is_opera = /opera/i.test(navigator.userAgent);
+
+/// detect KHTML-based browsers
+Calendar.is_khtml = /Konqueror|Safari|KHTML/i.test(navigator.userAgent);
+
+// BEGIN: UTILITY FUNCTIONS; beware that these might be moved into a separate
+//        library, at some point.
+
+Calendar.getAbsolutePos = function (el) {
+	return gx.dom.position(el);
+};
+
+Calendar.isRelated = function (el, evt) {
+	var related = evt.relatedTarget;
+	if (!related) {
+		var type = evt.type;
+		if (type == "mouseover") {
+			related = evt.fromElement;
+		} else if (type == "mouseout") {
+			related = evt.toElement;
+		}
+	}
+	while (related) {
+		if (related == el) {
+			return true;
+		}
+		related = related.parentNode;
+	}
+	return false;
+};
+
+Calendar.removeClass = function (el, className) {
+	if (!(el && el.className)) {
+		return;
+	}
+	var cls = el.className.split(" ");
+	var ar = new Array();
+	for (var i = cls.length; i > 0;) {
+		if (cls[--i] != className) {
+			ar[ar.length] = cls[i];
+		}
+	}
+	el.className = ar.join(" ");
+};
+
+Calendar.addClass = function (el, className) {
+	Calendar.removeClass(el, className);
+	el.className += " " + className;
+};
+
+Calendar.getElement = function (ev) {
+	if (Calendar.is_ie) {
+		return window.event.srcElement;
+	} else {
+		return ev.currentTarget;
+	}
+};
+
+Calendar.getTargetElement = function (ev) {
+	if (Calendar.is_ie) {
+		return window.event.srcElement;
+	}
+	else if (ev.explicitOriginalTarget) //FF
+	{
+		return ev.explicitOriginalTarget;
+	} else {
+		return ev.target;
+	}
+};
+
+
+/** Set the focus to Datepicker bounded variable */
+Calendar.setFocus = function (inputField) {	
+	try {
+		if (typeof (inputField.onfocus) === 'function') {
+			gx.fn.setFocus(inputField);
+		}
+	}
+	catch (e) {
+		gx.dbg.logEx(e, 'calendar.js', 'Calendar.setFocus');
+	}
+};
+
+Calendar.stopEvent = function (ev) {
+	ev || (ev = window.event);
+	if (Calendar.is_ie) {
+		ev.cancelBubble = true;
+		ev.returnValue = false;
+	} else {
+		ev.preventDefault();
+		ev.stopPropagation();
+	}
+	return false;
+};
+
+Calendar.addEvent = function (el, evname, func) {
+	if (el.attachEvent) { // IE
+		el.attachEvent("on" + evname, func);
+	} else if (el.addEventListener) { // Gecko / W3C
+		el.addEventListener(evname, func, true);
+	} else {
+		el["on" + evname] = func;
+	}
+};
+
+Calendar.removeEvent = function (el, evname, func) {
+	if (el.detachEvent) { // IE
+		el.detachEvent("on" + evname, func);
+	} else if (el.removeEventListener) { // Gecko / W3C
+		el.removeEventListener(evname, func, true);
+	} else {
+		el["on" + evname] = null;
+	}
+};
+
+Calendar.createElement = function (type, parent) {
+	var el = null;
+	if (document.createElementNS) {
+		// use the XHTML namespace; IE won't normally get here unless
+		// _they_ "fix" the DOM2 implementation.
+		el = document.createElementNS("http://www.w3.org/1999/xhtml", type);
+	} else {
+		el = document.createElement(type);
+	}
+	if (typeof parent != "undefined") {
+		parent.appendChild(el);
+	}
+	return el;
+};
+
+// END: UTILITY FUNCTIONS
+
+// BEGIN: CALENDAR STATIC FUNCTIONS
+
+/** Internal -- adds a set of events to make some element behave like a button. */
+Calendar._add_evs = function (el) {
+	with (Calendar) {
+		addEvent(el, "mouseover", dayMouseOver);
+		addEvent(el, "mousedown", dayMouseDown);
+		addEvent(el, "mouseout", dayMouseOut);
+		if (gx.util.browser.isIE() && gx.util.browser.ieVersion() <= 8) {
+			addEvent(el, "dblclick", dayMouseDblClick);
+			el.setAttribute("unselectable", true);
+		}
+	}
+};
+
+Calendar.findMonth = function (el) {
+	if (typeof el.month != "undefined") {
+		return el;
+	} else if (typeof el.parentNode.month != "undefined") {
+		return el.parentNode;
+	}
+	return null;
+};
+
+Calendar.findYear = function (el) {
+	if (typeof el.year != "undefined") {
+		return el;
+	} else if (typeof el.parentNode.year != "undefined") {
+		return el.parentNode;
+	}
+	return null;
+};
+
+Calendar.showMonthsCombo = function () {
+	var cal = Calendar._C;
+	if (!cal) {
+		return false;
+	}
+	var cal = cal;
+	var cd = cal.activeDiv;
+	var mc = cal.monthsCombo;
+	if (cal.hilitedMonth) {
+		Calendar.removeClass(cal.hilitedMonth, "hilite");
+	}
+	if (cal.activeMonth) {
+		Calendar.removeClass(cal.activeMonth, "active");
+	}
+	var mon = cal.monthsCombo.getElementsByTagName("div")[cal.date.getMonth()];
+	Calendar.addClass(mon, "active");
+	cal.activeMonth = mon;
+	var s = mc.style;
+	s.display = "block";
+	if (cd.navtype < 0)
+		s.left = cd.offsetLeft + "px";
+	else
+		s.left = (cd.offsetLeft + cd.offsetWidth - mc.offsetWidth) + "px";
+	s.top = (cd.offsetTop + cd.offsetHeight) + "px";
+};
+
+Calendar.showYearsCombo = function (fwd) {
+	var cal = Calendar._C;
+	if (!cal) {
+		return false;
+	}
+	var cal = cal;
+	var cd = cal.activeDiv;
+	var yc = cal.yearsCombo;
+	if (cal.hilitedYear) {
+		Calendar.removeClass(cal.hilitedYear, "hilite");
+	}
+	if (cal.activeYear) {
+		Calendar.removeClass(cal.activeYear, "active");
+	}
+	cal.activeYear = null;
+	var Y = cal.date.getFullYear() + (fwd ? 1 : -1);
+	var yr = yc.firstChild;
+	var show = false;
+	for (var i = 12; i > 0; --i) {
+		if (Y >= cal.minYear && Y <= cal.maxYear) {
+			yr.firstChild.data = Y;
+			yr.year = Y;
+			yr.style.display = "block";
+			show = true;
+		} else {
+			yr.style.display = "none";
+		}
+		yr = yr.nextSibling;
+		Y += fwd ? 2 : -2;
+	}
+	if (show) {
+		var s = yc.style;
+		s.display = "block";
+		if (cd.navtype < 0)
+			s.left = cd.offsetLeft + "px";
+		else
+			s.left = (cd.offsetLeft + cd.offsetWidth - yc.offsetWidth) + "px";
+		s.top = (cd.offsetTop + cd.offsetHeight) + "px";
+	}
+};
+
+// event handlers
+
+Calendar.tableMouseUp = function (ev) {
+	var cal = Calendar._C;
+	if (!cal) {
+		return false;
+	}
+	if (cal.timeout) {
+		clearTimeout(cal.timeout);
+	}
+	var el = cal.activeDiv;
+	if (!el) {
+		return false;
+	}
+	var target = Calendar.getTargetElement(ev);
+	ev || (ev = window.event);
+	Calendar.removeClass(el, "active");
+	if (target == el || target.parentNode == el) {
+		Calendar.cellClick(el, ev);
+	}
+	var mon = Calendar.findMonth(target);
+	var date = null;
+	if (mon) {
+		date = new Date(cal.date);
+		if (mon.month != date.getMonth()) {
+			date.setMonth(mon.month);
+			cal.setDate(date);
+			cal.dateClicked = false;
+			cal.callHandler();
+		}
+	} else {
+		var year = Calendar.findYear(target);
+		if (year) {
+			date = new Date(cal.date);
+			if (year.year != date.getFullYear()) {
+				date.setFullYear(year.year);
+				cal.setDate(date);
+				cal.dateClicked = false;
+				cal.callHandler();
+			}
+		}
+	}
+	with (Calendar) {
+		removeEvent(document, "mouseup", tableMouseUp);
+		removeEvent(document, "mouseover", tableMouseOver);
+		removeEvent(document, "mousemove", tableMouseOver);
+		cal._hideCombos();
+		_C = null;
+		return stopEvent(ev);
+	}
+};
+
+Calendar.tableMouseOver = function (ev) {
+	var cal = Calendar._C;
+	if (!cal) {
+		return;
+	}
+	var el = cal.activeDiv;
+	var target = Calendar.getTargetElement(ev);
+	if (target == el || target.parentNode == el) {
+		Calendar.addClass(el, "hilite active");
+		Calendar.addClass(el.parentNode, "rowhilite");
+	} else {
+		if (typeof el.navtype == "undefined" || (el.navtype != 50 && (el.navtype == 0 || Math.abs(el.navtype) > 2)))
+			Calendar.removeClass(el, "active");
+		Calendar.removeClass(el, "hilite");
+		Calendar.removeClass(el.parentNode, "rowhilite");
+	}
+	ev || (ev = window.event);
+	if (el.navtype == 50 && target != el) {
+		var pos = Calendar.getAbsolutePos(el);
+		var w = el.offsetWidth;
+		var x = ev.clientX;
+		var dx;
+		var decrease = true;
+		if (x > pos.x + w) {
+			dx = x - pos.x - w;
+			decrease = false;
+		} else
+			dx = pos.x - x;
+
+		if (dx < 0) dx = 0;
+		var range = el._range;
+		var current = el._current;
+		var count = Math.floor(dx / 10) % range.length;
+		for (var i = range.length; --i >= 0;)
+			if (range[i] == current)
+				break;
+		while (count-- > 0)
+			if (decrease) {
+				if (!(--i in range))
+					i = range.length - 1;
+			} else if (!(++i in range))
+				i = 0;
+		var newval = range[i];
+		el.firstChild.data = newval;
+
+		cal.onUpdateTime();
+	}
+	var mon = Calendar.findMonth(target);
+	if (mon) {
+		if (mon.month != cal.date.getMonth()) {
+			if (cal.hilitedMonth) {
+				Calendar.removeClass(cal.hilitedMonth, "hilite");
+			}
+			Calendar.addClass(mon, "hilite");
+			cal.hilitedMonth = mon;
+		} else if (cal.hilitedMonth) {
+			Calendar.removeClass(cal.hilitedMonth, "hilite");
+		}
+	} else {
+		if (cal.hilitedMonth) {
+			Calendar.removeClass(cal.hilitedMonth, "hilite");
+		}
+		var year = Calendar.findYear(target);
+		if (year) {
+			if (year.year != cal.date.getFullYear()) {
+				if (cal.hilitedYear) {
+					Calendar.removeClass(cal.hilitedYear, "hilite");
+				}
+				Calendar.addClass(year, "hilite");
+				cal.hilitedYear = year;
+			} else if (cal.hilitedYear) {
+				Calendar.removeClass(cal.hilitedYear, "hilite");
+			}
+		} else if (cal.hilitedYear) {
+			Calendar.removeClass(cal.hilitedYear, "hilite");
+		}
+	}
+	return Calendar.stopEvent(ev);
+};
+
+Calendar.tableMouseDown = function (ev) {
+	if (Calendar.getTargetElement(ev) == Calendar.getElement(ev)) {
+		return Calendar.stopEvent(ev);
+	}
+};
+
+Calendar.calDragIt = function (ev) {
+	var cal = Calendar._C;
+	if (!(cal && cal.dragging)) {
+		return false;
+	}
+	var posX;
+	var posY;
+	if (Calendar.is_ie) {
+		posY = window.event.clientY + document.body.scrollTop;
+		posX = window.event.clientX + document.body.scrollLeft;
+	} else {
+		posX = ev.pageX;
+		posY = ev.pageY;
+	}
+	cal.hideShowCovered();
+	var st = cal.element.style;
+	st.left = (posX - cal.xOffs) + "px";
+	st.top = (posY - cal.yOffs) + "px";
+	return Calendar.stopEvent(ev);
+};
+
+Calendar.calDragEnd = function (ev) {
+	var cal = Calendar._C;
+	if (!cal) {
+		return false;
+	}
+	cal.dragging = false;
+	with (Calendar) {
+		removeEvent(document, "mousemove", calDragIt);
+		removeEvent(document, "mouseover", stopEvent);
+		removeEvent(document, "mouseup", calDragEnd);
+		tableMouseUp(ev);
+	}
+	cal.hideShowCovered();
+};
+
+Calendar.dayMouseDown = function (ev) {
+	var el = Calendar.getElement(ev);
+	if (el.disabled) {
+		return false;
+	}
+	
+	var cal = el.calendar;
+	if (!this.isPopup) {
+		Calendar.setFocus(cal.params.inputField);
+	}
+	cal.activeDiv = el;
+	Calendar._C = cal;
+	if (el.navtype != 300) with (Calendar) {
+		if (el.navtype == 50)
+			el._current = el.firstChild.data;
+		addClass(el, "hilite active");
+		addEvent(document, "mouseover", tableMouseOver);
+		addEvent(document, "mousemove", tableMouseOver);
+		addEvent(document, "mouseup", tableMouseUp);
+	} else if (cal.isPopup) {
+		cal._dragStart(ev);
+	}
+	if (el.navtype == -1 || el.navtype == 1) {
+		if (cal.timeout) clearTimeout(cal.timeout);
+		cal.timeout = setTimeout("Calendar.showMonthsCombo()", 250);
+	} else if (el.navtype == -2 || el.navtype == 2) {
+		if (cal.timeout) clearTimeout(cal.timeout);
+		cal.timeout = setTimeout((el.navtype > 0) ? "Calendar.showYearsCombo(true)" : "Calendar.showYearsCombo(false)", 250);
+	} else {
+		cal.timeout = null;
+	}
+	return Calendar.stopEvent(ev);
+};
+
+Calendar.dayMouseDblClick = function (ev) {
+	Calendar.cellClick(Calendar.getElement(ev), ev || window.event);
+	
+	if (Calendar.is_ie) {
+		var sel = window.getSelection ? window.getSelection() : document.selection;
+		if (sel) {
+			if (sel.removeAllRanges) {
+				sel.removeAllRanges();
+			} else if (sel.empty) {
+				sel.empty();
+			}
+		}
+	}
+};
+
+Calendar.dayMouseOver = function (ev) {
+	var el = Calendar.getElement(ev);
+	if (Calendar.isRelated(el, ev) || Calendar._C || el.disabled) {
+		return false;
+	}
+	if (el.ttip) {
+		if (el.ttip.substr(0, 1) == "_") {
+			var date = null;
+			with (el.calendar.date) {
+				date = new Date(getFullYear(), getMonth(), el.caldate, 12, 0, 0, 0);
+			}
+			el.ttip = date.print(el.calendar.ttDateFormat) + el.ttip.substr(1);
+		}
+		el.calendar.tooltips.firstChild.data = el.ttip;
+	}
+	if (el.navtype != 300) {
+		Calendar.addClass(el, "hilite");
+		if (el.caldate) {
+			Calendar.addClass(el.parentNode, "rowhilite");
+		}
+	}
+	return Calendar.stopEvent(ev);
+};
+
+Calendar.dayMouseOut = function (ev) {
+	with (Calendar) {
+		var el = getElement(ev);
+		if (isRelated(el, ev) || _C || el.disabled) {
+			return false;
+		}
+		removeClass(el, "hilite");
+		if (el.caldate) {
+			removeClass(el.parentNode, "rowhilite");
+		}
+		el.calendar.tooltips.firstChild.data = _TT["SEL_DATE"];
+		return stopEvent(ev);
+	}
+};
+
+/**
+ *  A generic "click" handler :) handles all types of buttons defined in this
+ *  calendar.
+ */
+Calendar.cellClick = function (el, ev) {
+	var cal = el.calendar;
+	var closing = false;
+	var newdate = false;
+	var date = null;
+	var dateIsEmpty = false;
+	if (typeof el.navtype == "undefined") {
+		Calendar.removeClass(cal.currentDateEl, "selected");
+		Calendar.addClass(el, "selected");
+		closing = (cal.currentDateEl == el);
+		if (!closing) {
+			cal.currentDateEl = el;
+		}
+		cal.date.setDate(el.caldate);
+		if (!cal.showsTime && cal.date.getDate() != el.caldate) /* WA when not showing TIME and day selected is the day when DST goes on*/ {
+			cal.date.setHours(12);
+			cal.date.setDate(el.caldate);
+		}
+		date = cal.date;
+		newdate = true;
+		// a date was clicked
+		cal.dateClicked = true;
+	} else {
+		if (el.navtype == 200) {
+			Calendar.removeClass(el, "hilite");
+			cal.callCloseHandler();
+			return;
+		}
+		date = (el.navtype == 0 || el.navtype == 1000) ? new Date() : new Date(cal.date);
+		// unless "today" was clicked, we assume no date was clicked so
+		// the selected handler will know not to close the calenar when
+		// in single-click mode.
+		// cal.dateClicked = (el.navtype == 0);
+		cal.dateClicked = false;
+		var year = date.getFullYear();
+		var mon = date.getMonth();
+		function setMonth(m) {
+			var day = date.getDate();
+			var max = date.getMonthDays(m);
+			if (day > max) {
+				date.setDate(max);
+			}
+			date.setMonth(m);
+		};
+		switch (el.navtype) {
+			case 400:
+				Calendar.removeClass(el, "hilite");
+				var text = Calendar._TT["ABOUT"];
+				if (typeof text != "undefined") {
+					text += cal.showsTime ? Calendar._TT["ABOUT_TIME"] : "";
+				} else {
+					// FIXME: this should be removed as soon as lang files get updated!
+					text = "Help and about box text is not translated into this language.\n" +
+						"If you know this language and you feel generous please update\n" +
+						"the corresponding file in \"lang\" subdir to match calendar-en.js\n" +
+						"and send it back to <mishoo@infoiasi.ro> to get it into the distribution  ;-)\n\n" +
+						"Thank you!\n" +
+						"http://dynarch.com/mishoo/calendar.epl\n";
+				}
+				alert(text);
+				return;
+			case -2:
+				if (year > cal.minYear) {
+					date.setFullYear(year - 1);
+				}
+				break;
+			case -1:
+				if (mon > 0) {
+					setMonth(mon - 1);
+				} else if (year-- > cal.minYear) {
+					date.setFullYear(year);
+					setMonth(11);
+				}
+				break;
+			case 1:
+				if (mon < 11) {
+					setMonth(mon + 1);
+				} else if (year < cal.maxYear) {
+					date.setFullYear(year + 1);
+					setMonth(0);
+				}
+				break;
+			case 2:
+				if (year < cal.maxYear) {
+					date.setFullYear(year + 1);
+				}
+				break;
+			case 100:
+				cal.setMondayFirst(!cal.mondayFirst);
+				return;
+			case 50:
+				var range = el._range;
+				var current = el.firstChild.data;
+				for (var i = range.length; --i >= 0;)
+					if (range[i] == current)
+						break;
+				if (ev && ev.shiftKey) {
+					if (!(--i in range))
+						i = range.length - 1;
+				} else if (!(++i in range))
+					i = 0;
+				var newval = range[i];
+				el.firstChild.data = newval;
+				cal.onUpdateTime();
+				return;
+			case 0:
+				// TODAY will bring us here
+				if ((typeof cal.getDateStatus == "function") && cal.getDateStatus(date, date.getFullYear(), date.getMonth(), date.getDate())) {
+					// remember, "date" was previously set to new
+					// Date() if TODAY was clicked; thus, it
+					// contains today date.
+					return false;
+				}
+				break;
+			case 1000:
+				dateIsEmpty = true;
+				newdate = true;
+				cal.dateClicked = true;
+				break;
+		}
+		if (!date.equalsTo(cal.date)) {
+			cal.setDate(date, dateIsEmpty);
+			newdate = true;
+		}
+	}
+	cal.dateIsEmpty = dateIsEmpty;
+	if (newdate) {
+		cal.callHandler();
+	}
+	if (closing) {
+		Calendar.removeClass(el, "hilite");
+		cal.callCloseHandler();
+	}
+};
+
+// END: CALENDAR STATIC FUNCTIONS
+
+// BEGIN: CALENDAR OBJECT FUNCTIONS
+
+/**
+ *  This function creates the calendar inside the given parent.  If _par is
+ *  null than it creates a popup calendar inside the BODY element.  If _par is
+ *  an element, be it BODY, then it creates a non-popup calendar (still
+ *  hidden).  Some properties need to be set before calling this function.
+ */
+Calendar.prototype.create = function (_par) {
+	var parent = null;
+	if (!_par) {
+		// default parent is the document body, in which case we create
+		// a popup calendar.
+		parent = document.getElementsByTagName("body")[0];
+		this.isPopup = true;
+	} else {
+		parent = _par;
+		if (this.params.flat != null)
+			this.isPopup = false;
+		else
+			this.isPopup = true;
+	}
+	this.date = this.dateStr ? new Date(this.dateStr) : new Date();
+	this.dateIsEmpty = !this.dateStr;
+
+	var table = Calendar.createElement("table");
+	this.table = table;
+	table.cellSpacing = 0;
+	table.cellPadding = 0;
+	table.calendar = this;
+	Calendar.addEvent(table, "mousedown", Calendar.tableMouseDown);
+
+	var div = Calendar.createElement("div");
+	this.element = div;
+	div.className = "calendar Calendar";
+	if (this.isPopup) {
+		div.style.position = "absolute";
+		div.style.zIndex = "6";
+		div.style.display = "none";
+	}
+	div.appendChild(table);
+
+	var thead = Calendar.createElement("thead", table);
+	var cell = null;
+	var row = null;
+
+	var cal = this;
+	var hh = function (text, cs, navtype) {
+		cell = Calendar.createElement("td", row);
+		cell.colSpan = cs;
+		cell.className = "calendarbutton";
+		if (navtype != 0 && Math.abs(navtype) <= 2)
+			cell.className += " calendar-nav";
+		Calendar._add_evs(cell);
+		cell.calendar = cal;
+		cell.navtype = navtype;
+		if (text.substr(0, 1) != "&") {
+			cell.appendChild(document.createTextNode(text));
+		}
+		else {
+			// FIXME: dirty hack for entities
+			cell.innerHTML = text;
+		}
+		return cell;
+	};
+
+	row = Calendar.createElement("tr", thead);
+	var title_length = 6;
+	(this.isPopup) && --title_length;
+	(this.weekNumbers) && ++title_length;
+
+	hh("?", 1, 400).ttip = Calendar._TT["INFO"];
+	this.title = hh("", title_length, 300);
+	this.title.className = "calendartitle";
+	if (this.isPopup) {
+		this.title.ttip = Calendar._TT["DRAG_TO_MOVE"];
+		this.title.style.cursor = "move";
+		hh("&#x00d7;", 1, 200).ttip = Calendar._TT["CLOSE"];
+	}
+
+	row = Calendar.createElement("tr", thead);
+	row.className = "headrow";
+
+	this._nav_py = hh("&#x00ab;", 1, -2);
+	this._nav_py.ttip = Calendar._TT["PREV_YEAR"];
+
+	this._nav_pm = hh("&#x2039;", 1, -1);
+	this._nav_pm.ttip = Calendar._TT["PREV_MONTH"];
+
+	this._nav_now = hh(Calendar._TT["TODAY"], this.weekNumbers ? 4 : 3, 0);
+	this._nav_now.ttip = Calendar._TT["GO_TODAY"];
+
+	this._nav_nm = hh("&#x203a;", 1, 1);
+	this._nav_nm.ttip = Calendar._TT["NEXT_MONTH"];
+
+	this._nav_ny = hh("&#x00bb;", 1, 2);
+	this._nav_ny.ttip = Calendar._TT["NEXT_YEAR"];
+
+	// day names
+	row = Calendar.createElement("tr", thead);
+	row.className = "daynames";
+	if (this.weekNumbers) {
+		cell = Calendar.createElement("td", row);
+		cell.className = "name wn";
+		cell.appendChild(document.createTextNode(Calendar._TT["WK"]));
+	}
+	for (var i = 7; i > 0; --i) {
+		cell = Calendar.createElement("td", row);
+		cell.appendChild(document.createTextNode(""));
+		if (!i) {
+			cell.navtype = 100;
+			cell.calendar = this;
+			Calendar._add_evs(cell);
+		}
+	}
+	this.firstdayname = (this.weekNumbers) ? row.firstChild.nextSibling : row.firstChild;
+	this._displayWeekdays();
+
+	var tbody = Calendar.createElement("tbody", table);
+	this.tbody = tbody;
+
+	for (i = 6; i > 0; --i) {
+		row = Calendar.createElement("tr", tbody);
+		if (this.weekNumbers) {
+			cell = Calendar.createElement("td", row);
+			cell.appendChild(document.createTextNode(""));
+		}
+		for (var j = 7; j > 0; --j) {
+			cell = Calendar.createElement("td", row);
+			cell.appendChild(document.createTextNode(""));
+			cell.calendar = this;
+			Calendar._add_evs(cell);
+		}
+	}
+
+	if (this.showsTime) {
+		row = Calendar.createElement("tr", tbody);
+		row.className = "time";
+
+		cell = Calendar.createElement("td", row);
+		cell.className = "time";
+		cell.colSpan = 2;
+		cell.innerHTML = "&nbsp;";
+
+		cell = Calendar.createElement("td", row);
+		cell.className = "time";
+		cell.colSpan = this.weekNumbers ? 4 : 3;
+
+		(function () {
+			function makeTimePart(className, init, range_start, range_end) {
+				var part = Calendar.createElement("span", cell);
+				part.className = className;
+				part.appendChild(document.createTextNode(init));
+				part.calendar = cal;
+				part.ttip = Calendar._TT["TIME_PART"];
+				part.navtype = 50;
+				part._range = [];
+				if (typeof range_start != "number")
+					part._range = range_start;
+				else {
+					for (var i = range_start; i <= range_end; ++i) {
+						var txt;
+						if (i < 10 && range_end >= 10) txt = '0' + i;
+						else txt = '' + i;
+						part._range[part._range.length] = txt;
+					}
+				}
+				Calendar._add_evs(part);
+				return part;
+			};
+			var hrs = cal.date.getHours();
+			var mins = cal.date.getMinutes();
+			var t12 = !cal.time24;
+			var pm = (hrs > 12);
+			if (t12 && pm) hrs -= 12;
+			var H = makeTimePart("hour", hrs, t12 ? 1 : 0, t12 ? 12 : 23);
+			var span = Calendar.createElement("span", cell);
+			span.appendChild(document.createTextNode(":"));
+			span.className = "colon";
+			var M = makeTimePart("minute", mins, 0, 59);
+			var AP = null;
+			cell = Calendar.createElement("td", row);
+			cell.className = "time";
+			cell.colSpan = 2;
+			if (t12)
+				AP = makeTimePart("ampm", pm ? "pm" : "am", ["am", "pm"]);
+			else
+				cell.innerHTML = "&nbsp;";
+
+			cal.onSetTime = function () {
+				var hrs = this.date.getHours();
+				var mins = this.date.getMinutes();
+				var pm = (hrs > 12);
+				if (pm && t12) hrs -= 12;
+				H.firstChild.data = (hrs < 10) ? ("0" + hrs) : hrs;
+				M.firstChild.data = (mins < 10) ? ("0" + mins) : mins;
+				if (t12)
+					AP.firstChild.data = pm ? "pm" : "am";
+			};
+
+			cal.onUpdateTime = function () {
+				var date = this.date;
+				var h = parseInt(H.firstChild.data, 10);
+				if (t12) {
+					if (/pm/i.test(AP.firstChild.data) && h < 12)
+						h += 12;
+					else if (/am/i.test(AP.firstChild.data) && h == 12)
+						h = 0;
+				}
+				var d = date.getDate();
+				var m = date.getMonth();
+				var y = date.getFullYear();
+				date.setHours(h);
+				date.setMinutes(parseInt(M.firstChild.data, 10));
+				date.setFullYear(y);
+				date.setMonth(m);
+				date.setDate(d);
+				this.dateClicked = false;
+				this.callHandler();
+			};
+		})();
+	} else {
+		this.onSetTime = this.onUpdateTime = function () { };
+	}
+
+	var tfoot = Calendar.createElement("tfoot", table);
+
+	if (!this.isPopup) {
+		row = Calendar.createElement("tr", tfoot);
+		row.className = "clearrow";
+
+		cell = hh(Calendar._TT["CLEAR_DATE"], this.weekNumbers ? 8 : 7, 1000);
+		row.appendChild(cell);
+	}
+
+	row = Calendar.createElement("tr", tfoot);
+	row.className = "footrow";
+
+	cell = hh(Calendar._TT["SEL_DATE"], this.weekNumbers ? 8 : 7, 300);
+	cell.className = "ttip";
+	if (this.isPopup) {
+		cell.ttip = Calendar._TT["DRAG_TO_MOVE"];
+		cell.style.cursor = "move";
+	}
+	this.tooltips = cell;
+
+	div = Calendar.createElement("div", this.element);
+	this.monthsCombo = div;
+	div.className = "calendarcombo";
+	for (i = 0; i < Calendar._MN.length; ++i) {
+		var mn = Calendar.createElement("div");
+		mn.className = Calendar.is_ie ? "label-IEfix" : "label";
+		mn.month = i;
+		mn.appendChild(document.createTextNode(Calendar._SMN[i]));
+		div.appendChild(mn);
+	}
+
+	div = Calendar.createElement("div", this.element);
+	this.yearsCombo = div;
+	div.className = "calendarcombo";
+	for (i = 12; i > 0; --i) {
+		var yr = Calendar.createElement("div");
+		yr.className = Calendar.is_ie ? "label-IEfix" : "label";
+		yr.appendChild(document.createTextNode(""));
+		div.appendChild(yr);
+	}
+
+	this._init(this.mondayFirst, this.date);
+	parent.appendChild(this.element);
+};
+
+/** keyboard navigation, only for popup calendars */
+Calendar._keyEvent = function (ev) {
+	if (!window.calendar) {
+		return false;
+	}
+	(Calendar.is_ie) && (ev = window.event);
+	var cal = window.calendar;
+	var act = (Calendar.is_ie || ev.type == "keydown");
+	if (ev.ctrlKey) {
+		switch (ev.keyCode) {
+			case 37: // KEY left
+				act && Calendar.cellClick(cal._nav_pm);
+				break;
+			case 38: // KEY up
+				act && Calendar.cellClick(cal._nav_py);
+				break;
+			case 39: // KEY right
+				act && Calendar.cellClick(cal._nav_nm);
+				break;
+			case 40: // KEY down
+				act && Calendar.cellClick(cal._nav_ny);
+				break;
+			default:
+				return false;
+		}
+	} else switch (ev.keyCode) {
+		case 9:
+			cal.hide();
+			return;
+		case 32: // KEY space (now)
+			Calendar.cellClick(cal._nav_now);
+			break;
+		case 27: // KEY esc
+			act && cal.hide();
+			break;
+		case 37: // KEY left
+		case 38: // KEY up
+		case 39: // KEY right
+		case 40: // KEY down
+			if (act) {
+				var date = cal.date.getDate() - 1;
+				var el = cal.currentDateEl;
+				var ne = null;
+				var prev = (ev.keyCode == 37) || (ev.keyCode == 38);
+				switch (ev.keyCode) {
+					case 37: // KEY left
+						(--date >= 0) && (ne = cal.ar_days[date]);
+						break;
+					case 38: // KEY up
+						date -= 7;
+						(date >= 0) && (ne = cal.ar_days[date]);
+						break;
+					case 39: // KEY right
+						(++date < cal.ar_days.length) && (ne = cal.ar_days[date]);
+						break;
+					case 40: // KEY down
+						date += 7;
+						(date < cal.ar_days.length) && (ne = cal.ar_days[date]);
+						break;
+				}
+				if (!ne) {
+					if (prev) {
+						Calendar.cellClick(cal._nav_pm);
+					} else {
+						Calendar.cellClick(cal._nav_nm);
+					}
+					date = (prev) ? cal.date.getMonthDays() : 1;
+					el = cal.currentDateEl;
+					ne = cal.ar_days[date - 1];
+				}
+				Calendar.removeClass(el, "selected");
+				Calendar.addClass(ne, "selected");
+				cal.date.setDate(ne.caldate);
+				cal.callHandler();
+				cal.currentDateEl = ne;
+			}
+			break;
+		case 13: // KEY enter
+			if (act) {
+				cal.callHandler();
+				cal.hide();
+			}
+			break;
+		default:
+			return false;
+	}
+	return Calendar.stopEvent(ev);
+};
+
+/**
+ *  (RE)Initializes the calendar to the given date and style (if mondayFirst is
+ *  true it makes Monday the first day of week, otherwise the weeks start on
+ *  Sunday.
+ */
+Calendar.prototype._init = function (mondayFirst, date, dateIsEmpty) {
+	var today = new Date();
+	var year = date.getFullYear();
+	if (year < this.minYear) {
+		year = this.minYear;
+		date.setFullYear(year);
+	} else if (year > this.maxYear) {
+		year = this.maxYear;
+		date.setFullYear(year);
+	}
+	this.mondayFirst = mondayFirst;
+	this.date = new Date(date);
+	this.dateIsEmpty = !!dateIsEmpty;
+	var month = date.getMonth();
+	var mday = date.getDate();
+	var no_days = date.getMonthDays();
+	date.setDate(1);
+	var wday = date.getDay();
+	var MON = mondayFirst ? 1 : 0;
+	var SAT = mondayFirst ? 5 : 6;
+	var SUN = mondayFirst ? 6 : 0;
+	if (mondayFirst) {
+		wday = (wday > 0) ? (wday - 1) : 6;
+	}
+	var iday = 1;
+	var row = this.tbody.firstChild;
+	var MN = Calendar._SMN[month];
+	var hasToday = ((today.getFullYear() == year) && (today.getMonth() == month));
+	var todayDate = today.getDate();
+	var week_number = date.getWeekNumber();
+	var ar_days = new Array();
+	for (var i = 0; i < 6; ++i) {
+		if (iday > no_days) {
+			row.className = "emptyrow";
+			row = row.nextSibling;
+			continue;
+		}
+		var cell = row.firstChild;
+		if (this.weekNumbers) {
+			cell.className = "day wn";
+			cell.firstChild.data = week_number;
+			cell = cell.nextSibling;
+		}
+		++week_number;
+		row.className = "daysrow";
+		for (var j = 0; j < 7; ++j) {
+			cell.className = "day";
+			if ((!i && j < wday) || iday > no_days) {
+				cell.className = "emptycell";
+				try { cell.innerHTML = "&nbsp;"; } catch (e) { }
+				cell.disabled = true;
+				cell = cell.nextSibling;
+				continue;
+			}
+			cell.disabled = false;
+			cell.firstChild.data = iday;
+			if (typeof this.getDateStatus == "function") {
+				date.setDate(iday);
+				var status = this.getDateStatus(date, year, month, iday);
+				if (status === true) {
+					cell.className += " disabled";
+					cell.disabled = true;
+				} else {
+					if (/disabled/i.test(status))
+						cell.disabled = true;
+					cell.className += " " + status;
+				}
+			}
+			if (!cell.disabled && !this.dateIsEmpty) {
+				ar_days[ar_days.length] = cell;
+				cell.caldate = iday;
+				cell.ttip = "_";
+				if (iday == mday) {
+					cell.className += " selected";
+					this.currentDateEl = cell;
+				}
+				if (hasToday && (iday == todayDate)) {
+					cell.className += " today";
+					cell.ttip += Calendar._TT["PART_TODAY"];
+				}
+				if (wday == SAT || wday == SUN) {
+					cell.className += " weekend";
+				}
+			}
+			++iday;
+			((++wday) ^ 7) || (wday = 0);
+			cell = cell.nextSibling;
+		}
+		row = row.nextSibling;
+	}
+	this.ar_days = ar_days;
+	this.title.firstChild.data = Calendar._MN[month] + ", " + year+ (Calendar._YN || "");
+	this.onSetTime();
+	// PROFILE
+	// this.tooltips.firstChild.data = "Generated in " + ((new Date()) - today) + " ms";
+};
+
+/**
+ *  Calls _init function above for going to a certain date (but only if the
+ *  date is different than the currently selected one).
+ */
+Calendar.prototype.setDate = function (date, dateIsEmpty) {
+	if (!date.equalsTo(this.date)) {
+		this._init(this.mondayFirst, date, dateIsEmpty);
+	}
+};
+
+/**
+ *  Refreshes the calendar.  Useful if the "disabledHandler" function is
+ *  dynamic, meaning that the list of disabled date can change at runtime.
+ *  Just * call this function if you think that the list of disabled dates
+ *  should * change.
+ */
+Calendar.prototype.refresh = function () {
+	this._init(this.mondayFirst, this.date);
+};
+
+/** Modifies the "mondayFirst" parameter (EU/US style). */
+Calendar.prototype.setMondayFirst = function (mondayFirst) {
+	this._init(mondayFirst, this.date);
+	this._displayWeekdays();
+};
+
+/**
+ *  Allows customization of what dates are enabled.  The "unaryFunction"
+ *  parameter must be a function object that receives the date (as a JS Date
+ *  object) and returns a boolean value.  If the returned value is true then
+ *  the passed date will be marked as disabled.
+ */
+Calendar.prototype.setDateStatusHandler = Calendar.prototype.setDisabledHandler = function (unaryFunction) {
+	this.getDateStatus = unaryFunction;
+};
+
+/** Customization of allowed year range for the calendar. */
+Calendar.prototype.setRange = function (a, z) {
+	this.minYear = a;
+	this.maxYear = z;
+};
+
+/** Calls the first user handler (selectedHandler). */
+Calendar.prototype.callHandler = function () {
+	if (this.onSelected) {
+		this.onSelected(this, this.dateIsEmpty ? gx.date.nullDate() : this.date, this.params.inputField);
+		gx.fn.setFocus(this.params.inputField);
+	}
+};
+
+/** Calls the second user handler (closeHandler). */
+Calendar.prototype.callCloseHandler = function () {
+	if (this.onClose) {
+		this.onClose(this);
+	}
+	this.hideShowCovered();
+};
+
+/** Removes the calendar object from the DOM tree and destroys it. */
+Calendar.prototype.destroy = function () {
+	var el = this.element.parentNode;
+	el.removeChild(this.element);
+	Calendar._C = null;
+	window.calendar = null;
+};
+
+/**
+ *  Moves the calendar element to a different section in the DOM tree (changes
+ *  its parent).
+ */
+Calendar.prototype.reparent = function (new_parent) {
+	var el = this.element;
+	el.parentNode.removeChild(el);
+	new_parent.appendChild(el);
+};
+
+// This gets called when the user presses a mouse button anywhere in the
+// document, if the calendar is shown.  If the click was outside the open
+// calendar this function closes it.
+Calendar._checkCalendar = function (ev) {
+	if (!window.calendar) {
+		return false;
+	}
+	if (Calendar.is_ie == true) {
+		gx.evt.mouse.update(ev);
+		if (!gx.fx.isUnderMouse(calendar.element)) {
+			window.calendar.callCloseHandler();
+			return Calendar.stopEvent(ev);
+		}
+	}
+	else {
+		var el = Calendar.getTargetElement(ev);
+		for (; el != null && el != calendar.element; el = el.parentNode);
+		if (el == null) {
+			// calls closeHandler which should hide the calendar.
+			window.calendar.callCloseHandler();
+			return Calendar.stopEvent(ev);
+		}
+	}
+};
+
+/** Shows the calendar. */
+Calendar.prototype.show = function () {
+	var inputField = this.params.inputField;
+	if (inputField.disabled) {
+		return false;
+	}
+	
+	Calendar.setFocus(inputField);
+	
+	var rows = this.table.getElementsByTagName("tr");
+	for (var i = rows.length; i > 0;) {
+		var row = rows[--i];
+		Calendar.removeClass(row, "rowhilite");
+		var cells = row.getElementsByTagName("td");
+		for (var j = cells.length; j > 0;) {
+			var cell = cells[--j];
+			Calendar.removeClass(cell, "hilite");
+			Calendar.removeClass(cell, "active");
+		}
+	}
+	this.element.style.display = "block";
+	this.hidden = false;
+	if (this.isPopup) {
+		window.calendar = this;
+		Calendar.addEvent(document, "keydown", Calendar._keyEvent);
+		Calendar.addEvent(document, "keypress", Calendar._keyEvent);
+		Calendar.addEvent(document, "mousedown", Calendar._checkCalendar);
+	}
+	this.hideShowCovered();
+};
+
+/**
+ *  Hides the calendar.  Also removes any "hilite" from the class of any TD
+ *  element.
+ */
+Calendar.prototype.hide = function () {
+	if (this.isPopup) {
+		Calendar.removeEvent(document, "keydown", Calendar._keyEvent);
+		Calendar.removeEvent(document, "keypress", Calendar._keyEvent);
+		Calendar.removeEvent(document, "mousedown", Calendar._checkCalendar);
+	}
+	this.element.style.display = "none";
+	this.hidden = true;
+	this.hideShowCovered();
+};
+
+/**
+ *  Shows the calendar at a given absolute position (beware that, depending on
+ *  the calendar element style -- position property -- this might be relative
+ *  to the parent's containing rectangle).
+ */
+Calendar.prototype.showAt = function (x, y) {
+	var s = this.element.style;
+	if (this.params.displayRight) {
+		s.right = x + "px";
+	}
+	else {
+		s.left = x + "px";
+	}
+	s.top = y + "px";
+	this.show();
+};
+
+/** Shows the calendar near a given element. */
+Calendar.prototype.showAtElement = function (el, opts) {
+	var self = this;
+	var p = gx.dom.position(el);
+	if (!opts || typeof opts != "string") {
+		this.showAt(p.x, p.y + gx.dom.dimensions(el).h);
+		$(self.element).position({
+			"of": el,
+			"my": "left top",
+			"at": "left bottom",
+			"collision": "flip"
+		});
+		return true;
+	}
+	var w = gx.dom.dimensions(self.element).w;
+	var h = gx.dom.dimensions(self.element).h;
+	var valign = opts.substr(0, 1);
+	var halign = "l";
+	if (opts.length > 1) {
+		halign = opts.substr(1, 1);
+	}
+	// vertical alignment
+	switch (valign) {
+		case "T": p.y -= h; break;
+		case "B": p.y += el.offsetHeight; break;
+		case "C": p.y += (el.offsetHeight - h) / 2; break;
+		case "t": p.y += el.offsetHeight - h; break;
+		case "b": break; // already there
+	}
+	// horizontal alignment
+	switch (halign) {
+		case "L": p.x -= w; break;
+		case "R": p.x += el.offsetWidth; break;
+		case "C": p.x += (el.offsetWidth - w) / 2; break;
+		case "r": p.x += el.offsetWidth - w; break;
+		case "l": break; // already there
+	}
+	var relativePosition = gx.dom.position(self.element.parentNode);
+	self.showAt(p.x - relativePosition.x, p.y - relativePosition.y);
+	$(self.element).position({
+		"of": el,
+		"my": "left top",
+		"at": "left bottom",
+		"collision": "flip"
+	});
+};
+
+/** Customizes the date format. */
+Calendar.prototype.setDateFormat = function (str) {
+	this.dateFormat = str;
+};
+
+/** Customizes the tooltip date format. */
+Calendar.prototype.setTtDateFormat = function (str) {
+	this.ttDateFormat = str;
+};
+
+/**
+ *  Tries to identify the date represented in a string.  If successful it also
+ *  calls this.setDate which moves the calendar to the given date.
+ */
+Calendar.prototype.parseDate = function (str, fmt) {
+	var dateObj = gx.date.dateObject(str);	
+	if (gx.date.isNullDate(dateObj))
+		dateObj = new Date();	
+	this.setDate(dateObj);
+};
+
+Calendar.prototype.hideShowCovered = function () {
+	var isOldIE = gx.util.browser.isIE() && gx.util.browser.ieVersion() <= 8;
+	if (!this.isPopup || !isOldIE)
+		return;
+	var self = this;
+	Calendar.continuation_for_the_fucking_khtml_browser = function () {
+		function getVisib(obj) {
+			var value = obj.style.visibility;
+			if (!value) {
+				if (document.defaultView && typeof (document.defaultView.getComputedStyle) == "function") { // Gecko, W3C
+					if (!Calendar.is_khtml)
+						value = document.defaultView.
+							getComputedStyle(obj, "").getPropertyValue("visibility");
+					else
+						value = '';
+				} else if (obj.currentStyle) { // IE
+					value = obj.currentStyle.visibility;
+				} else
+					value = '';
+			}
+			return value;
+		};
+
+		var tags = new Array("object", "applet", "iframe", "select");
+		var el = self.element;
+
+		var p = Calendar.getAbsolutePos(el);
+		var EX1 = p.x;
+		var EX2 = el.offsetWidth + EX1;
+		var EY1 = p.y;
+		var EY2 = el.offsetHeight + EY1;
+
+		for (var k = tags.length; k > 0;) {
+			var ar = document.getElementsByTagName(tags[--k]);
+			var cc = null;
+
+			for (var i = ar.length; i > 0;) {
+				cc = ar[--i];
+
+				p = Calendar.getAbsolutePos(cc);
+				var CX1 = p.x;
+				var CX2 = cc.offsetWidth + CX1;
+				var CY1 = p.y;
+				var CY2 = cc.offsetHeight + CY1;
+
+				if (self.hidden || (CX1 > EX2) || (CX2 < EX1) || (CY1 > EY2) || (CY2 < EY1)) {
+					if (!cc.__msh_save_visibility && cc.__msh_save_visibility != '') {
+						cc.__msh_save_visibility = getVisib(cc);
+					}
+					if (typeof cc.__msh_save_visibility != "undefined") {
+						cc.style.visibility = cc.__msh_save_visibility;
+					} else {
+						cc.style.visibility = "";
+					}
+				} else {
+					if (!cc.__msh_save_visibility) {
+						cc.__msh_save_visibility = getVisib(cc);
+					}
+					cc.style.visibility = "hidden";
+				}
+			}
+		}
+	};
+	if (Calendar.is_khtml)
+		setTimeout("Calendar.continuation_for_the_fucking_khtml_browser()", 10);
+	else
+		Calendar.continuation_for_the_fucking_khtml_browser();
+};
+
+/** Internal function; it displays the bar with the names of the weekday. */
+Calendar.prototype._displayWeekdays = function () {
+	var MON = this.mondayFirst ? 0 : 1;
+	var SUN = this.mondayFirst ? 6 : 0;
+	var SAT = this.mondayFirst ? 5 : 6;
+	var cell = this.firstdayname;
+	for (var i = 0; i < 7; ++i) {
+		cell.className = "day name";
+		if (!i) {
+			cell.ttip = this.mondayFirst ? Calendar._TT["SUN_FIRST"] : Calendar._TT["MON_FIRST"];
+			cell.navtype = 100;
+			cell.calendar = this;
+			Calendar._add_evs(cell);
+		}
+		if (i == SUN || i == SAT) {
+			Calendar.addClass(cell, "weekend");
+		}
+		cell.firstChild.data = Calendar._SDN[i + 1 - MON];
+		cell = cell.nextSibling;
+	}
+};
+
+/** Internal function.  Hides all combo boxes that might be displayed. */
+Calendar.prototype._hideCombos = function () {
+	this.monthsCombo.style.display = "none";
+	this.yearsCombo.style.display = "none";
+};
+
+/** Internal function.  Starts dragging the element. */
+Calendar.prototype._dragStart = function (ev) {
+	if (this.dragging) {
+		return;
+	}
+	this.dragging = true;
+	var posX;
+	var posY;
+	if (Calendar.is_ie) {
+		posY = window.event.clientY + document.body.scrollTop;
+		posX = window.event.clientX + document.body.scrollLeft;
+	} else {
+		posY = ev.clientY + window.scrollY;
+		posX = ev.clientX + window.scrollX;
+	}
+	var st = this.element.style;
+	this.xOffs = posX - parseInt(st.left);
+	this.yOffs = posY - parseInt(st.top);
+	with (Calendar) {
+		addEvent(document, "mousemove", calDragIt);
+		addEvent(document, "mouseover", stopEvent);
+		addEvent(document, "mouseup", calDragEnd);
+	}
+};
+
+
+// global object that remembers the calendar
+window.calendar = null;
+}

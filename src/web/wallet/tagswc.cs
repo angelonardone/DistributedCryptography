@@ -281,10 +281,10 @@ namespace GeneXus.Programs.wallet {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 310420), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1759500), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 310420), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 310420), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1759500), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1759500), false, true);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
          if ( context.isSpaRequest( ) )
          {
@@ -643,7 +643,7 @@ namespace GeneXus.Programs.wallet {
             {
                if ( context.ExposeMetadata( ) )
                {
-                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_13-186676", 0) ;
+                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_13-186702", 0) ;
                }
             }
             Form.Meta.addItem("description", "Tags WC", 0) ;
@@ -1652,7 +1652,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20257241621502", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202573011554858", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1668,7 +1668,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/tagswc.js", "?20257241621502", false, true);
+         context.AddJavascriptSource("wallet/tagswc.js", "?202573011554858", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          /* End function include_jscripts */
       }
