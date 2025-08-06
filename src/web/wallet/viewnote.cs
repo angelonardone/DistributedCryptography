@@ -657,7 +657,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202573011565986", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202585197843", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -675,7 +675,7 @@ namespace GeneXus.Programs.wallet {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wallet/viewnote.js", "?202573011565988", false, true);
+            context.AddJavascriptSource("wallet/viewnote.js", "?202585197843", false, true);
          }
          /* End function include_jscripts */
       }

@@ -801,7 +801,7 @@ namespace GeneXus.Programs.hsm {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20257301157089", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20258519798", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -817,7 +817,7 @@ namespace GeneXus.Programs.hsm {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("hsm/hsmconfig.js", "?20257301157089", false, true);
+         context.AddJavascriptSource("hsm/hsmconfig.js", "?202585197910", false, true);
          /* End function include_jscripts */
       }
 

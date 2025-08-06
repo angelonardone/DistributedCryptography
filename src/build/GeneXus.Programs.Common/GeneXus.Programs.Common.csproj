@@ -44,6 +44,7 @@
 		<Compile Include = "$(WebDirectory)\electrum\gxdomainconnectiontype.cs" />
 		<Compile Include = "$(WebDirectory)\nostr\gxdomainkindtype.cs" />
 		<Compile Include = "$(WebDirectory)\gxdomaingamerrormessages.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\gxdomainwalletrestoremethod.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomaincreatekeytype.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainmnemonicnumberwords.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gxdomainsubgrouptype.cs" />

@@ -54,6 +54,7 @@ namespace GeneXus.Programs.wallet {
       {
          cmbavNetworktype = new GXCombobox();
          cmbavWallettype = new GXCombobox();
+         cmbavWalletrestoremethod = new GXCombobox();
       }
 
       protected void INITWEB( )
@@ -210,6 +211,7 @@ namespace GeneXus.Programs.wallet {
          {
             enableOutput();
          }
+         context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -259,6 +261,22 @@ namespace GeneXus.Programs.wallet {
          send_integrity_footer_hashes( ) ;
          if ( context.isAjaxRequest( ) )
          {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vUPLOADEDFILES", AV35UploadedFiles);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vUPLOADEDFILES", AV35UploadedFiles);
+         }
+         if ( context.isAjaxRequest( ) )
+         {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vFAILEDFILES", AV36FailedFiles);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vFAILEDFILES", AV36FailedFiles);
+         }
+         if ( context.isAjaxRequest( ) )
+         {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vEXTKEYCREATE", AV7extKeyCreate);
          }
          else
@@ -290,6 +308,12 @@ namespace GeneXus.Programs.wallet {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vEXTENDESECRETANDAUTHENTICATOR", AV32extendeSecretAndAuthenticator);
          }
+         GxWebStd.gx_hidden_field( context, "FILEUPLOAD_Autoupload", StringUtil.BoolToStr( Fileupload_Autoupload));
+         GxWebStd.gx_hidden_field( context, "FILEUPLOAD_Hideadditionalbuttons", StringUtil.BoolToStr( Fileupload_Hideadditionalbuttons));
+         GxWebStd.gx_hidden_field( context, "FILEUPLOAD_Maxnumberoffiles", StringUtil.LTrim( StringUtil.NToC( (decimal)(Fileupload_Maxnumberoffiles), 9, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "FILEUPLOAD_Autodisableaddingfiles", StringUtil.BoolToStr( Fileupload_Autodisableaddingfiles));
+         GxWebStd.gx_hidden_field( context, "FILEUPLOAD_Acceptedfiletypes", StringUtil.RTrim( Fileupload_Acceptedfiletypes));
+         GxWebStd.gx_hidden_field( context, "FILEUPLOAD_Customfiletypes", StringUtil.RTrim( Fileupload_Customfiletypes));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -438,18 +462,81 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
+            GxWebStd.gx_div_start( context, "", cmbavWalletrestoremethod.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbavWalletrestoremethod_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, cmbavWalletrestoremethod_Internalname, "Wallet Restore Method", "col-sm-3 AttributeLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 23,'',false,'',0)\"";
+            /* ComboBox */
+            GxWebStd.gx_combobox_ctrl1( context, cmbavWalletrestoremethod, cmbavWalletrestoremethod_Internalname, StringUtil.Trim( StringUtil.Str( (decimal)(AV33WalletRestoreMethod), 4, 0)), 1, cmbavWalletrestoremethod_Jsonclick, 0, "'"+""+"'"+",false,"+"'"+""+"'", "int", "", cmbavWalletrestoremethod.Visible, cmbavWalletrestoremethod.Enabled, 0, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,23);\"", "", true, 0, "HLP_Wallet/RestoreWallet.htm");
+            cmbavWalletrestoremethod.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(AV33WalletRestoreMethod), 4, 0));
+            AssignProp("", false, cmbavWalletrestoremethod_Internalname, "Values", (string)(cmbavWalletrestoremethod.ToJavascriptSource()), true);
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", edtavColdcardnemonicpassword_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavColdcardnemonicpassword_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, edtavColdcardnemonicpassword_Internalname, "COLDCARD 12 words password", "col-sm-3 AttributeLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
+            /* Multiple line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 28,'',false,'',0)\"";
+            ClassString = "Attribute";
+            StyleString = "";
+            ClassString = "Attribute";
+            StyleString = "";
+            GxWebStd.gx_html_textarea( context, edtavColdcardnemonicpassword_Internalname, AV34coldCardNemonicPassword, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,28);\"", 0, edtavColdcardnemonicpassword_Visible, edtavColdcardnemonicpassword_Enabled, 0, 80, "chr", 10, "row", 0, StyleString, ClassString, "", "", "2097152", -1, 0, "", "", -1, true, "", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Wallet/RestoreWallet.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divCanvas_Internalname, divCanvas_Visible, 100, "%", 200, "px", "Table", "start", "top", " "+"data-gx-canvas"+" ", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", " "+"data-gx-canvas-cell"+" ", "position:absolute;z-index:0;display:inline-block;right:0px;left:0px;top:0px;", "div");
+            /* User Defined Control */
+            ucFileupload.SetProperty("AutoUpload", Fileupload_Autoupload);
+            ucFileupload.SetProperty("HideAdditionalButtons", Fileupload_Hideadditionalbuttons);
+            ucFileupload.SetProperty("TooltipText", Fileupload_Tooltiptext);
+            ucFileupload.SetProperty("MaxNumberOfFiles", Fileupload_Maxnumberoffiles);
+            ucFileupload.SetProperty("AutoDisableAddingFiles", Fileupload_Autodisableaddingfiles);
+            ucFileupload.SetProperty("AcceptedFileTypes", Fileupload_Acceptedfiletypes);
+            ucFileupload.SetProperty("CustomFileTypes", Fileupload_Customfiletypes);
+            ucFileupload.SetProperty("UploadedFiles", AV35UploadedFiles);
+            ucFileupload.SetProperty("FailedFiles", AV36FailedFiles);
+            ucFileupload.Render(context, "fileupload", Fileupload_Internalname, "FILEUPLOADContainer");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavMnemonictext_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavMnemonictext_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
             GxWebStd.gx_label_element( context, edtavMnemonictext_Internalname, "Mnemonic Text", "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Multiple line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 23,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 38,'',false,'',0)\"";
             ClassString = "Attribute";
             StyleString = "";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_html_textarea( context, edtavMnemonictext_Internalname, AV11MnemonicText, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,23);\"", 0, edtavMnemonictext_Visible, edtavMnemonictext_Enabled, 0, 80, "chr", 10, "row", 0, StyleString, ClassString, "", "", "2097152", -1, 0, "", "", -1, true, "", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Wallet/RestoreWallet.htm");
+            GxWebStd.gx_html_textarea( context, edtavMnemonictext_Internalname, AV11MnemonicText, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,38);\"", 0, edtavMnemonictext_Visible, edtavMnemonictext_Enabled, 0, 80, "chr", 10, "row", 0, StyleString, ClassString, "", "", "2097152", -1, 0, "", "", -1, true, "", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Wallet/RestoreWallet.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -465,8 +552,8 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 28,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavPassworwithmnamonic_Internalname, StringUtil.RTrim( AV15passworWithMnamonic), StringUtil.RTrim( context.localUtil.Format( AV15passworWithMnamonic, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,28);\""+" "+"data-gx-password-reveal"+" ", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavPassworwithmnamonic_Jsonclick, 0, "Attribute", "", "", "", "", edtavPassworwithmnamonic_Visible, edtavPassworwithmnamonic_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, -1, 0, 0, 0, 0, -1, true, "", "start", true, "", "HLP_Wallet/RestoreWallet.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 43,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavPassworwithmnamonic_Internalname, StringUtil.RTrim( AV15passworWithMnamonic), StringUtil.RTrim( context.localUtil.Format( AV15passworWithMnamonic, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,43);\""+" "+"data-gx-password-reveal"+" ", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavPassworwithmnamonic_Jsonclick, 0, "Attribute", "", "", "", "", edtavPassworwithmnamonic_Visible, edtavPassworwithmnamonic_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, -1, 0, 0, 0, 0, -1, true, "", "start", true, "", "HLP_Wallet/RestoreWallet.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -482,12 +569,12 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Multiple line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 33,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 48,'',false,'',0)\"";
             ClassString = "Attribute";
             StyleString = "";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_html_textarea( context, edtavWiftext_Internalname, StringUtil.RTrim( AV19WIFText), "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,33);\"", 0, edtavWiftext_Visible, edtavWiftext_Enabled, 0, 80, "chr", 4, "row", 0, StyleString, ClassString, "", "", "250", -1, 0, "", "", -1, true, "", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Wallet/RestoreWallet.htm");
+            GxWebStd.gx_html_textarea( context, edtavWiftext_Internalname, StringUtil.RTrim( AV19WIFText), "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,48);\"", 0, edtavWiftext_Visible, edtavWiftext_Enabled, 0, 80, "chr", 4, "row", 0, StyleString, ClassString, "", "", "250", -1, 0, "", "", -1, true, "", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Wallet/RestoreWallet.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -503,12 +590,12 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Multiple line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 38,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 53,'',false,'',0)\"";
             ClassString = "Attribute";
             StyleString = "";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_html_textarea( context, edtavBraintext_Internalname, StringUtil.RTrim( AV5BrainText), "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,38);\"", 0, edtavBraintext_Visible, edtavBraintext_Enabled, 0, 80, "chr", 4, "row", 0, StyleString, ClassString, "", "", "250", -1, 0, "", "", -1, true, "", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Wallet/RestoreWallet.htm");
+            GxWebStd.gx_html_textarea( context, edtavBraintext_Internalname, StringUtil.RTrim( AV5BrainText), "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,53);\"", 0, edtavBraintext_Visible, edtavBraintext_Enabled, 0, 80, "chr", 4, "row", 0, StyleString, ClassString, "", "", "250", -1, 0, "", "", -1, true, "", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Wallet/RestoreWallet.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -524,8 +611,8 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 43,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavNewpass_Internalname, StringUtil.RTrim( AV13newPass), StringUtil.RTrim( context.localUtil.Format( AV13newPass, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,43);\""+" "+"data-gx-password-reveal"+" ", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavNewpass_Jsonclick, 0, "Attribute", "", "", "", "", edtavNewpass_Visible, edtavNewpass_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, -1, 0, 0, 0, 0, -1, true, "", "start", true, "", "HLP_Wallet/RestoreWallet.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 58,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavNewpass_Internalname, StringUtil.RTrim( AV13newPass), StringUtil.RTrim( context.localUtil.Format( AV13newPass, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,58);\""+" "+"data-gx-password-reveal"+" ", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavNewpass_Jsonclick, 0, "Attribute", "", "", "", "", edtavNewpass_Visible, edtavNewpass_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, -1, 0, 0, 0, 0, -1, true, "", "start", true, "", "HLP_Wallet/RestoreWallet.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -541,8 +628,8 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 48,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavNewpassconfirm_Internalname, StringUtil.RTrim( AV14newPassConfirm), StringUtil.RTrim( context.localUtil.Format( AV14newPassConfirm, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,48);\""+" "+"data-gx-password-reveal"+" ", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavNewpassconfirm_Jsonclick, 0, "Attribute", "", "", "", "", edtavNewpassconfirm_Visible, edtavNewpassconfirm_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, -1, 0, 0, 0, 0, -1, true, "", "start", true, "", "HLP_Wallet/RestoreWallet.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 63,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavNewpassconfirm_Internalname, StringUtil.RTrim( AV14newPassConfirm), StringUtil.RTrim( context.localUtil.Format( AV14newPassConfirm, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,63);\""+" "+"data-gx-password-reveal"+" ", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavNewpassconfirm_Jsonclick, 0, "Attribute", "", "", "", "", edtavNewpassconfirm_Visible, edtavNewpassconfirm_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, -1, 0, 0, 0, 0, -1, true, "", "start", true, "", "HLP_Wallet/RestoreWallet.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -551,18 +638,24 @@ namespace GeneXus.Programs.wallet {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 51,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 66,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttRestorewallet_Internalname, "", "Restore Wallet", bttRestorewallet_Jsonclick, 5, "Restore Wallet", "", StyleString, ClassString, bttRestorewallet_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'RESTORE WALLET\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Wallet/RestoreWallet.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "end", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 53,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 68,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttCancel_Internalname, "", "Cancel and Close", bttCancel_Jsonclick, 5, "Cancel and Close", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'CANCEL AND CLOSE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Wallet/RestoreWallet.htm");
             GxWebStd.gx_div_end( context, "end", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -626,33 +719,40 @@ namespace GeneXus.Programs.wallet {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "FILEUPLOAD.UPLOADCOMPLETE") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: Fileupload.Uploadcomplete */
+                              E110L2 ();
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "START") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Start */
-                              E110L2 ();
+                              E120L2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "'RESTORE WALLET'") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: 'Restore Wallet' */
-                              E120L2 ();
+                              E130L2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "'CANCEL AND CLOSE'") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: 'Cancel and Close' */
-                              E130L2 ();
+                              E140L2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Load */
-                              E140L2 ();
+                              E150L2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                            {
@@ -772,6 +872,16 @@ namespace GeneXus.Programs.wallet {
             cmbavWallettype.CurrentValue = StringUtil.RTrim( AV18walletType);
             AssignProp("", false, cmbavWallettype_Internalname, "Values", cmbavWallettype.ToJavascriptSource(), true);
          }
+         if ( cmbavWalletrestoremethod.ItemCount > 0 )
+         {
+            AV33WalletRestoreMethod = (short)(Math.Round(NumberUtil.Val( cmbavWalletrestoremethod.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(AV33WalletRestoreMethod), 4, 0))), "."), 18, MidpointRounding.ToEven));
+            AssignAttri("", false, "AV33WalletRestoreMethod", StringUtil.LTrimStr( (decimal)(AV33WalletRestoreMethod), 4, 0));
+         }
+         if ( context.isAjaxRequest( ) )
+         {
+            cmbavWalletrestoremethod.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(AV33WalletRestoreMethod), 4, 0));
+            AssignProp("", false, cmbavWalletrestoremethod_Internalname, "Values", cmbavWalletrestoremethod.ToJavascriptSource(), true);
+         }
       }
 
       public void Refresh( )
@@ -799,7 +909,7 @@ namespace GeneXus.Programs.wallet {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E140L2 ();
+            E150L2 ();
             WB0L0( ) ;
          }
       }
@@ -820,13 +930,21 @@ namespace GeneXus.Programs.wallet {
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E110L2 ();
+         E120L2 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
             /* Read saved SDTs. */
+            ajax_req_read_hidden_sdt(cgiGet( "vUPLOADEDFILES"), AV35UploadedFiles);
+            ajax_req_read_hidden_sdt(cgiGet( "vFAILEDFILES"), AV36FailedFiles);
             /* Read saved values. */
+            Fileupload_Autoupload = StringUtil.StrToBool( cgiGet( "FILEUPLOAD_Autoupload"));
+            Fileupload_Hideadditionalbuttons = StringUtil.StrToBool( cgiGet( "FILEUPLOAD_Hideadditionalbuttons"));
+            Fileupload_Maxnumberoffiles = (int)(Math.Round(context.localUtil.CToN( cgiGet( "FILEUPLOAD_Maxnumberoffiles"), ".", ","), 18, MidpointRounding.ToEven));
+            Fileupload_Autodisableaddingfiles = StringUtil.StrToBool( cgiGet( "FILEUPLOAD_Autodisableaddingfiles"));
+            Fileupload_Acceptedfiletypes = cgiGet( "FILEUPLOAD_Acceptedfiletypes");
+            Fileupload_Customfiletypes = cgiGet( "FILEUPLOAD_Customfiletypes");
             /* Read variables values. */
             AV17walletName = cgiGet( edtavWalletname_Internalname);
             AssignAttri("", false, "AV17walletName", AV17walletName);
@@ -836,6 +954,11 @@ namespace GeneXus.Programs.wallet {
             cmbavWallettype.CurrentValue = cgiGet( cmbavWallettype_Internalname);
             AV18walletType = cgiGet( cmbavWallettype_Internalname);
             AssignAttri("", false, "AV18walletType", AV18walletType);
+            cmbavWalletrestoremethod.CurrentValue = cgiGet( cmbavWalletrestoremethod_Internalname);
+            AV33WalletRestoreMethod = (short)(Math.Round(NumberUtil.Val( cgiGet( cmbavWalletrestoremethod_Internalname), "."), 18, MidpointRounding.ToEven));
+            AssignAttri("", false, "AV33WalletRestoreMethod", StringUtil.LTrimStr( (decimal)(AV33WalletRestoreMethod), 4, 0));
+            AV34coldCardNemonicPassword = cgiGet( edtavColdcardnemonicpassword_Internalname);
+            AssignAttri("", false, "AV34coldCardNemonicPassword", AV34coldCardNemonicPassword);
             AV11MnemonicText = cgiGet( edtavMnemonictext_Internalname);
             AssignAttri("", false, "AV11MnemonicText", AV11MnemonicText);
             AV15passworWithMnamonic = cgiGet( edtavPassworwithmnamonic_Internalname);
@@ -861,16 +984,18 @@ namespace GeneXus.Programs.wallet {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E110L2 ();
+         E120L2 ();
          if (returnInSub) return;
       }
 
-      protected void E110L2( )
+      protected void E120L2( )
       {
          /* Start Routine */
          returnInSub = false;
          edtavMnemonictext_Visible = 0;
          AssignProp("", false, edtavMnemonictext_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavMnemonictext_Visible), 5, 0), true);
+         cmbavWalletrestoremethod.Visible = 0;
+         AssignProp("", false, cmbavWalletrestoremethod_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(cmbavWalletrestoremethod.Visible), 5, 0), true);
          edtavPassworwithmnamonic_Visible = 0;
          AssignProp("", false, edtavPassworwithmnamonic_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavPassworwithmnamonic_Visible), 5, 0), true);
          edtavWiftext_Visible = 0;
@@ -883,9 +1008,13 @@ namespace GeneXus.Programs.wallet {
          AssignProp("", false, edtavNewpassconfirm_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavNewpassconfirm_Visible), 5, 0), true);
          bttRestorewallet_Visible = 0;
          AssignProp("", false, bttRestorewallet_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttRestorewallet_Visible), 5, 0), true);
+         edtavColdcardnemonicpassword_Visible = 0;
+         AssignProp("", false, edtavColdcardnemonicpassword_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavColdcardnemonicpassword_Visible), 5, 0), true);
+         divCanvas_Visible = 0;
+         AssignProp("", false, divCanvas_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divCanvas_Visible), 5, 0), true);
       }
 
-      protected void E120L2( )
+      protected void E130L2( )
       {
          /* 'Restore Wallet' Routine */
          returnInSub = false;
@@ -1246,7 +1375,7 @@ namespace GeneXus.Programs.wallet {
          }
       }
 
-      protected void E130L2( )
+      protected void E140L2( )
       {
          /* 'Cancel and Close' Routine */
          returnInSub = false;
@@ -1258,11 +1387,65 @@ namespace GeneXus.Programs.wallet {
          if (true) return;
       }
 
+      protected void E110L2( )
+      {
+         /* Fileupload_Uploadcomplete Routine */
+         returnInSub = false;
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV34coldCardNemonicPassword)) )
+         {
+            AV55GXV1 = 1;
+            while ( AV55GXV1 <= AV35UploadedFiles.Count )
+            {
+               AV50FileUploadData = ((SdtFileUploadData)AV35UploadedFiles.Item(AV55GXV1));
+               AV53tempBlob = AV50FileUploadData.gxTpr_File;
+               AV48File.Source = AV53tempBlob;
+               GXt_char2 = AV6error;
+               new GeneXus.Programs.distributedcrypto.decryptcoldcardbackup(context ).execute(  StringUtil.Trim( AV34coldCardNemonicPassword),  AV48File.GetAbsoluteName(), out  AV11MnemonicText, out  GXt_char2) ;
+               AssignAttri("", false, "AV11MnemonicText", AV11MnemonicText);
+               AV6error = GXt_char2;
+               AssignAttri("", false, "AV6error", AV6error);
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
+               {
+                  this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"success",(string)"COLDCARD decrypted",(string)"Please, continue with the setup"}, true);
+                  edtavColdcardnemonicpassword_Visible = 0;
+                  AssignProp("", false, edtavColdcardnemonicpassword_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavColdcardnemonicpassword_Visible), 5, 0), true);
+                  divCanvas_Visible = 0;
+                  AssignProp("", false, divCanvas_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divCanvas_Visible), 5, 0), true);
+                  edtavPassworwithmnamonic_Visible = 1;
+                  AssignProp("", false, edtavPassworwithmnamonic_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavPassworwithmnamonic_Visible), 5, 0), true);
+                  edtavNewpass_Visible = 1;
+                  AssignProp("", false, edtavNewpass_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavNewpass_Visible), 5, 0), true);
+                  edtavNewpassconfirm_Visible = 1;
+                  AssignProp("", false, edtavNewpassconfirm_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavNewpassconfirm_Visible), 5, 0), true);
+               }
+               else
+               {
+                  this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"COLDCARD error",(string)AV6error}, true);
+                  AV35UploadedFiles.Clear();
+                  CallWebObject(formatLink("wallet.restorewallet") );
+                  context.wjLocDisableFrm = 1;
+               }
+               this.executeUsercontrolMethod("", false, "FILEUPLOADContainer", "Clear", "", new Object[] {});
+               AV48File.Delete();
+               AV55GXV1 = (int)(AV55GXV1+1);
+            }
+         }
+         else
+         {
+            this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"COLDCARD error",(string)"Please, enter the COLDCARD 12 words password before adding the file"}, true);
+            AV35UploadedFiles.Clear();
+            CallWebObject(formatLink("wallet.restorewallet") );
+            context.wjLocDisableFrm = 1;
+         }
+         /*  Sending Event outputs  */
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV35UploadedFiles", AV35UploadedFiles);
+      }
+
       protected void nextLoad( )
       {
       }
 
-      protected void E140L2( )
+      protected void E150L2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -1298,6 +1481,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void define_styles( )
       {
+         AddStyleSheetFile("FileUpload/fileupload.min.css", "");
          AddThemeStyleSheetFile("", context.GetTheme( )+".css", "?"+GetCacheInvalidationToken( ));
          bool outputEnabled = isOutputEnabled( );
          if ( context.isSpaRequest( ) )
@@ -1307,7 +1491,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202573011564382", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025851965251", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1323,7 +1507,8 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/restorewallet.js", "?202573011564382", false, true);
+         context.AddJavascriptSource("wallet/restorewallet.js", "?2025851965253", false, true);
+         context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
          /* End function include_jscripts */
       }
 
@@ -1353,6 +1538,15 @@ namespace GeneXus.Programs.wallet {
             AV18walletType = cmbavWallettype.getValidValue(AV18walletType);
             AssignAttri("", false, "AV18walletType", AV18walletType);
          }
+         cmbavWalletrestoremethod.Name = "vWALLETRESTOREMETHOD";
+         cmbavWalletrestoremethod.WebTags = "";
+         cmbavWalletrestoremethod.addItem("10", "From Mnemonic", 0);
+         cmbavWalletrestoremethod.addItem("20", "From COLDCARD Backup", 0);
+         if ( cmbavWalletrestoremethod.ItemCount > 0 )
+         {
+            AV33WalletRestoreMethod = (short)(Math.Round(NumberUtil.Val( cmbavWalletrestoremethod.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(AV33WalletRestoreMethod), 4, 0))), "."), 18, MidpointRounding.ToEven));
+            AssignAttri("", false, "AV33WalletRestoreMethod", StringUtil.LTrimStr( (decimal)(AV33WalletRestoreMethod), 4, 0));
+         }
          /* End function init_web_controls */
       }
 
@@ -1361,6 +1555,10 @@ namespace GeneXus.Programs.wallet {
          edtavWalletname_Internalname = "vWALLETNAME";
          cmbavNetworktype_Internalname = "vNETWORKTYPE";
          cmbavWallettype_Internalname = "vWALLETTYPE";
+         cmbavWalletrestoremethod_Internalname = "vWALLETRESTOREMETHOD";
+         edtavColdcardnemonicpassword_Internalname = "vCOLDCARDNEMONICPASSWORD";
+         Fileupload_Internalname = "FILEUPLOAD";
+         divCanvas_Internalname = "CANVAS";
          edtavMnemonictext_Internalname = "vMNEMONICTEXT";
          edtavPassworwithmnamonic_Internalname = "vPASSWORWITHMNAMONIC";
          edtavWiftext_Internalname = "vWIFTEXT";
@@ -1397,11 +1595,24 @@ namespace GeneXus.Programs.wallet {
          edtavPassworwithmnamonic_Visible = 1;
          edtavMnemonictext_Enabled = 1;
          edtavMnemonictext_Visible = 1;
+         Fileupload_Tooltiptext = "";
+         divCanvas_Visible = 1;
+         edtavColdcardnemonicpassword_Enabled = 1;
+         edtavColdcardnemonicpassword_Visible = 1;
+         cmbavWalletrestoremethod_Jsonclick = "";
+         cmbavWalletrestoremethod.Enabled = 1;
+         cmbavWalletrestoremethod.Visible = 1;
          cmbavWallettype_Jsonclick = "";
          cmbavWallettype.Enabled = 1;
          cmbavNetworktype_Jsonclick = "";
          cmbavNetworktype.Enabled = 1;
          edtavWalletname_Enabled = 1;
+         Fileupload_Customfiletypes = "7z";
+         Fileupload_Acceptedfiletypes = "custom";
+         Fileupload_Autodisableaddingfiles = Convert.ToBoolean( -1);
+         Fileupload_Maxnumberoffiles = 1;
+         Fileupload_Hideadditionalbuttons = Convert.ToBoolean( -1);
+         Fileupload_Autoupload = Convert.ToBoolean( -1);
          Form.Headerrawhtml = "";
          Form.Background = "";
          Form.Textcolor = 0;
@@ -1418,6 +1629,7 @@ namespace GeneXus.Programs.wallet {
          AV18walletType = cmbavWallettype.CurrentValue;
          edtavMnemonictext_Visible = ((StringUtil.StrCmp(AV18walletType, "BIP44")==0)||(StringUtil.StrCmp(AV18walletType, "BIP49")==0)||(StringUtil.StrCmp(AV18walletType, "BIP84")==0)||(StringUtil.StrCmp(AV18walletType, "BIP86")==0) ? 1 : 0);
          edtavPassworwithmnamonic_Visible = ((StringUtil.StrCmp(AV18walletType, "BIP44")==0)||(StringUtil.StrCmp(AV18walletType, "BIP49")==0)||(StringUtil.StrCmp(AV18walletType, "BIP84")==0)||(StringUtil.StrCmp(AV18walletType, "BIP86")==0) ? 1 : 0);
+         cmbavWalletrestoremethod.Visible = ((StringUtil.StrCmp(AV18walletType, "BIP44")==0)||(StringUtil.StrCmp(AV18walletType, "BIP49")==0)||(StringUtil.StrCmp(AV18walletType, "BIP84")==0)||(StringUtil.StrCmp(AV18walletType, "BIP86")==0) ? 1 : 0);
          edtavWiftext_Visible = ((StringUtil.StrCmp(AV18walletType, "ImportedWIF")==0) ? 1 : 0);
          edtavBraintext_Visible = ((StringUtil.StrCmp(AV18walletType, "BrainWallet")==0) ? 1 : 0);
          edtavNewpass_Visible = (!(StringUtil.StrCmp(AV18walletType, "SelectWalletType")==0) ? 1 : 0);
@@ -1432,6 +1644,7 @@ namespace GeneXus.Programs.wallet {
          /*  Sending validation outputs */
          AssignProp("", false, edtavMnemonictext_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavMnemonictext_Visible), 5, 0), true);
          AssignProp("", false, edtavPassworwithmnamonic_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavPassworwithmnamonic_Visible), 5, 0), true);
+         AssignProp("", false, cmbavWalletrestoremethod_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(cmbavWalletrestoremethod.Visible), 5, 0), true);
          AssignProp("", false, edtavWiftext_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavWiftext_Visible), 5, 0), true);
          AssignProp("", false, edtavBraintext_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavBraintext_Visible), 5, 0), true);
          AssignProp("", false, edtavNewpass_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavNewpass_Visible), 5, 0), true);
@@ -1447,12 +1660,15 @@ namespace GeneXus.Programs.wallet {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
-         setEventMetadata("'RESTORE WALLET'","""{"handler":"E120L2","iparms":[{"av":"AV17walletName","fld":"vWALLETNAME","type":"char"},{"av":"AV13newPass","fld":"vNEWPASS","type":"char"},{"av":"AV14newPassConfirm","fld":"vNEWPASSCONFIRM","type":"char"},{"av":"AV11MnemonicText","fld":"vMNEMONICTEXT","type":"vchar"},{"av":"AV19WIFText","fld":"vWIFTEXT","type":"char"},{"av":"AV5BrainText","fld":"vBRAINTEXT","type":"char"},{"av":"cmbavWallettype"},{"av":"AV18walletType","fld":"vWALLETTYPE","type":"char"},{"av":"cmbavNetworktype"},{"av":"AV12networkType","fld":"vNETWORKTYPE","type":"char"},{"av":"AV7extKeyCreate","fld":"vEXTKEYCREATE","type":""},{"av":"AV16wallet","fld":"vWALLET","type":""},{"av":"AV9keyCreate","fld":"vKEYCREATE","type":""},{"av":"AV6error","fld":"vERROR","type":"char"},{"av":"AV15passworWithMnamonic","fld":"vPASSWORWITHMNAMONIC","type":"char"},{"av":"AV32extendeSecretAndAuthenticator","fld":"vEXTENDESECRETANDAUTHENTICATOR","type":""}]""");
+         setEventMetadata("'RESTORE WALLET'","""{"handler":"E130L2","iparms":[{"av":"AV17walletName","fld":"vWALLETNAME","type":"char"},{"av":"AV13newPass","fld":"vNEWPASS","type":"char"},{"av":"AV14newPassConfirm","fld":"vNEWPASSCONFIRM","type":"char"},{"av":"AV11MnemonicText","fld":"vMNEMONICTEXT","type":"vchar"},{"av":"AV19WIFText","fld":"vWIFTEXT","type":"char"},{"av":"AV5BrainText","fld":"vBRAINTEXT","type":"char"},{"av":"cmbavWallettype"},{"av":"AV18walletType","fld":"vWALLETTYPE","type":"char"},{"av":"cmbavNetworktype"},{"av":"AV12networkType","fld":"vNETWORKTYPE","type":"char"},{"av":"AV7extKeyCreate","fld":"vEXTKEYCREATE","type":""},{"av":"AV16wallet","fld":"vWALLET","type":""},{"av":"AV9keyCreate","fld":"vKEYCREATE","type":""},{"av":"AV6error","fld":"vERROR","type":"char"},{"av":"AV15passworWithMnamonic","fld":"vPASSWORWITHMNAMONIC","type":"char"},{"av":"AV32extendeSecretAndAuthenticator","fld":"vEXTENDESECRETANDAUTHENTICATOR","type":""}]""");
          setEventMetadata("'RESTORE WALLET'",""","oparms":[{"av":"AV7extKeyCreate","fld":"vEXTKEYCREATE","type":""},{"av":"AV6error","fld":"vERROR","type":"char"},{"av":"AV16wallet","fld":"vWALLET","type":""},{"av":"AV9keyCreate","fld":"vKEYCREATE","type":""},{"av":"AV32extendeSecretAndAuthenticator","fld":"vEXTENDESECRETANDAUTHENTICATOR","type":""}]}""");
-         setEventMetadata("'CANCEL AND CLOSE'","""{"handler":"E130L2","iparms":[]}""");
+         setEventMetadata("'CANCEL AND CLOSE'","""{"handler":"E140L2","iparms":[]}""");
+         setEventMetadata("FILEUPLOAD.UPLOADCOMPLETE","""{"handler":"E110L2","iparms":[{"av":"AV34coldCardNemonicPassword","fld":"vCOLDCARDNEMONICPASSWORD","type":"vchar"},{"av":"AV35UploadedFiles","fld":"vUPLOADEDFILES","type":""}]""");
+         setEventMetadata("FILEUPLOAD.UPLOADCOMPLETE",""","oparms":[{"av":"AV6error","fld":"vERROR","type":"char"},{"av":"AV11MnemonicText","fld":"vMNEMONICTEXT","type":"vchar"},{"av":"edtavColdcardnemonicpassword_Visible","ctrl":"vCOLDCARDNEMONICPASSWORD","prop":"Visible"},{"av":"divCanvas_Visible","ctrl":"CANVAS","prop":"Visible"},{"av":"edtavPassworwithmnamonic_Visible","ctrl":"vPASSWORWITHMNAMONIC","prop":"Visible"},{"av":"edtavNewpass_Visible","ctrl":"vNEWPASS","prop":"Visible"},{"av":"edtavNewpassconfirm_Visible","ctrl":"vNEWPASSCONFIRM","prop":"Visible"},{"av":"AV35UploadedFiles","fld":"vUPLOADEDFILES","type":""}]}""");
          setEventMetadata("VALIDV_NETWORKTYPE","""{"handler":"Validv_Networktype","iparms":[]}""");
          setEventMetadata("VALIDV_WALLETTYPE","""{"handler":"Validv_Wallettype","iparms":[{"av":"cmbavWallettype"},{"av":"AV18walletType","fld":"vWALLETTYPE","type":"char"}]""");
-         setEventMetadata("VALIDV_WALLETTYPE",""","oparms":[{"av":"edtavMnemonictext_Visible","ctrl":"vMNEMONICTEXT","prop":"Visible"},{"av":"edtavPassworwithmnamonic_Visible","ctrl":"vPASSWORWITHMNAMONIC","prop":"Visible"},{"av":"edtavWiftext_Visible","ctrl":"vWIFTEXT","prop":"Visible"},{"av":"edtavBraintext_Visible","ctrl":"vBRAINTEXT","prop":"Visible"},{"av":"edtavNewpass_Visible","ctrl":"vNEWPASS","prop":"Visible"},{"av":"edtavNewpassconfirm_Visible","ctrl":"vNEWPASSCONFIRM","prop":"Visible"},{"ctrl":"RESTOREWALLET","prop":"Visible"}]}""");
+         setEventMetadata("VALIDV_WALLETTYPE",""","oparms":[{"av":"edtavMnemonictext_Visible","ctrl":"vMNEMONICTEXT","prop":"Visible"},{"av":"edtavPassworwithmnamonic_Visible","ctrl":"vPASSWORWITHMNAMONIC","prop":"Visible"},{"av":"cmbavWalletrestoremethod"},{"av":"edtavWiftext_Visible","ctrl":"vWIFTEXT","prop":"Visible"},{"av":"edtavBraintext_Visible","ctrl":"vBRAINTEXT","prop":"Visible"},{"av":"edtavNewpass_Visible","ctrl":"vNEWPASS","prop":"Visible"},{"av":"edtavNewpassconfirm_Visible","ctrl":"vNEWPASSCONFIRM","prop":"Visible"},{"ctrl":"RESTOREWALLET","prop":"Visible"}]}""");
+         setEventMetadata("VALIDV_WALLETRESTOREMETHOD","""{"handler":"Validv_Walletrestoremethod","iparms":[]}""");
          return  ;
       }
 
@@ -1465,6 +1681,11 @@ namespace GeneXus.Programs.wallet {
          }
       }
 
+      public override bool UploadEnabled( )
+      {
+         return true ;
+      }
+
       public override void initialize( )
       {
          gxfirstwebparm = "";
@@ -1473,6 +1694,8 @@ namespace GeneXus.Programs.wallet {
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
+         AV35UploadedFiles = new GXBaseCollection<SdtFileUploadData>( context, "FileUploadData", "distributedcryptography");
+         AV36FailedFiles = new GXBaseCollection<SdtFileUploadData>( context, "FileUploadData", "distributedcryptography");
          AV7extKeyCreate = new GeneXus.Programs.nbitcoin.SdtExtKeyCreate(context);
          AV16wallet = new GeneXus.Programs.wallet.SdtWallet(context);
          AV9keyCreate = new GeneXus.Programs.nbitcoin.SdtKeyCreate(context);
@@ -1487,6 +1710,8 @@ namespace GeneXus.Programs.wallet {
          AV17walletName = "";
          AV12networkType = "";
          AV18walletType = "";
+         AV34coldCardNemonicPassword = "";
+         ucFileupload = new GXUserControl();
          AV11MnemonicText = "";
          AV15passworWithMnamonic = "";
          AV19WIFText = "";
@@ -1501,8 +1726,11 @@ namespace GeneXus.Programs.wallet {
          sEvtType = "";
          AV10keyInfo = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
          AV8extKeyInfo = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
-         GXt_char2 = "";
          GXt_char1 = "";
+         AV50FileUploadData = new SdtFileUploadData(context);
+         AV53tempBlob = "";
+         AV48File = new GxFile(context.GetPhysicalPath());
+         GXt_char2 = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          /* GeneXus formulas. */
@@ -1513,10 +1741,15 @@ namespace GeneXus.Programs.wallet {
       private short gxajaxcallmode ;
       private short wbEnd ;
       private short wbStart ;
+      private short AV33WalletRestoreMethod ;
       private short nDonePA ;
       private short gxcookieaux ;
       private short nGXWrapped ;
+      private int Fileupload_Maxnumberoffiles ;
       private int edtavWalletname_Enabled ;
+      private int edtavColdcardnemonicpassword_Visible ;
+      private int edtavColdcardnemonicpassword_Enabled ;
+      private int divCanvas_Visible ;
       private int edtavMnemonictext_Visible ;
       private int edtavMnemonictext_Enabled ;
       private int edtavPassworwithmnamonic_Visible ;
@@ -1530,6 +1763,7 @@ namespace GeneXus.Programs.wallet {
       private int edtavNewpassconfirm_Visible ;
       private int edtavNewpassconfirm_Enabled ;
       private int bttRestorewallet_Visible ;
+      private int AV55GXV1 ;
       private int idxLst ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
@@ -1538,6 +1772,8 @@ namespace GeneXus.Programs.wallet {
       private string bodyStyle ;
       private string GXKey ;
       private string AV6error ;
+      private string Fileupload_Acceptedfiletypes ;
+      private string Fileupload_Customfiletypes ;
       private string GX_FocusControl ;
       private string sPrefix ;
       private string divMaintable_Internalname ;
@@ -1552,6 +1788,12 @@ namespace GeneXus.Programs.wallet {
       private string cmbavWallettype_Internalname ;
       private string AV18walletType ;
       private string cmbavWallettype_Jsonclick ;
+      private string cmbavWalletrestoremethod_Internalname ;
+      private string cmbavWalletrestoremethod_Jsonclick ;
+      private string edtavColdcardnemonicpassword_Internalname ;
+      private string divCanvas_Internalname ;
+      private string Fileupload_Tooltiptext ;
+      private string Fileupload_Internalname ;
       private string edtavMnemonictext_Internalname ;
       private string edtavPassworwithmnamonic_Internalname ;
       private string AV15passworWithMnamonic ;
@@ -1574,26 +1816,37 @@ namespace GeneXus.Programs.wallet {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
-      private string GXt_char2 ;
       private string GXt_char1 ;
+      private string GXt_char2 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
+      private bool Fileupload_Autoupload ;
+      private bool Fileupload_Hideadditionalbuttons ;
+      private bool Fileupload_Autodisableaddingfiles ;
       private bool wbLoad ;
       private bool Rfr0gs ;
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
+      private string AV34coldCardNemonicPassword ;
       private string AV11MnemonicText ;
+      private string AV53tempBlob ;
+      private GXUserControl ucFileupload ;
+      private GxFile AV48File ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
       private GXCombobox cmbavNetworktype ;
       private GXCombobox cmbavWallettype ;
+      private GXCombobox cmbavWalletrestoremethod ;
+      private GXBaseCollection<SdtFileUploadData> AV35UploadedFiles ;
+      private GXBaseCollection<SdtFileUploadData> AV36FailedFiles ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyCreate AV7extKeyCreate ;
       private GeneXus.Programs.wallet.SdtWallet AV16wallet ;
       private GeneXus.Programs.nbitcoin.SdtKeyCreate AV9keyCreate ;
       private GeneXus.Programs.wallet.SdtExtendeSecretAndAuthenticator AV32extendeSecretAndAuthenticator ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo AV10keyInfo ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV8extKeyInfo ;
+      private SdtFileUploadData AV50FileUploadData ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }
