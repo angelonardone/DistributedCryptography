@@ -1,1 +1,75 @@
-function GeneXusUnanimo_Icon(n){var i='<ch-icon src="{{source}}" style="--icon-size:{{size}}; --icon-color:{{color}}" {{#autoColor}}auto-color{{/autoColor}}  data-event="Click" ><\/ch-icon>',f={},r,u,t;Mustache.parse(i);r=0;this.show=function(){u=n(this.getContainerControl());r=0;this.setHtml(Mustache.render(i,this,f));this.renderChildContainers();n(this.getContainerControl()).find("[data-event='Click']").on("click",this.onClickHandler.closure(this)).each(function(n){this.setAttribute("data-items-index",n+1)})};this.Scripts=[];this.onClickHandler=function(n){if(n){var t=n.currentTarget;n.preventDefault()}this.Click&&this.Click()};this.autoToggleVisibility=!0;t={};this.renderChildContainers=function(){u.find("[data-slot][data-parent='"+this.ContainerName+"']").each(function(i,r){var e=n(r),f=e.attr("data-slot"),u;u=t[f];u||(u=this.getChildContainer(f),t[f]=u,u.parentNode.removeChild(u));e.append(u);n(u).show()}.closure(this))}}
+function GeneXusUnanimo_Icon($) {
+	  
+	  
+	  
+	  
+
+	var template = '<ch-icon src=\"{{source}}\" style=\"--icon-size:{{size}}; --icon-color:{{color}}\" {{#autoColor}}auto-color{{/autoColor}}  data-event=\"Click\" ></ch-icon>';
+	var partials = {  }; 
+	Mustache.parse(template);
+	var _iOnClick = 0; 
+	var $container;
+	this.show = function() {
+			$container = $(this.getContainerControl());
+
+			// Raise before show scripts
+
+			_iOnClick = 0; 
+
+			//if (this.IsPostBack)
+				this.setHtml(Mustache.render(template, this, partials));
+			this.renderChildContainers();
+
+			$(this.getContainerControl())
+				.find("[data-event='Click']")
+				.on('click', this.onClickHandler.closure(this))
+				.each(function (i) {
+					this.setAttribute("data-items-index", i + 1);
+				}); 
+
+			// Raise after show scripts
+
+	}
+
+	this.Scripts = [];
+
+
+
+		this.onClickHandler = function (e) {
+			if (e) {
+				var target = e.currentTarget;
+				e.preventDefault();
+				 
+				 
+				 
+				 
+			}
+
+			if (this.Click) {
+				this.Click();
+			}
+		} 
+
+	this.autoToggleVisibility = true;
+
+	var childContainers = {};
+	this.renderChildContainers = function () {
+		$container
+			.find("[data-slot][data-parent='" + this.ContainerName + "']")
+			.each((function (i, slot) {
+				var $slot = $(slot),
+					slotName = $slot.attr('data-slot'),
+					slotContentEl;
+
+				slotContentEl = childContainers[slotName];
+				if (!slotContentEl) {				
+					slotContentEl = this.getChildContainer(slotName)
+					childContainers[slotName] = slotContentEl;
+					slotContentEl.parentNode.removeChild(slotContentEl);
+				}
+				$slot.append(slotContentEl);
+				$(slotContentEl).show();
+			}).closure(this));
+	};
+
+}
