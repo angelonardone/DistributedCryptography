@@ -1101,7 +1101,7 @@ namespace GeneXus.Programs.shamirss {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025851965913", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025101144490", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1119,7 +1119,7 @@ namespace GeneXus.Programs.shamirss {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("shamirss/shamirsecretsharing.js", "?2025851965913", false, true);
+            context.AddJavascriptSource("shamirss/shamirsecretsharing.js", "?2025101144490", false, true);
          }
          /* End function include_jscripts */
       }

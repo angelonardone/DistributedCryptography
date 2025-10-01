@@ -56,7 +56,7 @@ namespace GeneXus.Programs.wallet {
          new GeneXus.Programs.wallet.getextkey(context ).execute( out  GXt_SdtExtKeyInfo1) ;
          AV12extKeyInfo = GXt_SdtExtKeyInfo1;
          GXt_char2 = AV11error;
-         new GeneXus.Programs.nbitcoin.derivekeysfromextkey(context ).execute(  AV12extKeyInfo.gxTpr_Extended.gxTpr_Privatekeytaproot,  (long)(Math.Round(NumberUtil.Val( "1000", "."), 18, MidpointRounding.ToEven)),  0,  0, out  AV10allKeyInfo, out  GXt_char2) ;
+         new GeneXus.Programs.nbitcoin.derivekeysfromextkey(context ).execute(  AV12extKeyInfo.gxTpr_Extended.gxTpr_Privatekeytaproot,  (long)(Math.Round(NumberUtil.Val( "1000'", "."), 18, MidpointRounding.ToEven)),  0,  0, out  AV10allKeyInfo, out  GXt_char2) ;
          AV11error = GXt_char2;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
          {

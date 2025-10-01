@@ -1279,7 +1279,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202585197563", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251011445593", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1295,7 +1295,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wallet/encryptedlocalfiles.js", "?202585197563", false, true);
+         context.AddJavascriptSource("wallet/encryptedlocalfiles.js", "?20251011445593", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
          context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);

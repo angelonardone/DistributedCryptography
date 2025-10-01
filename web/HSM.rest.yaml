@@ -1,0 +1,232 @@
+openapi: 3.0.0
+info:
+  title: "rest"
+  description: "rest"
+  version: "20251001180519"
+servers:
+  - url: http://localhost:5000//HSM/rest
+paths:
+  /getPubKey:
+    get:
+      tags:
+        - HSM  
+      operationId: "HSM.rest.getPubKey"
+      summary: "getPubKey"
+      parameters:
+
+        - name: "Indexkey"
+          in: query
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getPubKeyOutput"
+        404:
+          description: "Not found"
+
+  /encrypt:
+    post:
+      tags:
+        - HSM  
+      operationId: "HSM.rest.encrypt"
+      summary: "encrypt"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/encryptInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/encryptOutput"
+        404:
+          description: "Not found"
+
+  /encryptToPubKey:
+    post:
+      tags:
+        - HSM  
+      operationId: "HSM.rest.encryptToPubKey"
+      summary: "encryptToPubKey"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/encryptToPubKeyInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/encryptToPubKeyOutput"
+        404:
+          description: "Not found"
+
+  /decrypt:
+    post:
+      tags:
+        - HSM  
+      operationId: "HSM.rest.decrypt"
+      summary: "decrypt"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/decryptInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/decryptOutput"
+        404:
+          description: "Not found"
+
+  /sign:
+    post:
+      tags:
+        - HSM  
+      operationId: "HSM.rest.sign"
+      summary: "sign"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/signInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/signOutput"
+        404:
+          description: "Not found"
+
+  /SignSchnorr:
+    post:
+      tags:
+        - HSM  
+      operationId: "HSM.rest.SignSchnorr"
+      summary: "SignSchnorr"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SignSchnorrInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SignSchnorrOutput"
+        404:
+          description: "Not found"
+
+components:
+  schemas:
+    getPubKeyOutput:
+      properties:
+        publicKey:
+          type: "string"
+        error:
+          type: "string"
+
+    encryptOutput:
+      properties:
+        encryptedMessage:
+          type: "string"
+        error:
+          type: "string"
+
+    encryptToPubKeyOutput:
+      properties:
+        encryptedMessage:
+          type: "string"
+        error:
+          type: "string"
+
+    decryptOutput:
+      properties:
+        message:
+          type: "string"
+        error:
+          type: "string"
+
+    signOutput:
+      properties:
+        signature:
+          type: "string"
+        error:
+          type: "string"
+
+    SignSchnorrOutput:
+      properties:
+        signature:
+          type: "string"
+        error:
+          type: "string"
+
+    encryptInput:  
+      properties:
+        message:
+          type: "string"
+        indexKey:
+          type: "integer"
+          format: "int32"
+
+    encryptToPubKeyInput:  
+      properties:
+        message:
+          type: "string"
+        publicKey:
+          type: "string"
+
+    decryptInput:  
+      properties:
+        encryptedMessage:
+          type: "string"
+        indexKey:
+          type: "integer"
+          format: "int32"
+
+    signInput:  
+      properties:
+        message:
+          type: "string"
+        indexKey:
+          type: "integer"
+          format: "int32"
+
+    SignSchnorrInput:  
+      properties:
+        message:
+          type: "string"
+        indexKey:
+          type: "integer"
+          format: "int32"
+  
+ 

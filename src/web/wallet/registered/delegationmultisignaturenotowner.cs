@@ -1360,7 +1360,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202585196680", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251011435469", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1376,7 +1376,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/delegationmultisignaturenotowner.js", "?202585196680", false, true);
+         context.AddJavascriptSource("wallet/registered/delegationmultisignaturenotowner.js", "?20251011435471", false, true);
          /* End function include_jscripts */
       }
 

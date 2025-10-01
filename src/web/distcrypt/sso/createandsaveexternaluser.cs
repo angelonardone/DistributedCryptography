@@ -70,7 +70,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          AV10externalUser = GXt_SdtExternalUser2;
          AV8allKeyInfo.Clear();
          GXt_char3 = AV9error;
-         new GeneXus.Programs.nbitcoin.derivekeysfromextkey(context ).execute(  AV11extKeyInfo.gxTpr_Extended.gxTpr_Privatekeytaproot,  (long)(Math.Round(NumberUtil.Val( "2000", "."), 18, MidpointRounding.ToEven)),  0,  0, out  AV8allKeyInfo, out  GXt_char3) ;
+         new GeneXus.Programs.nbitcoin.derivekeysfromextkey(context ).execute(  AV11extKeyInfo.gxTpr_Extended.gxTpr_Privatekeytaproot,  (long)(Math.Round(NumberUtil.Val( "2000'", "."), 18, MidpointRounding.ToEven)),  0,  0, out  AV8allKeyInfo, out  GXt_char3) ;
          AV9error = GXt_char3;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
          {
@@ -78,7 +78,7 @@ namespace GeneXus.Programs.distcrypt.sso {
             AV10externalUser.gxTpr_Chatkeyinfo = AV12keyInfo;
             AV8allKeyInfo.Clear();
             GXt_char3 = AV9error;
-            new GeneXus.Programs.nbitcoin.derivekeysfromextkey(context ).execute(  AV11extKeyInfo.gxTpr_Extended.gxTpr_Privatekeytaproot,  (long)(Math.Round(NumberUtil.Val( "3000", "."), 18, MidpointRounding.ToEven)),  0,  0, out  AV8allKeyInfo, out  GXt_char3) ;
+            new GeneXus.Programs.nbitcoin.derivekeysfromextkey(context ).execute(  AV11extKeyInfo.gxTpr_Extended.gxTpr_Privatekeytaproot,  (long)(Math.Round(NumberUtil.Val( "3000'", "."), 18, MidpointRounding.ToEven)),  0,  0, out  AV8allKeyInfo, out  GXt_char3) ;
             AV9error = GXt_char3;
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
             {

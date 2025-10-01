@@ -581,7 +581,6 @@ namespace GeneXus.Programs.distcrypt.sso {
                   AV11error = GXt_char4;
                   if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
                   {
-                     GX_msglist.addItem(AV10encParameters);
                      if ( StringUtil.StrCmp(AV25wallet.gxTpr_Networktype, "MainNet") == 0 )
                      {
                         GXt_SdtSDT_IdentityProvider5 = AV15IdentityProvider;
@@ -705,7 +704,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202585196554", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251011444535", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -723,7 +722,7 @@ namespace GeneXus.Programs.distcrypt.sso {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("distcrypt/sso/webloginanonymous.js", "?202585196555", false, true);
+            context.AddJavascriptSource("distcrypt/sso/webloginanonymous.js", "?20251011444535", false, true);
          }
          /* End function include_jscripts */
       }

@@ -38,13 +38,13 @@ namespace GeneXus.Programs.nbitcoin {
          domain["1"] = "Change";
          domain["2"] = "Multi Signature";
          domain["3"] = "Mu Sig Change";
-         domain["1000"] = "Login Dist Crypt Relative";
-         domain["2000"] = "Chat Relative";
-         domain["3000"] = "Group Relative";
-         domain["4000"] = "Json Files Relative";
-         domain["5000"] = "File Enc Relative";
-         domain["6000'"] = "HSMpath";
          domain["4"] = "Time Bounty Receiving";
+         domain["1000'"] = "Login Dist Crypt Relative";
+         domain["2000'"] = "Chat Relative";
+         domain["3000'"] = "Group Relative";
+         domain["4000'"] = "Json Files Relative";
+         domain["5000'"] = "File Enc Relative";
+         domain["6000'"] = "HSMpath";
       }
 
       public static string getDescription( IGxContext context ,
@@ -90,13 +90,13 @@ namespace GeneXus.Programs.nbitcoin {
             domainMap["Change"] = "1";
             domainMap["MiuSigReceiving"] = "2";
             domainMap["MuSigChange"] = "3";
-            domainMap["LoginDistCryptRelative"] = "1000";
-            domainMap["ChatRelative"] = "2000";
-            domainMap["GroupRelative"] = "3000";
-            domainMap["JsonFilesRelative"] = "4000";
-            domainMap["FileEncRelative"] = "5000";
-            domainMap["HSMpath"] = "6000'";
             domainMap["TimeBountyReceiving"] = "4";
+            domainMap["LoginDistCryptRelative"] = "1000'";
+            domainMap["ChatRelative"] = "2000'";
+            domainMap["GroupRelative"] = "3000'";
+            domainMap["JsonFilesRelative"] = "4000'";
+            domainMap["FileEncRelative"] = "5000'";
+            domainMap["HSMpath"] = "6000'";
          }
          return (string)domainMap[key] ;
       }

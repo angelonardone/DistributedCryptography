@@ -160,7 +160,7 @@ namespace GeneXus.Programs.general.ui {
          context.AddJavascriptSource("Toastr/ToastrRender.js", "", false, true);
          context.AddJavascriptSource("Unanimo_chameleon/chameleon-loader.js", "", false, true);
          context.AddJavascriptSource("UserControls/GeneXusUnanimo.SidebarRender.js", "", false, true);
-         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?2025851965333", false, true);
+         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?20251011444331", false, true);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -658,7 +658,7 @@ namespace GeneXus.Programs.general.ui {
          GXt_SdtWallet1 = AV14wallet;
          new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet1) ;
          AV14wallet = GXt_SdtWallet1;
-         Sidebarmenu_Footertext = "version 0.921 - © 2022-2025 Distributed Cryptography";
+         Sidebarmenu_Footertext = "version 0.922 - © 2022-2025 Distributed Cryptography";
          ucSidebarmenu.SendProperty(context, "", true, Sidebarmenu_Internalname, "FooterText", Sidebarmenu_Footertext);
          Sidebarmenu_Distancetotop = 60;
          ucSidebarmenu.SendProperty(context, "", true, Sidebarmenu_Internalname, "DistanceToTop", StringUtil.LTrimStr( (decimal)(Sidebarmenu_Distancetotop), 9, 0));
@@ -815,7 +815,7 @@ namespace GeneXus.Programs.general.ui {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?2025851965369", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?20251011444364", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -830,7 +830,7 @@ namespace GeneXus.Programs.general.ui {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?2025851965369", false, true);
+         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?20251011444364", false, true);
          context.AddJavascriptSource("Unanimo_chameleon/chameleon-loader.js", "", false, true);
          context.AddJavascriptSource("UserControls/GeneXusUnanimo.IconRender.js", "", false, true);
          context.AddJavascriptSource("Toastr/toastr.min.js", "", false, true);

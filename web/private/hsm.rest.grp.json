@@ -1,0 +1,78 @@
+{
+"ObjectType":"ServiceGroup",
+"Name":"HSM\\rest",
+"BasePath":"HSM/rest",
+"Mappings":
+[
+{
+"Verb":"GET",
+"Name":"getpubkey",
+"Bodystyle":"Wrapped",
+"HeaderVariables": [],
+"VariableAlias": [],
+"ServiceMethod":"gxep_getpubkey",
+"Implementation":"HSM\\getPubKey",
+"PathRegexp":"getpubkey",
+"Path":"getpubkey"
+
+},
+{
+"Verb":"POST",
+"Name":"encrypt",
+"Bodystyle":"Wrapped",
+"HeaderVariables": [],
+"VariableAlias": [],
+"ServiceMethod":"gxep_encrypt",
+"Implementation":"HSM\\encrypt",
+"PathRegexp":"encrypt",
+"Path":"encrypt"
+
+},
+{
+"Verb":"POST",
+"Name":"encrypttopubkey",
+"Bodystyle":"Wrapped",
+"HeaderVariables": [],
+"VariableAlias": [],
+"ServiceMethod":"gxep_encrypttopubkey",
+"Implementation":"HSM\\encryptToPubKey",
+"PathRegexp":"encrypttopubkey",
+"Path":"encrypttopubkey"
+
+},
+{
+"Verb":"POST",
+"Name":"decrypt",
+"Bodystyle":"Wrapped",
+"HeaderVariables": [],
+"VariableAlias": [],
+"ServiceMethod":"gxep_decrypt",
+"Implementation":"HSM\\decrypt",
+"PathRegexp":"decrypt",
+"Path":"decrypt"
+
+},
+{
+"Verb":"POST",
+"Name":"sign",
+"Bodystyle":"Wrapped",
+"HeaderVariables": [],
+"VariableAlias": [],
+"ServiceMethod":"gxep_sign",
+"Implementation":"HSM\\sign",
+"PathRegexp":"sign",
+"Path":"sign"
+
+},
+{
+"Verb":"POST",
+"Name":"signschnorr",
+"Bodystyle":"Wrapped",
+"HeaderVariables": [],
+"VariableAlias": [],
+"ServiceMethod":"gxep_signschnorr",
+"Implementation":"HSM\\SignSchnorr",
+"PathRegexp":"signschnorr",
+"Path":"signschnorr"
+
+}]}
