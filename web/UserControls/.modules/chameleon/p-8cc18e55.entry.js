@@ -1,0 +1,2 @@
+import{r as t,g as s}from"./p-7af91c05.js";const r="";const a=r;const c=class{constructor(s){t(this,s)}get el(){return s(this)}};c.style=a;export{c as ch_tabular_grid_actionbar};
+//# sourceMappingURL=p-8cc18e55.entry.js.map

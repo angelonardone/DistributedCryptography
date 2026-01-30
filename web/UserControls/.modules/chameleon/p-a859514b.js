@@ -1,0 +1,2 @@
+import{g as o}from"./p-e7a788ef.js";const a={SCROLLBAR:"chameleon/scrollbar"};const e=[a.SCROLLBAR];const n=1e4;function s(a){e.forEach((e=>{o({name:e},n).then((o=>{a.push(o.styleSheet)})).catch((()=>{}))}))}export{s as a};
+//# sourceMappingURL=p-a859514b.js.map

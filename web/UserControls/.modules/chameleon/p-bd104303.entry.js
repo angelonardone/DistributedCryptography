@@ -1,0 +1,2 @@
+import{r}from"./p-7af91c05.js";const n="@layer ch-grid {\n  ch-grid-rowset-empty {\n    display: flex;\n    grid-column-start: 1;\n    grid-column-end: -1;\n    margin-inline-start: calc(var(--indent) * (var(--level)));\n  }\n  ch-grid:has(> ch-grid-rowset:only-of-type > ch-grid-rowset-empty:only-child)::part(main) {\n    grid-template-rows: max-content 1fr;\n  }\n}";const t=n;const c=class{constructor(n){r(this,n)}};c.style=t;export{c as ch_grid_rowset_empty};
+//# sourceMappingURL=p-bd104303.entry.js.map

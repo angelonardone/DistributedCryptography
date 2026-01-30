@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtNBitcoin_SDT_Addressess
 			Description: NBitcoin_SDT_Addressess
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.14.187820
 		   Program type: Callable routine
 			  Main DBMS: 
 */

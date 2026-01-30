@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtPasswords_and_tags
 			Description: Passwords_and_tags
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.14.187820
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
+
 namespace GeneXus.Programs.wallet
 {
 	[XmlRoot(ElementName="Passwords_and_tags")]

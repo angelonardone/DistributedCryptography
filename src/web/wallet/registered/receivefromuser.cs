@@ -232,16 +232,16 @@ namespace GeneXus.Programs.wallet.registered {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1759500), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1759500), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1759500), false, true);
-         context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
+         context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true, false);
          if ( StringUtil.Len( sPrefix) == 0 )
          {
             context.CloseHtmlHeader();
@@ -433,7 +433,7 @@ namespace GeneXus.Programs.wallet.registered {
             if ( StringUtil.Len( sPrefix) != 0 )
             {
                GxWebStd.gx_hidden_field( context, sPrefix+"_CMPPGM", "wallet.registered.receivefromuser");
-               context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
+               context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true, false);
             }
             GxWebStd.gx_msg_list( context, "", context.GX_msglist.DisplayMode, "", "", sPrefix, "false");
             /* Div Control */
@@ -472,7 +472,7 @@ namespace GeneXus.Programs.wallet.registered {
             {
                if ( context.ExposeMetadata( ) )
                {
-                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_13-186702", 0) ;
+                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_14-187820", 0) ;
                }
             }
             Form.Meta.addItem("description", "Receive From User", 0) ;
@@ -1065,7 +1065,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251011434827", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202613016291582", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1081,9 +1081,9 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/receivefromuser.js", "?20251011434827", false, true);
-         context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true);
-         context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
+         context.AddJavascriptSource("wallet/registered/receivefromuser.js", "?202613016291582", false, true, false);
+         context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
+         context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true, false);
          /* End function include_jscripts */
       }
 

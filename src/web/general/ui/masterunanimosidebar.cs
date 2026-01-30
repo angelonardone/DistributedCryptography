@@ -154,13 +154,13 @@ namespace GeneXus.Programs.general.ui {
          {
             WebComp_Comp_message_dispatcher.componentjscripts();
          }
-         context.AddJavascriptSource("Unanimo_chameleon/chameleon-loader.js", "", false, true);
-         context.AddJavascriptSource("UserControls/GeneXusUnanimo.IconRender.js", "", false, true);
-         context.AddJavascriptSource("Toastr/toastr.min.js", "", false, true);
-         context.AddJavascriptSource("Toastr/ToastrRender.js", "", false, true);
-         context.AddJavascriptSource("Unanimo_chameleon/chameleon-loader.js", "", false, true);
-         context.AddJavascriptSource("UserControls/GeneXusUnanimo.SidebarRender.js", "", false, true);
-         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?20251011444331", false, true);
+         context.AddJavascriptSource("UserControls/.modules/chameleon/chameleon.esm.js", "", false, true, true);
+         context.AddJavascriptSource("Unanimo_chameleon/chameleon-loader.js", "", false, true, false);
+         context.AddJavascriptSource("UserControls/GeneXusUnanimo.IconRender.js", "", false, true, false);
+         context.AddJavascriptSource("Toastr/toastr.min.js", "", false, true, false);
+         context.AddJavascriptSource("Toastr/ToastrRender.js", "", false, true, false);
+         context.AddJavascriptSource("UserControls/GeneXusUnanimo.SidebarMenuRender.js", "", false, true, false);
+         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?202613016301167", false, true, false);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -279,7 +279,7 @@ namespace GeneXus.Programs.general.ui {
             /* User Defined Control */
             ucSidebarmenu.SetProperty("Title", Sidebarmenu_Title);
             ucSidebarmenu.SetProperty("SidebarItems", AV5sidebarItems);
-            ucSidebarmenu.Render(context, "genexusunanimo.sidebar", Sidebarmenu_Internalname, "SIDEBARMENU_MPAGEContainer");
+            ucSidebarmenu.Render(context, "genexusunanimo.sidebarmenu", Sidebarmenu_Internalname, "SIDEBARMENU_MPAGEContainer");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -815,7 +815,7 @@ namespace GeneXus.Programs.general.ui {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?20251011444364", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?20261301630124", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -830,13 +830,13 @@ namespace GeneXus.Programs.general.ui {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?20251011444364", false, true);
-         context.AddJavascriptSource("Unanimo_chameleon/chameleon-loader.js", "", false, true);
-         context.AddJavascriptSource("UserControls/GeneXusUnanimo.IconRender.js", "", false, true);
-         context.AddJavascriptSource("Toastr/toastr.min.js", "", false, true);
-         context.AddJavascriptSource("Toastr/ToastrRender.js", "", false, true);
-         context.AddJavascriptSource("Unanimo_chameleon/chameleon-loader.js", "", false, true);
-         context.AddJavascriptSource("UserControls/GeneXusUnanimo.SidebarRender.js", "", false, true);
+         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?20261301630124", false, true, false);
+         context.AddJavascriptSource("UserControls/.modules/chameleon/chameleon.esm.js", "", false, true, true);
+         context.AddJavascriptSource("Unanimo_chameleon/chameleon-loader.js", "", false, true, false);
+         context.AddJavascriptSource("UserControls/GeneXusUnanimo.IconRender.js", "", false, true, false);
+         context.AddJavascriptSource("Toastr/toastr.min.js", "", false, true, false);
+         context.AddJavascriptSource("Toastr/ToastrRender.js", "", false, true, false);
+         context.AddJavascriptSource("UserControls/GeneXusUnanimo.SidebarMenuRender.js", "", false, true, false);
          /* End function include_jscripts */
       }
 

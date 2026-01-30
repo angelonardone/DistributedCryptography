@@ -2,18 +2,17 @@ openapi: 3.0.0
 info:
   title: "rest"
   description: "rest"
-  version: "20251001180519"
+  version: "20260130213054"
 servers:
   - url: http://localhost:5000//HSM/rest
 paths:
   /getPubKey:
     get:
       tags:
-        - HSM  
+        - HSM
       operationId: "HSM.rest.getPubKey"
       summary: "getPubKey"
       parameters:
-
         - name: "Indexkey"
           in: query
           required: false
@@ -34,7 +33,7 @@ paths:
   /encrypt:
     post:
       tags:
-        - HSM  
+        - HSM
       operationId: "HSM.rest.encrypt"
       summary: "encrypt"
       requestBody:
@@ -57,7 +56,7 @@ paths:
   /encryptToPubKey:
     post:
       tags:
-        - HSM  
+        - HSM
       operationId: "HSM.rest.encryptToPubKey"
       summary: "encryptToPubKey"
       requestBody:
@@ -80,7 +79,7 @@ paths:
   /decrypt:
     post:
       tags:
-        - HSM  
+        - HSM
       operationId: "HSM.rest.decrypt"
       summary: "decrypt"
       requestBody:
@@ -103,7 +102,7 @@ paths:
   /sign:
     post:
       tags:
-        - HSM  
+        - HSM
       operationId: "HSM.rest.sign"
       summary: "sign"
       requestBody:
@@ -126,7 +125,7 @@ paths:
   /SignSchnorr:
     post:
       tags:
-        - HSM  
+        - HSM
       operationId: "HSM.rest.SignSchnorr"
       summary: "SignSchnorr"
       requestBody:
@@ -190,7 +189,7 @@ components:
         error:
           type: "string"
 
-    encryptInput:  
+    encryptInput:
       properties:
         message:
           type: "string"
@@ -198,14 +197,14 @@ components:
           type: "integer"
           format: "int32"
 
-    encryptToPubKeyInput:  
+    encryptToPubKeyInput:
       properties:
         message:
           type: "string"
         publicKey:
           type: "string"
 
-    decryptInput:  
+    decryptInput:
       properties:
         encryptedMessage:
           type: "string"
@@ -213,7 +212,7 @@ components:
           type: "integer"
           format: "int32"
 
-    signInput:  
+    signInput:
       properties:
         message:
           type: "string"
@@ -221,12 +220,11 @@ components:
           type: "integer"
           format: "int32"
 
-    SignSchnorrInput:  
+    SignSchnorrInput:
       properties:
         message:
           type: "string"
         indexKey:
           type: "integer"
           format: "int32"
-  
- 
+

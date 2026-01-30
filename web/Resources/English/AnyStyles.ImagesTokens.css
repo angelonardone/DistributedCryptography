@@ -31,6 +31,11 @@
 	--GX-Image_Wallet_copy : url(../Wallet.copy.svg);
 	--GX-Image_Wallet_unlock : url(../Wallet.unlock.svg);
 	--GX-Image_Wallet_tag : url(../Wallet.tag.svg);
+	--GX-Image_GeneXusUnanimo_stop_ico : url(../GeneXusUnanimo.stop_ico.svg);
+	--GX-Image_GeneXusUnanimo_upload_ico_light : url(../GeneXusUnanimo.upload_ico_light.svg);
+	--GX-Image_GeneXusUnanimo_upload_ico_disabled : url(../GeneXusUnanimo.upload_ico_disabled.svg);
+	--GX-Image_GeneXusUnanimo_close_ico_destructive : url(../GeneXusUnanimo.close_ico_destructive.svg);
+	--GX-Image_GeneXusUnanimo_search_light : url(../GeneXusUnanimo.search_light.svg);
 }
 
 .GX_Image_PageFirst_Class{content: var(--GX-Image_PageFirst);}
@@ -63,4 +68,9 @@
 .GX_Image_Wallet_copy_Class{content: var(--GX-Image_Wallet_copy);}
 .GX_Image_Wallet_unlock_Class{content: var(--GX-Image_Wallet_unlock);}
 .GX_Image_Wallet_tag_Class{content: var(--GX-Image_Wallet_tag);}
+.GX_Image_GeneXusUnanimo_stop_ico_Class{content: var(--GX-Image_GeneXusUnanimo_stop_ico);}
+.GX_Image_GeneXusUnanimo_upload_ico_light_Class{content: var(--GX-Image_GeneXusUnanimo_upload_ico_light);}
+.GX_Image_GeneXusUnanimo_upload_ico_disabled_Class{content: var(--GX-Image_GeneXusUnanimo_upload_ico_disabled);}
+.GX_Image_GeneXusUnanimo_close_ico_destructive_Class{content: var(--GX-Image_GeneXusUnanimo_close_ico_destructive);}
+.GX_Image_GeneXusUnanimo_search_light_Class{content: var(--GX-Image_GeneXusUnanimo_search_light);}
 }

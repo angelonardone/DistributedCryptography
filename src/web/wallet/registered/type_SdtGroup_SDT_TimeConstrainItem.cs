@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtGroup_SDT_TimeConstrainItem
 			Description: TimeConstrain
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.14.187820
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -22,6 +22,7 @@ using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 using GeneXus.Programs.wallet;
+
 namespace GeneXus.Programs.wallet.registered
 {
 	[XmlRoot(ElementName="Group_SDT.TimeConstrainItem")]

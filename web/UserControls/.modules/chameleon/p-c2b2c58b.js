@@ -1,0 +1,2 @@
+function a(a){return{aliases:["pycon"],contains:[{className:"meta.prompt",starts:{end:/ |$/,starts:{end:"$",subLanguage:"python"}},variants:[{begin:/^>>>(?=[ ]|$)/},{begin:/^\.\.\.(?=[ ]|$)/}]}]}}export{a as default};
+//# sourceMappingURL=p-c2b2c58b.js.map

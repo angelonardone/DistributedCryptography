@@ -16,6 +16,7 @@
     <Configuration>Release</Configuration>
     <Prefer32Bit>false</Prefer32Bit>
     <PlatformTarget Condition="'$(PlatformTarget)' == ''">AnyCPU</PlatformTarget>
+    <SAPErpSupport Condition="'$(SAPErpSupport)' == ''">true</SAPErpSupport>
     <OfficeSupport Condition="'$(OfficeSupport)' == ''">false</OfficeSupport>
     <IntegratedSecurity>false</IntegratedSecurity>
     <MailSupport Condition="'$(MailSupport)' == ''">false</MailSupport>
@@ -29,6 +30,7 @@
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
     <CommonOutputItemType>Content</CommonOutputItemType>
   </PropertyGroup>
+  <Import Project="$(MSBuildThisFileDirectory)\GeneXusSecurity.props" Condition="Exists('$(MSBuildThisFileDirectory)\GeneXusSecurity.props') AND ('$(IntegratedSecurity)'=='true' OR '$(IntegratedSecuritySupport)'=='true')" />
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <DebugType>none</DebugType>
   </PropertyGroup>
@@ -62,6 +64,10 @@
     <PackageReference Include="Grpc.Core.Api" Version="2.62.0" />
     <PackageReference Include="Grpc.Net.Client" Version="2.62.0" />
     <PackageReference Include="Grpc.Tools" Version="2.62.0" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(SAPErpSupport)'=='true'">
+    <PackageReference Include="SapNwRfc" Version="1.4.0" />
+    <PackageReference Include="GeneXus.EnterpriseLib.SAP" Version="$(GenStdVersion)" />
   </ItemGroup>
   <ItemGroup Condition="'$(PDFSupport)'=='true'">
     <PackageReference Include="GeneXus.PdfReportsCS.Core" Version="$(GenStdVersion)" />

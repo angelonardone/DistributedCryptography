@@ -17,6 +17,7 @@ using GeneXus.Search;
 using GeneXus.Encryption;
 using GeneXus.Http.Client;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;

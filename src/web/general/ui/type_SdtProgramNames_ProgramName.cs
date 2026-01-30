@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtProgramNames_ProgramName
 			Description: ProgramNames
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.14.187820
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -22,6 +22,7 @@ using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
 using GeneXus.Programs.general;
+
 namespace GeneXus.Programs.general.ui
 {
 	[XmlRoot(ElementName="ProgramName")]

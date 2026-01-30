@@ -12,28 +12,30 @@
 		<MailSupport>false</MailSupport>
 		<GrpcClientSupport>false</GrpcClientSupport>
 		<PdfLibrary></PdfLibrary>
+		<SAPErpSupport>false</SAPErpSupport>
 		<PDFSupport>false</PDFSupport>
 		<SearchSupport>false</SearchSupport>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
-		<ProjectReference Include=".\..\GeneXus.Programs.Common\GeneXus.Programs.Common.csproj" >
-			<OutputItemType>$(CommonOutputItemType)</OutputItemType>
-		</ProjectReference>
+
+        <ProjectReference Include="..\GeneXus.Programs.Common\GeneXus.Programs.Common.csproj" >
+            <OutputItemType>$(CommonOutputItemType)</OutputItemType>
+        </ProjectReference>
 
 	</ItemGroup>
 
 	<ItemGroup>
-		<Reference Include="Google.Authenticator.dll" > 
-			<HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
-		</Reference>
-		<Reference Include="GxInternetLib.dll" > 
-			<HintPath>$(WebBinDirectory)\GxInternetLib.dll</HintPath>
-		</Reference>
-		<Reference Include="DistricutedCryptographyLib.dll" > 
-			<HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
-		</Reference>
 
+        <Reference Include="Google.Authenticator" >
+            <HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
+        </Reference>
+        <Reference Include="GxInternetLib" >
+            <HintPath>$(WebBinDirectory)\GxInternetLib.dll</HintPath>
+        </Reference>
+        <Reference Include="DistricutedCryptographyLib" >
+            <HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
+        </Reference>
 
 	</ItemGroup>
 

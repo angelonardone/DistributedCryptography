@@ -1,0 +1,2 @@
+function e(e){return{name:"ERB",subLanguage:"xml",contains:[e.COMMENT("<%#","%>"),{begin:"<%[%=-]?",end:"[%-]?%>",subLanguage:"ruby",excludeBegin:!0,excludeEnd:!0}]}}export{e as default};
+//# sourceMappingURL=p-03f435ff.js.map

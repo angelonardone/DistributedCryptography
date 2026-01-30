@@ -1,7 +1,7 @@
 /*
 				   File: type_Sdttest_SLIP0132_in
 			Description: test_SLIP0132_in
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.13.186702
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.14.187820
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
 using GeneXus.Programs;
+
 namespace GeneXus.Programs.nbitcoin
 {
 	[XmlRoot(ElementName="test_SLIP0132_in")]
