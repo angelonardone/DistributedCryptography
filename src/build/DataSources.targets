@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Imported by DotNetCoreBaseProject.targets when present.
+  Adds assembly references that the generated .csproj files rely on implicitly
+  (the GeneXus build on Windows resolves them, but a plain `dotnet publish`
+  on Linux does not). All of these DLLs ship in web/bin.
+-->
+<Project>
+  <PropertyGroup>
+    <GxWebBinDir>$(MSBuildThisFileDirectory)..\..\web\bin</GxWebBinDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NBitcoin">
+      <HintPath>$(GxWebBinDir)\NBitcoin.dll</HintPath>
+    </Reference>
+    <Reference Include="NBitcoin.Secp256k1">
+      <HintPath>$(GxWebBinDir)\NBitcoin.Secp256k1.dll</HintPath>
+    </Reference>
+    <Reference Include="QRCoder">
+      <HintPath>$(GxWebBinDir)\QRCoder.dll</HintPath>
+    </Reference>
+    <Reference Include="SecretSharingDotNetCore">
+      <HintPath>$(GxWebBinDir)\SecretSharingDotNetCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Konscious.Security.Cryptography.Argon2">
+      <HintPath>$(GxWebBinDir)\Konscious.Security.Cryptography.Argon2.dll</HintPath>
+    </Reference>
+    <Reference Include="Konscious.Security.Cryptography.Blake2">
+      <HintPath>$(GxWebBinDir)\Konscious.Security.Cryptography.Blake2.dll</HintPath>
+    </Reference>
+    <Reference Include="KeyResolver">
+      <HintPath>$(GxWebBinDir)\KeyResolver.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpCompress">
+      <HintPath>$(GxWebBinDir)\SharpCompress.dll</HintPath>
+    </Reference>
+    <Reference Include="ZstdSharp">
+      <HintPath>$(GxWebBinDir)\ZstdSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

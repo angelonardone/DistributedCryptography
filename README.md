@@ -3,6 +3,23 @@
 
 Please go to our [WIKI](https://wiki.distributedcryptography.com/wiki.aspx?9,Toc%3aOur+application,) for instructions in how to build and use our product
 
+## Run with Docker
+
+The quickest way to try the wallet — no .NET SDK or GeneXus required, only [Docker](https://docs.docker.com/get-docker/):
+
+```bash
+git clone https://github.com/angelonardone/DistributedCryptography
+cd DistributedCryptography
+docker compose up -d
+```
+
+Then open http://localhost:5000 (it redirects to the wallets page).
+
+* Wallet data is stored in the `distcrypt-wallets` Docker volume, so it survives container rebuilds and updates. **It is only deleted if you run `docker compose down -v`.**
+* To use a different external port, create a `.env` file with `APP_PORT=8080` (the app always listens on 5000 inside the container).
+* The HSM REST APIs are exposed at `http://localhost:5000/HSM/rest/...` (see `web/HSM.rest.yaml` for the OpenAPI spec). **They require no authentication, so do not expose the port to untrusted networks.** To keep them local-only, change the port mapping to `127.0.0.1:5000:5000` in `docker-compose.yml`.
+* To rebuild after pulling new code: `docker compose up -d --build`.
+
 
 This is a Digital Vault/Wallet designed to operate seamlessly on any PC or server. It is a versatile, multi-platform application that is compatible with Windows, Linux, and Mac operating systems. With its robust architecture, this wallet ensures secure and efficient management of Bitcoin transactions across different environments, making it an ideal choice for users seeking flexibility and reliability in their Bitcoin management.
 

@@ -1,0 +1,16 @@
+services:
+  distcrypt:
+    build: .
+    image: distributedcryptography:latest
+    container_name: distcrypt
+    ports:
+      # External port is configurable via APP_PORT (defaults to 5000).
+      # The app always listens on 5000 inside the container.
+      - "${APP_PORT:-5000}:5000"
+    volumes:
+      # Wallet data (encrypted files) persists across container recreations
+      - distcrypt-wallets:/app/web/Wallets
+    restart: unless-stopped
+
+volumes:
+  distcrypt-wallets:

@@ -1,0 +1,7 @@
+.git
+.gitattributes
+Dockerfile
+docker-compose.yml
+**/obj
+**/bin/Release
+**/bin/Debug
