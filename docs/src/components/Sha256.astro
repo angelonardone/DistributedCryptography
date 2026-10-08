@@ -1,0 +1,26 @@
+---
+// Shows the published SHA-256 of a download. The value is read from our download server each time the page is
+// opened, so it always matches the current file.
+interface Props {
+	platform: 'Windows' | 'Mac' | 'Linux';
+}
+const { platform } = Astro.props;
+const url = `https://distributedcryptography.s3.amazonaws.com/${platform}/sha256.txt`;
+---
+
+<iframe class="sha256" src={url} title={`SHA-256 of the ${platform} download`} loading="lazy"></iframe>
+<p class="sha256-link">If the box above is empty, open <a href={url}>{url}</a>.</p>
+
+<style>
+	.sha256 {
+		width: 100%;
+		height: 3.5rem;
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: 0.5rem;
+		background: #fff;
+	}
+	.sha256-link {
+		font-size: var(--sl-text-sm);
+		color: var(--sl-color-gray-3);
+	}
+</style>

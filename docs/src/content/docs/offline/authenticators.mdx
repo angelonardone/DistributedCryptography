@@ -1,0 +1,58 @@
+---
+title: Authenticators
+description: Keep a backup of your two-factor (2FA) authenticators and get their codes from your wallet, step by step.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Many sites protect your account with an authenticator app on your phone that shows a 6-digit code. If you lose
+the phone, you lose the codes, and often the account.
+
+**Off-line → Autheticators** keeps a copy of those authenticators inside your wallet. You can read the current
+code from the wallet, and put the authenticator back on a new phone.
+
+## Add an authenticator
+
+You need the **key** of the authenticator. When a site turns on two-factor authentication it shows a QR code,
+and usually a link such as *"can't scan the code?"* that shows the same key as text (letters and numbers). Copy
+that text **when you set up the site**; most sites never show it again.
+
+<Steps>
+
+1. Open **Off-line → Autheticators** and click **Import a new Authenticator Code**.
+
+   ![The Authenticators page with the button Import a new Authenticator Code](../../../assets/screens/offline/authenticators-01-page.png)
+
+2. Type the **issuer** (the site), the **account title** (your user on that site) and the **key**. Click
+   **Confirm**.
+
+   ![A new authenticator with issuer, account title and key](../../../assets/screens/offline/authenticators-02-new.png)
+
+3. The authenticator is in the list.
+
+   ![The list of authenticators](../../../assets/screens/offline/authenticators-03-listed.png)
+
+</Steps>
+
+## Get a code
+
+Click the **account title** in the list. The window shows the current **PIN**. A code is valid for a short
+time: click **Refresh PIN** to get the current one.
+
+![The window with the QR code and the current PIN](../../../assets/screens/offline/authenticators-04-pin.png)
+
+## Put an authenticator on a new phone
+
+The same window shows a **QR code**. Scan it with the authenticator app of the new phone, and the app shows the
+same codes as before.
+
+## Delete an authenticator
+
+Click the **trash can** on its row and confirm.
+
+## Good to know
+
+- Whoever has the key can produce the codes. That is why it is kept encrypted, in your wallet folder.
+- This list is separate from the *based32 Key* of an entry in [Encrypted Passwords](/offline/passwords/). Use
+  whichever you find more convenient.
+- Include your wallet folder in your backups.

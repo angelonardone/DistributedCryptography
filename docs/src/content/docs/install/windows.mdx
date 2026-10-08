@@ -1,0 +1,41 @@
+---
+title: Install on Windows
+description: Download the Windows version, check the file and start the wallet.
+---
+
+import YouTube from '../../../components/YouTube.astro';
+import Sha256 from '../../../components/Sha256.astro';
+import { Steps } from '@astrojs/starlight/components';
+
+<Steps>
+
+1. **Download** the current version:
+   [DistributedCryptography.zip](https://distributedcryptography.s3.amazonaws.com/Windows/DistributedCryptography.zip)
+
+2. **Check the file.** Open a command prompt in the folder where you saved it and run:
+
+   ```powershell
+   certutil -hashfile DistributedCryptography.zip SHA256
+   ```
+
+   The result must be the same as this value:
+
+   <Sha256 platform="Windows" />
+
+   If it is different, do not use the file. Download it again.
+
+3. **Unzip** the file to a folder of your choice.
+
+4. **Start** the application with `Start.bat`. It starts the wallet and opens your browser at
+   `http://localhost:5000/wallet.wallets.aspx`.
+
+</Steps>
+
+## Video
+
+<YouTube id="OD3KsQLJd3E" title="Installing the application on Windows" />
+
+## Next
+
+- [Create a wallet](/wallet/create/)
+- To publish the app on a Windows server, see [IIS (web app)](/install/iis/).

@@ -1,0 +1,48 @@
+---
+title: Install on IIS as a web app
+description: Publish the wallet on a Windows server with Internet Information Services.
+---
+
+import YouTube from '../../../components/YouTube.astro';
+import { Steps } from '@astrojs/starlight/components';
+
+By default the application runs on Kestrel, the web server that comes with .NET. On a Windows server you can put
+Internet Information Services (IIS) in front of it.
+
+<Steps>
+
+1. Install the **ASP.NET Core Runtime 8 Hosting Bundle** from the
+   [.NET 8 download page](https://dotnet.microsoft.com/download/dotnet/8.0). IIS must be restarted afterwards.
+
+2. Download and unzip the application as explained in [Install on Windows](/install/windows/). IIS needs
+   permission to read the files; the simplest way is to put the application under `C:\inetpub\wwwroot`.
+
+3. If they do not exist, create these folders inside the application folder and give **IIS_IUSRS** full access
+   to them:
+
+   - `PrivateTempStorage`
+   - `PublicTempStorage`
+   - `Wallets`
+
+4. In IIS Manager, create a new web site that points to the application folder.
+
+5. If the site can be reached from outside your network, install a certificate so that all the traffic is
+   encrypted (HTTPS).
+
+6. Open `https://<your web site>/wallet.wallets.aspx` in the browser.
+
+</Steps>
+
+<YouTube id="wJBd0skHHag" title="Installing on Internet Information Services" />
+
+:::caution[The first online login must be done on the server itself]
+For security, the first time a wallet uses the online features you have to log in to our servers **from a
+browser on the server**, not through the public web site.
+:::
+
+<YouTube id="nswh6xExF-k" title="Creating your first wallet on IIS" />
+
+:::danger[Think before exposing a wallet to the internet]
+Anyone who can open the site can see the list of wallets and try passwords. Use HTTPS, restrict who can reach
+the site, and remember that the [HSM](/offline/hsm/) REST service has no authentication.
+:::

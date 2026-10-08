@@ -1,0 +1,48 @@
+---
+title: Delegated Multisignature
+description: A shared bitcoin wallet where K of N people approve each payment, built on Taproot for lower fees and more privacy.
+---
+
+import YouTube from '../../../components/YouTube.astro';
+
+With Delegated Multisignature **several signatures are needed to approve a payment**. You stay the owner of the
+group, and you delegate the approval of payments to a quorum of people you trust: family, business partners,
+colleagues. No single person can move the money alone.
+
+It is a good fit for joint accounts, company funds and any money that should need an agreement to be spent.
+
+<YouTube id="PH5F8hM6cwM" title="Delegated Multisignature 3 of 5" />
+
+## Why it costs less than classic multisignature
+
+In a classic multisignature wallet, every payment has to carry **all** the public keys of the group and all the
+signatures. The more members, the bigger the payment and the higher the fee.
+
+Our Delegated Multisignature uses our own implementation on **Taproot**. When the group pays:
+
+- **Only the keys of the members who actually signed are shown.** The transaction is smaller, so the fee is
+  lower.
+- **The members who did not sign stay hidden.** With classic multisignature anyone looking at the blockchain can
+  see every member's key and how the group is organised. Here they cannot.
+
+For measured sizes of many K-of-N combinations, see
+[Bitcoin multisignature: a practical guide](/guides/multisig/).
+
+## How a payment gets approved
+
+1. A member starts the payment from the group's **Wallet Balance** tab and signs it with their password.
+2. The other members see it waiting in the group's **Signatures** tab and sign it too.
+3. When the minimum number of members has signed, the payment is sent to the network.
+
+Members do not have to be connected at the same time. Each signature travels to the others as an encrypted
+message.
+
+## Setting it up
+
+Create a Smart Group of type **Delegation MultiSignature** and follow the steps that are common to every group:
+[create, invite, accept, activate](/groups/#how-every-group-works).
+
+## Related
+
+- [Legacy Multisignature](/groups/legacy-multisignature/): the classic kind, for compatibility with other
+  software.

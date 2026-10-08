@@ -1,0 +1,189 @@
+---
+title: Consensus Backup
+description: Back up your wallet with people you trust, step by step. A minimum number of them must agree to restore it, and you can stop them.
+---
+
+import YouTube from '../../../components/YouTube.astro';
+import { Steps } from '@astrojs/starlight/components';
+
+A Consensus Backup lets **people you trust restore your wallet**, but only if enough of them agree. In the app
+this type of group is called **Wallet Backup**.
+
+Your wallet secret is cut into pieces called **shares**. Each member has one or more **votes** (shares), and a
+**minimum** number of votes is needed to put the secret back together. With fewer votes nothing can be learned
+about it. Nobody can restore your wallet alone, and you do not depend on any single person either.
+
+**Example:** you give one vote each to five people and set the minimum to three. Any three of them can restore
+your wallet. Two cannot.
+
+In this guide **Alice** backs up her wallet with **Bob** and **Carol**: one vote each, minimum two.
+
+## Before you start
+
+- You are [logged in](/online/).
+- Every person you want in the group is an **accepted** [contact](/online/contacts/).
+
+## 1. Create the group (owner)
+
+<Steps>
+
+1. Open **Online → Smart Groups** and click **Create Group**.
+
+   ![The Smart Groups page with the button Create Group](../../../assets/screens/backup/01-smart-groups.png)
+
+2. Choose the group type **Wallet Backup**, type a **name** for the group and click **Create**.
+
+   ![The group type Wallet Backup and the name of the group](../../../assets/screens/backup/02-create-group.png)
+
+3. The group is in your list. Click its **name** to open it.
+
+   ![The new group in the list](../../../assets/screens/backup/03-group-listed.png)
+
+</Steps>
+
+## 2. Add the members and invite them (owner)
+
+<Steps>
+
+1. Click **Add a contact**.
+
+   ![The empty group with the button Add a contact](../../../assets/screens/backup/04-group-empty.png)
+
+2. Click **Select Contact** next to the person. Repeat *Add a contact* for each member.
+
+   ![The list of contacts to choose from](../../../assets/screens/backup/05-select-contact.png)
+
+3. Set the **number of votes** of each member, and the **minimum amount of votes to recover the backup**. The
+   minimum must be more than one. A member with more votes has more weight.
+
+   Then click **Send invitation to group members**.
+
+   ![The votes of each member, the minimum, and the button Send invitation to group members](../../../assets/screens/backup/06-shares-and-minimum.png)
+
+4. The app shows **All invitations sent**.
+
+   ![The message All invitations sent](../../../assets/screens/backup/07-invitations-sent.png)
+
+</Steps>
+
+## 3. Accept the invitation (each member)
+
+<Steps>
+
+1. Open your wallet and open **Online → Smart Groups**. The group is in your list. Click **Accept Invitation**.
+
+   ![The invitation in the member's list, with Accept Invitation and Decline Invitation](../../../assets/screens/backup/08-accept-invitation.png)
+
+2. The group stays in your list. It is not active yet: the owner has to activate it.
+
+   ![The group in the member's list after accepting](../../../assets/screens/backup/09-accepted.png)
+
+</Steps>
+
+Invitations arrive when the member **opens their wallet**. If the group is not in the list yet, go back to the
+wallets page and open the wallet again a little later.
+
+## 4. Activate the group (owner)
+
+<Steps>
+
+1. Open the group again. When **every** member has accepted, the list shows the date each one accepted and the
+   button **Activate Group** appears. Click it.
+
+   ![All members accepted, and the button Activate Group](../../../assets/screens/backup/10-activate.png)
+
+2. Type your **wallet password** and click **Confirm**.
+
+   ![The window that asks for the password to activate the group](../../../assets/screens/backup/11-activation-password.png)
+
+3. The group is now **active**, and it has a second tab, **Signatures**.
+
+   ![The active group](../../../assets/screens/backup/13-group-active.png)
+
+</Steps>
+
+On activation your wallet secret is split on your computer. Each member's shares are encrypted **for that
+member** before they leave it. Not even we can read them.
+
+:::tip[What is backed up]
+The backup holds the root of your wallet, so a restored wallet has everything that comes from it: your bitcoin,
+your user name, and your place in your other groups.
+:::
+
+## Restore the wallet (members)
+
+<Steps>
+
+1. Each member who takes part opens the group in their own wallet and clicks **Restore Wallet**. This "signs"
+   the restore: it reveals that member's shares to the other members.
+
+   ![The group as a member sees it, with the button Restore Wallet](../../../assets/screens/backup/20-member-view.png)
+
+2. The app shows **The group has been notified**.
+
+   ![The message The group has been notified](../../../assets/screens/backup/21-member-signed.png)
+
+3. The **Signatures** tab of the group shows how far the restore is: here, *1 of 2 required shares signed*.
+
+   ![The Signatures tab as a member sees it: restore in progress](../../../assets/screens/backup/22-member-signatures.png)
+
+4. When the **minimum** has been reached, the button **Create recovered wallet** appears. A member clicks it,
+   types a name and a new password, and the wallet is restored on that member's computer.
+
+</Steps>
+
+<YouTube id="sRo47Et5k1I" title="Restoring a Consensus Backup" />
+
+## You stay in control: the Signatures tab (owner)
+
+:::note[Next release]
+The *Signatures* tab, the warning to the owner and *Stop Restore* are part of the next release. They are not in
+the current download yet.
+:::
+
+The **Signatures** tab shows who has signed a restore and when. While nothing is happening it says *No restore
+in progress*.
+
+![The Signatures tab of the owner with no restore in progress](../../../assets/screens/backup/14-signatures-idle.png)
+
+As the owner you get a **warning as soon as any member signs**, the next time you open your wallet. The tab then
+shows *Restore IN PROGRESS*, with the member who signed and the time.
+
+**If you did not ask for the restore, click Stop Restore.**
+
+![The owner's Signatures tab during a restore, with the button Stop Restore](../../../assets/screens/backup/23-owner-in-progress.png)
+
+From then on members can neither sign nor create the recovered wallet, and the shares already revealed are
+erased. The status changes to *Restore STOPPED by the owner*.
+
+![The restore stopped by the owner, with the button Allow Restore](../../../assets/screens/backup/24-owner-stopped.png)
+
+**Allow Restore** opens the group again and starts a new round of signatures.
+
+:::danger[Stop it before the minimum is reached]
+*Stop Restore* works while the restore is still **in progress**. Once the minimum has been reached, the secret
+has already been rebuilt and it cannot be taken back. If that happens and you did not want it, **move your funds
+to a new wallet at once**.
+:::
+
+## What you are trusting
+
+Be clear about what this backup means before you choose the members:
+
+- **Enough members together can restore your wallet without you.** That is the purpose. Choose people you trust,
+  and choose a minimum high enough that it takes a real agreement.
+- **After the minimum is reached, any member of the group can create the recovered wallet**, not only the ones
+  who signed.
+- The members of a group can see the user names of the other members.
+
+## Video
+
+<YouTube id="Myb05Qus5nQ" title="Creating a Consensus Backup" />
+
+The videos were recorded with an earlier version. The pages look a little different today.
+
+## Related
+
+- [Restore a wallet](/wallet/restore/)
+- [Time-Encrypted Vault](/groups/time-encrypted-vault/): the same idea, but the members can only restore after a
+  date.

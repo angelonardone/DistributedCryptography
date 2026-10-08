@@ -1,0 +1,22 @@
+/* Brand colours taken from the Distributed Cryptography logo. */
+:root {
+	--sl-color-accent-low: #1b2152;
+	--sl-color-accent: #5664d9;
+	--sl-color-accent-high: #c3c9f7;
+}
+:root[data-theme='light'] {
+	--sl-color-accent-low: #d5d9fa;
+	--sl-color-accent: #3f4cc4;
+	--sl-color-accent-high: #1f2670;
+}
+
+/* Round the corners of the logo in the header. */
+.site-title img {
+	border-radius: 0.4rem;
+}
+
+/* Screenshots */
+.sl-markdown-content img {
+	border: 1px solid var(--sl-color-gray-5);
+	border-radius: 0.5rem;
+}

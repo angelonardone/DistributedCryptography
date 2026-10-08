@@ -1,0 +1,69 @@
+---
+title: Install on Linux
+description: Download the Linux version, check the file and start the wallet.
+---
+
+import { Image } from 'astro:assets';
+import Sha256 from '../../../components/Sha256.astro';
+import { Steps } from '@astrojs/starlight/components';
+import qrError from '../../../assets/linux-qrcode-error.jpg';
+
+<Steps>
+
+1. **Download** the current version:
+   [DistributedCryptography.zip](https://distributedcryptography.s3.amazonaws.com/Linux/DistributedCryptography.zip)
+
+2. **Check the file:**
+
+   ```bash
+   sha256sum DistributedCryptography.zip
+   ```
+
+   The result must be the same as this value:
+
+   <Sha256 platform="Linux" />
+
+   If it is different, do not use the file. Download it again.
+
+3. **Unzip** it and go into the folder:
+
+   ```bash
+   unzip DistributedCryptography.zip
+   cd DistributedCryptography
+   ```
+
+4. **Allow the program to run:**
+
+   ```bash
+   chmod +x ./bin/GxWebStartup
+   ```
+
+5. **Start** the application:
+
+   ```bash
+   ./bin/GxWebStartup
+   ```
+
+6. In **another terminal**, open the browser:
+
+   ```bash
+   xdg-open localhost:5000/wallet.wallets.aspx
+   ```
+
+</Steps>
+
+## If the wallet shows an error instead of a QR code
+
+If you see a screen like this one when you open the wallet:
+
+<Image src={qrError} alt="Error page shown when the library libgdiplus is missing" />
+
+the library `libgdiplus` is missing. Install it:
+
+```bash
+sudo apt-get install libgdiplus
+```
+
+## Next
+
+- [Create a wallet](/wallet/create/)

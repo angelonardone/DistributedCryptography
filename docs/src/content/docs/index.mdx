@@ -1,0 +1,63 @@
+---
+title: Distributed Cryptography
+description: A self-custody digital vault and Bitcoin wallet for desktops and servers, with backups and inheritance that need the agreement of people you trust.
+template: splash
+hero:
+  tagline: A digital vault and Bitcoin wallet that runs on your own computer. Your keys never leave it, and the people you trust can help you recover them.
+  image:
+    file: ../../assets/logo.svg
+  actions:
+    - text: Install it
+      link: /install/
+      icon: right-arrow
+    - text: What is it?
+      link: /introduction/
+      variant: minimal
+    - text: Source code
+      link: https://github.com/angelonardone/DistributedCryptography
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+## What you can do with it
+
+<CardGrid>
+	<Card title="Keep your own keys" icon="padlock">
+		The wallet runs on your PC or server (Windows, Mac, Linux, Docker). Keys are created and used there,
+		encrypted with your password. There is no account to open and nothing to trust us with.
+	</Card>
+	<Card title="Recover your wallet with people you trust" icon="heart">
+		**Consensus Backup** splits your wallet secret among friends, family or company officers. A minimum number of
+		them must agree before it can be restored, and you are told as soon as someone starts.
+	</Card>
+	<Card title="Plan for the day you are not there" icon="clock">
+		A **Time-Encrypted Vault** stays closed while you keep renewing it. If you stop, a group you chose can open
+		it after the date you set. No lawyers and no third party holding your keys.
+	</Card>
+	<Card title="Share control of the money" icon="puzzle">
+		**Delegated Multisignature** needs K of N people to approve a payment. It is built on Taproot, so it costs
+		less in fees than classic multisig and shows less about the signers.
+	</Card>
+	<Card title="Encrypt more than bitcoin" icon="document">
+		Encrypted notes, files, passwords and authenticator backups, a secret splitter and QR codes. They all work
+		offline, on your computer.
+	</Card>
+	<Card title="Talk and share in private" icon="comment">
+		End-to-end encrypted chat and files between users. You log in anonymously: your user name is a key of your
+		wallet, not your e-mail.
+	</Card>
+</CardGrid>
+
+## Public source code, standard Bitcoin
+
+Everything is built on published standards (BIP 32, 39, 44, 49, 84, 86, 341 and 342) and on well-known
+algorithms (Argon2id, AES-256-GCM). The code is public, so anyone can audit it or build it themselves.
+
+<CardGrid>
+	<LinkCard title="Install the app" description="Docker, Windows, Mac, Linux, or build it from source." href="/install/" />
+	<LinkCard title="Create your first wallet" description="Step by step, with a video." href="/wallet/create/" />
+	<LinkCard title="How your data is protected" description="The algorithms and what our servers can and cannot see." href="/security/" />
+	<LinkCard title="Questions and answers" description="The things people ask first." href="/faq/" />
+</CardGrid>

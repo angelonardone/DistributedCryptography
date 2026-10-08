@@ -1,0 +1,42 @@
+---
+title: Install on Mac
+description: Download the Mac version, check the file and allow it to run.
+---
+
+import Sha256 from '../../../components/Sha256.astro';
+import { Steps } from '@astrojs/starlight/components';
+
+<Steps>
+
+1. **Download** the current version:
+   [DistributedCryptography.dmg](https://distributedcryptography.s3.amazonaws.com/Mac/DistributedCryptography.dmg)
+
+2. **Check the file.** Open Terminal in the folder where you saved it and run:
+
+   ```bash
+   shasum -a 256 DistributedCryptography.dmg
+   ```
+
+   The result must be the same as this value:
+
+   <Sha256 platform="Mac" />
+
+   If it is different, do not use the file. Download it again.
+
+3. **Open the `.dmg`** and copy **DistributedCryptography.app** to the folder where you want it.
+
+4. **Allow it to run.** The app is not signed with an Apple Developer ID, so macOS puts it in quarantine: if you
+   double-click it, macOS blocks it or says it comes from an unidentified developer. Remove the quarantine mark.
+   In Terminal, go to the folder where you put the app and run:
+
+   ```bash
+   sudo xattr -cr DistributedCryptography.app
+   ```
+
+5. **Start** the application.
+
+</Steps>
+
+## Next
+
+- [Create a wallet](/wallet/create/)

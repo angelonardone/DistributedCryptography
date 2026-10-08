@@ -1,0 +1,236 @@
+---
+title: Time-Encrypted Vault
+description: A backup of your wallet that a group you trust can open only after a date you keep renewing. Step by step, from the setup to the recovered wallet.
+---
+
+import YouTube from '../../../components/YouTube.astro';
+import { Steps } from '@astrojs/starlight/components';
+
+:::note[Next release]
+This page describes the Time-Encrypted Vault of the next release. **If you activated a vault with an earlier
+version, renew its restore date after you update** (*Change Restore Date*): that rewrites the backup in the new
+form.
+:::
+
+**What happens when the person with all the passwords cannot log in?**
+
+Business owners, freelancers and families manage countless digital accounts: bank portals, crypto wallets,
+payroll, supplier contracts, personal files. If something happens to you, who can take over? Most people have no
+plan, and the result is lost money, stopped operations or legal chaos.
+
+A **Time-Encrypted Vault** is that plan. It is a backup of your wallet that a group you trust can open, but only
+**after a date you set**, and only if **enough of them agree**. While you are around, you keep moving the date
+forward and the vault stays closed. If one day you stop, the date arrives and the group can recover what you
+protected.
+
+It is estate planning, disaster recovery and access control in one system, and you keep custody the whole time:
+no lawyers, no delays, and no third party holding your keys.
+
+<YouTube id="ldaL73y9lww" title="Time-Encrypted Vault in 9 minutes" />
+
+## How it works
+
+A vault has two groups of people, and a date.
+
+| | Who they are | What they do |
+|---|---|---|
+| **Restore group** | The people who will recover your wallet | They hold shares of the secret. A **minimum** number of votes is needed. |
+| **Bounty group** | The people who "ring the bell" | After the date, any one of them can collect a small amount of bitcoin you left as a reward. Collecting it is what opens the time lock. |
+| **Restore date** | A date from tomorrow onwards | Before it, nobody can open the vault. You push it forward for as long as you want the vault to stay closed. |
+
+Opening the vault needs **both** things:
+
+1. **The date has passed and the bounty has been collected.** The reward sits on the bitcoin blockchain, locked
+   until the restore date. When a bounty member collects it, the transaction publishes the piece that was
+   missing. The bitcoin network itself enforces the date, not our servers.
+2. **The restore group reaches its minimum.** Enough members reveal their shares, as in a
+   [Consensus Backup](/groups/consensus-backup/).
+
+Neither group can open the vault with only its own part.
+
+In this guide **Alice** creates the vault *Family vault*. **Bob** and **Carol** are the restore group (one vote
+each, minimum two) and **Dave** is the bounty group.
+
+## Before you start
+
+- You are [logged in](/online/).
+- Everyone you want in the two groups is an **accepted** [contact](/online/contacts/).
+
+## 1. Create the vault (owner)
+
+<Steps>
+
+1. Open **Online → Smart Groups** and click **Create Group**. Choose the type **Time Encrypted Vault**, type a
+   name and click **Create**.
+
+   ![The group type Time Encrypted Vault and the name of the group](../../../assets/screens/tev/01-create-group.png)
+
+2. Open the group. It has the **restore date** at the top and two tabs inside: **Restore Group** and
+   **Bounty Group**.
+
+   ![The new vault with the restore date and the two groups](../../../assets/screens/tev/02-vault-opened.png)
+
+</Steps>
+
+## 2. The restore group (owner)
+
+In the tab **Restore Group**:
+
+<Steps>
+
+1. Click **Add a contact** for each person who will restore your wallet.
+2. Set the **number of votes** of each one, and the **minimum amount of votes to recover the backup**.
+3. Click **Send invitation to restore group members**.
+
+</Steps>
+
+## 3. The bounty group (owner)
+
+In the tab **Bounty Group**, click **Add a contact** for each person who may collect the bounty, then click
+**Send invitation to bounty group members**.
+
+![The Bounty Group tab with one member and the button Send invitation to bounty group members](../../../assets/screens/tev/04-bounty-group.png)
+
+The tab reminds you how it works: only after one of the bounty members collects the bounty can the restore
+group restore the backup, and the bounty can be collected from the restore date on, with no time limit.
+
+## 4. The restore date (owner)
+
+Type the date in **Select the date when the backup became available to be restored**, or pick it with the
+calendar, and click **Save**. The date must be tomorrow or later.
+
+![The restore date, the restore group with its votes and minimum, and the Save button](../../../assets/screens/tev/05-restore-date.png)
+
+## 5. Accept the invitation (every member of both groups)
+
+Open **Online → Smart Groups** in your own wallet and click **Accept Invitation** on the vault's row.
+
+![The invitation to the vault in a member's list](../../../assets/screens/tev/06-accept-invitation.png)
+
+## 6. Activate the vault (owner)
+
+<Steps>
+
+1. When **everybody** in both groups has accepted, open the vault and click **Activate Groups**.
+
+2. Type your **wallet password** and click **Confirm**.
+
+   ![The window that asks for the password to activate the vault](../../../assets/screens/tev/08-activation-password.png)
+
+3. The vault is **active**. It now has the button **Change Restore Date** and a second tab, **Bounty Wallet**.
+   The app reminds you that **the bounty needs to be funded**.
+
+   ![The active vault, with the button Change Restore Date](../../../assets/screens/tev/09-active.png)
+
+</Steps>
+
+On activation your wallet secret is split on your computer, and every piece is encrypted for the member who
+keeps it.
+
+## 7. Fund the bounty (owner)
+
+<Steps>
+
+1. Open the tab **Bounty Wallet**. It shows the date from which the bounty can be collected and the **receiving
+   address** of the bounty.
+
+   ![The Bounty Wallet tab with the address of the bounty](../../../assets/screens/tev/10-bounty-address.png)
+
+2. Send a small amount of bitcoin to that address, from your wallet or from anywhere else. This is the reward
+   for the bounty member who opens the time lock. Click **Update Balance** to see it.
+
+   ![The bounty funded](../../../assets/screens/tev/11-bounty-funded.png)
+
+</Steps>
+
+The vault is now ready. **As the owner, you can take the bounty back at any time** with **Send**.
+
+## Keep it closed: renew the date
+
+Before the restore date arrives, open the vault and click **Change Restore Date**. Type your password and the
+new date. The vault gets a new bounty address for the new date: move the bounty to it from the *Bounty Wallet*
+tab.
+
+This is your regular "I am still here". Pick a rhythm you can keep (every few months, for example) and put a
+reminder in your calendar.
+
+:::caution[If you forget, the vault can be opened]
+That is exactly what it is for. If you let the date pass, the bounty group can collect the reward and the
+restore group can then recover your wallet. If that happens by mistake, move your funds to a new wallet.
+:::
+
+## When the date has passed
+
+### A bounty member collects the bounty
+
+<Steps>
+
+1. Open the vault. Your only tab is **Bounty Wallet**. From the restore date on, click **Send**.
+
+   ![The Bounty Wallet tab of a bounty member, with the Send button](../../../assets/screens/tev/12-bounty-member.png)
+
+2. Type the **address** where you want to receive the bounty (an address of your own wallet, for example) and
+   click **Next**. The whole bounty is sent.
+
+   ![The address to receive the bounty](../../../assets/screens/tev/13-collect-form.png)
+
+3. Type your **wallet password**. Then choose the **fee** and click **Send Coins**.
+
+   ![The fee and the Send Coins button](../../../assets/screens/tev/14-collect-send.png)
+
+</Steps>
+
+The app shows **Coins submitted successfully**. Once this payment is on the blockchain, the time lock is open.
+
+Before the restore date the bitcoin network rejects this payment, so there is nothing to collect early.
+
+### The restore group recovers the wallet
+
+<Steps>
+
+1. Each member who takes part opens the vault in their own wallet. After the bounty has been collected, the
+   button **Restore Wallet** is there. Click it.
+
+   ![The vault as a member of the restore group sees it, with the button Restore Wallet](../../../assets/screens/tev/16-restore-wallet.png)
+
+2. The app shows **The group has been notified**.
+
+   ![The message The group has been notified](../../../assets/screens/tev/17-first-signed.png)
+
+3. When the **minimum** has been reached, the app shows **The group has been RESTORED** and the button
+   **Create recovered wallet** appears. Click it.
+
+   ![The button Create recovered wallet](../../../assets/screens/tev/18-create-recovered-wallet.png)
+
+4. Type a **name** for the recovered wallet and a **new password**, twice. Click **Restore Wallet**.
+
+   ![The name and the new password of the recovered wallet](../../../assets/screens/tev/19-recovered-wallet-form.png)
+
+5. The recovered wallet is in the list of wallets of that member's computer.
+
+   ![The recovered wallet in the list of wallets](../../../assets/screens/tev/20-recovered-in-list.png)
+
+</Steps>
+
+It is the owner's wallet: the same addresses, the same bitcoin, the same user name. Open it and click
+**Update Balance** to load its payments.
+
+![The recovered wallet opened, with the owner's first address](../../../assets/screens/tev/21-recovered-balance.png)
+
+If **Restore Wallet** is not there yet, the bounty has not been collected, or its payment is not on the
+blockchain yet. Go back to the wallets page and open the wallet again a little later.
+
+## What you are trusting
+
+- The **date** is enforced by the bitcoin network: the bounty cannot be collected early.
+- The time lock binds the bounty group and the restore group **separately**. If people from *both* groups agreed
+  to work together against you, the date would not stop them. Put different people in each group, and people
+  you trust.
+- As with a Consensus Backup, once the minimum is reached **any member of the restore group** can create the
+  recovered wallet.
+
+## A step-by-step demo on video
+
+A long, detailed walk through every screen, recorded with an earlier version:
+
+<YouTube id="BNAOorl1aC8" title="Time-Encrypted Vault step by step" />
