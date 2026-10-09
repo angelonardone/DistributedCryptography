@@ -1,6 +1,6 @@
 # Distributed Cryptography — documentation site
 
-The source of **https://docs.distributedcryptography.com**: the user documentation, the product pages and the
+The source of **https://distributedcryptography.com**: the user documentation, the product pages and the
 FAQ. It is a static site built with [Astro Starlight](https://starlight.astro.build/). The pages are Markdown
 files in this folder, so the documentation is changed the same way as the code: edit, commit, push.
 

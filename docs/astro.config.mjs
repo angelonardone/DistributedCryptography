@@ -10,7 +10,7 @@ const nextRelease = { text: 'Next release', variant: 'tip' };
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://docs.distributedcryptography.com',
+	site: 'https://distributedcryptography.com',
 	integrations: [
 		starlight({
 			title: 'Distributed Cryptography',
