@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleExecutable</key>
+    <string>launch_app</string>
+    <key>CFBundleIconFile</key>
+    <string>DistributedCryptography.icns</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.distributedcryptography.app</string>
+    <key>CFBundleName</key>
+    <string>DistributedCryptography</string>
+    <key>CFBundleDisplayName</key>
+    <string>Distributed Cryptography</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <!-- __VERSION__ is replaced by the release workflow -->
+    <key>CFBundleShortVersionString</key>
+    <string>__VERSION__</string>
+    <key>CFBundleVersion</key>
+    <string>__VERSION__</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>12.0</string>
+    <key>NSHumanReadableCopyright</key>
+    <string>Distributed Cryptography. Open source, see License.txt in the repository.</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>LSApplicationCategoryType</key>
+    <string>public.app-category.finance</string>
+    <key>LSApplicationActivationPolicy</key>
+    <string>regular</string>
+</dict>
+</plist>

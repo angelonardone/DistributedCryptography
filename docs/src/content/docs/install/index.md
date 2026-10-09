@@ -9,7 +9,7 @@ There are three ways to get the application. Choose the one that fits what you n
 |---|---|---|
 | [Docker](/install/docker/) | Trying it quickly, or running it on a server | Docker |
 | Ready-made download: [Windows](/install/windows/), [Mac](/install/mac/), [Linux](/install/linux/) | Everyday use on your own computer | Nothing else |
-| [Build from source](/install/build-from-source/) | Auditing the code, or checking the build yourself | The .NET 8 SDK |
+| [Build from source](/install/build-from-source/) | Auditing the code, or checking the build yourself | The .NET 10 SDK |
 
 On a Windows server you can also publish the app with Internet Information Services: see
 [IIS (web app)](/install/iis/).

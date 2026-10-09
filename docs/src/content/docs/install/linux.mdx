@@ -5,52 +5,84 @@ description: Download the Linux version, check the file and start the wallet.
 
 import { Image } from 'astro:assets';
 import Sha256 from '../../../components/Sha256.astro';
-import { Steps } from '@astrojs/starlight/components';
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import { downloadUrl, files } from '../../../downloads';
 import qrError from '../../../assets/linux-qrcode-error.jpg';
+
+There is one download for each kind of processor. `uname -m` tells you which one you have: `x86_64` is a
+64-bit PC, `aarch64` is ARM (a Raspberry Pi, for example).
 
 <Steps>
 
 1. **Download** the current version:
-   [DistributedCryptography.zip](https://distributedcryptography.s3.amazonaws.com/Linux/DistributedCryptography.zip)
+
+   <Tabs syncKey="linux">
+   <TabItem label="PC (x86_64)">
+   <a href={downloadUrl(files.linuxX64)}>{files.linuxX64}</a>
+   </TabItem>
+   <TabItem label="ARM (aarch64)">
+   <a href={downloadUrl(files.linuxArm64)}>{files.linuxArm64}</a>
+   </TabItem>
+   </Tabs>
 
 2. **Check the file:**
 
+   <Tabs syncKey="linux">
+   <TabItem label="PC (x86_64)">
    ```bash
-   sha256sum DistributedCryptography.zip
+   sha256sum DistributedCryptography-Linux-x64.tar.gz
    ```
 
    The result must be the same as this value:
 
-   <Sha256 platform="Linux" />
+   <Sha256 file={files.linuxX64} />
+   </TabItem>
+   <TabItem label="ARM (aarch64)">
+   ```bash
+   sha256sum DistributedCryptography-Linux-arm64.tar.gz
+   ```
+
+   The result must be the same as this value:
+
+   <Sha256 file={files.linuxArm64} />
+   </TabItem>
+   </Tabs>
 
    If it is different, do not use the file. Download it again.
 
-3. **Unzip** it and go into the folder:
+3. **Unpack** it and go into the folder:
 
+   <Tabs syncKey="linux">
+   <TabItem label="PC (x86_64)">
    ```bash
-   unzip DistributedCryptography.zip
+   tar -xzf DistributedCryptography-Linux-x64.tar.gz
    cd DistributedCryptography
    ```
-
-4. **Allow the program to run:**
-
+   </TabItem>
+   <TabItem label="ARM (aarch64)">
    ```bash
-   chmod +x ./bin/GxWebStartup
+   tar -xzf DistributedCryptography-Linux-arm64.tar.gz
+   cd DistributedCryptography
    ```
+   </TabItem>
+   </Tabs>
 
-5. **Start** the application:
+4. **Start** the application:
 
    ```bash
    ./bin/GxWebStartup
    ```
 
-6. In **another terminal**, open the browser:
+5. In **another terminal**, open the browser:
 
    ```bash
    xdg-open localhost:5000/wallet.wallets.aspx
    ```
 
 </Steps>
+
+The files are built by GitHub from the [public source code](https://github.com/angelonardone/DistributedCryptography),
+and every version stays available on the [releases page](https://github.com/angelonardone/DistributedCryptography/releases).
 
 ## If the wallet shows an error instead of a QR code
 

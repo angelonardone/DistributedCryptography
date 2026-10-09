@@ -17,11 +17,12 @@ The first run builds the application from the source code, so it takes a few min
 
 ## Where your wallets are kept
 
-Wallet data is stored in the Docker volume **`distcrypt-wallets`**. It survives rebuilding and updating the
-container.
+Everything the wallet keeps is stored in two Docker volumes: **`distcrypt-wallets`** (the wallets) and
+**`distcrypt-data`** (the rest, such as the folders used to exchange large files). They survive rebuilding and
+updating the container.
 
 :::danger
-`docker compose down -v` deletes the volume, and your wallets with it. Use `docker compose down` (without `-v`)
+`docker compose down -v` deletes the volumes, and your wallets with them. Use `docker compose down` (without `-v`)
 to stop the application.
 :::
 

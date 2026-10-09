@@ -1,3 +1,12 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 *.sh text eol=lf
+
+# The Mac launcher is a shell script without extension
+packaging/mac/launch_app text eol=lf
+packaging/mac/Info.plist text eol=lf
+
+# Windows command files need CRLF line endings
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.iss text eol=crlf

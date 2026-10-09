@@ -7,14 +7,16 @@ import YouTube from '../../../components/YouTube.astro';
 import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 
 Build the application yourself if you want to audit the code or check the build. You need the
-[.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) and git.
+[.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) and git.
 
 :::tip
 If you only want to run the code from the repository without installing the .NET SDK, use
 [Docker](/install/docker/): it builds the same source inside a container.
 :::
 
-<YouTube id="9XtY_TF5FZI" title="Building the application from source" />
+These are the same commands that build the [ready-made downloads](/install/): the installers are built by
+GitHub from this repository, with the workflow
+[release.yml](https://github.com/angelonardone/DistributedCryptography/blob/main/.github/workflows/release.yml).
 
 <Steps>
 
@@ -25,46 +27,59 @@ If you only want to run the code from the repository without installing the .NET
    cd DistributedCryptography
    ```
 
-2. **Clean** the project:
+2. **Build.** The first command compiles the application and the second one adds the program that starts it:
 
    <Tabs syncKey="os">
    <TabItem label="Windows">
    ```powershell
-   dotnet clean src\build\Deployment.sln
+   dotnet publish src\build\Deployment.slnx -c Release -r win-x64 --self-contained true
+   dotnet publish src\build\GxWebStartup\GxWebStartup.csproj -c Release -r win-x64 --self-contained true -o web\bin
    ```
    </TabItem>
-   <TabItem label="Mac / Linux">
+   <TabItem label="Mac">
    ```bash
-   dotnet clean src/build/Deployment.sln
+   dotnet publish src/build/Deployment.slnx -c Release -r osx-arm64 --self-contained true
+   dotnet publish src/build/GxWebStartup/GxWebStartup.csproj -c Release -r osx-arm64 --self-contained true -o web/bin
    ```
+
+   On a Mac with an Intel processor use `-r osx-x64` instead of `-r osx-arm64`.
+   </TabItem>
+   <TabItem label="Linux">
+   ```bash
+   cp src/Directory.build.props src/Directory.Build.props
+   dotnet publish src/build/Deployment.slnx -c Release -r linux-x64 --self-contained true
+   dotnet publish src/build/GxWebStartup/GxWebStartup.csproj -c Release -r linux-x64 --self-contained true -o web/bin
+   ```
+
+   On ARM use `-r linux-arm64` instead of `-r linux-x64`. The first line is needed because Linux tells
+   upper-case and lower-case letters apart in file names.
    </TabItem>
    </Tabs>
 
-3. **Build:**
+3. **Start** the program from the `web` folder:
 
    <Tabs syncKey="os">
    <TabItem label="Windows">
    ```powershell
-   dotnet publish -r win-x64 --self-contained true src\build\Deployment.sln --output .\web\bin /p:GxExternalReference=\"NBitcoin.dll;NBitcoin.Secp256k1.dll;QRCoder.dll;Google.Authenticator.dll;SecretSharingDotNetCore.dll;Konscious.Security.Cryptography.Argon2.dll;Konscious.Security.Cryptography.Blake2.dll;SharpCompress.dll\"
+   cd web
+   bin\GxWebStartup.exe
    ```
    </TabItem>
-   <TabItem label="Mac / Linux">
-   ```bash
-   dotnet publish -r osx-x64 --self-contained true src/build/Deployment.sln --output web/bin /p:GxExternalReference=NBitcoin.dll%3bNBitcoin.Secp256k1.dll%3bQRCoder.dll%3bGoogle.Authenticator.dll%3bSecretSharingDotNetCore.dll%3bKonscious.Security.Cryptography.Argon2.dll%3bKonscious.Security.Cryptography.Blake2.dll%3bSharpCompress.dll
-   ```
-
-   On Linux use `-r linux-x64` instead of `-r osx-x64`.
-   </TabItem>
-   </Tabs>
-
-4. **Start** the program from the `web` folder:
-
+   <TabItem label="Mac">
    ```bash
    cd web
-   dotnet bin/GxNetCoreStartup.dll 5000
+   ./bin/GxWebStartup
    ```
+   </TabItem>
+   <TabItem label="Linux">
+   ```bash
+   cd web
+   ./bin/GxWebStartup
+   ```
+   </TabItem>
+   </Tabs>
 
-5. In **another terminal**, open the application in your browser:
+4. In **another terminal**, open the application in your browser:
 
    <Tabs syncKey="os">
    <TabItem label="Windows">
@@ -72,17 +87,25 @@ If you only want to run the code from the repository without installing the .NET
    start http://localhost:5000/wallet.wallets.aspx
    ```
    </TabItem>
-   <TabItem label="Mac / Linux">
+   <TabItem label="Mac">
    ```bash
-   # Mac
    open http://localhost:5000/wallet.wallets.aspx
-   # Linux
+   ```
+   </TabItem>
+   <TabItem label="Linux">
+   ```bash
    xdg-open localhost:5000/wallet.wallets.aspx
    ```
    </TabItem>
    </Tabs>
 
 </Steps>
+
+## Video
+
+The video shows an earlier version: the steps are the same, the commands are the ones on this page.
+
+<YouTube id="9XtY_TF5FZI" title="Building the application from source" />
 
 ## Next
 

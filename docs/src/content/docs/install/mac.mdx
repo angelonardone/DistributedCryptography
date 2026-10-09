@@ -4,38 +4,70 @@ description: Download the Mac version, check the file and allow it to run.
 ---
 
 import Sha256 from '../../../components/Sha256.astro';
-import { Steps } from '@astrojs/starlight/components';
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import { downloadUrl, files } from '../../../downloads';
+
+There is one download for each kind of Mac. To know which one you have, open the Apple menu and choose
+**About This Mac**: it says **Chip: Apple M1** (or M2, M3…) on an Apple Silicon Mac, and **Processor: Intel** on
+an Intel Mac.
 
 <Steps>
 
-1. **Download** the current version:
-   [DistributedCryptography.dmg](https://distributedcryptography.s3.amazonaws.com/Mac/DistributedCryptography.dmg)
+1. **Download** the current version for your Mac:
+
+   <Tabs syncKey="mac">
+   <TabItem label="Apple Silicon (M1 and later)">
+   <a href={downloadUrl(files.macAppleSilicon)}>{files.macAppleSilicon}</a>
+   </TabItem>
+   <TabItem label="Intel">
+   <a href={downloadUrl(files.macIntel)}>{files.macIntel}</a>
+   </TabItem>
+   </Tabs>
 
 2. **Check the file.** Open Terminal in the folder where you saved it and run:
 
+   <Tabs syncKey="mac">
+   <TabItem label="Apple Silicon (M1 and later)">
    ```bash
-   shasum -a 256 DistributedCryptography.dmg
+   shasum -a 256 DistributedCryptography-Mac-AppleSilicon.dmg
    ```
 
    The result must be the same as this value:
 
-   <Sha256 platform="Mac" />
+   <Sha256 file={files.macAppleSilicon} />
+   </TabItem>
+   <TabItem label="Intel">
+   ```bash
+   shasum -a 256 DistributedCryptography-Mac-Intel.dmg
+   ```
+
+   The result must be the same as this value:
+
+   <Sha256 file={files.macIntel} />
+   </TabItem>
+   </Tabs>
 
    If it is different, do not use the file. Download it again.
 
-3. **Open the `.dmg`** and copy **DistributedCryptography.app** to the folder where you want it.
+3. **Open the `.dmg`** and drag **DistributedCryptography** onto the **Applications** folder shown next to it.
 
 4. **Allow it to run.** The app is not signed with an Apple Developer ID, so macOS puts it in quarantine: if you
    double-click it, macOS blocks it or says it comes from an unidentified developer. Remove the quarantine mark.
-   In Terminal, go to the folder where you put the app and run:
+   In Terminal run:
 
    ```bash
-   sudo xattr -cr DistributedCryptography.app
+   sudo xattr -cr /Applications/DistributedCryptography.app
    ```
 
-5. **Start** the application.
+   If you copied the app to another folder, use that folder instead of `/Applications`.
+
+5. **Start** the application. It starts the wallet and opens your browser at
+   `http://localhost:5000/wallet.wallets.aspx`. To stop it, quit the app from the Dock.
 
 </Steps>
+
+The files are built by GitHub from the [public source code](https://github.com/angelonardone/DistributedCryptography),
+and every version stays available on the [releases page](https://github.com/angelonardone/DistributedCryptography/releases).
 
 ## Next
 

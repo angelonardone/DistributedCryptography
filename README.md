@@ -3,6 +3,13 @@
 
 Please go to our [WIKI](https://wiki.distributedcryptography.com/wiki.aspx?9,Toc%3aOur+application,) for instructions in how to build and use our product
 
+## Download
+
+Ready-made installers for Windows (installer and zip), Mac (Apple Silicon and Intel) and Linux (x64 and ARM64) are on the
+[releases page](https://github.com/angelonardone/DistributedCryptography/releases/latest), with the SHA-256 of every file.
+They are built from this repository by the workflow [release.yml](.github/workflows/release.yml), which also starts
+and tests each one on its own system before it is published.
+
 ## Run with Docker
 
 The quickest way to try the wallet — no .NET SDK or GeneXus required, only [Docker](https://docs.docker.com/get-docker/):
@@ -15,7 +22,7 @@ docker compose up -d
 
 Then open http://localhost:5000 (it redirects to the wallets page).
 
-* Wallet data is stored in the `distcrypt-wallets` Docker volume, so it survives container rebuilds and updates. **It is only deleted if you run `docker compose down -v`.**
+* Wallet data is stored in the `distcrypt-wallets` and `distcrypt-data` Docker volumes, so it survives container rebuilds and updates. **It is only deleted if you run `docker compose down -v`.**
 * To use a different external port, create a `.env` file with `APP_PORT=8080` (the app always listens on 5000 inside the container).
 * The HSM REST APIs are exposed at `http://localhost:5000/HSM/rest/...` (see `web/HSM.rest.yaml` for the OpenAPI spec). **They require no authentication, so do not expose the port to untrusted networks.** To keep them local-only, change the port mapping to `127.0.0.1:5000:5000` in `docker-compose.yml`.
 * To rebuild after pulling new code: `docker compose up -d --build`.

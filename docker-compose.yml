@@ -8,9 +8,13 @@ services:
       # The app always listens on 5000 inside the container.
       - "${APP_PORT:-5000}:5000"
     volumes:
-      # Wallet data (encrypted files) persists across container recreations
-      - distcrypt-wallets:/app/web/Wallets
+      # Everything the wallet keeps (DISTCRYPT_DATA_DIR=/data) persists across container recreations
+      - distcrypt-data:/data
+      # The wallets stay in the volume they have always been in, so the ones created with earlier
+      # versions (which kept them in /app/web/Wallets) are still there after an update
+      - distcrypt-wallets:/data/Wallets
     restart: unless-stopped
 
 volumes:
+  distcrypt-data:
   distcrypt-wallets:

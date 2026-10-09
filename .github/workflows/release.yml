@@ -1,0 +1,269 @@
+name: Release
+
+# Builds the installers of every platform from the sources in this repository and tests each one.
+#
+#   - A tag "v..." is pushed: builds, tests and publishes a GitHub Release with the installers.
+#   - Run by hand (Actions > Release > Run workflow): builds and tests only, all the platforms or one of them.
+#     The files stay as artifacts of the run; nothing is published.
+#
+# The documentation links to https://github.com/<repo>/releases/latest/download/<file>, so the file names
+# below must not change.
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      platforms:
+        description: Which installers to build and test
+        type: choice
+        default: all
+        options: [all, windows, mac, linux]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  APP_NAME: DistributedCryptography
+  DOTNET_NOLOGO: 'true'
+  DOTNET_CLI_TELEMETRY_OPTOUT: '1'
+  # No build processes left running: on Windows they would keep files of web/bin open
+  MSBUILDDISABLENODEREUSE: '1'
+  UseSharedCompilation: 'false'
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  # ---------------------------------------------------------------------------------------------------------
+  # Which platforms this run builds: all of them for a tag, the chosen ones for a run by hand
+  # ---------------------------------------------------------------------------------------------------------
+  plan:
+    name: Plan
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+    steps:
+      - id: matrix
+        env:
+          PLATFORMS: ${{ inputs.platforms || 'all' }}
+        run: |
+          ALL='[
+            {"name": "Windows-x64",      "group": "windows", "os": "windows-latest",   "rid": "win-x64"},
+            {"name": "Mac-AppleSilicon", "group": "mac",     "os": "macos-15",         "rid": "osx-arm64"},
+            {"name": "Mac-Intel",        "group": "mac",     "os": "macos-15-intel",   "rid": "osx-x64"},
+            {"name": "Linux-x64",        "group": "linux",   "os": "ubuntu-24.04",     "rid": "linux-x64"},
+            {"name": "Linux-arm64",      "group": "linux",   "os": "ubuntu-24.04-arm", "rid": "linux-arm64"}
+          ]'
+          if [ "$PLATFORMS" = "all" ]; then
+            CHOSEN="$(jq -c . <<< "$ALL")"
+          else
+            CHOSEN="$(jq -c --arg group "$PLATFORMS" '[.[] | select(.group == $group)]' <<< "$ALL")"
+          fi
+          echo "matrix={\"include\":$CHOSEN}" >> "$GITHUB_OUTPUT"
+          echo "Building: $(jq -r '[.[].name] | join(", ")' <<< "$CHOSEN")"
+
+  # ---------------------------------------------------------------------------------------------------------
+  # The installers of one platform, built and tested on a machine of that platform
+  #   Windows: -Setup.exe (installer) and .zip (portable, also for IIS)
+  #   Mac:     .dmg with DistributedCryptography.app
+  #   Linux:   .tar.gz
+  # ---------------------------------------------------------------------------------------------------------
+  build:
+    name: ${{ matrix.name }}
+    needs: plan
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    env:
+      RID: ${{ matrix.rid }}
+      GROUP: ${{ matrix.group }}
+      PACKAGE_NAME: DistributedCryptography-${{ matrix.name }}
+
+    steps:
+      - name: Get the sources
+        uses: actions/checkout@v7
+
+      - name: Install the .NET SDK
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Build
+        run: |
+          # On case-sensitive file systems MSBuild only reads "Directory.Build.props" with this exact case
+          [ -f src/Directory.Build.props ] || cp src/Directory.build.props src/Directory.Build.props
+
+          dotnet publish src/build/Deployment.slnx -c Release -r "$RID" --self-contained true
+
+          # The startup project publishes to src/web/bin by default: send it to the real web/bin
+          dotnet publish src/build/GxWebStartup/GxWebStartup.csproj -c Release -r "$RID" --self-contained true -o web/bin
+
+      - name: Package
+        run: |
+          # The version: the tag (v0.923 -> 0.923) or, for a run by hand, the one the application shows
+          case "$GITHUB_REF" in
+            refs/tags/v*) VERSION="${GITHUB_REF_NAME#v}" ;;
+            *)            VERSION="$(grep -o -m 1 '"version [0-9][0-9.]*' src/web/general/ui/masterunanimosidebar.cs | grep -o '[0-9][0-9.]*' || true)" ;;
+          esac
+          VERSION="${VERSION:-0.0.0}"
+          echo "Version $VERSION"
+
+          mkdir dist
+          mv web "$APP_NAME"
+          # Left by the build, not part of the application
+          rm -rf "$APP_NAME"/bin/*.pdb "$APP_NAME/GeneXus.Programs.Common"
+
+          case "$GROUP" in
+            windows)
+              7z a -tzip -mx=7 "dist/$PACKAGE_NAME.zip" "$APP_NAME" > /dev/null
+
+              # Inno Setup comes with the Windows build machines
+              ISCC="$(command -v iscc || echo '/c/Program Files (x86)/Inno Setup 6/ISCC.exe')"
+              MSYS_NO_PATHCONV=1 MSYS2_ARG_CONV_EXCL='*' "$ISCC" /Q "/DAppVersion=$VERSION" \
+                "/DSourceDir=$(cygpath -w "$PWD/$APP_NAME")" "/DOutputDir=$(cygpath -w "$PWD/dist")" \
+                packaging/windows/installer.iss
+              ;;
+
+            linux)
+              chmod +x "$APP_NAME/bin/GxWebStartup" "$APP_NAME"/*.sh
+              tar -czf "dist/$PACKAGE_NAME.tar.gz" "$APP_NAME"
+              ;;
+
+            mac)
+              APP="dmg/$APP_NAME.app"
+              mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
+              sed "s/__VERSION__/$VERSION/g" packaging/mac/Info.plist > "$APP/Contents/Info.plist"
+              cp packaging/mac/launch_app "$APP/Contents/MacOS/launch_app"
+              cp packaging/mac/DistributedCryptography.icns "$APP/Contents/Resources/"
+              mv "$APP_NAME" "$APP/Contents/Resources/kestrel_app"
+              chmod +x "$APP/Contents/MacOS/launch_app" "$APP/Contents/Resources/kestrel_app/bin/GxWebStartup"
+
+              # The window of the dmg shows the app next to a link to Applications: drag one onto the other
+              ln -s /Applications dmg/Applications
+
+              # hdiutil sometimes answers "Resource busy" on the build machines: try again
+              for attempt in 1 2 3 4 5; do
+                hdiutil create -volname "$APP_NAME" -srcfolder dmg -ov -format UDZO "dist/$PACKAGE_NAME.dmg" && break
+                [ "$attempt" = 5 ] && exit 1
+                sleep 5
+              done
+              ;;
+          esac
+          ls -l dist
+
+      - name: Test the packages
+        run: |
+          for package in dist/*; do
+            bash packaging/smoke-test.sh "$PWD/$package"
+          done
+
+      - name: Keep the packages
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ matrix.name }}
+          path: dist/*
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
+
+  # ---------------------------------------------------------------------------------------------------------
+  # The Docker image is built from the same sources: check that it still builds and starts
+  # ---------------------------------------------------------------------------------------------------------
+  docker:
+    name: Docker image
+    if: github.event_name == 'push' || inputs.platforms == 'all' || inputs.platforms == 'linux'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Get the sources
+        uses: actions/checkout@v7
+
+      - name: Build the image
+        run: docker build -t distcrypt:test .
+
+      - name: Test the image
+        run: |
+          docker run -d --name distcrypt-test -p 5055:5000 distcrypt:test
+          CODE=""
+          for _ in $(seq 1 60); do
+            CODE="$(curl -s -o page.html -w '%{http_code}' http://127.0.0.1:5055/wallet.wallets.aspx || true)"
+            [ "$CODE" = "200" ] && break
+            sleep 2
+          done
+          if [ "$CODE" != "200" ] || ! grep -q "<title>Wallets" page.html; then
+            echo "The container did not serve the wallets page (answer: '$CODE')"
+            docker logs distcrypt-test | tail -n 60
+            exit 1
+          fi
+          # The wallets must be created in the data folder that docker-compose.yml keeps in a volume
+          docker exec distcrypt-test test -d /data/Wallets
+          echo "Docker image OK"
+
+  # ---------------------------------------------------------------------------------------------------------
+  # Only for a tag, and only when every package passed its test: publish the release
+  # ---------------------------------------------------------------------------------------------------------
+  release:
+    name: Publish the release
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [build, docker]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - name: Collect the packages
+        uses: actions/download-artifact@v8
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Checksums
+        working-directory: dist
+        run: |
+          sha256sum "$APP_NAME"-* > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="$GITHUB_REF_NAME"
+          BASE="https://github.com/$GITHUB_REPOSITORY/releases/download/$TAG"
+
+          {
+            echo "## Downloads"
+            echo
+            echo "| System | File |"
+            echo "|---|---|"
+            echo "| Windows (64-bit), installer | [$APP_NAME-Windows-x64-Setup.exe]($BASE/$APP_NAME-Windows-x64-Setup.exe) |"
+            echo "| Windows (64-bit), without installer | [$APP_NAME-Windows-x64.zip]($BASE/$APP_NAME-Windows-x64.zip) |"
+            echo "| Mac, Apple Silicon (M1 and later) | [$APP_NAME-Mac-AppleSilicon.dmg]($BASE/$APP_NAME-Mac-AppleSilicon.dmg) |"
+            echo "| Mac, Intel | [$APP_NAME-Mac-Intel.dmg]($BASE/$APP_NAME-Mac-Intel.dmg) |"
+            echo "| Linux (64-bit) | [$APP_NAME-Linux-x64.tar.gz]($BASE/$APP_NAME-Linux-x64.tar.gz) |"
+            echo "| Linux (ARM 64-bit) | [$APP_NAME-Linux-arm64.tar.gz]($BASE/$APP_NAME-Linux-arm64.tar.gz) |"
+            echo
+            echo "## Check your download"
+            echo
+            echo "The SHA-256 of every file (also in \`SHA256SUMS.txt\`):"
+            echo
+            echo '```'
+            cat dist/SHA256SUMS.txt
+            echo '```'
+            echo
+            echo "These files were built by GitHub from the source code of this repository at commit $GITHUB_SHA,"
+            echo "and each one was started and tested on its own system before it was published."
+          } > notes.md
+
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            # The workflow was run again for the same tag: replace the files
+            gh release upload "$TAG" dist/* --repo "$GITHUB_REPOSITORY" --clobber
+            gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" --notes-file notes.md
+          else
+            gh release create "$TAG" dist/* --repo "$GITHUB_REPOSITORY" --verify-tag \
+              --title "Distributed Cryptography ${TAG#v}" --notes-file notes.md
+          fi

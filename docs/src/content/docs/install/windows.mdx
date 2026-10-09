@@ -1,37 +1,67 @@
 ---
 title: Install on Windows
-description: Download the Windows version, check the file and start the wallet.
+description: Download the Windows installer, check the file and start the wallet.
 ---
 
 import YouTube from '../../../components/YouTube.astro';
 import Sha256 from '../../../components/Sha256.astro';
 import { Steps } from '@astrojs/starlight/components';
+import { downloadUrl, files } from '../../../downloads';
 
 <Steps>
 
-1. **Download** the current version:
-   [DistributedCryptography.zip](https://distributedcryptography.s3.amazonaws.com/Windows/DistributedCryptography.zip)
+1. **Download** the installer of the current version:
+   <a href={downloadUrl(files.windowsSetup)}>{files.windowsSetup}</a>
 
 2. **Check the file.** Open a command prompt in the folder where you saved it and run:
 
    ```powershell
-   certutil -hashfile DistributedCryptography.zip SHA256
+   certutil -hashfile DistributedCryptography-Windows-x64-Setup.exe SHA256
    ```
 
    The result must be the same as this value:
 
-   <Sha256 platform="Windows" />
+   <Sha256 file={files.windowsSetup} />
 
    If it is different, do not use the file. Download it again.
 
-3. **Unzip** the file to a folder of your choice.
+3. **Run the installer.** It does not ask for an administrator password: the application is installed for your
+   Windows user only.
 
-4. **Start** the application with `Start.bat`. It starts the wallet and opens your browser at
-   `http://localhost:5000/wallet.wallets.aspx`.
+   The installer is not signed with a certificate, so Windows may show **Windows protected your PC**. Choose
+   **More info** and then **Run anyway**. Do this only after the check of step 2.
+
+4. **Start** the application with the **Distributed Cryptography** shortcut, in the Start menu or on the desktop.
+   It starts the wallet and opens your browser at `http://localhost:5000/wallet.wallets.aspx`.
+
+   The wallet runs in the window that opens with it. Close that window to stop the wallet.
 
 </Steps>
 
+The files are built by GitHub from the [public source code](https://github.com/angelonardone/DistributedCryptography),
+and every version stays available on the [releases page](https://github.com/angelonardone/DistributedCryptography/releases).
+
+## Updating and uninstalling
+
+To update, close the wallet and run the installer of the new version: it replaces the one you have.
+
+Your wallets are not in the application folder: the wallets page shows the folder where they are kept. Updating
+or uninstalling the application does not touch them.
+
+To uninstall, use **Settings > Apps** in Windows.
+
+## Without the installer
+
+The same application is also published as a plain zip file, for example to put it on a USB drive or to
+[publish it with IIS](/install/iis/): <a href={downloadUrl(files.windowsZip)}>{files.windowsZip}</a>
+
+<Sha256 file={files.windowsZip} />
+
+Unzip it to a folder of your choice and start it with `Start.bat`.
+
 ## Video
+
+The video shows the zip file of an earlier version.
 
 <YouTube id="OD3KsQLJd3E" title="Installing the application on Windows" />
 
