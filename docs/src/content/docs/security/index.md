@@ -56,8 +56,8 @@ When a file is opened, everything is checked. A file is rejected, and nothing is
 Memory use does not depend on the size of the file, so there is no size limit in the format.
 
 :::note
-This is the file format (DCF2) of the next release. Earlier versions used AES in CBC mode with an HMAC for each
-block.
+This file format (DCF2) is used since version 0.923. Earlier versions used AES in CBC mode with an HMAC for each
+block, and their files cannot be opened by this version.
 :::
 
 ## Messages between users

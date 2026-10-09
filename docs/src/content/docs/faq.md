@@ -112,7 +112,7 @@ when you need the classic format that other wallets and tools understand.
 
 ### Can I see my multisignature group in another wallet?
 
-Yes (next release). The **Descriptors** button of the group's *Wallet Balance* tab shows two standard texts that
+Yes. The **Descriptors** button of the group's *Wallet Balance* tab shows two standard texts that
 describe all the addresses of the group. A wallet that understands descriptors, Bitcoin Core for example, shows
 the same addresses and coins from them. They hold only public keys: they can watch, never spend. See
 [Delegated Multisignature](/groups/delegated-multisignature/#8-see-the-group-in-another-wallet-descriptors) and

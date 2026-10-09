@@ -32,14 +32,14 @@ The wallet follows the published Bitcoin standards, so your coins are never tied
   one script of the tree, a [BIP 387](https://github.com/bitcoin/bips/blob/master/bip-0387.mediawiki)
   `sortedmulti_a`. The tree has a defined shape, so the whole wallet is one
   [BIP 386](https://github.com/bitcoin/bips/blob/master/bip-0386.mediawiki) `tr()` descriptor that other wallets
-  can import (next release). This is what makes
+  can import. This is what makes
   [Delegated Multisignature](/groups/delegated-multisignature/) cheaper and more private.
 - **Classic SegWit multisignature** (P2SH-P2WSH) with
   [BIP 48](https://github.com/bitcoin/bips/blob/master/bip-0048.mediawiki) keys, sorted as in
   [BIP 67](https://github.com/bitcoin/bips/blob/master/bip-0067.mediawiki) (the descriptor
   `sh(wsh(sortedmulti(...)))`), and
   [PSBT (BIP 174)](https://github.com/bitcoin/bips/blob/master/bip-0174.mediawiki), in
-  [Legacy Multisignature](/groups/legacy-multisignature/) (next release).
+  [Legacy Multisignature](/groups/legacy-multisignature/).
 
 ## Network
 

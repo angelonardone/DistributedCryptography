@@ -6,7 +6,6 @@ import starlightImageZoom from 'starlight-image-zoom';
 
 // Pages that describe features which are not in the public download yet.
 // Remove the badge from a page when the release that contains the feature is published.
-const nextRelease = { text: 'Next release', variant: 'tip' };
 
 // https://astro.build/config
 export default defineConfig({
@@ -71,7 +70,7 @@ export default defineConfig({
 						{ label: 'Anonymous login', slug: 'online' },
 						{ label: 'Contacts', slug: 'online/contacts' },
 						{ label: 'Chat', slug: 'online/chat' },
-						{ label: 'Send encrypted files', slug: 'online/send-files', badge: nextRelease },
+						{ label: 'Send encrypted files', slug: 'online/send-files' },
 					],
 				},
 				{
@@ -79,9 +78,9 @@ export default defineConfig({
 					items: [
 						{ label: 'What is a Smart Group?', slug: 'groups' },
 						{ label: 'Consensus Backup', slug: 'groups/consensus-backup' },
-						{ label: 'Delegated Multisignature', slug: 'groups/delegated-multisignature', badge: nextRelease },
-						{ label: 'Legacy Multisignature', slug: 'groups/legacy-multisignature', badge: nextRelease },
-						{ label: 'Time-Encrypted Vault', slug: 'groups/time-encrypted-vault', badge: nextRelease },
+						{ label: 'Delegated Multisignature', slug: 'groups/delegated-multisignature' },
+						{ label: 'Legacy Multisignature', slug: 'groups/legacy-multisignature' },
+						{ label: 'Time-Encrypted Vault', slug: 'groups/time-encrypted-vault' },
 						{ label: 'Shared passwords', slug: 'groups/shared-passwords' },
 					],
 				},

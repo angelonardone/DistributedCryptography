@@ -6,15 +6,11 @@ description: A Taproot bitcoin wallet that you can always spend from alone, and 
 import { Steps } from '@astrojs/starlight/components';
 import YouTube from '../../../components/YouTube.astro';
 
-:::note[Next release]
-This page describes the next release. The fee options, the descriptors and the screens shown here are not in the
-current download yet.
-:::
-
 :::caution[Upgrading from an earlier version]
-The next release builds the addresses of a Delegated group in a standard way that other wallets can reproduce.
-They are **different addresses**. A group created with an earlier version will not show its old coins after the
-upgrade: **send them out of the group before you upgrade**, then create the group again.
+Since version 0.923 the addresses of a Delegated group are built in a standard way that other wallets can
+reproduce. They are **different addresses** from the ones of earlier versions. A group created with an earlier
+version does not show its old coins after the upgrade: **send them out of the group before you upgrade**, then
+create the group again.
 :::
 
 With Delegated Multisignature you **delegate** the spending of a wallet to a group of people you trust, without

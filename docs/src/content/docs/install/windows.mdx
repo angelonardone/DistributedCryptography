@@ -55,9 +55,17 @@ To uninstall, use **Settings > Apps** in Windows.
 The same application is also published as a plain zip file, for example to put it on a USB drive or to
 [publish it with IIS](/install/iis/): <a href={downloadUrl(files.windowsZip)}>{files.windowsZip}</a>
 
+Check it the same way before you use it:
+
+```powershell
+certutil -hashfile DistributedCryptography-Windows-x64.zip SHA256
+```
+
+The result must be the same as this value:
+
 <Sha256 file={files.windowsZip} />
 
-Unzip it to a folder of your choice and start it with `Start.bat`.
+Then unzip it to a folder of your choice and start it with `Start.bat`.
 
 ## Video
 

@@ -35,8 +35,6 @@ description: One sentence. It is shown in search results.
 - Notes: `:::note`, `:::tip`, `:::caution`, `:::danger` … `:::`.
 - A video (in a `.mdx` page): `<YouTube id="6B90oUuEFFA" title="Creating your first wallet" />`.
 - A new page must also be added to the `sidebar` in `astro.config.mjs`, or it will not be in the menu.
-- Features that are not in the public download yet carry the badge **Next release** (`nextRelease` in
-  `astro.config.mjs`) and a note at the top of the page. Remove both when the release is published.
 
 ## Screenshots
 
