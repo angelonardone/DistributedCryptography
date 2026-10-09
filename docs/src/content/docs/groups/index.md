@@ -10,8 +10,8 @@ can do alone. The jobs are:
 |---|---|
 | [Consensus Backup](/groups/consensus-backup/) (in the app: *Wallet Backup*) | A backup of your wallet that a minimum number of members must agree to restore |
 | [Time-Encrypted Vault](/groups/time-encrypted-vault/) | A backup that can only be opened after a date you keep renewing: inheritance and business continuity |
-| [Delegated Multisignature](/groups/delegated-multisignature/) | A shared bitcoin wallet where K of N members must approve each payment, built on Taproot |
-| [Legacy Multisignature](/groups/legacy-multisignature/) | A classic K-of-N multisignature wallet, compatible with other software |
+| [Delegated Multisignature](/groups/delegated-multisignature/) | A bitcoin wallet you can always spend from alone, and that K of the N people you choose can also spend from, built on Taproot |
+| [Legacy Multisignature](/groups/legacy-multisignature/) | A classic multisignature wallet where K of N equal members must approve each payment, compatible with other software |
 | [Shared passwords](/groups/shared-passwords/) (in the app: *Encrypted Passwords*) | A password vault where you decide which member sees which password |
 
 ## How every group works
@@ -46,7 +46,13 @@ and delivery can take about a minute.
 
 ## Choosing between the two multisignature types
 
-Both need K of N members to approve a payment. [Delegated Multisignature](/groups/delegated-multisignature/)
-costs less in fees and shows less on the blockchain. [Legacy Multisignature](/groups/legacy-multisignature/) is
-the classic kind that other wallets and tools understand, and it is limited to 16 members. The guide
+The difference is **who can pay alone**:
+
+- In [Delegated Multisignature](/groups/delegated-multisignature/) the **owner can always pay alone**, and K of the
+  N members can pay without the owner. It costs less in fees and shows less on the blockchain.
+- In [Legacy Multisignature](/groups/legacy-multisignature/) **nobody pays alone**: every member, the owner
+  included, is an equal signer and K of the N must approve each payment. It is the classic kind that other
+  wallets and tools understand, and it is limited to 16 members.
+
+Both can show their **descriptors**, so another wallet can watch the group without our software. The guide
 [Bitcoin multisignature: a practical guide](/guides/multisig/) compares the costs with real numbers.

@@ -79,7 +79,7 @@ export default defineConfig({
 					items: [
 						{ label: 'What is a Smart Group?', slug: 'groups' },
 						{ label: 'Consensus Backup', slug: 'groups/consensus-backup' },
-						{ label: 'Delegated Multisignature', slug: 'groups/delegated-multisignature' },
+						{ label: 'Delegated Multisignature', slug: 'groups/delegated-multisignature', badge: nextRelease },
 						{ label: 'Legacy Multisignature', slug: 'groups/legacy-multisignature', badge: nextRelease },
 						{ label: 'Time-Encrypted Vault', slug: 'groups/time-encrypted-vault', badge: nextRelease },
 						{ label: 'Shared passwords', slug: 'groups/shared-passwords' },

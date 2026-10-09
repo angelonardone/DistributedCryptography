@@ -13,16 +13,17 @@ Legacy Multisignature is the **classic bitcoin multisignature wallet**: any K of
 payment together. Every member is an equal signer, the owner included. In the app the group type is called
 **Legacy Multi-Signature Wallet**.
 
-Use it when you need a multisignature wallet that follows the long-established standards, for example to work
-with other software or with existing procedures. If that is not a requirement,
+Use it when **nobody should be able to pay alone**, or when you need a multisignature wallet that follows the
+long-established standards, for example to work with other software or with existing procedures.
 [Delegated Multisignature](/groups/delegated-multisignature/) costs less in fees and shows less on the
-blockchain.
+blockchain, but there the owner can always pay alone.
 
 | | |
 |---|---|
 | Addresses | SegWit P2SH-P2WSH (they start with `3`; with `2` on the test networks) |
-| Members | Up to 16, the owner included |
-| Keys | [BIP48](https://github.com/bitcoin/bips/blob/master/bip-0048.mediawiki), from each member's own wallet |
+| Members | Up to 16, the owner included. K can be anything from 1 to all of them |
+| Keys | [BIP48](https://github.com/bitcoin/bips/blob/master/bip-0048.mediawiki), from each member's own wallet, sorted as in [BIP67](https://github.com/bitcoin/bips/blob/master/bip-0067.mediawiki) |
+| Descriptor | `sh(wsh(sortedmulti(K, ...)))`, shown by the app so other wallets can import the group |
 | Signing | [PSBT (BIP174)](https://github.com/bitcoin/bips/blob/master/bip-0174.mediawiki) |
 
 In this guide **Alice**, **Bob** and **Carol** share the wallet *Company treasury*. Any **two of the three** can
@@ -144,6 +145,33 @@ on to the next signer in the same way.
 After **Update Balance**, the *Wallet Balance* tab shows the new balance of the group:
 
 ![The balance of the group after the payment](../../../assets/screens/legacy/18-balance-after.png)
+
+## 7. See the group in another wallet (descriptors)
+
+A **descriptor** is a standard text that describes all the addresses of a wallet. With the two descriptors of the
+group, any wallet that understands descriptors (Bitcoin Core or Sparrow, for example) shows the same addresses
+and the same coins, **without our software**.
+
+<Steps>
+
+1. In the **Wallet Balance** tab click **Descriptors**.
+
+   ![The Descriptors button of the Wallet Balance tab](../../../assets/screens/legacy/19-descriptors-button.png)
+
+2. Copy the two texts: one for the **receiving addresses**, one for the **change addresses**.
+
+   ![The two descriptors of the group](../../../assets/screens/legacy/20-descriptors.png)
+
+3. Import them in the other wallet. In Bitcoin Core, in a wallet created without private keys:
+
+   ```
+   importdescriptors '[{"desc":"<receiving descriptor>","timestamp":"now","range":[0,100],"active":true,"internal":false},{"desc":"<change descriptor>","timestamp":"now","range":[0,100],"active":true,"internal":true}]'
+   ```
+
+</Steps>
+
+The descriptors hold only **public keys**: whoever has them can watch the group, never spend from it. They do
+show every address of the group, so share them only with people who may see its balance.
 
 ## Good to know
 

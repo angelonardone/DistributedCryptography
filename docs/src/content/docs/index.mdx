@@ -1,17 +1,18 @@
 ---
 title: Distributed Cryptography
-description: A self-custody digital vault and Bitcoin wallet for desktops and servers, with backups and inheritance that need the agreement of people you trust.
+description: A self-custody digital vault and Bitcoin wallet that runs on your own computer. The people you trust help you recover it, approve payments with you and inherit it - remotely, right inside the app.
 template: splash
 hero:
-  tagline: A digital vault and Bitcoin wallet that runs on your own computer. Your keys never leave it, and the people you trust can help you recover them.
+  title: Self-custody,<br />without being alone.
+  tagline: A digital vault and Bitcoin wallet that runs on your own computer. Your keys never leave it. The people you trust can help you recover it, approve payments with you and inherit it, from wherever they are, right inside the app.
   image:
     file: ../../assets/logo.svg
   actions:
     - text: Install it
       link: /install/
       icon: right-arrow
-    - text: What is it?
-      link: /introduction/
+    - text: See how it works
+      link: '#how-it-works'
       variant: minimal
     - text: Source code
       link: https://github.com/angelonardone/DistributedCryptography
@@ -19,45 +20,149 @@ hero:
       variant: minimal
 ---
 
-import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import { Card, CardGrid, LinkCard, LinkButton, Steps } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import Compare from '../../components/Compare.astro';
+import signatures from '../../assets/screens/delegated/15-broadcast.png';
 
-## What you can do with it
+<p class="dc-kicker">The difference</p>
+
+## Everyone approves from their own app. Nothing to pass around.
+
+<p class="dc-lead">
+	Sharing a backup, co-signing a payment or leaving an inheritance usually means exporting files, carrying them
+	from one wallet to the next and hoping everybody knows the procedure. Here, each person simply opens their
+	app.
+</p>
+
+<Compare oldLabel="The usual way" newLabel="With Distributed Cryptography">
+<Fragment slot="old">
+<ol>
+	<li>One person prepares the transaction and exports it as a file.</li>
+	<li>The file goes to the first signer by e-mail, USB stick or QR code.</li>
+	<li>That signer imports it into their own wallet, signs, and exports it again.</li>
+	<li>It goes on to the next signer. And the next.</li>
+	<li>Someone collects the signatures, combines them and sends the payment.</li>
+</ol>
+<p class="note">Everyone needs the same tools and the same know-how, and nobody can see where it got stuck.</p>
+</Fragment>
+<Fragment slot="new">
+<ol>
+	<li><strong>You start the payment</strong> in the app.</li>
+	<li><strong>Each signer opens their own app</strong>, finds the request waiting, checks it and approves with their password.</li>
+	<li><strong>The last approval sends it</strong> to the network.</li>
+</ol>
+<p class="note">No files to move, no meeting to arrange. Requests travel end-to-end encrypted, and everyone sees who has already signed.</p>
+</Fragment>
+</Compare>
+
+It is the same for **recovering a vault** and for **an inheritance**: the people you chose approve from their own
+computers, in another city or another country, whenever they open the app. The app does the rest.
+
+<figure class="dc-figure">
+	<Image src={signatures} loading="eager" alt="The Signatures tab of a group: two members have signed a payment and the app shows the message Transaction broadcast" />
+	<figcaption>Two people signed this payment, each from their own computer. The second signature sent it. Nobody exchanged a file.</figcaption>
+</figure>
+
+<p class="dc-kicker">What it is for</p>
+
+## What self-custody alone cannot do
 
 <CardGrid>
-	<Card title="Keep your own keys" icon="padlock">
-		The wallet runs on your PC or server (Windows, Mac, Linux, Docker). Keys are created and used there,
-		encrypted with your password. There is no account to open and nothing to trust us with.
-	</Card>
-	<Card title="Recover your wallet with people you trust" icon="heart">
-		**Consensus Backup** splits your wallet secret among friends, family or company officers. A minimum number of
-		them must agree before it can be restored, and you are told as soon as someone starts.
+	<Card title="Recover your vault with people you trust" icon="heart">
+		**Consensus Backup** splits the master key of your vault among friends, family or company officers. Nobody can
+		restore it alone. Enough of them together can, each from their own app, and you are told as soon as someone
+		starts.
+
+		On any computer, your bitcoin comes back with everything you keep online: your contacts and all your groups,
+		with their shared wallets, backups and passwords.
+
+		[How Consensus Backup works](/groups/consensus-backup/)
 	</Card>
 	<Card title="Plan for the day you are not there" icon="clock">
-		A **Time-Encrypted Vault** stays closed while you keep renewing it. If you stop, a group you chose can open
-		it after the date you set. No lawyers and no third party holding your keys.
+		A **Time-Encrypted Vault** stays closed while you keep renewing it. If you stop, the group you chose can open
+		it after the date you set. No lawyers, no notary and no third party holding your keys.
+
+		[How the Time-Encrypted Vault works](/groups/time-encrypted-vault/)
 	</Card>
-	<Card title="Share control of the money" icon="puzzle">
-		**Delegated Multisignature** needs K of N people to approve a payment. It is built on Taproot, so it costs
-		less in fees than classic multisig and shows less about the signers.
+	<Card title="Let others pay when you cannot" icon="puzzle">
+		With **Delegated Multisignature** you keep paying alone, and K of the N people you trust can pay without you.
+		Built on Taproot: lower fees, and the blockchain shows only the people who signed.
+
+		[How Delegated Multisignature works](/groups/delegated-multisignature/)
 	</Card>
-	<Card title="Encrypt more than bitcoin" icon="document">
-		Encrypted notes, files, passwords and authenticator backups, a secret splitter and QR codes. They all work
-		offline, on your computer.
-	</Card>
-	<Card title="Talk and share in private" icon="comment">
-		End-to-end encrypted chat and files between users. You log in anonymously: your user name is a key of your
-		wallet, not your e-mail.
+	<Card title="Require agreement for every payment" icon="approve-check">
+		With **Legacy Multisignature** nobody pays alone: K of the N members approve each payment. The app collects
+		the signatures for you; there is nothing to export or combine.
+
+		[How Legacy Multisignature works](/groups/legacy-multisignature/)
 	</Card>
 </CardGrid>
 
-## Public source code, standard Bitcoin
+<p class="dc-kicker">Three steps</p>
 
-Everything is built on published standards (BIP 32, 39, 44, 49, 84, 86, 341 and 342) and on well-known
-algorithms (Argon2id, AES-256-GCM). The code is public, so anyone can audit it or build it themselves.
+## How it works
+
+<Steps>
+
+1. **Install it on your own computer.** Windows, Mac, Linux or Docker. Create your vault: the keys are made
+   there and stay there, encrypted with your password.
+
+2. **Connect with the people you trust.** You log in anonymously, with a key of your wallet instead of your name
+   or e-mail, and add them as contacts.
+
+3. **Create a Smart Group.** Choose who is in it and how many of them must agree. From then on, every backup,
+   payment and recovery is an approval in their app.
+
+</Steps>
+
+<p class="dc-kicker">Why trust it</p>
+
+## You hold the keys. We cannot.
 
 <CardGrid>
-	<LinkCard title="Install the app" description="Docker, Windows, Mac, Linux, or build it from source." href="/install/" />
-	<LinkCard title="Create your first wallet" description="Step by step, with a video." href="/wallet/create/" />
-	<LinkCard title="How your data is protected" description="The algorithms and what our servers can and cannot see." href="/security/" />
-	<LinkCard title="Questions and answers" description="The things people ask first." href="/faq/" />
+	<Card title="Your keys stay on your computer" icon="padlock">
+		The app runs on your PC or server, not on ours. There is no account to open and nothing to hand over.
+	</Card>
+	<Card title="We cannot read what you store" icon="approve-check-circle">
+		Everything is encrypted on your computer before it leaves it. Our servers only deliver messages they cannot
+		open. [What our servers can see](/security/privacy/)
+	</Card>
+	<Card title="Public source code" icon="github">
+		Anyone can read it, audit it or [build it themselves](/install/build-from-source/).
+	</Card>
+	<Card title="Standard Bitcoin" icon="open-book">
+		Published standards only: BIP 32, 39, 44, 49, 84, 86, 341 and 342, with Argon2id and AES-256-GCM. Your money
+		does not depend on our software. [The standards we use](/security/standards/)
+	</Card>
 </CardGrid>
+
+<p class="dc-kicker">And also</p>
+
+## More than a Bitcoin wallet
+
+<CardGrid>
+	<Card title="Encrypt more than bitcoin" icon="document">
+		Encrypted notes, files, passwords and authenticator backups, a secret splitter and QR codes. They all work
+		offline, on your computer. [Offline tools](/offline/)
+	</Card>
+	<Card title="Talk and share in private" icon="comment">
+		End-to-end encrypted chat and files between users, and a password vault where you decide which member sees
+		which password. [Online features](/online/)
+	</Card>
+</CardGrid>
+
+<div class="dc-cta">
+
+## Start in a few minutes
+
+It installs on the computer you already have. Create a vault, try the offline tools, then invite the first person
+you trust.
+
+<div class="dc-cta-actions">
+	<LinkButton href="/install/" icon="right-arrow">Install the app</LinkButton>
+	<LinkButton href="/wallet/create/" variant="secondary">Create your first wallet</LinkButton>
+	<LinkButton href="/faq/" variant="minimal">Questions and answers</LinkButton>
+</div>
+
+</div>

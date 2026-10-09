@@ -1,0 +1,76 @@
+---
+// Two columns side by side: "the usual way" (muted) against "with us" (highlighted).
+// Used on the home page. Each column is a slot: "old" and "new".
+interface Props {
+	oldLabel: string;
+	newLabel: string;
+}
+const { oldLabel, newLabel } = Astro.props;
+---
+
+<div class="dc-compare not-content">
+	<section class="col old">
+		<p class="label">{oldLabel}</p>
+		<slot name="old" />
+	</section>
+	<section class="col new">
+		<p class="label">{newLabel}</p>
+		<slot name="new" />
+	</section>
+</div>
+
+<style>
+	.dc-compare {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1rem;
+		margin-top: 1.5rem;
+	}
+	@media (min-width: 50rem) {
+		.dc-compare {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+	.col {
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: 0.75rem;
+		padding: 1.25rem 1.5rem 1.5rem;
+		background: var(--sl-color-gray-6);
+		color: var(--sl-color-gray-2);
+	}
+	.col.new {
+		border-color: var(--sl-color-accent);
+		background: var(--sl-color-accent-low);
+		color: var(--sl-color-white);
+	}
+	.label {
+		margin: 0 0 0.75rem;
+		font-size: var(--sl-text-sm);
+		font-weight: 600;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--sl-color-gray-3);
+	}
+	.col.new .label {
+		color: var(--sl-color-accent-high);
+	}
+	.col :global(ol) {
+		margin: 0;
+		padding-inline-start: 1.25rem;
+	}
+	.col :global(li) {
+		margin-top: 0.5rem;
+		line-height: 1.5;
+	}
+	.col :global(p.note) {
+		margin: 1rem 0 0;
+		font-size: var(--sl-text-sm);
+		color: var(--sl-color-gray-3);
+	}
+	.col.new :global(p.note) {
+		color: var(--sl-color-accent-high);
+	}
+	.col.new :global(strong) {
+		color: var(--sl-color-white);
+	}
+</style>

@@ -1,48 +1,259 @@
 ---
 title: Delegated Multisignature
-description: A shared bitcoin wallet where K of N people approve each payment, built on Taproot for lower fees and more privacy.
+description: A Taproot bitcoin wallet that you can always spend from alone, and that K of the N people you choose can also spend from - step by step, with fee options for the last signer.
 ---
 
+import { Steps } from '@astrojs/starlight/components';
 import YouTube from '../../../components/YouTube.astro';
 
-With Delegated Multisignature **several signatures are needed to approve a payment**. You stay the owner of the
-group, and you delegate the approval of payments to a quorum of people you trust: family, business partners,
-colleagues. No single person can move the money alone.
+:::note[Next release]
+This page describes the next release. The fee options, the descriptors and the screens shown here are not in the
+current download yet.
+:::
 
-It is a good fit for joint accounts, company funds and any money that should need an agreement to be spent.
+:::caution[Upgrading from an earlier version]
+The next release builds the addresses of a Delegated group in a standard way that other wallets can reproduce.
+They are **different addresses**. A group created with an earlier version will not show its old coins after the
+upgrade: **send them out of the group before you upgrade**, then create the group again.
+:::
+
+With Delegated Multisignature you **delegate** the spending of a wallet to a group of people you trust, without
+giving up your own control:
+
+- **You, the owner, can always pay alone**, with one signature.
+- **The members can pay without you** when the minimum number of them sign: K of the N members.
+
+It fits money that must stay available if you are not: a family reserve, the funds of a company whose partners
+can act when the director is away, an inheritance that some of your heirs can reach together.
+
+If nobody should be able to pay alone, the owner included, use
+[Legacy Multisignature](/groups/legacy-multisignature/): there every member is an equal signer.
+
+| | |
+|---|---|
+| Addresses | Taproot (they start with `bc1p`; with `tb1p` or `bcrt1p` on the test networks) |
+| Who can pay | The owner alone, or K of the N members together |
+| Members | Any number, as long as the group has at most 2000 combinations of K members (for example 2 of 60, 3 of 23, 5 of 12) |
+| Keys | From each person's own wallet; no private key ever leaves it |
+| Standards | [BIP341](https://github.com/bitcoin/bips/blob/master/bip-0341.mediawiki) Taproot, [BIP342](https://github.com/bitcoin/bips/blob/master/bip-0342.mediawiki) scripts, [BIP386](https://github.com/bitcoin/bips/blob/master/bip-0386.mediawiki) / [BIP387](https://github.com/bitcoin/bips/blob/master/bip-0387.mediawiki) descriptors, [PSBT (BIP174)](https://github.com/bitcoin/bips/blob/master/bip-0174.mediawiki) |
+
+In this guide **Alice** owns the wallet *Family savings*. **Bob**, **Carol** and **Dave** are the members, and
+any **two of the three** can pay without Alice.
 
 <YouTube id="PH5F8hM6cwM" title="Delegated Multisignature 3 of 5" />
 
-## Why it costs less than classic multisignature
+*The video shows an earlier version of the screens.*
 
-In a classic multisignature wallet, every payment has to carry **all** the public keys of the group and all the
-signatures. The more members, the bigger the payment and the higher the fee.
+## Why it costs less and shows less
 
-Our Delegated Multisignature uses our own implementation on **Taproot**. When the group pays:
+When the owner pays, the payment looks like any other Taproot payment: one signature, and nothing on the
+blockchain says that a group exists.
 
-- **Only the keys of the members who actually signed are shown.** The transaction is smaller, so the fee is
-  lower.
-- **The members who did not sign stay hidden.** With classic multisignature anyone looking at the blockchain can
-  see every member's key and how the group is organised. Here they cannot.
+When the members pay:
+
+- **Only the keys of the members who signed are shown.** The members who did not sign stay hidden, and so does
+  the size of the group.
+- **The payment is smaller** than a classic multisignature one in most cases, so the fee is lower.
 
 For measured sizes of many K-of-N combinations, see
 [Bitcoin multisignature: a practical guide](/guides/multisig/).
 
-## How a payment gets approved
+## Before you start
 
-1. A member starts the payment from the group's **Wallet Balance** tab and signs it with their password.
-2. The other members see it waiting in the group's **Signatures** tab and sign it too.
-3. When the minimum number of members has signed, the payment is sent to the network.
+- You are [logged in](/online/).
+- Every person you want in the group is an **accepted** [contact](/online/contacts/).
 
-Members do not have to be connected at the same time. Each signature travels to the others as an encrypted
-message.
+## 1. Create the group and invite the members (owner)
 
-## Setting it up
+<Steps>
 
-Create a Smart Group of type **Delegation MultiSignature** and follow the steps that are common to every group:
-[create, invite, accept, activate](/groups/#how-every-group-works).
+1. Open **Online → Smart Groups** and click **Create Group**. Choose the type **Delegation MultiSignature**,
+   type a name and click **Create**.
+
+   ![The group type Delegation MultiSignature and the name of the group](../../../assets/screens/delegated/01-create-group.png)
+
+2. Open the group. Click **Add a contact** for each member. Set the
+   **minimum amount of users to approve a spend**: this is the K of "K of N". You are **not** one of the N: you
+   pay alone.
+
+   The minimum can be anything from 1 (any single member can pay) to all the members.
+
+   Then click **Send invitation to group members**.
+
+   ![The members, the minimum number of signers and the button Send invitation to group members](../../../assets/screens/delegated/02-members-and-minimum.png)
+
+</Steps>
+
+## 2. Accept the invitation (each member)
+
+Open **Online → Smart Groups** in your own wallet and click **Accept Invitation** on the group's row.
+
+![The invitation to the group in a member's list](../../../assets/screens/delegated/03-accept-invitation.png)
+
+On accepting, your wallet sends the owner the public keys the group needs. No private key ever leaves a member's
+wallet.
+
+## 3. Activate the group (owner)
+
+When every member has accepted, open the group and click **Activate Group**.
+
+![All members accepted, and the button Activate Group](../../../assets/screens/delegated/04-activate.png)
+
+The group now has two more tabs: **Wallet Balance** and **Signatures**.
+
+## 4. Receive
+
+Open the group's **Wallet Balance** tab. It shows the **receiving address** of the group, as text and as a QR
+code. Give it to whoever pays the group.
+
+![The Wallet Balance tab of the group with its receiving address](../../../assets/screens/delegated/05-wallet-balance.png)
+
+After a payment, click **Update Balance**. The page shows the balance and one line per payment, and the group
+moves to a new receiving address.
+
+![The balance of the group after receiving, and the Send button](../../../assets/screens/delegated/06-funded.png)
+
+The owner and every member see the same wallet in their own *Wallet Balance* tab.
+
+## 5. A member starts a payment (the first signer)
+
+Any member can start a payment.
+
+<Steps>
+
+1. In the **Wallet Balance** tab click **Send**.
+
+2. Type the **amount**, the **address** to pay and a **description**. The description is what the other members
+   will see, so say what the payment is for. Click **Next**.
+
+   ![The payment: amount, address and description](../../../assets/screens/delegated/07-send-form.png)
+
+3. Type your **wallet password** and click **Confirm**.
+
+   ![The window that asks for the password](../../../assets/screens/delegated/08-password.png)
+
+4. Choose the **fee**: one of the estimated levels in *Select Fee*, or tick *Manually select Fee* and type your
+   own. This is the **calculated fee**.
+
+5. Optional: tick up to **three extra fee options**. Each one is a percentage **above** the calculated fee:
+   *+10%*, *+20%* and so on up to *+100%*.
+
+   The members may sign hours or days apart, and by the time the last one signs the network may ask for a
+   higher fee. With these options the last signer can pay more without starting again. You and every following
+   signer sign all the options; only one is ever sent.
+
+   Click **Send Coins**.
+
+   ![The fee, the extra fee options +10% and +50%, and the Send Coins button](../../../assets/screens/delegated/09-fee-options.png)
+
+6. The app shows **Signature added: your signature was added and forwarded to the other signers**. Nothing has
+   been sent to the bitcoin network yet: the payment waits for the other signatures.
+
+</Steps>
+
+The payment is now in the **Signatures** tab:
+
+![The Signatures tab with the payment waiting for more signatures](../../../assets/screens/delegated/11-signatures-waiting.png)
+
+If the minimum of the group is **1**, there is nothing to wait for: you see no extra options, and your own
+signature sends the payment.
+
+## 6. Sign the payment (the following signers)
+
+<Steps>
+
+1. Open your wallet, open the group and go to the **Signatures** tab. The payment is there with its description,
+   who signed it, the amount and the address. Click **Sign transaction**.
+
+   ![The payment waiting in the Signatures tab of another member, with the link Sign transaction](../../../assets/screens/delegated/12-sign-transaction.png)
+
+2. **Check the payment**: amount, address, description and fee. They cannot be changed, and they are read from
+   the transaction itself, not from the message that brought it. If it is what you agreed to, click **Next**.
+
+   ![The payment to check before signing, with the fee options](../../../assets/screens/delegated/13-check-payment.png)
+
+3. Type your **wallet password**.
+
+4. What happens next depends on how many signatures are still missing:
+
+   - **More signatures are needed after yours.** The window lists the fee options the first signer set. You
+     choose nothing: click **Send Coins**, and the payment goes on to the next signer.
+   - **Yours is the last signature.** Choose the **Fee to pay**: the calculated fee, or one of the higher
+     options if the network is busy. Click **Send Coins**. You sign only that transaction.
+
+   ![The last signer chooses the fee to pay](../../../assets/screens/delegated/14-choose-fee.png)
+
+</Steps>
+
+When the last signature is added, the app shows **Transaction broadcast**: the payment has been sent to the
+bitcoin network with the fee the last signer chose.
+
+![The message Transaction broadcast](../../../assets/screens/delegated/15-broadcast.png)
+
+The *Signatures* tab shows the payment as *Fully signed*:
+
+![The payment fully signed in the Signatures tab](../../../assets/screens/delegated/16-signatures-finished.png)
+
+## 7. The owner pays alone
+
+The owner uses the same **Send** button of the *Wallet Balance* tab: amount, address, description, password and
+fee. There are no fee options and nobody else signs. Click **Send Coins** and the payment is sent at once.
+
+![The owner chooses the fee and sends](../../../assets/screens/delegated/17-owner-fee.png)
+
+![The message Transaction broadcast for the owner](../../../assets/screens/delegated/18-owner-broadcast.png)
+
+The owner does not sign the payments the members start: in the owner's *Signatures* tab they are listed, without
+the link *Sign transaction*.
+
+After **Update Balance**, everybody's *Wallet Balance* tab shows the new balance:
+
+![The balance of the group after the two payments](../../../assets/screens/delegated/19-balance-after.png)
+
+## 8. See the group in another wallet (descriptors)
+
+A **descriptor** is a standard text that describes all the addresses of a wallet. With the two descriptors of the
+group, any wallet that understands descriptors (Bitcoin Core, for example) shows the same addresses and the same
+coins, **without our software**. It is your proof that the money does not depend on us.
+
+<Steps>
+
+1. In the **Wallet Balance** tab click **Descriptors**.
+
+   ![The Descriptors button of the Wallet Balance tab](../../../assets/screens/delegated/20-descriptors-button.png)
+
+2. Copy the two texts: one for the **receiving addresses**, one for the **change addresses**.
+
+   ![The two descriptors of the group](../../../assets/screens/delegated/21-descriptors.png)
+
+3. Import them in the other wallet. In Bitcoin Core, in a wallet created without private keys:
+
+   ```
+   importdescriptors '[{"desc":"<receiving descriptor>","timestamp":"now","range":[0,100],"active":true,"internal":false},{"desc":"<change descriptor>","timestamp":"now","range":[0,100],"active":true,"internal":true}]'
+   ```
+
+</Steps>
+
+The descriptors hold only **public keys**: whoever has them can watch the group, never spend from it. They do
+show every address of the group, so share them only with people who may see its balance. For a group with many
+members the texts are long.
+
+## Good to know
+
+- **Signers do not have to be connected at the same time.** A payment to sign arrives when the member opens
+  their wallet. If it is not in the *Signatures* tab yet, go back to the wallets page and open the wallet again
+  a little later.
+- **Check before you sign.** Sign only what you agreed to. The window shows the payment as it is in the
+  transaction you are about to sign.
+- **The owner is the strongest key.** Whoever has the owner's wallet can spend everything alone. Protect it like
+  any wallet that holds the money, and consider a [Consensus Backup](/groups/consensus-backup/) for it.
+- **The members are the way in if the owner is gone.** Choose N and K so that enough of them can still sign:
+  2 of 3 survives the loss of one member, 3 of 5 the loss of two.
+- **Backups.** Each person's keys for the group come from their own wallet. Someone who restores their wallet
+  from their words can sign again.
 
 ## Related
 
-- [Legacy Multisignature](/groups/legacy-multisignature/): the classic kind, for compatibility with other
-  software.
+- [Legacy Multisignature](/groups/legacy-multisignature/): the classic kind, where every member is an equal
+  signer and nobody pays alone.
+- [How every group works](/groups/#how-every-group-works): create, invite, accept, activate.
