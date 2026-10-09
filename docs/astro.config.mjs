@@ -63,6 +63,7 @@ export default defineConfig({
 					items: [
 						{ label: 'Create a wallet', slug: 'wallet/create' },
 						{ label: 'Restore a wallet', slug: 'wallet/restore' },
+						{ label: 'Advance Brain Wallet', slug: 'wallet/advance-brain-wallet' },
 					],
 				},
 				{

@@ -9,7 +9,7 @@ home-made cryptography that you have to take on faith: the code is
 
 ## Your password
 
-Your password is hashed with **Argon2id**, with a 128-bit salt, 6 degrees of parallelism, 10 iterations and
+Your password is hashed with **Argon2id**, with a 128-bit salt, 8 degrees of parallelism, 10 iterations and
 **640 MiB of memory**.
 
 As a reference,
@@ -27,6 +27,19 @@ A strong algorithm does not rescue a weak password. Choose a long one.
   your password. A 128-bit authentication tag guarantees that the encrypted key has not been changed.
 - The master key is decrypted only for the moment it is needed (opening the wallet, signing a payment) and is
   then discarded. Every payment asks for your password again.
+
+## Advance Brain Wallet
+
+The key of an [Advance Brain Wallet](/wallet/advance-brain-wallet/) is calculated from the phrase, the date and
+the number, and from nothing else:
+
+- The phrase goes through **Argon2id** with 640 MiB of memory, 10 iterations and 8 degrees of parallelism. The
+  date and the number are the salt of that calculation.
+- The result, together with the date and the number, is hashed with SHA-512 into a 512-bit seed. That seed makes
+  a standard BIP 32 master key, and the wallet is a normal BIP 86 (Taproot) wallet.
+
+Nothing random takes part: the same three things always give the same wallet. That is what lets you build it
+again from memory, and it is also why the wallet is exactly as strong as what you chose.
 
 ## Separate keys for separate jobs
 

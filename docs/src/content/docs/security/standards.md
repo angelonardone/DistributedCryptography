@@ -16,7 +16,7 @@ The wallet follows the published Bitcoin standards, so your coins are never tied
 | [BIP 49](https://github.com/bitcoin/bips/blob/master/bip-0049.mediawiki) | SegWit nested in P2SH accounts |
 | [BIP 44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) | The legacy format of deterministic wallets |
 | Wallet Import Format (WIF) | Single legacy keys |
-| Brain wallets | Supported, not recommended |
+| Brain wallets | Classic brain wallets (a key made from a phrase) can be imported; not recommended. The [Advance Brain Wallet](/wallet/advance-brain-wallet/) makes its key with Argon2id |
 
 ## Transactions and addresses
 

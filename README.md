@@ -54,7 +54,7 @@ The wallet sopport the following Bitcoin standards:
 
 Our security measures employ well-known and highly trusted algorithms to ensure data protection:
 
-* Password Hashing: User passwords are securely hashed using Argon2id, configured with a 128-bit salt, 6 degrees of parallelism, 10 iterations, and 640 MiB of memory. As a reference, OWASP recommends a minimum of 19 MiB of memory, 2 iterations, and 1 degree of parallelism.
+* Password Hashing: User passwords are securely hashed using Argon2id, configured with a 128-bit salt, 8 degrees of parallelism, 10 iterations, and 640 MiB of memory. As a reference, OWASP recommends a minimum of 19 MiB of memory, 2 iterations, and 1 degree of parallelism.
 * Master Key Management: Each user’s Master Key is deterministically generated using the BIP-39 standard (mnemonic-based key derivation). This Master Key is encrypted using AES-256-GCM with a randomly generated 256-bit AES key, which is derived from the user’s password hash (via Argon2id). A 128-bit authentication tag is included to ensure the integrity and authenticity of the encrypted Master Key.
 * Data Encryption: Each piece of user data is encrypted using a unique, randomly generated 256-bit AES key. Encryption is performed using AES-GCM with a 128-bit authentication tag, providing strong confidentiality and ensuring that each data item is individually tamper-resistant.
 * File Encryption: A new random 256-bit key is created for every file and locked with the public key of the person who may open it. The content is encrypted in pieces of 64 KiB with AES-256-GCM, so files of any size are handled with constant memory. A file is rejected if any byte was changed, or if pieces were reordered, removed or cut off.
