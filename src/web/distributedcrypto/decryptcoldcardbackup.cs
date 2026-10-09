@@ -42,14 +42,14 @@ namespace GeneXus.Programs.distributedcrypto {
                            out string aP2_mnemonic ,
                            out string aP3_error )
       {
-         this.AV10passPhrase = aP0_passPhrase;
+         this.AV8passPhrase = aP0_passPhrase;
          this.AV9inputFile = aP1_inputFile;
          this.AV11mnemonic = "" ;
-         this.AV8error = "" ;
+         this.AV10error = "" ;
          initialize();
          ExecuteImpl();
          aP2_mnemonic=this.AV11mnemonic;
-         aP3_error=this.AV8error;
+         aP3_error=this.AV10error;
       }
 
       public string executeUdp( string aP0_passPhrase ,
@@ -57,7 +57,7 @@ namespace GeneXus.Programs.distributedcrypto {
                                 out string aP2_mnemonic )
       {
          execute(aP0_passPhrase, aP1_inputFile, out aP2_mnemonic, out aP3_error);
-         return AV8error ;
+         return AV10error ;
       }
 
       public void executeSubmit( string aP0_passPhrase ,
@@ -65,13 +65,13 @@ namespace GeneXus.Programs.distributedcrypto {
                                  out string aP2_mnemonic ,
                                  out string aP3_error )
       {
-         this.AV10passPhrase = aP0_passPhrase;
+         this.AV8passPhrase = aP0_passPhrase;
          this.AV9inputFile = aP1_inputFile;
          this.AV11mnemonic = "" ;
-         this.AV8error = "" ;
+         this.AV10error = "" ;
          SubmitImpl();
          aP2_mnemonic=this.AV11mnemonic;
-         aP3_error=this.AV8error;
+         aP3_error=this.AV10error;
       }
 
       protected override void ExecutePrivate( )
@@ -83,7 +83,7 @@ namespace GeneXus.Programs.distributedcrypto {
          /* User Code */
              {
          /* User Code */
-                string passphrase = AV10passPhrase;
+                string passphrase = AV8passPhrase;
          /* User Code */
                 string encryptedFilePath = AV9inputFile;
          /* User Code */
@@ -95,7 +95,7 @@ namespace GeneXus.Programs.distributedcrypto {
          /* User Code */
              {
          /* User Code */
-          		AV8error = ex.Message.ToString();
+          		AV10error = ex.Message.ToString();
          /* User Code */
              }
          /* User Code */
@@ -170,13 +170,13 @@ namespace GeneXus.Programs.distributedcrypto {
       public override void initialize( )
       {
          AV11mnemonic = "";
-         AV8error = "";
+         AV10error = "";
          /* GeneXus formulas. */
       }
 
-      private string AV8error ;
+      private string AV10error ;
       private string AV11mnemonic ;
-      private string AV10passPhrase ;
+      private string AV8passPhrase ;
       private string AV9inputFile ;
       private string aP2_mnemonic ;
       private string aP3_error ;

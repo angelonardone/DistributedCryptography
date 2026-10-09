@@ -63,6 +63,17 @@ namespace GeneXus.Programs.wallet {
          AV8extKeyInfo.gxTpr_Extended.gxTpr_Privatekeysegwitp2sh = "";
          AV8extKeyInfo.gxTpr_Extended.gxTpr_Privatekeytaproot = "";
          AV9WebSession.Set("ExtendedKey", AV8extKeyInfo.ToJSonString(false, true));
+         AV11extKeyInfoBIP48.FromJSonString(AV9WebSession.Get("ExtendedKeyBIP48"), null);
+         AV11extKeyInfoBIP48.gxTpr_Privatekey = "";
+         AV11extKeyInfoBIP48.gxTpr_Chaincode = "";
+         AV11extKeyInfoBIP48.gxTpr_Encryptedwif = "";
+         AV11extKeyInfoBIP48.gxTpr_Mnemonic = "";
+         AV11extKeyInfoBIP48.gxTpr_Wif = "";
+         AV11extKeyInfoBIP48.gxTpr_Extended.gxTpr_Privatekey = "";
+         AV11extKeyInfoBIP48.gxTpr_Extended.gxTpr_Privatekeysegwit = "";
+         AV11extKeyInfoBIP48.gxTpr_Extended.gxTpr_Privatekeysegwitp2sh = "";
+         AV11extKeyInfoBIP48.gxTpr_Extended.gxTpr_Privatekeytaproot = "";
+         AV9WebSession.Set("ExtendedKeyBIP48", AV11extKeyInfoBIP48.ToJSonString(false, true));
          GXt_SdtKeyInfo1 = AV10keyInfo;
          new GeneXus.Programs.wallet.getkey(context ).execute( out  GXt_SdtKeyInfo1) ;
          AV10keyInfo = GXt_SdtKeyInfo1;
@@ -85,6 +96,7 @@ namespace GeneXus.Programs.wallet {
       {
          AV8extKeyInfo = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
          AV9WebSession = context.GetSession();
+         AV11extKeyInfoBIP48 = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
          AV10keyInfo = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
          GXt_SdtKeyInfo1 = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
          /* GeneXus formulas. */
@@ -92,6 +104,7 @@ namespace GeneXus.Programs.wallet {
 
       private IGxSession AV9WebSession ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV8extKeyInfo ;
+      private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV11extKeyInfoBIP48 ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo AV10keyInfo ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo GXt_SdtKeyInfo1 ;
    }

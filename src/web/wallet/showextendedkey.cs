@@ -52,7 +52,7 @@ namespace GeneXus.Programs.wallet {
 
       protected override void createObjects( )
       {
-         chkavCtlishardended = new GXCheckbox();
+         chkavIshardened = new GXCheckbox();
       }
 
       protected void INITWEB( )
@@ -200,10 +200,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -256,22 +256,6 @@ namespace GeneXus.Programs.wallet {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "Extkeyinfo", AV5extKeyInfo);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("Extkeyinfo", AV5extKeyInfo);
-         }
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vEXTKEYINFO", AV5extKeyInfo);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vEXTKEYINFO", AV5extKeyInfo);
-         }
       }
 
       public override void RenderHtmlCloseForm( )
@@ -382,14 +366,14 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavCtlfingerprint_Internalname+"\"", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavFingerprint_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavCtlfingerprint_Internalname, "Fingerprint", "col-sm-3 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavFingerprint_Internalname, "Fingerprint", "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 13,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavCtlfingerprint_Internalname, StringUtil.RTrim( AV5extKeyInfo.gxTpr_Extended.gxTpr_Fingerprint), StringUtil.RTrim( context.localUtil.Format( AV5extKeyInfo.gxTpr_Extended.gxTpr_Fingerprint, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,13);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtlfingerprint_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtlfingerprint_Enabled, 0, "text", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Wallet/ShowExtendedKey.htm");
+            GxWebStd.gx_single_line_edit( context, edtavFingerprint_Internalname, StringUtil.RTrim( AV11fingerprint), StringUtil.RTrim( context.localUtil.Format( AV11fingerprint, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,13);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavFingerprint_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavFingerprint_Enabled, 0, "text", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Wallet/ShowExtendedKey.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -399,14 +383,14 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavCtlparentfingerprint_Internalname+"\"", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavParentfingerprint_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavCtlparentfingerprint_Internalname, "Parent Fingerprint", "col-sm-3 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavParentfingerprint_Internalname, "Parent Fingerprint", "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 18,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavCtlparentfingerprint_Internalname, StringUtil.RTrim( AV5extKeyInfo.gxTpr_Extended.gxTpr_Parentfingerprint), StringUtil.RTrim( context.localUtil.Format( AV5extKeyInfo.gxTpr_Extended.gxTpr_Parentfingerprint, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,18);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtlparentfingerprint_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtlparentfingerprint_Enabled, 0, "text", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Wallet/ShowExtendedKey.htm");
+            GxWebStd.gx_single_line_edit( context, edtavParentfingerprint_Internalname, StringUtil.RTrim( AV13parentFingerprint), StringUtil.RTrim( context.localUtil.Format( AV13parentFingerprint, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,18);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavParentfingerprint_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavParentfingerprint_Enabled, 0, "text", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Wallet/ShowExtendedKey.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -416,14 +400,14 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavCtldepth_Internalname+"\"", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavDepth_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavCtldepth_Internalname, "Depth", "col-sm-3 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavDepth_Internalname, "Depth", "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 23,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavCtldepth_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV5extKeyInfo.gxTpr_Extended.gxTpr_Depth), 4, 0, ".", "")), StringUtil.LTrim( ((edtavCtldepth_Enabled!=0) ? context.localUtil.Format( (decimal)(AV5extKeyInfo.gxTpr_Extended.gxTpr_Depth), "ZZZ9") : context.localUtil.Format( (decimal)(AV5extKeyInfo.gxTpr_Extended.gxTpr_Depth), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,23);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtldepth_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtldepth_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Wallet/ShowExtendedKey.htm");
+            GxWebStd.gx_single_line_edit( context, edtavDepth_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV9depth), 4, 0, ".", "")), StringUtil.LTrim( ((edtavDepth_Enabled!=0) ? context.localUtil.Format( (decimal)(AV9depth), "ZZZ9") : context.localUtil.Format( (decimal)(AV9depth), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,23);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavDepth_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavDepth_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Wallet/ShowExtendedKey.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -433,14 +417,14 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavCtlchild_Internalname+"\"", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavChild_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavCtlchild_Internalname, "Child", "col-sm-3 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavChild_Internalname, "Child", "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 28,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavCtlchild_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV5extKeyInfo.gxTpr_Extended.gxTpr_Child), 10, 0, ".", "")), StringUtil.LTrim( ((edtavCtlchild_Enabled!=0) ? context.localUtil.Format( (decimal)(AV5extKeyInfo.gxTpr_Extended.gxTpr_Child), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(AV5extKeyInfo.gxTpr_Extended.gxTpr_Child), "ZZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,28);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtlchild_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtlchild_Enabled, 0, "text", "1", 10, "chr", 1, "row", 10, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Wallet/ShowExtendedKey.htm");
+            GxWebStd.gx_single_line_edit( context, edtavChild_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV8child), 10, 0, ".", "")), StringUtil.LTrim( ((edtavChild_Enabled!=0) ? context.localUtil.Format( (decimal)(AV8child), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(AV8child), "ZZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,28);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavChild_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavChild_Enabled, 0, "text", "1", 10, "chr", 1, "row", 10, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Wallet/ShowExtendedKey.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -450,16 +434,16 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+chkavCtlishardended_Internalname+"\"", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+chkavIshardened_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavCtlishardended_Internalname, "is Hardended", "col-sm-3 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, chkavIshardened_Internalname, "Is Hardened", "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 33,'',false,'',0)\"";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavCtlishardended_Internalname, StringUtil.BoolToStr( AV5extKeyInfo.gxTpr_Extended.gxTpr_Ishardended), "", "is Hardended", 1, chkavCtlishardended.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(33, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,33);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavIshardened_Internalname, StringUtil.BoolToStr( AV12isHardened), "", "Is Hardened", 1, chkavIshardened.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(33, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,33);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -489,7 +473,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_14-187820", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_16-189595", 0) ;
             }
          }
          Form.Meta.addItem("description", "Show Extended Key", 0) ;
@@ -655,6 +639,8 @@ namespace GeneXus.Programs.wallet {
 
       protected void fix_multi_value_controls( )
       {
+         AV12isHardened = StringUtil.StrToBool( StringUtil.BoolToStr( AV12isHardened));
+         AssignAttri("", false, "AV12isHardened", AV12isHardened);
       }
 
       public void Refresh( )
@@ -672,16 +658,16 @@ namespace GeneXus.Programs.wallet {
          /* GeneXus formulas. */
          edtavMasterpublickey_Enabled = 0;
          AssignProp("", false, edtavMasterpublickey_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavMasterpublickey_Enabled), 5, 0), true);
-         edtavCtlfingerprint_Enabled = 0;
-         AssignProp("", false, edtavCtlfingerprint_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlfingerprint_Enabled), 5, 0), true);
-         edtavCtlparentfingerprint_Enabled = 0;
-         AssignProp("", false, edtavCtlparentfingerprint_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlparentfingerprint_Enabled), 5, 0), true);
-         edtavCtldepth_Enabled = 0;
-         AssignProp("", false, edtavCtldepth_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtldepth_Enabled), 5, 0), true);
-         edtavCtlchild_Enabled = 0;
-         AssignProp("", false, edtavCtlchild_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlchild_Enabled), 5, 0), true);
-         chkavCtlishardended.Enabled = 0;
-         AssignProp("", false, chkavCtlishardended_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(chkavCtlishardended.Enabled), 5, 0), true);
+         edtavFingerprint_Enabled = 0;
+         AssignProp("", false, edtavFingerprint_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavFingerprint_Enabled), 5, 0), true);
+         edtavParentfingerprint_Enabled = 0;
+         AssignProp("", false, edtavParentfingerprint_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavParentfingerprint_Enabled), 5, 0), true);
+         edtavDepth_Enabled = 0;
+         AssignProp("", false, edtavDepth_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavDepth_Enabled), 5, 0), true);
+         edtavChild_Enabled = 0;
+         AssignProp("", false, edtavChild_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavChild_Enabled), 5, 0), true);
+         chkavIshardened.Enabled = 0;
+         AssignProp("", false, chkavIshardened_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(chkavIshardened.Enabled), 5, 0), true);
       }
 
       protected void RF0O2( )
@@ -707,16 +693,16 @@ namespace GeneXus.Programs.wallet {
       {
          edtavMasterpublickey_Enabled = 0;
          AssignProp("", false, edtavMasterpublickey_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavMasterpublickey_Enabled), 5, 0), true);
-         edtavCtlfingerprint_Enabled = 0;
-         AssignProp("", false, edtavCtlfingerprint_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlfingerprint_Enabled), 5, 0), true);
-         edtavCtlparentfingerprint_Enabled = 0;
-         AssignProp("", false, edtavCtlparentfingerprint_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlparentfingerprint_Enabled), 5, 0), true);
-         edtavCtldepth_Enabled = 0;
-         AssignProp("", false, edtavCtldepth_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtldepth_Enabled), 5, 0), true);
-         edtavCtlchild_Enabled = 0;
-         AssignProp("", false, edtavCtlchild_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCtlchild_Enabled), 5, 0), true);
-         chkavCtlishardended.Enabled = 0;
-         AssignProp("", false, chkavCtlishardended_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(chkavCtlishardended.Enabled), 5, 0), true);
+         edtavFingerprint_Enabled = 0;
+         AssignProp("", false, edtavFingerprint_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavFingerprint_Enabled), 5, 0), true);
+         edtavParentfingerprint_Enabled = 0;
+         AssignProp("", false, edtavParentfingerprint_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavParentfingerprint_Enabled), 5, 0), true);
+         edtavDepth_Enabled = 0;
+         AssignProp("", false, edtavDepth_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavDepth_Enabled), 5, 0), true);
+         edtavChild_Enabled = 0;
+         AssignProp("", false, edtavChild_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavChild_Enabled), 5, 0), true);
+         chkavIshardened.Enabled = 0;
+         AssignProp("", false, chkavIshardened_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(chkavIshardened.Enabled), 5, 0), true);
          fix_multi_value_controls( ) ;
       }
 
@@ -733,39 +719,44 @@ namespace GeneXus.Programs.wallet {
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
             /* Read saved SDTs. */
-            ajax_req_read_hidden_sdt(cgiGet( "vEXTKEYINFO"), AV5extKeyInfo);
-            ajax_req_read_hidden_sdt(cgiGet( "Extkeyinfo"), AV5extKeyInfo);
             /* Read saved values. */
             /* Read variables values. */
             AV7masterPublicKey = cgiGet( edtavMasterpublickey_Internalname);
             AssignAttri("", false, "AV7masterPublicKey", AV7masterPublicKey);
-            AV5extKeyInfo.gxTpr_Extended.gxTpr_Fingerprint = cgiGet( edtavCtlfingerprint_Internalname);
-            AV5extKeyInfo.gxTpr_Extended.gxTpr_Parentfingerprint = cgiGet( edtavCtlparentfingerprint_Internalname);
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavCtldepth_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavCtldepth_Internalname), ".", ",") > Convert.ToDecimal( 9999 )) ) )
+            AV11fingerprint = cgiGet( edtavFingerprint_Internalname);
+            AssignAttri("", false, "AV11fingerprint", AV11fingerprint);
+            AV13parentFingerprint = cgiGet( edtavParentfingerprint_Internalname);
+            AssignAttri("", false, "AV13parentFingerprint", AV13parentFingerprint);
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavDepth_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavDepth_Internalname), ".", ",") > Convert.ToDecimal( 9999 )) ) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "CTLDEPTH");
-               GX_FocusControl = edtavCtldepth_Internalname;
+               GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vDEPTH");
+               GX_FocusControl = edtavDepth_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
-               AV5extKeyInfo.gxTpr_Extended.gxTpr_Depth = 0;
+               AV9depth = 0;
+               AssignAttri("", false, "AV9depth", StringUtil.LTrimStr( (decimal)(AV9depth), 4, 0));
             }
             else
             {
-               AV5extKeyInfo.gxTpr_Extended.gxTpr_Depth = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavCtldepth_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               AV9depth = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavDepth_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               AssignAttri("", false, "AV9depth", StringUtil.LTrimStr( (decimal)(AV9depth), 4, 0));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavCtlchild_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavCtlchild_Internalname), ".", ",") > Convert.ToDecimal( 9999999999L )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavChild_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavChild_Internalname), ".", ",") > Convert.ToDecimal( 9999999999L )) ) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "CTLCHILD");
-               GX_FocusControl = edtavCtlchild_Internalname;
+               GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vCHILD");
+               GX_FocusControl = edtavChild_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
-               AV5extKeyInfo.gxTpr_Extended.gxTpr_Child = 0;
+               AV8child = 0;
+               AssignAttri("", false, "AV8child", StringUtil.LTrimStr( (decimal)(AV8child), 10, 0));
             }
             else
             {
-               AV5extKeyInfo.gxTpr_Extended.gxTpr_Child = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtavCtlchild_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               AV8child = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtavChild_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               AssignAttri("", false, "AV8child", StringUtil.LTrimStr( (decimal)(AV8child), 10, 0));
             }
-            AV5extKeyInfo.gxTpr_Extended.gxTpr_Ishardended = StringUtil.StrToBool( cgiGet( chkavCtlishardended_Internalname));
+            AV12isHardened = StringUtil.StrToBool( cgiGet( chkavIshardened_Internalname));
+            AssignAttri("", false, "AV12isHardened", AV12isHardened);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -787,35 +778,18 @@ namespace GeneXus.Programs.wallet {
       {
          /* Start Routine */
          returnInSub = false;
-         GXt_SdtExtKeyInfo1 = AV5extKeyInfo;
-         new GeneXus.Programs.wallet.getextkey(context ).execute( out  GXt_SdtExtKeyInfo1) ;
-         AV5extKeyInfo = GXt_SdtExtKeyInfo1;
-         GXt_SdtWallet2 = AV6wallet;
-         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet2) ;
-         AV6wallet = GXt_SdtWallet2;
-         if ( StringUtil.StrCmp(AV6wallet.gxTpr_Wallettype, "BIP44") == 0 )
+         GXt_char1 = AV10error;
+         new GeneXus.Programs.wallet.getextkeyview(context ).execute( out  AV7masterPublicKey, out  AV11fingerprint, out  AV13parentFingerprint, out  AV9depth, out  AV8child, out  AV12isHardened, out  GXt_char1) ;
+         AssignAttri("", false, "AV7masterPublicKey", AV7masterPublicKey);
+         AssignAttri("", false, "AV11fingerprint", AV11fingerprint);
+         AssignAttri("", false, "AV13parentFingerprint", AV13parentFingerprint);
+         AssignAttri("", false, "AV9depth", StringUtil.LTrimStr( (decimal)(AV9depth), 4, 0));
+         AssignAttri("", false, "AV8child", StringUtil.LTrimStr( (decimal)(AV8child), 10, 0));
+         AssignAttri("", false, "AV12isHardened", AV12isHardened);
+         AV10error = GXt_char1;
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV10error)) )
          {
-            AV7masterPublicKey = AV5extKeyInfo.gxTpr_Extended.gxTpr_Nuterpublickey;
-            AssignAttri("", false, "AV7masterPublicKey", AV7masterPublicKey);
-         }
-         else if ( StringUtil.StrCmp(AV6wallet.gxTpr_Wallettype, "BIP49") == 0 )
-         {
-            AV7masterPublicKey = AV5extKeyInfo.gxTpr_Extended.gxTpr_Nuterpublickeysegwitp2sh;
-            AssignAttri("", false, "AV7masterPublicKey", AV7masterPublicKey);
-         }
-         else if ( StringUtil.StrCmp(AV6wallet.gxTpr_Wallettype, "BIP84") == 0 )
-         {
-            AV7masterPublicKey = AV5extKeyInfo.gxTpr_Extended.gxTpr_Nuterpublickeysegwit;
-            AssignAttri("", false, "AV7masterPublicKey", AV7masterPublicKey);
-         }
-         else if ( StringUtil.StrCmp(AV6wallet.gxTpr_Wallettype, "BIP86") == 0 )
-         {
-            AV7masterPublicKey = AV5extKeyInfo.gxTpr_Extended.gxTpr_Nuterpublickeytaproot;
-            AssignAttri("", false, "AV7masterPublicKey", AV7masterPublicKey);
-         }
-         else
-         {
-            GX_msglist.addItem("We couldn't find the this type of wallet addresses");
+            GX_msglist.addItem(AV10error);
          }
       }
 
@@ -880,7 +854,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202613016301020", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610714164857", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -896,28 +870,30 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("wallet/showextendedkey.js", "?202613016301020", false, true, false);
+         context.AddJavascriptSource("wallet/showextendedkey.js", "?202610714164857", false, true, false);
          /* End function include_jscripts */
       }
 
       protected void init_web_controls( )
       {
-         chkavCtlishardended.Name = "CTLISHARDENDED";
-         chkavCtlishardended.WebTags = "";
-         chkavCtlishardended.Caption = "is Hardended";
-         AssignProp("", false, chkavCtlishardended_Internalname, "TitleCaption", chkavCtlishardended.Caption, true);
-         chkavCtlishardended.CheckedValue = "false";
+         chkavIshardened.Name = "vISHARDENED";
+         chkavIshardened.WebTags = "";
+         chkavIshardened.Caption = "Is Hardened";
+         AssignProp("", false, chkavIshardened_Internalname, "TitleCaption", chkavIshardened.Caption, true);
+         chkavIshardened.CheckedValue = "false";
+         AV12isHardened = StringUtil.StrToBool( StringUtil.BoolToStr( AV12isHardened));
+         AssignAttri("", false, "AV12isHardened", AV12isHardened);
          /* End function init_web_controls */
       }
 
       protected void init_default_properties( )
       {
          edtavMasterpublickey_Internalname = "vMASTERPUBLICKEY";
-         edtavCtlfingerprint_Internalname = "CTLFINGERPRINT";
-         edtavCtlparentfingerprint_Internalname = "CTLPARENTFINGERPRINT";
-         edtavCtldepth_Internalname = "CTLDEPTH";
-         edtavCtlchild_Internalname = "CTLCHILD";
-         chkavCtlishardended_Internalname = "CTLISHARDENDED";
+         edtavFingerprint_Internalname = "vFINGERPRINT";
+         edtavParentfingerprint_Internalname = "vPARENTFINGERPRINT";
+         edtavDepth_Internalname = "vDEPTH";
+         edtavChild_Internalname = "vCHILD";
+         chkavIshardened_Internalname = "vISHARDENED";
          bttClose_Internalname = "CLOSE";
          divMaintable_Internalname = "MAINTABLE";
          Form.Internalname = "FORM";
@@ -931,21 +907,16 @@ namespace GeneXus.Programs.wallet {
             disableJsOutput();
          }
          init_default_properties( ) ;
-         chkavCtlishardended.Caption = "is Hardended";
-         chkavCtlishardended.Enabled = -1;
-         edtavCtlchild_Enabled = -1;
-         edtavCtldepth_Enabled = -1;
-         edtavCtlparentfingerprint_Enabled = -1;
-         edtavCtlfingerprint_Enabled = -1;
-         chkavCtlishardended.Enabled = 0;
-         edtavCtlchild_Jsonclick = "";
-         edtavCtlchild_Enabled = 0;
-         edtavCtldepth_Jsonclick = "";
-         edtavCtldepth_Enabled = 0;
-         edtavCtlparentfingerprint_Jsonclick = "";
-         edtavCtlparentfingerprint_Enabled = 0;
-         edtavCtlfingerprint_Jsonclick = "";
-         edtavCtlfingerprint_Enabled = 0;
+         chkavIshardened.Caption = "Is Hardened";
+         chkavIshardened.Enabled = 1;
+         edtavChild_Jsonclick = "";
+         edtavChild_Enabled = 1;
+         edtavDepth_Jsonclick = "";
+         edtavDepth_Enabled = 1;
+         edtavParentfingerprint_Jsonclick = "";
+         edtavParentfingerprint_Enabled = 1;
+         edtavFingerprint_Jsonclick = "";
+         edtavFingerprint_Enabled = 1;
          edtavMasterpublickey_Enabled = 1;
          Form.Headerrawhtml = "";
          Form.Background = "";
@@ -965,7 +936,7 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GXV5","fld":"CTLISHARDENDED","type":"boolean"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV12isHardened","fld":"vISHARDENED","type":"boolean"}]}""");
          setEventMetadata("'CLOSE'","""{"handler":"E120O2","iparms":[]}""");
          return  ;
       }
@@ -987,7 +958,6 @@ namespace GeneXus.Programs.wallet {
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
-         AV5extKeyInfo = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
          GX_FocusControl = "";
          Form = new GXWebForm();
          sPrefix = "";
@@ -995,23 +965,24 @@ namespace GeneXus.Programs.wallet {
          ClassString = "";
          StyleString = "";
          AV7masterPublicKey = "";
+         AV11fingerprint = "";
+         AV13parentFingerprint = "";
          bttClose_Jsonclick = "";
          sEvt = "";
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
-         GXt_SdtExtKeyInfo1 = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
-         AV6wallet = new GeneXus.Programs.wallet.SdtWallet(context);
-         GXt_SdtWallet2 = new GeneXus.Programs.wallet.SdtWallet(context);
+         AV10error = "";
+         GXt_char1 = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          /* GeneXus formulas. */
          edtavMasterpublickey_Enabled = 0;
-         edtavCtlfingerprint_Enabled = 0;
-         edtavCtlparentfingerprint_Enabled = 0;
-         edtavCtldepth_Enabled = 0;
-         edtavCtlchild_Enabled = 0;
-         chkavCtlishardended.Enabled = 0;
+         edtavFingerprint_Enabled = 0;
+         edtavParentfingerprint_Enabled = 0;
+         edtavDepth_Enabled = 0;
+         edtavChild_Enabled = 0;
+         chkavIshardened.Enabled = 0;
       }
 
       private short nGotPars ;
@@ -1019,15 +990,17 @@ namespace GeneXus.Programs.wallet {
       private short gxajaxcallmode ;
       private short wbEnd ;
       private short wbStart ;
+      private short AV9depth ;
       private short nDonePA ;
       private short gxcookieaux ;
       private short nGXWrapped ;
       private int edtavMasterpublickey_Enabled ;
-      private int edtavCtlfingerprint_Enabled ;
-      private int edtavCtlparentfingerprint_Enabled ;
-      private int edtavCtldepth_Enabled ;
-      private int edtavCtlchild_Enabled ;
+      private int edtavFingerprint_Enabled ;
+      private int edtavParentfingerprint_Enabled ;
+      private int edtavDepth_Enabled ;
+      private int edtavChild_Enabled ;
       private int idxLst ;
+      private long AV8child ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
       private string sDynURL ;
@@ -1042,35 +1015,36 @@ namespace GeneXus.Programs.wallet {
       private string ClassString ;
       private string StyleString ;
       private string AV7masterPublicKey ;
-      private string edtavCtlfingerprint_Internalname ;
-      private string edtavCtlfingerprint_Jsonclick ;
-      private string edtavCtlparentfingerprint_Internalname ;
-      private string edtavCtlparentfingerprint_Jsonclick ;
-      private string edtavCtldepth_Internalname ;
-      private string edtavCtldepth_Jsonclick ;
-      private string edtavCtlchild_Internalname ;
-      private string edtavCtlchild_Jsonclick ;
-      private string chkavCtlishardended_Internalname ;
+      private string edtavFingerprint_Internalname ;
+      private string AV11fingerprint ;
+      private string edtavFingerprint_Jsonclick ;
+      private string edtavParentfingerprint_Internalname ;
+      private string AV13parentFingerprint ;
+      private string edtavParentfingerprint_Jsonclick ;
+      private string edtavDepth_Internalname ;
+      private string edtavDepth_Jsonclick ;
+      private string edtavChild_Internalname ;
+      private string edtavChild_Jsonclick ;
+      private string chkavIshardened_Internalname ;
       private string bttClose_Internalname ;
       private string bttClose_Jsonclick ;
       private string sEvt ;
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
+      private string AV10error ;
+      private string GXt_char1 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool wbLoad ;
+      private bool AV12isHardened ;
       private bool Rfr0gs ;
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
-      private GXCheckbox chkavCtlishardended ;
-      private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV5extKeyInfo ;
-      private GeneXus.Programs.nbitcoin.SdtExtKeyInfo GXt_SdtExtKeyInfo1 ;
-      private GeneXus.Programs.wallet.SdtWallet AV6wallet ;
-      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet2 ;
+      private GXCheckbox chkavIshardened ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

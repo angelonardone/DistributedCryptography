@@ -36,18 +36,14 @@ namespace GeneXus.Programs.distributedcryptographylib {
          return (string)mapper[value]; ;
       }
 
-      public object gxTpr_Groupid
+      public Guid gxTpr_Groupid
       {
          get {
             if ( DistributedCryptographyLib_GroupSDT_externalReference == null )
             {
                DistributedCryptographyLib_GroupSDT_externalReference = new DistricutedCryptographyLib.GroupSDT();
             }
-            object intValue;
-            System.Guid externalParm0;
-            externalParm0 = DistributedCryptographyLib_GroupSDT_externalReference.GroupId;
-            intValue = (object)(externalParm0);
-            return intValue ;
+            return DistributedCryptographyLib_GroupSDT_externalReference.GroupId ;
          }
 
          set {
@@ -55,7 +51,7 @@ namespace GeneXus.Programs.distributedcryptographylib {
             {
                DistributedCryptographyLib_GroupSDT_externalReference = new DistricutedCryptographyLib.GroupSDT();
             }
-            DistributedCryptographyLib_GroupSDT_externalReference.GroupId = (System.Guid)(value);
+            DistributedCryptographyLib_GroupSDT_externalReference.GroupId = value;
             SetDirty("Groupid");
          }
 
@@ -208,6 +204,27 @@ namespace GeneXus.Programs.distributedcryptographylib {
 
       }
 
+      public string gxTpr_Encryptedtextshare
+      {
+         get {
+            if ( DistributedCryptographyLib_GroupSDT_externalReference == null )
+            {
+               DistributedCryptographyLib_GroupSDT_externalReference = new DistricutedCryptographyLib.GroupSDT();
+            }
+            return DistributedCryptographyLib_GroupSDT_externalReference.EncryptedTextShare ;
+         }
+
+         set {
+            if ( DistributedCryptographyLib_GroupSDT_externalReference == null )
+            {
+               DistributedCryptographyLib_GroupSDT_externalReference = new DistricutedCryptographyLib.GroupSDT();
+            }
+            DistributedCryptographyLib_GroupSDT_externalReference.EncryptedTextShare = value;
+            SetDirty("Encryptedtextshare");
+         }
+
+      }
+
       public bool gxTpr_Numofsharesreached
       {
          get {
@@ -271,6 +288,120 @@ namespace GeneXus.Programs.distributedcryptographylib {
 
       }
 
+      public short gxTpr_Subgrouptype
+      {
+         get {
+            if ( DistributedCryptographyLib_GroupSDT_externalReference == null )
+            {
+               DistributedCryptographyLib_GroupSDT_externalReference = new DistricutedCryptographyLib.GroupSDT();
+            }
+            return DistributedCryptographyLib_GroupSDT_externalReference.SubGroupType ;
+         }
+
+         set {
+            if ( DistributedCryptographyLib_GroupSDT_externalReference == null )
+            {
+               DistributedCryptographyLib_GroupSDT_externalReference = new DistricutedCryptographyLib.GroupSDT();
+            }
+            DistributedCryptographyLib_GroupSDT_externalReference.SubGroupType = value;
+            SetDirty("Subgrouptype");
+         }
+
+      }
+
+      public Guid gxTpr_Bountygroupid
+      {
+         get {
+            if ( DistributedCryptographyLib_GroupSDT_externalReference == null )
+            {
+               DistributedCryptographyLib_GroupSDT_externalReference = new DistricutedCryptographyLib.GroupSDT();
+            }
+            return DistributedCryptographyLib_GroupSDT_externalReference.BountyGroupId ;
+         }
+
+         set {
+            if ( DistributedCryptographyLib_GroupSDT_externalReference == null )
+            {
+               DistributedCryptographyLib_GroupSDT_externalReference = new DistricutedCryptographyLib.GroupSDT();
+            }
+            DistributedCryptographyLib_GroupSDT_externalReference.BountyGroupId = value;
+            SetDirty("Bountygroupid");
+         }
+
+      }
+
+      public Guid gxTpr_Datagroupid
+      {
+         get {
+            if ( DistributedCryptographyLib_GroupSDT_externalReference == null )
+            {
+               DistributedCryptographyLib_GroupSDT_externalReference = new DistricutedCryptographyLib.GroupSDT();
+            }
+            return DistributedCryptographyLib_GroupSDT_externalReference.DataGroupId ;
+         }
+
+         set {
+            if ( DistributedCryptographyLib_GroupSDT_externalReference == null )
+            {
+               DistributedCryptographyLib_GroupSDT_externalReference = new DistricutedCryptographyLib.GroupSDT();
+            }
+            DistributedCryptographyLib_GroupSDT_externalReference.DataGroupId = value;
+            SetDirty("Datagroupid");
+         }
+
+      }
+
+      public string gxTpr_Extpubkeytimebountyreceiving
+      {
+         get {
+            if ( DistributedCryptographyLib_GroupSDT_externalReference == null )
+            {
+               DistributedCryptographyLib_GroupSDT_externalReference = new DistricutedCryptographyLib.GroupSDT();
+            }
+            return DistributedCryptographyLib_GroupSDT_externalReference.ExtPubKeyTimeBountyReceiving ;
+         }
+
+         set {
+            if ( DistributedCryptographyLib_GroupSDT_externalReference == null )
+            {
+               DistributedCryptographyLib_GroupSDT_externalReference = new DistricutedCryptographyLib.GroupSDT();
+            }
+            DistributedCryptographyLib_GroupSDT_externalReference.ExtPubKeyTimeBountyReceiving = value;
+            SetDirty("Extpubkeytimebountyreceiving");
+         }
+
+      }
+
+      public GXExternalCollection<GeneXus.Programs.distributedcryptographylib.SdtTimeConstrainItem> gxTpr_Timeconstrain
+      {
+         get {
+            if ( DistributedCryptographyLib_GroupSDT_externalReference == null )
+            {
+               DistributedCryptographyLib_GroupSDT_externalReference = new DistricutedCryptographyLib.GroupSDT();
+            }
+            GXExternalCollection<GeneXus.Programs.distributedcryptographylib.SdtTimeConstrainItem> intValue;
+            intValue = new GXExternalCollection<GeneXus.Programs.distributedcryptographylib.SdtTimeConstrainItem>( context, "GeneXus.Programs.distributedcryptographylib.SdtTimeConstrainItem", "GeneXus.Programs");
+            System.Collections.Generic.List< DistricutedCryptographyLib.TimeConstrainItem> externalParm0;
+            externalParm0 = DistributedCryptographyLib_GroupSDT_externalReference.TimeConstrain;
+            intValue.ExternalInstance = (IList)CollectionUtils.ConvertToInternal( typeof(System.Collections.Generic.List< DistricutedCryptographyLib.TimeConstrainItem>), externalParm0);
+            return intValue ;
+         }
+
+         set {
+            if ( DistributedCryptographyLib_GroupSDT_externalReference == null )
+            {
+               DistributedCryptographyLib_GroupSDT_externalReference = new DistricutedCryptographyLib.GroupSDT();
+            }
+            GXExternalCollection<GeneXus.Programs.distributedcryptographylib.SdtTimeConstrainItem> intValue;
+            System.Collections.Generic.List< DistricutedCryptographyLib.TimeConstrainItem> externalParm1;
+            intValue = value;
+            externalParm1 = (System.Collections.Generic.List< DistricutedCryptographyLib.TimeConstrainItem>)CollectionUtils.ConvertToExternal( typeof(System.Collections.Generic.List< DistricutedCryptographyLib.TimeConstrainItem>), intValue.ExternalInstance);
+            DistributedCryptographyLib_GroupSDT_externalReference.TimeConstrain = externalParm1;
+            SetDirty("Timeconstrain");
+         }
+
+      }
+
       public GXExternalCollection<GeneXus.Programs.distributedcryptographylib.SdtContactItem> gxTpr_Contact
       {
          get {
@@ -280,9 +411,9 @@ namespace GeneXus.Programs.distributedcryptographylib {
             }
             GXExternalCollection<GeneXus.Programs.distributedcryptographylib.SdtContactItem> intValue;
             intValue = new GXExternalCollection<GeneXus.Programs.distributedcryptographylib.SdtContactItem>( context, "GeneXus.Programs.distributedcryptographylib.SdtContactItem", "GeneXus.Programs");
-            System.Collections.Generic.List< DistricutedCryptographyLib.ContactItem> externalParm1;
-            externalParm1 = DistributedCryptographyLib_GroupSDT_externalReference.Contact;
-            intValue.ExternalInstance = (IList)CollectionUtils.ConvertToInternal( typeof(System.Collections.Generic.List< DistricutedCryptographyLib.ContactItem>), externalParm1);
+            System.Collections.Generic.List< DistricutedCryptographyLib.ContactItem> externalParm2;
+            externalParm2 = DistributedCryptographyLib_GroupSDT_externalReference.Contact;
+            intValue.ExternalInstance = (IList)CollectionUtils.ConvertToInternal( typeof(System.Collections.Generic.List< DistricutedCryptographyLib.ContactItem>), externalParm2);
             return intValue ;
          }
 
@@ -292,27 +423,27 @@ namespace GeneXus.Programs.distributedcryptographylib {
                DistributedCryptographyLib_GroupSDT_externalReference = new DistricutedCryptographyLib.GroupSDT();
             }
             GXExternalCollection<GeneXus.Programs.distributedcryptographylib.SdtContactItem> intValue;
-            System.Collections.Generic.List< DistricutedCryptographyLib.ContactItem> externalParm2;
+            System.Collections.Generic.List< DistricutedCryptographyLib.ContactItem> externalParm3;
             intValue = value;
-            externalParm2 = (System.Collections.Generic.List< DistricutedCryptographyLib.ContactItem>)CollectionUtils.ConvertToExternal( typeof(System.Collections.Generic.List< DistricutedCryptographyLib.ContactItem>), intValue.ExternalInstance);
-            DistributedCryptographyLib_GroupSDT_externalReference.Contact = externalParm2;
+            externalParm3 = (System.Collections.Generic.List< DistricutedCryptographyLib.ContactItem>)CollectionUtils.ConvertToExternal( typeof(System.Collections.Generic.List< DistricutedCryptographyLib.ContactItem>), intValue.ExternalInstance);
+            DistributedCryptographyLib_GroupSDT_externalReference.Contact = externalParm3;
             SetDirty("Contact");
          }
 
       }
 
-      public GXExternalCollection<GeneXus.Programs.distributedcryptographylib.SdtOtherGroup> gxTpr_Othergroup
+      public GeneXus.Programs.distributedcryptographylib.SdtOtherGroup gxTpr_Othergroup
       {
          get {
             if ( DistributedCryptographyLib_GroupSDT_externalReference == null )
             {
                DistributedCryptographyLib_GroupSDT_externalReference = new DistricutedCryptographyLib.GroupSDT();
             }
-            GXExternalCollection<GeneXus.Programs.distributedcryptographylib.SdtOtherGroup> intValue;
-            intValue = new GXExternalCollection<GeneXus.Programs.distributedcryptographylib.SdtOtherGroup>( context, "GeneXus.Programs.distributedcryptographylib.SdtOtherGroup", "GeneXus.Programs");
-            System.Collections.Generic.List< DistricutedCryptographyLib.OtherGroup> externalParm3;
-            externalParm3 = DistributedCryptographyLib_GroupSDT_externalReference.OtherGroup;
-            intValue.ExternalInstance = (IList)CollectionUtils.ConvertToInternal( typeof(System.Collections.Generic.List< DistricutedCryptographyLib.OtherGroup>), externalParm3);
+            GeneXus.Programs.distributedcryptographylib.SdtOtherGroup intValue;
+            intValue = new GeneXus.Programs.distributedcryptographylib.SdtOtherGroup(context);
+            DistricutedCryptographyLib.OtherGroup externalParm4;
+            externalParm4 = DistributedCryptographyLib_GroupSDT_externalReference.OtherGroup;
+            intValue.ExternalInstance = externalParm4;
             return intValue ;
          }
 
@@ -321,11 +452,11 @@ namespace GeneXus.Programs.distributedcryptographylib {
             {
                DistributedCryptographyLib_GroupSDT_externalReference = new DistricutedCryptographyLib.GroupSDT();
             }
-            GXExternalCollection<GeneXus.Programs.distributedcryptographylib.SdtOtherGroup> intValue;
-            System.Collections.Generic.List< DistricutedCryptographyLib.OtherGroup> externalParm4;
+            GeneXus.Programs.distributedcryptographylib.SdtOtherGroup intValue;
+            DistricutedCryptographyLib.OtherGroup externalParm5;
             intValue = value;
-            externalParm4 = (System.Collections.Generic.List< DistricutedCryptographyLib.OtherGroup>)CollectionUtils.ConvertToExternal( typeof(System.Collections.Generic.List< DistricutedCryptographyLib.OtherGroup>), intValue.ExternalInstance);
-            DistributedCryptographyLib_GroupSDT_externalReference.OtherGroup = externalParm4;
+            externalParm5 = (DistricutedCryptographyLib.OtherGroup)(intValue.ExternalInstance);
+            DistributedCryptographyLib_GroupSDT_externalReference.OtherGroup = externalParm5;
             SetDirty("Othergroup");
          }
 

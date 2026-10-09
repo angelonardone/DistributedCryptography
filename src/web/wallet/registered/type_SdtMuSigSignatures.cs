@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtMuSigSignatures
 			Description: MuSigSignatures
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.14.187820
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.16.189595
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -44,6 +44,8 @@ namespace GeneXus.Programs.wallet.registered
 			gxTv_SdtMuSigSignatures_Senderusername = "";
 
 			gxTv_SdtMuSigSignatures_Sendersignature = "";
+
+			gxTv_SdtMuSigSignatures_Psbt = "";
 
 		}
 
@@ -131,6 +133,9 @@ namespace GeneXus.Programs.wallet.registered
 			{
 				AddObjectProperty("transactions", gxTv_SdtMuSigSignatures_Transactions, false);
 			}
+
+			AddObjectProperty("psbt", gxTpr_Psbt, false);
+
 			return;
 		}
 		#endregion
@@ -411,6 +416,22 @@ namespace GeneXus.Programs.wallet.registered
 
 		}
 
+
+		[SoapElement(ElementName="psbt")]
+		[XmlElement(ElementName="psbt")]
+		public string gxTpr_Psbt
+		{
+			get {
+				return gxTv_SdtMuSigSignatures_Psbt; 
+			}
+			set {
+				gxTv_SdtMuSigSignatures_Psbt = value;
+				SetDirty("Psbt");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -446,6 +467,7 @@ namespace GeneXus.Programs.wallet.registered
 
 			gxTv_SdtMuSigSignatures_Transactions_N = true;
 
+			gxTv_SdtMuSigSignatures_Psbt = "";
 			datetime_STZ = (DateTime)(DateTime.MinValue);
 			sDateCnv = "";
 			sNumToPad = "";
@@ -499,6 +521,9 @@ namespace GeneXus.Programs.wallet.registered
 		 
 		protected bool gxTv_SdtMuSigSignatures_Transactions_N;
 		protected GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> gxTv_SdtMuSigSignatures_Transactions = null;  
+
+		protected string gxTv_SdtMuSigSignatures_Psbt;
+		 
 
 
 		#endregion
@@ -702,6 +727,20 @@ namespace GeneXus.Programs.wallet.registered
 			}
 			set { 
 				value.LoadCollection(sdt.gxTpr_Transactions);
+			}
+		}
+
+		[JsonPropertyName("psbt")]
+		[JsonPropertyOrder(13)]
+		[DataMember(Name="psbt", Order=13)]
+		public  string gxTpr_Psbt
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Psbt);
+
+			}
+			set { 
+				 sdt.gxTpr_Psbt = value;
 			}
 		}
 

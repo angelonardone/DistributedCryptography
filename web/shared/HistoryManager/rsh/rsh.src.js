@@ -204,10 +204,6 @@ window.dhtmlHistory = {
                 that.currentLocation = newLocation;
                 /*Change the browser location*/
                 window.location.hash = newLocation;
-                /*Change the hidden iframe's location if on IE*/
-                if (that.isIE) {
-			that.iframe.src = that.blankPagePath + "blank.html?" + newLocation;
-                }
                 /*End of atomic location change block for IE*/
                 that.ieAtomicLocationChange = false;
             };

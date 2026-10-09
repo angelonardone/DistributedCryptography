@@ -42,6 +42,9 @@
         <Reference Include="DistricutedCryptographyLib" >
             <HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
         </Reference>
+        <Reference Include="GxJadeLib" >
+            <HintPath>$(WebBinDirectory)\GxJadeLib.dll</HintPath>
+        </Reference>
 
 	</ItemGroup>
 
@@ -51,7 +54,7 @@
 		<Compile Include = "$(WebDirectory)\electrum\getelectrumconnid.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
-		<Compile Include = "$(WebDirectory)\electrum\retaddresselectrumformat.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwalletsdir.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\createunusedaddresses.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\parse_serialized_extended_key.cs" />
@@ -69,9 +72,11 @@
 		<Compile Include = "$(WebDirectory)\wallet\registered\deriveaddresssfromextendedpubkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\createexpubtkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwalletinfo.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\multyaddress.cs" />
 		<Compile Include = "$(WebDirectory)\sudodb\savetransaction.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\retaddresselectrumformat.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\defaultparameters.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\reversehexstring.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\get_history.cs" />
@@ -90,6 +95,7 @@
 		<Compile Include = "$(WebDirectory)\electrum\sendmessage.cs" />
 		<Compile Include = "$(WebDirectory)\sudodb\gettransactionsfromaddress.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\getelectrumconfigfornetworktype.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getappdatadir.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gettransactionsfromservice.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gettransctionsfromlocaldb.cs" />
 

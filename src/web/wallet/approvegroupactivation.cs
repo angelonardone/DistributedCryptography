@@ -199,10 +199,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -381,7 +381,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_14-187820", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_16-189595", 0) ;
             }
          }
          Form.Meta.addItem("description", "Approve Group Activation", 0) ;
@@ -610,11 +610,15 @@ namespace GeneXus.Programs.wallet {
       {
          /* Enter Routine */
          returnInSub = false;
+         AV18groupId = StringUtil.StrToGuid( AV17websession.Get("Group_ACTIVATE_BACKUP"));
          GXt_char1 = AV7error;
-         new GeneXus.Programs.wallet.approveactionsetextkey(context ).execute(  AV13password, out  GXt_char1) ;
+         new GeneXus.Programs.wallet.registered.activatewalletbackupgroup(context ).execute(  AV13password,  AV18groupId, out  GXt_char1) ;
          AV7error = GXt_char1;
+         AV13password = "";
+         AssignAttri("", false, "AV13password", AV13password);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV7error)) )
          {
+            AV17websession.Set("Group_ACTIVATE_BACKUP_RESULT", "true");
             context.setWebReturnParms(new Object[] {});
             context.setWebReturnParmsMetadata(new Object[] {});
             context.wjLocDisableFrm = 1;
@@ -623,6 +627,7 @@ namespace GeneXus.Programs.wallet {
             if (true) return;
          }
          GX_msglist.addItem(AV7error);
+         /*  Sending Event outputs  */
       }
 
       protected void nextLoad( )
@@ -674,7 +679,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20261301630219", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610714165920", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -690,7 +695,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("wallet/approvegroupactivation.js", "?202613016302111", false, true, false);
+         context.AddJavascriptSource("wallet/approvegroupactivation.js", "?202610714165920", false, true, false);
          /* End function include_jscripts */
       }
 
@@ -736,7 +741,8 @@ namespace GeneXus.Programs.wallet {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
-         setEventMetadata("ENTER","""{"handler":"E111Z2","iparms":[{"av":"AV13password","fld":"vPASSWORD","type":"char"}]}""");
+         setEventMetadata("ENTER","""{"handler":"E111Z2","iparms":[{"av":"AV13password","fld":"vPASSWORD","type":"char"}]""");
+         setEventMetadata("ENTER",""","oparms":[{"av":"AV13password","fld":"vPASSWORD","type":"char"}]}""");
          return  ;
       }
 
@@ -769,6 +775,8 @@ namespace GeneXus.Programs.wallet {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
+         AV18groupId = Guid.Empty;
+         AV17websession = context.GetSession();
          AV7error = "";
          GXt_char1 = "";
          BackMsgLst = new msglist();
@@ -816,6 +824,8 @@ namespace GeneXus.Programs.wallet {
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
+      private Guid AV18groupId ;
+      private IGxSession AV17websession ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
       private msglist BackMsgLst ;

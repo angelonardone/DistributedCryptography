@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtGroup_SDT
 			Description: Group_SDT
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.14.187820
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.16.189595
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -46,6 +46,10 @@ namespace GeneXus.Programs.wallet.registered
 			gxTv_SdtGroup_SDT_Extpubkeymultisigchange = "";
 
 			gxTv_SdtGroup_SDT_Extpubkeytimebountyreceiving = "";
+
+			gxTv_SdtGroup_SDT_Restoresigneddatetime = (DateTime)(DateTime.MinValue);
+
+			gxTv_SdtGroup_SDT_Restorestoppeddatetime = (DateTime)(DateTime.MinValue);
 
 		}
 
@@ -133,6 +137,55 @@ namespace GeneXus.Programs.wallet.registered
 			{
 				AddObjectProperty("otherGroup", gxTv_SdtGroup_SDT_Othergroup, false);
 			}
+
+			datetime_STZ = gxTpr_Restoresigneddatetime;
+			sDateCnv = "";
+			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Year(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("0000", 1, 4-StringUtil.Len( sNumToPad)) + sNumToPad;
+			sDateCnv = sDateCnv + "-";
+			sNumToPad = StringUtil.Trim( StringUtil.Str((decimal)(DateTimeUtil.Month(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
+			sDateCnv = sDateCnv + "-";
+			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Day(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
+			sDateCnv = sDateCnv + "T";
+			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Hour(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
+			sDateCnv = sDateCnv + ":";
+			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Minute(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
+			sDateCnv = sDateCnv + ":";
+			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Second(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
+			AddObjectProperty("restoreSignedDateTime", sDateCnv, false);
+
+
+
+			AddObjectProperty("restoreStopped", gxTpr_Restorestopped, false);
+
+
+			datetime_STZ = gxTpr_Restorestoppeddatetime;
+			sDateCnv = "";
+			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Year(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("0000", 1, 4-StringUtil.Len( sNumToPad)) + sNumToPad;
+			sDateCnv = sDateCnv + "-";
+			sNumToPad = StringUtil.Trim( StringUtil.Str((decimal)(DateTimeUtil.Month(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
+			sDateCnv = sDateCnv + "-";
+			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Day(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
+			sDateCnv = sDateCnv + "T";
+			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Hour(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
+			sDateCnv = sDateCnv + ":";
+			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Minute(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
+			sDateCnv = sDateCnv + ":";
+			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Second(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
+			AddObjectProperty("restoreStoppedDateTime", sDateCnv, false);
+
+
 			return;
 		}
 		#endregion
@@ -508,6 +561,76 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 
+		[SoapElement(ElementName="restoreSignedDateTime")]
+		[XmlElement(ElementName="restoreSignedDateTime" , IsNullable=true)]
+		public string gxTpr_Restoresigneddatetime_Nullable
+		{
+			get {
+				if ( gxTv_SdtGroup_SDT_Restoresigneddatetime == DateTime.MinValue)
+					return null;
+				return new GxDatetimeString(gxTv_SdtGroup_SDT_Restoresigneddatetime).value ;
+			}
+			set {
+				gxTv_SdtGroup_SDT_Restoresigneddatetime = DateTimeUtil.CToD2(value);
+			}
+		}
+
+		[XmlIgnore]
+		public DateTime gxTpr_Restoresigneddatetime
+		{
+			get {
+				return gxTv_SdtGroup_SDT_Restoresigneddatetime; 
+			}
+			set {
+				gxTv_SdtGroup_SDT_Restoresigneddatetime = value;
+				SetDirty("Restoresigneddatetime");
+			}
+		}
+
+
+
+		[SoapElement(ElementName="restoreStopped")]
+		[XmlElement(ElementName="restoreStopped")]
+		public bool gxTpr_Restorestopped
+		{
+			get {
+				return gxTv_SdtGroup_SDT_Restorestopped; 
+			}
+			set {
+				gxTv_SdtGroup_SDT_Restorestopped = value;
+				SetDirty("Restorestopped");
+			}
+		}
+
+
+
+		[SoapElement(ElementName="restoreStoppedDateTime")]
+		[XmlElement(ElementName="restoreStoppedDateTime" , IsNullable=true)]
+		public string gxTpr_Restorestoppeddatetime_Nullable
+		{
+			get {
+				if ( gxTv_SdtGroup_SDT_Restorestoppeddatetime == DateTime.MinValue)
+					return null;
+				return new GxDatetimeString(gxTv_SdtGroup_SDT_Restorestoppeddatetime).value ;
+			}
+			set {
+				gxTv_SdtGroup_SDT_Restorestoppeddatetime = DateTimeUtil.CToD2(value);
+			}
+		}
+
+		[XmlIgnore]
+		public DateTime gxTpr_Restorestoppeddatetime
+		{
+			get {
+				return gxTv_SdtGroup_SDT_Restorestoppeddatetime; 
+			}
+			set {
+				gxTv_SdtGroup_SDT_Restorestoppeddatetime = value;
+				SetDirty("Restorestoppeddatetime");
+			}
+		}
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -552,6 +675,12 @@ namespace GeneXus.Programs.wallet.registered
 
 			gxTv_SdtGroup_SDT_Othergroup_N = true;
 
+			gxTv_SdtGroup_SDT_Restoresigneddatetime = (DateTime)(DateTime.MinValue);
+
+			gxTv_SdtGroup_SDT_Restorestoppeddatetime = (DateTime)(DateTime.MinValue);
+			datetime_STZ = (DateTime)(DateTime.MinValue);
+			sDateCnv = "";
+			sNumToPad = "";
 			return  ;
 		}
 
@@ -560,6 +689,10 @@ namespace GeneXus.Programs.wallet.registered
 		#endregion
 
 		#region Declaration
+
+		protected string sDateCnv ;
+		protected string sNumToPad ;
+		protected DateTime datetime_STZ ;
 
 		protected Guid gxTv_SdtGroup_SDT_Groupid;
 		 
@@ -617,6 +750,15 @@ namespace GeneXus.Programs.wallet.registered
 		protected bool gxTv_SdtGroup_SDT_Othergroup_N;
 		protected SdtGroup_SDT_otherGroup gxTv_SdtGroup_SDT_Othergroup = null; 
 
+
+		protected DateTime gxTv_SdtGroup_SDT_Restoresigneddatetime;
+		 
+
+		protected bool gxTv_SdtGroup_SDT_Restorestopped;
+		 
+
+		protected DateTime gxTv_SdtGroup_SDT_Restorestoppeddatetime;
+		 
 
 
 		#endregion
@@ -916,6 +1058,49 @@ namespace GeneXus.Programs.wallet.registered
 				sdt.gxTpr_Othergroup = value.sdt;
 			}
 
+		}
+
+		[JsonPropertyName("restoreSignedDateTime")]
+		[JsonPropertyOrder(19)]
+		[DataMember(Name="restoreSignedDateTime", Order=19)]
+		public  string gxTpr_Restoresigneddatetime
+		{
+			get { 
+				return DateTimeUtil.TToC2( sdt.gxTpr_Restoresigneddatetime,context);
+
+			}
+			set { 
+				sdt.gxTpr_Restoresigneddatetime = DateTimeUtil.CToT2(value,context);
+			}
+		}
+
+		[JsonPropertyName("restoreStopped")]
+		[JsonPropertyOrder(20)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
+		[DataMember(Name="restoreStopped", Order=20)]
+		public bool gxTpr_Restorestopped
+		{
+			get { 
+				return sdt.gxTpr_Restorestopped;
+
+			}
+			set { 
+				sdt.gxTpr_Restorestopped = value;
+			}
+		}
+
+		[JsonPropertyName("restoreStoppedDateTime")]
+		[JsonPropertyOrder(21)]
+		[DataMember(Name="restoreStoppedDateTime", Order=21)]
+		public  string gxTpr_Restorestoppeddatetime
+		{
+			get { 
+				return DateTimeUtil.TToC2( sdt.gxTpr_Restorestoppeddatetime,context);
+
+			}
+			set { 
+				sdt.gxTpr_Restorestoppeddatetime = DateTimeUtil.CToT2(value,context);
+			}
 		}
 
 

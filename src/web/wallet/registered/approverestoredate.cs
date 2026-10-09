@@ -160,11 +160,11 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override short ExecuteStartEvent( )
       {
-         PA2R2( ) ;
+         PA2Y2( ) ;
          gxajaxcallmode = (short)((isAjaxCallMode( ) ? 1 : 0));
          if ( ( gxajaxcallmode == 0 ) && ( GxWebError == 0 ) )
          {
-            START2R2( ) ;
+            START2Y2( ) ;
          }
          return gxajaxcallmode ;
       }
@@ -199,18 +199,18 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -250,17 +250,15 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void send_integrity_footer_hashes( )
       {
-         GxWebStd.gx_hidden_field( context, "vTODAY", context.localUtil.DToC( Gx_date, 0, "/"));
-         GxWebStd.gx_hidden_field( context, "gxhash_vTODAY", GetSecureSignedToken( "", Gx_date, context));
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vONETIMECONSTRAIN", AV25oneTimeConstrain);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vGROUPVIEW", AV36groupView);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vONETIMECONSTRAIN", AV25oneTimeConstrain);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vGROUPVIEW", AV36groupView);
          }
-         GxWebStd.gx_hidden_field( context, "gxhash_vONETIMECONSTRAIN", GetSecureSignedToken( "", AV25oneTimeConstrain, context));
+         GxWebStd.gx_hidden_field( context, "gxhash_vGROUPVIEW", GetSecureSignedToken( "", AV36groupView, context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -271,31 +269,13 @@ namespace GeneXus.Programs.wallet.registered {
          send_integrity_footer_hashes( ) ;
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vGROUP_SDT", AV23group_sdt);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vGROUPVIEW", AV36groupView);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vGROUP_SDT", AV23group_sdt);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vGROUPVIEW", AV36groupView);
          }
-         GxWebStd.gx_hidden_field( context, "vTODAY", context.localUtil.DToC( Gx_date, 0, "/"));
-         GxWebStd.gx_hidden_field( context, "gxhash_vTODAY", GetSecureSignedToken( "", Gx_date, context));
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vONETIMECONSTRAIN", AV25oneTimeConstrain);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vONETIMECONSTRAIN", AV25oneTimeConstrain);
-         }
-         GxWebStd.gx_hidden_field( context, "gxhash_vONETIMECONSTRAIN", GetSecureSignedToken( "", AV25oneTimeConstrain, context));
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vNEWTIMECONSTRAIN", AV35newTimeConstrain);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vNEWTIMECONSTRAIN", AV35newTimeConstrain);
-         }
+         GxWebStd.gx_hidden_field( context, "gxhash_vGROUPVIEW", GetSecureSignedToken( "", AV36groupView, context));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -327,14 +307,14 @@ namespace GeneXus.Programs.wallet.registered {
             context.WriteHtmlText( "<div") ;
             GxWebStd.ClassAttribute( context, "gx-ct-body"+" "+(String.IsNullOrEmpty(StringUtil.RTrim( Form.Class)) ? "form-horizontal Form" : Form.Class)+"-fx");
             context.WriteHtmlText( ">") ;
-            WE2R2( ) ;
+            WE2Y2( ) ;
             context.WriteHtmlText( "</div>") ;
          }
       }
 
       public override void DispatchEvents( )
       {
-         EVT2R2( ) ;
+         EVT2Y2( ) ;
       }
 
       public override bool HasEnterEvent( )
@@ -362,7 +342,7 @@ namespace GeneXus.Programs.wallet.registered {
          return "Approve Restore Date" ;
       }
 
-      protected void WB2R0( )
+      protected void WB2Y0( )
       {
          if ( context.isAjaxRequest( ) )
          {
@@ -384,16 +364,16 @@ namespace GeneXus.Programs.wallet.registered {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
-            wb_table1_6_2R2( true) ;
+            wb_table1_6_2Y2( true) ;
          }
          else
          {
-            wb_table1_6_2R2( false) ;
+            wb_table1_6_2Y2( false) ;
          }
          return  ;
       }
 
-      protected void wb_table1_6_2R2e( bool wbgen )
+      protected void wb_table1_6_2Y2e( bool wbgen )
       {
          if ( wbgen )
          {
@@ -411,7 +391,7 @@ namespace GeneXus.Programs.wallet.registered {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 16,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavPassword_Internalname, StringUtil.RTrim( AV12password), StringUtil.RTrim( context.localUtil.Format( AV12password, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,16);\""+" "+"data-gx-password-reveal"+" ", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavPassword_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavPassword_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, -1, 0, 0, 0, 0, -1, true, "", "start", true, "", "HLP_Wallet/registered/ApproveRestoreDate.htm");
+            GxWebStd.gx_single_line_edit( context, edtavPassword_Internalname, StringUtil.RTrim( AV11password), StringUtil.RTrim( context.localUtil.Format( AV11password, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,16);\""+" "+"data-gx-password-reveal"+" ", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavPassword_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavPassword_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, -1, 0, 0, 0, 0, -1, true, "", "start", true, "", "HLP_Wallet/registered/ApproveRestoreDate.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "Bottom", "div");
@@ -432,7 +412,7 @@ namespace GeneXus.Programs.wallet.registered {
          wbLoad = true;
       }
 
-      protected void START2R2( )
+      protected void START2Y2( )
       {
          wbLoad = false;
          wbEnd = 0;
@@ -441,7 +421,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_14-187820", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_16-189595", 0) ;
             }
          }
          Form.Meta.addItem("description", "Approve Restore Date", 0) ;
@@ -452,16 +432,16 @@ namespace GeneXus.Programs.wallet.registered {
          {
          }
          wbErr = false;
-         STRUP2R0( ) ;
+         STRUP2Y0( ) ;
       }
 
-      protected void WS2R2( )
+      protected void WS2Y2( )
       {
-         START2R2( ) ;
-         EVT2R2( ) ;
+         START2Y2( ) ;
+         EVT2Y2( ) ;
       }
 
-      protected void EVT2R2( )
+      protected void EVT2Y2( )
       {
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
@@ -493,7 +473,7 @@ namespace GeneXus.Programs.wallet.registered {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Start */
-                              E112R2 ();
+                              E112Y2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                            {
@@ -504,7 +484,7 @@ namespace GeneXus.Programs.wallet.registered {
                                  if ( ! Rfr0gs )
                                  {
                                     /* Execute user event: Enter */
-                                    E122R2 ();
+                                    E122Y2 ();
                                  }
                                  dynload_actions( ) ;
                               }
@@ -514,7 +494,7 @@ namespace GeneXus.Programs.wallet.registered {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Load */
-                              E132R2 ();
+                              E132Y2 ();
                               /* No code required for Cancel button. It is implemented as the Reset button. */
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LSCR") == 0 )
@@ -535,7 +515,7 @@ namespace GeneXus.Programs.wallet.registered {
          }
       }
 
-      protected void WE2R2( )
+      protected void WE2Y2( )
       {
          if ( ! GxWebStd.gx_redirect( context) )
          {
@@ -551,7 +531,7 @@ namespace GeneXus.Programs.wallet.registered {
          }
       }
 
-      protected void PA2R2( )
+      protected void PA2Y2( )
       {
          if ( nDonePA == 0 )
          {
@@ -607,7 +587,7 @@ namespace GeneXus.Programs.wallet.registered {
       public void Refresh( )
       {
          send_integrity_hashes( ) ;
-         RF2R2( ) ;
+         RF2Y2( ) ;
          if ( isFullAjaxMode( ) )
          {
             send_integrity_footer_hashes( ) ;
@@ -617,10 +597,9 @@ namespace GeneXus.Programs.wallet.registered {
       protected void initialize_formulas( )
       {
          /* GeneXus formulas. */
-         Gx_date = DateTimeUtil.Today( context);
       }
 
-      protected void RF2R2( )
+      protected void RF2Y2( )
       {
          initialize_formulas( ) ;
          clear_multi_value_controls( ) ;
@@ -630,40 +609,37 @@ namespace GeneXus.Programs.wallet.registered {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E132R2 ();
-            WB2R0( ) ;
+            E132Y2 ();
+            WB2Y0( ) ;
          }
       }
 
-      protected void send_integrity_lvl_hashes2R2( )
+      protected void send_integrity_lvl_hashes2Y2( )
       {
-         GxWebStd.gx_hidden_field( context, "vTODAY", context.localUtil.DToC( Gx_date, 0, "/"));
-         GxWebStd.gx_hidden_field( context, "gxhash_vTODAY", GetSecureSignedToken( "", Gx_date, context));
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vONETIMECONSTRAIN", AV25oneTimeConstrain);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vGROUPVIEW", AV36groupView);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vONETIMECONSTRAIN", AV25oneTimeConstrain);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vGROUPVIEW", AV36groupView);
          }
-         GxWebStd.gx_hidden_field( context, "gxhash_vONETIMECONSTRAIN", GetSecureSignedToken( "", AV25oneTimeConstrain, context));
+         GxWebStd.gx_hidden_field( context, "gxhash_vGROUPVIEW", GetSecureSignedToken( "", AV36groupView, context));
       }
 
       protected void before_start_formulas( )
       {
-         Gx_date = DateTimeUtil.Today( context);
          fix_multi_value_controls( ) ;
       }
 
-      protected void STRUP2R0( )
+      protected void STRUP2Y0( )
       {
          /* Before Start, stand alone formulas. */
          before_start_formulas( ) ;
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E112R2 ();
+         E112Y2 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
@@ -685,8 +661,8 @@ namespace GeneXus.Programs.wallet.registered {
                AV27restoreDate = context.localUtil.CToD( cgiGet( edtavRestoredate_Internalname), 1);
                AssignAttri("", false, "AV27restoreDate", context.localUtil.Format(AV27restoreDate, "99/99/99"));
             }
-            AV12password = cgiGet( edtavPassword_Internalname);
-            AssignAttri("", false, "AV12password", AV12password);
+            AV11password = cgiGet( edtavPassword_Internalname);
+            AssignAttri("", false, "AV11password", AV11password);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -700,20 +676,19 @@ namespace GeneXus.Programs.wallet.registered {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E112R2 ();
+         E112Y2 ();
          if (returnInSub) return;
       }
 
-      protected void E112R2( )
+      protected void E112Y2( )
       {
          /* Start Routine */
          returnInSub = false;
-         AV23group_sdt.FromJSonString(AV34websession.Get("Group_EDIT"), null);
-         if ( AV23group_sdt.gxTpr_Isactive )
+         GXt_SdtGroupListItem1 = AV36groupView;
+         new GeneXus.Programs.wallet.registered.getgroupeditview(context ).execute( out  GXt_SdtGroupListItem1) ;
+         AV36groupView = GXt_SdtGroupListItem1;
+         if ( AV36groupView.gxTpr_Isactive )
          {
-            GXt_SdtGroup_SDT_TimeConstrainItem1 = AV25oneTimeConstrain;
-            new GeneXus.Programs.wallet.registered.getnewesttimeconstrain(context ).execute(  AV23group_sdt.gxTpr_Timeconstrain, out  GXt_SdtGroup_SDT_TimeConstrainItem1) ;
-            AV25oneTimeConstrain = GXt_SdtGroup_SDT_TimeConstrainItem1;
             edtavRestoredate_Visible = 1;
             AssignProp("", false, edtavRestoredate_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavRestoredate_Visible), 5, 0), true);
          }
@@ -727,87 +702,51 @@ namespace GeneXus.Programs.wallet.registered {
       public void GXEnter( )
       {
          /* Execute user event: Enter */
-         E122R2 ();
+         E122Y2 ();
          if (returnInSub) return;
       }
 
-      protected void E122R2( )
+      protected void E122Y2( )
       {
          /* Enter Routine */
          returnInSub = false;
-         if ( AV23group_sdt.gxTpr_Isactive )
+         GXt_char2 = AV6error;
+         new GeneXus.Programs.wallet.registered.activatetimevault(context ).execute(  AV11password,  AV36groupView.gxTpr_Groupid,  AV27restoreDate, out  AV37wasActive, out  GXt_char2) ;
+         AV6error = GXt_char2;
+         AV11password = "";
+         AssignAttri("", false, "AV11password", AV11password);
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
          {
-            if ( (DateTime.MinValue==AV27restoreDate) )
+            if ( AV37wasActive )
             {
-               AV6error = "Please select the date when the backup became available to be restored.";
+               AV34websession.Set("TEV_ACTIVATION_RESULT", "updated");
             }
             else
             {
-               if ( DateTimeUtil.ResetTime ( AV27restoreDate ) <= DateTimeUtil.ResetTime ( Gx_date ) )
-               {
-                  AV6error = "The date must be in the future";
-               }
-               else
-               {
-                  if ( DateTimeUtil.ResetTime ( AV27restoreDate ) <= DateTimeUtil.ResetTime ( AV25oneTimeConstrain.gxTpr_Date ) )
-                  {
-                     AV6error = "The date must be after the previous configure date";
-                  }
-                  else
-                  {
-                     GXt_char2 = AV6error;
-                     new GeneXus.Programs.wallet.approveactionsetextkey(context ).execute(  AV12password, out  GXt_char2) ;
-                     AV6error = GXt_char2;
-                     if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
-                     {
-                        AV35newTimeConstrain.gxTpr_Date = AV27restoreDate;
-                        AV35newTimeConstrain.gxTpr_Sequence = (int)(AV25oneTimeConstrain.gxTpr_Sequence+1);
-                        AV35newTimeConstrain.gxTpr_Address = "";
-                        AV23group_sdt.gxTpr_Timeconstrain.Add(AV35newTimeConstrain, 0);
-                        AV34websession.Set("Group_EDIT", AV23group_sdt.ToJSonString(false, true));
-                        context.setWebReturnParms(new Object[] {});
-                        context.setWebReturnParmsMetadata(new Object[] {});
-                        context.wjLocDisableFrm = 1;
-                        context.nUserReturn = 1;
-                        returnInSub = true;
-                        if (true) return;
-                     }
-                  }
-               }
+               AV34websession.Set("TEV_ACTIVATION_RESULT", "activated");
             }
-         }
-         else
-         {
-            GXt_char2 = AV6error;
-            new GeneXus.Programs.wallet.approveactionsetextkey(context ).execute(  AV12password, out  GXt_char2) ;
-            AV6error = GXt_char2;
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
-            {
-               context.setWebReturnParms(new Object[] {});
-               context.setWebReturnParmsMetadata(new Object[] {});
-               context.wjLocDisableFrm = 1;
-               context.nUserReturn = 1;
-               returnInSub = true;
-               if (true) return;
-            }
+            context.setWebReturnParms(new Object[] {});
+            context.setWebReturnParmsMetadata(new Object[] {});
+            context.wjLocDisableFrm = 1;
+            context.nUserReturn = 1;
+            returnInSub = true;
+            if (true) return;
          }
          GX_msglist.addItem(AV6error);
          /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV35newTimeConstrain", AV35newTimeConstrain);
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV23group_sdt", AV23group_sdt);
       }
 
       protected void nextLoad( )
       {
       }
 
-      protected void E132R2( )
+      protected void E132Y2( )
       {
          /* Load Routine */
          returnInSub = false;
       }
 
-      protected void wb_table1_6_2R2( bool wbgen )
+      protected void wb_table1_6_2Y2( bool wbgen )
       {
          if ( wbgen )
          {
@@ -834,11 +773,11 @@ namespace GeneXus.Programs.wallet.registered {
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
             context.WriteHtmlText( "</table>") ;
-            wb_table1_6_2R2e( true) ;
+            wb_table1_6_2Y2e( true) ;
          }
          else
          {
-            wb_table1_6_2R2e( false) ;
+            wb_table1_6_2Y2e( false) ;
          }
       }
 
@@ -857,9 +796,9 @@ namespace GeneXus.Programs.wallet.registered {
          nGotPars = (short)(1);
          nGXWrapped = (short)(1);
          context.SetWrapped(true);
-         PA2R2( ) ;
-         WS2R2( ) ;
-         WE2R2( ) ;
+         PA2Y2( ) ;
+         WS2Y2( ) ;
+         WE2Y2( ) ;
          cleanup();
          context.SetWrapped(false);
          context.GX_msglist = BackMsgLst;
@@ -882,7 +821,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202613016302670", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20261071417576", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -898,7 +837,7 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("wallet/registered/approverestoredate.js", "?202613016302670", false, true, false);
+         context.AddJavascriptSource("wallet/registered/approverestoredate.js", "?20261071417577", false, true, false);
          /* End function include_jscripts */
       }
 
@@ -948,9 +887,9 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"Gx_date","fld":"vTODAY","hsh":true,"type":"date"},{"av":"AV25oneTimeConstrain","fld":"vONETIMECONSTRAIN","hsh":true,"type":""}]}""");
-         setEventMetadata("ENTER","""{"handler":"E122R2","iparms":[{"av":"AV23group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV27restoreDate","fld":"vRESTOREDATE","type":"date"},{"av":"Gx_date","fld":"vTODAY","hsh":true,"type":"date"},{"av":"AV25oneTimeConstrain","fld":"vONETIMECONSTRAIN","hsh":true,"type":""},{"av":"AV12password","fld":"vPASSWORD","type":"char"},{"av":"AV35newTimeConstrain","fld":"vNEWTIMECONSTRAIN","type":""}]""");
-         setEventMetadata("ENTER",""","oparms":[{"av":"AV35newTimeConstrain","fld":"vNEWTIMECONSTRAIN","type":""},{"av":"AV23group_sdt","fld":"vGROUP_SDT","type":""}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV36groupView","fld":"vGROUPVIEW","hsh":true,"type":""}]}""");
+         setEventMetadata("ENTER","""{"handler":"E122Y2","iparms":[{"av":"AV11password","fld":"vPASSWORD","type":"char"},{"av":"AV36groupView","fld":"vGROUPVIEW","hsh":true,"type":""},{"av":"AV27restoreDate","fld":"vRESTOREDATE","type":"date"}]""");
+         setEventMetadata("ENTER",""","oparms":[{"av":"AV11password","fld":"vPASSWORD","type":"char"}]}""");
          setEventMetadata("VALIDV_RESTOREDATE","""{"handler":"Validv_Restoredate","iparms":[]}""");
          return  ;
       }
@@ -971,16 +910,13 @@ namespace GeneXus.Programs.wallet.registered {
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
-         Gx_date = DateTime.MinValue;
-         AV25oneTimeConstrain = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem(context);
+         AV36groupView = new GeneXus.Programs.wallet.registered.SdtGroupListItem(context);
          GXKey = "";
-         AV23group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
-         AV35newTimeConstrain = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem(context);
          GX_FocusControl = "";
          Form = new GXWebForm();
          sPrefix = "";
          TempTags = "";
-         AV12password = "";
+         AV11password = "";
          ClassString = "";
          StyleString = "";
          bttEnter_Jsonclick = "";
@@ -989,16 +925,14 @@ namespace GeneXus.Programs.wallet.registered {
          EvtRowId = "";
          sEvtType = "";
          AV27restoreDate = DateTime.MinValue;
-         AV34websession = context.GetSession();
-         GXt_SdtGroup_SDT_TimeConstrainItem1 = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem(context);
+         GXt_SdtGroupListItem1 = new GeneXus.Programs.wallet.registered.SdtGroupListItem(context);
          AV6error = "";
          GXt_char2 = "";
+         AV34websession = context.GetSession();
          sStyleString = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
-         Gx_date = DateTimeUtil.Today( context);
          /* GeneXus formulas. */
-         Gx_date = DateTimeUtil.Today( context);
       }
 
       private short nGotPars ;
@@ -1024,7 +958,7 @@ namespace GeneXus.Programs.wallet.registered {
       private string divMaintable_Internalname ;
       private string edtavPassword_Internalname ;
       private string TempTags ;
-      private string AV12password ;
+      private string AV11password ;
       private string edtavPassword_Jsonclick ;
       private string ClassString ;
       private string StyleString ;
@@ -1040,7 +974,6 @@ namespace GeneXus.Programs.wallet.registered {
       private string sStyleString ;
       private string tblTable1_Internalname ;
       private string edtavRestoredate_Jsonclick ;
-      private DateTime Gx_date ;
       private DateTime AV27restoreDate ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
@@ -1049,13 +982,12 @@ namespace GeneXus.Programs.wallet.registered {
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
+      private bool AV37wasActive ;
       private IGxSession AV34websession ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem AV25oneTimeConstrain ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV23group_sdt ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem AV35newTimeConstrain ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem GXt_SdtGroup_SDT_TimeConstrainItem1 ;
+      private GeneXus.Programs.wallet.registered.SdtGroupListItem AV36groupView ;
+      private GeneXus.Programs.wallet.registered.SdtGroupListItem GXt_SdtGroupListItem1 ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

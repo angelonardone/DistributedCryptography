@@ -149,8 +149,8 @@ namespace GeneXus.Programs.wallet.registered {
       protected void gxgrGridchat_refresh_invoke( )
       {
          ajax_req_read_hidden_sdt(GetNextPar( ), AV10receive_msgs);
-         ajax_req_read_hidden_sdt(GetNextPar( ), AV16externalUser);
-         ajax_req_read_hidden_sdt(GetNextPar( ), AV21wallet);
+         ajax_req_read_hidden_sdt(GetNextPar( ), AV22externalUserPublic);
+         ajax_req_read_hidden_sdt(GetNextPar( ), AV23walletInfo);
          AV12contact.gxTpr_Userprivatename = GetNextPar( );
          setAjaxCallMode();
          if ( ! IsValidAjaxCall( true) )
@@ -158,7 +158,7 @@ namespace GeneXus.Programs.wallet.registered {
             GxWebError = 1;
             return  ;
          }
-         gxgrGridchat_refresh( AV10receive_msgs, AV16externalUser, AV21wallet, AV12contact.gxTpr_Userprivatename) ;
+         gxgrGridchat_refresh( AV10receive_msgs, AV22externalUserPublic, AV23walletInfo, AV12contact.gxTpr_Userprivatename) ;
          AddString( context.getJSONResponse( )) ;
          /* End function gxgrGridchat_refresh_invoke */
       }
@@ -241,18 +241,18 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -294,22 +294,22 @@ namespace GeneXus.Programs.wallet.registered {
       {
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vEXTERNALUSER", AV16externalUser);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vEXTERNALUSERPUBLIC", AV22externalUserPublic);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vEXTERNALUSER", AV16externalUser);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vEXTERNALUSERPUBLIC", AV22externalUserPublic);
          }
-         GxWebStd.gx_hidden_field( context, "gxhash_vEXTERNALUSER", GetSecureSignedToken( "", AV16externalUser, context));
+         GxWebStd.gx_hidden_field( context, "gxhash_vEXTERNALUSERPUBLIC", GetSecureSignedToken( "", AV22externalUserPublic, context));
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLET", AV21wallet);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLETINFO", AV23walletInfo);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLET", AV21wallet);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLETINFO", AV23walletInfo);
          }
-         GxWebStd.gx_hidden_field( context, "gxhash_vWALLET", GetSecureSignedToken( "", AV21wallet, context));
+         GxWebStd.gx_hidden_field( context, "gxhash_vWALLETINFO", GetSecureSignedToken( "", AV23walletInfo, context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
          forbiddenHiddens = new GXProperties();
          forbiddenHiddens.Add("hshsalt", "hsh"+"Chat");
@@ -342,13 +342,13 @@ namespace GeneXus.Programs.wallet.registered {
          GxWebStd.gx_hidden_field( context, "nRC_GXsfl_14", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_14), 8, 0, ".", "")));
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vEXTERNALUSER", AV16externalUser);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vEXTERNALUSERPUBLIC", AV22externalUserPublic);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vEXTERNALUSER", AV16externalUser);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vEXTERNALUSERPUBLIC", AV22externalUserPublic);
          }
-         GxWebStd.gx_hidden_field( context, "gxhash_vEXTERNALUSER", GetSecureSignedToken( "", AV16externalUser, context));
+         GxWebStd.gx_hidden_field( context, "gxhash_vEXTERNALUSERPUBLIC", GetSecureSignedToken( "", AV22externalUserPublic, context));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vSDT_MESSAGE", AV14sdt_message);
@@ -367,13 +367,13 @@ namespace GeneXus.Programs.wallet.registered {
          }
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLET", AV21wallet);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLETINFO", AV23walletInfo);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLET", AV21wallet);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLETINFO", AV23walletInfo);
          }
-         GxWebStd.gx_hidden_field( context, "gxhash_vWALLET", GetSecureSignedToken( "", AV21wallet, context));
+         GxWebStd.gx_hidden_field( context, "gxhash_vWALLETINFO", GetSecureSignedToken( "", AV23walletInfo, context));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vRECEIVE_MSGS", AV10receive_msgs);
@@ -521,7 +521,7 @@ namespace GeneXus.Programs.wallet.registered {
             }
             else
             {
-               AV23GXV2 = nGXsfl_14_idx;
+               AV25GXV2 = nGXsfl_14_idx;
                sStyleString = "";
                context.WriteHtmlText( "<div id=\""+"GridchatContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Gridchat", GridchatContainer, subGridchat_Internalname);
@@ -577,7 +577,7 @@ namespace GeneXus.Programs.wallet.registered {
                }
                else
                {
-                  AV23GXV2 = nGXsfl_14_idx;
+                  AV25GXV2 = nGXsfl_14_idx;
                   sStyleString = "";
                   context.WriteHtmlText( "<div id=\""+"GridchatContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                   context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Gridchat", GridchatContainer, subGridchat_Internalname);
@@ -608,7 +608,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_14-187820", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_16-189595", 0) ;
             }
          }
          Form.Meta.addItem("description", "Chat", 0) ;
@@ -684,10 +684,10 @@ namespace GeneXus.Programs.wallet.registered {
                               nGXsfl_14_idx = (int)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
                               sGXsfl_14_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_14_idx), 4, 0), 4, "0");
                               SubsflControlProps_142( ) ;
-                              AV23GXV2 = nGXsfl_14_idx;
-                              if ( ( AV10receive_msgs.Count >= AV23GXV2 ) && ( AV23GXV2 > 0 ) )
+                              AV25GXV2 = nGXsfl_14_idx;
+                              if ( ( AV10receive_msgs.Count >= AV25GXV2 ) && ( AV25GXV2 > 0 ) )
                               {
-                                 AV10receive_msgs.CurrentItem = ((GeneXus.Programs.nostr.SdtSDT_receive_msg)AV10receive_msgs.Item(AV23GXV2));
+                                 AV10receive_msgs.CurrentItem = ((GeneXus.Programs.nostr.SdtSDT_receive_msg)AV10receive_msgs.Item(AV25GXV2));
                               }
                               sEvtType = StringUtil.Right( sEvt, 1);
                               if ( StringUtil.StrCmp(sEvtType, ".") == 0 )
@@ -807,8 +807,8 @@ namespace GeneXus.Programs.wallet.registered {
       }
 
       protected void gxgrGridchat_refresh( GXBaseCollection<GeneXus.Programs.nostr.SdtSDT_receive_msg> AV10receive_msgs ,
-                                           GeneXus.Programs.distcrypt.SdtExternalUser AV16externalUser ,
-                                           GeneXus.Programs.wallet.SdtWallet AV21wallet ,
+                                           GeneXus.Programs.distcrypt.SdtExternalUserPublic AV22externalUserPublic ,
+                                           GeneXus.Programs.wallet.SdtWalletInfo AV23walletInfo ,
                                            string GXV1 )
       {
          initialize_formulas( ) ;
@@ -902,22 +902,22 @@ namespace GeneXus.Programs.wallet.registered {
       {
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vEXTERNALUSER", AV16externalUser);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vEXTERNALUSERPUBLIC", AV22externalUserPublic);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vEXTERNALUSER", AV16externalUser);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vEXTERNALUSERPUBLIC", AV22externalUserPublic);
          }
-         GxWebStd.gx_hidden_field( context, "gxhash_vEXTERNALUSER", GetSecureSignedToken( "", AV16externalUser, context));
+         GxWebStd.gx_hidden_field( context, "gxhash_vEXTERNALUSERPUBLIC", GetSecureSignedToken( "", AV22externalUserPublic, context));
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLET", AV21wallet);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLETINFO", AV23walletInfo);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLET", AV21wallet);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLETINFO", AV23walletInfo);
          }
-         GxWebStd.gx_hidden_field( context, "gxhash_vWALLET", GetSecureSignedToken( "", AV21wallet, context));
+         GxWebStd.gx_hidden_field( context, "gxhash_vWALLETINFO", GetSecureSignedToken( "", AV23walletInfo, context));
       }
 
       protected int subGridchat_fnc_Pagecount( )
@@ -975,10 +975,10 @@ namespace GeneXus.Programs.wallet.registered {
                nGXsfl_14_fel_idx = ((subGridchat_Islastpage==1)&&(nGXsfl_14_fel_idx+1>subGridchat_fnc_Recordsperpage( )) ? 1 : nGXsfl_14_fel_idx+1);
                sGXsfl_14_fel_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_14_fel_idx), 4, 0), 4, "0");
                SubsflControlProps_fel_142( ) ;
-               AV23GXV2 = nGXsfl_14_fel_idx;
-               if ( ( AV10receive_msgs.Count >= AV23GXV2 ) && ( AV23GXV2 > 0 ) )
+               AV25GXV2 = nGXsfl_14_fel_idx;
+               if ( ( AV10receive_msgs.Count >= AV25GXV2 ) && ( AV25GXV2 > 0 ) )
                {
-                  AV10receive_msgs.CurrentItem = ((GeneXus.Programs.nostr.SdtSDT_receive_msg)AV10receive_msgs.Item(AV23GXV2));
+                  AV10receive_msgs.CurrentItem = ((GeneXus.Programs.nostr.SdtSDT_receive_msg)AV10receive_msgs.Item(AV25GXV2));
                }
             }
             if ( nGXsfl_14_fel_idx == 0 )
@@ -1036,15 +1036,15 @@ namespace GeneXus.Programs.wallet.registered {
          {
             GX_msglist.addItem("No contact selected");
          }
-         GXt_SdtExternalUser2 = AV16externalUser;
-         new GeneXus.Programs.distcrypt.getexternaluser(context ).execute( out  GXt_SdtExternalUser2) ;
-         AV16externalUser = GXt_SdtExternalUser2;
+         GXt_SdtExternalUserPublic2 = AV22externalUserPublic;
+         new GeneXus.Programs.distcrypt.getexternaluserpublic(context ).execute( out  GXt_SdtExternalUserPublic2) ;
+         AV22externalUserPublic = GXt_SdtExternalUserPublic2;
          /* Execute user subroutine: 'CONTACT_CHAT_TO_SCREEN' */
          S112 ();
          if (returnInSub) return;
-         GXt_SdtWallet3 = AV21wallet;
-         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet3) ;
-         AV21wallet = GXt_SdtWallet3;
+         GXt_SdtWalletInfo3 = AV23walletInfo;
+         new GeneXus.Programs.wallet.getwalletinfo(context ).execute( out  GXt_SdtWalletInfo3) ;
+         AV23walletInfo = GXt_SdtWalletInfo3;
       }
 
       protected void S112( )
@@ -1056,10 +1056,10 @@ namespace GeneXus.Programs.wallet.registered {
          AV19sdt_all_chats = GXt_objcol_SdtSDT_Chat4;
          AV10receive_msgs = new GXBaseCollection<GeneXus.Programs.nostr.SdtSDT_receive_msg>( context, "SDT_receive_msg", "distributedcryptography");
          gx_BV14 = true;
-         AV26GXV5 = 1;
-         while ( AV26GXV5 <= AV19sdt_all_chats.Count )
+         AV28GXV5 = 1;
+         while ( AV28GXV5 <= AV19sdt_all_chats.Count )
          {
-            AV15sdt_chat = ((GeneXus.Programs.nostr.SdtSDT_Chat)AV19sdt_all_chats.Item(AV26GXV5));
+            AV15sdt_chat = ((GeneXus.Programs.nostr.SdtSDT_Chat)AV19sdt_all_chats.Item(AV28GXV5));
             AV8receive_msg = new GeneXus.Programs.nostr.SdtSDT_receive_msg(context);
             GXt_dtime5 = (DateTime)(DateTime.MinValue);
             new GeneXus.Programs.distributedcrypto.unixtimetolocaldatetime(context ).execute(  AV15sdt_chat.gxTpr_Datetimeunix, out  GXt_dtime5) ;
@@ -1068,7 +1068,7 @@ namespace GeneXus.Programs.wallet.registered {
             AV8receive_msg.gxTpr_Msessageenc = AV15sdt_chat.gxTpr_Message;
             AV10receive_msgs.Add(AV8receive_msg, 0);
             gx_BV14 = true;
-            AV26GXV5 = (int)(AV26GXV5+1);
+            AV28GXV5 = (int)(AV28GXV5+1);
          }
          AV10receive_msgs.Sort("(dateTime)");
          gx_BV14 = true;
@@ -1076,10 +1076,10 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void E11182( )
       {
-         AV23GXV2 = nGXsfl_14_idx;
-         if ( ( AV23GXV2 > 0 ) && ( AV10receive_msgs.Count >= AV23GXV2 ) )
+         AV25GXV2 = nGXsfl_14_idx;
+         if ( ( AV25GXV2 > 0 ) && ( AV10receive_msgs.Count >= AV25GXV2 ) )
          {
-            AV10receive_msgs.CurrentItem = ((GeneXus.Programs.nostr.SdtSDT_receive_msg)AV10receive_msgs.Item(AV23GXV2));
+            AV10receive_msgs.CurrentItem = ((GeneXus.Programs.nostr.SdtSDT_receive_msg)AV10receive_msgs.Item(AV25GXV2));
          }
          /* GlobalEvents_Receivechat Routine */
          returnInSub = false;
@@ -1091,7 +1091,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV10receive_msgs", AV10receive_msgs);
             nGXsfl_14_bak_idx = nGXsfl_14_idx;
-            gxgrGridchat_refresh( AV10receive_msgs, AV16externalUser, AV21wallet, AV12contact.gxTpr_Userprivatename) ;
+            gxgrGridchat_refresh( AV10receive_msgs, AV22externalUserPublic, AV23walletInfo, AV12contact.gxTpr_Userprivatename) ;
             nGXsfl_14_idx = nGXsfl_14_bak_idx;
             sGXsfl_14_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_14_idx), 4, 0), 4, "0");
             SubsflControlProps_142( ) ;
@@ -1100,10 +1100,10 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void E12182( )
       {
-         AV23GXV2 = nGXsfl_14_idx;
-         if ( ( AV23GXV2 > 0 ) && ( AV10receive_msgs.Count >= AV23GXV2 ) )
+         AV25GXV2 = nGXsfl_14_idx;
+         if ( ( AV25GXV2 > 0 ) && ( AV10receive_msgs.Count >= AV25GXV2 ) )
          {
-            AV10receive_msgs.CurrentItem = ((GeneXus.Programs.nostr.SdtSDT_receive_msg)AV10receive_msgs.Item(AV23GXV2));
+            AV10receive_msgs.CurrentItem = ((GeneXus.Programs.nostr.SdtSDT_receive_msg)AV10receive_msgs.Item(AV25GXV2));
          }
          /* 'Send' Routine */
          returnInSub = false;
@@ -1111,7 +1111,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             AV15sdt_chat = new GeneXus.Programs.nostr.SdtSDT_Chat(context);
             AV15sdt_chat.gxTpr_Id = Guid.NewGuid( );
-            AV15sdt_chat.gxTpr_From = AV16externalUser.gxTpr_Userinfo.gxTpr_Username;
+            AV15sdt_chat.gxTpr_From = AV22externalUserPublic.gxTpr_Userinfo.gxTpr_Username;
             AV15sdt_chat.gxTpr_To = AV12contact.gxTpr_Username;
             GXt_int6 = 0;
             new GeneXus.Programs.distributedcrypto.getunixtimemilisecondsutc(context ).execute( out  GXt_int6) ;
@@ -1132,7 +1132,7 @@ namespace GeneXus.Programs.wallet.registered {
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV5error)) )
             {
                GXt_char9 = AV5error;
-               new GeneXus.Programs.nbitcoin.tapprootaddresstoxonlypubkey(context ).execute(  AV12contact.gxTpr_Username,  AV21wallet.gxTpr_Networktype, out  AV20taprootPubKey, out  GXt_char9) ;
+               new GeneXus.Programs.nbitcoin.tapprootaddresstoxonlypubkey(context ).execute(  AV12contact.gxTpr_Username,  AV23walletInfo.gxTpr_Networktype, out  AV20taprootPubKey, out  GXt_char9) ;
                AV5error = GXt_char9;
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV5error)) )
                {
@@ -1172,7 +1172,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV10receive_msgs", AV10receive_msgs);
             nGXsfl_14_bak_idx = nGXsfl_14_idx;
-            gxgrGridchat_refresh( AV10receive_msgs, AV16externalUser, AV21wallet, AV12contact.gxTpr_Userprivatename) ;
+            gxgrGridchat_refresh( AV10receive_msgs, AV22externalUserPublic, AV23walletInfo, AV12contact.gxTpr_Userprivatename) ;
             nGXsfl_14_idx = nGXsfl_14_bak_idx;
             sGXsfl_14_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_14_idx), 4, 0), 4, "0");
             SubsflControlProps_142( ) ;
@@ -1183,11 +1183,11 @@ namespace GeneXus.Programs.wallet.registered {
       {
          /* Gridchat_Load Routine */
          returnInSub = false;
-         AV23GXV2 = 1;
-         while ( AV23GXV2 <= AV10receive_msgs.Count )
+         AV25GXV2 = 1;
+         while ( AV25GXV2 <= AV10receive_msgs.Count )
          {
-            AV10receive_msgs.CurrentItem = ((GeneXus.Programs.nostr.SdtSDT_receive_msg)AV10receive_msgs.Item(AV23GXV2));
-            if ( StringUtil.StrCmp(((GeneXus.Programs.nostr.SdtSDT_receive_msg)(AV10receive_msgs.CurrentItem)).gxTpr_Topic, StringUtil.Trim( AV16externalUser.gxTpr_Userinfo.gxTpr_Username)) == 0 )
+            AV10receive_msgs.CurrentItem = ((GeneXus.Programs.nostr.SdtSDT_receive_msg)AV10receive_msgs.Item(AV25GXV2));
+            if ( StringUtil.StrCmp(((GeneXus.Programs.nostr.SdtSDT_receive_msg)(AV10receive_msgs.CurrentItem)).gxTpr_Topic, StringUtil.Trim( AV22externalUserPublic.gxTpr_Userinfo.gxTpr_Username)) == 0 )
             {
                divGridmessagestable_Class = "gxchatgrid-send-table";
                AssignProp("", false, divGridmessagestable_Internalname, "Class", divGridmessagestable_Class, !bGXsfl_14_Refreshing);
@@ -1211,7 +1211,7 @@ namespace GeneXus.Programs.wallet.registered {
             {
                DoAjaxLoad(14, GridchatRow);
             }
-            AV23GXV2 = (int)(AV23GXV2+1);
+            AV25GXV2 = (int)(AV25GXV2+1);
          }
          /*  Sending Event outputs  */
       }
@@ -1295,7 +1295,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20261301630170", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610714165564", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1311,8 +1311,8 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("wallet/registered/chat.js", "?20261301630170", false, true, false);
+         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("wallet/registered/chat.js", "?202610714165564", false, true, false);
          /* End function include_jscripts */
       }
 
@@ -1402,7 +1402,7 @@ namespace GeneXus.Programs.wallet.registered {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 19,'',false,'" + sGXsfl_14_idx + "',14)\"";
          ROClassString = "gxchatgrid-message__date";
-         GridchatRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtldatetime_Internalname,context.localUtil.TToC( ((GeneXus.Programs.nostr.SdtSDT_receive_msg)AV10receive_msgs.Item(AV23GXV2)).gxTpr_Datetime, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.nostr.SdtSDT_receive_msg)AV10receive_msgs.Item(AV23GXV2)).gxTpr_Datetime, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onblur(this,19);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtldatetime_Jsonclick,(short)0,(string)"gxchatgrid-message__date",(string)"",(string)ROClassString,(string)"",(string)"",(short)1,(int)edtavCtldatetime_Enabled,(short)0,(string)"text",(string)"",(short)17,(string)"chr",(short)1,(string)"row",(short)17,(short)0,(short)0,(short)14,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         GridchatRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtldatetime_Internalname,context.localUtil.TToC( ((GeneXus.Programs.nostr.SdtSDT_receive_msg)AV10receive_msgs.Item(AV25GXV2)).gxTpr_Datetime, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.nostr.SdtSDT_receive_msg)AV10receive_msgs.Item(AV25GXV2)).gxTpr_Datetime, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onblur(this,19);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtldatetime_Jsonclick,(short)0,(string)"gxchatgrid-message__date",(string)"",(string)ROClassString,(string)"",(string)"",(short)1,(int)edtavCtldatetime_Enabled,(short)0,(string)"text",(string)"",(short)17,(string)"chr",(short)1,(string)"row",(short)17,(short)0,(short)0,(short)14,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          GridchatRow.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
          GridchatRow.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
          GridchatRow.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
@@ -1424,7 +1424,7 @@ namespace GeneXus.Programs.wallet.registered {
          StyleString = "";
          ClassString = "gxchatgrid-message-text";
          StyleString = "";
-         GridchatRow.AddColumnProperties("html_textarea", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlmsessageenc_Internalname,((GeneXus.Programs.nostr.SdtSDT_receive_msg)AV10receive_msgs.Item(AV23GXV2)).gxTpr_Msessageenc,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,26);\"",(short)0,(short)1,(int)edtavCtlmsessageenc_Enabled,(short)0,(short)80,(string)"chr",(short)10,(string)"row",(short)0,(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"2097152",(short)-1,(short)0,(string)"",(string)"",(short)-1,(bool)true,(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(short)0,(string)""});
+         GridchatRow.AddColumnProperties("html_textarea", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlmsessageenc_Internalname,((GeneXus.Programs.nostr.SdtSDT_receive_msg)AV10receive_msgs.Item(AV25GXV2)).gxTpr_Msessageenc,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,26);\"",(short)0,(short)1,(int)edtavCtlmsessageenc_Enabled,(short)0,(short)80,(string)"chr",(short)10,(string)"row",(short)0,(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"2097152",(short)-1,(short)0,(string)"",(string)"",(short)-1,(bool)true,(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(short)0,(string)""});
          GridchatRow.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
          if ( GridchatContainer.GetWrapped() == 1 )
          {
@@ -1585,12 +1585,12 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"GRIDCHAT_nEOF","type":"int"},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"},{"av":"AV16externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""},{"av":"AV21wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"GXV1","fld":"CTLUSERPRIVATENAME","type":"char"}]}""");
-         setEventMetadata("GLOBALEVENTS.RECEIVECHAT","""{"handler":"E11182","iparms":[{"av":"AV12contact","fld":"vCONTACT","type":""},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"},{"av":"GRIDCHAT_nEOF","type":"int"},{"av":"AV16externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""},{"av":"AV21wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"GXV1","fld":"CTLUSERPRIVATENAME","type":"char"}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"GRIDCHAT_nEOF","type":"int"},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"},{"av":"AV22externalUserPublic","fld":"vEXTERNALUSERPUBLIC","hsh":true,"type":""},{"av":"AV23walletInfo","fld":"vWALLETINFO","hsh":true,"type":""},{"av":"GXV1","fld":"CTLUSERPRIVATENAME","type":"char"}]}""");
+         setEventMetadata("GLOBALEVENTS.RECEIVECHAT","""{"handler":"E11182","iparms":[{"av":"AV12contact","fld":"vCONTACT","type":""},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"},{"av":"GRIDCHAT_nEOF","type":"int"},{"av":"AV22externalUserPublic","fld":"vEXTERNALUSERPUBLIC","hsh":true,"type":""},{"av":"AV23walletInfo","fld":"vWALLETINFO","hsh":true,"type":""},{"av":"GXV1","fld":"CTLUSERPRIVATENAME","type":"char"}]""");
          setEventMetadata("GLOBALEVENTS.RECEIVECHAT",""","oparms":[{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"}]}""");
-         setEventMetadata("'SEND'","""{"handler":"E12182","iparms":[{"av":"AV11sendClearText","fld":"vSENDCLEARTEXT","type":"vchar"},{"av":"AV16externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""},{"av":"AV12contact","fld":"vCONTACT","type":""},{"av":"AV14sdt_message","fld":"vSDT_MESSAGE","type":""},{"av":"AV18json_enc","fld":"vJSON_ENC","type":""},{"av":"AV21wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"},{"av":"GRIDCHAT_nEOF","type":"int"},{"av":"GXV1","fld":"CTLUSERPRIVATENAME","type":"char"}]""");
+         setEventMetadata("'SEND'","""{"handler":"E12182","iparms":[{"av":"AV11sendClearText","fld":"vSENDCLEARTEXT","type":"vchar"},{"av":"AV22externalUserPublic","fld":"vEXTERNALUSERPUBLIC","hsh":true,"type":""},{"av":"AV12contact","fld":"vCONTACT","type":""},{"av":"AV14sdt_message","fld":"vSDT_MESSAGE","type":""},{"av":"AV18json_enc","fld":"vJSON_ENC","type":""},{"av":"AV23walletInfo","fld":"vWALLETINFO","hsh":true,"type":""},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"},{"av":"GRIDCHAT_nEOF","type":"int"},{"av":"GXV1","fld":"CTLUSERPRIVATENAME","type":"char"}]""");
          setEventMetadata("'SEND'",""","oparms":[{"av":"AV14sdt_message","fld":"vSDT_MESSAGE","type":""},{"av":"AV18json_enc","fld":"vJSON_ENC","type":""},{"av":"AV11sendClearText","fld":"vSENDCLEARTEXT","type":"vchar"},{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"}]}""");
-         setEventMetadata("GRIDCHAT.LOAD","""{"handler":"E14182","iparms":[{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"},{"av":"AV16externalUser","fld":"vEXTERNALUSER","hsh":true,"type":""}]""");
+         setEventMetadata("GRIDCHAT.LOAD","""{"handler":"E14182","iparms":[{"av":"AV10receive_msgs","fld":"vRECEIVE_MSGS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"GRIDCHAT_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"GRIDCHAT","prop":"GridRC","grid":14,"type":"int"},{"av":"AV22externalUserPublic","fld":"vEXTERNALUSERPUBLIC","hsh":true,"type":""}]""");
          setEventMetadata("GRIDCHAT.LOAD",""","oparms":[{"av":"divGridmessagestable_Class","ctrl":"GRIDMESSAGESTABLE","prop":"Class"},{"av":"tblTablemessage_Class","ctrl":"TABLEMESSAGE","prop":"Class"}]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Gxv4","iparms":[]}""");
          return  ;
@@ -1610,8 +1610,8 @@ namespace GeneXus.Programs.wallet.registered {
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
          AV10receive_msgs = new GXBaseCollection<GeneXus.Programs.nostr.SdtSDT_receive_msg>( context, "SDT_receive_msg", "distributedcryptography");
-         AV16externalUser = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
-         AV21wallet = new GeneXus.Programs.wallet.SdtWallet(context);
+         AV22externalUserPublic = new GeneXus.Programs.distcrypt.SdtExternalUserPublic(context);
+         AV23walletInfo = new GeneXus.Programs.wallet.SdtWalletInfo(context);
          AV12contact = new GeneXus.Programs.wallet.registered.SdtContact_SDT(context);
          sDynURL = "";
          FormProcess = "";
@@ -1635,8 +1635,8 @@ namespace GeneXus.Programs.wallet.registered {
          AV11sendClearText = "";
          hsh = "";
          GXt_SdtContact_SDT1 = new GeneXus.Programs.wallet.registered.SdtContact_SDT(context);
-         GXt_SdtExternalUser2 = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
-         GXt_SdtWallet3 = new GeneXus.Programs.wallet.SdtWallet(context);
+         GXt_SdtExternalUserPublic2 = new GeneXus.Programs.distcrypt.SdtExternalUserPublic(context);
+         GXt_SdtWalletInfo3 = new GeneXus.Programs.wallet.SdtWalletInfo(context);
          AV19sdt_all_chats = new GXBaseCollection<GeneXus.Programs.nostr.SdtSDT_Chat>( context, "SDT_Chat", "distributedcryptography");
          GXt_objcol_SdtSDT_Chat4 = new GXBaseCollection<GeneXus.Programs.nostr.SdtSDT_Chat>( context, "SDT_Chat", "distributedcryptography");
          AV15sdt_chat = new GeneXus.Programs.nostr.SdtSDT_Chat(context);
@@ -1681,12 +1681,12 @@ namespace GeneXus.Programs.wallet.registered {
       private int nRC_GXsfl_14 ;
       private int nGXsfl_14_idx=1 ;
       private int edtavCtluserprivatename_Enabled ;
-      private int AV23GXV2 ;
+      private int AV25GXV2 ;
       private int subGridchat_Islastpage ;
       private int edtavCtldatetime_Enabled ;
       private int edtavCtlmsessageenc_Enabled ;
       private int nGXsfl_14_fel_idx=1 ;
-      private int AV26GXV5 ;
+      private int AV28GXV5 ;
       private int nGXsfl_14_bak_idx=1 ;
       private int edtavSendcleartext_Enabled ;
       private int idxLst ;
@@ -1761,14 +1761,14 @@ namespace GeneXus.Programs.wallet.registered {
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
       private GXBaseCollection<GeneXus.Programs.nostr.SdtSDT_receive_msg> AV10receive_msgs ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser AV16externalUser ;
-      private GeneXus.Programs.wallet.SdtWallet AV21wallet ;
+      private GeneXus.Programs.distcrypt.SdtExternalUserPublic AV22externalUserPublic ;
+      private GeneXus.Programs.wallet.SdtWalletInfo AV23walletInfo ;
       private GeneXus.Programs.wallet.registered.SdtContact_SDT AV12contact ;
       private GeneXus.Programs.nostr.SdtSDT_message AV14sdt_message ;
       private GeneXus.Programs.wallet.SdtSDT_Json_Enc AV18json_enc ;
       private GeneXus.Programs.wallet.registered.SdtContact_SDT GXt_SdtContact_SDT1 ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser2 ;
-      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet3 ;
+      private GeneXus.Programs.distcrypt.SdtExternalUserPublic GXt_SdtExternalUserPublic2 ;
+      private GeneXus.Programs.wallet.SdtWalletInfo GXt_SdtWalletInfo3 ;
       private GXBaseCollection<GeneXus.Programs.nostr.SdtSDT_Chat> AV19sdt_all_chats ;
       private GXBaseCollection<GeneXus.Programs.nostr.SdtSDT_Chat> GXt_objcol_SdtSDT_Chat4 ;
       private GeneXus.Programs.nostr.SdtSDT_Chat AV15sdt_chat ;

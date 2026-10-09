@@ -165,11 +165,11 @@ namespace GeneXus.Programs.wallet.registered {
             {
                ValidateSpaRequest();
             }
-            PA2O2( ) ;
+            PA2R2( ) ;
             if ( ( GxWebError == 0 ) && ! isAjaxCallMode( ) )
             {
                /* GeneXus formulas. */
-               WS2O2( ) ;
+               WS2R2( ) ;
                if ( ! isAjaxCallMode( ) )
                {
                   if ( nDynComponent == 0 )
@@ -232,10 +232,10 @@ namespace GeneXus.Programs.wallet.registered {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -319,7 +319,7 @@ namespace GeneXus.Programs.wallet.registered {
          send_integrity_footer_hashes( ) ;
       }
 
-      protected void RenderHtmlCloseForm2O2( )
+      protected void RenderHtmlCloseForm2R2( )
       {
          SendCloseFormHiddens( ) ;
          if ( ( StringUtil.Len( sPrefix) != 0 ) && ( context.isAjaxRequest( ) || context.isSpaRequest( ) ) )
@@ -376,7 +376,7 @@ namespace GeneXus.Programs.wallet.registered {
          return "Timed Wallet Bounty Not Owner" ;
       }
 
-      protected void WB2O0( )
+      protected void WB2R0( )
       {
          if ( context.isAjaxRequest( ) )
          {
@@ -422,7 +422,7 @@ namespace GeneXus.Programs.wallet.registered {
          wbLoad = true;
       }
 
-      protected void START2O2( )
+      protected void START2R2( )
       {
          wbLoad = false;
          wbEnd = 0;
@@ -433,7 +433,7 @@ namespace GeneXus.Programs.wallet.registered {
             {
                if ( context.ExposeMetadata( ) )
                {
-                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_14-187820", 0) ;
+                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_16-189595", 0) ;
                }
             }
             Form.Meta.addItem("description", "Timed Wallet Bounty Not Owner", 0) ;
@@ -453,18 +453,18 @@ namespace GeneXus.Programs.wallet.registered {
          {
             if ( nDoneStart == 0 )
             {
-               STRUP2O0( ) ;
+               STRUP2R0( ) ;
             }
          }
       }
 
-      protected void WS2O2( )
+      protected void WS2R2( )
       {
-         START2O2( ) ;
-         EVT2O2( ) ;
+         START2R2( ) ;
+         EVT2R2( ) ;
       }
 
-      protected void EVT2O2( )
+      protected void EVT2R2( )
       {
          sXEvt = cgiGet( "_EventName");
          if ( ( ( ( StringUtil.Len( sPrefix) == 0 ) ) || ( StringUtil.StringSearch( sXEvt, sPrefix, 1) > 0 ) ) && ! GetJustCreated( ) && ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 ) )
@@ -494,7 +494,7 @@ namespace GeneXus.Programs.wallet.registered {
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
-                                 STRUP2O0( ) ;
+                                 STRUP2R0( ) ;
                               }
                               if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
                               {
@@ -509,7 +509,7 @@ namespace GeneXus.Programs.wallet.registered {
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
-                                 STRUP2O0( ) ;
+                                 STRUP2R0( ) ;
                               }
                               if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
                               {
@@ -518,7 +518,7 @@ namespace GeneXus.Programs.wallet.registered {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: Start */
-                                    E112O2 ();
+                                    E112R2 ();
                                  }
                               }
                            }
@@ -526,7 +526,7 @@ namespace GeneXus.Programs.wallet.registered {
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
-                                 STRUP2O0( ) ;
+                                 STRUP2R0( ) ;
                               }
                               if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
                               {
@@ -535,7 +535,7 @@ namespace GeneXus.Programs.wallet.registered {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: 'Close' */
-                                    E122O2 ();
+                                    E122R2 ();
                                  }
                               }
                            }
@@ -543,7 +543,7 @@ namespace GeneXus.Programs.wallet.registered {
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
-                                 STRUP2O0( ) ;
+                                 STRUP2R0( ) ;
                               }
                               if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
                               {
@@ -552,7 +552,7 @@ namespace GeneXus.Programs.wallet.registered {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: Load */
-                                    E132O2 ();
+                                    E132R2 ();
                                  }
                               }
                            }
@@ -560,7 +560,7 @@ namespace GeneXus.Programs.wallet.registered {
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
-                                 STRUP2O0( ) ;
+                                 STRUP2R0( ) ;
                               }
                               if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
                               {
@@ -583,7 +583,7 @@ namespace GeneXus.Programs.wallet.registered {
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
-                                 STRUP2O0( ) ;
+                                 STRUP2R0( ) ;
                               }
                               if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
                               {
@@ -607,7 +607,7 @@ namespace GeneXus.Programs.wallet.registered {
          }
       }
 
-      protected void WE2O2( )
+      protected void WE2R2( )
       {
          if ( ! GxWebStd.gx_redirect( context) )
          {
@@ -615,12 +615,12 @@ namespace GeneXus.Programs.wallet.registered {
             Refresh( ) ;
             if ( ! GxWebStd.gx_redirect( context) )
             {
-               RenderHtmlCloseForm2O2( ) ;
+               RenderHtmlCloseForm2R2( ) ;
             }
          }
       }
 
-      protected void PA2O2( )
+      protected void PA2R2( )
       {
          if ( nDonePA == 0 )
          {
@@ -687,7 +687,7 @@ namespace GeneXus.Programs.wallet.registered {
       public void Refresh( )
       {
          send_integrity_hashes( ) ;
-         RF2O2( ) ;
+         RF2R2( ) ;
          if ( isFullAjaxMode( ) )
          {
             send_integrity_footer_hashes( ) ;
@@ -699,7 +699,7 @@ namespace GeneXus.Programs.wallet.registered {
          /* GeneXus formulas. */
       }
 
-      protected void RF2O2( )
+      protected void RF2R2( )
       {
          initialize_formulas( ) ;
          clear_multi_value_controls( ) ;
@@ -709,12 +709,12 @@ namespace GeneXus.Programs.wallet.registered {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E132O2 ();
-            WB2O0( ) ;
+            E132R2 ();
+            WB2R0( ) ;
          }
       }
 
-      protected void send_integrity_lvl_hashes2O2( )
+      protected void send_integrity_lvl_hashes2R2( )
       {
       }
 
@@ -723,14 +723,14 @@ namespace GeneXus.Programs.wallet.registered {
          fix_multi_value_controls( ) ;
       }
 
-      protected void STRUP2O0( )
+      protected void STRUP2R0( )
       {
          /* Before Start, stand alone formulas. */
          before_start_formulas( ) ;
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E112O2 ();
+         E112R2 ();
          context.wbGlbDoneStart = 1;
          nDoneStart = 1;
          /* After Start, stand alone formulas. */
@@ -753,20 +753,20 @@ namespace GeneXus.Programs.wallet.registered {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E112O2 ();
+         E112R2 ();
          if (returnInSub) return;
       }
 
-      protected void E112O2( )
+      protected void E112R2( )
       {
          /* Start Routine */
          returnInSub = false;
          lblMsgtoowner_Caption = "You've been selected as a Bounty Beneficiary by the owner of this group";
          AssignProp(sPrefix, false, lblMsgtoowner_Internalname, "Caption", lblMsgtoowner_Caption, true);
-         AV7group_sdt.FromJSonString(AV6websession.Get("Group_EDIT"), null);
+         AV15group_sdt.FromJSonString(AV6websession.Get("Group_EDIT"), null);
       }
 
-      protected void E122O2( )
+      protected void E122R2( )
       {
          /* 'Close' Routine */
          returnInSub = false;
@@ -784,7 +784,7 @@ namespace GeneXus.Programs.wallet.registered {
       {
       }
 
-      protected void E132O2( )
+      protected void E132R2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -805,9 +805,9 @@ namespace GeneXus.Programs.wallet.registered {
          nGotPars = (short)(1);
          nGXWrapped = (short)(1);
          context.SetWrapped(true);
-         PA2O2( ) ;
-         WS2O2( ) ;
-         WE2O2( ) ;
+         PA2R2( ) ;
+         WS2R2( ) ;
+         WE2R2( ) ;
          cleanup();
          context.SetWrapped(false);
          SaveComponentMsgList(sPrefix);
@@ -831,7 +831,7 @@ namespace GeneXus.Programs.wallet.registered {
                                                   string sPSFPrefix )
       {
          sPrefix = sPPrefix + sPSFPrefix;
-         PA2O2( ) ;
+         PA2R2( ) ;
          WCParametersGet( ) ;
       }
 
@@ -851,7 +851,7 @@ namespace GeneXus.Programs.wallet.registered {
             init_default_properties( ) ;
             init_web_controls( ) ;
          }
-         PA2O2( ) ;
+         PA2R2( ) ;
          if ( ! GetJustCreated( ) && ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 ) && ( context.wbGlbDoneStart == 0 ) )
          {
             WCParametersGet( ) ;
@@ -877,10 +877,10 @@ namespace GeneXus.Programs.wallet.registered {
          context.GX_msglist = LclMsgLst;
          INITWEB( ) ;
          nDraw = 0;
-         PA2O2( ) ;
+         PA2R2( ) ;
          sEvt = sCompEvt;
          WCParametersGet( ) ;
-         WS2O2( ) ;
+         WS2R2( ) ;
          if ( isFullAjaxMode( ) )
          {
             componentdraw();
@@ -902,7 +902,7 @@ namespace GeneXus.Programs.wallet.registered {
          nDraw = 1;
          BackMsgLst = context.GX_msglist;
          context.GX_msglist = LclMsgLst;
-         WS2O2( ) ;
+         WS2R2( ) ;
          SaveComponentMsgList(sPrefix);
          context.GX_msglist = BackMsgLst;
       }
@@ -920,7 +920,7 @@ namespace GeneXus.Programs.wallet.registered {
          BackMsgLst = context.GX_msglist;
          context.GX_msglist = LclMsgLst;
          WCParametersSet( ) ;
-         WE2O2( ) ;
+         WE2R2( ) ;
          SaveComponentMsgList(sPrefix);
          context.GX_msglist = BackMsgLst;
       }
@@ -960,7 +960,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20261301629545", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610714151851", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -976,7 +976,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/timedwalletbountynotowner.js", "?20261301629545", false, true, false);
+         context.AddJavascriptSource("wallet/registered/timedwalletbountynotowner.js", "?202610714151851", false, true, false);
          /* End function include_jscripts */
       }
 
@@ -1025,7 +1025,7 @@ namespace GeneXus.Programs.wallet.registered {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
-         setEventMetadata("'CLOSE'","""{"handler":"E122O2","iparms":[]}""");
+         setEventMetadata("'CLOSE'","""{"handler":"E122R2","iparms":[]}""");
          return  ;
       }
 
@@ -1059,7 +1059,7 @@ namespace GeneXus.Programs.wallet.registered {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
-         AV7group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
+         AV15group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
          AV6websession = context.GetSession();
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
@@ -1111,7 +1111,7 @@ namespace GeneXus.Programs.wallet.registered {
       private IGxSession AV6websession ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV7group_sdt ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV15group_sdt ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

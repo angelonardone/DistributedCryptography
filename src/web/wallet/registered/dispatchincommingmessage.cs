@@ -235,10 +235,10 @@ namespace GeneXus.Programs.wallet.registered {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -312,15 +312,6 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void send_integrity_footer_hashes( )
       {
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vNOTIFICATIONINFO", AV12notificationInfo);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vNOTIFICATIONINFO", AV12notificationInfo);
-         }
-         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vNOTIFICATIONINFO", GetSecureSignedToken( sPrefix, AV12notificationInfo, context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -330,41 +321,8 @@ namespace GeneXus.Programs.wallet.registered {
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV9screen_name", StringUtil.RTrim( wcpOAV9screen_name));
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vNOTIFICATIONINFO", AV12notificationInfo);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vNOTIFICATIONINFO", AV12notificationInfo);
-         }
-         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vNOTIFICATIONINFO", GetSecureSignedToken( sPrefix, AV12notificationInfo, context));
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vJSON_ENC", AV13json_enc);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vJSON_ENC", AV13json_enc);
-         }
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vEXTERNALUSER", AV16externalUser);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vEXTERNALUSER", AV16externalUser);
-         }
          GxWebStd.gx_hidden_field( context, sPrefix+"vSCREEN_NAME", StringUtil.RTrim( AV9screen_name));
          GxWebStd.gx_hidden_field( context, sPrefix+"vLASTMESSAGEID", AV23lastMessageId.ToString());
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vMESSAGE", AV21message);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vMESSAGE", AV21message);
-         }
       }
 
       protected void RenderHtmlCloseForm192( )
@@ -463,7 +421,7 @@ namespace GeneXus.Programs.wallet.registered {
             {
                if ( context.ExposeMetadata( ) )
                {
-                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_14-187820", 0) ;
+                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_16-189595", 0) ;
                }
             }
             Form.Meta.addItem("description", "dispatch Incomming Message", 0) ;
@@ -728,15 +686,6 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void send_integrity_lvl_hashes192( )
       {
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vNOTIFICATIONINFO", AV12notificationInfo);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vNOTIFICATIONINFO", AV12notificationInfo);
-         }
-         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vNOTIFICATIONINFO", GetSecureSignedToken( sPrefix, AV12notificationInfo, context));
       }
 
       protected void before_start_formulas( )
@@ -772,396 +721,29 @@ namespace GeneXus.Programs.wallet.registered {
       {
          /* GlobalEvents_Distpachincommingmessages Routine */
          returnInSub = false;
-         GXt_SdtWallet1 = AV7wallet;
-         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet1) ;
-         AV7wallet = GXt_SdtWallet1;
-         GXt_SdtExternalUser2 = AV16externalUser;
-         new GeneXus.Programs.distcrypt.getexternaluser(context ).execute( out  GXt_SdtExternalUser2) ;
-         AV16externalUser = GXt_SdtExternalUser2;
-         AV5queueDirectory.Source = "Comqueue";
-         AV30GXV2 = 1;
-         AV29GXV1 = AV5queueDirectory.GetFiles(".queue");
-         while ( AV30GXV2 <= AV29GXV1.ItemCount )
+         if ( StringUtil.StrCmp(StringUtil.Trim( AV9screen_name), "Wallet.registered.Chat") == 0 )
          {
-            AV6queueFile = AV29GXV1.Item(AV30GXV2);
-            AV12notificationInfo.FromJSonFile(AV6queueFile, null);
-            AV6queueFile.Delete();
-            new GeneXus.Programs.nostr.processrecivedfromnostr(context ).execute(  AV12notificationInfo, out  AV26recFromNostr) ;
-            if ( ( StringUtil.StrCmp(AV26recFromNostr.gxTpr_Responsetype, "EVENT") == 0 ) && ( AV26recFromNostr.gxTpr_Event.gxTpr_Kind == 4 ) )
-            {
-               GXt_char3 = AV28encText;
-               new GeneXus.Programs.distcrypt.hextotext(context ).execute(  StringUtil.Trim( AV26recFromNostr.gxTpr_Event.gxTpr_Content), out  GXt_char3) ;
-               AV28encText = GXt_char3;
-               AV13json_enc.FromJSonString(AV28encText, null);
-               /* Execute user subroutine: 'DISPATCH ONE MESSAGE' */
-               S112 ();
-               if (returnInSub) return;
-            }
-            else
-            {
-               if ( StringUtil.StrCmp(AV26recFromNostr.gxTpr_Responsetype, "EOSE") == 0 )
-               {
-               }
-               else
-               {
-                  if ( StringUtil.StrCmp(AV26recFromNostr.gxTpr_Responsetype, "OK") == 0 )
-                  {
-                  }
-                  else
-                  {
-                     this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"Nostr response: ",AV26recFromNostr.ToJSonString(false, true)}, true);
-                  }
-               }
-            }
-            AV30GXV2 = (int)(AV30GXV2+1);
-         }
-         GXt_char3 = AV14error;
-         new GeneXus.Programs.wallet.registered.getmessages(context ).execute( out  AV19messages, out  GXt_char3) ;
-         AV14error = GXt_char3;
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
-         {
-            AV31GXV3 = 1;
-            while ( AV31GXV3 <= AV19messages.gxTpr_Message.Count )
-            {
-               AV21message = ((SdtDesktopApp_services_SDT_Messages_Message_MessageItem)AV19messages.gxTpr_Message.Item(AV31GXV3));
-               AV13json_enc = new GeneXus.Programs.wallet.SdtSDT_Json_Enc(context);
-               AV13json_enc.gxTpr_Encryptedkey = AV21message.gxTpr_Messageencryptedkey;
-               AV13json_enc.gxTpr_Encryptedtext = AV21message.gxTpr_Messageencrypted;
-               /* Execute user subroutine: 'DISPATCH ONE MESSAGE' */
-               S112 ();
-               if (returnInSub) return;
-               AV31GXV3 = (int)(AV31GXV3+1);
-            }
+            AV30isChatScreen = true;
          }
          else
          {
-            this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"getMessages: ",(string)AV14error}, true);
+            AV30isChatScreen = false;
          }
+         new GeneXus.Programs.wallet.registered.processincomingmessages(context ).execute(  AV30isChatScreen, ref  AV23lastMessageId, out  AV31notifications, out  AV33refreshChat) ;
+         AssignAttri(sPrefix, false, "AV23lastMessageId", AV23lastMessageId.ToString());
+         AV34GXV1 = 1;
+         while ( AV34GXV1 <= AV31notifications.Count )
+         {
+            AV32oneNotification = ((GeneXus.Programs.wallet.registered.SdtIncomingNotification)AV31notifications.Item(AV34GXV1));
+            this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {AV32oneNotification.gxTpr_Toasttype,AV32oneNotification.gxTpr_Title,AV32oneNotification.gxTpr_Text}, true);
+            AV34GXV1 = (int)(AV34GXV1+1);
+         }
+         if ( AV33refreshChat )
+         {
+            this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ReceiveChat", new Object[] {}, true);
+         }
+         AV31notifications.Clear();
          /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV16externalUser", AV16externalUser);
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV13json_enc", AV13json_enc);
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV21message", AV21message);
-      }
-
-      protected void S112( )
-      {
-         /* 'DISPATCH ONE MESSAGE' Routine */
-         returnInSub = false;
-         GXt_char3 = AV14error;
-         new GeneXus.Programs.distributedcryptographylib.decryptjsonfor(context ).execute(  AV13json_enc.gxTpr_Encryptedtext,  AV13json_enc.gxTpr_Encryptedkey,  AV16externalUser.gxTpr_Chatkeyinfo.gxTpr_Privatekey, out  AV15clearText, out  GXt_char3) ;
-         AV14error = GXt_char3;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
-         {
-            GXt_char3 = AV14error;
-            new GeneXus.Programs.distributedcryptographylib.decryptjsonfor(context ).execute(  AV13json_enc.gxTpr_Encryptedtext,  AV13json_enc.gxTpr_Encryptedkey,  AV16externalUser.gxTpr_Keyinfo.gxTpr_Privatekey, out  AV15clearText, out  GXt_char3) ;
-            AV14error = GXt_char3;
-            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
-            {
-               GXt_char3 = AV14error;
-               new GeneXus.Programs.distributedcryptographylib.decryptjsonfor(context ).execute(  AV13json_enc.gxTpr_Encryptedtext,  AV13json_enc.gxTpr_Encryptedkey,  AV16externalUser.gxTpr_Groupskeyinfo.gxTpr_Privatekey, out  AV15clearText, out  GXt_char3) ;
-               AV14error = GXt_char3;
-            }
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
-         {
-            AV10sdt_message.FromJSonString(AV15clearText, null);
-            if ( AV10sdt_message.gxTpr_Messagetype == 50 )
-            {
-               AV11sdt_chat.FromJSonString(AV10sdt_message.gxTpr_Message, null);
-               GXt_guid4 = AV17contactId;
-               new GeneXus.Programs.wallet.registered.getcontactid(context ).execute(  StringUtil.Trim( AV11sdt_chat.gxTpr_From), out  AV25userPrivateName, out  GXt_guid4) ;
-               AV17contactId = GXt_guid4;
-               if ( (Guid.Empty==AV17contactId) )
-               {
-               }
-               else
-               {
-                  new GeneXus.Programs.wallet.registered.appendcontactchat(context ).execute(  AV17contactId,  AV11sdt_chat) ;
-                  if ( StringUtil.StrCmp(StringUtil.Trim( AV9screen_name), "Wallet.registered.Chat") == 0 )
-                  {
-                     GXt_SdtContact_SDT5 = AV18contact;
-                     new GeneXus.Programs.wallet.getcontact(context ).execute( out  GXt_SdtContact_SDT5) ;
-                     AV18contact = GXt_SdtContact_SDT5;
-                     if ( AV18contact.gxTpr_Contactrid == AV17contactId )
-                     {
-                        this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ReceiveChat", new Object[] {}, true);
-                     }
-                     else
-                     {
-                        this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"info",(string)"New Chat",(string)"you've received a chat from: "+AV25userPrivateName}, true);
-                     }
-                  }
-                  else
-                  {
-                     this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"info",(string)"New Chat",(string)"you've received a chat from: "+AV25userPrivateName}, true);
-                  }
-               }
-            }
-            else if ( AV10sdt_message.gxTpr_Messagetype == 30 )
-            {
-               GXt_char3 = AV14error;
-               new GeneXus.Programs.wallet.registered.insertinvitationoncontact(context ).execute(  AV10sdt_message, out  AV24isContactDeclined, out  GXt_char3) ;
-               AV14error = GXt_char3;
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
-               {
-                  GXt_char3 = AV14error;
-                  new GeneXus.Programs.wallet.registered.deletemessage(context ).execute(  AV21message.gxTpr_Messageid, out  GXt_char3) ;
-                  AV14error = GXt_char3;
-                  if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
-                  {
-                     this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"Error deleting invitation",(string)AV14error}, true);
-                  }
-                  else
-                  {
-                     if ( AV23lastMessageId == AV10sdt_message.gxTpr_Id )
-                     {
-                     }
-                     else
-                     {
-                        if ( ! AV24isContactDeclined )
-                        {
-                           this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"info",(string)"There is a new Contact invitation",(string)"Please go to Contacts to accept or decline"}, true);
-                        }
-                        AV23lastMessageId = AV10sdt_message.gxTpr_Id;
-                        AssignAttri(sPrefix, false, "AV23lastMessageId", AV23lastMessageId.ToString());
-                     }
-                  }
-               }
-            }
-            else if ( AV10sdt_message.gxTpr_Messagetype == 40 )
-            {
-               GXt_char3 = AV14error;
-               new GeneXus.Programs.wallet.registered.updateacceptedinvitation(context ).execute(  AV10sdt_message, out  GXt_char3) ;
-               AV14error = GXt_char3;
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
-               {
-                  GXt_char3 = AV14error;
-                  new GeneXus.Programs.wallet.registered.deletemessage(context ).execute(  AV21message.gxTpr_Messageid, out  GXt_char3) ;
-                  AV14error = GXt_char3;
-                  if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
-                  {
-                     this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"Error deleting confirmation: ",(string)AV14error}, true);
-                  }
-                  else
-                  {
-                     if ( AV23lastMessageId == AV10sdt_message.gxTpr_Id )
-                     {
-                     }
-                     else
-                     {
-                        this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"info",(string)"There is a new Confirmation",(string)"One of you contact invitation was accepted"}, true);
-                        AV23lastMessageId = AV10sdt_message.gxTpr_Id;
-                        AssignAttri(sPrefix, false, "AV23lastMessageId", AV23lastMessageId.ToString());
-                     }
-                  }
-               }
-               else
-               {
-                  this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"Error updating User invitation: ",(string)AV14error}, true);
-               }
-            }
-            else if ( AV10sdt_message.gxTpr_Messagetype == 70 )
-            {
-               GXt_char3 = AV14error;
-               new GeneXus.Programs.wallet.registered.insertinvitationongroup(context ).execute(  AV10sdt_message, out  AV24isContactDeclined, out  GXt_char3) ;
-               AV14error = GXt_char3;
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
-               {
-                  GXt_char3 = AV14error;
-                  new GeneXus.Programs.wallet.registered.deletemessage(context ).execute(  AV21message.gxTpr_Messageid, out  GXt_char3) ;
-                  AV14error = GXt_char3;
-                  if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
-                  {
-                     this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"Error deleting group invitation",(string)AV14error}, true);
-                  }
-                  else
-                  {
-                     if ( AV23lastMessageId == AV10sdt_message.gxTpr_Id )
-                     {
-                     }
-                     else
-                     {
-                        if ( ! AV24isContactDeclined )
-                        {
-                           this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"info",(string)"There is a new Group invitation",(string)"Please go to SmartGroups to accept or decline"}, true);
-                        }
-                        AV23lastMessageId = AV10sdt_message.gxTpr_Id;
-                        AssignAttri(sPrefix, false, "AV23lastMessageId", AV23lastMessageId.ToString());
-                     }
-                  }
-               }
-               else
-               {
-                  this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"warning",(string)"We've received a group invitaton",(string)AV14error}, true);
-               }
-            }
-            else if ( AV10sdt_message.gxTpr_Messagetype == 80 )
-            {
-               GXt_char3 = AV14error;
-               new GeneXus.Programs.wallet.registered.updateacceptedinvitationongroup(context ).execute(  AV10sdt_message, out  GXt_char3) ;
-               AV14error = GXt_char3;
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
-               {
-                  GXt_char3 = AV14error;
-                  new GeneXus.Programs.wallet.registered.deletemessage(context ).execute(  AV21message.gxTpr_Messageid, out  GXt_char3) ;
-                  AV14error = GXt_char3;
-                  if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
-                  {
-                     this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"Error deleting group invitation",(string)AV14error}, true);
-                  }
-                  else
-                  {
-                     if ( AV23lastMessageId == AV10sdt_message.gxTpr_Id )
-                     {
-                     }
-                     else
-                     {
-                        this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"info",(string)"There is a new Group Confirmation",(string)"Please go to SmartGroups to see which user group accepted the invitation"}, true);
-                        AV23lastMessageId = AV10sdt_message.gxTpr_Id;
-                        AssignAttri(sPrefix, false, "AV23lastMessageId", AV23lastMessageId.ToString());
-                     }
-                  }
-               }
-               else
-               {
-                  this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"warning",(string)"We've received a group acceptance",(string)AV14error}, true);
-               }
-            }
-            else if ( AV10sdt_message.gxTpr_Messagetype == 90 )
-            {
-               GXt_char3 = AV14error;
-               new GeneXus.Programs.wallet.registered.updateactivatedgroup(context ).execute(  AV10sdt_message, out  GXt_char3) ;
-               AV14error = GXt_char3;
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
-               {
-                  GXt_char3 = AV14error;
-                  new GeneXus.Programs.wallet.registered.deletemessage(context ).execute(  AV21message.gxTpr_Messageid, out  GXt_char3) ;
-                  AV14error = GXt_char3;
-                  if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
-                  {
-                     this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"Error deleting group message",(string)AV14error}, true);
-                  }
-                  else
-                  {
-                     if ( AV23lastMessageId == AV10sdt_message.gxTpr_Id )
-                     {
-                     }
-                     else
-                     {
-                        this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"info",(string)"There is a new Group Activation",(string)"Please go to SmartGroups to see which user group was activated"}, true);
-                        AV23lastMessageId = AV10sdt_message.gxTpr_Id;
-                        AssignAttri(sPrefix, false, "AV23lastMessageId", AV23lastMessageId.ToString());
-                     }
-                  }
-               }
-               else
-               {
-                  this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"warning",(string)"We've received a group activation",(string)AV14error}, true);
-               }
-            }
-            else if ( AV10sdt_message.gxTpr_Messagetype == 100 )
-            {
-               GXt_char3 = AV14error;
-               new GeneXus.Programs.wallet.registered.updaterestoreongroup(context ).execute(  AV10sdt_message, out  GXt_char3) ;
-               AV14error = GXt_char3;
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
-               {
-                  GXt_char3 = AV14error;
-                  new GeneXus.Programs.wallet.registered.deletemessage(context ).execute(  AV21message.gxTpr_Messageid, out  GXt_char3) ;
-                  AV14error = GXt_char3;
-                  if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
-                  {
-                     this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"Error deleting group message",(string)AV14error}, true);
-                  }
-                  else
-                  {
-                     if ( AV23lastMessageId == AV10sdt_message.gxTpr_Id )
-                     {
-                     }
-                     else
-                     {
-                        this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"info",(string)"There is a new Group Restore",(string)"Please go to SmartGroups to see which user group it is restoring"}, true);
-                        AV23lastMessageId = AV10sdt_message.gxTpr_Id;
-                        AssignAttri(sPrefix, false, "AV23lastMessageId", AV23lastMessageId.ToString());
-                     }
-                  }
-               }
-               else
-               {
-                  this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"warning",(string)"We've received a group restore",(string)AV14error}, true);
-               }
-            }
-            else if ( AV10sdt_message.gxTpr_Messagetype == 110 )
-            {
-               GXt_char3 = AV14error;
-               new GeneXus.Programs.wallet.registered.receivedonemusign(context ).execute(  AV10sdt_message, out  GXt_char3) ;
-               AV14error = GXt_char3;
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
-               {
-                  GXt_char3 = AV14error;
-                  new GeneXus.Programs.wallet.registered.deletemessage(context ).execute(  AV21message.gxTpr_Messageid, out  GXt_char3) ;
-                  AV14error = GXt_char3;
-                  if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
-                  {
-                     this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"Error deleting group message",(string)AV14error}, true);
-                  }
-                  else
-                  {
-                     if ( AV23lastMessageId == AV10sdt_message.gxTpr_Id )
-                     {
-                     }
-                     else
-                     {
-                        this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"info",(string)"There is a new MultiSignature Group event",(string)"Please go to SmartGroups to see which user group has received a signature"}, true);
-                        AV23lastMessageId = AV10sdt_message.gxTpr_Id;
-                        AssignAttri(sPrefix, false, "AV23lastMessageId", AV23lastMessageId.ToString());
-                     }
-                  }
-               }
-               else
-               {
-                  this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"warning",(string)"We've received one partial signature",(string)AV14error}, true);
-               }
-            }
-            else if ( AV10sdt_message.gxTpr_Messagetype == 120 )
-            {
-               GXt_char3 = AV14error;
-               new GeneXus.Programs.wallet.registered.receivedfinishedmusig(context ).execute(  AV10sdt_message, out  GXt_char3) ;
-               AV14error = GXt_char3;
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
-               {
-                  GXt_char3 = AV14error;
-                  new GeneXus.Programs.wallet.registered.deletemessage(context ).execute(  AV21message.gxTpr_Messageid, out  GXt_char3) ;
-                  AV14error = GXt_char3;
-                  if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
-                  {
-                     this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"Error deleting group message",(string)AV14error}, true);
-                  }
-                  else
-                  {
-                     if ( AV23lastMessageId == AV10sdt_message.gxTpr_Id )
-                     {
-                     }
-                     else
-                     {
-                        this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"info",(string)"There is a new MultiSignature Group transaction",(string)"Please go to SmartGroups to see the completed transaction"}, true);
-                        AV23lastMessageId = AV10sdt_message.gxTpr_Id;
-                        AssignAttri(sPrefix, false, "AV23lastMessageId", AV23lastMessageId.ToString());
-                     }
-                  }
-               }
-               else
-               {
-                  this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"warning",(string)"We've received a signature confirmation",(string)AV14error}, true);
-               }
-            }
-            else
-            {
-            }
-         }
-         else
-         {
-         }
       }
 
       protected void nextLoad( )
@@ -1370,7 +952,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202613016293031", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610714152584", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1386,7 +968,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/dispatchincommingmessage.js", "?202613016293032", false, true, false);
+         context.AddJavascriptSource("wallet/registered/dispatchincommingmessage.js", "?202610714152584", false, true, false);
          /* End function include_jscripts */
       }
 
@@ -1431,9 +1013,9 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV12notificationInfo","fld":"vNOTIFICATIONINFO","hsh":true,"type":""}]}""");
-         setEventMetadata("GLOBALEVENTS.DISTPACHINCOMMINGMESSAGES","""{"handler":"E11192","iparms":[{"av":"AV12notificationInfo","fld":"vNOTIFICATIONINFO","hsh":true,"type":""},{"av":"AV13json_enc","fld":"vJSON_ENC","type":""},{"av":"AV16externalUser","fld":"vEXTERNALUSER","type":""},{"av":"AV9screen_name","fld":"vSCREEN_NAME","type":"char"},{"av":"AV23lastMessageId","fld":"vLASTMESSAGEID","type":"guid"},{"av":"AV21message","fld":"vMESSAGE","type":""}]""");
-         setEventMetadata("GLOBALEVENTS.DISTPACHINCOMMINGMESSAGES",""","oparms":[{"av":"AV16externalUser","fld":"vEXTERNALUSER","type":""},{"av":"AV13json_enc","fld":"vJSON_ENC","type":""},{"av":"AV21message","fld":"vMESSAGE","type":""},{"av":"AV23lastMessageId","fld":"vLASTMESSAGEID","type":"guid"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
+         setEventMetadata("GLOBALEVENTS.DISTPACHINCOMMINGMESSAGES","""{"handler":"E11192","iparms":[{"av":"AV9screen_name","fld":"vSCREEN_NAME","type":"char"},{"av":"AV23lastMessageId","fld":"vLASTMESSAGEID","type":"guid"}]""");
+         setEventMetadata("GLOBALEVENTS.DISTPACHINCOMMINGMESSAGES",""","oparms":[{"av":"AV23lastMessageId","fld":"vLASTMESSAGEID","type":"guid"}]}""");
          return  ;
       }
 
@@ -1455,12 +1037,8 @@ namespace GeneXus.Programs.wallet.registered {
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
-         AV12notificationInfo = new GeneXus.Core.genexus.server.SdtNotificationInfo(context);
          GXKey = "";
-         AV13json_enc = new GeneXus.Programs.wallet.SdtSDT_Json_Enc(context);
-         AV16externalUser = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
          AV23lastMessageId = Guid.Empty;
-         AV21message = new SdtDesktopApp_services_SDT_Messages_Message_MessageItem(context);
          GX_FocusControl = "";
          Form = new GXWebForm();
          sXEvt = "";
@@ -1468,25 +1046,8 @@ namespace GeneXus.Programs.wallet.registered {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
-         AV7wallet = new GeneXus.Programs.wallet.SdtWallet(context);
-         GXt_SdtWallet1 = new GeneXus.Programs.wallet.SdtWallet(context);
-         GXt_SdtExternalUser2 = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
-         AV5queueDirectory = new GxDirectory(context.GetPhysicalPath());
-         AV29GXV1 = new GxFileCollection();
-         AV6queueFile = new GxFile(context.GetPhysicalPath());
-         AV26recFromNostr = new GeneXus.Programs.nostr.SdtRecFromNostr(context);
-         AV28encText = "";
-         AV14error = "";
-         AV19messages = new SdtDesktopApp_services_SDT_Messages(context);
-         AV15clearText = "";
-         AV10sdt_message = new GeneXus.Programs.nostr.SdtSDT_message(context);
-         AV11sdt_chat = new GeneXus.Programs.nostr.SdtSDT_Chat(context);
-         AV17contactId = Guid.Empty;
-         GXt_guid4 = Guid.Empty;
-         AV25userPrivateName = "";
-         AV18contact = new GeneXus.Programs.wallet.registered.SdtContact_SDT(context);
-         GXt_SdtContact_SDT5 = new GeneXus.Programs.wallet.registered.SdtContact_SDT(context);
-         GXt_char3 = "";
+         AV31notifications = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtIncomingNotification>( context, "IncomingNotification", "distributedcryptography");
+         AV32oneNotification = new GeneXus.Programs.wallet.registered.SdtIncomingNotification(context);
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          sCtrlAV9screen_name = "";
@@ -1503,8 +1064,7 @@ namespace GeneXus.Programs.wallet.registered {
       private short nDonePA ;
       private short gxcookieaux ;
       private short nGXWrapped ;
-      private int AV30GXV2 ;
-      private int AV31GXV3 ;
+      private int AV34GXV1 ;
       private int idxLst ;
       private string AV9screen_name ;
       private string wcpOAV9screen_name ;
@@ -1524,9 +1084,6 @@ namespace GeneXus.Programs.wallet.registered {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
-      private string AV14error ;
-      private string AV25userPrivateName ;
-      private string GXt_char3 ;
       private string sCtrlAV9screen_name ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
@@ -1535,30 +1092,13 @@ namespace GeneXus.Programs.wallet.registered {
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
-      private bool AV24isContactDeclined ;
-      private string AV28encText ;
-      private string AV15clearText ;
+      private bool AV30isChatScreen ;
+      private bool AV33refreshChat ;
       private Guid AV23lastMessageId ;
-      private Guid AV17contactId ;
-      private Guid GXt_guid4 ;
       private GXWebForm Form ;
-      private GxFile AV6queueFile ;
-      private GxDirectory AV5queueDirectory ;
-      private GxFileCollection AV29GXV1 ;
       private IGxDataStore dsDefault ;
-      private GeneXus.Core.genexus.server.SdtNotificationInfo AV12notificationInfo ;
-      private GeneXus.Programs.wallet.SdtSDT_Json_Enc AV13json_enc ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser AV16externalUser ;
-      private SdtDesktopApp_services_SDT_Messages_Message_MessageItem AV21message ;
-      private GeneXus.Programs.wallet.SdtWallet AV7wallet ;
-      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser2 ;
-      private GeneXus.Programs.nostr.SdtRecFromNostr AV26recFromNostr ;
-      private SdtDesktopApp_services_SDT_Messages AV19messages ;
-      private GeneXus.Programs.nostr.SdtSDT_message AV10sdt_message ;
-      private GeneXus.Programs.nostr.SdtSDT_Chat AV11sdt_chat ;
-      private GeneXus.Programs.wallet.registered.SdtContact_SDT AV18contact ;
-      private GeneXus.Programs.wallet.registered.SdtContact_SDT GXt_SdtContact_SDT5 ;
+      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtIncomingNotification> AV31notifications ;
+      private GeneXus.Programs.wallet.registered.SdtIncomingNotification AV32oneNotification ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

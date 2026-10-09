@@ -26,6 +26,10 @@
  	<Compile Include="$(WebDirectory)\type_SdtDesktopApp_services_SDT_Messages.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtDesktopApp_services_SDT_Messages_Message_MessageItem.cs" />
  	<Compile Include="$(WebDirectory)\distcrypt\type_SdtExternalUser.cs" />
+ 	<Compile Include="$(WebDirectory)\distcrypt\type_SdtExternalUserPublic.cs" />
+ 	<Compile Include="$(WebDirectory)\distcrypt\type_SdtExternalUserPublic_KeyInfo.cs" />
+ 	<Compile Include="$(WebDirectory)\distcrypt\type_SdtExternalUserPublic_ChatKeyInfo.cs" />
+ 	<Compile Include="$(WebDirectory)\distcrypt\type_SdtExternalUserPublic_GroupsKeyInfo.cs" />
  	<Compile Include="$(WebDirectory)\distcrypt\type_SdtParametersSDT.cs" />
  	<Compile Include="$(WebDirectory)\distcrypt\type_SdtRetrunParametersSDT.cs" />
  	<Compile Include="$(WebDirectory)\distcrypt\sso\type_SdtGAMGAMRemoteErrorSDT.cs" />
@@ -111,6 +115,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtupdateGroup__postInput.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtupdateGroup__postOutput.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtEncryptedFile.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtExchangeFile.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtExtendeSecretAndAuthenticator.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtMultiSigSignatureData.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtMultiSigSignatureData_DataItem.cs" />
@@ -121,15 +126,28 @@
  	<Compile Include="$(WebDirectory)\wallet\type_SdtPasswords_and_tags.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtPassword_tag.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtContact_SDT.cs" />
- 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtderiveAddresssForDelegationMuSig1TestSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtDelegatedAddressResult.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtDelegatedSpendInfo.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtDelegatedSpendInfo_levelsItem.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtDelegatedSpendResult.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtDelegatedUtxo.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtderiveAddresssTimeBountyTestSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroupDescriptorResult.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroupListItem.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroup_SDT.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroup_SDT_TimeConstrainItem.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroup_SDT_ContactItem.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroup_SDT_otherGroup.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtIncomingNotification.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtLegacyAddressResult.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtLegacyFinalResult.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtLegacyPsbtResult.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtLegacySignatureRow.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtLegacyUtxo.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtMessage_signature.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtMuSigSignatures.cs" />
- 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtPassword_for_User.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtWalletBackupView.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtWalletBackupView_ContactItem.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtSDTAddressHistory.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtSDT_Json_Enc.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtSDT_ReturnAddresses_SDT_ReturnAddressesItem.cs" />
@@ -137,7 +155,10 @@
  	<Compile Include="$(WebDirectory)\wallet\type_SdtStoredTransactions_TransactionItem.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtStoredTransactions_TransactionItem_UsedIn.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtStoredTransactions_TransactionItem_UsedIn_UsedToItem.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtVaultContact.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtVaultRow.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtWallet.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtWalletInfo.cs" />
 
 </ItemGroup>
 

@@ -43,13 +43,13 @@ namespace GeneXus.Programs.hsm {
                            out string aP3_error )
       {
          this.AV12message = aP0_message;
-         this.AV10index = aP1_index;
+         this.AV8index = aP1_index;
          this.AV13encryptedMessage = "" ;
-         this.AV8error = "" ;
+         this.AV11error = "" ;
          initialize();
          ExecuteImpl();
          aP2_encryptedMessage=this.AV13encryptedMessage;
-         aP3_error=this.AV8error;
+         aP3_error=this.AV11error;
       }
 
       public string executeUdp( string aP0_message ,
@@ -57,7 +57,7 @@ namespace GeneXus.Programs.hsm {
                                 out string aP2_encryptedMessage )
       {
          execute(aP0_message, aP1_index, out aP2_encryptedMessage, out aP3_error);
-         return AV8error ;
+         return AV11error ;
       }
 
       public void executeSubmit( string aP0_message ,
@@ -66,22 +66,22 @@ namespace GeneXus.Programs.hsm {
                                  out string aP3_error )
       {
          this.AV12message = aP0_message;
-         this.AV10index = aP1_index;
+         this.AV8index = aP1_index;
          this.AV13encryptedMessage = "" ;
-         this.AV8error = "" ;
+         this.AV11error = "" ;
          SubmitImpl();
          aP2_encryptedMessage=this.AV13encryptedMessage;
-         aP3_error=this.AV8error;
+         aP3_error=this.AV11error;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV13encryptedMessage = AV9HsmManager.encrypt(AV12message, AV10index);
+         AV13encryptedMessage = AV10HsmManager.encrypt(AV12message, AV8index);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13encryptedMessage)) )
          {
-            AV8error = AV9HsmManager.getlasterror();
+            AV11error = AV10HsmManager.getlasterror();
          }
          cleanup();
       }
@@ -99,16 +99,16 @@ namespace GeneXus.Programs.hsm {
       public override void initialize( )
       {
          AV13encryptedMessage = "";
-         AV8error = "";
-         AV9HsmManager = new GeneXus.Programs.hsm.SdtHsmManager(context);
+         AV11error = "";
+         AV10HsmManager = new GeneXus.Programs.hsm.SdtHsmManager(context);
          /* GeneXus formulas. */
       }
 
-      private short AV10index ;
-      private string AV8error ;
+      private short AV8index ;
+      private string AV11error ;
       private string AV12message ;
       private string AV13encryptedMessage ;
-      private GeneXus.Programs.hsm.SdtHsmManager AV9HsmManager ;
+      private GeneXus.Programs.hsm.SdtHsmManager AV10HsmManager ;
       private string aP2_encryptedMessage ;
       private string aP3_error ;
    }

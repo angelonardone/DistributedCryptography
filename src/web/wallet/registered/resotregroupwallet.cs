@@ -39,8 +39,9 @@ namespace GeneXus.Programs.wallet.registered {
          dsDefault = context.GetDataStore("Default");
       }
 
-      public void execute( )
+      public void execute( Guid aP0_groupId )
       {
+         this.AV30groupId = aP0_groupId;
          ExecuteImpl();
       }
 
@@ -60,7 +61,7 @@ namespace GeneXus.Programs.wallet.registered {
          if ( nGotPars == 0 )
          {
             entryPointCalled = false;
-            gxfirstwebparm = GetNextPar( );
+            gxfirstwebparm = GetFirstPar( "groupId");
             gxfirstwebparm_bkp = gxfirstwebparm;
             gxfirstwebparm = DecryptAjaxCall( gxfirstwebparm);
             toggleJsOutput = isJsOutputEnabled( );
@@ -87,7 +88,7 @@ namespace GeneXus.Programs.wallet.registered {
                   GxWebError = 1;
                   return  ;
                }
-               gxfirstwebparm = GetNextPar( );
+               gxfirstwebparm = GetFirstPar( "groupId");
             }
             else if ( StringUtil.StrCmp(gxfirstwebparm, "gxfullajaxEvt") == 0 )
             {
@@ -96,7 +97,7 @@ namespace GeneXus.Programs.wallet.registered {
                   GxWebError = 1;
                   return  ;
                }
-               gxfirstwebparm = GetNextPar( );
+               gxfirstwebparm = GetFirstPar( "groupId");
             }
             else
             {
@@ -106,6 +107,12 @@ namespace GeneXus.Programs.wallet.registered {
                   return  ;
                }
                gxfirstwebparm = gxfirstwebparm_bkp;
+            }
+            if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+            {
+               AV30groupId = StringUtil.StrToGuid( gxfirstwebparm);
+               AssignAttri("", false, "AV30groupId", AV30groupId.ToString());
+               GxWebStd.gx_hidden_field( context, "gxhash_vGROUPID", GetSecureSignedToken( "", AV30groupId, context));
             }
             if ( toggleJsOutput )
             {
@@ -199,10 +206,10 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -232,7 +239,7 @@ namespace GeneXus.Programs.wallet.registered {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.resotregroupwallet") +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.registered.resotregroupwallet", new object[] {UrlEncode(AV30groupId.ToString())}, new string[] {"groupId"}) +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -247,8 +254,8 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void send_integrity_footer_hashes( )
       {
-         GxWebStd.gx_hidden_field( context, "vNETWORKTYPE", StringUtil.RTrim( AV12networkType));
-         GxWebStd.gx_hidden_field( context, "gxhash_vNETWORKTYPE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12networkType, "")), context));
+         GxWebStd.gx_hidden_field( context, "vGROUPID", AV30groupId.ToString());
+         GxWebStd.gx_hidden_field( context, "gxhash_vGROUPID", GetSecureSignedToken( "", AV30groupId, context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -257,33 +264,8 @@ namespace GeneXus.Programs.wallet.registered {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, "vERROR", StringUtil.RTrim( AV6error));
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vEXTKEYCREATE", AV7extKeyCreate);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vEXTKEYCREATE", AV7extKeyCreate);
-         }
-         GxWebStd.gx_hidden_field( context, "vNETWORKTYPE", StringUtil.RTrim( AV12networkType));
-         GxWebStd.gx_hidden_field( context, "gxhash_vNETWORKTYPE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12networkType, "")), context));
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vEXTENDESECRETANDAUTHENTICATOR", AV27extendeSecretAndAuthenticator);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vEXTENDESECRETANDAUTHENTICATOR", AV27extendeSecretAndAuthenticator);
-         }
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLET", AV16wallet);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLET", AV16wallet);
-         }
+         GxWebStd.gx_hidden_field( context, "vGROUPID", AV30groupId.ToString());
+         GxWebStd.gx_hidden_field( context, "gxhash_vGROUPID", GetSecureSignedToken( "", AV30groupId, context));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -337,7 +319,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wallet.registered.resotregroupwallet")  ;
+         return formatLink("wallet.registered.resotregroupwallet", new object[] {UrlEncode(AV30groupId.ToString())}, new string[] {"groupId"})  ;
       }
 
       public override string GetPgmname( )
@@ -455,7 +437,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_14-187820", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_16-189595", 0) ;
             }
          }
          Form.Meta.addItem("description", "Resotre Group Wallet", 0) ;
@@ -502,33 +484,26 @@ namespace GeneXus.Programs.wallet.registered {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                            }
-                           else if ( StringUtil.StrCmp(sEvt, "START") == 0 )
-                           {
-                              context.wbHandled = 1;
-                              dynload_actions( ) ;
-                              /* Execute user event: Start */
-                              E111M2 ();
-                           }
                            else if ( StringUtil.StrCmp(sEvt, "'RESTORE WALLET'") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: 'Restore Wallet' */
-                              E121M2 ();
+                              E111M2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "'CANCEL AND CLOSE'") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: 'Cancel and Close' */
-                              E131M2 ();
+                              E121M2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Load */
-                              E141M2 ();
+                              E131M2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                            {
@@ -655,15 +630,13 @@ namespace GeneXus.Programs.wallet.registered {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E141M2 ();
+            E131M2 ();
             WB1M0( ) ;
          }
       }
 
       protected void send_integrity_lvl_hashes1M2( )
       {
-         GxWebStd.gx_hidden_field( context, "vNETWORKTYPE", StringUtil.RTrim( AV12networkType));
-         GxWebStd.gx_hidden_field( context, "gxhash_vNETWORKTYPE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12networkType, "")), context));
       }
 
       protected void before_start_formulas( )
@@ -675,10 +648,6 @@ namespace GeneXus.Programs.wallet.registered {
       {
          /* Before Start, stand alone formulas. */
          before_start_formulas( ) ;
-         /* Execute Start event if defined. */
-         context.wbGlbDoneStart = 0;
-         /* Execute user event: Start */
-         E111M2 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
@@ -702,27 +671,7 @@ namespace GeneXus.Programs.wallet.registered {
          }
       }
 
-      protected void GXStart( )
-      {
-         /* Execute user event: Start */
-         E111M2 ();
-         if (returnInSub) return;
-      }
-
       protected void E111M2( )
-      {
-         /* Start Routine */
-         returnInSub = false;
-         GXt_SdtWallet1 = AV23CurrentWallet;
-         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet1) ;
-         AV23CurrentWallet = GXt_SdtWallet1;
-         AV18walletType = "BIP86";
-         AV12networkType = AV23CurrentWallet.gxTpr_Networktype;
-         AssignAttri("", false, "AV12networkType", AV12networkType);
-         GxWebStd.gx_hidden_field( context, "gxhash_vNETWORKTYPE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12networkType, "")), context));
-      }
-
-      protected void E121M2( )
       {
          /* 'Restore Wallet' Routine */
          returnInSub = false;
@@ -750,96 +699,56 @@ namespace GeneXus.Programs.wallet.registered {
                   }
                   else
                   {
-                     /* Execute user subroutine: 'IMPORT BIP86' */
-                     S112 ();
-                     if (returnInSub) return;
+                     GXt_char1 = AV6error;
+                     new GeneXus.Programs.wallet.registered.createwalletfromgroupbackup(context ).execute(  AV30groupId,  AV17walletName,  AV13newPass, out  GXt_char1) ;
+                     AV6error = GXt_char1;
+                     AV13newPass = "";
+                     AssignAttri("", false, "AV13newPass", AV13newPass);
+                     AV14newPassConfirm = "";
+                     AssignAttri("", false, "AV14newPassConfirm", AV14newPassConfirm);
+                     if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
+                     {
+                        AV26walletRestored = true;
+                        AV24webSession.Set("Group_Restore_Confirmed", StringUtil.BoolToStr( AV26walletRestored));
+                        context.setWebReturnParms(new Object[] {});
+                        context.setWebReturnParmsMetadata(new Object[] {});
+                        context.wjLocDisableFrm = 1;
+                        context.nUserReturn = 1;
+                        returnInSub = true;
+                        if (true) return;
+                     }
+                     else
+                     {
+                        GX_msglist.addItem(AV6error);
+                     }
                   }
                }
             }
          }
+         AV13newPass = "";
+         AssignAttri("", false, "AV13newPass", AV13newPass);
+         AV14newPassConfirm = "";
+         AssignAttri("", false, "AV14newPassConfirm", AV14newPassConfirm);
          /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV7extKeyCreate", AV7extKeyCreate);
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV27extendeSecretAndAuthenticator", AV27extendeSecretAndAuthenticator);
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV16wallet", AV16wallet);
       }
 
-      protected void S112( )
-      {
-         /* 'IMPORT BIP86' Routine */
-         returnInSub = false;
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
-         {
-            AV25extPrivateKey = AV24webSession.Get("Group_Restore_ExtPrivKey");
-            AV24webSession.Set("Group_Restore_ExtPrivKey", "");
-            AV7extKeyCreate.gxTpr_Keypath = "";
-            AV7extKeyCreate.gxTpr_Networktype = AV12networkType;
-            AV7extKeyCreate.gxTpr_Createextkeytype = 70;
-            AV7extKeyCreate.gxTpr_Extendedprivatekey = StringUtil.Trim( AV25extPrivateKey);
-            GXt_char2 = AV6error;
-            new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV7extKeyCreate,  "", out  AV8extKeyInfo, out  GXt_char2) ;
-            AV6error = GXt_char2;
-            AssignAttri("", false, "AV6error", AV6error);
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
-            {
-               AV27extendeSecretAndAuthenticator.gxTpr_Networktype = AV12networkType;
-               AV27extendeSecretAndAuthenticator.gxTpr_Authenticatorbase32 = "";
-               AV27extendeSecretAndAuthenticator.gxTpr_Extendedprivatekey = StringUtil.Trim( AV8extKeyInfo.gxTpr_Extended.gxTpr_Privatekey);
-               GXt_char2 = AV6error;
-               GXt_char3 = AV16wallet.gxTpr_Encryptedsecret;
-               new GeneXus.Programs.distributedcrypto.argon2encryption(context ).execute(  10,  AV13newPass,  AV27extendeSecretAndAuthenticator.ToJSonString(false, true), out  GXt_char3, ref  GXt_char2) ;
-               AV16wallet.gxTpr_Encryptedsecret = GXt_char3;
-               AV6error = GXt_char2;
-               AssignAttri("", false, "AV6error", AV6error);
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
-               {
-                  AV16wallet.gxTpr_Wallettype = "BIP86";
-                  AV16wallet.gxTpr_Networktype = AV12networkType;
-                  AV16wallet.gxTpr_Walletname = AV17walletName;
-                  new GeneXus.Programs.wallet.createwalletfiles(context ).execute(  AV16wallet) ;
-                  AV26walletRestored = true;
-                  AV24webSession.Set("Group_Restore_Confirmed", StringUtil.BoolToStr( AV26walletRestored));
-                  context.setWebReturnParms(new Object[] {});
-                  context.setWebReturnParmsMetadata(new Object[] {});
-                  context.wjLocDisableFrm = 1;
-                  context.nUserReturn = 1;
-                  returnInSub = true;
-                  if (true) return;
-               }
-               else
-               {
-                  GX_msglist.addItem(AV6error);
-               }
-            }
-            else
-            {
-               GX_msglist.addItem(AV6error);
-            }
-         }
-         else
-         {
-            GX_msglist.addItem(AV6error);
-         }
-      }
-
-      protected void E131M2( )
+      protected void E121M2( )
       {
          /* 'Cancel and Close' Routine */
          returnInSub = false;
-         AV24webSession.Set("Group_Restore_ExtPrivKey", "");
          context.setWebReturnParms(new Object[] {});
          context.setWebReturnParmsMetadata(new Object[] {});
          context.wjLocDisableFrm = 1;
          context.nUserReturn = 1;
          returnInSub = true;
          if (true) return;
-         /*  Sending Event outputs  */
       }
 
       protected void nextLoad( )
       {
       }
 
-      protected void E141M2( )
+      protected void E131M2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -849,6 +758,9 @@ namespace GeneXus.Programs.wallet.registered {
       {
          createObjects();
          initialize();
+         AV30groupId = (Guid)getParm(obj,0);
+         AssignAttri("", false, "AV30groupId", AV30groupId.ToString());
+         GxWebStd.gx_hidden_field( context, "gxhash_vGROUPID", GetSecureSignedToken( "", AV30groupId, context));
       }
 
       public override string getresponse( string sGXDynURL )
@@ -884,7 +796,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202613016301965", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610714165840", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -900,7 +812,7 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("wallet/registered/resotregroupwallet.js", "?202613016301966", false, true, false);
+         context.AddJavascriptSource("wallet/registered/resotregroupwallet.js", "?202610714165840", false, true, false);
          /* End function include_jscripts */
       }
 
@@ -951,10 +863,10 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV12networkType","fld":"vNETWORKTYPE","hsh":true,"type":"char"}]}""");
-         setEventMetadata("'RESTORE WALLET'","""{"handler":"E121M2","iparms":[{"av":"AV17walletName","fld":"vWALLETNAME","type":"char"},{"av":"AV13newPass","fld":"vNEWPASS","type":"char"},{"av":"AV14newPassConfirm","fld":"vNEWPASSCONFIRM","type":"char"},{"av":"AV6error","fld":"vERROR","type":"char"},{"av":"AV7extKeyCreate","fld":"vEXTKEYCREATE","type":""},{"av":"AV12networkType","fld":"vNETWORKTYPE","hsh":true,"type":"char"},{"av":"AV27extendeSecretAndAuthenticator","fld":"vEXTENDESECRETANDAUTHENTICATOR","type":""},{"av":"AV16wallet","fld":"vWALLET","type":""}]""");
-         setEventMetadata("'RESTORE WALLET'",""","oparms":[{"av":"AV7extKeyCreate","fld":"vEXTKEYCREATE","type":""},{"av":"AV6error","fld":"vERROR","type":"char"},{"av":"AV27extendeSecretAndAuthenticator","fld":"vEXTENDESECRETANDAUTHENTICATOR","type":""},{"av":"AV16wallet","fld":"vWALLET","type":""}]}""");
-         setEventMetadata("'CANCEL AND CLOSE'","""{"handler":"E131M2","iparms":[]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV30groupId","fld":"vGROUPID","hsh":true,"type":"guid"}]}""");
+         setEventMetadata("'RESTORE WALLET'","""{"handler":"E111M2","iparms":[{"av":"AV17walletName","fld":"vWALLETNAME","type":"char"},{"av":"AV13newPass","fld":"vNEWPASS","type":"char"},{"av":"AV14newPassConfirm","fld":"vNEWPASSCONFIRM","type":"char"},{"av":"AV30groupId","fld":"vGROUPID","hsh":true,"type":"guid"}]""");
+         setEventMetadata("'RESTORE WALLET'",""","oparms":[{"av":"AV13newPass","fld":"vNEWPASS","type":"char"},{"av":"AV14newPassConfirm","fld":"vNEWPASSCONFIRM","type":"char"}]}""");
+         setEventMetadata("'CANCEL AND CLOSE'","""{"handler":"E121M2","iparms":[]}""");
          return  ;
       }
 
@@ -969,17 +881,13 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void initialize( )
       {
+         wcpOAV30groupId = Guid.Empty;
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
-         AV12networkType = "";
          GXKey = "";
-         AV6error = "";
-         AV7extKeyCreate = new GeneXus.Programs.nbitcoin.SdtExtKeyCreate(context);
-         AV27extendeSecretAndAuthenticator = new GeneXus.Programs.wallet.SdtExtendeSecretAndAuthenticator(context);
-         AV16wallet = new GeneXus.Programs.wallet.SdtWallet(context);
          GX_FocusControl = "";
          Form = new GXWebForm();
          sPrefix = "";
@@ -995,14 +903,9 @@ namespace GeneXus.Programs.wallet.registered {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
-         AV23CurrentWallet = new GeneXus.Programs.wallet.SdtWallet(context);
-         GXt_SdtWallet1 = new GeneXus.Programs.wallet.SdtWallet(context);
-         AV18walletType = "";
-         AV25extPrivateKey = "";
+         AV6error = "";
+         GXt_char1 = "";
          AV24webSession = context.GetSession();
-         AV8extKeyInfo = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
-         GXt_char2 = "";
-         GXt_char3 = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          /* GeneXus formulas. */
@@ -1025,9 +928,7 @@ namespace GeneXus.Programs.wallet.registered {
       private string sDynURL ;
       private string FormProcess ;
       private string bodyStyle ;
-      private string AV12networkType ;
       private string GXKey ;
-      private string AV6error ;
       private string GX_FocusControl ;
       private string sPrefix ;
       private string divMaintable_Internalname ;
@@ -1050,10 +951,8 @@ namespace GeneXus.Programs.wallet.registered {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
-      private string AV18walletType ;
-      private string AV25extPrivateKey ;
-      private string GXt_char2 ;
-      private string GXt_char3 ;
+      private string AV6error ;
+      private string GXt_char1 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool wbLoad ;
@@ -1062,15 +961,11 @@ namespace GeneXus.Programs.wallet.registered {
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private bool AV26walletRestored ;
+      private Guid AV30groupId ;
+      private Guid wcpOAV30groupId ;
       private IGxSession AV24webSession ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
-      private GeneXus.Programs.nbitcoin.SdtExtKeyCreate AV7extKeyCreate ;
-      private GeneXus.Programs.wallet.SdtExtendeSecretAndAuthenticator AV27extendeSecretAndAuthenticator ;
-      private GeneXus.Programs.wallet.SdtWallet AV16wallet ;
-      private GeneXus.Programs.wallet.SdtWallet AV23CurrentWallet ;
-      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
-      private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV8extKeyInfo ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

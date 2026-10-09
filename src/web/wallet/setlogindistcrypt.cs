@@ -56,11 +56,10 @@ namespace GeneXus.Programs.wallet {
          new GeneXus.Programs.wallet.getextkey(context ).execute( out  GXt_SdtExtKeyInfo1) ;
          AV12extKeyInfo = GXt_SdtExtKeyInfo1;
          GXt_char2 = AV11error;
-         new GeneXus.Programs.nbitcoin.derivekeysfromextkey(context ).execute(  AV12extKeyInfo.gxTpr_Extended.gxTpr_Privatekeytaproot,  (long)(Math.Round(NumberUtil.Val( "1000'", "."), 18, MidpointRounding.ToEven)),  0,  0, out  AV10allKeyInfo, out  GXt_char2) ;
+         new GeneXus.Programs.nbitcoin.derivehardenedkeyinfo(context ).execute(  AV12extKeyInfo.gxTpr_Extended.gxTpr_Privatekeytaproot,  StringUtil.Trim( "1000'")+"/0'", out  AV8keyInfo, out  GXt_char2) ;
          AV11error = GXt_char2;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
          {
-            AV8keyInfo = ((GeneXus.Programs.nbitcoin.SdtKeyInfo)AV10allKeyInfo.Item(1));
             AV9WebSession.Set("LoginDistCryptKey", AV8keyInfo.ToJSonString(false, true));
          }
          else
@@ -86,7 +85,6 @@ namespace GeneXus.Programs.wallet {
          GXt_SdtExtKeyInfo1 = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
          AV11error = "";
          GXt_char2 = "";
-         AV10allKeyInfo = new GXBaseCollection<GeneXus.Programs.nbitcoin.SdtKeyInfo>( context, "KeyInfo", "distributedcryptography");
          AV8keyInfo = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
          AV9WebSession = context.GetSession();
          /* GeneXus formulas. */
@@ -97,7 +95,6 @@ namespace GeneXus.Programs.wallet {
       private IGxSession AV9WebSession ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV12extKeyInfo ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo GXt_SdtExtKeyInfo1 ;
-      private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtKeyInfo> AV10allKeyInfo ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo AV8keyInfo ;
    }
 

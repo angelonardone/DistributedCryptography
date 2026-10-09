@@ -39,22 +39,29 @@
         <Reference Include="DistricutedCryptographyLib" >
             <HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
         </Reference>
+        <Reference Include="GxJadeLib" >
+            <HintPath>$(WebBinDirectory)\GxJadeLib.dll</HintPath>
+        </Reference>
 
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getprivatetempdir.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\receivefromuser.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\aesencryptionlargefile.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\downloadfile.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\decryptreceivedfile.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\safefilename.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\filedecryptv2.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluser.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\deletefilewithdelay.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\stagedownload.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\setexternaluser.cs" />
 

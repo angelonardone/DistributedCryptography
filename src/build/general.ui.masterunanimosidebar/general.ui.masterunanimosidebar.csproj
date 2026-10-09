@@ -42,6 +42,9 @@
         <Reference Include="DistricutedCryptographyLib" >
             <HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
         </Reference>
+        <Reference Include="GxJadeLib" >
+            <HintPath>$(WebBinDirectory)\GxJadeLib.dll</HintPath>
+        </Reference>
 
 	</ItemGroup>
 

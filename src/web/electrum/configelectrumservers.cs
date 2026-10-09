@@ -278,10 +278,10 @@ namespace GeneXus.Programs.electrum {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -579,7 +579,7 @@ namespace GeneXus.Programs.electrum {
             {
                if ( context.ExposeMetadata( ) )
                {
-                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_14-187820", 0) ;
+                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_16-189595", 0) ;
                }
             }
             Form.Meta.addItem("description", "Config Electrum Servers", 0) ;
@@ -1101,12 +1101,16 @@ namespace GeneXus.Programs.electrum {
          }
          /* 'Save Changes' Routine */
          returnInSub = false;
-         AV8directory.Source = "Wallets";
-         GXt_boolean2 = false;
-         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean2) ;
+         GXt_char2 = "";
+         new GeneXus.Programs.wallet.getwalletsdir(context ).execute( out  GXt_char2) ;
+         AV8directory.Source = GXt_char2;
+         GXt_char2 = "";
+         new GeneXus.Programs.wallet.getwalletsdir(context ).execute( out  GXt_char2) ;
          GXt_boolean3 = false;
          new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
-         AV7configFile.Source = "Wallets"+(GXt_boolean3 ? "/" : "\\")+"electrum.conf";
+         GXt_boolean4 = false;
+         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean4) ;
+         AV7configFile.Source = GXt_char2+(GXt_boolean4 ? "/" : "\\")+"electrum.conf";
          AV7configFile.WriteAllText(AV5ConnectionParameters.ToJSonString(false), "");
          context.setWebReturnParms(new Object[] {});
          context.setWebReturnParmsMetadata(new Object[] {});
@@ -1142,12 +1146,16 @@ namespace GeneXus.Programs.electrum {
          new GeneXus.Programs.electrum.defaultparameters(context ).execute( out  GXt_objcol_SdtConnectionParameters_ConnectionParametersItem1) ;
          AV5ConnectionParameters = GXt_objcol_SdtConnectionParameters_ConnectionParametersItem1;
          gx_BV9 = true;
-         AV8directory.Source = "Wallets";
+         GXt_char2 = "";
+         new GeneXus.Programs.wallet.getwalletsdir(context ).execute( out  GXt_char2) ;
+         AV8directory.Source = GXt_char2;
+         GXt_char2 = "";
+         new GeneXus.Programs.wallet.getwalletsdir(context ).execute( out  GXt_char2) ;
+         GXt_boolean4 = false;
+         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean4) ;
          GXt_boolean3 = false;
          new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
-         GXt_boolean2 = false;
-         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean2) ;
-         AV7configFile.Source = "Wallets"+(GXt_boolean2 ? "/" : "\\")+"electrum.conf";
+         AV7configFile.Source = GXt_char2+(GXt_boolean3 ? "/" : "\\")+"electrum.conf";
          AV7configFile.WriteAllText(AV5ConnectionParameters.ToJSonString(false), "");
          context.setWebReturnParms(new Object[] {});
          context.setWebReturnParmsMetadata(new Object[] {});
@@ -1359,7 +1367,7 @@ namespace GeneXus.Programs.electrum {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202613016291639", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610714152160", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1375,7 +1383,7 @@ namespace GeneXus.Programs.electrum {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("electrum/configelectrumservers.js", "?202613016291639", false, true, false);
+         context.AddJavascriptSource("electrum/configelectrumservers.js", "?202610714152160", false, true, false);
          /* End function include_jscripts */
       }
 
@@ -1800,6 +1808,7 @@ namespace GeneXus.Programs.electrum {
          AV8directory = new GxDirectory(context.GetPhysicalPath());
          AV7configFile = new GxFile(context.GetPhysicalPath());
          GXt_objcol_SdtConnectionParameters_ConnectionParametersItem1 = new GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem>( context, "ConnectionParametersItem", "distributedcryptography");
+         GXt_char2 = "";
          Grid1Row = new GXWebRow();
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
@@ -1876,6 +1885,7 @@ namespace GeneXus.Programs.electrum {
       private string EvtRowId ;
       private string sEvtType ;
       private string sGXsfl_9_fel_idx="0001" ;
+      private string GXt_char2 ;
       private string cmbavCtlconnectiontype_Internalname ;
       private string edtavCtlhostname_Internalname ;
       private string edtavCtlport_Internalname ;
@@ -1900,8 +1910,8 @@ namespace GeneXus.Programs.electrum {
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private bool gx_BV9 ;
+      private bool GXt_boolean4 ;
       private bool GXt_boolean3 ;
-      private bool GXt_boolean2 ;
       private GXWebGrid Grid1Container ;
       private GXWebRow Grid1Row ;
       private GXWebColumn Grid1Column ;

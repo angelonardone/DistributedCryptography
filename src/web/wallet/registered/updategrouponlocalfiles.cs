@@ -40,46 +40,46 @@ namespace GeneXus.Programs.wallet.registered {
       public void execute( GeneXus.Programs.wallet.registered.SdtGroup_SDT aP0_group_sdt ,
                            out string aP1_error )
       {
-         this.AV10group_sdt = aP0_group_sdt;
-         this.AV9error = "" ;
+         this.AV20group_sdt = aP0_group_sdt;
+         this.AV15error = "" ;
          initialize();
          ExecuteImpl();
-         aP1_error=this.AV9error;
+         aP1_error=this.AV15error;
       }
 
       public string executeUdp( GeneXus.Programs.wallet.registered.SdtGroup_SDT aP0_group_sdt )
       {
          execute(aP0_group_sdt, out aP1_error);
-         return AV9error ;
+         return AV15error ;
       }
 
       public void executeSubmit( GeneXus.Programs.wallet.registered.SdtGroup_SDT aP0_group_sdt ,
                                  out string aP1_error )
       {
-         this.AV10group_sdt = aP0_group_sdt;
-         this.AV9error = "" ;
+         this.AV20group_sdt = aP0_group_sdt;
+         this.AV15error = "" ;
          SubmitImpl();
-         aP1_error=this.AV9error;
+         aP1_error=this.AV15error;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV8all_groups_sdt.Clear();
-         AV8all_groups_sdt.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "gropus.enc", out  AV9error), null);
-         AV12GXV1 = 1;
-         while ( AV12GXV1 <= AV8all_groups_sdt.Count )
+         AV12all_groups_sdt.Clear();
+         AV12all_groups_sdt.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "gropus.enc", out  AV15error), null);
+         AV22GXV1 = 1;
+         while ( AV22GXV1 <= AV12all_groups_sdt.Count )
          {
-            AV11group_sdt_delete = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV8all_groups_sdt.Item(AV12GXV1));
-            if ( AV11group_sdt_delete.gxTpr_Groupid == AV10group_sdt.gxTpr_Groupid )
+            AV21group_sdt_delete = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT)AV12all_groups_sdt.Item(AV22GXV1));
+            if ( AV21group_sdt_delete.gxTpr_Groupid == AV20group_sdt.gxTpr_Groupid )
             {
-               AV8all_groups_sdt.RemoveItem(AV8all_groups_sdt.IndexOf(AV11group_sdt_delete));
+               AV12all_groups_sdt.RemoveItem(AV12all_groups_sdt.IndexOf(AV21group_sdt_delete));
             }
-            AV12GXV1 = (int)(AV12GXV1+1);
+            AV22GXV1 = (int)(AV22GXV1+1);
          }
-         AV8all_groups_sdt.Add(AV10group_sdt, 0);
-         new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  "gropus.enc",  AV8all_groups_sdt.ToJSonString(false), out  AV9error) ;
+         AV12all_groups_sdt.Add(AV20group_sdt, 0);
+         new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  "gropus.enc",  AV12all_groups_sdt.ToJSonString(false), out  AV15error) ;
          cleanup();
       }
 
@@ -95,17 +95,17 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void initialize( )
       {
-         AV9error = "";
-         AV8all_groups_sdt = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT>( context, "Group_SDT", "distributedcryptography");
-         AV11group_sdt_delete = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
+         AV15error = "";
+         AV12all_groups_sdt = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT>( context, "Group_SDT", "distributedcryptography");
+         AV21group_sdt_delete = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
          /* GeneXus formulas. */
       }
 
-      private int AV12GXV1 ;
-      private string AV9error ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV10group_sdt ;
-      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT> AV8all_groups_sdt ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV11group_sdt_delete ;
+      private int AV22GXV1 ;
+      private string AV15error ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV20group_sdt ;
+      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT> AV12all_groups_sdt ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV21group_sdt_delete ;
       private string aP1_error ;
    }
 

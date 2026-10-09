@@ -42,12 +42,15 @@
         <Reference Include="DistricutedCryptographyLib" >
             <HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
         </Reference>
+        <Reference Include="GxJadeLib" >
+            <HintPath>$(WebBinDirectory)\GxJadeLib.dll</HintPath>
+        </Reference>
 
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include = "$(WebDirectory)\wallet\registered\sendmessage.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluser.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\sendtimevaultinvitations.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\getunixtimemilisecondsutc.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\updategroup.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
@@ -60,11 +63,15 @@
 		<Compile Include = "$(WebDirectory)\distcrypt\setexternaluser.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccsignmsg.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\sendmessage.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluserpublic.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\varchartojsonformat.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\gettimevaultgroupview.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\signwithgroupskey.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getextkey.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\processserver.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\savetimevaultgroup.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\timewalletbounty.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\callapi.cs" />

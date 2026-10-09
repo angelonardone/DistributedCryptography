@@ -34,6 +34,9 @@ namespace GeneXus.Programs.nbitcoin {
          domain["m/86'/0'/0'"] = "BIP86_Main Net";
          domain["m/86'/1'/0'"] = "BIP86_Test Net";
          domain["m/86'/1'/0'"] = "BIP86_Reg Test";
+         domain["m/48'/0'/0'/1'"] = "BIP48 P2SH-P2WSH Main Net";
+         domain["m/48'/1'/0'/1'"] = "BIP48 P2SH-P2WSH Test Net";
+         domain["m/48'/1'/0'/1'"] = "BIP48 P2SH-P2WSH Reg Test";
          domain["0"] = "Receiving";
          domain["1"] = "Change";
          domain["2"] = "Multi Signature";
@@ -86,6 +89,9 @@ namespace GeneXus.Programs.nbitcoin {
             domainMap["BIP86_MainNet"] = "m/86'/0'/0'";
             domainMap["BIP86_TestNet"] = "m/86'/1'/0'";
             domainMap["BIP86_RegTest"] = "m/86'/1'/0'";
+            domainMap["BIP48_P2SHP2WSH_MainNet"] = "m/48'/0'/0'/1'";
+            domainMap["BIP48_P2SHP2WSH_TestNet"] = "m/48'/1'/0'/1'";
+            domainMap["BIP48_P2SHP2WSH_RegTest"] = "m/48'/1'/0'/1'";
             domainMap["Receiving"] = "0";
             domainMap["Change"] = "1";
             domainMap["MiuSigReceiving"] = "2";

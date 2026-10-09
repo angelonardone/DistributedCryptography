@@ -36,18 +36,14 @@ namespace GeneXus.Programs.distributedcryptographylib {
          return (string)mapper[value]; ;
       }
 
-      public object gxTpr_Referencegroupid
+      public Guid gxTpr_Referencegroupid
       {
          get {
             if ( DistributedCryptographyLib_OtherGroup_externalReference == null )
             {
                DistributedCryptographyLib_OtherGroup_externalReference = new DistricutedCryptographyLib.OtherGroup();
             }
-            object intValue;
-            System.Guid externalParm0;
-            externalParm0 = DistributedCryptographyLib_OtherGroup_externalReference.ReferenceGroupId;
-            intValue = (object)(externalParm0);
-            return intValue ;
+            return DistributedCryptographyLib_OtherGroup_externalReference.ReferenceGroupId ;
          }
 
          set {
@@ -55,7 +51,7 @@ namespace GeneXus.Programs.distributedcryptographylib {
             {
                DistributedCryptographyLib_OtherGroup_externalReference = new DistricutedCryptographyLib.OtherGroup();
             }
-            DistributedCryptographyLib_OtherGroup_externalReference.ReferenceGroupId = (System.Guid)(value);
+            DistributedCryptographyLib_OtherGroup_externalReference.ReferenceGroupId = value;
             SetDirty("Referencegroupid");
          }
 
@@ -183,6 +179,27 @@ namespace GeneXus.Programs.distributedcryptographylib {
             }
             DistributedCryptographyLib_OtherGroup_externalReference.ExtPubKeyMultiSigChange = value;
             SetDirty("Extpubkeymultisigchange");
+         }
+
+      }
+
+      public string gxTpr_Extpubkeytimebountyreceiving
+      {
+         get {
+            if ( DistributedCryptographyLib_OtherGroup_externalReference == null )
+            {
+               DistributedCryptographyLib_OtherGroup_externalReference = new DistricutedCryptographyLib.OtherGroup();
+            }
+            return DistributedCryptographyLib_OtherGroup_externalReference.ExtPubKeyTimeBountyReceiving ;
+         }
+
+         set {
+            if ( DistributedCryptographyLib_OtherGroup_externalReference == null )
+            {
+               DistributedCryptographyLib_OtherGroup_externalReference = new DistricutedCryptographyLib.OtherGroup();
+            }
+            DistributedCryptographyLib_OtherGroup_externalReference.ExtPubKeyTimeBountyReceiving = value;
+            SetDirty("Extpubkeytimebountyreceiving");
          }
 
       }

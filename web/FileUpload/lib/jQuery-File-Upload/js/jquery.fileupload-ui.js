@@ -78,7 +78,10 @@
       // Function returning the current number of files,
       // used by the maxNumberOfFiles validation:
       getNumberOfFiles: function () {
-        return this.filesContainer.children().not('.processing').length;
+        return this.filesContainer.children().not('.processing').filter(function() {
+          // Exclude files that have validation errors
+          return $(this).find('.error').text() === '';
+        }).length;
       },
 
       // Callback to retrieve the list of files from the server response:

@@ -41,12 +41,12 @@ namespace GeneXus.Programs.wallet {
                            out GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP1_SDTAddressHistory ,
                            out decimal aP2_totalBalance )
       {
-         this.AV32addressess_to_look_for = new SdtGxGetAddressess(context) ;
+         this.AV28addressess_to_look_for = new SdtGxGetAddressess(context) ;
          this.AV21SDTAddressHistory = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography") ;
          this.AV26totalBalance = 0 ;
          initialize();
          ExecuteImpl();
-         aP0_addressess_to_look_for=this.AV32addressess_to_look_for;
+         aP0_addressess_to_look_for=this.AV28addressess_to_look_for;
          aP1_SDTAddressHistory=this.AV21SDTAddressHistory;
          aP2_totalBalance=this.AV26totalBalance;
       }
@@ -62,11 +62,11 @@ namespace GeneXus.Programs.wallet {
                                  out GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP1_SDTAddressHistory ,
                                  out decimal aP2_totalBalance )
       {
-         this.AV32addressess_to_look_for = new SdtGxGetAddressess(context) ;
+         this.AV28addressess_to_look_for = new SdtGxGetAddressess(context) ;
          this.AV21SDTAddressHistory = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography") ;
          this.AV26totalBalance = 0 ;
          SubmitImpl();
-         aP0_addressess_to_look_for=this.AV32addressess_to_look_for;
+         aP0_addressess_to_look_for=this.AV28addressess_to_look_for;
          aP1_SDTAddressHistory=this.AV21SDTAddressHistory;
          aP2_totalBalance=this.AV26totalBalance;
       }
@@ -82,7 +82,7 @@ namespace GeneXus.Programs.wallet {
          new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet2) ;
          AV31wallet = GXt_SdtWallet2;
          AV9allAddressess = new GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem>( context, "SDT_AddressessItem", "distributedcryptography");
-         AV32addressess_to_look_for = new SdtGxGetAddressess(context);
+         AV28addressess_to_look_for = new SdtGxGetAddressess(context);
          AV24StoredTransactions.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "transactions.trn", out  AV11error), null);
          if ( StringUtil.StrCmp(AV31wallet.gxTpr_Wallettype, "BIP44") == 0 )
          {
@@ -108,60 +108,60 @@ namespace GeneXus.Programs.wallet {
          new GeneXus.Programs.wallet.registered.deriveaddresssfromextendedpubkey(context ).execute(  AV24StoredTransactions,  AV10deserializedExtPubKey,  20,  (short)(Math.Round(NumberUtil.Val( "0", "."), 18, MidpointRounding.ToEven)), out  AV20sdt_addressessRec, out  GXt_char3) ;
          GXt_char4 = "";
          new GeneXus.Programs.wallet.registered.deriveaddresssfromextendedpubkey(context ).execute(  AV24StoredTransactions,  AV10deserializedExtPubKey,  10,  (short)(Math.Round(NumberUtil.Val( "1", "."), 18, MidpointRounding.ToEven)), out  AV19sdt_addressessChange, out  GXt_char4) ;
-         AV35GXV1 = 1;
-         while ( AV35GXV1 <= AV20sdt_addressessRec.Count )
+         AV34GXV1 = 1;
+         while ( AV34GXV1 <= AV20sdt_addressessRec.Count )
          {
-            AV15one_address = ((GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem)AV20sdt_addressessRec.Item(AV35GXV1));
-            AV32addressess_to_look_for.gxTpr_Sdt_addressess.gxTpr_Address.Add(AV15one_address.gxTpr_Address, 0);
+            AV15one_address = ((GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem)AV20sdt_addressessRec.Item(AV34GXV1));
+            AV28addressess_to_look_for.gxTpr_Sdt_addressess.gxTpr_Address.Add(AV15one_address.gxTpr_Address, 0);
             AV9allAddressess.Add(AV15one_address, 0);
-            AV35GXV1 = (int)(AV35GXV1+1);
+            AV34GXV1 = (int)(AV34GXV1+1);
          }
-         AV36GXV2 = 1;
-         while ( AV36GXV2 <= AV19sdt_addressessChange.Count )
+         AV35GXV2 = 1;
+         while ( AV35GXV2 <= AV19sdt_addressessChange.Count )
          {
-            AV15one_address = ((GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem)AV19sdt_addressessChange.Item(AV36GXV2));
-            AV32addressess_to_look_for.gxTpr_Sdt_addressess.gxTpr_Address.Add(AV15one_address.gxTpr_Address, 0);
+            AV15one_address = ((GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem)AV19sdt_addressessChange.Item(AV35GXV2));
+            AV28addressess_to_look_for.gxTpr_Sdt_addressess.gxTpr_Address.Add(AV15one_address.gxTpr_Address, 0);
             AV9allAddressess.Add(AV15one_address, 0);
-            AV36GXV2 = (int)(AV36GXV2+1);
+            AV35GXV2 = (int)(AV35GXV2+1);
          }
          new GeneXus.Programs.wallet.setalladdress(context ).execute(  AV9allAddressess) ;
-         AV37GXV3 = 1;
-         while ( AV37GXV3 <= AV24StoredTransactions.gxTpr_Transaction.Count )
+         AV36GXV3 = 1;
+         while ( AV36GXV3 <= AV24StoredTransactions.gxTpr_Transaction.Count )
          {
-            AV27TransactionItem = ((GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem)AV24StoredTransactions.gxTpr_Transaction.Item(AV37GXV3));
+            AV27TransactionItem = ((GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem)AV24StoredTransactions.gxTpr_Transaction.Item(AV36GXV3));
             if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV27TransactionItem.gxTpr_Usedin.gxTpr_Transactionid)) && ( AV27TransactionItem.gxTpr_Usedin.gxTpr_Usedto.Count == 0 ) )
             {
-               AV32addressess_to_look_for.gxTpr_Sdt_addressess.gxTpr_Address.Add(AV27TransactionItem.gxTpr_Scriptpubkey_address, 0);
+               AV28addressess_to_look_for.gxTpr_Sdt_addressess.gxTpr_Address.Add(AV27TransactionItem.gxTpr_Scriptpubkey_address, 0);
             }
-            AV37GXV3 = (int)(AV37GXV3+1);
+            AV36GXV3 = (int)(AV36GXV3+1);
          }
          GXt_decimal5 = AV26totalBalance;
          new GeneXus.Programs.wallet.loadhistoryfromtransactions(context ).execute(  AV24StoredTransactions, out  AV21SDTAddressHistory, out  GXt_decimal5) ;
          AV26totalBalance = GXt_decimal5;
-         AV38GXV4 = 1;
-         while ( AV38GXV4 <= AV21SDTAddressHistory.Count )
+         AV37GXV4 = 1;
+         while ( AV37GXV4 <= AV21SDTAddressHistory.Count )
          {
-            AV16oneSDTAddressHistory = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV21SDTAddressHistory.Item(AV38GXV4));
-            AV34found = false;
+            AV16oneSDTAddressHistory = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV21SDTAddressHistory.Item(AV37GXV4));
+            AV33found = false;
             if ( AV16oneSDTAddressHistory.gxTpr_Confirmations < 6 )
             {
-               AV39GXV5 = 1;
-               while ( AV39GXV5 <= AV32addressess_to_look_for.gxTpr_Sdt_addressess.gxTpr_Address.Count )
+               AV38GXV5 = 1;
+               while ( AV38GXV5 <= AV28addressess_to_look_for.gxTpr_Sdt_addressess.gxTpr_Address.Count )
                {
-                  AV33one_to_look_for = ((string)AV32addressess_to_look_for.gxTpr_Sdt_addressess.gxTpr_Address.Item(AV39GXV5));
-                  if ( StringUtil.StrCmp(StringUtil.Trim( AV16oneSDTAddressHistory.gxTpr_Receivedaddress), StringUtil.Trim( AV33one_to_look_for)) == 0 )
+                  AV32one_to_look_for = ((string)AV28addressess_to_look_for.gxTpr_Sdt_addressess.gxTpr_Address.Item(AV38GXV5));
+                  if ( StringUtil.StrCmp(StringUtil.Trim( AV16oneSDTAddressHistory.gxTpr_Receivedaddress), StringUtil.Trim( AV32one_to_look_for)) == 0 )
                   {
-                     AV34found = true;
+                     AV33found = true;
                      if (true) break;
                   }
-                  AV39GXV5 = (int)(AV39GXV5+1);
+                  AV38GXV5 = (int)(AV38GXV5+1);
                }
-               if ( ! AV34found )
+               if ( ! AV33found )
                {
-                  AV32addressess_to_look_for.gxTpr_Sdt_addressess.gxTpr_Address.Add(StringUtil.Trim( AV16oneSDTAddressHistory.gxTpr_Receivedaddress), 0);
+                  AV28addressess_to_look_for.gxTpr_Sdt_addressess.gxTpr_Address.Add(StringUtil.Trim( AV16oneSDTAddressHistory.gxTpr_Receivedaddress), 0);
                }
             }
-            AV38GXV4 = (int)(AV38GXV4+1);
+            AV37GXV4 = (int)(AV37GXV4+1);
          }
          cleanup();
       }
@@ -178,7 +178,7 @@ namespace GeneXus.Programs.wallet {
 
       public override void initialize( )
       {
-         AV32addressess_to_look_for = new SdtGxGetAddressess(context);
+         AV28addressess_to_look_for = new SdtGxGetAddressess(context);
          AV21SDTAddressHistory = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
          AV12extKeyInfoRoot = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
          GXt_SdtExtKeyInfo1 = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
@@ -195,24 +195,24 @@ namespace GeneXus.Programs.wallet {
          AV15one_address = new GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem(context);
          AV27TransactionItem = new GeneXus.Programs.wallet.SdtStoredTransactions_TransactionItem(context);
          AV16oneSDTAddressHistory = new GeneXus.Programs.wallet.SdtSDTAddressHistory(context);
-         AV33one_to_look_for = "";
+         AV32one_to_look_for = "";
          /* GeneXus formulas. */
       }
 
-      private int AV35GXV1 ;
-      private int AV36GXV2 ;
-      private int AV37GXV3 ;
-      private int AV38GXV4 ;
-      private int AV39GXV5 ;
+      private int AV34GXV1 ;
+      private int AV35GXV2 ;
+      private int AV36GXV3 ;
+      private int AV37GXV4 ;
+      private int AV38GXV5 ;
       private decimal AV26totalBalance ;
       private decimal GXt_decimal5 ;
       private string AV11error ;
       private string AV10deserializedExtPubKey ;
       private string GXt_char3 ;
       private string GXt_char4 ;
-      private string AV33one_to_look_for ;
-      private bool AV34found ;
-      private SdtGxGetAddressess AV32addressess_to_look_for ;
+      private string AV32one_to_look_for ;
+      private bool AV33found ;
+      private SdtGxGetAddressess AV28addressess_to_look_for ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV21SDTAddressHistory ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV12extKeyInfoRoot ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo GXt_SdtExtKeyInfo1 ;

@@ -41,25 +41,25 @@ namespace GeneXus.Programs.wallet {
                            out short aP1_count )
       {
          this.AV8GeneratedType = aP0_GeneratedType;
-         this.AV11count = 0 ;
+         this.AV12count = 0 ;
          initialize();
          ExecuteImpl();
-         aP1_count=this.AV11count;
+         aP1_count=this.AV12count;
       }
 
       public short executeUdp( short aP0_GeneratedType )
       {
          execute(aP0_GeneratedType, out aP1_count);
-         return AV11count ;
+         return AV12count ;
       }
 
       public void executeSubmit( short aP0_GeneratedType ,
                                  out short aP1_count )
       {
          this.AV8GeneratedType = aP0_GeneratedType;
-         this.AV11count = 0 ;
+         this.AV12count = 0 ;
          SubmitImpl();
-         aP1_count=this.AV11count;
+         aP1_count=this.AV12count;
       }
 
       protected override void ExecutePrivate( )
@@ -69,16 +69,16 @@ namespace GeneXus.Programs.wallet {
          GXt_objcol_SdtSDT_Addressess_SDT_AddressessItem1 = AV10sdt_Addresses;
          new GeneXus.Programs.wallet.getalladdress(context ).execute( out  GXt_objcol_SdtSDT_Addressess_SDT_AddressessItem1) ;
          AV10sdt_Addresses = GXt_objcol_SdtSDT_Addressess_SDT_AddressessItem1;
-         AV11count = 0;
-         AV12GXV1 = 1;
-         while ( AV12GXV1 <= AV10sdt_Addresses.Count )
+         AV12count = 0;
+         AV13GXV1 = 1;
+         while ( AV13GXV1 <= AV10sdt_Addresses.Count )
          {
-            AV9one_sdt_address = ((GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem)AV10sdt_Addresses.Item(AV12GXV1));
-            if ( ! AV9one_sdt_address.gxTpr_Isused && ( AV9one_sdt_address.gxTpr_Generatedtype == AV8GeneratedType ) )
+            AV11one_sdt_address = ((GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem)AV10sdt_Addresses.Item(AV13GXV1));
+            if ( ! AV11one_sdt_address.gxTpr_Isused && ( AV11one_sdt_address.gxTpr_Generatedtype == AV8GeneratedType ) )
             {
-               AV11count = (short)(AV11count+1);
+               AV12count = (short)(AV12count+1);
             }
-            AV12GXV1 = (int)(AV12GXV1+1);
+            AV13GXV1 = (int)(AV13GXV1+1);
          }
          cleanup();
       }
@@ -97,16 +97,16 @@ namespace GeneXus.Programs.wallet {
       {
          AV10sdt_Addresses = new GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem>( context, "SDT_AddressessItem", "distributedcryptography");
          GXt_objcol_SdtSDT_Addressess_SDT_AddressessItem1 = new GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem>( context, "SDT_AddressessItem", "distributedcryptography");
-         AV9one_sdt_address = new GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem(context);
+         AV11one_sdt_address = new GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem(context);
          /* GeneXus formulas. */
       }
 
       private short AV8GeneratedType ;
-      private short AV11count ;
-      private int AV12GXV1 ;
+      private short AV12count ;
+      private int AV13GXV1 ;
       private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem> AV10sdt_Addresses ;
       private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem> GXt_objcol_SdtSDT_Addressess_SDT_AddressessItem1 ;
-      private GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem AV9one_sdt_address ;
+      private GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem AV11one_sdt_address ;
       private short aP1_count ;
    }
 

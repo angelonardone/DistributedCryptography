@@ -89,7 +89,7 @@ namespace GeneXus.Programs.wallet {
                {
                   AV15oneTransaction = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14transactionsToSend.Item(AV22GXV2));
                   AV15oneTransaction.gxTpr_Sentdatetime = AV20sentDateTime;
-                  if ( ( StringUtil.StrCmp(AV17oneStoredTransaction.gxTpr_Transactionid, AV15oneTransaction.gxTpr_Receivedtransactionid) == 0 ) && ( StringUtil.StrCmp(AV17oneStoredTransaction.gxTpr_Scriptpubkey_address, AV15oneTransaction.gxTpr_Receivedaddress) == 0 ) )
+                  if ( ( StringUtil.StrCmp(AV17oneStoredTransaction.gxTpr_Transactionid, AV15oneTransaction.gxTpr_Receivedtransactionid) == 0 ) && ( AV17oneStoredTransaction.gxTpr_N == AV15oneTransaction.gxTpr_Recivedn ) )
                   {
                      AV17oneStoredTransaction.gxTpr_Usedin.gxTpr_Datetime = AV15oneTransaction.gxTpr_Sentdatetime;
                      AV17oneStoredTransaction.gxTpr_Usedin.gxTpr_Transactionid = StringUtil.Trim( AV18TransactionId);

@@ -62,37 +62,27 @@ namespace GeneXus.Programs.wallet {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV9directory.Source = "Wallets";
-         if ( AV9directory.Exists() )
+         GXt_char1 = "";
+         new GeneXus.Programs.wallet.getwalletsdir(context ).execute( out  GXt_char1) ;
+         AV9directory.Source = GXt_char1;
+         AV15GXV2 = 1;
+         AV14GXV1 = AV9directory.GetDirectories();
+         while ( AV15GXV2 <= AV14GXV1.ItemCount )
          {
-            AV15GXV2 = 1;
-            AV14GXV1 = AV9directory.GetDirectories();
-            while ( AV15GXV2 <= AV14GXV1.ItemCount )
+            AV12walletDirectory = AV14GXV1.Item(AV15GXV2);
+            AV17GXV4 = 1;
+            AV16GXV3 = AV12walletDirectory.GetFiles("*.json");
+            while ( AV17GXV4 <= AV16GXV3.ItemCount )
             {
-               AV12walletDirectory = AV14GXV1.Item(AV15GXV2);
-               AV17GXV4 = 1;
-               AV16GXV3 = AV12walletDirectory.GetFiles("*.json");
-               while ( AV17GXV4 <= AV16GXV3.ItemCount )
-               {
-                  AV8auxFile = AV16GXV3.Item(AV17GXV4);
-                  GXt_boolean1 = false;
-                  new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean1) ;
-                  GXt_boolean2 = false;
-                  new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean2) ;
-                  AV13fileName = AV8auxFile.GetPath() + (GXt_boolean2 ? "/" : "\\") + AV8auxFile.GetName();
-                  GXt_SdtWallet3 = AV10wallet;
-                  new GeneXus.Programs.wallet.readwallet(context ).execute(  AV13fileName, out  GXt_SdtWallet3) ;
-                  AV10wallet = GXt_SdtWallet3;
-                  AV10wallet.gxTpr_Walletfilename = AV13fileName;
-                  AV11wallets.Add(AV10wallet, 0);
-                  AV17GXV4 = (int)(AV17GXV4+1);
-               }
-               AV15GXV2 = (int)(AV15GXV2+1);
+               AV8auxFile = AV16GXV3.Item(AV17GXV4);
+               AV13fileName = AV8auxFile.GetAbsoluteName();
+               GXt_SdtWallet2 = AV10wallet;
+               new GeneXus.Programs.wallet.readwallet(context ).execute(  AV13fileName, out  GXt_SdtWallet2) ;
+               AV10wallet = GXt_SdtWallet2;
+               AV11wallets.Add(AV10wallet, 0);
+               AV17GXV4 = (int)(AV17GXV4+1);
             }
-         }
-         else
-         {
-            AV9directory.Create();
+            AV15GXV2 = (int)(AV15GXV2+1);
          }
          cleanup();
       }
@@ -111,20 +101,20 @@ namespace GeneXus.Programs.wallet {
       {
          AV11wallets = new GXBaseCollection<GeneXus.Programs.wallet.SdtWallet>( context, "Wallet", "distributedcryptography");
          AV9directory = new GxDirectory(context.GetPhysicalPath());
+         GXt_char1 = "";
          AV14GXV1 = new GxDirectoryCollection();
          AV12walletDirectory = new GxDirectory(context.GetPhysicalPath());
          AV16GXV3 = new GxFileCollection();
          AV8auxFile = new GxFile(context.GetPhysicalPath());
          AV13fileName = "";
          AV10wallet = new GeneXus.Programs.wallet.SdtWallet(context);
-         GXt_SdtWallet3 = new GeneXus.Programs.wallet.SdtWallet(context);
+         GXt_SdtWallet2 = new GeneXus.Programs.wallet.SdtWallet(context);
          /* GeneXus formulas. */
       }
 
       private int AV15GXV2 ;
       private int AV17GXV4 ;
-      private bool GXt_boolean1 ;
-      private bool GXt_boolean2 ;
+      private string GXt_char1 ;
       private string AV13fileName ;
       private GxFile AV8auxFile ;
       private GxDirectory AV9directory ;
@@ -133,7 +123,7 @@ namespace GeneXus.Programs.wallet {
       private GxDirectoryCollection AV14GXV1 ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtWallet> AV11wallets ;
       private GeneXus.Programs.wallet.SdtWallet AV10wallet ;
-      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet3 ;
+      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet2 ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtWallet> aP0_wallets ;
    }
 

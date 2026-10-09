@@ -98,6 +98,7 @@
           file.error = settings.i18n('acceptFileTypes');
         } else if (fileSize > options.maxFileSize) {
           file.error = settings.i18n('maxFileSize');
+          this._trigger('fail', null, data);
         } else if (
           $.type(fileSize) === 'number' &&
           fileSize < options.minFileSize

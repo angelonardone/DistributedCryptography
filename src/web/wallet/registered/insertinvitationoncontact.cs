@@ -90,6 +90,18 @@ namespace GeneXus.Programs.wallet.registered {
                   AV8contactId = AV11contact.gxTpr_Contactrid;
                   AV13contactFound = true;
                   AV17isContactDeclined = AV11contact.gxTpr_Invitationdeclined;
+                  if ( (Guid.Empty==AV11contact.gxTpr_Contactrid) && (DateTime.MinValue==AV11contact.gxTpr_Invitacionaccepted) && ! AV11contact.gxTpr_Invitationdeclined )
+                  {
+                     AV11contact.gxTpr_Userpubkey = StringUtil.Trim( AV15message_signature.gxTpr_Newpubkey);
+                     AV11contact.gxTpr_Messagepubkey = StringUtil.Trim( AV15message_signature.gxTpr_Pubkey);
+                     AV11contact.gxTpr_Grouppubkey = StringUtil.Trim( AV15message_signature.gxTpr_Grouppubkey);
+                     GXt_dtime2 = (DateTime)(DateTime.MinValue);
+                     new GeneXus.Programs.distributedcrypto.unixtimetolocaldatetime(context ).execute(  AV14sdt_message.gxTpr_Datetimeunix, out  GXt_dtime2) ;
+                     AV11contact.gxTpr_Invitationsent = GXt_dtime2;
+                     GXt_char1 = AV12error;
+                     new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  "contacts.enc",  AV10allContacts.ToJSonString(false), out  GXt_char1) ;
+                     AV12error = GXt_char1;
+                  }
                   if (true) break;
                }
                AV19GXV1 = (int)(AV19GXV1+1);

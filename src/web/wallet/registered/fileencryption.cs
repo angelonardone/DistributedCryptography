@@ -160,11 +160,11 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override short ExecuteStartEvent( )
       {
-         PA2F2( ) ;
+         PA2J2( ) ;
          gxajaxcallmode = (short)((isAjaxCallMode( ) ? 1 : 0));
          if ( ( gxajaxcallmode == 0 ) && ( GxWebError == 0 ) )
          {
-            START2F2( ) ;
+            START2J2( ) ;
          }
          return gxajaxcallmode ;
       }
@@ -199,10 +199,10 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -292,6 +292,10 @@ namespace GeneXus.Programs.wallet.registered {
          {
             WebComp_Component3.componentjscripts();
          }
+         if ( ! ( WebComp_Component4 == null ) )
+         {
+            WebComp_Component4.componentjscripts();
+         }
       }
 
       public override void RenderHtmlContent( )
@@ -302,14 +306,14 @@ namespace GeneXus.Programs.wallet.registered {
             context.WriteHtmlText( "<div") ;
             GxWebStd.ClassAttribute( context, "gx-ct-body"+" "+(String.IsNullOrEmpty(StringUtil.RTrim( Form.Class)) ? "form-horizontal Form" : Form.Class)+"-fx");
             context.WriteHtmlText( ">") ;
-            WE2F2( ) ;
+            WE2J2( ) ;
             context.WriteHtmlText( "</div>") ;
          }
       }
 
       public override void DispatchEvents( )
       {
-         EVT2F2( ) ;
+         EVT2J2( ) ;
       }
 
       public override bool HasEnterEvent( )
@@ -337,7 +341,7 @@ namespace GeneXus.Programs.wallet.registered {
          return "File Encryption" ;
       }
 
-      protected void WB2F0( )
+      protected void WB2J0( )
       {
          if ( context.isAjaxRequest( ) )
          {
@@ -382,18 +386,22 @@ namespace GeneXus.Programs.wallet.registered {
             if ( ! isFullAjaxMode( ) )
             {
                /* WebComponent */
+               GxWebStd.gx_hidden_field( context, "W0014"+"", StringUtil.RTrim( WebComp_Component2_Component));
                context.WriteHtmlText( "<div") ;
                GxWebStd.ClassAttribute( context, "gxwebcomponent");
                context.WriteHtmlText( " id=\""+"gxHTMLWrpW0014"+""+"\""+"") ;
                context.WriteHtmlText( ">") ;
-               if ( ! context.isAjaxRequest( ) )
+               if ( StringUtil.Len( WebComp_Component2_Component) != 0 )
                {
-                  context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0014"+"");
-               }
-               WebComp_Component2.componentdraw();
-               if ( ! context.isAjaxRequest( ) )
-               {
-                  context.httpAjaxContext.ajax_rspEndCmp();
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComponent2), StringUtil.Lower( WebComp_Component2_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0014"+"");
+                  }
+                  WebComp_Component2.componentdraw();
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComponent2), StringUtil.Lower( WebComp_Component2_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspEndCmp();
+                  }
                }
                context.WriteHtmlText( "</div>") ;
             }
@@ -419,18 +427,63 @@ namespace GeneXus.Programs.wallet.registered {
             if ( ! isFullAjaxMode( ) )
             {
                /* WebComponent */
+               GxWebStd.gx_hidden_field( context, "W0022"+"", StringUtil.RTrim( WebComp_Component3_Component));
                context.WriteHtmlText( "<div") ;
                GxWebStd.ClassAttribute( context, "gxwebcomponent");
                context.WriteHtmlText( " id=\""+"gxHTMLWrpW0022"+""+"\""+"") ;
                context.WriteHtmlText( ">") ;
-               if ( ! context.isAjaxRequest( ) )
+               if ( StringUtil.Len( WebComp_Component3_Component) != 0 )
                {
-                  context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0022"+"");
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComponent3), StringUtil.Lower( WebComp_Component3_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0022"+"");
+                  }
+                  WebComp_Component3.componentdraw();
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComponent3), StringUtil.Lower( WebComp_Component3_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspEndCmp();
+                  }
                }
-               WebComp_Component3.componentdraw();
-               if ( ! context.isAjaxRequest( ) )
+               context.WriteHtmlText( "</div>") ;
+            }
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            context.WriteHtmlText( "</div>") ;
+            context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"title3"+"\" style=\"display:none;\">") ;
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblLargefiles_title_Internalname, "Large files (no upload)", "", "", lblLargefiles_title_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Wallet/registered/FileEncryption.htm");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "Section", "start", "top", "", "display:none;", "div");
+            context.WriteHtmlText( "LargeFiles") ;
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            context.WriteHtmlText( "</div>") ;
+            context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"panel3"+"\" style=\"display:none;\">") ;
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divTabpage4table_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            if ( ! isFullAjaxMode( ) )
+            {
+               /* WebComponent */
+               GxWebStd.gx_hidden_field( context, "W0030"+"", StringUtil.RTrim( WebComp_Component4_Component));
+               context.WriteHtmlText( "<div") ;
+               GxWebStd.ClassAttribute( context, "gxwebcomponent");
+               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0030"+""+"\""+"") ;
+               context.WriteHtmlText( ">") ;
+               if ( StringUtil.Len( WebComp_Component4_Component) != 0 )
                {
-                  context.httpAjaxContext.ajax_rspEndCmp();
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComponent4), StringUtil.Lower( WebComp_Component4_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0030"+"");
+                  }
+                  WebComp_Component4.componentdraw();
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComponent4), StringUtil.Lower( WebComp_Component4_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspEndCmp();
+                  }
                }
                context.WriteHtmlText( "</div>") ;
             }
@@ -446,7 +499,7 @@ namespace GeneXus.Programs.wallet.registered {
          wbLoad = true;
       }
 
-      protected void START2F2( )
+      protected void START2J2( )
       {
          wbLoad = false;
          wbEnd = 0;
@@ -455,7 +508,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_14-187820", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_16-189595", 0) ;
             }
          }
          Form.Meta.addItem("description", "File Encryption", 0) ;
@@ -466,16 +519,16 @@ namespace GeneXus.Programs.wallet.registered {
          {
          }
          wbErr = false;
-         STRUP2F0( ) ;
+         STRUP2J0( ) ;
       }
 
-      protected void WS2F2( )
+      protected void WS2J2( )
       {
-         START2F2( ) ;
-         EVT2F2( ) ;
+         START2J2( ) ;
+         EVT2J2( ) ;
       }
 
-      protected void EVT2F2( )
+      protected void EVT2J2( )
       {
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
@@ -502,12 +555,19 @@ namespace GeneXus.Programs.wallet.registered {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "START") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: Start */
+                              E112J2 ();
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Load */
-                              E112F2 ();
+                              E122J2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                            {
@@ -540,19 +600,51 @@ namespace GeneXus.Programs.wallet.registered {
                         nCmpId = (short)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
                         if ( nCmpId == 14 )
                         {
-                           WebComp_Component2 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.encryptto", new Object[] {context} );
-                           WebComp_Component2.ComponentInit();
-                           WebComp_Component2.Name = "Wallet.registered.EncryptTo";
-                           WebComp_Component2_Component = "Wallet.registered.EncryptTo";
-                           WebComp_Component2.componentprocess("W0014", "", sEvt);
+                           OldComponent2 = cgiGet( "W0014");
+                           if ( ( StringUtil.Len( OldComponent2) == 0 ) || ( StringUtil.StrCmp(OldComponent2, WebComp_Component2_Component) != 0 ) )
+                           {
+                              WebComp_Component2 = getWebComponent(GetType(), "GeneXus.Programs", OldComponent2, new Object[] {context} );
+                              WebComp_Component2.ComponentInit();
+                              WebComp_Component2.Name = "OldComponent2";
+                              WebComp_Component2_Component = OldComponent2;
+                           }
+                           if ( StringUtil.Len( WebComp_Component2_Component) != 0 )
+                           {
+                              WebComp_Component2.componentprocess("W0014", "", sEvt);
+                           }
+                           WebComp_Component2_Component = OldComponent2;
                         }
                         else if ( nCmpId == 22 )
                         {
-                           WebComp_Component3 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.receivefromuser", new Object[] {context} );
-                           WebComp_Component3.ComponentInit();
-                           WebComp_Component3.Name = "Wallet.registered.ReceiveFromUser";
-                           WebComp_Component3_Component = "Wallet.registered.ReceiveFromUser";
-                           WebComp_Component3.componentprocess("W0022", "", sEvt);
+                           OldComponent3 = cgiGet( "W0022");
+                           if ( ( StringUtil.Len( OldComponent3) == 0 ) || ( StringUtil.StrCmp(OldComponent3, WebComp_Component3_Component) != 0 ) )
+                           {
+                              WebComp_Component3 = getWebComponent(GetType(), "GeneXus.Programs", OldComponent3, new Object[] {context} );
+                              WebComp_Component3.ComponentInit();
+                              WebComp_Component3.Name = "OldComponent3";
+                              WebComp_Component3_Component = OldComponent3;
+                           }
+                           if ( StringUtil.Len( WebComp_Component3_Component) != 0 )
+                           {
+                              WebComp_Component3.componentprocess("W0022", "", sEvt);
+                           }
+                           WebComp_Component3_Component = OldComponent3;
+                        }
+                        else if ( nCmpId == 30 )
+                        {
+                           OldComponent4 = cgiGet( "W0030");
+                           if ( ( StringUtil.Len( OldComponent4) == 0 ) || ( StringUtil.StrCmp(OldComponent4, WebComp_Component4_Component) != 0 ) )
+                           {
+                              WebComp_Component4 = getWebComponent(GetType(), "GeneXus.Programs", OldComponent4, new Object[] {context} );
+                              WebComp_Component4.ComponentInit();
+                              WebComp_Component4.Name = "OldComponent4";
+                              WebComp_Component4_Component = OldComponent4;
+                           }
+                           if ( StringUtil.Len( WebComp_Component4_Component) != 0 )
+                           {
+                              WebComp_Component4.componentprocess("W0030", "", sEvt);
+                           }
+                           WebComp_Component4_Component = OldComponent4;
                         }
                      }
                      context.wbHandled = 1;
@@ -562,7 +654,7 @@ namespace GeneXus.Programs.wallet.registered {
          }
       }
 
-      protected void WE2F2( )
+      protected void WE2J2( )
       {
          if ( ! GxWebStd.gx_redirect( context) )
          {
@@ -578,7 +670,7 @@ namespace GeneXus.Programs.wallet.registered {
          }
       }
 
-      protected void PA2F2( )
+      protected void PA2J2( )
       {
          if ( nDonePA == 0 )
          {
@@ -632,7 +724,7 @@ namespace GeneXus.Programs.wallet.registered {
       public void Refresh( )
       {
          send_integrity_hashes( ) ;
-         RF2F2( ) ;
+         RF2J2( ) ;
          if ( isFullAjaxMode( ) )
          {
             send_integrity_footer_hashes( ) ;
@@ -644,54 +736,38 @@ namespace GeneXus.Programs.wallet.registered {
          /* GeneXus formulas. */
       }
 
-      protected void RF2F2( )
+      protected void RF2J2( )
       {
          initialize_formulas( ) ;
          clear_multi_value_controls( ) ;
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
-            if ( StringUtil.StrCmp(WebComp_Component2_Component, "") == 0 )
-            {
-               WebComp_Component2 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.encryptto", new Object[] {context} );
-               WebComp_Component2.ComponentInit();
-               WebComp_Component2.Name = "Wallet.registered.EncryptTo";
-               WebComp_Component2_Component = "Wallet.registered.EncryptTo";
-            }
-            WebComp_Component2.setjustcreated();
-            WebComp_Component2.componentprepare(new Object[] {(string)"W0014",(string)""});
-            WebComp_Component2.componentbind(new Object[] {});
-            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Component2 )
-            {
-               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0014"+"");
-               WebComp_Component2.componentdraw();
-               context.httpAjaxContext.ajax_rspEndCmp();
-            }
             if ( 1 != 0 )
             {
-               WebComp_Component2.componentstart();
+               if ( StringUtil.Len( WebComp_Component2_Component) != 0 )
+               {
+                  WebComp_Component2.componentstart();
+               }
             }
          }
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
-            if ( StringUtil.StrCmp(WebComp_Component3_Component, "") == 0 )
-            {
-               WebComp_Component3 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.receivefromuser", new Object[] {context} );
-               WebComp_Component3.ComponentInit();
-               WebComp_Component3.Name = "Wallet.registered.ReceiveFromUser";
-               WebComp_Component3_Component = "Wallet.registered.ReceiveFromUser";
-            }
-            WebComp_Component3.setjustcreated();
-            WebComp_Component3.componentprepare(new Object[] {(string)"W0022",(string)""});
-            WebComp_Component3.componentbind(new Object[] {});
-            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Component3 )
-            {
-               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0022"+"");
-               WebComp_Component3.componentdraw();
-               context.httpAjaxContext.ajax_rspEndCmp();
-            }
             if ( 1 != 0 )
             {
-               WebComp_Component3.componentstart();
+               if ( StringUtil.Len( WebComp_Component3_Component) != 0 )
+               {
+                  WebComp_Component3.componentstart();
+               }
+            }
+         }
+         if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+         {
+            if ( 1 != 0 )
+            {
+               if ( StringUtil.Len( WebComp_Component4_Component) != 0 )
+               {
+                  WebComp_Component4.componentstart();
+               }
             }
          }
          gxdyncontrolsrefreshing = true;
@@ -700,12 +776,12 @@ namespace GeneXus.Programs.wallet.registered {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E112F2 ();
-            WB2F0( ) ;
+            E122J2 ();
+            WB2J0( ) ;
          }
       }
 
-      protected void send_integrity_lvl_hashes2F2( )
+      protected void send_integrity_lvl_hashes2J2( )
       {
       }
 
@@ -714,10 +790,14 @@ namespace GeneXus.Programs.wallet.registered {
          fix_multi_value_controls( ) ;
       }
 
-      protected void STRUP2F0( )
+      protected void STRUP2J0( )
       {
          /* Before Start, stand alone formulas. */
          before_start_formulas( ) ;
+         /* Execute Start event if defined. */
+         context.wbGlbDoneStart = 0;
+         /* Execute user event: Start */
+         E112J2 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
@@ -738,11 +818,78 @@ namespace GeneXus.Programs.wallet.registered {
          }
       }
 
+      protected void GXStart( )
+      {
+         /* Execute user event: Start */
+         E112J2 ();
+         if (returnInSub) return;
+      }
+
+      protected void E112J2( )
+      {
+         /* Start Routine */
+         returnInSub = false;
+         /* Object Property */
+         if ( true )
+         {
+            bDynCreated_Component2 = true;
+         }
+         if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Component2_Component), StringUtil.Lower( "Wallet.registered.EncryptTo")) != 0 )
+         {
+            WebComp_Component2 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.encryptto", new Object[] {context} );
+            WebComp_Component2.ComponentInit();
+            WebComp_Component2.Name = "Wallet.registered.EncryptTo";
+            WebComp_Component2_Component = "Wallet.registered.EncryptTo";
+         }
+         if ( StringUtil.Len( WebComp_Component2_Component) != 0 )
+         {
+            WebComp_Component2.setjustcreated();
+            WebComp_Component2.componentprepare(new Object[] {(string)"W0014",(string)""});
+            WebComp_Component2.componentbind(new Object[] {});
+         }
+         /* Object Property */
+         if ( true )
+         {
+            bDynCreated_Component3 = true;
+         }
+         if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Component3_Component), StringUtil.Lower( "Wallet.registered.ReceiveFromUser")) != 0 )
+         {
+            WebComp_Component3 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.receivefromuser", new Object[] {context} );
+            WebComp_Component3.ComponentInit();
+            WebComp_Component3.Name = "Wallet.registered.ReceiveFromUser";
+            WebComp_Component3_Component = "Wallet.registered.ReceiveFromUser";
+         }
+         if ( StringUtil.Len( WebComp_Component3_Component) != 0 )
+         {
+            WebComp_Component3.setjustcreated();
+            WebComp_Component3.componentprepare(new Object[] {(string)"W0022",(string)""});
+            WebComp_Component3.componentbind(new Object[] {});
+         }
+         /* Object Property */
+         if ( true )
+         {
+            bDynCreated_Component4 = true;
+         }
+         if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Component4_Component), StringUtil.Lower( "Wallet.registered.LargeFiles")) != 0 )
+         {
+            WebComp_Component4 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.largefiles", new Object[] {context} );
+            WebComp_Component4.ComponentInit();
+            WebComp_Component4.Name = "Wallet.registered.LargeFiles";
+            WebComp_Component4_Component = "Wallet.registered.LargeFiles";
+         }
+         if ( StringUtil.Len( WebComp_Component4_Component) != 0 )
+         {
+            WebComp_Component4.setjustcreated();
+            WebComp_Component4.componentprepare(new Object[] {(string)"W0030",(string)""});
+            WebComp_Component4.componentbind(new Object[] {});
+         }
+      }
+
       protected void nextLoad( )
       {
       }
 
-      protected void E112F2( )
+      protected void E122J2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -763,9 +910,9 @@ namespace GeneXus.Programs.wallet.registered {
          nGotPars = (short)(1);
          nGXWrapped = (short)(1);
          context.SetWrapped(true);
-         PA2F2( ) ;
-         WS2F2( ) ;
-         WE2F2( ) ;
+         PA2J2( ) ;
+         WS2J2( ) ;
+         WE2J2( ) ;
          cleanup();
          context.SetWrapped(false);
          context.GX_msglist = BackMsgLst;
@@ -780,27 +927,26 @@ namespace GeneXus.Programs.wallet.registered {
       {
          AddStyleSheetFile("Tab/BasicTab.css", "");
          AddThemeStyleSheetFile("", context.GetTheme( )+".css", "?"+GetCacheInvalidationToken( ));
-         if ( StringUtil.StrCmp(WebComp_Component2_Component, "") == 0 )
-         {
-            WebComp_Component2 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.encryptto", new Object[] {context} );
-            WebComp_Component2.ComponentInit();
-            WebComp_Component2.Name = "Wallet.registered.EncryptTo";
-            WebComp_Component2_Component = "Wallet.registered.EncryptTo";
-         }
          if ( ! ( WebComp_Component2 == null ) )
          {
-            WebComp_Component2.componentthemes();
-         }
-         if ( StringUtil.StrCmp(WebComp_Component3_Component, "") == 0 )
-         {
-            WebComp_Component3 = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.receivefromuser", new Object[] {context} );
-            WebComp_Component3.ComponentInit();
-            WebComp_Component3.Name = "Wallet.registered.ReceiveFromUser";
-            WebComp_Component3_Component = "Wallet.registered.ReceiveFromUser";
+            if ( StringUtil.Len( WebComp_Component2_Component) != 0 )
+            {
+               WebComp_Component2.componentthemes();
+            }
          }
          if ( ! ( WebComp_Component3 == null ) )
          {
-            WebComp_Component3.componentthemes();
+            if ( StringUtil.Len( WebComp_Component3_Component) != 0 )
+            {
+               WebComp_Component3.componentthemes();
+            }
+         }
+         if ( ! ( WebComp_Component4 == null ) )
+         {
+            if ( StringUtil.Len( WebComp_Component4_Component) != 0 )
+            {
+               WebComp_Component4.componentthemes();
+            }
          }
          bool outputEnabled = isOutputEnabled( );
          if ( context.isSpaRequest( ) )
@@ -810,7 +956,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202613016302573", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20261071417284", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -826,7 +972,7 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("wallet/registered/fileencryption.js", "?202613016302573", false, true, false);
+         context.AddJavascriptSource("wallet/registered/fileencryption.js", "?20261071417284", false, true, false);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true, false);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true, false);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true, false);
@@ -846,6 +992,8 @@ namespace GeneXus.Programs.wallet.registered {
          divTabpage2table_Internalname = "TABPAGE2TABLE";
          lblReceived_title_Internalname = "RECEIVED_TITLE";
          divTabpage3table_Internalname = "TABPAGE3TABLE";
+         lblLargefiles_title_Internalname = "LARGEFILES_TITLE";
+         divTabpage4table_Internalname = "TABPAGE4TABLE";
          Tabs_Internalname = "TABS";
          divMaintable_Internalname = "MAINTABLE";
          Form.Internalname = "FORM";
@@ -861,7 +1009,7 @@ namespace GeneXus.Programs.wallet.registered {
          init_default_properties( ) ;
          Tabs_Historymanagement = Convert.ToBoolean( 0);
          Tabs_Class = "Tab";
-         Tabs_Pagecount = 2;
+         Tabs_Pagecount = 3;
          Form.Headerrawhtml = "";
          Form.Background = "";
          Form.Textcolor = 0;
@@ -906,17 +1054,23 @@ namespace GeneXus.Programs.wallet.registered {
          sPrefix = "";
          ucTabs = new GXUserControl();
          lblSendto_title_Jsonclick = "";
+         WebComp_Component2_Component = "";
+         OldComponent2 = "";
          lblReceived_title_Jsonclick = "";
+         WebComp_Component3_Component = "";
+         OldComponent3 = "";
+         lblLargefiles_title_Jsonclick = "";
+         WebComp_Component4_Component = "";
+         OldComponent4 = "";
          sEvt = "";
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
-         WebComp_Component2_Component = "";
-         WebComp_Component3_Component = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          WebComp_Component2 = new GeneXus.Http.GXNullWebComponent();
          WebComp_Component3 = new GeneXus.Http.GXNullWebComponent();
+         WebComp_Component4 = new GeneXus.Http.GXNullWebComponent();
          /* GeneXus formulas. */
       }
 
@@ -945,27 +1099,36 @@ namespace GeneXus.Programs.wallet.registered {
       private string lblSendto_title_Internalname ;
       private string lblSendto_title_Jsonclick ;
       private string divTabpage2table_Internalname ;
+      private string WebComp_Component2_Component ;
+      private string OldComponent2 ;
       private string lblReceived_title_Internalname ;
       private string lblReceived_title_Jsonclick ;
       private string divTabpage3table_Internalname ;
+      private string WebComp_Component3_Component ;
+      private string OldComponent3 ;
+      private string lblLargefiles_title_Internalname ;
+      private string lblLargefiles_title_Jsonclick ;
+      private string divTabpage4table_Internalname ;
+      private string WebComp_Component4_Component ;
+      private string OldComponent4 ;
       private string sEvt ;
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
-      private string WebComp_Component2_Component ;
-      private string WebComp_Component3_Component ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool Tabs_Historymanagement ;
       private bool wbLoad ;
       private bool Rfr0gs ;
       private bool wbErr ;
-      private bool bDynCreated_Component2 ;
-      private bool bDynCreated_Component3 ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
+      private bool bDynCreated_Component2 ;
+      private bool bDynCreated_Component3 ;
+      private bool bDynCreated_Component4 ;
       private GXWebComponent WebComp_Component2 ;
       private GXWebComponent WebComp_Component3 ;
+      private GXWebComponent WebComp_Component4 ;
       private GXUserControl ucTabs ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;

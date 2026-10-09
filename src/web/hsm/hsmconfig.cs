@@ -161,11 +161,11 @@ namespace GeneXus.Programs.hsm {
 
       public override short ExecuteStartEvent( )
       {
-         PA2X2( ) ;
+         PA342( ) ;
          gxajaxcallmode = (short)((isAjaxCallMode( ) ? 1 : 0));
          if ( ( gxajaxcallmode == 0 ) && ( GxWebError == 0 ) )
          {
-            START2X2( ) ;
+            START342( ) ;
          }
          return gxajaxcallmode ;
       }
@@ -200,10 +200,10 @@ namespace GeneXus.Programs.hsm {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -258,11 +258,11 @@ namespace GeneXus.Programs.hsm {
          send_integrity_footer_hashes( ) ;
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vHSMCONFIGSDT", AV9HSMconfigSDT);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vHSMCONFIGSDT", AV12HSMconfigSDT);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vHSMCONFIGSDT", AV9HSMconfigSDT);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vHSMCONFIGSDT", AV12HSMconfigSDT);
          }
       }
 
@@ -295,14 +295,14 @@ namespace GeneXus.Programs.hsm {
             context.WriteHtmlText( "<div") ;
             GxWebStd.ClassAttribute( context, "gx-ct-body"+" "+(String.IsNullOrEmpty(StringUtil.RTrim( Form.Class)) ? "form-horizontal Form" : Form.Class)+"-fx");
             context.WriteHtmlText( ">") ;
-            WE2X2( ) ;
+            WE342( ) ;
             context.WriteHtmlText( "</div>") ;
          }
       }
 
       public override void DispatchEvents( )
       {
-         EVT2X2( ) ;
+         EVT342( ) ;
       }
 
       public override bool HasEnterEvent( )
@@ -330,7 +330,7 @@ namespace GeneXus.Programs.hsm {
          return "HSMconfig" ;
       }
 
-      protected void WB2X0( )
+      protected void WB340( )
       {
          if ( context.isAjaxRequest( ) )
          {
@@ -364,7 +364,7 @@ namespace GeneXus.Programs.hsm {
             StyleString = "";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_html_textarea( context, edtavHsmderivationpath_Internalname, StringUtil.RTrim( AV10hsmDerivationPath), "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,8);\"", 0, 1, edtavHsmderivationpath_Enabled, 0, 80, "chr", 4, "row", 0, StyleString, ClassString, "", "", "250", -1, 0, "", "", -1, true, "", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_HSM/HSMconfig.htm");
+            GxWebStd.gx_html_textarea( context, edtavHsmderivationpath_Internalname, StringUtil.RTrim( AV5hsmDerivationPath), "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,8);\"", 0, 1, edtavHsmderivationpath_Enabled, 0, 80, "chr", 4, "row", 0, StyleString, ClassString, "", "", "250", -1, 0, "", "", -1, true, "", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_HSM/HSMconfig.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -383,7 +383,7 @@ namespace GeneXus.Programs.hsm {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 13,'',false,'',0)\"";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavActivate_Internalname, StringUtil.BoolToStr( AV5activate), "", "Activate", 1, chkavActivate.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(13, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,13);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavActivate_Internalname, StringUtil.BoolToStr( AV6activate), "", "Activate", 1, chkavActivate.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(13, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,13);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -402,7 +402,7 @@ namespace GeneXus.Programs.hsm {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 18,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttCancel_Internalname, "", "Cancel", bttCancel_Jsonclick, 7, "Cancel", "", StyleString, ClassString, bttCancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"e112x1_client"+"'", TempTags, "", 2, "HLP_HSM/HSMconfig.htm");
+            GxWebStd.gx_button_ctrl( context, bttCancel_Internalname, "", "Cancel", bttCancel_Jsonclick, 7, "Cancel", "", StyleString, ClassString, bttCancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"e11341_client"+"'", TempTags, "", 2, "HLP_HSM/HSMconfig.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -411,7 +411,7 @@ namespace GeneXus.Programs.hsm {
          wbLoad = true;
       }
 
-      protected void START2X2( )
+      protected void START342( )
       {
          wbLoad = false;
          wbEnd = 0;
@@ -420,7 +420,7 @@ namespace GeneXus.Programs.hsm {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_14-187820", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_16-189595", 0) ;
             }
          }
          Form.Meta.addItem("description", "HSMconfig", 0) ;
@@ -431,16 +431,16 @@ namespace GeneXus.Programs.hsm {
          {
          }
          wbErr = false;
-         STRUP2X0( ) ;
+         STRUP340( ) ;
       }
 
-      protected void WS2X2( )
+      protected void WS342( )
       {
-         START2X2( ) ;
-         EVT2X2( ) ;
+         START342( ) ;
+         EVT342( ) ;
       }
 
-      protected void EVT2X2( )
+      protected void EVT342( )
       {
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
@@ -472,21 +472,21 @@ namespace GeneXus.Programs.hsm {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Start */
-                              E122X2 ();
+                              E12342 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "'SAVE'") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: 'Save' */
-                              E132X2 ();
+                              E13342 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Load */
-                              E142X2 ();
+                              E14342 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                            {
@@ -519,7 +519,7 @@ namespace GeneXus.Programs.hsm {
          }
       }
 
-      protected void WE2X2( )
+      protected void WE342( )
       {
          if ( ! GxWebStd.gx_redirect( context) )
          {
@@ -535,7 +535,7 @@ namespace GeneXus.Programs.hsm {
          }
       }
 
-      protected void PA2X2( )
+      protected void PA342( )
       {
          if ( nDonePA == 0 )
          {
@@ -586,14 +586,14 @@ namespace GeneXus.Programs.hsm {
 
       protected void fix_multi_value_controls( )
       {
-         AV5activate = StringUtil.StrToBool( StringUtil.BoolToStr( AV5activate));
-         AssignAttri("", false, "AV5activate", AV5activate);
+         AV6activate = StringUtil.StrToBool( StringUtil.BoolToStr( AV6activate));
+         AssignAttri("", false, "AV6activate", AV6activate);
       }
 
       public void Refresh( )
       {
          send_integrity_hashes( ) ;
-         RF2X2( ) ;
+         RF342( ) ;
          if ( isFullAjaxMode( ) )
          {
             send_integrity_footer_hashes( ) ;
@@ -607,7 +607,7 @@ namespace GeneXus.Programs.hsm {
          AssignProp("", false, edtavHsmderivationpath_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavHsmderivationpath_Enabled), 5, 0), true);
       }
 
-      protected void RF2X2( )
+      protected void RF342( )
       {
          initialize_formulas( ) ;
          clear_multi_value_controls( ) ;
@@ -617,12 +617,12 @@ namespace GeneXus.Programs.hsm {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E142X2 ();
-            WB2X0( ) ;
+            E14342 ();
+            WB340( ) ;
          }
       }
 
-      protected void send_integrity_lvl_hashes2X2( )
+      protected void send_integrity_lvl_hashes342( )
       {
       }
 
@@ -633,26 +633,26 @@ namespace GeneXus.Programs.hsm {
          fix_multi_value_controls( ) ;
       }
 
-      protected void STRUP2X0( )
+      protected void STRUP340( )
       {
          /* Before Start, stand alone formulas. */
          before_start_formulas( ) ;
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E122X2 ();
+         E12342 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
             /* Read saved SDTs. */
-            ajax_req_read_hidden_sdt(cgiGet( "vHSMCONFIGSDT"), AV9HSMconfigSDT);
+            ajax_req_read_hidden_sdt(cgiGet( "vHSMCONFIGSDT"), AV12HSMconfigSDT);
             /* Read saved values. */
             /* Read variables values. */
-            AV10hsmDerivationPath = cgiGet( edtavHsmderivationpath_Internalname);
-            AssignAttri("", false, "AV10hsmDerivationPath", AV10hsmDerivationPath);
-            AV5activate = StringUtil.StrToBool( cgiGet( chkavActivate_Internalname));
-            AssignAttri("", false, "AV5activate", AV5activate);
+            AV5hsmDerivationPath = cgiGet( edtavHsmderivationpath_Internalname);
+            AssignAttri("", false, "AV5hsmDerivationPath", AV5hsmDerivationPath);
+            AV6activate = StringUtil.StrToBool( cgiGet( chkavActivate_Internalname));
+            AssignAttri("", false, "AV6activate", AV6activate);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -666,17 +666,17 @@ namespace GeneXus.Programs.hsm {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E122X2 ();
+         E12342 ();
          if (returnInSub) return;
       }
 
-      protected void E122X2( )
+      protected void E12342( )
       {
          /* Start Routine */
          returnInSub = false;
-         GXt_SdtExtKeyInfo1 = AV8extKeyInfo;
+         GXt_SdtExtKeyInfo1 = AV7extKeyInfo;
          new GeneXus.Programs.wallet.getextkey(context ).execute( out  GXt_SdtExtKeyInfo1) ;
-         AV8extKeyInfo = GXt_SdtExtKeyInfo1;
+         AV7extKeyInfo = GXt_SdtExtKeyInfo1;
          GXt_SdtWallet2 = AV11wallet;
          new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet2) ;
          AV11wallet = GXt_SdtWallet2;
@@ -686,52 +686,52 @@ namespace GeneXus.Programs.hsm {
          AssignProp("", false, bttCancel_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttCancel_Visible), 5, 0), true);
          if ( StringUtil.StrCmp(AV11wallet.gxTpr_Networktype, "MainNet") == 0 )
          {
-            AV10hsmDerivationPath = "m/86'/0'/0'" + "/" + "6000'";
-            AssignAttri("", false, "AV10hsmDerivationPath", AV10hsmDerivationPath);
+            AV5hsmDerivationPath = "m/86'/0'/0'" + "/" + "6000'";
+            AssignAttri("", false, "AV5hsmDerivationPath", AV5hsmDerivationPath);
          }
          else if ( StringUtil.StrCmp(AV11wallet.gxTpr_Networktype, "TestNet") == 0 )
          {
-            AV10hsmDerivationPath = "m/86'/1'/0'" + "/" + "6000'";
-            AssignAttri("", false, "AV10hsmDerivationPath", AV10hsmDerivationPath);
+            AV5hsmDerivationPath = "m/86'/1'/0'" + "/" + "6000'";
+            AssignAttri("", false, "AV5hsmDerivationPath", AV5hsmDerivationPath);
          }
          else if ( StringUtil.StrCmp(AV11wallet.gxTpr_Networktype, "RegTest") == 0 )
          {
-            AV10hsmDerivationPath = "m/86'/1'/0'" + "/" + "6000'";
-            AssignAttri("", false, "AV10hsmDerivationPath", AV10hsmDerivationPath);
+            AV5hsmDerivationPath = "m/86'/1'/0'" + "/" + "6000'";
+            AssignAttri("", false, "AV5hsmDerivationPath", AV5hsmDerivationPath);
          }
          else
          {
-            AV7error = "Network Type not sopported";
-            AssignAttri("", false, "AV7error", AV7error);
+            AV13error = "Network Type not sopported";
+            AssignAttri("", false, "AV13error", AV13error);
          }
-         AV9HSMconfigSDT.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "hsm.dat", out  AV7error), null);
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV7error)) )
+         AV12HSMconfigSDT.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "hsm.dat", out  AV13error), null);
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
          {
-            AV5activate = AV9HSMconfigSDT.gxTpr_Isactive;
-            AssignAttri("", false, "AV5activate", AV5activate);
+            AV6activate = AV12HSMconfigSDT.gxTpr_Isactive;
+            AssignAttri("", false, "AV6activate", AV6activate);
          }
          else
          {
-            GX_msglist.addItem(AV7error);
+            GX_msglist.addItem(AV13error);
          }
       }
 
-      protected void E132X2( )
+      protected void E13342( )
       {
          /* 'Save' Routine */
          returnInSub = false;
-         AV9HSMconfigSDT.gxTpr_Isactive = AV5activate;
-         GXt_char3 = AV7error;
-         new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  "hsm.dat",  AV9HSMconfigSDT.ToJSonString(false, true), out  GXt_char3) ;
-         AV7error = GXt_char3;
-         AssignAttri("", false, "AV7error", AV7error);
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV7error)) )
+         AV12HSMconfigSDT.gxTpr_Isactive = AV6activate;
+         GXt_char3 = AV13error;
+         new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  "hsm.dat",  AV12HSMconfigSDT.ToJSonString(false, true), out  GXt_char3) ;
+         AV13error = GXt_char3;
+         AssignAttri("", false, "AV13error", AV13error);
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
          {
             bttSave_Visible = 0;
             AssignProp("", false, bttSave_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttSave_Visible), 5, 0), true);
             bttCancel_Visible = 0;
             AssignProp("", false, bttCancel_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttCancel_Visible), 5, 0), true);
-            if ( AV9HSMconfigSDT.gxTpr_Isactive )
+            if ( AV12HSMconfigSDT.gxTpr_Isactive )
             {
                this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"success",(string)"HSM Ready ",(string)"Pleas, login to Activate"}, true);
                CallWebObject(formatLink("wallet.returntowallets") );
@@ -740,23 +740,22 @@ namespace GeneXus.Programs.hsm {
             else
             {
                this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"warning",(string)"HSM De-activated ",(string)"De-Activated"}, true);
-               AV12HsmManager.clear();
+               AV15HsmManager.clear();
             }
          }
          else
          {
-            GX_msglist.addItem(AV7error);
+            GX_msglist.addItem(AV13error);
          }
          /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV9HSMconfigSDT", AV9HSMconfigSDT);
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV12HsmManager", AV12HsmManager);
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV12HSMconfigSDT", AV12HSMconfigSDT);
       }
 
       protected void nextLoad( )
       {
       }
 
-      protected void E142X2( )
+      protected void E14342( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -777,9 +776,9 @@ namespace GeneXus.Programs.hsm {
          nGotPars = (short)(1);
          nGXWrapped = (short)(1);
          context.SetWrapped(true);
-         PA2X2( ) ;
-         WS2X2( ) ;
-         WE2X2( ) ;
+         PA342( ) ;
+         WS342( ) ;
+         WE342( ) ;
          cleanup();
          context.SetWrapped(false);
          context.GX_msglist = BackMsgLst;
@@ -801,7 +800,7 @@ namespace GeneXus.Programs.hsm {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202613016302840", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20261071417687", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -817,7 +816,7 @@ namespace GeneXus.Programs.hsm {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("hsm/hsmconfig.js", "?202613016302840", false, true, false);
+         context.AddJavascriptSource("hsm/hsmconfig.js", "?20261071417687", false, true, false);
          /* End function include_jscripts */
       }
 
@@ -828,8 +827,8 @@ namespace GeneXus.Programs.hsm {
          chkavActivate.Caption = "Activate";
          AssignProp("", false, chkavActivate_Internalname, "TitleCaption", chkavActivate.Caption, true);
          chkavActivate.CheckedValue = "false";
-         AV5activate = StringUtil.StrToBool( StringUtil.BoolToStr( AV5activate));
-         AssignAttri("", false, "AV5activate", AV5activate);
+         AV6activate = StringUtil.StrToBool( StringUtil.BoolToStr( AV6activate));
+         AssignAttri("", false, "AV6activate", AV6activate);
          /* End function init_web_controls */
       }
 
@@ -874,11 +873,11 @@ namespace GeneXus.Programs.hsm {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV5activate","fld":"vACTIVATE","type":"boolean"}]}""");
-         setEventMetadata("'SAVE'","""{"handler":"E132X2","iparms":[{"av":"AV5activate","fld":"vACTIVATE","type":"boolean"},{"av":"AV9HSMconfigSDT","fld":"vHSMCONFIGSDT","type":""}]""");
-         setEventMetadata("'SAVE'",""","oparms":[{"av":"AV9HSMconfigSDT","fld":"vHSMCONFIGSDT","type":""},{"av":"AV7error","fld":"vERROR","type":"char"},{"ctrl":"SAVE","prop":"Visible"},{"ctrl":"CANCEL","prop":"Visible"}]}""");
-         setEventMetadata("'CANCEL'","""{"handler":"E112X1","iparms":[{"av":"AV9HSMconfigSDT","fld":"vHSMCONFIGSDT","type":""}]""");
-         setEventMetadata("'CANCEL'",""","oparms":[{"av":"AV5activate","fld":"vACTIVATE","type":"boolean"},{"ctrl":"SAVE","prop":"Visible"},{"ctrl":"CANCEL","prop":"Visible"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV6activate","fld":"vACTIVATE","type":"boolean"}]}""");
+         setEventMetadata("'SAVE'","""{"handler":"E13342","iparms":[{"av":"AV6activate","fld":"vACTIVATE","type":"boolean"},{"av":"AV12HSMconfigSDT","fld":"vHSMCONFIGSDT","type":""}]""");
+         setEventMetadata("'SAVE'",""","oparms":[{"av":"AV12HSMconfigSDT","fld":"vHSMCONFIGSDT","type":""},{"av":"AV13error","fld":"vERROR","type":"char"},{"ctrl":"SAVE","prop":"Visible"},{"ctrl":"CANCEL","prop":"Visible"}]}""");
+         setEventMetadata("'CANCEL'","""{"handler":"E11341","iparms":[{"av":"AV12HSMconfigSDT","fld":"vHSMCONFIGSDT","type":""}]""");
+         setEventMetadata("'CANCEL'",""","oparms":[{"av":"AV6activate","fld":"vACTIVATE","type":"boolean"},{"ctrl":"SAVE","prop":"Visible"},{"ctrl":"CANCEL","prop":"Visible"}]}""");
          return  ;
       }
 
@@ -899,27 +898,27 @@ namespace GeneXus.Programs.hsm {
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
-         AV9HSMconfigSDT = new GeneXus.Programs.hsm.SdtHSMconfigSDT(context);
+         AV12HSMconfigSDT = new GeneXus.Programs.hsm.SdtHSMconfigSDT(context);
          GX_FocusControl = "";
          Form = new GXWebForm();
          sPrefix = "";
          TempTags = "";
          ClassString = "";
          StyleString = "";
-         AV10hsmDerivationPath = "";
+         AV5hsmDerivationPath = "";
          bttSave_Jsonclick = "";
          bttCancel_Jsonclick = "";
          sEvt = "";
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
-         AV8extKeyInfo = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
+         AV7extKeyInfo = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
          GXt_SdtExtKeyInfo1 = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
          AV11wallet = new GeneXus.Programs.wallet.SdtWallet(context);
          GXt_SdtWallet2 = new GeneXus.Programs.wallet.SdtWallet(context);
-         AV7error = "";
+         AV13error = "";
          GXt_char3 = "";
-         AV12HsmManager = new GeneXus.Programs.hsm.SdtHsmManager(context);
+         AV15HsmManager = new GeneXus.Programs.hsm.SdtHsmManager(context);
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          /* GeneXus formulas. */
@@ -951,7 +950,7 @@ namespace GeneXus.Programs.hsm {
       private string TempTags ;
       private string ClassString ;
       private string StyleString ;
-      private string AV10hsmDerivationPath ;
+      private string AV5hsmDerivationPath ;
       private string chkavActivate_Internalname ;
       private string bttSave_Internalname ;
       private string bttSave_Jsonclick ;
@@ -961,12 +960,12 @@ namespace GeneXus.Programs.hsm {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
-      private string AV7error ;
+      private string AV13error ;
       private string GXt_char3 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool wbLoad ;
-      private bool AV5activate ;
+      private bool AV6activate ;
       private bool Rfr0gs ;
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
@@ -974,12 +973,12 @@ namespace GeneXus.Programs.hsm {
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
       private GXCheckbox chkavActivate ;
-      private GeneXus.Programs.hsm.SdtHSMconfigSDT AV9HSMconfigSDT ;
-      private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV8extKeyInfo ;
+      private GeneXus.Programs.hsm.SdtHSMconfigSDT AV12HSMconfigSDT ;
+      private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV7extKeyInfo ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo GXt_SdtExtKeyInfo1 ;
       private GeneXus.Programs.wallet.SdtWallet AV11wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet2 ;
-      private GeneXus.Programs.hsm.SdtHsmManager AV12HsmManager ;
+      private GeneXus.Programs.hsm.SdtHsmManager AV15HsmManager ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

@@ -86,14 +86,14 @@ namespace GeneXus.Programs.distributedcryptographylib {
          AV9error = GXt_char2;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
          {
-            AV16DecryptionResult = AV17EncryptionService.decrypt(AV13encryptedText, AV8encryptionKey);
-            if ( AV16DecryptionResult.gxTpr_Success )
+            AV17DecryptionResult = AV16EncryptionService.decrypt(AV13encryptedText, AV8encryptionKey);
+            if ( AV17DecryptionResult.gxTpr_Success )
             {
-               AV12clearText = AV16DecryptionResult.gxTpr_Decryptedtext;
+               AV12clearText = AV17DecryptionResult.gxTpr_Decryptedtext;
             }
             else
             {
-               AV9error = AV16DecryptionResult.gxTpr_Errormessage;
+               AV9error = AV17DecryptionResult.gxTpr_Errormessage;
             }
          }
          cleanup();
@@ -117,8 +117,8 @@ namespace GeneXus.Programs.distributedcryptographylib {
          GXt_SdtKeyInfo1 = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
          GXt_char2 = "";
          AV8encryptionKey = "";
-         AV16DecryptionResult = new GeneXus.Programs.distributedcryptographylib.SdtDecryptionResult(context);
-         AV17EncryptionService = new GeneXus.Programs.distributedcryptographylib.SdtEncryptionService(context);
+         AV17DecryptionResult = new GeneXus.Programs.distributedcryptographylib.SdtDecryptionResult(context);
+         AV16EncryptionService = new GeneXus.Programs.distributedcryptographylib.SdtEncryptionService(context);
          /* GeneXus formulas. */
       }
 
@@ -130,8 +130,8 @@ namespace GeneXus.Programs.distributedcryptographylib {
       private string AV12clearText ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo AV15keyInfo ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo GXt_SdtKeyInfo1 ;
-      private GeneXus.Programs.distributedcryptographylib.SdtDecryptionResult AV16DecryptionResult ;
-      private GeneXus.Programs.distributedcryptographylib.SdtEncryptionService AV17EncryptionService ;
+      private GeneXus.Programs.distributedcryptographylib.SdtDecryptionResult AV17DecryptionResult ;
+      private GeneXus.Programs.distributedcryptographylib.SdtEncryptionService AV16EncryptionService ;
       private string aP2_clearText ;
       private string aP3_error ;
    }

@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtGroup_SDT_ContactItem
 			Description: Contact
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.14.187820
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.16.189595
 		   Program type: Callable routine
 			  Main DBMS: 
 */
@@ -56,6 +56,8 @@ namespace GeneXus.Programs.wallet.registered
 			gxTv_SdtGroup_SDT_ContactItem_Extpubkeymultisigchange = "";
 
 			gxTv_SdtGroup_SDT_ContactItem_Extpubkeytimebountyreceiving = "";
+
+			gxTv_SdtGroup_SDT_ContactItem_Restoresigneddatetime = (DateTime)(DateTime.MinValue);
 
 		}
 
@@ -184,6 +186,29 @@ namespace GeneXus.Programs.wallet.registered
 			{
 				AddObjectProperty("muSigSignatures", gxTv_SdtGroup_SDT_ContactItem_Musigsignatures, false);
 			}
+
+			datetime_STZ = gxTpr_Restoresigneddatetime;
+			sDateCnv = "";
+			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Year(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("0000", 1, 4-StringUtil.Len( sNumToPad)) + sNumToPad;
+			sDateCnv = sDateCnv + "-";
+			sNumToPad = StringUtil.Trim( StringUtil.Str((decimal)(DateTimeUtil.Month(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
+			sDateCnv = sDateCnv + "-";
+			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Day(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
+			sDateCnv = sDateCnv + "T";
+			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Hour(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
+			sDateCnv = sDateCnv + ":";
+			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Minute(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
+			sDateCnv = sDateCnv + ":";
+			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Second(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
+			AddObjectProperty("restoreSignedDateTime", sDateCnv, false);
+
+
 			return;
 		}
 		#endregion
@@ -569,6 +594,33 @@ namespace GeneXus.Programs.wallet.registered
 
 		}
 
+		[SoapElement(ElementName="restoreSignedDateTime")]
+		[XmlElement(ElementName="restoreSignedDateTime" , IsNullable=true)]
+		public string gxTpr_Restoresigneddatetime_Nullable
+		{
+			get {
+				if ( gxTv_SdtGroup_SDT_ContactItem_Restoresigneddatetime == DateTime.MinValue)
+					return null;
+				return new GxDatetimeString(gxTv_SdtGroup_SDT_ContactItem_Restoresigneddatetime).value ;
+			}
+			set {
+				gxTv_SdtGroup_SDT_ContactItem_Restoresigneddatetime = DateTimeUtil.CToD2(value);
+			}
+		}
+
+		[XmlIgnore]
+		public DateTime gxTpr_Restoresigneddatetime
+		{
+			get {
+				return gxTv_SdtGroup_SDT_ContactItem_Restoresigneddatetime; 
+			}
+			set {
+				gxTv_SdtGroup_SDT_ContactItem_Restoresigneddatetime = value;
+				SetDirty("Restoresigneddatetime");
+			}
+		}
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -610,6 +662,7 @@ namespace GeneXus.Programs.wallet.registered
 
 			gxTv_SdtGroup_SDT_ContactItem_Musigsignatures_N = true;
 
+			gxTv_SdtGroup_SDT_ContactItem_Restoresigneddatetime = (DateTime)(DateTime.MinValue);
 			datetime_STZ = (DateTime)(DateTime.MinValue);
 			sDateCnv = "";
 			sNumToPad = "";
@@ -684,6 +737,9 @@ namespace GeneXus.Programs.wallet.registered
 		 
 		protected bool gxTv_SdtGroup_SDT_ContactItem_Musigsignatures_N;
 		protected GXBaseCollection<GeneXus.Programs.wallet.registered.SdtMuSigSignatures> gxTv_SdtGroup_SDT_ContactItem_Musigsignatures = null;  
+
+		protected DateTime gxTv_SdtGroup_SDT_ContactItem_Restoresigneddatetime;
+		 
 
 
 		#endregion
@@ -987,6 +1043,20 @@ namespace GeneXus.Programs.wallet.registered
 			}
 			set { 
 				value.LoadCollection(sdt.gxTpr_Musigsignatures);
+			}
+		}
+
+		[JsonPropertyName("restoreSignedDateTime")]
+		[JsonPropertyOrder(20)]
+		[DataMember(Name="restoreSignedDateTime", Order=20)]
+		public  string gxTpr_Restoresigneddatetime
+		{
+			get { 
+				return DateTimeUtil.TToC2( sdt.gxTpr_Restoresigneddatetime,context);
+
+			}
+			set { 
+				sdt.gxTpr_Restoresigneddatetime = DateTimeUtil.CToT2(value,context);
 			}
 		}
 

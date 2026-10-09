@@ -39,6 +39,9 @@
         <Reference Include="DistricutedCryptographyLib" >
             <HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
         </Reference>
+        <Reference Include="GxJadeLib" >
+            <HintPath>$(WebBinDirectory)\GxJadeLib.dll</HintPath>
+        </Reference>
 
 	</ItemGroup>
 
@@ -52,12 +55,12 @@
 		<Compile Include = "$(WebDirectory)\wallet\registered\getmessages.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\receivedfinishedmusig.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\updateactivatedgroup.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\processincomingmessages.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\updategroup.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\updatetransactionsaftercoinsent.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjsonfor.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\registered\dispatchincommingmessage.cs" />
 		<Compile Include = "$(WebDirectory)\desktopappservicesrestupdatecontactpost.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\unixtimetolocaldatetime.cs" />
 		<Compile Include = "$(WebDirectory)\apibaseurlauth.cs" />
@@ -80,8 +83,10 @@
 		<Compile Include = "$(WebDirectory)\wallet\registered\deletemessage.cs" />
 		<Compile Include = "$(WebDirectory)\nostr\processrecivedfromnostr.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\processserver.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\dispatchincommingmessage.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\callapi.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\updaterestorestatusongroup.cs" />
 		<Compile Include = "$(WebDirectory)\desktopappservicesrestupdategrouppost.cs" />
 		<Compile Include = "$(WebDirectory)\desktopappservicesrestdeletemesagepost.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\getgroupbyid.cs" />

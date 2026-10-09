@@ -27,6 +27,7 @@ namespace GeneXus.Programs.wallet {
          domain[(short)30] = "Delegation Multi-Signature Wallet";
          domain[(short)40] = "Encrypted Passwords";
          domain[(short)20] = "Time Encrypted Vault";
+         domain[(short)50] = "Legacy Multi-Signature Wallet";
       }
 
       public static string getDescription( IGxContext context ,
@@ -59,6 +60,7 @@ namespace GeneXus.Programs.wallet {
             domainMap["DelegationMultiSignature"] = (short)30;
             domainMap["EncryptedPasswords"] = (short)40;
             domainMap["TimeEncryptedVault"] = (short)20;
+            domainMap["LegacyMultiSignature"] = (short)50;
          }
          return (short)domainMap[key] ;
       }

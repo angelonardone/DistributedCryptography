@@ -60,16 +60,14 @@ namespace GeneXus.Programs.wallet {
          }
          else
          {
-            AV8allKeyInfo.Clear();
             GXt_SdtExtKeyInfo1 = AV10extKeyInfo;
             new GeneXus.Programs.wallet.getextkey(context ).execute( out  GXt_SdtExtKeyInfo1) ;
             AV10extKeyInfo = GXt_SdtExtKeyInfo1;
             GXt_char2 = AV9error;
-            new GeneXus.Programs.nbitcoin.derivekeysfromextkey(context ).execute(  AV10extKeyInfo.gxTpr_Extended.gxTpr_Privatekeytaproot,  (long)(Math.Round(NumberUtil.Val( "4000'", "."), 18, MidpointRounding.ToEven)),  0,  0, out  AV8allKeyInfo, out  GXt_char2) ;
+            new GeneXus.Programs.nbitcoin.derivehardenedkeyinfo(context ).execute(  AV10extKeyInfo.gxTpr_Extended.gxTpr_Privatekeytaproot,  StringUtil.Trim( "4000'")+"/0'", out  AV12keyInfo, out  GXt_char2) ;
             AV9error = GXt_char2;
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
             {
-               AV12keyInfo = ((GeneXus.Programs.nbitcoin.SdtKeyInfo)AV8allKeyInfo.Item(1));
                AV13WebSession.Set("DefaultJasonKey", AV12keyInfo.ToJSonString(false, true));
             }
             else
@@ -93,7 +91,6 @@ namespace GeneXus.Programs.wallet {
       public override void initialize( )
       {
          AV13WebSession = context.GetSession();
-         AV8allKeyInfo = new GXBaseCollection<GeneXus.Programs.nbitcoin.SdtKeyInfo>( context, "KeyInfo", "distributedcryptography");
          AV10extKeyInfo = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
          GXt_SdtExtKeyInfo1 = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
          AV9error = "";
@@ -106,7 +103,6 @@ namespace GeneXus.Programs.wallet {
       private string GXt_char2 ;
       private IGxSession AV13WebSession ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo AV11InKeyInfo ;
-      private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtKeyInfo> AV8allKeyInfo ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV10extKeyInfo ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo GXt_SdtExtKeyInfo1 ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo AV12keyInfo ;

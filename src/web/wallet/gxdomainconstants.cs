@@ -65,6 +65,7 @@ namespace GeneXus.Programs.wallet {
          domain["nostr.conf"] = "Nostr Config File";
          domain["encpasswords.enc"] = "Passwords File";
          domain["hsm.dat"] = "HSMFile";
+         domain["ExtendedKeyBIP48"] = "Extended Key BIP48";
       }
 
       public static string getDescription( IGxContext context ,
@@ -137,6 +138,7 @@ namespace GeneXus.Programs.wallet {
             domainMap["NostrConfigFile"] = "nostr.conf";
             domainMap["PasswordsFile"] = "encpasswords.enc";
             domainMap["HSMFile"] = "hsm.dat";
+            domainMap["ExtendedKeyBIP48"] = "ExtendedKeyBIP48";
          }
          return (string)domainMap[key] ;
       }

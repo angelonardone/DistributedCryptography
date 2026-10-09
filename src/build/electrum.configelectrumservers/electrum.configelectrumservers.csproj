@@ -36,14 +36,19 @@
         <Reference Include="DistricutedCryptographyLib" >
             <HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
         </Reference>
+        <Reference Include="GxJadeLib" >
+            <HintPath>$(WebBinDirectory)\GxJadeLib.dll</HintPath>
+        </Reference>
 
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include = "$(WebDirectory)\electrum\configelectrumservers.cs" />
-		<Compile Include = "$(WebDirectory)\electrum\getelectrumconfigservers.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\defaultparameters.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\getelectrumconfigservers.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwalletsdir.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getappdatadir.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\configelectrumservers.cs" />
 
 	</ItemGroup>
 

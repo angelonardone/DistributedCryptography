@@ -42,10 +42,14 @@
         <Reference Include="DistricutedCryptographyLib" >
             <HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
         </Reference>
+        <Reference Include="GxJadeLib" >
+            <HintPath>$(WebBinDirectory)\GxJadeLib.dll</HintPath>
+        </Reference>
 
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Include = "$(WebDirectory)\distcrypt\signwithloginkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\sendmessage.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\updatecontact.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluser.cs" />
@@ -67,6 +71,7 @@
 		<Compile Include = "$(WebDirectory)\wallet\setcontact.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\contacts.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\delcontact.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluserpublic.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\varchartojsonformat.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\getcontacts.cs" />

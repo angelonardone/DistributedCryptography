@@ -48,23 +48,23 @@ namespace GeneXus.Programs.wallet.registered {
                            out bool aP8_verified ,
                            out string aP9_error )
       {
-         this.AV17group_sdt = aP0_group_sdt;
-         this.AV43transactionFee = aP1_transactionFee;
-         this.AV23networkType = aP2_networkType;
-         this.AV20inSendCoins = aP3_inSendCoins;
-         this.AV37sendTo = aP4_sendTo;
-         this.AV44transactionsToSend = aP5_transactionsToSend;
-         this.AV46virtualSize = 0 ;
-         this.AV18hexTransaction = "" ;
-         this.AV45verified = false ;
-         this.AV11error = "" ;
+         this.AV19group_sdt = aP0_group_sdt;
+         this.AV66transactionFee = aP1_transactionFee;
+         this.AV25networkType = aP2_networkType;
+         this.AV22inSendCoins = aP3_inSendCoins;
+         this.AV56sendTo = aP4_sendTo;
+         this.AV67transactionsToSend = aP5_transactionsToSend;
+         this.AV69virtualSize = 0 ;
+         this.AV20hexTransaction = "" ;
+         this.AV68verified = false ;
+         this.AV12error = "" ;
          initialize();
          ExecuteImpl();
-         aP5_transactionsToSend=this.AV44transactionsToSend;
-         aP6_virtualSize=this.AV46virtualSize;
-         aP7_hexTransaction=this.AV18hexTransaction;
-         aP8_verified=this.AV45verified;
-         aP9_error=this.AV11error;
+         aP5_transactionsToSend=this.AV67transactionsToSend;
+         aP6_virtualSize=this.AV69virtualSize;
+         aP7_hexTransaction=this.AV20hexTransaction;
+         aP8_verified=this.AV68verified;
+         aP9_error=this.AV12error;
       }
 
       public string executeUdp( GeneXus.Programs.wallet.registered.SdtGroup_SDT aP0_group_sdt ,
@@ -78,7 +78,7 @@ namespace GeneXus.Programs.wallet.registered {
                                 out bool aP8_verified )
       {
          execute(aP0_group_sdt, aP1_transactionFee, aP2_networkType, aP3_inSendCoins, aP4_sendTo, ref aP5_transactionsToSend, out aP6_virtualSize, out aP7_hexTransaction, out aP8_verified, out aP9_error);
-         return AV11error ;
+         return AV12error ;
       }
 
       public void executeSubmit( GeneXus.Programs.wallet.registered.SdtGroup_SDT aP0_group_sdt ,
@@ -92,22 +92,22 @@ namespace GeneXus.Programs.wallet.registered {
                                  out bool aP8_verified ,
                                  out string aP9_error )
       {
-         this.AV17group_sdt = aP0_group_sdt;
-         this.AV43transactionFee = aP1_transactionFee;
-         this.AV23networkType = aP2_networkType;
-         this.AV20inSendCoins = aP3_inSendCoins;
-         this.AV37sendTo = aP4_sendTo;
-         this.AV44transactionsToSend = aP5_transactionsToSend;
-         this.AV46virtualSize = 0 ;
-         this.AV18hexTransaction = "" ;
-         this.AV45verified = false ;
-         this.AV11error = "" ;
+         this.AV19group_sdt = aP0_group_sdt;
+         this.AV66transactionFee = aP1_transactionFee;
+         this.AV25networkType = aP2_networkType;
+         this.AV22inSendCoins = aP3_inSendCoins;
+         this.AV56sendTo = aP4_sendTo;
+         this.AV67transactionsToSend = aP5_transactionsToSend;
+         this.AV69virtualSize = 0 ;
+         this.AV20hexTransaction = "" ;
+         this.AV68verified = false ;
+         this.AV12error = "" ;
          SubmitImpl();
-         aP5_transactionsToSend=this.AV44transactionsToSend;
-         aP6_virtualSize=this.AV46virtualSize;
-         aP7_hexTransaction=this.AV18hexTransaction;
-         aP8_verified=this.AV45verified;
-         aP9_error=this.AV11error;
+         aP5_transactionsToSend=this.AV67transactionsToSend;
+         aP6_virtualSize=this.AV69virtualSize;
+         aP7_hexTransaction=this.AV20hexTransaction;
+         aP8_verified=this.AV68verified;
+         aP9_error=this.AV12error;
       }
 
       protected override void ExecutePrivate( )
@@ -134,101 +134,101 @@ namespace GeneXus.Programs.wallet.registered {
           var AllScripts = new System.Collections.Generic.List<NBitcoin.TapScript>();
          /* User Code */
           System.Collections.Generic.List<NBitcoin.Op> ops = new System.Collections.Generic.List<NBitcoin.Op>();
-         AV36sendCoins = (decimal)(AV20inSendCoins-AV43transactionFee);
-         GXt_SdtExternalUser1 = AV14externalUser;
+         AV55sendCoins = (decimal)(AV22inSendCoins-AV66transactionFee);
+         GXt_SdtExternalUser1 = AV72externalUser;
          new GeneXus.Programs.distcrypt.getexternaluser(context ).execute( out  GXt_SdtExternalUser1) ;
-         AV14externalUser = GXt_SdtExternalUser1;
-         if ( ! AV17group_sdt.gxTpr_Amigroupowner )
+         AV72externalUser = GXt_SdtExternalUser1;
+         if ( ! AV19group_sdt.gxTpr_Amigroupowner )
          {
-            GXt_char2 = AV11error;
-            new GeneXus.Programs.distributedcryptographylib.decryptjsonfor(context ).execute(  AV17group_sdt.gxTpr_Encryptedtextshare,  AV17group_sdt.gxTpr_Encpassword,  AV14externalUser.gxTpr_Groupskeyinfo.gxTpr_Privatekey, out  AV35secret, out  GXt_char2) ;
-            AV11error = GXt_char2;
+            GXt_char2 = AV12error;
+            new GeneXus.Programs.distributedcryptographylib.decryptjsonfor(context ).execute(  AV19group_sdt.gxTpr_Encryptedtextshare,  AV19group_sdt.gxTpr_Encpassword,  AV72externalUser.gxTpr_Groupskeyinfo.gxTpr_Privatekey, out  AV71secret, out  GXt_char2) ;
+            AV12error = GXt_char2;
          }
          /* User Code */
           try
          /* User Code */
           {
-         if ( StringUtil.StrCmp(AV23networkType, "MainNet") == 0 )
+         if ( StringUtil.StrCmp(AV25networkType, "MainNet") == 0 )
          {
             /* User Code */
              network = NBitcoin.Network.Main;
          }
-         else if ( StringUtil.StrCmp(AV23networkType, "TestNet") == 0 )
+         else if ( StringUtil.StrCmp(AV25networkType, "TestNet") == 0 )
          {
             /* User Code */
              network = NBitcoin.Network.TestNet;
          }
-         else if ( StringUtil.StrCmp(AV23networkType, "RegTest") == 0 )
+         else if ( StringUtil.StrCmp(AV25networkType, "RegTest") == 0 )
          {
             /* User Code */
              network = NBitcoin.Network.RegTest;
          }
          else
          {
-            AV11error = "Network Type not sopported";
+            AV12error = "Network Type not sopported";
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV12error)) )
          {
             /* User Code */
              var spender = network.CreateTransaction();
-            AV41signatureContacts = new GXBaseCollection<GeneXus.Programs.wallet.SdtMultiSigSignatureData>( context, "MultiSigSignatureData", "distributedcryptography");
-            AV47GXV1 = 1;
-            while ( AV47GXV1 <= AV44transactionsToSend.Count )
+            AV61signatureContacts = new GXBaseCollection<GeneXus.Programs.wallet.SdtMultiSigSignatureData>( context, "MultiSigSignatureData", "distributedcryptography");
+            AV108GXV1 = 1;
+            while ( AV108GXV1 <= AV67transactionsToSend.Count )
             {
-               AV26oneAddressHistory = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV44transactionsToSend.Item(AV47GXV1));
-               AV16generatedType = AV26oneAddressHistory.gxTpr_Addressgeneratedtype;
-               AV39sequence = AV26oneAddressHistory.gxTpr_Addresscreationsequence;
-               AV25numPeers = (short)(AV17group_sdt.gxTpr_Contact.Count);
-               AV48GXV2 = 1;
-               while ( AV48GXV2 <= AV17group_sdt.gxTpr_Timeconstrain.Count )
+               AV34oneAddressHistory = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV67transactionsToSend.Item(AV108GXV1));
+               AV18generatedType = AV34oneAddressHistory.gxTpr_Addressgeneratedtype;
+               AV58sequence = AV34oneAddressHistory.gxTpr_Addresscreationsequence;
+               AV31numPeers = (short)(AV19group_sdt.gxTpr_Contact.Count);
+               AV109GXV2 = 1;
+               while ( AV109GXV2 <= AV19group_sdt.gxTpr_Timeconstrain.Count )
                {
-                  AV29oneTimeConstrain = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem)AV17group_sdt.gxTpr_Timeconstrain.Item(AV48GXV2));
-                  if ( AV29oneTimeConstrain.gxTpr_Sequence == AV39sequence )
+                  AV73oneTimeConstrain = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem)AV19group_sdt.gxTpr_Timeconstrain.Item(AV109GXV2));
+                  if ( AV73oneTimeConstrain.gxTpr_Sequence == AV58sequence )
                   {
-                     AV10bountyRestoreDate = AV29oneTimeConstrain.gxTpr_Date;
-                     GXt_int3 = AV9bountyResotreUnixTime;
-                     GXt_dtime4 = DateTimeUtil.ResetTime( AV10bountyRestoreDate ) ;
+                     AV74bountyRestoreDate = AV73oneTimeConstrain.gxTpr_Date;
+                     GXt_int3 = AV83bountyResotreUnixTime;
+                     GXt_dtime4 = DateTimeUtil.ResetTime( AV74bountyRestoreDate ) ;
                      new GeneXus.Programs.distributedcrypto.datetimetounixtime(context ).execute(  GXt_dtime4, out  GXt_int3) ;
-                     AV9bountyResotreUnixTime = GXt_int3;
-                     if ( AV17group_sdt.gxTpr_Amigroupowner )
+                     AV83bountyResotreUnixTime = GXt_int3;
+                     if ( AV19group_sdt.gxTpr_Amigroupowner )
                      {
-                        GXt_char2 = AV11error;
-                        new GeneXus.Programs.distributedcryptographylib.decryptjsonfor(context ).execute(  AV29oneTimeConstrain.gxTpr_Encryptedsecret,  AV29oneTimeConstrain.gxTpr_Encryptedkey,  AV14externalUser.gxTpr_Keyinfo.gxTpr_Privatekey, out  AV35secret, out  GXt_char2) ;
-                        AV11error = GXt_char2;
+                        GXt_char2 = AV12error;
+                        new GeneXus.Programs.distributedcryptographylib.decryptjsonfor(context ).execute(  AV73oneTimeConstrain.gxTpr_Encryptedsecret,  AV73oneTimeConstrain.gxTpr_Encryptedkey,  AV72externalUser.gxTpr_Keyinfo.gxTpr_Privatekey, out  AV71secret, out  GXt_char2) ;
+                        AV12error = GXt_char2;
                      }
                      if (true) break;
                   }
-                  AV48GXV2 = (int)(AV48GXV2+1);
+                  AV109GXV2 = (int)(AV109GXV2+1);
                }
-               AV21items = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
-               AV49GXV3 = 1;
-               while ( AV49GXV3 <= AV17group_sdt.gxTpr_Contact.Count )
+               AV24items = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
+               AV110GXV3 = 1;
+               while ( AV110GXV3 <= AV19group_sdt.gxTpr_Contact.Count )
                {
-                  AV27oneContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV17group_sdt.gxTpr_Contact.Item(AV49GXV3));
-                  if ( ( AV17group_sdt.gxTpr_Grouptype == 20 ) && ! ( AV27oneContact.gxTpr_Contactid == AV27oneContact.gxTpr_Contactgroupid ) )
+                  AV35oneContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV19group_sdt.gxTpr_Contact.Item(AV110GXV3));
+                  if ( ( AV19group_sdt.gxTpr_Grouptype == 20 ) && ! ( AV35oneContact.gxTpr_Contactid == AV35oneContact.gxTpr_Contactgroupid ) )
                   {
-                     if ( (Convert.ToDecimal( AV16generatedType ) == NumberUtil.Val( "4", ".") ) )
+                     if ( (Convert.ToDecimal( AV18generatedType ) == NumberUtil.Val( "4", ".") ) )
                      {
-                        AV13extendedPublicKey = AV27oneContact.gxTpr_Extpubkeytimebountyreceiving;
-                        AV30ownerPublicKey = AV17group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeytimebountyreceiving;
+                        AV14extendedPublicKey = AV35oneContact.gxTpr_Extpubkeytimebountyreceiving;
+                        AV42ownerPublicKey = AV19group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeytimebountyreceiving;
                      }
                      else
                      {
-                        AV11error = "The generated Type is not a TimeBountyReceiving Type";
+                        AV12error = "The generated Type is not a TimeBountyReceiving Type";
                         cleanup();
                         if (true) return;
                      }
-                     GXt_char2 = AV11error;
-                     new GeneXus.Programs.nbitcoin.createexpubtkey(context ).execute(  AV13extendedPublicKey,  AV23networkType,  AV8base_char+StringUtil.Trim( StringUtil.Str( (decimal)(AV39sequence), 10, 0)), out  AV15extPubKeyInfo, out  GXt_char2) ;
-                     AV11error = GXt_char2;
-                     if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
+                     GXt_char2 = AV12error;
+                     new GeneXus.Programs.nbitcoin.createexpubtkey(context ).execute(  AV14extendedPublicKey,  AV25networkType,  AV9base_char+StringUtil.Trim( StringUtil.Str( (decimal)(AV58sequence), 10, 0)), out  AV15extPubKeyInfo, out  GXt_char2) ;
+                     AV12error = GXt_char2;
+                     if ( String.IsNullOrEmpty(StringUtil.RTrim( AV12error)) )
                      {
-                        AV21items.Add(StringUtil.Trim( AV15extPubKeyInfo.gxTpr_Ec_publickey), 0);
-                        if ( ! AV17group_sdt.gxTpr_Amigroupowner )
+                        AV24items.Add(StringUtil.Trim( AV15extPubKeyInfo.gxTpr_Ec_publickey), 0);
+                        if ( ! AV19group_sdt.gxTpr_Amigroupowner )
                         {
-                           if ( StringUtil.StrCmp(StringUtil.Trim( AV27oneContact.gxTpr_Contactusername), StringUtil.Trim( AV14externalUser.gxTpr_Userinfo.gxTpr_Username)) == 0 )
+                           if ( StringUtil.StrCmp(StringUtil.Trim( AV35oneContact.gxTpr_Contactusername), StringUtil.Trim( AV72externalUser.gxTpr_Userinfo.gxTpr_Username)) == 0 )
                            {
-                              AV22my_EC_PublicKey = StringUtil.Trim( AV15extPubKeyInfo.gxTpr_Ec_publickey);
+                              AV107my_EC_PublicKey = StringUtil.Trim( AV15extPubKeyInfo.gxTpr_Ec_publickey);
                            }
                         }
                      }
@@ -237,24 +237,24 @@ namespace GeneXus.Programs.wallet.registered {
                         if (true) break;
                      }
                   }
-                  AV49GXV3 = (int)(AV49GXV3+1);
+                  AV110GXV3 = (int)(AV110GXV3+1);
                }
-               GXt_char2 = AV11error;
-               new GeneXus.Programs.nbitcoin.createexpubtkey(context ).execute(  AV30ownerPublicKey,  AV23networkType,  AV8base_char+StringUtil.Trim( StringUtil.Str( (decimal)(AV39sequence), 10, 0)), out  AV15extPubKeyInfo, out  GXt_char2) ;
-               AV11error = GXt_char2;
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
+               GXt_char2 = AV12error;
+               new GeneXus.Programs.nbitcoin.createexpubtkey(context ).execute(  AV42ownerPublicKey,  AV25networkType,  AV9base_char+StringUtil.Trim( StringUtil.Str( (decimal)(AV58sequence), 10, 0)), out  AV15extPubKeyInfo, out  GXt_char2) ;
+               AV12error = GXt_char2;
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV12error)) )
                {
-                  AV30ownerPublicKey = AV15extPubKeyInfo.gxTpr_Ec_publickey;
+                  AV42ownerPublicKey = AV15extPubKeyInfo.gxTpr_Ec_publickey;
                }
                else
                {
                   cleanup();
                   if (true) return;
                }
-               AV21items.Sort("");
-               AV24numOfScripts = (short)(AV21items.Count);
+               AV24items.Sort("");
+               AV30numOfScripts = (short)(AV24items.Count);
                /* User Code */
-                var howManyScripts = AV24numOfScripts;
+                var howManyScripts = AV30numOfScripts;
                /* User Code */
                 var Scripts = new NBitcoin.TapScript[howManyScripts];
                /* User Code */
@@ -262,29 +262,29 @@ namespace GeneXus.Programs.wallet.registered {
                /* User Code */
                 int i;
                /* User Code */
-                var secret = Convert.FromBase64String(AV35secret);
+                var secret = Convert.FromBase64String(AV71secret);
                /* User Code */
                 var secret_sha256 = NBitcoin.Crypto.Hashes.DoubleSHA256(secret);
                /* User Code */
-                NBitcoin.LockTime target = (int) AV9bountyResotreUnixTime;
+                NBitcoin.LockTime target = (int) AV83bountyResotreUnixTime;
                /* User Code */
                 var scriptWeightsList = new System.Collections.Generic.List<(UInt32, NBitcoin.TapScript)>();
                /* User Code */
                 var probability = (uint)(100 / howManyScripts);
-               AV19i = 0;
-               AV50GXV4 = 1;
-               while ( AV50GXV4 <= AV21items.Count )
+               AV21i = 0;
+               AV111GXV4 = 1;
+               while ( AV111GXV4 <= AV24items.Count )
                {
-                  AV28oneItem = AV21items.GetString(AV50GXV4);
+                  AV36oneItem = AV24items.GetString(AV111GXV4);
                   /* User Code */
                    ops.Clear();
                   /* User Code */
-                   pubKeyString = AV28oneItem;
-                  if ( ! AV17group_sdt.gxTpr_Amigroupowner )
+                   pubKeyString = AV36oneItem;
+                  if ( ! AV19group_sdt.gxTpr_Amigroupowner )
                   {
-                     if ( StringUtil.StrCmp(StringUtil.Trim( AV22my_EC_PublicKey), StringUtil.Trim( AV28oneItem)) == 0 )
+                     if ( StringUtil.StrCmp(StringUtil.Trim( AV107my_EC_PublicKey), StringUtil.Trim( AV36oneItem)) == 0 )
                      {
-                        AV34s = AV19i;
+                        AV51s = AV21i;
                      }
                   }
                   /* User Code */
@@ -306,20 +306,20 @@ namespace GeneXus.Programs.wallet.registered {
                   /* User Code */
                    ops.Add(NBitcoin.OpcodeType.OP_CHECKSIG);
                   /* User Code */
-                   i = AV19i;
+                   i = AV21i;
                   /* User Code */
                    Scripts[i] = new NBitcoin.Script(ops).ToTapScript(NBitcoin.TapLeafVersion.C0);
                   /* User Code */
                    AllScripts.Add(Scripts[i]);
                   /* User Code */
                    scriptWeightsList.Add((probability, Scripts[i]));
-                  AV19i = (int)(AV19i+1);
-                  AV50GXV4 = (int)(AV50GXV4+1);
+                  AV21i = (int)(AV21i+1);
+                  AV111GXV4 = (int)(AV111GXV4+1);
                }
                /* User Code */
                 var scriptWeights = scriptWeightsList.ToArray();
                /* User Code */
-                var ownerKeyString = AV30ownerPublicKey;
+                var ownerKeyString = AV42ownerPublicKey;
                /* User Code */
                 var ec_PubKey = NBitcoin.Secp256k1.ECPubKey.Create(NBitcoin.DataEncoders.Encoders.Hex.DecodeData(ownerKeyString));
                /* User Code */
@@ -330,50 +330,50 @@ namespace GeneXus.Programs.wallet.registered {
                 var treeInfo = NBitcoin.TaprootSpendInfo.WithHuffmanTree(tapIntFromEC, scriptWeights);
                /* User Code */
                 AllTreeInfo.Add(treeInfo);
-               GXt_char2 = AV31privateKey;
-               new GeneXus.Programs.wallet.getprivatekeyfromaddresshistory(context ).execute(  AV26oneAddressHistory, out  GXt_char2) ;
-               AV31privateKey = GXt_char2;
+               GXt_char2 = AV44privateKey;
+               new GeneXus.Programs.wallet.getprivatekeyfromaddresshistory(context ).execute(  AV34oneAddressHistory, out  GXt_char2) ;
+               AV44privateKey = GXt_char2;
                /* User Code */
-                string hexPrivateKey = AV31privateKey;
+                string hexPrivateKey = AV44privateKey;
                /* User Code */
                 byte[] Keybytes = NBitcoin.DataEncoders.Encoders.Hex.DecodeData(hexPrivateKey);
                /* User Code */
                	privateKey = new NBitcoin.Key(Keybytes);
                /* User Code */
                 all_keys.Add(privateKey);
-               AV33receivedTransactionHex = AV26oneAddressHistory.gxTpr_Receivedtransactionhex;
+               AV46receivedTransactionHex = AV34oneAddressHistory.gxTpr_Receivedtransactionhex;
                /* User Code */
-                tx_hex = AV33receivedTransactionHex;
+                tx_hex = AV46receivedTransactionHex;
                /* User Code */
                 tx = NBitcoin.Transaction.Parse(tx_hex, network);
-               AV32receivedIn = 0;
+               AV45receivedIn = 0;
                /* User Code */
                 foreach (var output in tx.Outputs.AsIndexedOutputs())
                /* User Code */
                 	{
-               if ( AV32receivedIn == AV26oneAddressHistory.gxTpr_Recivedn )
+               if ( AV45receivedIn == AV34oneAddressHistory.gxTpr_Recivedn )
                {
                   /* User Code */
                    		spender.Inputs.Add(new NBitcoin.OutPoint(tx, output.N));
                   /* User Code */
                    		spentAllOutputsIn.Add(output.TxOut);
                }
-               AV32receivedIn = (long)(AV32receivedIn+1);
+               AV45receivedIn = (long)(AV45receivedIn+1);
                /* User Code */
                 	}
-               AV42totalInUTXOs = (decimal)(AV42totalInUTXOs+(AV26oneAddressHistory.gxTpr_Balance));
-               AV41signatureContacts.Add(AV40signatureContact, 0);
-               AV47GXV1 = (int)(AV47GXV1+1);
+               AV65totalInUTXOs = (decimal)(AV65totalInUTXOs+(AV34oneAddressHistory.gxTpr_Balance));
+               AV61signatureContacts.Add(AV59signatureContact, 0);
+               AV108GXV1 = (int)(AV108GXV1+1);
             }
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV12error)) )
             {
                /* User Code */
-                var destination = NBitcoin.BitcoinAddress.Create(AV37sendTo, network);
+                var destination = NBitcoin.BitcoinAddress.Create(AV56sendTo, network);
                /* User Code */
                 NBitcoin.TxOut[] spentOutputsIn = spentAllOutputsIn.ToArray();
-               AV38sendTotal = (decimal)(AV42totalInUTXOs-AV43transactionFee);
+               AV57sendTotal = (decimal)(AV65totalInUTXOs-AV66transactionFee);
                /* User Code */
-                spender.Outputs.Add(NBitcoin.Money.Coins((decimal)AV38sendTotal), destination);
+                spender.Outputs.Add(NBitcoin.Money.Coins((decimal)AV57sendTotal), destination);
                /* User Code */
                 var sighash = NBitcoin.TaprootSigHash.All | NBitcoin.TaprootSigHash.AnyoneCanPay;
                /* User Code */
@@ -382,7 +382,7 @@ namespace GeneXus.Programs.wallet.registered {
                 var allkeysarray = all_keys.ToArray();
                /* User Code */
                 var allScriptsArray = AllScripts.ToArray();
-               if ( AV17group_sdt.gxTpr_Amigroupowner )
+               if ( AV19group_sdt.gxTpr_Amigroupowner )
                {
                   /* User Code */
                    for (int i = 0; i < spender.Inputs.Count; i++)
@@ -402,13 +402,13 @@ namespace GeneXus.Programs.wallet.registered {
                else
                {
                   /* User Code */
-                   var s = AV34s;
+                   var s = AV51s;
                   /* User Code */
-                   NBitcoin.LockTime target = (int) AV9bountyResotreUnixTime;
+                   NBitcoin.LockTime target = (int) AV83bountyResotreUnixTime;
                   /* User Code */
                    spender.LockTime = target;
                   /* User Code */
-                   var secret = Convert.FromBase64String(AV35secret);
+                   var secret = Convert.FromBase64String(AV71secret);
                   /* User Code */
                    for (int i = 0; i < spender.Inputs.Count; i++)
                   /* User Code */
@@ -433,14 +433,14 @@ namespace GeneXus.Programs.wallet.registered {
                /* User Code */
                 var success = result.Error is null;
                /* User Code */
-                AV45verified = success;
+                AV68verified = success;
                /* User Code */
-                AV46virtualSize = spender.GetVirtualSize();
+                AV69virtualSize = spender.GetVirtualSize();
                /* User Code */
-                AV18hexTransaction = spender.ToHex();
-               if ( ! AV45verified )
+                AV20hexTransaction = spender.ToHex();
+               if ( ! AV68verified )
                {
-                  AV11error = "Transaction is not Verified";
+                  AV12error = "Transaction is not Verified";
                }
             }
          }
@@ -451,7 +451,7 @@ namespace GeneXus.Programs.wallet.registered {
          /* User Code */
          	{
          /* User Code */
-         		AV11error = ex.Message.ToString();
+         		AV12error = ex.Message.ToString();
          /* User Code */
          	}
          cleanup();
@@ -469,78 +469,78 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void initialize( )
       {
-         AV18hexTransaction = "";
-         AV11error = "";
-         AV14externalUser = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
+         AV20hexTransaction = "";
+         AV12error = "";
+         AV72externalUser = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
          GXt_SdtExternalUser1 = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
-         AV35secret = "";
-         AV41signatureContacts = new GXBaseCollection<GeneXus.Programs.wallet.SdtMultiSigSignatureData>( context, "MultiSigSignatureData", "distributedcryptography");
-         AV26oneAddressHistory = new GeneXus.Programs.wallet.SdtSDTAddressHistory(context);
-         AV29oneTimeConstrain = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem(context);
-         AV10bountyRestoreDate = DateTime.MinValue;
+         AV71secret = "";
+         AV61signatureContacts = new GXBaseCollection<GeneXus.Programs.wallet.SdtMultiSigSignatureData>( context, "MultiSigSignatureData", "distributedcryptography");
+         AV34oneAddressHistory = new GeneXus.Programs.wallet.SdtSDTAddressHistory(context);
+         AV73oneTimeConstrain = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem(context);
+         AV74bountyRestoreDate = DateTime.MinValue;
          GXt_dtime4 = (DateTime)(DateTime.MinValue);
-         AV21items = new GxSimpleCollection<string>();
-         AV27oneContact = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem(context);
-         AV13extendedPublicKey = "";
-         AV30ownerPublicKey = "";
-         AV8base_char = "";
+         AV24items = new GxSimpleCollection<string>();
+         AV35oneContact = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem(context);
+         AV14extendedPublicKey = "";
+         AV42ownerPublicKey = "";
+         AV9base_char = "";
          AV15extPubKeyInfo = new GeneXus.Programs.nbitcoin.SdtExtPubKeyInfo(context);
-         AV22my_EC_PublicKey = "";
-         AV28oneItem = "";
-         AV31privateKey = "";
+         AV107my_EC_PublicKey = "";
+         AV36oneItem = "";
+         AV44privateKey = "";
          GXt_char2 = "";
-         AV33receivedTransactionHex = "";
-         AV40signatureContact = new GeneXus.Programs.wallet.SdtMultiSigSignatureData(context);
+         AV46receivedTransactionHex = "";
+         AV59signatureContact = new GeneXus.Programs.wallet.SdtMultiSigSignatureData(context);
          /* GeneXus formulas. */
       }
 
-      private short AV16generatedType ;
-      private short AV25numPeers ;
-      private short AV24numOfScripts ;
-      private int AV47GXV1 ;
-      private int AV48GXV2 ;
-      private int AV49GXV3 ;
-      private int AV19i ;
-      private int AV50GXV4 ;
-      private int AV34s ;
-      private long AV46virtualSize ;
-      private long AV39sequence ;
-      private long AV9bountyResotreUnixTime ;
+      private short AV18generatedType ;
+      private short AV31numPeers ;
+      private short AV30numOfScripts ;
+      private int AV108GXV1 ;
+      private int AV109GXV2 ;
+      private int AV110GXV3 ;
+      private int AV21i ;
+      private int AV111GXV4 ;
+      private int AV51s ;
+      private long AV69virtualSize ;
+      private long AV58sequence ;
+      private long AV83bountyResotreUnixTime ;
       private long GXt_int3 ;
-      private long AV32receivedIn ;
-      private decimal AV43transactionFee ;
-      private decimal AV20inSendCoins ;
-      private decimal AV36sendCoins ;
-      private decimal AV42totalInUTXOs ;
-      private decimal AV38sendTotal ;
-      private string AV23networkType ;
-      private string AV37sendTo ;
-      private string AV11error ;
-      private string AV35secret ;
-      private string AV13extendedPublicKey ;
-      private string AV30ownerPublicKey ;
-      private string AV8base_char ;
-      private string AV22my_EC_PublicKey ;
-      private string AV28oneItem ;
-      private string AV31privateKey ;
+      private long AV45receivedIn ;
+      private decimal AV66transactionFee ;
+      private decimal AV22inSendCoins ;
+      private decimal AV55sendCoins ;
+      private decimal AV65totalInUTXOs ;
+      private decimal AV57sendTotal ;
+      private string AV25networkType ;
+      private string AV56sendTo ;
+      private string AV12error ;
+      private string AV71secret ;
+      private string AV14extendedPublicKey ;
+      private string AV42ownerPublicKey ;
+      private string AV9base_char ;
+      private string AV107my_EC_PublicKey ;
+      private string AV36oneItem ;
+      private string AV44privateKey ;
       private string GXt_char2 ;
       private DateTime GXt_dtime4 ;
-      private DateTime AV10bountyRestoreDate ;
-      private bool AV45verified ;
-      private string AV18hexTransaction ;
-      private string AV33receivedTransactionHex ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV17group_sdt ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV44transactionsToSend ;
+      private DateTime AV74bountyRestoreDate ;
+      private bool AV68verified ;
+      private string AV20hexTransaction ;
+      private string AV46receivedTransactionHex ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV19group_sdt ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV67transactionsToSend ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP5_transactionsToSend ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser AV14externalUser ;
+      private GeneXus.Programs.distcrypt.SdtExternalUser AV72externalUser ;
       private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtMultiSigSignatureData> AV41signatureContacts ;
-      private GeneXus.Programs.wallet.SdtSDTAddressHistory AV26oneAddressHistory ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem AV29oneTimeConstrain ;
-      private GxSimpleCollection<string> AV21items ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV27oneContact ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtMultiSigSignatureData> AV61signatureContacts ;
+      private GeneXus.Programs.wallet.SdtSDTAddressHistory AV34oneAddressHistory ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem AV73oneTimeConstrain ;
+      private GxSimpleCollection<string> AV24items ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV35oneContact ;
       private GeneXus.Programs.nbitcoin.SdtExtPubKeyInfo AV15extPubKeyInfo ;
-      private GeneXus.Programs.wallet.SdtMultiSigSignatureData AV40signatureContact ;
+      private GeneXus.Programs.wallet.SdtMultiSigSignatureData AV59signatureContact ;
       private long aP6_virtualSize ;
       private string aP7_hexTransaction ;
       private bool aP8_verified ;

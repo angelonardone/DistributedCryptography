@@ -81,12 +81,15 @@ namespace GeneXus.Programs.wallet {
          AV16json_enc.gxTpr_Encryptedkey = GXt_char3;
          AV16json_enc.gxTpr_Encryptedtext = GXt_char4;
          AV13error = GXt_char2;
-         GXt_boolean5 = false;
-         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean5) ;
-         GXt_boolean6 = false;
-         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean6) ;
-         AV18file.Source = AV17wallet.gxTpr_Walletbasedirectory+(GXt_boolean6 ? "/" : "\\")+StringUtil.Trim( AV9fileName);
-         AV18file.WriteAllText(AV16json_enc.ToJSonString(false, true), "");
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
+         {
+            GXt_boolean5 = false;
+            new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean5) ;
+            GXt_boolean6 = false;
+            new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean6) ;
+            AV18file.Source = AV17wallet.gxTpr_Walletbasedirectory+(GXt_boolean6 ? "/" : "\\")+StringUtil.Trim( AV9fileName);
+            AV18file.WriteAllText(AV16json_enc.ToJSonString(false, true), "");
+         }
          cleanup();
       }
 

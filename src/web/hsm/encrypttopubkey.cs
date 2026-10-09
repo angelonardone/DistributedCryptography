@@ -43,13 +43,13 @@ namespace GeneXus.Programs.hsm {
                            out string aP3_error )
       {
          this.AV12message = aP0_message;
-         this.AV13pubKey = aP1_pubKey;
-         this.AV8encryptedMessage = "" ;
-         this.AV9error = "" ;
+         this.AV11pubKey = aP1_pubKey;
+         this.AV13encryptedMessage = "" ;
+         this.AV8error = "" ;
          initialize();
          ExecuteImpl();
-         aP2_encryptedMessage=this.AV8encryptedMessage;
-         aP3_error=this.AV9error;
+         aP2_encryptedMessage=this.AV13encryptedMessage;
+         aP3_error=this.AV8error;
       }
 
       public string executeUdp( string aP0_message ,
@@ -57,7 +57,7 @@ namespace GeneXus.Programs.hsm {
                                 out string aP2_encryptedMessage )
       {
          execute(aP0_message, aP1_pubKey, out aP2_encryptedMessage, out aP3_error);
-         return AV9error ;
+         return AV8error ;
       }
 
       public void executeSubmit( string aP0_message ,
@@ -66,22 +66,22 @@ namespace GeneXus.Programs.hsm {
                                  out string aP3_error )
       {
          this.AV12message = aP0_message;
-         this.AV13pubKey = aP1_pubKey;
-         this.AV8encryptedMessage = "" ;
-         this.AV9error = "" ;
+         this.AV11pubKey = aP1_pubKey;
+         this.AV13encryptedMessage = "" ;
+         this.AV8error = "" ;
          SubmitImpl();
-         aP2_encryptedMessage=this.AV8encryptedMessage;
-         aP3_error=this.AV9error;
+         aP2_encryptedMessage=this.AV13encryptedMessage;
+         aP3_error=this.AV8error;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV8encryptedMessage = AV10HsmManager.encrypttopubkey(AV12message, AV13pubKey);
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8encryptedMessage)) )
+         AV13encryptedMessage = AV9HsmManager.encrypttopubkey(AV12message, AV11pubKey);
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13encryptedMessage)) )
          {
-            AV9error = AV10HsmManager.getlasterror();
+            AV8error = AV9HsmManager.getlasterror();
          }
          cleanup();
       }
@@ -98,17 +98,17 @@ namespace GeneXus.Programs.hsm {
 
       public override void initialize( )
       {
-         AV8encryptedMessage = "";
-         AV9error = "";
-         AV10HsmManager = new GeneXus.Programs.hsm.SdtHsmManager(context);
+         AV13encryptedMessage = "";
+         AV8error = "";
+         AV9HsmManager = new GeneXus.Programs.hsm.SdtHsmManager(context);
          /* GeneXus formulas. */
       }
 
-      private string AV13pubKey ;
-      private string AV9error ;
+      private string AV11pubKey ;
+      private string AV8error ;
       private string AV12message ;
-      private string AV8encryptedMessage ;
-      private GeneXus.Programs.hsm.SdtHsmManager AV10HsmManager ;
+      private string AV13encryptedMessage ;
+      private GeneXus.Programs.hsm.SdtHsmManager AV9HsmManager ;
       private string aP2_encryptedMessage ;
       private string aP3_error ;
    }

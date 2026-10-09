@@ -42,14 +42,14 @@ namespace GeneXus.Programs.distributedcrypto {
                            out string aP2_ExtendedKeySeed ,
                            out string aP3_error )
       {
-         this.AV9password = aP0_password;
-         this.AV10salt = aP1_salt;
-         this.AV11ExtendedKeySeed = "" ;
-         this.AV8error = "" ;
+         this.AV8password = aP0_password;
+         this.AV13salt = aP1_salt;
+         this.AV14ExtendedKeySeed = "" ;
+         this.AV12error = "" ;
          initialize();
          ExecuteImpl();
-         aP2_ExtendedKeySeed=this.AV11ExtendedKeySeed;
-         aP3_error=this.AV8error;
+         aP2_ExtendedKeySeed=this.AV14ExtendedKeySeed;
+         aP3_error=this.AV12error;
       }
 
       public string executeUdp( string aP0_password ,
@@ -57,7 +57,7 @@ namespace GeneXus.Programs.distributedcrypto {
                                 out string aP2_ExtendedKeySeed )
       {
          execute(aP0_password, aP1_salt, out aP2_ExtendedKeySeed, out aP3_error);
-         return AV8error ;
+         return AV12error ;
       }
 
       public void executeSubmit( string aP0_password ,
@@ -65,13 +65,13 @@ namespace GeneXus.Programs.distributedcrypto {
                                  out string aP2_ExtendedKeySeed ,
                                  out string aP3_error )
       {
-         this.AV9password = aP0_password;
-         this.AV10salt = aP1_salt;
-         this.AV11ExtendedKeySeed = "" ;
-         this.AV8error = "" ;
+         this.AV8password = aP0_password;
+         this.AV13salt = aP1_salt;
+         this.AV14ExtendedKeySeed = "" ;
+         this.AV12error = "" ;
          SubmitImpl();
-         aP2_ExtendedKeySeed=this.AV11ExtendedKeySeed;
-         aP3_error=this.AV8error;
+         aP2_ExtendedKeySeed=this.AV14ExtendedKeySeed;
+         aP3_error=this.AV12error;
       }
 
       protected override void ExecutePrivate( )
@@ -82,19 +82,19 @@ namespace GeneXus.Programs.distributedcrypto {
              try
          /* User Code */
              {
-         GXt_char1 = AV8error;
-         new GeneXus.Programs.nbitcoin.sha256(context ).execute(  AV10salt, out  AV12shaSalt, out  GXt_char1) ;
-         AV8error = GXt_char1;
+         GXt_char1 = AV12error;
+         new GeneXus.Programs.nbitcoin.sha256(context ).execute(  AV13salt, out  AV15shaSalt, out  GXt_char1) ;
+         AV12error = GXt_char1;
          /* User Code */
-          var seed = DeriveKey(AV9password, AV12shaSalt);
+          var seed = DeriveKey(AV8password, AV15shaSalt);
          /* User Code */
-          AV11ExtendedKeySeed = seed;
+          AV14ExtendedKeySeed = seed;
          /* User Code */
              }catch (Exception ex)
          /* User Code */
              {
          /* User Code */
-          		AV8error = ex.Message.ToString();
+          		AV12error = ex.Message.ToString();
          /* User Code */
              }
          /* User Code */
@@ -134,19 +134,19 @@ namespace GeneXus.Programs.distributedcrypto {
 
       public override void initialize( )
       {
-         AV11ExtendedKeySeed = "";
-         AV8error = "";
+         AV14ExtendedKeySeed = "";
+         AV12error = "";
          GXt_char1 = "";
-         AV12shaSalt = "";
+         AV15shaSalt = "";
          /* GeneXus formulas. */
       }
 
-      private string AV9password ;
-      private string AV11ExtendedKeySeed ;
-      private string AV8error ;
+      private string AV8password ;
+      private string AV14ExtendedKeySeed ;
+      private string AV12error ;
       private string GXt_char1 ;
-      private string AV12shaSalt ;
-      private string AV10salt ;
+      private string AV15shaSalt ;
+      private string AV13salt ;
       private string aP2_ExtendedKeySeed ;
       private string aP3_error ;
    }

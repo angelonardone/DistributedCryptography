@@ -33,60 +33,75 @@
         <Reference Include="DistricutedCryptographyLib" >
             <HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
         </Reference>
+        <Reference Include="GxJadeLib" >
+            <HintPath>$(WebBinDirectory)\GxJadeLib.dll</HintPath>
+        </Reference>
 
 	</ItemGroup>
 
 	<ItemGroup>
 		<Compile Include = "$(WebDirectory)\electrum\gxdomainmessagetype.cs" />
 		<Compile Include = "$(WebDirectory)\nostr\gxdomainconstants.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainnetworktype.cs" />
+		<Compile Include = "$(WebDirectory)\gxjadelib\type_SdtGxAddressResult.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gxdomainconstants.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gxdomainmessagetype.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\gxdomainconnectiontype.cs" />
+		<Compile Include = "$(WebDirectory)\gxjadelib\type_SdtGxHsmInfo.cs" />
 		<Compile Include = "$(WebDirectory)\nostr\gxdomainkindtype.cs" />
+		<Compile Include = "$(WebDirectory)\gxjadelib\type_SdtGxJadeWrapper.cs" />
 		<Compile Include = "$(WebDirectory)\gxdomaingamerrormessages.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gxdomainwalletrestoremethod.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomaincreatekeytype.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainmnemonicnumberwords.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\gxdomainsubgrouptype.cs" />
+		<Compile Include = "$(WebDirectory)\gxjadelib\type_SdtGxVersionInfo.cs" />
+		<Compile Include = "$(WebDirectory)\gxjadelib\type_SdtGxHsmPubkeyResult.cs" />
 		<Compile Include = "$(WebDirectory)\gxinternetlib\type_SdtGxInternetLibTcp.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\gxdomainestimatesmartfeetype.cs" />
+		<Compile Include = "$(WebDirectory)\gxjadelib\type_SdtJadeOperationResult.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\type_SdtGroupProcessor.cs" />
 		<Compile Include = "$(WebDirectory)\sudodb\gxdomainconstants.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\type_SdtOtherGroup.cs" />
-		<Compile Include = "$(WebDirectory)\gxdomainswipedirection.cs" />
+		<Compile Include = "$(WebDirectory)\gxdomainfckeditormodes.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomaincreateextkeytype.cs" />
 		<Compile Include = "$(WebDirectory)\GxWebServicesConfig.cs" />
 		<Compile Include = "$(WebDirectory)\gxdomaintoastrposition.cs" />
 		<Compile Include = "$(WebDirectory)\gxdomainfckeditorobjectinterface.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainextendedkeytype.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\type_SdtTimeConstrainItem.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainnetworktype.cs" />
+		<Compile Include = "$(WebDirectory)\gxjadelib\type_SdtGxHsmSignResult.cs" />
 		<Compile Include = "$(WebDirectory)\gxdomaingamusergender.cs" />
 		<Compile Include = "$(WebDirectory)\hsm\type_SdtHsmManager.cs" />
 		<Compile Include = "$(WebDirectory)\gxdomaintoastrtype.cs" />
 		<Compile Include = "$(WebDirectory)\GxFullTextSearchReindexer.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gxdomainintconstants.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainaddresstype.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\type_SdtContactItem.cs" />
 		<Compile Include = "$(WebDirectory)\GxModelInfoProvider.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\gxdomainconstants.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainkeypaths.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\type_SdtDelegatedProcessor.cs" />
 		<Compile Include = "$(WebDirectory)\googleauthenticator\type_SdtBase32Encoding.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gxdomainwallettype.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcryptographylib\type_SdtContactItem.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainkeypaths.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\gxdomainsubgrouptype.cs" />
 		<Compile Include = "$(WebDirectory)\GxWebStd.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gxdomaingrouptype.cs" />
+		<Compile Include = "$(WebDirectory)\gxjadelib\type_SdtGxHsmEncryptResult.cs" />
 		<Compile Include = "$(WebDirectory)\SoapParm.cs" />
 		<Compile Include = "$(WebDirectory)\googleauthenticator\type_SdtSetupCode.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainmnemoniclanguage.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\gxdomainencryptaction.cs" />
 		<Compile Include = "$(WebDirectory)\nostr\gxdomainresponsetype.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\type_SdtEncryptionService.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcryptographylib\type_SdtEncryptionResult.cs" />
 		<Compile Include = "$(WebDirectory)\googleauthenticator\type_SdtTwoFactorAuthenticator.cs" />
+		<Compile Include = "$(WebDirectory)\gxjadelib\type_SdtGxHsmXpubResult.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\gxdomainestimatesmartfeetype.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\type_SdtGroupSDT.cs" />
+		<Compile Include = "$(WebDirectory)\gxjadelib\type_SdtGxXpubResult.cs" />
+		<Compile Include = "$(WebDirectory)\gxdomainswipedirection.cs" />
 		<Compile Include = "$(WebDirectory)\gxinternetlib\type_SdtOperationResult.cs" />
 		<Compile Include = "$(WebDirectory)\gxinternetlib\type_SdtGxInternetLibWs.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcrypto\gxdomainencryptaction.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainaddresstype.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\type_SdtMuSigSignaturesItem.cs" />
-		<Compile Include = "$(WebDirectory)\gxdomainfckeditormodes.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\type_SdtEncryptionResult.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainmnemoniclanguage.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\type_SdtDecryptionResult.cs" />
 
 	</ItemGroup>

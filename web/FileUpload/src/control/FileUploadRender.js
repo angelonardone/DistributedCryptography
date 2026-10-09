@@ -90,8 +90,10 @@
 								'<input type="file" name="files[]"', multipleAtt, acceptAtt, '>',
 							'</span>',
 							'<button title="', gx.getMessage('GXM_fileupload_start'), '" type="submit" class="btn btn-primary start" style="display:', display, '" >',
+								gx.getMessage('GXM_fileupload_start'),
 							'</button>',
 							'<button title="', gx.getMessage('GXM_fileupload_cancel'), '" type="reset" class="btn btn-warning cancel" style="display:', display, '">',
+								gx.getMessage('GXM_fileupload_cancel'),
 							'</button>',
 							'<span class="fileupload-process"></span>',
 						'</div>',
@@ -132,25 +134,45 @@
 				uploadedFiles[destroyedFileIndex].destroyed = true;
 			});
 
+			var triggerUploadComplete = (function() {
+				if (uploadedFilesCount === previousUploadedFilesCount + filesToUploadCount) {
+					if (this.UploadComplete) {
+						this.UploadComplete();      
+						filesToUploadCount = 0;
+						isUploading = false;
+						previousUploadedFilesCount = 0;
+					}
+				}
+			}).closure(this);
+
 			$fileUpload.bind('fileuploadcompleted', (function () {
 				if(!isUploading){
 					previousUploadedFilesCount = uploadedFilesCount
 				}
 				isUploading = true;
 				uploadedFilesCount++;
-				if (uploadedFilesCount === previousUploadedFilesCount + filesToUploadCount) {
-					if (this.UploadComplete) {
-                        this.UploadComplete();      
-                        filesToUploadCount = 0;
-						isUploading = false;
-						previousUploadedFilesCount = 0
+				
+				// Use a timeout to batch completion events when autoUpload is true
+				if (toBoolean(this.AutoUpload)) {
+					var self = this;
+					if (this._completionTimeout) {
+						clearTimeout(this._completionTimeout);
 					}
+					this._completionTimeout = setTimeout(function() {
+						triggerUploadComplete();
+						self._completionTimeout = null;
+					}, 100);
+				} else {
+					// Original logic for manual upload mode
+					triggerUploadComplete();
 				}
 			}).closure(this));
 
 			$fileUpload.bind('fileuploadfailed', (function (e, data) {
                 failedFilesCount++;
-				filesToUploadCount--;
+				if (filesToUploadCount > 0) {
+				    filesToUploadCount--;
+				}
                 $.each(data.files, function (index, file) {
                     failedFiles.push(file);
                 });
@@ -164,10 +186,12 @@
 				maxFileSize: this.MaxFileSize,
 				getFilesFromResponse: function (data) {
 					var file;
-					for (var i = 0; i < data.result.files.length; i++) {
-						file = data.result.files[i];
-						file._index = uploadedFiles.length;
-						uploadedFiles.push(file);
+					if (data && data.result && data.result.files) {
+						for (var i = 0; i < data.result.files.length; i++) {
+							file = data.result.files[i];
+							file._index = uploadedFiles.length;
+							uploadedFiles.push(file);
+						}
 					}
 					return data.result.files;
 				},
@@ -248,10 +272,12 @@ gx.uc.FileUpload.initTemplates = function () {
 				'<td class="template-upload__column-actions">',
 					'{% if (!i && !o.options.autoUpload) { %}',
 						'<button title="', gx.getMessage('GXM_fileupload_startone'), '" class="btn btn-primary start" disabled>',
+							gx.getMessage('GXM_fileupload_startone'),
 						'</button>',
 					'{% } %}',
 					'{% if (!i) { %}',
 						'<button title="', gx.getMessage('GXM_fileupload_cancelone'), '" class="btn btn-warning cancel">',
+							gx.getMessage('GXM_fileupload_cancelone'),
 						'</button>',
 					'{% } %}',
 				'</td>',

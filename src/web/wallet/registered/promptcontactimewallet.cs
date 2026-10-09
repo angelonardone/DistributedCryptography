@@ -148,14 +148,13 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void gxgrContactgrid_refresh_invoke( )
       {
-         ajax_req_read_hidden_sdt(GetNextPar( ), AV13wallet);
          setAjaxCallMode();
          if ( ! IsValidAjaxCall( true) )
          {
             GxWebError = 1;
             return  ;
          }
-         gxgrContactgrid_refresh( AV13wallet) ;
+         gxgrContactgrid_refresh( ) ;
          AddString( context.getJSONResponse( )) ;
          /* End function gxgrContactgrid_refresh_invoke */
       }
@@ -199,11 +198,11 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override short ExecuteStartEvent( )
       {
-         PA2T2( ) ;
+         PA2U2( ) ;
          gxajaxcallmode = (short)((isAjaxCallMode( ) ? 1 : 0));
          if ( ( gxajaxcallmode == 0 ) && ( GxWebError == 0 ) )
          {
-            START2T2( ) ;
+            START2U2( ) ;
          }
          return gxajaxcallmode ;
       }
@@ -238,10 +237,10 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -286,15 +285,6 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void send_integrity_footer_hashes( )
       {
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLET", AV13wallet);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLET", AV13wallet);
-         }
-         GxWebStd.gx_hidden_field( context, "gxhash_vWALLET", GetSecureSignedToken( "", AV13wallet, context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -305,30 +295,21 @@ namespace GeneXus.Programs.wallet.registered {
          send_integrity_footer_hashes( ) ;
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "Allcontacts", AV5allContacts);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "Allcontacts", AV6allContacts);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("Allcontacts", AV5allContacts);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("Allcontacts", AV6allContacts);
          }
          GxWebStd.gx_hidden_field( context, "nRC_GXsfl_6", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_6), 8, 0, ".", "")));
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vALLCONTACTS", AV5allContacts);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vALLCONTACTS", AV6allContacts);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vALLCONTACTS", AV5allContacts);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vALLCONTACTS", AV6allContacts);
          }
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLET", AV13wallet);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLET", AV13wallet);
-         }
-         GxWebStd.gx_hidden_field( context, "gxhash_vWALLET", GetSecureSignedToken( "", AV13wallet, context));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -360,14 +341,14 @@ namespace GeneXus.Programs.wallet.registered {
             context.WriteHtmlText( "<div") ;
             GxWebStd.ClassAttribute( context, "gx-ct-body"+" "+(String.IsNullOrEmpty(StringUtil.RTrim( Form.Class)) ? "form-horizontal Form" : Form.Class)+"-fx");
             context.WriteHtmlText( ">") ;
-            WE2T2( ) ;
+            WE2U2( ) ;
             context.WriteHtmlText( "</div>") ;
          }
       }
 
       public override void DispatchEvents( )
       {
-         EVT2T2( ) ;
+         EVT2U2( ) ;
       }
 
       public override bool HasEnterEvent( )
@@ -395,7 +376,7 @@ namespace GeneXus.Programs.wallet.registered {
          return "Prompt Contac Time Wallet" ;
       }
 
-      protected void WB2T0( )
+      protected void WB2U0( )
       {
          if ( context.isAjaxRequest( ) )
          {
@@ -432,7 +413,7 @@ namespace GeneXus.Programs.wallet.registered {
             }
             else
             {
-               AV18GXV1 = nGXsfl_6_idx;
+               AV34GXV1 = nGXsfl_6_idx;
                sStyleString = "";
                context.WriteHtmlText( "<div id=\""+"ContactgridContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Contactgrid", ContactgridContainer, subContactgrid_Internalname);
@@ -476,7 +457,7 @@ namespace GeneXus.Programs.wallet.registered {
                }
                else
                {
-                  AV18GXV1 = nGXsfl_6_idx;
+                  AV34GXV1 = nGXsfl_6_idx;
                   sStyleString = "";
                   context.WriteHtmlText( "<div id=\""+"ContactgridContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                   context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Contactgrid", ContactgridContainer, subContactgrid_Internalname);
@@ -498,7 +479,7 @@ namespace GeneXus.Programs.wallet.registered {
          wbLoad = true;
       }
 
-      protected void START2T2( )
+      protected void START2U2( )
       {
          wbLoad = false;
          wbEnd = 0;
@@ -507,7 +488,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_14-187820", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_16-189595", 0) ;
             }
          }
          Form.Meta.addItem("description", "Prompt Contac Time Wallet", 0) ;
@@ -518,16 +499,16 @@ namespace GeneXus.Programs.wallet.registered {
          {
          }
          wbErr = false;
-         STRUP2T0( ) ;
+         STRUP2U0( ) ;
       }
 
-      protected void WS2T2( )
+      protected void WS2U2( )
       {
-         START2T2( ) ;
-         EVT2T2( ) ;
+         START2U2( ) ;
+         EVT2U2( ) ;
       }
 
-      protected void EVT2T2( )
+      protected void EVT2U2( )
       {
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
@@ -559,7 +540,7 @@ namespace GeneXus.Programs.wallet.registered {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: 'Close' */
-                              E112T2 ();
+                              E112U2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LSCR") == 0 )
                            {
@@ -577,12 +558,12 @@ namespace GeneXus.Programs.wallet.registered {
                               nGXsfl_6_idx = (int)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
                               sGXsfl_6_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_6_idx), 4, 0), 4, "0");
                               SubsflControlProps_62( ) ;
-                              AV18GXV1 = nGXsfl_6_idx;
-                              if ( ( AV5allContacts.Count >= AV18GXV1 ) && ( AV18GXV1 > 0 ) )
+                              AV34GXV1 = nGXsfl_6_idx;
+                              if ( ( AV6allContacts.Count >= AV34GXV1 ) && ( AV34GXV1 > 0 ) )
                               {
-                                 AV5allContacts.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV5allContacts.Item(AV18GXV1));
-                                 AV12selectContact = cgiGet( edtavSelectcontact_Internalname);
-                                 AssignAttri("", false, edtavSelectcontact_Internalname, AV12selectContact);
+                                 AV6allContacts.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV6allContacts.Item(AV34GXV1));
+                                 AV20selectContact = cgiGet( edtavSelectcontact_Internalname);
+                                 AssignAttri("", false, edtavSelectcontact_Internalname, AV20selectContact);
                               }
                               sEvtType = StringUtil.Right( sEvt, 1);
                               if ( StringUtil.StrCmp(sEvtType, ".") == 0 )
@@ -593,21 +574,21 @@ namespace GeneXus.Programs.wallet.registered {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: Start */
-                                    E122T2 ();
+                                    E122U2 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "CONTACTGRID.LOAD") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: Contactgrid.Load */
-                                    E132T2 ();
+                                    E132U2 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "'SELECT CONTACT'") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: 'Select Contact' */
-                                    E142T2 ();
+                                    E142U2 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                                  {
@@ -641,7 +622,7 @@ namespace GeneXus.Programs.wallet.registered {
          }
       }
 
-      protected void WE2T2( )
+      protected void WE2U2( )
       {
          if ( ! GxWebStd.gx_redirect( context) )
          {
@@ -657,7 +638,7 @@ namespace GeneXus.Programs.wallet.registered {
          }
       }
 
-      protected void PA2T2( )
+      protected void PA2U2( )
       {
          if ( nDonePA == 0 )
          {
@@ -706,12 +687,12 @@ namespace GeneXus.Programs.wallet.registered {
          /* End function gxnrContactgrid_newrow */
       }
 
-      protected void gxgrContactgrid_refresh( GeneXus.Programs.wallet.SdtWallet AV13wallet )
+      protected void gxgrContactgrid_refresh( )
       {
          initialize_formulas( ) ;
          GxWebStd.set_html_headers( context, 0, "", "");
          CONTACTGRID_nCurrentRecord = 0;
-         RF2T2( ) ;
+         RF2U2( ) ;
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
          send_integrity_footer_hashes( ) ;
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -738,7 +719,7 @@ namespace GeneXus.Programs.wallet.registered {
       public void Refresh( )
       {
          send_integrity_hashes( ) ;
-         RF2T2( ) ;
+         RF2U2( ) ;
          if ( isFullAjaxMode( ) )
          {
             send_integrity_footer_hashes( ) ;
@@ -753,7 +734,7 @@ namespace GeneXus.Programs.wallet.registered {
          edtavSelectcontact_Enabled = 0;
       }
 
-      protected void RF2T2( )
+      protected void RF2U2( )
       {
          initialize_formulas( ) ;
          clear_multi_value_controls( ) ;
@@ -781,24 +762,15 @@ namespace GeneXus.Programs.wallet.registered {
          {
             SubsflControlProps_62( ) ;
             /* Execute user event: Contactgrid.Load */
-            E132T2 ();
+            E132U2 ();
             wbEnd = 6;
-            WB2T0( ) ;
+            WB2U0( ) ;
          }
          bGXsfl_6_Refreshing = true;
       }
 
-      protected void send_integrity_lvl_hashes2T2( )
+      protected void send_integrity_lvl_hashes2U2( )
       {
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLET", AV13wallet);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLET", AV13wallet);
-         }
-         GxWebStd.gx_hidden_field( context, "gxhash_vWALLET", GetSecureSignedToken( "", AV13wallet, context));
       }
 
       protected int subContactgrid_fnc_Pagecount( )
@@ -829,21 +801,21 @@ namespace GeneXus.Programs.wallet.registered {
          fix_multi_value_controls( ) ;
       }
 
-      protected void STRUP2T0( )
+      protected void STRUP2U0( )
       {
          /* Before Start, stand alone formulas. */
          before_start_formulas( ) ;
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E122T2 ();
+         E122U2 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
             /* Read saved SDTs. */
-            ajax_req_read_hidden_sdt(cgiGet( "Allcontacts"), AV5allContacts);
-            ajax_req_read_hidden_sdt(cgiGet( "vALLCONTACTS"), AV5allContacts);
+            ajax_req_read_hidden_sdt(cgiGet( "Allcontacts"), AV6allContacts);
+            ajax_req_read_hidden_sdt(cgiGet( "vALLCONTACTS"), AV6allContacts);
             /* Read saved values. */
             nRC_GXsfl_6 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_6"), ".", ","), 18, MidpointRounding.ToEven));
             nRC_GXsfl_6 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_6"), ".", ","), 18, MidpointRounding.ToEven));
@@ -853,11 +825,11 @@ namespace GeneXus.Programs.wallet.registered {
                nGXsfl_6_fel_idx = ((subContactgrid_Islastpage==1)&&(nGXsfl_6_fel_idx+1>subContactgrid_fnc_Recordsperpage( )) ? 1 : nGXsfl_6_fel_idx+1);
                sGXsfl_6_fel_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_6_fel_idx), 4, 0), 4, "0");
                SubsflControlProps_fel_62( ) ;
-               AV18GXV1 = nGXsfl_6_fel_idx;
-               if ( ( AV5allContacts.Count >= AV18GXV1 ) && ( AV18GXV1 > 0 ) )
+               AV34GXV1 = nGXsfl_6_fel_idx;
+               if ( ( AV6allContacts.Count >= AV34GXV1 ) && ( AV34GXV1 > 0 ) )
                {
-                  AV5allContacts.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV5allContacts.Item(AV18GXV1));
-                  AV12selectContact = cgiGet( edtavSelectcontact_Internalname);
+                  AV6allContacts.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV6allContacts.Item(AV34GXV1));
+                  AV20selectContact = cgiGet( edtavSelectcontact_Internalname);
                }
             }
             if ( nGXsfl_6_fel_idx == 0 )
@@ -881,35 +853,32 @@ namespace GeneXus.Programs.wallet.registered {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E122T2 ();
+         E122U2 ();
          if (returnInSub) return;
       }
 
-      protected void E122T2( )
+      protected void E122U2( )
       {
          /* Start Routine */
          returnInSub = false;
-         GXt_SdtWallet1 = AV13wallet;
-         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet1) ;
-         AV13wallet = GXt_SdtWallet1;
-         AV14websession.Set("Contact_SDT_SELECTED", "");
-         AV9data_group_sdt.FromJSonString(AV14websession.Get("Group_EDIT_DATA"), null);
-         AV7bounty_group_sdt.FromJSonString(AV14websession.Get("Group_EDIT_BOUNTY"), null);
+         AV25websession.Set("Contact_SDT_SELECTED", "");
+         AV28data_group_sdt.FromJSonString(AV25websession.Get("Group_EDIT_DATA"), null);
+         AV29bounty_group_sdt.FromJSonString(AV25websession.Get("Group_EDIT_BOUNTY"), null);
          /* Execute user subroutine: 'INIT CONACTS FROM FILE' */
          S112 ();
          if (returnInSub) return;
       }
 
-      private void E132T2( )
+      private void E132U2( )
       {
          /* Contactgrid_Load Routine */
          returnInSub = false;
-         AV18GXV1 = 1;
-         while ( AV18GXV1 <= AV5allContacts.Count )
+         AV34GXV1 = 1;
+         while ( AV34GXV1 <= AV6allContacts.Count )
          {
-            AV5allContacts.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV5allContacts.Item(AV18GXV1));
-            AV12selectContact = "Select Contact";
-            AssignAttri("", false, edtavSelectcontact_Internalname, AV12selectContact);
+            AV6allContacts.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV6allContacts.Item(AV34GXV1));
+            AV20selectContact = "Select Contact";
+            AssignAttri("", false, edtavSelectcontact_Internalname, AV20selectContact);
             /* Load Method */
             if ( wbStart != -1 )
             {
@@ -920,26 +889,29 @@ namespace GeneXus.Programs.wallet.registered {
             {
                DoAjaxLoad(6, ContactgridRow);
             }
-            AV18GXV1 = (int)(AV18GXV1+1);
+            AV34GXV1 = (int)(AV34GXV1+1);
          }
          /*  Sending Event outputs  */
       }
 
-      protected void E142T2( )
+      protected void E142U2( )
       {
-         AV18GXV1 = nGXsfl_6_idx;
-         if ( ( AV18GXV1 > 0 ) && ( AV5allContacts.Count >= AV18GXV1 ) )
+         AV34GXV1 = nGXsfl_6_idx;
+         if ( ( AV34GXV1 > 0 ) && ( AV6allContacts.Count >= AV34GXV1 ) )
          {
-            AV5allContacts.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV5allContacts.Item(AV18GXV1));
+            AV6allContacts.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV6allContacts.Item(AV34GXV1));
          }
          /* 'Select Contact' Routine */
          returnInSub = false;
-         GXt_char2 = AV11networkType;
-         new GeneXus.Programs.nbitcoin.getnetworktypefromaddress(context ).execute(  ((GeneXus.Programs.wallet.registered.SdtContact_SDT)(AV5allContacts.CurrentItem)).gxTpr_Username, out  GXt_char2) ;
-         AV11networkType = GXt_char2;
-         if ( StringUtil.StrCmp(AV13wallet.gxTpr_Networktype, AV11networkType) == 0 )
+         GXt_SdtWallet1 = AV27wallet;
+         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet1) ;
+         AV27wallet = GXt_SdtWallet1;
+         GXt_char2 = AV26networkType;
+         new GeneXus.Programs.nbitcoin.getnetworktypefromaddress(context ).execute(  ((GeneXus.Programs.wallet.registered.SdtContact_SDT)(AV6allContacts.CurrentItem)).gxTpr_Username, out  GXt_char2) ;
+         AV26networkType = GXt_char2;
+         if ( StringUtil.StrCmp(AV27wallet.gxTpr_Networktype, AV26networkType) == 0 )
          {
-            AV14websession.Set("Contact_SDT_SELECTED", ((GeneXus.Programs.wallet.registered.SdtContact_SDT)(AV5allContacts.CurrentItem)).ToJSonString(false, true));
+            AV25websession.Set("Contact_SDT_SELECTED", ((GeneXus.Programs.wallet.registered.SdtContact_SDT)(AV6allContacts.CurrentItem)).ToJSonString(false, true));
             context.setWebReturnParms(new Object[] {});
             context.setWebReturnParmsMetadata(new Object[] {});
             context.wjLocDisableFrm = 1;
@@ -950,7 +922,7 @@ namespace GeneXus.Programs.wallet.registered {
          else
          {
             GX_msglist.addItem("The contact you are trying to add is on a different network than your current wallet");
-            GX_msglist.addItem("You are on "+StringUtil.RTrim( context.localUtil.Format( AV13wallet.gxTpr_Networktype, ""))+" meantime your contact is on "+StringUtil.RTrim( context.localUtil.Format( AV11networkType, "")));
+            GX_msglist.addItem("You are on "+StringUtil.RTrim( context.localUtil.Format( AV27wallet.gxTpr_Networktype, ""))+" meantime your contact is on "+StringUtil.RTrim( context.localUtil.Format( AV26networkType, "")));
          }
       }
 
@@ -958,56 +930,56 @@ namespace GeneXus.Programs.wallet.registered {
       {
          /* 'INIT CONACTS FROM FILE' Routine */
          returnInSub = false;
-         AV5allContacts.Clear();
+         AV6allContacts.Clear();
          gx_BV6 = true;
-         AV6allContacts_temp.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "contacts.enc", out  AV10error), null);
-         AV21GXV4 = 1;
-         while ( AV21GXV4 <= AV6allContacts_temp.Count )
+         AV7allContacts_temp.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "contacts.enc", out  AV14error), null);
+         AV37GXV4 = 1;
+         while ( AV37GXV4 <= AV7allContacts_temp.Count )
          {
-            AV8contact = ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV6allContacts_temp.Item(AV21GXV4));
-            if ( ! AV8contact.gxTpr_Invitationdeclined )
+            AV9contact = ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV7allContacts_temp.Item(AV37GXV4));
+            if ( ! AV9contact.gxTpr_Invitationdeclined )
             {
-               AV17found = false;
-               AV22GXV5 = 1;
-               while ( AV22GXV5 <= AV9data_group_sdt.gxTpr_Contact.Count )
+               AV33found = false;
+               AV38GXV5 = 1;
+               while ( AV38GXV5 <= AV28data_group_sdt.gxTpr_Contact.Count )
                {
-                  AV15data_one_contact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV9data_group_sdt.gxTpr_Contact.Item(AV22GXV5));
-                  if ( AV15data_one_contact.gxTpr_Contactid == AV8contact.gxTpr_Contactrid )
+                  AV31data_one_contact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV28data_group_sdt.gxTpr_Contact.Item(AV38GXV5));
+                  if ( AV31data_one_contact.gxTpr_Contactid == AV9contact.gxTpr_Contactrid )
                   {
-                     AV17found = true;
+                     AV33found = true;
                      if (true) break;
                   }
-                  AV22GXV5 = (int)(AV22GXV5+1);
+                  AV38GXV5 = (int)(AV38GXV5+1);
                }
-               if ( ! AV17found )
+               if ( ! AV33found )
                {
-                  AV23GXV6 = 1;
-                  while ( AV23GXV6 <= AV7bounty_group_sdt.gxTpr_Contact.Count )
+                  AV39GXV6 = 1;
+                  while ( AV39GXV6 <= AV29bounty_group_sdt.gxTpr_Contact.Count )
                   {
-                     AV16bounty_one_contact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV7bounty_group_sdt.gxTpr_Contact.Item(AV23GXV6));
-                     if ( AV16bounty_one_contact.gxTpr_Contactid == AV8contact.gxTpr_Contactrid )
+                     AV32bounty_one_contact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV29bounty_group_sdt.gxTpr_Contact.Item(AV39GXV6));
+                     if ( AV32bounty_one_contact.gxTpr_Contactid == AV9contact.gxTpr_Contactrid )
                      {
-                        AV17found = true;
+                        AV33found = true;
                         if (true) break;
                      }
-                     AV23GXV6 = (int)(AV23GXV6+1);
+                     AV39GXV6 = (int)(AV39GXV6+1);
                   }
                }
-               if ( ! AV17found )
+               if ( ! AV33found )
                {
-                  AV5allContacts.Add(AV8contact, 0);
+                  AV6allContacts.Add(AV9contact, 0);
                   gx_BV6 = true;
                }
             }
-            AV21GXV4 = (int)(AV21GXV4+1);
+            AV37GXV4 = (int)(AV37GXV4+1);
          }
       }
 
-      protected void E112T2( )
+      protected void E112U2( )
       {
          /* 'Close' Routine */
          returnInSub = false;
-         AV14websession.Set("Contact_SDT_SELECTED", "");
+         AV25websession.Set("Contact_SDT_SELECTED", "");
          context.setWebReturnParms(new Object[] {});
          context.setWebReturnParmsMetadata(new Object[] {});
          context.wjLocDisableFrm = 1;
@@ -1031,9 +1003,9 @@ namespace GeneXus.Programs.wallet.registered {
          nGotPars = (short)(1);
          nGXWrapped = (short)(1);
          context.SetWrapped(true);
-         PA2T2( ) ;
-         WS2T2( ) ;
-         WE2T2( ) ;
+         PA2U2( ) ;
+         WS2U2( ) ;
+         WE2U2( ) ;
          cleanup();
          context.SetWrapped(false);
          context.GX_msglist = BackMsgLst;
@@ -1055,7 +1027,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202613016302789", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20261071417519", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1071,7 +1043,7 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("wallet/registered/promptcontactimewallet.js", "?202613016302789", false, true, false);
+         context.AddJavascriptSource("wallet/registered/promptcontactimewallet.js", "?20261071417519", false, true, false);
          /* End function include_jscripts */
       }
 
@@ -1093,7 +1065,7 @@ namespace GeneXus.Programs.wallet.registered {
       {
          sGXsfl_6_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_6_idx), 4, 0), 4, "0");
          SubsflControlProps_62( ) ;
-         WB2T0( ) ;
+         WB2U0( ) ;
          ContactgridRow = GXWebRow.GetNew(context,ContactgridContainer);
          if ( subContactgrid_Backcolorstyle == 0 )
          {
@@ -1159,7 +1131,7 @@ namespace GeneXus.Programs.wallet.registered {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 7,'',false,'" + sGXsfl_6_idx + "',6)\"";
          ROClassString = "Attribute";
-         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtluserprivatename1_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV5allContacts.Item(AV18GXV1)).gxTpr_Userprivatename),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,7);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtluserprivatename1_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtluserprivatename1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtluserprivatename1_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV6allContacts.Item(AV34GXV1)).gxTpr_Userprivatename),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,7);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtluserprivatename1_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtluserprivatename1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          if ( ContactgridContainer.GetWrapped() == 1 )
          {
@@ -1168,7 +1140,7 @@ namespace GeneXus.Programs.wallet.registered {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 8,'',false,'" + sGXsfl_6_idx + "',6)\"";
          ROClassString = "Attribute";
-         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlusername1_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV5allContacts.Item(AV18GXV1)).gxTpr_Username),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,8);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlusername1_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlusername1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlusername1_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV6allContacts.Item(AV34GXV1)).gxTpr_Username),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,8);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlusername1_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlusername1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          if ( ContactgridContainer.GetWrapped() == 1 )
          {
@@ -1177,8 +1149,8 @@ namespace GeneXus.Programs.wallet.registered {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 9,'',false,'" + sGXsfl_6_idx + "',6)\"";
          ROClassString = "Attribute";
-         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSelectcontact_Internalname,StringUtil.RTrim( AV12selectContact),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,9);\"","'"+""+"'"+",false,"+"'"+"E\\'SELECT CONTACT\\'."+sGXsfl_6_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSelectcontact_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavSelectcontact_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
-         send_integrity_lvl_hashes2T2( ) ;
+         ContactgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSelectcontact_Internalname,StringUtil.RTrim( AV20selectContact),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,9);\"","'"+""+"'"+",false,"+"'"+"E\\'SELECT CONTACT\\'."+sGXsfl_6_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSelectcontact_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavSelectcontact_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         send_integrity_lvl_hashes2U2( ) ;
          ContactgridContainer.AddRow(ContactgridRow);
          nGXsfl_6_idx = ((subContactgrid_Islastpage==1)&&(nGXsfl_6_idx+1>subContactgrid_fnc_Recordsperpage( )) ? 1 : nGXsfl_6_idx+1);
          sGXsfl_6_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_6_idx), 4, 0), 4, "0");
@@ -1257,7 +1229,7 @@ namespace GeneXus.Programs.wallet.registered {
             ContactgridColumn.AddObjectProperty("Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtavCtlusername1_Enabled), 5, 0, ".", "")));
             ContactgridContainer.AddColumnProperties(ContactgridColumn);
             ContactgridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
-            ContactgridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( StringUtil.RTrim( AV12selectContact)));
+            ContactgridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( StringUtil.RTrim( AV20selectContact)));
             ContactgridColumn.AddObjectProperty("Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtavSelectcontact_Enabled), 5, 0, ".", "")));
             ContactgridContainer.AddColumnProperties(ContactgridColumn);
             ContactgridContainer.AddObjectProperty("Selectedindex", StringUtil.LTrim( StringUtil.NToC( (decimal)(subContactgrid_Selectedindex), 4, 0, ".", "")));
@@ -1320,11 +1292,11 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"CONTACTGRID_nFirstRecordOnPage","type":"int"},{"av":"CONTACTGRID_nEOF","type":"int"},{"av":"AV5allContacts","fld":"vALLCONTACTS","grid":6,"type":""},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"nRC_GXsfl_6","ctrl":"CONTACTGRID","prop":"GridRC","grid":6,"type":"int"},{"av":"AV13wallet","fld":"vWALLET","hsh":true,"type":""}]}""");
-         setEventMetadata("CONTACTGRID.LOAD","""{"handler":"E132T2","iparms":[]""");
-         setEventMetadata("CONTACTGRID.LOAD",""","oparms":[{"av":"AV12selectContact","fld":"vSELECTCONTACT","type":"char"}]}""");
-         setEventMetadata("'SELECT CONTACT'","""{"handler":"E142T2","iparms":[{"av":"AV5allContacts","fld":"vALLCONTACTS","grid":6,"type":""},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"CONTACTGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_6","ctrl":"CONTACTGRID","prop":"GridRC","grid":6,"type":"int"},{"av":"AV13wallet","fld":"vWALLET","hsh":true,"type":""}]}""");
-         setEventMetadata("'CLOSE'","""{"handler":"E112T2","iparms":[]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"CONTACTGRID_nFirstRecordOnPage","type":"int"},{"av":"CONTACTGRID_nEOF","type":"int"},{"av":"AV6allContacts","fld":"vALLCONTACTS","grid":6,"type":""},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"nRC_GXsfl_6","ctrl":"CONTACTGRID","prop":"GridRC","grid":6,"type":"int"}]}""");
+         setEventMetadata("CONTACTGRID.LOAD","""{"handler":"E132U2","iparms":[]""");
+         setEventMetadata("CONTACTGRID.LOAD",""","oparms":[{"av":"AV20selectContact","fld":"vSELECTCONTACT","type":"char"}]}""");
+         setEventMetadata("'SELECT CONTACT'","""{"handler":"E142U2","iparms":[{"av":"AV6allContacts","fld":"vALLCONTACTS","grid":6,"type":""},{"av":"nGXsfl_6_idx","ctrl":"GRID","prop":"GridCurrRow","grid":6},{"av":"CONTACTGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_6","ctrl":"CONTACTGRID","prop":"GridRC","grid":6,"type":"int"}]}""");
+         setEventMetadata("'CLOSE'","""{"handler":"E112U2","iparms":[]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Selectcontact","iparms":[]}""");
          return  ;
       }
@@ -1342,12 +1314,11 @@ namespace GeneXus.Programs.wallet.registered {
       {
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
-         AV13wallet = new GeneXus.Programs.wallet.SdtWallet(context);
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
-         AV5allContacts = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT>( context, "Contact_SDT", "distributedcryptography");
+         AV6allContacts = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT>( context, "Contact_SDT", "distributedcryptography");
          GX_FocusControl = "";
          Form = new GXWebForm();
          sPrefix = "";
@@ -1361,19 +1332,20 @@ namespace GeneXus.Programs.wallet.registered {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
-         AV12selectContact = "";
-         GXt_SdtWallet1 = new GeneXus.Programs.wallet.SdtWallet(context);
-         AV14websession = context.GetSession();
-         AV9data_group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
-         AV7bounty_group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
+         AV20selectContact = "";
+         AV25websession = context.GetSession();
+         AV28data_group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
+         AV29bounty_group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
          ContactgridRow = new GXWebRow();
-         AV11networkType = "";
+         AV27wallet = new GeneXus.Programs.wallet.SdtWallet(context);
+         GXt_SdtWallet1 = new GeneXus.Programs.wallet.SdtWallet(context);
+         AV26networkType = "";
          GXt_char2 = "";
-         AV6allContacts_temp = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT>( context, "Contact_SDT", "distributedcryptography");
-         AV10error = "";
-         AV8contact = new GeneXus.Programs.wallet.registered.SdtContact_SDT(context);
-         AV15data_one_contact = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem(context);
-         AV16bounty_one_contact = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem(context);
+         AV7allContacts_temp = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT>( context, "Contact_SDT", "distributedcryptography");
+         AV14error = "";
+         AV9contact = new GeneXus.Programs.wallet.registered.SdtContact_SDT(context);
+         AV31data_one_contact = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem(context);
+         AV32bounty_one_contact = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem(context);
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          subContactgrid_Linesclass = "";
@@ -1403,15 +1375,15 @@ namespace GeneXus.Programs.wallet.registered {
       private short CONTACTGRID_nEOF ;
       private int nRC_GXsfl_6 ;
       private int nGXsfl_6_idx=1 ;
-      private int AV18GXV1 ;
+      private int AV34GXV1 ;
       private int subContactgrid_Islastpage ;
       private int edtavCtluserprivatename1_Enabled ;
       private int edtavCtlusername1_Enabled ;
       private int edtavSelectcontact_Enabled ;
       private int nGXsfl_6_fel_idx=1 ;
-      private int AV21GXV4 ;
-      private int AV22GXV5 ;
-      private int AV23GXV6 ;
+      private int AV37GXV4 ;
+      private int AV38GXV5 ;
+      private int AV39GXV6 ;
       private int idxLst ;
       private int subContactgrid_Backcolor ;
       private int subContactgrid_Allbackcolor ;
@@ -1442,12 +1414,12 @@ namespace GeneXus.Programs.wallet.registered {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
-      private string AV12selectContact ;
+      private string AV20selectContact ;
       private string edtavSelectcontact_Internalname ;
       private string sGXsfl_6_fel_idx="0001" ;
-      private string AV11networkType ;
+      private string AV26networkType ;
       private string GXt_char2 ;
-      private string AV10error ;
+      private string AV14error ;
       private string edtavCtluserprivatename1_Internalname ;
       private string edtavCtlusername1_Internalname ;
       private string subContactgrid_Class ;
@@ -1466,22 +1438,22 @@ namespace GeneXus.Programs.wallet.registered {
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private bool gx_BV6 ;
-      private bool AV17found ;
+      private bool AV33found ;
       private GXWebGrid ContactgridContainer ;
       private GXWebRow ContactgridRow ;
       private GXWebColumn ContactgridColumn ;
-      private IGxSession AV14websession ;
+      private IGxSession AV25websession ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
-      private GeneXus.Programs.wallet.SdtWallet AV13wallet ;
-      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> AV5allContacts ;
+      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> AV6allContacts ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV28data_group_sdt ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV29bounty_group_sdt ;
+      private GeneXus.Programs.wallet.SdtWallet AV27wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV9data_group_sdt ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV7bounty_group_sdt ;
-      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> AV6allContacts_temp ;
-      private GeneXus.Programs.wallet.registered.SdtContact_SDT AV8contact ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV15data_one_contact ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV16bounty_one_contact ;
+      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> AV7allContacts_temp ;
+      private GeneXus.Programs.wallet.registered.SdtContact_SDT AV9contact ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV31data_one_contact ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV32bounty_one_contact ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

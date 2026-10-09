@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtDesktopApp_services_SDT_Groups_Group_GroupItem
 			Description: DesktopApp_services_SDT_Groups_Group_GroupItem
-				 Author: Nemo 🐠 for C# (.NET) version 18.0.14.187820
+				 Author: Nemo 🐠 for C# (.NET) version 18.0.16.189595
 		   Program type: Callable routine
 			  Main DBMS: 
 */

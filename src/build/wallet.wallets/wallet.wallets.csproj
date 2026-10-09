@@ -39,16 +39,22 @@
         <Reference Include="DistricutedCryptographyLib" >
             <HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
         </Reference>
+        <Reference Include="GxJadeLib" >
+            <HintPath>$(WebBinDirectory)\GxJadeLib.dll</HintPath>
+        </Reference>
 
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Include = "$(WebDirectory)\wallet\cleantempstorage.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getprivatetempdir.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\wallets.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\readallwallets.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwalletsdir.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\readwallet.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\readallwallets.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\initempstorages.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\setwallet.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\readallwalletsinfo.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getappdatadir.cs" />
 
 	</ItemGroup>
 

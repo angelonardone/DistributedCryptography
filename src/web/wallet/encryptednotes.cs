@@ -148,14 +148,13 @@ namespace GeneXus.Programs.wallet {
 
       protected void gxgrGridnotes_refresh_invoke( )
       {
-         ajax_req_read_hidden_sdt(GetNextPar( ), AV12wallet);
          setAjaxCallMode();
          if ( ! IsValidAjaxCall( true) )
          {
             GxWebError = 1;
             return  ;
          }
-         gxgrGridnotes_refresh( AV12wallet) ;
+         gxgrGridnotes_refresh( ) ;
          AddString( context.getJSONResponse( )) ;
          /* End function gxgrGridnotes_refresh_invoke */
       }
@@ -238,18 +237,18 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -289,15 +288,6 @@ namespace GeneXus.Programs.wallet {
 
       protected void send_integrity_footer_hashes( )
       {
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLET", AV12wallet);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLET", AV12wallet);
-         }
-         GxWebStd.gx_hidden_field( context, "gxhash_vWALLET", GetSecureSignedToken( "", AV12wallet, context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -324,15 +314,6 @@ namespace GeneXus.Programs.wallet {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vNOTESREAD", AV8notesRead);
          }
          GxWebStd.gx_boolean_hidden_field( context, "vUSERRESPONSE", AV9UserResponse);
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLET", AV12wallet);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLET", AV12wallet);
-         }
-         GxWebStd.gx_hidden_field( context, "gxhash_vWALLET", GetSecureSignedToken( "", AV12wallet, context));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -450,7 +431,7 @@ namespace GeneXus.Programs.wallet {
             }
             else
             {
-               AV14GXV1 = nGXsfl_9_idx;
+               AV15GXV1 = nGXsfl_9_idx;
                if ( subGridnotes_Visible != 0 )
                {
                   sStyleString = "";
@@ -522,7 +503,7 @@ namespace GeneXus.Programs.wallet {
                }
                else
                {
-                  AV14GXV1 = nGXsfl_9_idx;
+                  AV15GXV1 = nGXsfl_9_idx;
                   if ( subGridnotes_Visible != 0 )
                   {
                      sStyleString = "";
@@ -560,7 +541,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_14-187820", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_16-189595", 0) ;
             }
          }
          Form.Meta.addItem("description", "Encrypted Notes", 0) ;
@@ -637,57 +618,50 @@ namespace GeneXus.Programs.wallet {
                         {
                            sEvtType = StringUtil.Right( sEvt, 4);
                            sEvt = StringUtil.Left( sEvt, (short)(StringUtil.Len( sEvt)-4));
-                           if ( ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "START") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 7), "REFRESH") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 11), "'OPEN NOTE'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 13), "'DELETE NOTE'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 14), "GRIDNOTES.LOAD") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "ENTER") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 6), "CANCEL") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 11), "'OPEN NOTE'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 13), "'DELETE NOTE'") == 0 ) )
+                           if ( ( StringUtil.StrCmp(StringUtil.Left( sEvt, 7), "REFRESH") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 11), "'OPEN NOTE'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 13), "'DELETE NOTE'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 14), "GRIDNOTES.LOAD") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "ENTER") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 6), "CANCEL") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 11), "'OPEN NOTE'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 13), "'DELETE NOTE'") == 0 ) )
                            {
                               nGXsfl_9_idx = (int)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
                               sGXsfl_9_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_idx), 4, 0), 4, "0");
                               SubsflControlProps_92( ) ;
-                              AV14GXV1 = nGXsfl_9_idx;
-                              if ( ( AV8notesRead.Count >= AV14GXV1 ) && ( AV14GXV1 > 0 ) )
+                              AV15GXV1 = nGXsfl_9_idx;
+                              if ( ( AV8notesRead.Count >= AV15GXV1 ) && ( AV15GXV1 > 0 ) )
                               {
-                                 AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV14GXV1));
+                                 AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV15GXV1));
                                  AV13deleteImage = cgiGet( edtavDeleteimage_Internalname);
-                                 AssignProp("", false, edtavDeleteimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV13deleteImage)) ? AV17Deleteimage_GXI : context.convertURL( context.PathToRelativeUrl( AV13deleteImage))), !bGXsfl_9_Refreshing);
+                                 AssignProp("", false, edtavDeleteimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV13deleteImage)) ? AV18Deleteimage_GXI : context.convertURL( context.PathToRelativeUrl( AV13deleteImage))), !bGXsfl_9_Refreshing);
                                  AssignProp("", false, edtavDeleteimage_Internalname, "SrcSet", context.GetImageSrcSet( AV13deleteImage), true);
                               }
                               sEvtType = StringUtil.Right( sEvt, 1);
                               if ( StringUtil.StrCmp(sEvtType, ".") == 0 )
                               {
                                  sEvt = StringUtil.Left( sEvt, (short)(StringUtil.Len( sEvt)-1));
-                                 if ( StringUtil.StrCmp(sEvt, "START") == 0 )
-                                 {
-                                    context.wbHandled = 1;
-                                    dynload_actions( ) ;
-                                    /* Execute user event: Start */
-                                    E14102 ();
-                                 }
-                                 else if ( StringUtil.StrCmp(sEvt, "REFRESH") == 0 )
+                                 if ( StringUtil.StrCmp(sEvt, "REFRESH") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: Refresh */
-                                    E15102 ();
+                                    E14102 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "'OPEN NOTE'") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: 'Open Note' */
-                                    E16102 ();
+                                    E15102 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "'DELETE NOTE'") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: 'Delete Note' */
-                                    E17102 ();
+                                    E16102 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "GRIDNOTES.LOAD") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: Gridnotes.Load */
-                                    E18102 ();
+                                    E17102 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                                  {
@@ -808,7 +782,7 @@ namespace GeneXus.Programs.wallet {
          /* End function gxnrGridnotes_newrow */
       }
 
-      protected void gxgrGridnotes_refresh( GeneXus.Programs.wallet.SdtWallet AV12wallet )
+      protected void gxgrGridnotes_refresh( )
       {
          initialize_formulas( ) ;
          GxWebStd.set_html_headers( context, 0, "", "");
@@ -864,7 +838,7 @@ namespace GeneXus.Programs.wallet {
          }
          wbStart = 9;
          /* Execute user event: Refresh */
-         E15102 ();
+         E14102 ();
          nGXsfl_9_idx = 1;
          sGXsfl_9_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_idx), 4, 0), 4, "0");
          SubsflControlProps_92( ) ;
@@ -895,7 +869,7 @@ namespace GeneXus.Programs.wallet {
          {
             SubsflControlProps_92( ) ;
             /* Execute user event: Gridnotes.Load */
-            E18102 ();
+            E17102 ();
             wbEnd = 9;
             WB100( ) ;
          }
@@ -904,15 +878,6 @@ namespace GeneXus.Programs.wallet {
 
       protected void send_integrity_lvl_hashes102( )
       {
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLET", AV12wallet);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLET", AV12wallet);
-         }
-         GxWebStd.gx_hidden_field( context, "gxhash_vWALLET", GetSecureSignedToken( "", AV12wallet, context));
       }
 
       protected int subGridnotes_fnc_Pagecount( )
@@ -946,10 +911,6 @@ namespace GeneXus.Programs.wallet {
       {
          /* Before Start, stand alone formulas. */
          before_start_formulas( ) ;
-         /* Execute Start event if defined. */
-         context.wbGlbDoneStart = 0;
-         /* Execute user event: Start */
-         E14102 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
@@ -966,10 +927,10 @@ namespace GeneXus.Programs.wallet {
                nGXsfl_9_fel_idx = ((subGridnotes_Islastpage==1)&&(nGXsfl_9_fel_idx+1>subGridnotes_fnc_Recordsperpage( )) ? 1 : nGXsfl_9_fel_idx+1);
                sGXsfl_9_fel_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_fel_idx), 4, 0), 4, "0");
                SubsflControlProps_fel_92( ) ;
-               AV14GXV1 = nGXsfl_9_fel_idx;
-               if ( ( AV8notesRead.Count >= AV14GXV1 ) && ( AV14GXV1 > 0 ) )
+               AV15GXV1 = nGXsfl_9_fel_idx;
+               if ( ( AV8notesRead.Count >= AV15GXV1 ) && ( AV15GXV1 > 0 ) )
                {
-                  AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV14GXV1));
+                  AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV15GXV1));
                   AV13deleteImage = cgiGet( edtavDeleteimage_Internalname);
                }
             }
@@ -991,23 +952,7 @@ namespace GeneXus.Programs.wallet {
          }
       }
 
-      protected void GXStart( )
-      {
-         /* Execute user event: Start */
-         E14102 ();
-         if (returnInSub) return;
-      }
-
       protected void E14102( )
-      {
-         /* Start Routine */
-         returnInSub = false;
-         GXt_SdtWallet1 = AV12wallet;
-         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet1) ;
-         AV12wallet = GXt_SdtWallet1;
-      }
-
-      protected void E15102( )
       {
          if ( gx_refresh_fired )
          {
@@ -1016,17 +961,17 @@ namespace GeneXus.Programs.wallet {
          gx_refresh_fired = true;
          /* Refresh Routine */
          returnInSub = false;
-         GXt_objcol_SdtNoteRead2 = AV8notesRead;
-         new GeneXus.Programs.wallet.readallnotes(context ).execute( out  GXt_objcol_SdtNoteRead2) ;
-         AV8notesRead = GXt_objcol_SdtNoteRead2;
+         GXt_objcol_SdtNoteRead1 = AV8notesRead;
+         new GeneXus.Programs.wallet.readallnotes(context ).execute( out  GXt_objcol_SdtNoteRead1) ;
+         AV8notesRead = GXt_objcol_SdtNoteRead1;
          gx_BV9 = true;
          edtavDeleteimage_gximage = "GeneXusUnanimo_delete_light";
          AssignProp("", false, edtavDeleteimage_Internalname, "gximage", edtavDeleteimage_gximage, !bGXsfl_9_Refreshing);
          AV13deleteImage = context.GetImagePath( "db0f63cd-dde8-4bf7-aca2-01cdf8d3c157", "", context.GetTheme( ));
-         AssignProp("", false, edtavDeleteimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV13deleteImage)) ? AV17Deleteimage_GXI : context.convertURL( context.PathToRelativeUrl( AV13deleteImage))), !bGXsfl_9_Refreshing);
+         AssignProp("", false, edtavDeleteimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV13deleteImage)) ? AV18Deleteimage_GXI : context.convertURL( context.PathToRelativeUrl( AV13deleteImage))), !bGXsfl_9_Refreshing);
          AssignProp("", false, edtavDeleteimage_Internalname, "SrcSet", context.GetImageSrcSet( AV13deleteImage), true);
-         AV17Deleteimage_GXI = GXDbFile.PathToUrl( context.GetImagePath( "db0f63cd-dde8-4bf7-aca2-01cdf8d3c157", "", context.GetTheme( )), context);
-         AssignProp("", false, edtavDeleteimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV13deleteImage)) ? AV17Deleteimage_GXI : context.convertURL( context.PathToRelativeUrl( AV13deleteImage))), !bGXsfl_9_Refreshing);
+         AV18Deleteimage_GXI = GXDbFile.PathToUrl( context.GetImagePath( "db0f63cd-dde8-4bf7-aca2-01cdf8d3c157", "", context.GetTheme( )), context);
+         AssignProp("", false, edtavDeleteimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV13deleteImage)) ? AV18Deleteimage_GXI : context.convertURL( context.PathToRelativeUrl( AV13deleteImage))), !bGXsfl_9_Refreshing);
          AssignProp("", false, edtavDeleteimage_Internalname, "SrcSet", context.GetImageSrcSet( AV13deleteImage), true);
          /*  Sending Event outputs  */
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV8notesRead", AV8notesRead);
@@ -1072,19 +1017,19 @@ namespace GeneXus.Programs.wallet {
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV8notesRead", AV8notesRead);
             nGXsfl_9_bak_idx = nGXsfl_9_idx;
-            gxgrGridnotes_refresh( AV12wallet) ;
+            gxgrGridnotes_refresh( ) ;
             nGXsfl_9_idx = nGXsfl_9_bak_idx;
             sGXsfl_9_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_idx), 4, 0), 4, "0");
             SubsflControlProps_92( ) ;
          }
       }
 
-      protected void E16102( )
+      protected void E15102( )
       {
-         AV14GXV1 = nGXsfl_9_idx;
-         if ( ( AV14GXV1 > 0 ) && ( AV8notesRead.Count >= AV14GXV1 ) )
+         AV15GXV1 = nGXsfl_9_idx;
+         if ( ( AV15GXV1 > 0 ) && ( AV8notesRead.Count >= AV15GXV1 ) )
          {
-            AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV14GXV1));
+            AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV15GXV1));
          }
          /* 'Open Note' Routine */
          returnInSub = false;
@@ -1122,7 +1067,7 @@ namespace GeneXus.Programs.wallet {
          /*  Sending Event outputs  */
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV8notesRead", AV8notesRead);
          nGXsfl_9_bak_idx = nGXsfl_9_idx;
-         gxgrGridnotes_refresh( AV12wallet) ;
+         gxgrGridnotes_refresh( ) ;
          nGXsfl_9_idx = nGXsfl_9_bak_idx;
          sGXsfl_9_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_idx), 4, 0), 4, "0");
          SubsflControlProps_92( ) ;
@@ -1130,10 +1075,10 @@ namespace GeneXus.Programs.wallet {
 
       protected void E12102( )
       {
-         AV14GXV1 = nGXsfl_9_idx;
-         if ( ( AV14GXV1 > 0 ) && ( AV8notesRead.Count >= AV14GXV1 ) )
+         AV15GXV1 = nGXsfl_9_idx;
+         if ( ( AV15GXV1 > 0 ) && ( AV8notesRead.Count >= AV15GXV1 ) )
          {
-            AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV14GXV1));
+            AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV15GXV1));
          }
          /* GlobalEvents_Donewithnotes Routine */
          returnInSub = false;
@@ -1143,29 +1088,29 @@ namespace GeneXus.Programs.wallet {
          AssignProp("", false, bttCreateanewnote_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttCreateanewnote_Visible), 5, 0), true);
          WebComp_Compnewnote_Visible = 0;
          AssignProp("", false, "gxHTMLWrpW0015"+"", "Visible", StringUtil.LTrimStr( (decimal)(WebComp_Compnewnote_Visible), 5, 0), true);
-         GXt_objcol_SdtNoteRead2 = AV8notesRead;
-         new GeneXus.Programs.wallet.readallnotes(context ).execute( out  GXt_objcol_SdtNoteRead2) ;
-         AV8notesRead = GXt_objcol_SdtNoteRead2;
+         GXt_objcol_SdtNoteRead1 = AV8notesRead;
+         new GeneXus.Programs.wallet.readallnotes(context ).execute( out  GXt_objcol_SdtNoteRead1) ;
+         AV8notesRead = GXt_objcol_SdtNoteRead1;
          gx_BV9 = true;
-         gxgrGridnotes_refresh( AV12wallet) ;
+         gxgrGridnotes_refresh( ) ;
          /*  Sending Event outputs  */
          if ( gx_BV9 )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV8notesRead", AV8notesRead);
             nGXsfl_9_bak_idx = nGXsfl_9_idx;
-            gxgrGridnotes_refresh( AV12wallet) ;
+            gxgrGridnotes_refresh( ) ;
             nGXsfl_9_idx = nGXsfl_9_bak_idx;
             sGXsfl_9_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_idx), 4, 0), 4, "0");
             SubsflControlProps_92( ) ;
          }
       }
 
-      protected void E17102( )
+      protected void E16102( )
       {
-         AV14GXV1 = nGXsfl_9_idx;
-         if ( ( AV14GXV1 > 0 ) && ( AV8notesRead.Count >= AV14GXV1 ) )
+         AV15GXV1 = nGXsfl_9_idx;
+         if ( ( AV15GXV1 > 0 ) && ( AV8notesRead.Count >= AV15GXV1 ) )
          {
-            AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV14GXV1));
+            AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV15GXV1));
          }
          /* 'Delete Note' Routine */
          returnInSub = false;
@@ -1174,50 +1119,47 @@ namespace GeneXus.Programs.wallet {
 
       protected void E13102( )
       {
-         AV14GXV1 = nGXsfl_9_idx;
-         if ( ( AV14GXV1 > 0 ) && ( AV8notesRead.Count >= AV14GXV1 ) )
+         AV15GXV1 = nGXsfl_9_idx;
+         if ( ( AV15GXV1 > 0 ) && ( AV8notesRead.Count >= AV15GXV1 ) )
          {
-            AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV14GXV1));
+            AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV15GXV1));
          }
          /* Extensions\Web\Dialog_Onconfirmclosed Routine */
          returnInSub = false;
          if ( AV9UserResponse )
          {
-            GXt_boolean3 = false;
-            new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
-            GXt_boolean4 = false;
-            new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean4) ;
-            AV11file.Source = AV12wallet.gxTpr_Walletbasedirectory+(GXt_boolean4 ? "/" : "\\")+StringUtil.Trim( ((GeneXus.Programs.wallet.SdtNoteRead)(AV8notesRead.CurrentItem)).gxTpr_Notefilename);
-            if ( AV11file.Exists() )
+            GXt_char2 = AV14error;
+            new GeneXus.Programs.wallet.deletewalletnote(context ).execute(  ((GeneXus.Programs.wallet.SdtNoteRead)(AV8notesRead.CurrentItem)).gxTpr_Notefilename, out  GXt_char2) ;
+            AV14error = GXt_char2;
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) )
             {
-               AV11file.Delete();
-               GXt_objcol_SdtNoteRead2 = AV8notesRead;
-               new GeneXus.Programs.wallet.readallnotes(context ).execute( out  GXt_objcol_SdtNoteRead2) ;
-               AV8notesRead = GXt_objcol_SdtNoteRead2;
+               GXt_objcol_SdtNoteRead1 = AV8notesRead;
+               new GeneXus.Programs.wallet.readallnotes(context ).execute( out  GXt_objcol_SdtNoteRead1) ;
+               AV8notesRead = GXt_objcol_SdtNoteRead1;
                gx_BV9 = true;
             }
             else
             {
-               GX_msglist.addItem("The file does not exist");
+               GX_msglist.addItem(AV14error);
             }
          }
          /*  Sending Event outputs  */
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV8notesRead", AV8notesRead);
          nGXsfl_9_bak_idx = nGXsfl_9_idx;
-         gxgrGridnotes_refresh( AV12wallet) ;
+         gxgrGridnotes_refresh( ) ;
          nGXsfl_9_idx = nGXsfl_9_bak_idx;
          sGXsfl_9_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_idx), 4, 0), 4, "0");
          SubsflControlProps_92( ) ;
       }
 
-      private void E18102( )
+      private void E17102( )
       {
          /* Gridnotes_Load Routine */
          returnInSub = false;
-         AV14GXV1 = 1;
-         while ( AV14GXV1 <= AV8notesRead.Count )
+         AV15GXV1 = 1;
+         while ( AV15GXV1 <= AV8notesRead.Count )
          {
-            AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV14GXV1));
+            AV8notesRead.CurrentItem = ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV15GXV1));
             /* Load Method */
             if ( wbStart != -1 )
             {
@@ -1228,7 +1170,7 @@ namespace GeneXus.Programs.wallet {
             {
                DoAjaxLoad(9, GridnotesRow);
             }
-            AV14GXV1 = (int)(AV14GXV1+1);
+            AV15GXV1 = (int)(AV15GXV1+1);
          }
       }
 
@@ -1279,7 +1221,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202613016301262", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610714165174", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1295,7 +1237,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("wallet/encryptednotes.js", "?202613016301262", false, true, false);
+         context.AddJavascriptSource("wallet/encryptednotes.js", "?202610714165174", false, true, false);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
          /* End function include_jscripts */
       }
@@ -1384,7 +1326,7 @@ namespace GeneXus.Programs.wallet {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 10,'',false,'" + sGXsfl_9_idx + "',9)\"";
          ROClassString = "Attribute";
-         GridnotesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtldescription1_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV14GXV1)).gxTpr_Description),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,10);\"","'"+""+"'"+",false,"+"'"+"E\\'OPEN NOTE\\'."+sGXsfl_9_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtldescription1_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtldescription1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)80,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         GridnotesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtldescription1_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV15GXV1)).gxTpr_Description),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,10);\"","'"+""+"'"+",false,"+"'"+"E\\'OPEN NOTE\\'."+sGXsfl_9_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtldescription1_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtldescription1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)80,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          if ( GridnotesContainer.GetWrapped() == 1 )
          {
@@ -1393,7 +1335,7 @@ namespace GeneXus.Programs.wallet {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 11,'',false,'" + sGXsfl_9_idx + "',9)\"";
          ROClassString = "Attribute";
-         GridnotesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlcreated1_Internalname,context.localUtil.TToC( ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV14GXV1)).gxTpr_Created, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV14GXV1)).gxTpr_Created, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onblur(this,11);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlcreated1_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlcreated1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)17,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         GridnotesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlcreated1_Internalname,context.localUtil.TToC( ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV15GXV1)).gxTpr_Created, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.wallet.SdtNoteRead)AV8notesRead.Item(AV15GXV1)).gxTpr_Created, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onblur(this,11);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlcreated1_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlcreated1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)17,(short)0,(short)0,(short)9,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          /* Subfile cell */
          if ( GridnotesContainer.GetWrapped() == 1 )
          {
@@ -1403,8 +1345,8 @@ namespace GeneXus.Programs.wallet {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 12,'',false,'',9)\"";
          ClassString = "Image" + " " + ((StringUtil.StrCmp(edtavDeleteimage_gximage, "")==0) ? "" : "GX_Image_"+edtavDeleteimage_gximage+"_Class");
          StyleString = "";
-         AV13deleteImage_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV13deleteImage))&&String.IsNullOrEmpty(StringUtil.RTrim( AV17Deleteimage_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV13deleteImage)));
-         sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV13deleteImage)) ? AV17Deleteimage_GXI : context.PathToRelativeUrl( AV13deleteImage));
+         AV13deleteImage_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV13deleteImage))&&String.IsNullOrEmpty(StringUtil.RTrim( AV18Deleteimage_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV13deleteImage)));
+         sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV13deleteImage)) ? AV18Deleteimage_GXI : context.PathToRelativeUrl( AV13deleteImage));
          GridnotesRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtavDeleteimage_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(short)-1,(short)1,(string)"",(string)"",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)5,(string)edtavDeleteimage_Jsonclick,"'"+""+"'"+",false,"+"'"+"E\\'DELETE NOTE\\'."+sGXsfl_9_idx+"'",(string)StyleString,(string)ClassString,(string)"",(string)"",(string)"",(string)"",(string)""+TempTags,(string)"",(string)"",(short)1,(bool)AV13deleteImage_IsBlob,(bool)false,context.GetImageSrcSet( sImgUrl),(string)"none"});
          send_integrity_lvl_hashes102( ) ;
          GridnotesContainer.AddRow(GridnotesRow);
@@ -1558,16 +1500,16 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"GRIDNOTES_nEOF","type":"int"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV12wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"GRIDNOTES_nEOF","type":"int"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"}]""");
          setEventMetadata("REFRESH",""","oparms":[{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV13deleteImage","fld":"vDELETEIMAGE","type":"bits"}]}""");
-         setEventMetadata("'CREATE A NEW NOTE'","""{"handler":"E11102","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"GRIDNOTES_nEOF","type":"int"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV12wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("'CREATE A NEW NOTE'","""{"handler":"E11102","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"GRIDNOTES_nEOF","type":"int"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"}]""");
          setEventMetadata("'CREATE A NEW NOTE'",""","oparms":[{"av":"subGridnotes_Visible","ctrl":"GRIDNOTES","prop":"Visible"},{"ctrl":"CREATEANEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV13deleteImage","fld":"vDELETEIMAGE","type":"bits"}]}""");
-         setEventMetadata("'OPEN NOTE'","""{"handler":"E16102","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"GRIDNOTES_nEOF","type":"int"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV12wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("'OPEN NOTE'","""{"handler":"E15102","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"GRIDNOTES_nEOF","type":"int"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"}]""");
          setEventMetadata("'OPEN NOTE'",""","oparms":[{"av":"subGridnotes_Visible","ctrl":"GRIDNOTES","prop":"Visible"},{"ctrl":"CREATEANEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV13deleteImage","fld":"vDELETEIMAGE","type":"bits"}]}""");
-         setEventMetadata("GLOBALEVENTS.DONEWITHNOTES","""{"handler":"E12102","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"GRIDNOTES_nEOF","type":"int"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV12wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("GLOBALEVENTS.DONEWITHNOTES","""{"handler":"E12102","iparms":[{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"GRIDNOTES_nEOF","type":"int"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"}]""");
          setEventMetadata("GLOBALEVENTS.DONEWITHNOTES",""","oparms":[{"av":"subGridnotes_Visible","ctrl":"GRIDNOTES","prop":"Visible"},{"ctrl":"CREATEANEWNOTE","prop":"Visible"},{"ctrl":"COMPNEWNOTE","prop":"Visible"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV13deleteImage","fld":"vDELETEIMAGE","type":"bits"}]}""");
-         setEventMetadata("'DELETE NOTE'","""{"handler":"E17102","iparms":[{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"}]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED","""{"handler":"E13102","iparms":[{"av":"AV9UserResponse","fld":"vUSERRESPONSE","type":"boolean"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"AV12wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"GRIDNOTES_nEOF","type":"int"}]""");
+         setEventMetadata("'DELETE NOTE'","""{"handler":"E16102","iparms":[{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"}]}""");
+         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED","""{"handler":"E13102","iparms":[{"av":"AV9UserResponse","fld":"vUSERRESPONSE","type":"boolean"},{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"},{"av":"GRIDNOTES_nEOF","type":"int"}]""");
          setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED",""","oparms":[{"av":"AV8notesRead","fld":"vNOTESREAD","grid":9,"type":""},{"av":"nGXsfl_9_idx","ctrl":"GRID","prop":"GridCurrRow","grid":9},{"av":"GRIDNOTES_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_9","ctrl":"GRIDNOTES","prop":"GridRC","grid":9,"type":"int"}]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Deleteimage","iparms":[]}""");
          return  ;
@@ -1586,7 +1528,6 @@ namespace GeneXus.Programs.wallet {
       {
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
-         AV12wallet = new GeneXus.Programs.wallet.SdtWallet(context);
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
@@ -1608,10 +1549,10 @@ namespace GeneXus.Programs.wallet {
          EvtRowId = "";
          sEvtType = "";
          AV13deleteImage = "";
-         AV17Deleteimage_GXI = "";
-         GXt_SdtWallet1 = new GeneXus.Programs.wallet.SdtWallet(context);
-         AV11file = new GxFile(context.GetPhysicalPath());
-         GXt_objcol_SdtNoteRead2 = new GXBaseCollection<GeneXus.Programs.wallet.SdtNoteRead>( context, "NoteRead", "distributedcryptography");
+         AV18Deleteimage_GXI = "";
+         AV14error = "";
+         GXt_char2 = "";
+         GXt_objcol_SdtNoteRead1 = new GXBaseCollection<GeneXus.Programs.wallet.SdtNoteRead>( context, "NoteRead", "distributedcryptography");
          GridnotesRow = new GXWebRow();
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
@@ -1645,7 +1586,7 @@ namespace GeneXus.Programs.wallet {
       private int nRC_GXsfl_9 ;
       private int nGXsfl_9_idx=1 ;
       private int bttCreateanewnote_Visible ;
-      private int AV14GXV1 ;
+      private int AV15GXV1 ;
       private int subGridnotes_Visible ;
       private int WebComp_Compnewnote_Visible ;
       private int subGridnotes_Islastpage ;
@@ -1688,6 +1629,8 @@ namespace GeneXus.Programs.wallet {
       private string edtavDeleteimage_Internalname ;
       private string sGXsfl_9_fel_idx="0001" ;
       private string edtavDeleteimage_gximage ;
+      private string AV14error ;
+      private string GXt_char2 ;
       private string edtavCtldescription1_Internalname ;
       private string edtavCtlcreated1_Internalname ;
       private string subGridnotes_Class ;
@@ -1707,26 +1650,21 @@ namespace GeneXus.Programs.wallet {
       private bool Rfr0gs ;
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
-      private bool returnInSub ;
       private bool gx_refresh_fired ;
+      private bool returnInSub ;
       private bool gx_BV9 ;
       private bool bDynCreated_Compnewnote ;
-      private bool GXt_boolean3 ;
-      private bool GXt_boolean4 ;
       private bool AV13deleteImage_IsBlob ;
-      private string AV17Deleteimage_GXI ;
+      private string AV18Deleteimage_GXI ;
       private string AV13deleteImage ;
       private GXWebComponent WebComp_Compnewnote ;
       private GXWebGrid GridnotesContainer ;
       private GXWebRow GridnotesRow ;
       private GXWebColumn GridnotesColumn ;
-      private GxFile AV11file ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
-      private GeneXus.Programs.wallet.SdtWallet AV12wallet ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtNoteRead> AV8notesRead ;
-      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtNoteRead> GXt_objcol_SdtNoteRead2 ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtNoteRead> GXt_objcol_SdtNoteRead1 ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

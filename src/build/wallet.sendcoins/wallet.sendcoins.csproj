@@ -42,6 +42,9 @@
         <Reference Include="DistricutedCryptographyLib" >
             <HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
         </Reference>
+        <Reference Include="GxJadeLib" >
+            <HintPath>$(WebBinDirectory)\GxJadeLib.dll</HintPath>
+        </Reference>
 
 	</ItemGroup>
 
@@ -67,6 +70,7 @@
 		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\setelectrumconnid.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwalletinfo.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gethistorywithbalance.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setalladdress.cs" />
@@ -80,15 +84,17 @@
 		<Compile Include = "$(WebDirectory)\wallet\getrawtransfromcoinstosend.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getextkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getalladdress.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\createextkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getappdatadir.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\broadcast_transaction.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\sendcoins.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\sendrawtransaction.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\createextkey.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\sendmessage.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\getelectrumconfigfornetworktype.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\get_estimatefee.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\defaultparameters.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwalletsdir.cs" />
 
 	</ItemGroup>
 

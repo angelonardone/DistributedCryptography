@@ -45,17 +45,17 @@ namespace GeneXus.Programs.wallet.registered {
                            out string aP5_one_address ,
                            out string aP6_error )
       {
-         this.AV20items = aP0_items;
-         this.AV28ownerPublicKey = aP1_ownerPublicKey;
-         this.AV21networkType = aP2_networkType;
-         this.AV10bountyRestoreDate = aP3_bountyRestoreDate;
+         this.AV18items = aP0_items;
+         this.AV26ownerPublicKey = aP1_ownerPublicKey;
+         this.AV19networkType = aP2_networkType;
+         this.AV30bountyRestoreDate = aP3_bountyRestoreDate;
          this.AV32secret = aP4_secret;
-         this.AV25one_address = "" ;
-         this.AV12error = "" ;
+         this.AV23one_address = "" ;
+         this.AV10error = "" ;
          initialize();
          ExecuteImpl();
-         aP5_one_address=this.AV25one_address;
-         aP6_error=this.AV12error;
+         aP5_one_address=this.AV23one_address;
+         aP6_error=this.AV10error;
       }
 
       public string executeUdp( GxSimpleCollection<string> aP0_items ,
@@ -66,7 +66,7 @@ namespace GeneXus.Programs.wallet.registered {
                                 out string aP5_one_address )
       {
          execute(aP0_items, aP1_ownerPublicKey, aP2_networkType, aP3_bountyRestoreDate, aP4_secret, out aP5_one_address, out aP6_error);
-         return AV12error ;
+         return AV10error ;
       }
 
       public void executeSubmit( GxSimpleCollection<string> aP0_items ,
@@ -77,59 +77,59 @@ namespace GeneXus.Programs.wallet.registered {
                                  out string aP5_one_address ,
                                  out string aP6_error )
       {
-         this.AV20items = aP0_items;
-         this.AV28ownerPublicKey = aP1_ownerPublicKey;
-         this.AV21networkType = aP2_networkType;
-         this.AV10bountyRestoreDate = aP3_bountyRestoreDate;
+         this.AV18items = aP0_items;
+         this.AV26ownerPublicKey = aP1_ownerPublicKey;
+         this.AV19networkType = aP2_networkType;
+         this.AV30bountyRestoreDate = aP3_bountyRestoreDate;
          this.AV32secret = aP4_secret;
-         this.AV25one_address = "" ;
-         this.AV12error = "" ;
+         this.AV23one_address = "" ;
+         this.AV10error = "" ;
          SubmitImpl();
-         aP5_one_address=this.AV25one_address;
-         aP6_error=this.AV12error;
+         aP5_one_address=this.AV23one_address;
+         aP6_error=this.AV10error;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         GXt_int1 = AV9bountyResotreUnixTime;
-         GXt_dtime2 = DateTimeUtil.ResetTime( AV10bountyRestoreDate ) ;
+         GXt_int1 = AV31bountyResotreUnixTime;
+         GXt_dtime2 = DateTimeUtil.ResetTime( AV30bountyRestoreDate ) ;
          new GeneXus.Programs.distributedcrypto.datetimetounixtime(context ).execute(  GXt_dtime2, out  GXt_int1) ;
-         AV9bountyResotreUnixTime = GXt_int1;
+         AV31bountyResotreUnixTime = GXt_int1;
          /* User Code */
           NBitcoin.Network network;
-         if ( StringUtil.StrCmp(AV21networkType, "MainNet") == 0 )
+         if ( StringUtil.StrCmp(AV19networkType, "MainNet") == 0 )
          {
             /* User Code */
              network = NBitcoin.Network.Main;
          }
-         else if ( StringUtil.StrCmp(AV21networkType, "TestNet") == 0 )
+         else if ( StringUtil.StrCmp(AV19networkType, "TestNet") == 0 )
          {
             /* User Code */
              network = NBitcoin.Network.TestNet;
          }
-         else if ( StringUtil.StrCmp(AV21networkType, "RegTest") == 0 )
+         else if ( StringUtil.StrCmp(AV19networkType, "RegTest") == 0 )
          {
             /* User Code */
              network = NBitcoin.Network.RegTest;
          }
          else
          {
-            AV12error = "Network Type not sopported";
+            AV10error = "Network Type not sopported";
             /* User Code */
              network = NBitcoin.Network.Main;
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV12error)) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV10error)) )
          {
             /* User Code */
              try
             /* User Code */
              {
-            AV20items.Sort("");
-            AV23numOfScripts = (short)(AV20items.Count);
+            AV18items.Sort("");
+            AV21numOfScripts = (short)(AV18items.Count);
             /* User Code */
-             var howManyScripts = AV23numOfScripts;
+             var howManyScripts = AV21numOfScripts;
             /* User Code */
              var Scripts = new NBitcoin.TapScript[howManyScripts];
             /* User Code */
@@ -141,22 +141,22 @@ namespace GeneXus.Programs.wallet.registered {
             /* User Code */
              var secret_sha256 = NBitcoin.Crypto.Hashes.DoubleSHA256(secret);
             /* User Code */
-             NBitcoin.LockTime target = (int) AV9bountyResotreUnixTime;
+             NBitcoin.LockTime target = (int) AV31bountyResotreUnixTime;
             /* User Code */
              System.Collections.Generic.List<NBitcoin.Op> ops = new System.Collections.Generic.List<NBitcoin.Op>();
             /* User Code */
              var scriptWeightsList = new System.Collections.Generic.List<(UInt32, NBitcoin.TapScript)>();
             /* User Code */
              var probability = (uint)(100 / howManyScripts);
-            AV19i = 0;
+            AV17i = 0;
             AV33GXV1 = 1;
-            while ( AV33GXV1 <= AV20items.Count )
+            while ( AV33GXV1 <= AV18items.Count )
             {
-               AV27oneItem = AV20items.GetString(AV33GXV1);
+               AV25oneItem = AV18items.GetString(AV33GXV1);
                /* User Code */
                 ops.Clear();
                /* User Code */
-                pubKeyString = AV27oneItem;
+                pubKeyString = AV25oneItem;
                /* User Code */
                 var xonlypubk = NBitcoin.Secp256k1.ECPubKey.Create(NBitcoin.DataEncoders.Encoders.Hex.DecodeData(pubKeyString)).ToXOnlyPubKey();
                /* User Code */
@@ -176,18 +176,18 @@ namespace GeneXus.Programs.wallet.registered {
                /* User Code */
                 ops.Add(NBitcoin.OpcodeType.OP_CHECKSIG);
                /* User Code */
-                i = AV19i;
+                i = AV17i;
                /* User Code */
                 Scripts[i] = new NBitcoin.Script(ops).ToTapScript(NBitcoin.TapLeafVersion.C0);
                /* User Code */
                 scriptWeightsList.Add((probability, Scripts[i]));
-               AV19i = (short)(AV19i+1);
+               AV17i = (short)(AV17i+1);
                AV33GXV1 = (int)(AV33GXV1+1);
             }
             /* User Code */
              var scriptWeights = scriptWeightsList.ToArray();
             /* User Code */
-             var ownerKeyString = AV28ownerPublicKey;
+             var ownerKeyString = AV26ownerPublicKey;
             /* User Code */
              var ec_PubKey = NBitcoin.Secp256k1.ECPubKey.Create(NBitcoin.DataEncoders.Encoders.Hex.DecodeData(ownerKeyString));
             /* User Code */
@@ -203,7 +203,7 @@ namespace GeneXus.Programs.wallet.registered {
             /* User Code */
              var final_address = addr.ToString();
             /* User Code */
-             AV25one_address = final_address;
+             AV23one_address = final_address;
             /* User Code */
             	}
             /* User Code */
@@ -211,7 +211,7 @@ namespace GeneXus.Programs.wallet.registered {
             /* User Code */
             	{
             /* User Code */
-            		AV12error = ex.Message.ToString();
+            		AV10error = ex.Message.ToString();
             /* User Code */
             	}
          }
@@ -230,27 +230,27 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void initialize( )
       {
-         AV25one_address = "";
-         AV12error = "";
+         AV23one_address = "";
+         AV10error = "";
          GXt_dtime2 = (DateTime)(DateTime.MinValue);
-         AV27oneItem = "";
+         AV25oneItem = "";
          /* GeneXus formulas. */
       }
 
-      private short AV23numOfScripts ;
-      private short AV19i ;
+      private short AV21numOfScripts ;
+      private short AV17i ;
       private int AV33GXV1 ;
-      private long AV9bountyResotreUnixTime ;
+      private long AV31bountyResotreUnixTime ;
       private long GXt_int1 ;
-      private string AV28ownerPublicKey ;
-      private string AV21networkType ;
+      private string AV26ownerPublicKey ;
+      private string AV19networkType ;
       private string AV32secret ;
-      private string AV25one_address ;
-      private string AV12error ;
-      private string AV27oneItem ;
+      private string AV23one_address ;
+      private string AV10error ;
+      private string AV25oneItem ;
       private DateTime GXt_dtime2 ;
-      private DateTime AV10bountyRestoreDate ;
-      private GxSimpleCollection<string> AV20items ;
+      private DateTime AV30bountyRestoreDate ;
+      private GxSimpleCollection<string> AV18items ;
       private string aP5_one_address ;
       private string aP6_error ;
    }

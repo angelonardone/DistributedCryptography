@@ -36,13 +36,18 @@
         <Reference Include="DistricutedCryptographyLib" >
             <HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
         </Reference>
+        <Reference Include="GxJadeLib" >
+            <HintPath>$(WebBinDirectory)\GxJadeLib.dll</HintPath>
+        </Reference>
 
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include = "$(WebDirectory)\wallet\showextendedkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwalletinfo.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\showextendedkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getextkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getextkeyview.cs" />
 
 	</ItemGroup>
 

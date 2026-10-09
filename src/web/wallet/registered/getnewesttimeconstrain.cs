@@ -40,7 +40,7 @@ namespace GeneXus.Programs.wallet.registered {
       public void execute( GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem> aP0_inlTimeConstrains ,
                            out GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem aP1_oneTimeConstrain )
       {
-         this.AV10inlTimeConstrains = aP0_inlTimeConstrains;
+         this.AV11inlTimeConstrains = aP0_inlTimeConstrains;
          this.AV9oneTimeConstrain = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem(context) ;
          initialize();
          ExecuteImpl();
@@ -56,7 +56,7 @@ namespace GeneXus.Programs.wallet.registered {
       public void executeSubmit( GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem> aP0_inlTimeConstrains ,
                                  out GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem aP1_oneTimeConstrain )
       {
-         this.AV10inlTimeConstrains = aP0_inlTimeConstrains;
+         this.AV11inlTimeConstrains = aP0_inlTimeConstrains;
          this.AV9oneTimeConstrain = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem(context) ;
          SubmitImpl();
          aP1_oneTimeConstrain=this.AV9oneTimeConstrain;
@@ -66,14 +66,14 @@ namespace GeneXus.Programs.wallet.registered {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV8allTimeConstrains = (GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem>)(AV10inlTimeConstrains.Clone());
+         AV8allTimeConstrains = (GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem>)(AV11inlTimeConstrains.Clone());
          AV8allTimeConstrains.Sort("[sequence]");
-         AV11GXV1 = 1;
-         while ( AV11GXV1 <= AV8allTimeConstrains.Count )
+         AV12GXV1 = 1;
+         while ( AV12GXV1 <= AV8allTimeConstrains.Count )
          {
-            AV9oneTimeConstrain = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem)AV8allTimeConstrains.Item(AV11GXV1));
+            AV9oneTimeConstrain = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem)AV8allTimeConstrains.Item(AV12GXV1));
             if (true) break;
-            AV11GXV1 = (int)(AV11GXV1+1);
+            AV12GXV1 = (int)(AV12GXV1+1);
          }
          cleanup();
       }
@@ -95,8 +95,8 @@ namespace GeneXus.Programs.wallet.registered {
          /* GeneXus formulas. */
       }
 
-      private int AV11GXV1 ;
-      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem> AV10inlTimeConstrains ;
+      private int AV12GXV1 ;
+      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem> AV11inlTimeConstrains ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem AV9oneTimeConstrain ;
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem> AV8allTimeConstrains ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem aP1_oneTimeConstrain ;

@@ -200,10 +200,10 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -256,22 +256,7 @@ namespace GeneXus.Programs.wallet.registered {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vGROUP_SDT", AV7group_sdt);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vGROUP_SDT", AV7group_sdt);
-         }
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vALL_GROUPS_SDT", AV5all_groups_sdt);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vALL_GROUPS_SDT", AV5all_groups_sdt);
-         }
+         GxWebStd.gx_hidden_field( context, "vERROR", StringUtil.RTrim( AV6error));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -424,7 +409,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_14-187820", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_16-189595", 0) ;
             }
          }
          Form.Meta.addItem("description", "Create Smart Group", 0) ;
@@ -689,13 +674,14 @@ namespace GeneXus.Programs.wallet.registered {
       {
          /* Start Routine */
          returnInSub = false;
-         AV5all_groups_sdt.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "gropus.enc", out  AV6error), null);
       }
 
       protected void E121I2( )
       {
          /* 'Create' Routine */
          returnInSub = false;
+         AV7group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
+         AV5all_groups_sdt.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "gropus.enc", out  AV6error), null);
          if ( (0==AV9groupType) )
          {
             GX_msglist.addItem("Please, select group type");
@@ -766,8 +752,6 @@ namespace GeneXus.Programs.wallet.registered {
             }
          }
          /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV7group_sdt", AV7group_sdt);
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV5all_groups_sdt", AV5all_groups_sdt);
       }
 
       protected void E131I2( )
@@ -831,7 +815,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202613016301859", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20261071416582", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -847,7 +831,7 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("wallet/registered/createsmartgroup.js", "?202613016301859", false, true, false);
+         context.AddJavascriptSource("wallet/registered/createsmartgroup.js", "?20261071416583", false, true, false);
          /* End function include_jscripts */
       }
 
@@ -860,6 +844,7 @@ namespace GeneXus.Programs.wallet.registered {
          cmbavGrouptype.addItem("30", "Delegation Multi-Signature Wallet", 0);
          cmbavGrouptype.addItem("40", "Encrypted Passwords", 0);
          cmbavGrouptype.addItem("20", "Time Encrypted Vault", 0);
+         cmbavGrouptype.addItem("50", "Legacy Multi-Signature Wallet", 0);
          if ( cmbavGrouptype.ItemCount > 0 )
          {
             AV9groupType = (short)(Math.Round(NumberUtil.Val( cmbavGrouptype.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(AV9groupType), 4, 0))), "."), 18, MidpointRounding.ToEven));
@@ -909,8 +894,8 @@ namespace GeneXus.Programs.wallet.registered {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
-         setEventMetadata("'CREATE'","""{"handler":"E121I2","iparms":[{"av":"cmbavGrouptype"},{"av":"AV9groupType","fld":"vGROUPTYPE","pic":"ZZZ9","type":"int"},{"av":"AV8groupName","fld":"vGROUPNAME","type":"char"},{"av":"AV7group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV5all_groups_sdt","fld":"vALL_GROUPS_SDT","type":""}]""");
-         setEventMetadata("'CREATE'",""","oparms":[{"av":"AV7group_sdt","fld":"vGROUP_SDT","type":""},{"av":"AV6error","fld":"vERROR","type":"char"},{"av":"AV5all_groups_sdt","fld":"vALL_GROUPS_SDT","type":""}]}""");
+         setEventMetadata("'CREATE'","""{"handler":"E121I2","iparms":[{"av":"AV6error","fld":"vERROR","type":"char"},{"av":"cmbavGrouptype"},{"av":"AV9groupType","fld":"vGROUPTYPE","pic":"ZZZ9","type":"int"},{"av":"AV8groupName","fld":"vGROUPNAME","type":"char"}]""");
+         setEventMetadata("'CREATE'",""","oparms":[{"av":"AV6error","fld":"vERROR","type":"char"}]}""");
          setEventMetadata("'CANCEL EDIT'","""{"handler":"E131I2","iparms":[]}""");
          setEventMetadata("VALIDV_GROUPTYPE","""{"handler":"Validv_Grouptype","iparms":[]}""");
          return  ;
@@ -933,8 +918,7 @@ namespace GeneXus.Programs.wallet.registered {
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
-         AV7group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
-         AV5all_groups_sdt = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT>( context, "Group_SDT", "distributedcryptography");
+         AV6error = "";
          GX_FocusControl = "";
          Form = new GXWebForm();
          sPrefix = "";
@@ -948,7 +932,8 @@ namespace GeneXus.Programs.wallet.registered {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
-         AV6error = "";
+         AV7group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
+         AV5all_groups_sdt = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT>( context, "Group_SDT", "distributedcryptography");
          GXt_char1 = "";
          GXt_char2 = "";
          AV10grpupId = Guid.Empty;
@@ -976,6 +961,7 @@ namespace GeneXus.Programs.wallet.registered {
       private string FormProcess ;
       private string bodyStyle ;
       private string GXKey ;
+      private string AV6error ;
       private string GX_FocusControl ;
       private string sPrefix ;
       private string divMaintable_Internalname ;
@@ -995,7 +981,6 @@ namespace GeneXus.Programs.wallet.registered {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
-      private string AV6error ;
       private string GXt_char1 ;
       private string GXt_char2 ;
       private string AV13encryptionKey ;

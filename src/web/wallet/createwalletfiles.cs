@@ -54,47 +54,39 @@ namespace GeneXus.Programs.wallet {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV8directory.Source = "Wallets";
-         if ( ! AV8directory.Exists() )
+         if ( StringUtil.StrCmp(new GeneXus.Programs.wallet.safefilename(context).executeUdp(  AV9wallet.gxTpr_Walletname), StringUtil.Trim( AV9wallet.gxTpr_Walletname)) != 0 )
          {
-            AV8directory.Create();
-         }
-         GXt_boolean1 = false;
-         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean1) ;
-         GXt_boolean2 = false;
-         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean2) ;
-         AV11walletDirectory.Source = "Wallets"+(GXt_boolean2 ? "/" : "\\")+AV9wallet.gxTpr_Walletname;
-         if ( ! AV11walletDirectory.Exists() )
-         {
-            AV11walletDirectory.Create();
-         }
-         GXt_boolean2 = false;
-         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean2) ;
-         GXt_boolean1 = false;
-         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean1) ;
-         GXt_boolean3 = false;
-         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
-         GXt_boolean4 = false;
-         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean4) ;
-         AV12walletFileName = AV8directory.Source + (GXt_boolean1 ? "/" : "\\") + AV9wallet.gxTpr_Walletname + (GXt_boolean4 ? "/" : "\\") + AV9wallet.gxTpr_Walletname + ".json";
-         AV9wallet.gxTpr_Walletfilename = AV12walletFileName;
-         GXt_boolean4 = false;
-         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean4) ;
-         GXt_boolean3 = false;
-         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
-         GXt_boolean2 = false;
-         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean2) ;
-         GXt_boolean1 = false;
-         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean1) ;
-         AV9wallet.gxTpr_Walletbasedirectory = AV8directory.Source+(GXt_boolean3 ? "/" : "\\")+AV9wallet.gxTpr_Walletname+(GXt_boolean1 ? "/" : "\\");
-         AV10walletFile.Source = AV12walletFileName;
-         if ( AV10walletFile.Exists() )
-         {
-            GX_msglist.addItem("Wallet already exist");
+            GX_msglist.addItem("Invalid wallet name");
          }
          else
          {
-            AV10walletFile.WriteAllText(AV9wallet.ToJSonString(false, true), "");
+            GXt_char1 = "";
+            new GeneXus.Programs.wallet.getwalletsdir(context ).execute( out  GXt_char1) ;
+            GXt_boolean2 = false;
+            new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean2) ;
+            GXt_boolean3 = false;
+            new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
+            AV11walletDirectory.Source = GXt_char1+(GXt_boolean3 ? "/" : "\\")+StringUtil.Trim( AV9wallet.gxTpr_Walletname);
+            if ( ! AV11walletDirectory.Exists() )
+            {
+               AV11walletDirectory.Create();
+            }
+            GXt_boolean3 = false;
+            new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
+            GXt_boolean2 = false;
+            new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean2) ;
+            AV9wallet.gxTpr_Walletbasedirectory = AV11walletDirectory.GetAbsoluteName()+(GXt_boolean2 ? "/" : "\\");
+            AV12walletFileName = StringUtil.Trim( AV9wallet.gxTpr_Walletbasedirectory) + StringUtil.Trim( AV9wallet.gxTpr_Walletname) + ".json";
+            AV9wallet.gxTpr_Walletfilename = AV12walletFileName;
+            AV10walletFile.Source = AV12walletFileName;
+            if ( AV10walletFile.Exists() )
+            {
+               GX_msglist.addItem("Wallet already exist");
+            }
+            else
+            {
+               AV10walletFile.WriteAllText(AV9wallet.ToJSonString(false, true), "");
+            }
          }
          cleanup();
       }
@@ -111,20 +103,18 @@ namespace GeneXus.Programs.wallet {
 
       public override void initialize( )
       {
-         AV8directory = new GxDirectory(context.GetPhysicalPath());
          AV11walletDirectory = new GxDirectory(context.GetPhysicalPath());
+         GXt_char1 = "";
          AV12walletFileName = "";
          AV10walletFile = new GxFile(context.GetPhysicalPath());
          /* GeneXus formulas. */
       }
 
-      private bool GXt_boolean4 ;
+      private string GXt_char1 ;
       private bool GXt_boolean3 ;
       private bool GXt_boolean2 ;
-      private bool GXt_boolean1 ;
       private string AV12walletFileName ;
       private GxFile AV10walletFile ;
-      private GxDirectory AV8directory ;
       private GxDirectory AV11walletDirectory ;
       private GeneXus.Programs.wallet.SdtWallet AV9wallet ;
    }

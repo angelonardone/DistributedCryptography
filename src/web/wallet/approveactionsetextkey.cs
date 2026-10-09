@@ -77,6 +77,25 @@ namespace GeneXus.Programs.wallet {
             AV10extendeSecretAndAuthenticator.FromJSonString(AV8clearText, null);
             AV11extKeyCreate.gxTpr_Createextkeytype = 70;
             AV11extKeyCreate.gxTpr_Extendedprivatekey = AV10extendeSecretAndAuthenticator.gxTpr_Extendedprivatekey;
+            if ( StringUtil.StrCmp(AV16wallet.gxTpr_Wallettype, "BIP86") == 0 )
+            {
+               if ( StringUtil.StrCmp(AV10extendeSecretAndAuthenticator.gxTpr_Networktype, "MainNet") == 0 )
+               {
+                  AV11extKeyCreate.gxTpr_Keypath = "m/86'/0'/0'";
+               }
+               else if ( StringUtil.StrCmp(AV10extendeSecretAndAuthenticator.gxTpr_Networktype, "TestNet") == 0 )
+               {
+                  AV11extKeyCreate.gxTpr_Keypath = "m/86'/1'/0'";
+               }
+               else
+               {
+                  AV11extKeyCreate.gxTpr_Keypath = "m/86'/1'/0'";
+               }
+            }
+            else
+            {
+               AV11extKeyCreate.gxTpr_Keypath = "";
+            }
             AV11extKeyCreate.gxTpr_Networktype = AV16wallet.gxTpr_Networktype;
             GXt_char2 = AV9error;
             new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV11extKeyCreate,  "", out  AV12extKeyInfo, out  GXt_char2) ;
@@ -88,6 +107,31 @@ namespace GeneXus.Programs.wallet {
             else
             {
                new GeneXus.Programs.wallet.setextkey(context ).execute(  AV12extKeyInfo) ;
+               if ( StringUtil.StrCmp(AV16wallet.gxTpr_Wallettype, "BIP86") == 0 )
+               {
+                  AV18extKeyCreateBIP48.gxTpr_Createextkeytype = 70;
+                  AV18extKeyCreateBIP48.gxTpr_Extendedprivatekey = AV10extendeSecretAndAuthenticator.gxTpr_Extendedprivatekey;
+                  if ( StringUtil.StrCmp(AV10extendeSecretAndAuthenticator.gxTpr_Networktype, "MainNet") == 0 )
+                  {
+                     AV18extKeyCreateBIP48.gxTpr_Keypath = "m/48'/0'/0'/1'";
+                  }
+                  else if ( StringUtil.StrCmp(AV10extendeSecretAndAuthenticator.gxTpr_Networktype, "TestNet") == 0 )
+                  {
+                     AV18extKeyCreateBIP48.gxTpr_Keypath = "m/48'/1'/0'/1'";
+                  }
+                  else
+                  {
+                     AV18extKeyCreateBIP48.gxTpr_Keypath = "m/48'/1'/0'/1'";
+                  }
+                  AV18extKeyCreateBIP48.gxTpr_Networktype = AV16wallet.gxTpr_Networktype;
+                  GXt_char2 = AV17error1;
+                  new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV18extKeyCreateBIP48,  "", out  AV19extKeyInfoBIP48, out  GXt_char2) ;
+                  AV17error1 = GXt_char2;
+                  if ( String.IsNullOrEmpty(StringUtil.RTrim( AV17error1)) )
+                  {
+                     new GeneXus.Programs.wallet.setextkeybip48(context ).execute(  AV19extKeyInfoBIP48) ;
+                  }
+               }
                cleanup();
                if (true) return;
             }
@@ -117,13 +161,17 @@ namespace GeneXus.Programs.wallet {
          AV8clearText = "";
          AV10extendeSecretAndAuthenticator = new GeneXus.Programs.wallet.SdtExtendeSecretAndAuthenticator(context);
          AV11extKeyCreate = new GeneXus.Programs.nbitcoin.SdtExtKeyCreate(context);
-         GXt_char2 = "";
          AV12extKeyInfo = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
+         AV18extKeyCreateBIP48 = new GeneXus.Programs.nbitcoin.SdtExtKeyCreate(context);
+         AV17error1 = "";
+         GXt_char2 = "";
+         AV19extKeyInfoBIP48 = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
          /* GeneXus formulas. */
       }
 
       private string AV15password ;
       private string AV9error ;
+      private string AV17error1 ;
       private string GXt_char2 ;
       private string AV8clearText ;
       private GeneXus.Programs.wallet.SdtWallet AV16wallet ;
@@ -131,6 +179,8 @@ namespace GeneXus.Programs.wallet {
       private GeneXus.Programs.wallet.SdtExtendeSecretAndAuthenticator AV10extendeSecretAndAuthenticator ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyCreate AV11extKeyCreate ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV12extKeyInfo ;
+      private GeneXus.Programs.nbitcoin.SdtExtKeyCreate AV18extKeyCreateBIP48 ;
+      private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV19extKeyInfoBIP48 ;
       private string aP1_error ;
    }
 

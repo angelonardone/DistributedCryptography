@@ -70,10 +70,10 @@ namespace GeneXus.Programs.sudodb {
          AV10DBvOUTs.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "DBvOUT.db", out  AV11error), null);
          AV9DBvINs.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "DBvIN.db", out  AV11error), null);
          AV10DBvOUTs.Sort("scriptPubKey_address");
-         AV24GXV1 = 1;
-         while ( AV24GXV1 <= AV10DBvOUTs.Count )
+         AV26GXV1 = 1;
+         while ( AV26GXV1 <= AV10DBvOUTs.Count )
          {
-            AV13oneDBvOUT = ((GeneXus.Programs.sudodb.SdtvOUT)AV10DBvOUTs.Item(AV24GXV1));
+            AV13oneDBvOUT = ((GeneXus.Programs.sudodb.SdtvOUT)AV10DBvOUTs.Item(AV26GXV1));
             if ( StringUtil.StrCmp(StringUtil.Trim( AV13oneDBvOUT.gxTpr_Scriptpubkey_address), StringUtil.Trim( AV8address)) == 0 )
             {
                AV16oneTransactionFromService = new SdtGxTransactionItem(context);
@@ -91,10 +91,10 @@ namespace GeneXus.Programs.sudodb {
                }
                AV16oneTransactionFromService.gxTpr_Datetime = AV17transactionDateTime;
                AV16oneTransactionFromService.gxTpr_Confirmations = AV23confirmations;
-               AV25GXV2 = 1;
-               while ( AV25GXV2 <= AV9DBvINs.Count )
+               AV27GXV2 = 1;
+               while ( AV27GXV2 <= AV9DBvINs.Count )
                {
-                  AV12oneDBvIN = ((GeneXus.Programs.sudodb.SdtvIN)AV9DBvINs.Item(AV25GXV2));
+                  AV12oneDBvIN = ((GeneXus.Programs.sudodb.SdtvIN)AV9DBvINs.Item(AV27GXV2));
                   if ( ( StringUtil.StrCmp(AV12oneDBvIN.gxTpr_Vintransactionid, StringUtil.Trim( AV13oneDBvOUT.gxTpr_Transactionid)) == 0 ) && ( AV12oneDBvIN.gxTpr_Vinn == AV13oneDBvOUT.gxTpr_N ) )
                   {
                      AV18transactionFromServiceUsed = new SdtGxUsedIn(context);
@@ -109,10 +109,10 @@ namespace GeneXus.Programs.sudodb {
                         if (true) return;
                      }
                      AV18transactionFromServiceUsed.gxTpr_Useddatetime = AV17transactionDateTime;
-                     AV26GXV3 = 1;
-                     while ( AV26GXV3 <= AV10DBvOUTs.Count )
+                     AV28GXV3 = 1;
+                     while ( AV28GXV3 <= AV10DBvOUTs.Count )
                      {
-                        AV14oneDBvOUT1 = ((GeneXus.Programs.sudodb.SdtvOUT)AV10DBvOUTs.Item(AV26GXV3));
+                        AV14oneDBvOUT1 = ((GeneXus.Programs.sudodb.SdtvOUT)AV10DBvOUTs.Item(AV28GXV3));
                         if ( StringUtil.StrCmp(AV14oneDBvOUT1.gxTpr_Transactionid, StringUtil.Trim( AV12oneDBvIN.gxTpr_Transactionid)) == 0 )
                         {
                            AV19transactionFromServiceUsedItem = new SdtGXUsedToItem(context);
@@ -121,15 +121,30 @@ namespace GeneXus.Programs.sudodb {
                            AV19transactionFromServiceUsedItem.gxTpr_Scriptpubkey_address = StringUtil.Trim( AV14oneDBvOUT1.gxTpr_Scriptpubkey_address);
                            AV18transactionFromServiceUsed.gxTpr_Usedto.Add(AV19transactionFromServiceUsedItem, 0);
                         }
-                        AV26GXV3 = (int)(AV26GXV3+1);
+                        AV28GXV3 = (int)(AV28GXV3+1);
                      }
                      AV16oneTransactionFromService.gxTpr_Used = AV18transactionFromServiceUsed;
                   }
-                  AV25GXV2 = (int)(AV25GXV2+1);
+                  AV27GXV2 = (int)(AV27GXV2+1);
                }
-               AV22transactionsFromService.gxTpr_Transaction.Add(AV16oneTransactionFromService, 0);
+               AV24alreadyExists = false;
+               AV29GXV4 = 1;
+               while ( AV29GXV4 <= AV22transactionsFromService.gxTpr_Transaction.Count )
+               {
+                  AV25existingTx = ((SdtGxTransactionItem)AV22transactionsFromService.gxTpr_Transaction.Item(AV29GXV4));
+                  if ( ( StringUtil.StrCmp(AV25existingTx.gxTpr_Transactionid, AV16oneTransactionFromService.gxTpr_Transactionid) == 0 ) && ( AV25existingTx.gxTpr_N == AV16oneTransactionFromService.gxTpr_N ) )
+                  {
+                     AV24alreadyExists = true;
+                     if (true) break;
+                  }
+                  AV29GXV4 = (int)(AV29GXV4+1);
+               }
+               if ( ! AV24alreadyExists )
+               {
+                  AV22transactionsFromService.gxTpr_Transaction.Add(AV16oneTransactionFromService, 0);
+               }
             }
-            AV24GXV1 = (int)(AV24GXV1+1);
+            AV26GXV1 = (int)(AV26GXV1+1);
          }
          cleanup();
       }
@@ -138,10 +153,10 @@ namespace GeneXus.Programs.sudodb {
       {
          /* 'GET DATETIME AND CONFIRMATIONS FROM TRANSACTIONID' Routine */
          returnInSub = false;
-         AV27GXV4 = 1;
-         while ( AV27GXV4 <= AV21transactions.Count )
+         AV30GXV5 = 1;
+         while ( AV30GXV5 <= AV21transactions.Count )
          {
-            AV15oneTransaction = ((GeneXus.Programs.sudodb.SdtTransaction)AV21transactions.Item(AV27GXV4));
+            AV15oneTransaction = ((GeneXus.Programs.sudodb.SdtTransaction)AV21transactions.Item(AV30GXV5));
             if ( StringUtil.StrCmp(AV15oneTransaction.gxTpr_Transactionid, StringUtil.Trim( AV20TransactionId)) == 0 )
             {
                AV23confirmations = AV15oneTransaction.gxTpr_Confirmations;
@@ -151,7 +166,7 @@ namespace GeneXus.Programs.sudodb {
                }
                if (true) break;
             }
-            AV27GXV4 = (int)(AV27GXV4+1);
+            AV30GXV5 = (int)(AV30GXV5+1);
          }
       }
 
@@ -179,20 +194,23 @@ namespace GeneXus.Programs.sudodb {
          AV18transactionFromServiceUsed = new SdtGxUsedIn(context);
          AV14oneDBvOUT1 = new GeneXus.Programs.sudodb.SdtvOUT(context);
          AV19transactionFromServiceUsedItem = new SdtGXUsedToItem(context);
+         AV25existingTx = new SdtGxTransactionItem(context);
          AV15oneTransaction = new GeneXus.Programs.sudodb.SdtTransaction(context);
          /* GeneXus formulas. */
       }
 
-      private int AV24GXV1 ;
-      private int AV25GXV2 ;
-      private int AV26GXV3 ;
-      private int AV27GXV4 ;
+      private int AV26GXV1 ;
+      private int AV27GXV2 ;
+      private int AV28GXV3 ;
+      private int AV29GXV4 ;
+      private int AV30GXV5 ;
       private long AV23confirmations ;
       private string AV8address ;
       private string AV11error ;
       private string AV20TransactionId ;
       private DateTime AV17transactionDateTime ;
       private bool returnInSub ;
+      private bool AV24alreadyExists ;
       private SdtGxTransactions AV22transactionsFromService ;
       private SdtGxTransactions aP1_transactionsFromService ;
       private GXBaseCollection<GeneXus.Programs.sudodb.SdtTransaction> AV21transactions ;
@@ -204,6 +222,7 @@ namespace GeneXus.Programs.sudodb {
       private SdtGxUsedIn AV18transactionFromServiceUsed ;
       private GeneXus.Programs.sudodb.SdtvOUT AV14oneDBvOUT1 ;
       private SdtGXUsedToItem AV19transactionFromServiceUsedItem ;
+      private SdtGxTransactionItem AV25existingTx ;
       private GeneXus.Programs.sudodb.SdtTransaction AV15oneTransaction ;
    }
 

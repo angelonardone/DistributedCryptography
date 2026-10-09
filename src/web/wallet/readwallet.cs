@@ -73,6 +73,14 @@ namespace GeneXus.Programs.wallet {
             {
                GX_msglist.addItem("error: "+AV9messages.ToJSonString(false));
             }
+            else
+            {
+               AV15fullName = AV11walletFile.GetAbsoluteName();
+               /* User Code */
+                AV14baseDir = System.IO.Path.GetDirectoryName(AV15fullName.Trim()) + System.IO.Path.DirectorySeparatorChar;
+               AV10wallet.gxTpr_Walletfilename = AV15fullName;
+               AV10wallet.gxTpr_Walletbasedirectory = AV14baseDir;
+            }
          }
          else
          {
@@ -96,10 +104,14 @@ namespace GeneXus.Programs.wallet {
          AV10wallet = new GeneXus.Programs.wallet.SdtWallet(context);
          AV11walletFile = new GxFile(context.GetPhysicalPath());
          AV9messages = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV15fullName = "";
+         AV14baseDir = "";
          /* GeneXus formulas. */
       }
 
       private string AV12walletFile_source ;
+      private string AV15fullName ;
+      private string AV14baseDir ;
       private GxFile AV11walletFile ;
       private GeneXus.Programs.wallet.SdtWallet AV10wallet ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV9messages ;

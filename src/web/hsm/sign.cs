@@ -43,13 +43,13 @@ namespace GeneXus.Programs.hsm {
                            out string aP3_error )
       {
          this.AV12message = aP0_message;
-         this.AV11index = aP1_index;
+         this.AV10index = aP1_index;
          this.AV14signature = "" ;
-         this.AV9error = "" ;
+         this.AV8error = "" ;
          initialize();
          ExecuteImpl();
          aP2_signature=this.AV14signature;
-         aP3_error=this.AV9error;
+         aP3_error=this.AV8error;
       }
 
       public string executeUdp( string aP0_message ,
@@ -57,7 +57,7 @@ namespace GeneXus.Programs.hsm {
                                 out string aP2_signature )
       {
          execute(aP0_message, aP1_index, out aP2_signature, out aP3_error);
-         return AV9error ;
+         return AV8error ;
       }
 
       public void executeSubmit( string aP0_message ,
@@ -66,22 +66,22 @@ namespace GeneXus.Programs.hsm {
                                  out string aP3_error )
       {
          this.AV12message = aP0_message;
-         this.AV11index = aP1_index;
+         this.AV10index = aP1_index;
          this.AV14signature = "" ;
-         this.AV9error = "" ;
+         this.AV8error = "" ;
          SubmitImpl();
          aP2_signature=this.AV14signature;
-         aP3_error=this.AV9error;
+         aP3_error=this.AV8error;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV14signature = AV10HsmManager.sign(AV12message, AV11index);
+         AV14signature = AV9HsmManager.sign(AV12message, AV10index);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV14signature)) )
          {
-            AV9error = AV10HsmManager.getlasterror();
+            AV8error = AV9HsmManager.getlasterror();
          }
          cleanup();
       }
@@ -99,16 +99,16 @@ namespace GeneXus.Programs.hsm {
       public override void initialize( )
       {
          AV14signature = "";
-         AV9error = "";
-         AV10HsmManager = new GeneXus.Programs.hsm.SdtHsmManager(context);
+         AV8error = "";
+         AV9HsmManager = new GeneXus.Programs.hsm.SdtHsmManager(context);
          /* GeneXus formulas. */
       }
 
-      private short AV11index ;
+      private short AV10index ;
       private string AV14signature ;
-      private string AV9error ;
+      private string AV8error ;
       private string AV12message ;
-      private GeneXus.Programs.hsm.SdtHsmManager AV10HsmManager ;
+      private GeneXus.Programs.hsm.SdtHsmManager AV9HsmManager ;
       private string aP2_signature ;
       private string aP3_error ;
    }

@@ -240,10 +240,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -298,20 +298,20 @@ namespace GeneXus.Programs.wallet {
          send_integrity_footer_hashes( ) ;
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "Wallets", AV6wallets);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "Walletlist", AV10walletList);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("Wallets", AV6wallets);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("Walletlist", AV10walletList);
          }
          GxWebStd.gx_hidden_field( context, "nRC_GXsfl_16", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_16), 8, 0, ".", "")));
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLETS", AV6wallets);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLETLIST", AV10walletList);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLETS", AV6wallets);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLETLIST", AV10walletList);
          }
          GxWebStd.gx_hidden_field( context, "vHTTPREQUEST_Baseurl", StringUtil.RTrim( AV9Httprequest.BaseURL));
       }
@@ -449,7 +449,7 @@ namespace GeneXus.Programs.wallet {
             }
             else
             {
-               AV10GXV1 = nGXsfl_16_idx;
+               AV11GXV1 = nGXsfl_16_idx;
                sStyleString = "";
                context.WriteHtmlText( "<div id=\""+"Grid1Container"+"Div\" "+sStyleString+">"+"</div>") ;
                context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Grid1", Grid1Container, subGrid1_Internalname);
@@ -493,7 +493,7 @@ namespace GeneXus.Programs.wallet {
                }
                else
                {
-                  AV10GXV1 = nGXsfl_16_idx;
+                  AV11GXV1 = nGXsfl_16_idx;
                   sStyleString = "";
                   context.WriteHtmlText( "<div id=\""+"Grid1Container"+"Div\" "+sStyleString+">"+"</div>") ;
                   context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Grid1", Grid1Container, subGrid1_Internalname);
@@ -524,7 +524,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_14-187820", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_16-189595", 0) ;
             }
          }
          Form.Meta.addItem("description", "Wallets", 0) ;
@@ -615,10 +615,10 @@ namespace GeneXus.Programs.wallet {
                               nGXsfl_16_idx = (int)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
                               sGXsfl_16_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_16_idx), 4, 0), 4, "0");
                               SubsflControlProps_162( ) ;
-                              AV10GXV1 = nGXsfl_16_idx;
-                              if ( ( AV6wallets.Count >= AV10GXV1 ) && ( AV10GXV1 > 0 ) )
+                              AV11GXV1 = nGXsfl_16_idx;
+                              if ( ( AV10walletList.Count >= AV11GXV1 ) && ( AV11GXV1 > 0 ) )
                               {
-                                 AV6wallets.CurrentItem = ((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV10GXV1));
+                                 AV10walletList.CurrentItem = ((GeneXus.Programs.wallet.SdtWalletInfo)AV10walletList.Item(AV11GXV1));
                               }
                               sEvtType = StringUtil.Right( sEvt, 1);
                               if ( StringUtil.StrCmp(sEvtType, ".") == 0 )
@@ -869,8 +869,8 @@ namespace GeneXus.Programs.wallet {
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
             /* Read saved SDTs. */
-            ajax_req_read_hidden_sdt(cgiGet( "Wallets"), AV6wallets);
-            ajax_req_read_hidden_sdt(cgiGet( "vWALLETS"), AV6wallets);
+            ajax_req_read_hidden_sdt(cgiGet( "Walletlist"), AV10walletList);
+            ajax_req_read_hidden_sdt(cgiGet( "vWALLETLIST"), AV10walletList);
             /* Read saved values. */
             nRC_GXsfl_16 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_16"), ".", ","), 18, MidpointRounding.ToEven));
             nRC_GXsfl_16 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_16"), ".", ","), 18, MidpointRounding.ToEven));
@@ -880,10 +880,10 @@ namespace GeneXus.Programs.wallet {
                nGXsfl_16_fel_idx = ((subGrid1_Islastpage==1)&&(nGXsfl_16_fel_idx+1>subGrid1_fnc_Recordsperpage( )) ? 1 : nGXsfl_16_fel_idx+1);
                sGXsfl_16_fel_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_16_fel_idx), 4, 0), 4, "0");
                SubsflControlProps_fel_162( ) ;
-               AV10GXV1 = nGXsfl_16_fel_idx;
-               if ( ( AV6wallets.Count >= AV10GXV1 ) && ( AV10GXV1 > 0 ) )
+               AV11GXV1 = nGXsfl_16_fel_idx;
+               if ( ( AV10walletList.Count >= AV11GXV1 ) && ( AV11GXV1 > 0 ) )
                {
-                  AV6wallets.CurrentItem = ((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV10GXV1));
+                  AV10walletList.CurrentItem = ((GeneXus.Programs.wallet.SdtWalletInfo)AV10walletList.Item(AV11GXV1));
                }
             }
             if ( nGXsfl_16_fel_idx == 0 )
@@ -916,12 +916,15 @@ namespace GeneXus.Programs.wallet {
          /* Start Routine */
          returnInSub = false;
          new GeneXus.Programs.wallet.initempstorages(context ).execute( ) ;
+         new GeneXus.Programs.wallet.cleantempstorage(context ).execute( ) ;
          AV7webSession.Destroy();
-         GXt_objcol_SdtWallet1 = AV6wallets;
-         new GeneXus.Programs.wallet.readallwallets(context ).execute( out  GXt_objcol_SdtWallet1) ;
-         AV6wallets = GXt_objcol_SdtWallet1;
+         GXt_objcol_SdtWalletInfo1 = AV10walletList;
+         new GeneXus.Programs.wallet.readallwalletsinfo(context ).execute( out  GXt_objcol_SdtWalletInfo1) ;
+         AV10walletList = GXt_objcol_SdtWalletInfo1;
          gx_BV16 = true;
-         AV8directory.Source = "Wallets";
+         GXt_char2 = "";
+         new GeneXus.Programs.wallet.getwalletsdir(context ).execute( out  GXt_char2) ;
+         AV8directory.Source = GXt_char2;
          if ( GxRegex.IsMatch(AV9Httprequest.BaseURL,"\\/\\/localhost:") )
          {
             lblTbdirectory_Caption = "<h4>Please, backup all the files under the following directory : <b>"+AV8directory.GetAbsoluteName()+"</b></h4>";
@@ -944,15 +947,14 @@ namespace GeneXus.Programs.wallet {
 
       protected void E160I2( )
       {
-         AV10GXV1 = nGXsfl_16_idx;
-         if ( ( AV10GXV1 > 0 ) && ( AV6wallets.Count >= AV10GXV1 ) )
+         AV11GXV1 = nGXsfl_16_idx;
+         if ( ( AV11GXV1 > 0 ) && ( AV10walletList.Count >= AV11GXV1 ) )
          {
-            AV6wallets.CurrentItem = ((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV10GXV1));
+            AV10walletList.CurrentItem = ((GeneXus.Programs.wallet.SdtWalletInfo)AV10walletList.Item(AV11GXV1));
          }
          /* 'Open Selected Wallet' Routine */
          returnInSub = false;
-         new GeneXus.Programs.wallet.setwallet(context ).execute(  ((GeneXus.Programs.wallet.SdtWallet)(AV6wallets.CurrentItem))) ;
-         CallWebObject(formatLink("wallet.enterpassword", new object[] {UrlEncode(StringUtil.RTrim(((GeneXus.Programs.wallet.SdtWallet)(AV6wallets.CurrentItem)).gxTpr_Walletname))}, new string[] {"walletName"}) );
+         CallWebObject(formatLink("wallet.enterpassword", new object[] {UrlEncode(StringUtil.RTrim(((GeneXus.Programs.wallet.SdtWalletInfo)(AV10walletList.CurrentItem)).gxTpr_Walletname))}, new string[] {"walletName"}) );
          context.wjLocDisableFrm = 1;
       }
 
@@ -1003,10 +1005,10 @@ namespace GeneXus.Programs.wallet {
       {
          /* Grid1_Load Routine */
          returnInSub = false;
-         AV10GXV1 = 1;
-         while ( AV10GXV1 <= AV6wallets.Count )
+         AV11GXV1 = 1;
+         while ( AV11GXV1 <= AV10walletList.Count )
          {
-            AV6wallets.CurrentItem = ((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV10GXV1));
+            AV10walletList.CurrentItem = ((GeneXus.Programs.wallet.SdtWalletInfo)AV10walletList.Item(AV11GXV1));
             /* Load Method */
             if ( wbStart != -1 )
             {
@@ -1017,7 +1019,7 @@ namespace GeneXus.Programs.wallet {
             {
                DoAjaxLoad(16, Grid1Row);
             }
-            AV10GXV1 = (int)(AV10GXV1+1);
+            AV11GXV1 = (int)(AV11GXV1+1);
          }
       }
 
@@ -1060,7 +1062,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20261301630612", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20261071416472", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1076,7 +1078,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("wallet/wallets.js", "?20261301630612", false, true, false);
+         context.AddJavascriptSource("wallet/wallets.js", "?20261071416472", false, true, false);
          /* End function include_jscripts */
       }
 
@@ -1166,7 +1168,7 @@ namespace GeneXus.Programs.wallet {
          ROClassString = "Attribute";
          edtavCtlwalletname_Link = "";
          AssignProp("", false, edtavCtlwalletname_Internalname, "Link", edtavCtlwalletname_Link, !bGXsfl_16_Refreshing);
-         Grid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlwalletname_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV10GXV1)).gxTpr_Walletname),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,17);\"","'"+""+"'"+",false,"+"'"+"E\\'OPEN SELECTED WALLET\\'."+sGXsfl_16_idx+"'",(string)edtavCtlwalletname_Link,(string)"",(string)"",(string)"",(string)edtavCtlwalletname_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlwalletname_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)200,(short)0,(short)0,(short)16,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         Grid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlwalletname_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtWalletInfo)AV10walletList.Item(AV11GXV1)).gxTpr_Walletname),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,17);\"","'"+""+"'"+",false,"+"'"+"E\\'OPEN SELECTED WALLET\\'."+sGXsfl_16_idx+"'",(string)edtavCtlwalletname_Link,(string)"",(string)"",(string)"",(string)edtavCtlwalletname_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlwalletname_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)200,(short)0,(short)0,(short)16,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          if ( Grid1Container.GetWrapped() == 1 )
          {
@@ -1183,15 +1185,15 @@ namespace GeneXus.Programs.wallet {
             cmbavCtlnetworktype.addItem("RegTest", "RegTest (for testing only)", 0);
             if ( cmbavCtlnetworktype.ItemCount > 0 )
             {
-               if ( ( AV10GXV1 > 0 ) && ( AV6wallets.Count >= AV10GXV1 ) && String.IsNullOrEmpty(StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV10GXV1)).gxTpr_Networktype)) )
+               if ( ( AV11GXV1 > 0 ) && ( AV10walletList.Count >= AV11GXV1 ) && String.IsNullOrEmpty(StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtWalletInfo)AV10walletList.Item(AV11GXV1)).gxTpr_Networktype)) )
                {
-                  ((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV10GXV1)).gxTpr_Networktype = cmbavCtlnetworktype.getValidValue(((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV10GXV1)).gxTpr_Networktype);
+                  ((GeneXus.Programs.wallet.SdtWalletInfo)AV10walletList.Item(AV11GXV1)).gxTpr_Networktype = cmbavCtlnetworktype.getValidValue(((GeneXus.Programs.wallet.SdtWalletInfo)AV10walletList.Item(AV11GXV1)).gxTpr_Networktype);
                }
             }
          }
          /* ComboBox */
-         Grid1Row.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbavCtlnetworktype,(string)cmbavCtlnetworktype_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV10GXV1)).gxTpr_Networktype),(short)1,(string)cmbavCtlnetworktype_Jsonclick,(short)0,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"char",(string)"",(short)-1,cmbavCtlnetworktype.Enabled,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"Attribute",(string)"",(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,18);\"",(string)"",(bool)true,(short)0});
-         cmbavCtlnetworktype.CurrentValue = StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV10GXV1)).gxTpr_Networktype);
+         Grid1Row.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbavCtlnetworktype,(string)cmbavCtlnetworktype_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtWalletInfo)AV10walletList.Item(AV11GXV1)).gxTpr_Networktype),(short)1,(string)cmbavCtlnetworktype_Jsonclick,(short)0,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"char",(string)"",(short)-1,cmbavCtlnetworktype.Enabled,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"Attribute",(string)"",(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,18);\"",(string)"",(bool)true,(short)0});
+         cmbavCtlnetworktype.CurrentValue = StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtWalletInfo)AV10walletList.Item(AV11GXV1)).gxTpr_Networktype);
          AssignProp("", false, cmbavCtlnetworktype_Internalname, "Values", (string)(cmbavCtlnetworktype.ToJavascriptSource()), !bGXsfl_16_Refreshing);
          /* Subfile cell */
          if ( Grid1Container.GetWrapped() == 1 )
@@ -1213,15 +1215,15 @@ namespace GeneXus.Programs.wallet {
             cmbavCtlwallettype.addItem("BIP86", "BIP86 (Taproot P2TR)", 0);
             if ( cmbavCtlwallettype.ItemCount > 0 )
             {
-               if ( ( AV10GXV1 > 0 ) && ( AV6wallets.Count >= AV10GXV1 ) && String.IsNullOrEmpty(StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV10GXV1)).gxTpr_Wallettype)) )
+               if ( ( AV11GXV1 > 0 ) && ( AV10walletList.Count >= AV11GXV1 ) && String.IsNullOrEmpty(StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtWalletInfo)AV10walletList.Item(AV11GXV1)).gxTpr_Wallettype)) )
                {
-                  ((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV10GXV1)).gxTpr_Wallettype = cmbavCtlwallettype.getValidValue(((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV10GXV1)).gxTpr_Wallettype);
+                  ((GeneXus.Programs.wallet.SdtWalletInfo)AV10walletList.Item(AV11GXV1)).gxTpr_Wallettype = cmbavCtlwallettype.getValidValue(((GeneXus.Programs.wallet.SdtWalletInfo)AV10walletList.Item(AV11GXV1)).gxTpr_Wallettype);
                }
             }
          }
          /* ComboBox */
-         Grid1Row.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbavCtlwallettype,(string)cmbavCtlwallettype_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV10GXV1)).gxTpr_Wallettype),(short)1,(string)cmbavCtlwallettype_Jsonclick,(short)0,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"char",(string)"",(short)-1,cmbavCtlwallettype.Enabled,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"Attribute",(string)"",(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,19);\"",(string)"",(bool)true,(short)0});
-         cmbavCtlwallettype.CurrentValue = StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV10GXV1)).gxTpr_Wallettype);
+         Grid1Row.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbavCtlwallettype,(string)cmbavCtlwallettype_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtWalletInfo)AV10walletList.Item(AV11GXV1)).gxTpr_Wallettype),(short)1,(string)cmbavCtlwallettype_Jsonclick,(short)0,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"char",(string)"",(short)-1,cmbavCtlwallettype.Enabled,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"Attribute",(string)"",(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,19);\"",(string)"",(bool)true,(short)0});
+         cmbavCtlwallettype.CurrentValue = StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtWalletInfo)AV10walletList.Item(AV11GXV1)).gxTpr_Wallettype);
          AssignProp("", false, cmbavCtlwallettype_Internalname, "Values", (string)(cmbavCtlwallettype.ToJavascriptSource()), !bGXsfl_16_Refreshing);
          send_integrity_lvl_hashes0I2( ) ;
          Grid1Container.AddRow(Grid1Row);
@@ -1241,9 +1243,9 @@ namespace GeneXus.Programs.wallet {
          cmbavCtlnetworktype.addItem("RegTest", "RegTest (for testing only)", 0);
          if ( cmbavCtlnetworktype.ItemCount > 0 )
          {
-            if ( ( AV10GXV1 > 0 ) && ( AV6wallets.Count >= AV10GXV1 ) && String.IsNullOrEmpty(StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV10GXV1)).gxTpr_Networktype)) )
+            if ( ( AV11GXV1 > 0 ) && ( AV10walletList.Count >= AV11GXV1 ) && String.IsNullOrEmpty(StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtWalletInfo)AV10walletList.Item(AV11GXV1)).gxTpr_Networktype)) )
             {
-               ((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV10GXV1)).gxTpr_Networktype = cmbavCtlnetworktype.getValidValue(((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV10GXV1)).gxTpr_Networktype);
+               ((GeneXus.Programs.wallet.SdtWalletInfo)AV10walletList.Item(AV11GXV1)).gxTpr_Networktype = cmbavCtlnetworktype.getValidValue(((GeneXus.Programs.wallet.SdtWalletInfo)AV10walletList.Item(AV11GXV1)).gxTpr_Networktype);
             }
          }
          GXCCtl = "CTLWALLETTYPE_" + sGXsfl_16_idx;
@@ -1258,9 +1260,9 @@ namespace GeneXus.Programs.wallet {
          cmbavCtlwallettype.addItem("BIP86", "BIP86 (Taproot P2TR)", 0);
          if ( cmbavCtlwallettype.ItemCount > 0 )
          {
-            if ( ( AV10GXV1 > 0 ) && ( AV6wallets.Count >= AV10GXV1 ) && String.IsNullOrEmpty(StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV10GXV1)).gxTpr_Wallettype)) )
+            if ( ( AV11GXV1 > 0 ) && ( AV10walletList.Count >= AV11GXV1 ) && String.IsNullOrEmpty(StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtWalletInfo)AV10walletList.Item(AV11GXV1)).gxTpr_Wallettype)) )
             {
-               ((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV10GXV1)).gxTpr_Wallettype = cmbavCtlwallettype.getValidValue(((GeneXus.Programs.wallet.SdtWallet)AV6wallets.Item(AV10GXV1)).gxTpr_Wallettype);
+               ((GeneXus.Programs.wallet.SdtWalletInfo)AV10walletList.Item(AV11GXV1)).gxTpr_Wallettype = cmbavCtlwallettype.getValidValue(((GeneXus.Programs.wallet.SdtWalletInfo)AV10walletList.Item(AV11GXV1)).gxTpr_Wallettype);
             }
          }
          /* End function init_web_controls */
@@ -1406,8 +1408,8 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID1_nFirstRecordOnPage","type":"int"},{"av":"GRID1_nEOF","type":"int"},{"av":"AV6wallets","fld":"vWALLETS","grid":16,"type":""},{"av":"nGXsfl_16_idx","ctrl":"GRID","prop":"GridCurrRow","grid":16},{"av":"nRC_GXsfl_16","ctrl":"GRID1","prop":"GridRC","grid":16,"type":"int"}]}""");
-         setEventMetadata("'OPEN SELECTED WALLET'","""{"handler":"E160I2","iparms":[{"av":"AV6wallets","fld":"vWALLETS","grid":16,"type":""},{"av":"nGXsfl_16_idx","ctrl":"GRID","prop":"GridCurrRow","grid":16},{"av":"GRID1_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_16","ctrl":"GRID1","prop":"GridRC","grid":16,"type":"int"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID1_nFirstRecordOnPage","type":"int"},{"av":"GRID1_nEOF","type":"int"},{"av":"AV10walletList","fld":"vWALLETLIST","grid":16,"type":""},{"av":"nGXsfl_16_idx","ctrl":"GRID","prop":"GridCurrRow","grid":16},{"av":"nRC_GXsfl_16","ctrl":"GRID1","prop":"GridRC","grid":16,"type":"int"}]}""");
+         setEventMetadata("'OPEN SELECTED WALLET'","""{"handler":"E160I2","iparms":[{"av":"AV10walletList","fld":"vWALLETLIST","grid":16,"type":""},{"av":"nGXsfl_16_idx","ctrl":"GRID","prop":"GridCurrRow","grid":16},{"av":"GRID1_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_16","ctrl":"GRID1","prop":"GridRC","grid":16,"type":"int"}]}""");
          setEventMetadata("'CREATE A NEW WALLET'","""{"handler":"E110I2","iparms":[{"av":"AV9Httprequest.BaseURL","ctrl":"vHTTPREQUEST","prop":"Baseurl"}]}""");
          setEventMetadata("'RESTORE WALLET'","""{"handler":"E120I2","iparms":[{"av":"AV9Httprequest.BaseURL","ctrl":"vHTTPREQUEST","prop":"Baseurl"}]}""");
          setEventMetadata("'CONFIGURATION'","""{"handler":"E130I2","iparms":[{"av":"AV9Httprequest.BaseURL","ctrl":"vHTTPREQUEST","prop":"Baseurl"}]}""");
@@ -1435,7 +1437,7 @@ namespace GeneXus.Programs.wallet {
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
-         AV6wallets = new GXBaseCollection<GeneXus.Programs.wallet.SdtWallet>( context, "Wallet", "distributedcryptography");
+         AV10walletList = new GXBaseCollection<GeneXus.Programs.wallet.SdtWalletInfo>( context, "WalletInfo", "distributedcryptography");
          GX_FocusControl = "";
          Form = new GXWebForm();
          sPrefix = "";
@@ -1454,8 +1456,9 @@ namespace GeneXus.Programs.wallet {
          EvtRowId = "";
          sEvtType = "";
          AV7webSession = context.GetSession();
-         GXt_objcol_SdtWallet1 = new GXBaseCollection<GeneXus.Programs.wallet.SdtWallet>( context, "Wallet", "distributedcryptography");
+         GXt_objcol_SdtWalletInfo1 = new GXBaseCollection<GeneXus.Programs.wallet.SdtWalletInfo>( context, "WalletInfo", "distributedcryptography");
          AV8directory = new GxDirectory(context.GetPhysicalPath());
+         GXt_char2 = "";
          Grid1Row = new GXWebRow();
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
@@ -1490,7 +1493,7 @@ namespace GeneXus.Programs.wallet {
       private int bttCreateanewwallet_Visible ;
       private int bttRestorewallet_Visible ;
       private int bttCreaterestoreadvancebrainwallet_Visible ;
-      private int AV10GXV1 ;
+      private int AV11GXV1 ;
       private int bttConfiguration_Visible ;
       private int subGrid1_Islastpage ;
       private int edtavCtlwalletname_Enabled ;
@@ -1535,6 +1538,7 @@ namespace GeneXus.Programs.wallet {
       private string EvtRowId ;
       private string sEvtType ;
       private string sGXsfl_16_fel_idx="0001" ;
+      private string GXt_char2 ;
       private string edtavCtlwalletname_Internalname ;
       private string cmbavCtlnetworktype_Internalname ;
       private string cmbavCtlwallettype_Internalname ;
@@ -1566,8 +1570,8 @@ namespace GeneXus.Programs.wallet {
       private IGxDataStore dsDefault ;
       private GXCombobox cmbavCtlnetworktype ;
       private GXCombobox cmbavCtlwallettype ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtWallet> AV6wallets ;
-      private GXBaseCollection<GeneXus.Programs.wallet.SdtWallet> GXt_objcol_SdtWallet1 ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtWalletInfo> AV10walletList ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtWalletInfo> GXt_objcol_SdtWalletInfo1 ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

@@ -203,6 +203,8 @@
 
 .calendar td.time .hour,
 .calendar td.time .minute,
+.calendar td.time .second,
+.calendar td.time .millisecond,
 .calendar td.time .ampm {
   padding: 0px 3px 0px 4px;
   border: 1px solid #889;

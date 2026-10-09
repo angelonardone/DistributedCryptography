@@ -239,10 +239,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -297,11 +297,11 @@ namespace GeneXus.Programs.wallet {
          send_integrity_footer_hashes( ) ;
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "Externaluser", AV6externalUser);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "Externaluserpublic", AV64externalUserPublic);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("Externaluser", AV6externalUser);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("Externaluserpublic", AV64externalUserPublic);
          }
          if ( context.isAjaxRequest( ) )
          {
@@ -324,11 +324,11 @@ namespace GeneXus.Programs.wallet {
          GxWebStd.gx_hidden_field( context, "vCALLERURL", StringUtil.RTrim( AV5callerURL));
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vEXTERNALUSER", AV6externalUser);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vEXTERNALUSERPUBLIC", AV64externalUserPublic);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vEXTERNALUSER", AV6externalUser);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vEXTERNALUSERPUBLIC", AV64externalUserPublic);
          }
       }
 
@@ -461,7 +461,7 @@ namespace GeneXus.Programs.wallet {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 19,'',false,'" + sGXsfl_35_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavCtlusername_Internalname, AV6externalUser.gxTpr_Userinfo.gxTpr_Username, StringUtil.RTrim( context.localUtil.Format( AV6externalUser.gxTpr_Userinfo.gxTpr_Username, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,19);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtlusername_Jsonclick, 0, "Attribute", "", "", "", "", edtavCtlusername_Visible, edtavCtlusername_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, 0, true, "", "start", true, "", "HLP_Wallet/DistCryptLogin.htm");
+            GxWebStd.gx_single_line_edit( context, edtavCtlusername_Internalname, AV64externalUserPublic.gxTpr_Userinfo.gxTpr_Username, StringUtil.RTrim( context.localUtil.Format( AV64externalUserPublic.gxTpr_Userinfo.gxTpr_Username, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,19);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtlusername_Jsonclick, 0, "Attribute", "", "", "", "", edtavCtlusername_Visible, edtavCtlusername_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, 0, true, "", "start", true, "", "HLP_Wallet/DistCryptLogin.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -527,7 +527,7 @@ namespace GeneXus.Programs.wallet {
             }
             else
             {
-               AV65GXV2 = nGXsfl_35_idx;
+               AV66GXV2 = nGXsfl_35_idx;
                if ( subGridnostrservers_Visible != 0 )
                {
                   sStyleString = "";
@@ -568,7 +568,7 @@ namespace GeneXus.Programs.wallet {
                }
                else
                {
-                  AV65GXV2 = nGXsfl_35_idx;
+                  AV66GXV2 = nGXsfl_35_idx;
                   if ( subGridnostrservers_Visible != 0 )
                   {
                      sStyleString = "";
@@ -606,7 +606,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_14-187820", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_16-189595", 0) ;
             }
          }
          Form.Meta.addItem("description", "Dist Crypt Login", 0) ;
@@ -689,10 +689,10 @@ namespace GeneXus.Programs.wallet {
                               nGXsfl_35_idx = (int)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
                               sGXsfl_35_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_35_idx), 4, 0), 4, "0");
                               SubsflControlProps_352( ) ;
-                              AV65GXV2 = nGXsfl_35_idx;
-                              if ( ( AV42ConnectionParameters.Count >= AV65GXV2 ) && ( AV65GXV2 > 0 ) )
+                              AV66GXV2 = nGXsfl_35_idx;
+                              if ( ( AV42ConnectionParameters.Count >= AV66GXV2 ) && ( AV66GXV2 > 0 ) )
                               {
-                                 AV42ConnectionParameters.CurrentItem = ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV65GXV2));
+                                 AV42ConnectionParameters.CurrentItem = ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV66GXV2));
                               }
                               sEvtType = StringUtil.Right( sEvt, 1);
                               if ( StringUtil.StrCmp(sEvtType, ".") == 0 )
@@ -951,8 +951,8 @@ namespace GeneXus.Programs.wallet {
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
             /* Read saved SDTs. */
-            ajax_req_read_hidden_sdt(cgiGet( "vEXTERNALUSER"), AV6externalUser);
-            ajax_req_read_hidden_sdt(cgiGet( "Externaluser"), AV6externalUser);
+            ajax_req_read_hidden_sdt(cgiGet( "vEXTERNALUSERPUBLIC"), AV64externalUserPublic);
+            ajax_req_read_hidden_sdt(cgiGet( "Externaluserpublic"), AV64externalUserPublic);
             ajax_req_read_hidden_sdt(cgiGet( "Connectionparameters"), AV42ConnectionParameters);
             ajax_req_read_hidden_sdt(cgiGet( "vCONNECTIONPARAMETERS"), AV42ConnectionParameters);
             /* Read saved values. */
@@ -965,10 +965,10 @@ namespace GeneXus.Programs.wallet {
                nGXsfl_35_fel_idx = ((subGridnostrservers_Islastpage==1)&&(nGXsfl_35_fel_idx+1>subGridnostrservers_fnc_Recordsperpage( )) ? 1 : nGXsfl_35_fel_idx+1);
                sGXsfl_35_fel_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_35_fel_idx), 4, 0), 4, "0");
                SubsflControlProps_fel_352( ) ;
-               AV65GXV2 = nGXsfl_35_fel_idx;
-               if ( ( AV42ConnectionParameters.Count >= AV65GXV2 ) && ( AV65GXV2 > 0 ) )
+               AV66GXV2 = nGXsfl_35_fel_idx;
+               if ( ( AV42ConnectionParameters.Count >= AV66GXV2 ) && ( AV66GXV2 > 0 ) )
                {
-                  AV42ConnectionParameters.CurrentItem = ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV65GXV2));
+                  AV42ConnectionParameters.CurrentItem = ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV66GXV2));
                }
             }
             if ( nGXsfl_35_fel_idx == 0 )
@@ -979,7 +979,7 @@ namespace GeneXus.Programs.wallet {
             }
             nGXsfl_35_fel_idx = 1;
             /* Read variables values. */
-            AV6externalUser.gxTpr_Userinfo.gxTpr_Username = cgiGet( edtavCtlusername_Internalname);
+            AV64externalUserPublic.gxTpr_Userinfo.gxTpr_Username = cgiGet( edtavCtlusername_Internalname);
             AV39oneRole = cgiGet( edtavOnerole_Internalname);
             AssignAttri("", false, "AV39oneRole", AV39oneRole);
             /* Read subfile selected row values. */
@@ -1005,10 +1005,10 @@ namespace GeneXus.Programs.wallet {
          returnInSub = false;
          bttLoginwithsso_Visible = 0;
          AssignProp("", false, bttLoginwithsso_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttLoginwithsso_Visible), 5, 0), true);
-         GXt_SdtExternalUser1 = AV6externalUser;
-         new GeneXus.Programs.distcrypt.getexternaluser(context ).execute( out  GXt_SdtExternalUser1) ;
-         AV6externalUser = GXt_SdtExternalUser1;
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6externalUser.gxTpr_Externaltoken)) )
+         GXt_SdtExternalUserPublic1 = AV64externalUserPublic;
+         new GeneXus.Programs.distcrypt.getexternaluserpublic(context ).execute( out  GXt_SdtExternalUserPublic1) ;
+         AV64externalUserPublic = GXt_SdtExternalUserPublic1;
+         if ( ! AV64externalUserPublic.gxTpr_Isloggedin )
          {
             bttLoginanonymously_Visible = 1;
             AssignProp("", false, bttLoginanonymously_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttLoginanonymously_Visible), 5, 0), true);
@@ -1029,12 +1029,12 @@ namespace GeneXus.Programs.wallet {
          }
          else
          {
-            AV71GXV8 = 1;
-            while ( AV71GXV8 <= AV6externalUser.gxTpr_Userinfo.gxTpr_Roles.Count )
+            AV72GXV8 = 1;
+            while ( AV72GXV8 <= AV64externalUserPublic.gxTpr_Userinfo.gxTpr_Roles.Count )
             {
-               AV38role = ((string)AV6externalUser.gxTpr_Userinfo.gxTpr_Roles.Item(AV71GXV8));
+               AV38role = ((string)AV64externalUserPublic.gxTpr_Userinfo.gxTpr_Roles.Item(AV72GXV8));
                AV37roles.Add(AV38role, 0);
-               AV71GXV8 = (int)(AV71GXV8+1);
+               AV72GXV8 = (int)(AV72GXV8+1);
             }
             AV39oneRole = ((string)AV37roles.Item(1));
             AssignAttri("", false, "AV39oneRole", AV39oneRole);
@@ -1075,22 +1075,19 @@ namespace GeneXus.Programs.wallet {
       {
          /* 'Logout' Routine */
          returnInSub = false;
-         AV6externalUser.FromJSonString("", null);
-         new GeneXus.Programs.distcrypt.setexternaluser(context ).execute(  AV6externalUser) ;
-         GXt_char2 = "";
-         new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  "distcrypt.conf",  AV6externalUser.ToJSonString(false, true), out  GXt_char2) ;
+         GXt_char2 = AV8error;
+         new GeneXus.Programs.distcrypt.logoutexternaluser(context ).execute( out  GXt_char2) ;
+         AV8error = GXt_char2;
          CallWebObject(formatLink("wallet.distcryptlogin") );
          context.wjLocDisableFrm = 1;
-         /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV6externalUser", AV6externalUser);
       }
 
       protected void E15132( )
       {
-         AV65GXV2 = nGXsfl_35_idx;
-         if ( ( AV65GXV2 > 0 ) && ( AV42ConnectionParameters.Count >= AV65GXV2 ) )
+         AV66GXV2 = nGXsfl_35_idx;
+         if ( ( AV66GXV2 > 0 ) && ( AV42ConnectionParameters.Count >= AV66GXV2 ) )
          {
-            AV42ConnectionParameters.CurrentItem = ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV65GXV2));
+            AV42ConnectionParameters.CurrentItem = ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV66GXV2));
          }
          /* Extensions\Web\Popup_Onpopupclosed Routine */
          returnInSub = false;
@@ -1119,10 +1116,10 @@ namespace GeneXus.Programs.wallet {
       {
          /* Gridnostrservers_Load Routine */
          returnInSub = false;
-         AV65GXV2 = 1;
-         while ( AV65GXV2 <= AV42ConnectionParameters.Count )
+         AV66GXV2 = 1;
+         while ( AV66GXV2 <= AV42ConnectionParameters.Count )
          {
-            AV42ConnectionParameters.CurrentItem = ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV65GXV2));
+            AV42ConnectionParameters.CurrentItem = ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV66GXV2));
             /* Load Method */
             if ( wbStart != -1 )
             {
@@ -1133,7 +1130,7 @@ namespace GeneXus.Programs.wallet {
             {
                DoAjaxLoad(35, GridnostrserversRow);
             }
-            AV65GXV2 = (int)(AV65GXV2+1);
+            AV66GXV2 = (int)(AV66GXV2+1);
          }
       }
 
@@ -1176,7 +1173,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202613016301519", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610714165387", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1192,7 +1189,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("wallet/distcryptlogin.js", "?202613016301520", false, true, false);
+         context.AddJavascriptSource("wallet/distcryptlogin.js", "?202610714165387", false, true, false);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
          /* End function include_jscripts */
       }
@@ -1292,15 +1289,15 @@ namespace GeneXus.Programs.wallet {
             cmbavCtlconnectiontype.addItem("tcp", "Tcp Socket", 0);
             if ( cmbavCtlconnectiontype.ItemCount > 0 )
             {
-               if ( ( AV65GXV2 > 0 ) && ( AV42ConnectionParameters.Count >= AV65GXV2 ) && String.IsNullOrEmpty(StringUtil.RTrim( ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV65GXV2)).gxTpr_Connectiontype)) )
+               if ( ( AV66GXV2 > 0 ) && ( AV42ConnectionParameters.Count >= AV66GXV2 ) && String.IsNullOrEmpty(StringUtil.RTrim( ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV66GXV2)).gxTpr_Connectiontype)) )
                {
-                  ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV65GXV2)).gxTpr_Connectiontype = cmbavCtlconnectiontype.getValidValue(((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV65GXV2)).gxTpr_Connectiontype);
+                  ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV66GXV2)).gxTpr_Connectiontype = cmbavCtlconnectiontype.getValidValue(((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV66GXV2)).gxTpr_Connectiontype);
                }
             }
          }
          /* ComboBox */
-         GridnostrserversRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbavCtlconnectiontype,(string)cmbavCtlconnectiontype_Internalname,StringUtil.RTrim( ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV65GXV2)).gxTpr_Connectiontype),(short)1,(string)cmbavCtlconnectiontype_Jsonclick,(short)0,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"char",(string)"",(short)-1,cmbavCtlconnectiontype.Enabled,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"Attribute",(string)"",(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,36);\"",(string)"",(bool)true,(short)0});
-         cmbavCtlconnectiontype.CurrentValue = StringUtil.RTrim( ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV65GXV2)).gxTpr_Connectiontype);
+         GridnostrserversRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbavCtlconnectiontype,(string)cmbavCtlconnectiontype_Internalname,StringUtil.RTrim( ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV66GXV2)).gxTpr_Connectiontype),(short)1,(string)cmbavCtlconnectiontype_Jsonclick,(short)0,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"char",(string)"",(short)-1,cmbavCtlconnectiontype.Enabled,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"Attribute",(string)"",(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,36);\"",(string)"",(bool)true,(short)0});
+         cmbavCtlconnectiontype.CurrentValue = StringUtil.RTrim( ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV66GXV2)).gxTpr_Connectiontype);
          AssignProp("", false, cmbavCtlconnectiontype_Internalname, "Values", (string)(cmbavCtlconnectiontype.ToJavascriptSource()), !bGXsfl_35_Refreshing);
          /* Subfile cell */
          if ( GridnostrserversContainer.GetWrapped() == 1 )
@@ -1310,7 +1307,7 @@ namespace GeneXus.Programs.wallet {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 37,'',false,'" + sGXsfl_35_idx + "',35)\"";
          ROClassString = "Attribute";
-         GridnostrserversRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlhostname_Internalname,StringUtil.RTrim( ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV65GXV2)).gxTpr_Hostname),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,37);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlhostname_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlhostname_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)35,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         GridnostrserversRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlhostname_Internalname,StringUtil.RTrim( ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV66GXV2)).gxTpr_Hostname),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,37);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlhostname_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlhostname_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)35,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          if ( GridnostrserversContainer.GetWrapped() == 1 )
          {
@@ -1319,7 +1316,7 @@ namespace GeneXus.Programs.wallet {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 38,'',false,'" + sGXsfl_35_idx + "',35)\"";
          ROClassString = "Attribute";
-         GridnostrserversRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlport_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV65GXV2)).gxTpr_Port), 6, 0, ".", "")),StringUtil.LTrim( ((edtavCtlport_Enabled!=0) ? context.localUtil.Format( (decimal)(((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV65GXV2)).gxTpr_Port), "ZZZZZ9") : context.localUtil.Format( (decimal)(((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV65GXV2)).gxTpr_Port), "ZZZZZ9")))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,38);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlport_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlport_Enabled,(short)0,(string)"text",(string)"1",(short)0,(string)"px",(short)17,(string)"px",(short)6,(short)0,(short)0,(short)35,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         GridnostrserversRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlport_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV66GXV2)).gxTpr_Port), 6, 0, ".", "")),StringUtil.LTrim( ((edtavCtlport_Enabled!=0) ? context.localUtil.Format( (decimal)(((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV66GXV2)).gxTpr_Port), "ZZZZZ9") : context.localUtil.Format( (decimal)(((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV66GXV2)).gxTpr_Port), "ZZZZZ9")))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,38);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlport_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlport_Enabled,(short)0,(string)"text",(string)"1",(short)0,(string)"px",(short)17,(string)"px",(short)6,(short)0,(short)0,(short)35,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          /* Subfile cell */
          if ( GridnostrserversContainer.GetWrapped() == 1 )
          {
@@ -1335,7 +1332,7 @@ namespace GeneXus.Programs.wallet {
          chkavCtlsecure.Caption = "";
          AssignProp("", false, chkavCtlsecure_Internalname, "TitleCaption", chkavCtlsecure.Caption, !bGXsfl_35_Refreshing);
          chkavCtlsecure.CheckedValue = "false";
-         GridnostrserversRow.AddColumnProperties("checkbox", 1, isAjaxCallMode( ), new Object[] {(string)chkavCtlsecure_Internalname,StringUtil.BoolToStr( ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV65GXV2)).gxTpr_Secure),(string)"",(string)"",(short)-1,chkavCtlsecure.Enabled,(string)"true",(string)"",(string)StyleString,(string)ClassString,(string)"",(string)"",TempTags+" onclick="+"\"gx.fn.checkboxClick(39, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,39);\""});
+         GridnostrserversRow.AddColumnProperties("checkbox", 1, isAjaxCallMode( ), new Object[] {(string)chkavCtlsecure_Internalname,StringUtil.BoolToStr( ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV66GXV2)).gxTpr_Secure),(string)"",(string)"",(short)-1,chkavCtlsecure.Enabled,(string)"true",(string)"",(string)StyleString,(string)ClassString,(string)"",(string)"",TempTags+" onclick="+"\"gx.fn.checkboxClick(39, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,39);\""});
          /* Subfile cell */
          if ( GridnostrserversContainer.GetWrapped() == 1 )
          {
@@ -1344,7 +1341,7 @@ namespace GeneXus.Programs.wallet {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 40,'',false,'" + sGXsfl_35_idx + "',35)\"";
          ROClassString = "Attribute";
-         GridnostrserversRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtltimeoutmiliseconds_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV65GXV2)).gxTpr_Timeoutmiliseconds), 6, 0, ".", "")),StringUtil.LTrim( ((edtavCtltimeoutmiliseconds_Enabled!=0) ? context.localUtil.Format( (decimal)(((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV65GXV2)).gxTpr_Timeoutmiliseconds), "ZZZZZ9") : context.localUtil.Format( (decimal)(((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV65GXV2)).gxTpr_Timeoutmiliseconds), "ZZZZZ9")))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,40);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtltimeoutmiliseconds_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtltimeoutmiliseconds_Enabled,(short)0,(string)"text",(string)"1",(short)0,(string)"px",(short)17,(string)"px",(short)6,(short)0,(short)0,(short)35,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         GridnostrserversRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtltimeoutmiliseconds_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV66GXV2)).gxTpr_Timeoutmiliseconds), 6, 0, ".", "")),StringUtil.LTrim( ((edtavCtltimeoutmiliseconds_Enabled!=0) ? context.localUtil.Format( (decimal)(((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV66GXV2)).gxTpr_Timeoutmiliseconds), "ZZZZZ9") : context.localUtil.Format( (decimal)(((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV66GXV2)).gxTpr_Timeoutmiliseconds), "ZZZZZ9")))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,40);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtltimeoutmiliseconds_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtltimeoutmiliseconds_Enabled,(short)0,(string)"text",(string)"1",(short)0,(string)"px",(short)17,(string)"px",(short)6,(short)0,(short)0,(short)35,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          send_integrity_lvl_hashes132( ) ;
          GridnostrserversContainer.AddRow(GridnostrserversRow);
          nGXsfl_35_idx = ((subGridnostrservers_Islastpage==1)&&(nGXsfl_35_idx+1>subGridnostrservers_fnc_Recordsperpage( )) ? 1 : nGXsfl_35_idx+1);
@@ -1362,9 +1359,9 @@ namespace GeneXus.Programs.wallet {
          cmbavCtlconnectiontype.addItem("tcp", "Tcp Socket", 0);
          if ( cmbavCtlconnectiontype.ItemCount > 0 )
          {
-            if ( ( AV65GXV2 > 0 ) && ( AV42ConnectionParameters.Count >= AV65GXV2 ) && String.IsNullOrEmpty(StringUtil.RTrim( ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV65GXV2)).gxTpr_Connectiontype)) )
+            if ( ( AV66GXV2 > 0 ) && ( AV42ConnectionParameters.Count >= AV66GXV2 ) && String.IsNullOrEmpty(StringUtil.RTrim( ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV66GXV2)).gxTpr_Connectiontype)) )
             {
-               ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV65GXV2)).gxTpr_Connectiontype = cmbavCtlconnectiontype.getValidValue(((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV65GXV2)).gxTpr_Connectiontype);
+               ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV66GXV2)).gxTpr_Connectiontype = cmbavCtlconnectiontype.getValidValue(((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV42ConnectionParameters.Item(AV66GXV2)).gxTpr_Connectiontype);
             }
          }
          GXCCtl = "CTLSECURE_" + sGXsfl_35_idx;
@@ -1554,8 +1551,7 @@ namespace GeneXus.Programs.wallet {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDNOSTRSERVERS_nFirstRecordOnPage","type":"int"},{"av":"GRIDNOSTRSERVERS_nEOF","type":"int"},{"av":"AV42ConnectionParameters","fld":"vCONNECTIONPARAMETERS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"nRC_GXsfl_35","ctrl":"GRIDNOSTRSERVERS","prop":"GridRC","grid":35,"type":"int"}]}""");
          setEventMetadata("'LOGIN WITH SSO'","""{"handler":"E11131","iparms":[]}""");
          setEventMetadata("'LOGIN ANONYMOUSLY'","""{"handler":"E13132","iparms":[]}""");
-         setEventMetadata("'LOGOUT'","""{"handler":"E14132","iparms":[]""");
-         setEventMetadata("'LOGOUT'",""","oparms":[{"av":"AV6externalUser","fld":"vEXTERNALUSER","type":""}]}""");
+         setEventMetadata("'LOGOUT'","""{"handler":"E14132","iparms":[]}""");
          setEventMetadata("'CONFIGURE YOUR NOSTR SERVERS'","""{"handler":"E12131","iparms":[]}""");
          setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E15132","iparms":[{"av":"AV55PopupName","fld":"vPOPUPNAME","type":"char"},{"av":"AV42ConnectionParameters","fld":"vCONNECTIONPARAMETERS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"GRIDNOSTRSERVERS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_35","ctrl":"GRIDNOSTRSERVERS","prop":"GridRC","grid":35,"type":"int"},{"av":"GRIDNOSTRSERVERS_nEOF","type":"int"}]""");
          setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV42ConnectionParameters","fld":"vCONNECTIONPARAMETERS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"GRIDNOSTRSERVERS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_35","ctrl":"GRIDNOSTRSERVERS","prop":"GridRC","grid":35,"type":"int"}]}""");
@@ -1581,7 +1577,7 @@ namespace GeneXus.Programs.wallet {
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
-         AV6externalUser = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
+         AV64externalUserPublic = new GeneXus.Programs.distcrypt.SdtExternalUserPublic(context);
          AV42ConnectionParameters = new GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem>( context, "ConnectionParametersItem", "distributedcryptography");
          AV55PopupName = "";
          AV5callerURL = "";
@@ -1604,7 +1600,7 @@ namespace GeneXus.Programs.wallet {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
-         GXt_SdtExternalUser1 = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
+         GXt_SdtExternalUserPublic1 = new GeneXus.Programs.distcrypt.SdtExternalUserPublic(context);
          AV38role = "";
          AV37roles = new GxSimpleCollection<string>();
          AV8error = "";
@@ -1657,14 +1653,14 @@ namespace GeneXus.Programs.wallet {
       private int edtavOnerole_Enabled ;
       private int lblTextblockoptional_Visible ;
       private int bttConfigureyournostrservers_Visible ;
-      private int AV65GXV2 ;
+      private int AV66GXV2 ;
       private int subGridnostrservers_Visible ;
       private int subGridnostrservers_Islastpage ;
       private int edtavCtlhostname_Enabled ;
       private int edtavCtlport_Enabled ;
       private int edtavCtltimeoutmiliseconds_Enabled ;
       private int nGXsfl_35_fel_idx=1 ;
-      private int AV71GXV8 ;
+      private int AV72GXV8 ;
       private int nGXsfl_35_bak_idx=1 ;
       private int idxLst ;
       private int subGridnostrservers_Backcolor ;
@@ -1749,9 +1745,9 @@ namespace GeneXus.Programs.wallet {
       private IGxDataStore dsDefault ;
       private GXCombobox cmbavCtlconnectiontype ;
       private GXCheckbox chkavCtlsecure ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser AV6externalUser ;
+      private GeneXus.Programs.distcrypt.SdtExternalUserPublic AV64externalUserPublic ;
       private GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem> AV42ConnectionParameters ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
+      private GeneXus.Programs.distcrypt.SdtExternalUserPublic GXt_SdtExternalUserPublic1 ;
       private GxSimpleCollection<string> AV37roles ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;

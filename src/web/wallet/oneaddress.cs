@@ -182,7 +182,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void gxgrAddressgrid_refresh_invoke( )
       {
-         ajax_req_read_hidden_sdt(GetNextPar( ), AV23wallet);
+         ajax_req_read_hidden_sdt(GetNextPar( ), AV32walletInfo);
          ajax_req_read_hidden_sdt(GetNextPar( ), AV14SDTAddressHistory);
          AV12mainAddress = GetPar( "mainAddress");
          sPrefix = GetPar( "sPrefix");
@@ -193,7 +193,7 @@ namespace GeneXus.Programs.wallet {
             GxWebError = 1;
             return  ;
          }
-         gxgrAddressgrid_refresh( AV23wallet, AV14SDTAddressHistory, AV12mainAddress, sPrefix) ;
+         gxgrAddressgrid_refresh( AV32walletInfo, AV14SDTAddressHistory, AV12mainAddress, sPrefix) ;
          AddString( context.getJSONResponse( )) ;
          /* End function gxgrAddressgrid_refresh_invoke */
       }
@@ -302,18 +302,18 @@ namespace GeneXus.Programs.wallet {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          if ( StringUtil.Len( sPrefix) == 0 )
          {
             context.CloseHtmlHeader();
@@ -384,13 +384,13 @@ namespace GeneXus.Programs.wallet {
       {
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vWALLET", AV23wallet);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vWALLETINFO", AV32walletInfo);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vWALLET", AV23wallet);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vWALLETINFO", AV32walletInfo);
          }
-         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWALLET", GetSecureSignedToken( sPrefix, AV23wallet, context));
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWALLETINFO", GetSecureSignedToken( sPrefix, AV32walletInfo, context));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vMAINADDRESS", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV12mainAddress, "")), context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
          forbiddenHiddens = new GXProperties();
@@ -416,13 +416,13 @@ namespace GeneXus.Programs.wallet {
          GxWebStd.gx_hidden_field( context, sPrefix+"nRC_GXsfl_29", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_29), 8, 0, ".", "")));
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vWALLET", AV23wallet);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vWALLETINFO", AV32walletInfo);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vWALLET", AV23wallet);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vWALLETINFO", AV32walletInfo);
          }
-         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWALLET", GetSecureSignedToken( sPrefix, AV23wallet, context));
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWALLETINFO", GetSecureSignedToken( sPrefix, AV32walletInfo, context));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vSDTADDRESSHISTORY", AV14SDTAddressHistory);
@@ -628,7 +628,7 @@ namespace GeneXus.Programs.wallet {
             }
             else
             {
-               AV32GXV1 = nGXsfl_29_idx;
+               AV33GXV1 = nGXsfl_29_idx;
                sStyleString = "";
                context.WriteHtmlText( "<div id=\""+sPrefix+"AddressgridContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                context.httpAjaxContext.ajax_rsp_assign_grid(sPrefix+"_"+"Addressgrid", AddressgridContainer, subAddressgrid_Internalname);
@@ -662,7 +662,7 @@ namespace GeneXus.Programs.wallet {
                }
                else
                {
-                  AV32GXV1 = nGXsfl_29_idx;
+                  AV33GXV1 = nGXsfl_29_idx;
                   sStyleString = "";
                   context.WriteHtmlText( "<div id=\""+sPrefix+"AddressgridContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                   context.httpAjaxContext.ajax_rsp_assign_grid(sPrefix+"_"+"Addressgrid", AddressgridContainer, subAddressgrid_Internalname);
@@ -695,7 +695,7 @@ namespace GeneXus.Programs.wallet {
             {
                if ( context.ExposeMetadata( ) )
                {
-                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_14-187820", 0) ;
+                  Form.Meta.addItem("generator", "GeneXus .NET 18_0_16-189595", 0) ;
                }
             }
             Form.Meta.addItem("description", "One Address", 0) ;
@@ -832,10 +832,10 @@ namespace GeneXus.Programs.wallet {
                               nGXsfl_29_idx = (int)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
                               sGXsfl_29_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_29_idx), 4, 0), 4, "0");
                               SubsflControlProps_292( ) ;
-                              AV32GXV1 = nGXsfl_29_idx;
-                              if ( ( AV14SDTAddressHistory.Count >= AV32GXV1 ) && ( AV32GXV1 > 0 ) )
+                              AV33GXV1 = nGXsfl_29_idx;
+                              if ( ( AV14SDTAddressHistory.Count >= AV33GXV1 ) && ( AV33GXV1 > 0 ) )
                               {
-                                 AV14SDTAddressHistory.CurrentItem = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV32GXV1));
+                                 AV14SDTAddressHistory.CurrentItem = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV33GXV1));
                                  AV6firstLink = cgiGet( edtavFirstlink_Internalname);
                                  AssignAttri(sPrefix, false, edtavFirstlink_Internalname, AV6firstLink);
                                  AV15secondLink = cgiGet( edtavSecondlink_Internalname);
@@ -1019,7 +1019,7 @@ namespace GeneXus.Programs.wallet {
          /* End function gxnrAddressgrid_newrow */
       }
 
-      protected void gxgrAddressgrid_refresh( GeneXus.Programs.wallet.SdtWallet AV23wallet ,
+      protected void gxgrAddressgrid_refresh( GeneXus.Programs.wallet.SdtWalletInfo AV32walletInfo ,
                                               GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV14SDTAddressHistory ,
                                               string AV12mainAddress ,
                                               string sPrefix )
@@ -1126,13 +1126,13 @@ namespace GeneXus.Programs.wallet {
       {
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vWALLET", AV23wallet);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vWALLETINFO", AV32walletInfo);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vWALLET", AV23wallet);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vWALLETINFO", AV32walletInfo);
          }
-         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWALLET", GetSecureSignedToken( sPrefix, AV23wallet, context));
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWALLETINFO", GetSecureSignedToken( sPrefix, AV32walletInfo, context));
       }
 
       protected int subAddressgrid_fnc_Pagecount( )
@@ -1202,10 +1202,10 @@ namespace GeneXus.Programs.wallet {
                nGXsfl_29_fel_idx = ((subAddressgrid_Islastpage==1)&&(nGXsfl_29_fel_idx+1>subAddressgrid_fnc_Recordsperpage( )) ? 1 : nGXsfl_29_fel_idx+1);
                sGXsfl_29_fel_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_29_fel_idx), 4, 0), 4, "0");
                SubsflControlProps_fel_292( ) ;
-               AV32GXV1 = nGXsfl_29_fel_idx;
-               if ( ( AV14SDTAddressHistory.Count >= AV32GXV1 ) && ( AV32GXV1 > 0 ) )
+               AV33GXV1 = nGXsfl_29_fel_idx;
+               if ( ( AV14SDTAddressHistory.Count >= AV33GXV1 ) && ( AV33GXV1 > 0 ) )
                {
-                  AV14SDTAddressHistory.CurrentItem = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV32GXV1));
+                  AV14SDTAddressHistory.CurrentItem = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV33GXV1));
                   AV6firstLink = cgiGet( edtavFirstlink_Internalname);
                   AV15secondLink = cgiGet( edtavSecondlink_Internalname);
                   AV31txtConfirmations = cgiGet( edtavTxtconfirmations_Internalname);
@@ -1296,11 +1296,11 @@ namespace GeneXus.Programs.wallet {
          GXt_SdtKeyInfo1 = AV11keyInfo;
          new GeneXus.Programs.wallet.getkey(context ).execute( out  GXt_SdtKeyInfo1) ;
          AV11keyInfo = GXt_SdtKeyInfo1;
-         GXt_SdtWallet2 = AV23wallet;
-         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet2) ;
-         AV23wallet = GXt_SdtWallet2;
+         GXt_SdtWalletInfo2 = AV32walletInfo;
+         new GeneXus.Programs.wallet.getwalletinfo(context ).execute( out  GXt_SdtWalletInfo2) ;
+         AV32walletInfo = GXt_SdtWalletInfo2;
          AV28StoredTransactions.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "transactions.trn", out  AV5error), null);
-         if ( StringUtil.StrCmp(AV23wallet.gxTpr_Networktype, "MainNet") == 0 )
+         if ( StringUtil.StrCmp(AV32walletInfo.gxTpr_Networktype, "MainNet") == 0 )
          {
             AV12mainAddress = StringUtil.Trim( AV11keyInfo.gxTpr_Address);
             AssignAttri(sPrefix, false, "AV12mainAddress", AV12mainAddress);
@@ -1345,7 +1345,7 @@ namespace GeneXus.Programs.wallet {
          /* Execute user subroutine: 'CREATE 10 ADDRESSESS' */
          S112 ();
          if (returnInSub) return;
-         if ( AV23wallet.gxTpr_Walletreadbalanceonstart )
+         if ( AV32walletInfo.gxTpr_Walletreadbalanceonstart )
          {
             /* Execute user subroutine: 'GET BALANCE' */
             S122 ();
@@ -1357,11 +1357,11 @@ namespace GeneXus.Programs.wallet {
       {
          /* Addressgrid_Load Routine */
          returnInSub = false;
-         AV32GXV1 = 1;
-         while ( AV32GXV1 <= AV14SDTAddressHistory.Count )
+         AV33GXV1 = 1;
+         while ( AV33GXV1 <= AV14SDTAddressHistory.Count )
          {
-            AV14SDTAddressHistory.CurrentItem = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV32GXV1));
-            if ( StringUtil.StrCmp(AV23wallet.gxTpr_Networktype, "MainNet") == 0 )
+            AV14SDTAddressHistory.CurrentItem = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV33GXV1));
+            if ( StringUtil.StrCmp(AV32walletInfo.gxTpr_Networktype, "MainNet") == 0 )
             {
                edtavFirstlink_Link = "https://blockstream.info/tx/"+StringUtil.Trim( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)(AV14SDTAddressHistory.CurrentItem)).gxTpr_Receivedtransactionid);
                edtavSecondlink_Link = "https://blockstream.info/tx/"+StringUtil.Trim( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)(AV14SDTAddressHistory.CurrentItem)).gxTpr_Senttransactionid);
@@ -1410,17 +1410,17 @@ namespace GeneXus.Programs.wallet {
             {
                DoAjaxLoad(29, AddressgridRow);
             }
-            AV32GXV1 = (int)(AV32GXV1+1);
+            AV33GXV1 = (int)(AV33GXV1+1);
          }
          /*  Sending Event outputs  */
       }
 
       protected void E16072( )
       {
-         AV32GXV1 = nGXsfl_29_idx;
-         if ( ( AV32GXV1 > 0 ) && ( AV14SDTAddressHistory.Count >= AV32GXV1 ) )
+         AV33GXV1 = nGXsfl_29_idx;
+         if ( ( AV33GXV1 > 0 ) && ( AV14SDTAddressHistory.Count >= AV33GXV1 ) )
          {
-            AV14SDTAddressHistory.CurrentItem = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV32GXV1));
+            AV14SDTAddressHistory.CurrentItem = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV33GXV1));
          }
          /* 'Get Key Info' Routine */
          returnInSub = false;
@@ -1429,10 +1429,10 @@ namespace GeneXus.Programs.wallet {
 
       protected void E12072( )
       {
-         AV32GXV1 = nGXsfl_29_idx;
-         if ( ( AV32GXV1 > 0 ) && ( AV14SDTAddressHistory.Count >= AV32GXV1 ) )
+         AV33GXV1 = nGXsfl_29_idx;
+         if ( ( AV33GXV1 > 0 ) && ( AV14SDTAddressHistory.Count >= AV33GXV1 ) )
          {
-            AV14SDTAddressHistory.CurrentItem = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV32GXV1));
+            AV14SDTAddressHistory.CurrentItem = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV33GXV1));
          }
          /* Extensions\Web\Popup_Onpopupclosed Routine */
          returnInSub = false;
@@ -1449,7 +1449,7 @@ namespace GeneXus.Programs.wallet {
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV14SDTAddressHistory", AV14SDTAddressHistory);
             nGXsfl_29_bak_idx = nGXsfl_29_idx;
-            gxgrAddressgrid_refresh( AV23wallet, AV14SDTAddressHistory, AV12mainAddress, sPrefix) ;
+            gxgrAddressgrid_refresh( AV32walletInfo, AV14SDTAddressHistory, AV12mainAddress, sPrefix) ;
             nGXsfl_29_idx = nGXsfl_29_bak_idx;
             sGXsfl_29_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_29_idx), 4, 0), 4, "0");
             SubsflControlProps_292( ) ;
@@ -1460,10 +1460,10 @@ namespace GeneXus.Programs.wallet {
 
       protected void E13072( )
       {
-         AV32GXV1 = nGXsfl_29_idx;
-         if ( ( AV32GXV1 > 0 ) && ( AV14SDTAddressHistory.Count >= AV32GXV1 ) )
+         AV33GXV1 = nGXsfl_29_idx;
+         if ( ( AV33GXV1 > 0 ) && ( AV14SDTAddressHistory.Count >= AV33GXV1 ) )
          {
-            AV14SDTAddressHistory.CurrentItem = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV32GXV1));
+            AV14SDTAddressHistory.CurrentItem = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV33GXV1));
          }
          /* 'Update Balance' Routine */
          returnInSub = false;
@@ -1475,7 +1475,7 @@ namespace GeneXus.Programs.wallet {
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV14SDTAddressHistory", AV14SDTAddressHistory);
             nGXsfl_29_bak_idx = nGXsfl_29_idx;
-            gxgrAddressgrid_refresh( AV23wallet, AV14SDTAddressHistory, AV12mainAddress, sPrefix) ;
+            gxgrAddressgrid_refresh( AV32walletInfo, AV14SDTAddressHistory, AV12mainAddress, sPrefix) ;
             nGXsfl_29_idx = nGXsfl_29_bak_idx;
             sGXsfl_29_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_29_idx), 4, 0), 4, "0");
             SubsflControlProps_292( ) ;
@@ -1732,7 +1732,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202613016293242", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20261071415291", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1748,7 +1748,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/oneaddress.js", "?202613016293243", false, true, false);
+         context.AddJavascriptSource("wallet/oneaddress.js", "?20261071415291", false, true, false);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
          /* End function include_jscripts */
       }
@@ -1851,7 +1851,7 @@ namespace GeneXus.Programs.wallet {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 30,'" + sPrefix + "',false,'" + sGXsfl_29_idx + "',29)\"";
          ROClassString = "Attribute";
-         AddressgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlreceiveddatetime_Internalname,context.localUtil.TToC( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV32GXV1)).gxTpr_Receiveddatetime, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV32GXV1)).gxTpr_Receiveddatetime, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onblur(this,30);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlreceiveddatetime_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlreceiveddatetime_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)17,(short)0,(short)0,(short)29,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         AddressgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlreceiveddatetime_Internalname,context.localUtil.TToC( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV33GXV1)).gxTpr_Receiveddatetime, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV33GXV1)).gxTpr_Receiveddatetime, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onblur(this,30);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlreceiveddatetime_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlreceiveddatetime_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)17,(short)0,(short)0,(short)29,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          /* Subfile cell */
          if ( AddressgridContainer.GetWrapped() == 1 )
          {
@@ -1860,7 +1860,7 @@ namespace GeneXus.Programs.wallet {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 31,'" + sPrefix + "',false,'" + sGXsfl_29_idx + "',29)\"";
          ROClassString = "Attribute";
-         AddressgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlreceivedaddress_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV32GXV1)).gxTpr_Receivedaddress),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,31);\"","'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'GET KEY INFO\\'."+sGXsfl_29_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlreceivedaddress_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlreceivedaddress_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)29,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         AddressgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlreceivedaddress_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV33GXV1)).gxTpr_Receivedaddress),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,31);\"","'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'GET KEY INFO\\'."+sGXsfl_29_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlreceivedaddress_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlreceivedaddress_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)29,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          if ( AddressgridContainer.GetWrapped() == 1 )
          {
@@ -1869,7 +1869,7 @@ namespace GeneXus.Programs.wallet {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 32,'" + sPrefix + "',false,'" + sGXsfl_29_idx + "',29)\"";
          ROClassString = "Attribute";
-         AddressgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlreceivedamount_Internalname,StringUtil.LTrim( StringUtil.NToC( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV32GXV1)).gxTpr_Receivedamount, 16, 8, ".", "")),StringUtil.LTrim( ((edtavCtlreceivedamount_Enabled!=0) ? context.localUtil.Format( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV32GXV1)).gxTpr_Receivedamount, "ZZZZZZ9.99999999") : context.localUtil.Format( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV32GXV1)).gxTpr_Receivedamount, "ZZZZZZ9.99999999"))),TempTags+" onchange=\""+"gx.num.valid_decimal( this, ',','.','8');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_decimal( this, ',','.','8');"+";gx.evt.onblur(this,32);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlreceivedamount_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlreceivedamount_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)16,(short)0,(short)0,(short)29,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         AddressgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlreceivedamount_Internalname,StringUtil.LTrim( StringUtil.NToC( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV33GXV1)).gxTpr_Receivedamount, 16, 8, ".", "")),StringUtil.LTrim( ((edtavCtlreceivedamount_Enabled!=0) ? context.localUtil.Format( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV33GXV1)).gxTpr_Receivedamount, "ZZZZZZ9.99999999") : context.localUtil.Format( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV33GXV1)).gxTpr_Receivedamount, "ZZZZZZ9.99999999"))),TempTags+" onchange=\""+"gx.num.valid_decimal( this, ',','.','8');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_decimal( this, ',','.','8');"+";gx.evt.onblur(this,32);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlreceivedamount_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlreceivedamount_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)16,(short)0,(short)0,(short)29,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          /* Subfile cell */
          if ( AddressgridContainer.GetWrapped() == 1 )
          {
@@ -1877,7 +1877,7 @@ namespace GeneXus.Programs.wallet {
          }
          /* Single line edit */
          ROClassString = "Attribute";
-         AddressgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlreceivedtransactionid_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV32GXV1)).gxTpr_Receivedtransactionid),(string)"",""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlreceivedtransactionid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)0,(int)edtavCtlreceivedtransactionid_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)64,(short)0,(short)0,(short)29,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         AddressgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlreceivedtransactionid_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV33GXV1)).gxTpr_Receivedtransactionid),(string)"",""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlreceivedtransactionid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)0,(int)edtavCtlreceivedtransactionid_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)64,(short)0,(short)0,(short)29,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          if ( AddressgridContainer.GetWrapped() == 1 )
          {
@@ -1895,7 +1895,7 @@ namespace GeneXus.Programs.wallet {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 35,'" + sPrefix + "',false,'" + sGXsfl_29_idx + "',29)\"";
          ROClassString = "Attribute";
-         AddressgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlsentdatetime_Internalname,context.localUtil.TToC( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV32GXV1)).gxTpr_Sentdatetime, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV32GXV1)).gxTpr_Sentdatetime, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onblur(this,35);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlsentdatetime_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlsentdatetime_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)17,(short)0,(short)0,(short)29,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         AddressgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlsentdatetime_Internalname,context.localUtil.TToC( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV33GXV1)).gxTpr_Sentdatetime, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV33GXV1)).gxTpr_Sentdatetime, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onblur(this,35);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlsentdatetime_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlsentdatetime_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)17,(short)0,(short)0,(short)29,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          /* Subfile cell */
          if ( AddressgridContainer.GetWrapped() == 1 )
          {
@@ -1903,7 +1903,7 @@ namespace GeneXus.Programs.wallet {
          }
          /* Single line edit */
          ROClassString = "Attribute";
-         AddressgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlsenttransactionid_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV32GXV1)).gxTpr_Senttransactionid),(string)"",""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlsenttransactionid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)0,(int)edtavCtlsenttransactionid_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)64,(short)0,(short)0,(short)29,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         AddressgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlsenttransactionid_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV33GXV1)).gxTpr_Senttransactionid),(string)"",""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlsenttransactionid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)0,(int)edtavCtlsenttransactionid_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)64,(short)0,(short)0,(short)29,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          if ( AddressgridContainer.GetWrapped() == 1 )
          {
@@ -1921,7 +1921,7 @@ namespace GeneXus.Programs.wallet {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 38,'" + sPrefix + "',false,'" + sGXsfl_29_idx + "',29)\"";
          ROClassString = "Attribute";
-         AddressgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlsentamount_Internalname,StringUtil.LTrim( StringUtil.NToC( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV32GXV1)).gxTpr_Balance, 16, 8, ".", "")),StringUtil.LTrim( ((edtavCtlsentamount_Enabled!=0) ? context.localUtil.Format( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV32GXV1)).gxTpr_Balance, "ZZZZZZ9.99999999") : context.localUtil.Format( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV32GXV1)).gxTpr_Balance, "ZZZZZZ9.99999999"))),TempTags+" onchange=\""+"gx.num.valid_decimal( this, ',','.','8');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_decimal( this, ',','.','8');"+";gx.evt.onblur(this,38);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlsentamount_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlsentamount_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)16,(short)0,(short)0,(short)29,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         AddressgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlsentamount_Internalname,StringUtil.LTrim( StringUtil.NToC( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV33GXV1)).gxTpr_Balance, 16, 8, ".", "")),StringUtil.LTrim( ((edtavCtlsentamount_Enabled!=0) ? context.localUtil.Format( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV33GXV1)).gxTpr_Balance, "ZZZZZZ9.99999999") : context.localUtil.Format( ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV33GXV1)).gxTpr_Balance, "ZZZZZZ9.99999999"))),TempTags+" onchange=\""+"gx.num.valid_decimal( this, ',','.','8');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_decimal( this, ',','.','8');"+";gx.evt.onblur(this,38);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlsentamount_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlsentamount_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)16,(short)0,(short)0,(short)29,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          /* Subfile cell */
          if ( AddressgridContainer.GetWrapped() == 1 )
          {
@@ -2168,14 +2168,14 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"ADDRESSGRID_nEOF","type":"int"},{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV23wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"AV12mainAddress","fld":"vMAINADDRESS","hsh":true,"type":"char"}]}""");
-         setEventMetadata("ADDRESSGRID.LOAD","""{"handler":"E15072","iparms":[{"av":"AV23wallet","fld":"vWALLET","hsh":true,"type":""},{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"ADDRESSGRID_nEOF","type":"int"},{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV32walletInfo","fld":"vWALLETINFO","hsh":true,"type":""},{"av":"AV12mainAddress","fld":"vMAINADDRESS","hsh":true,"type":"char"}]}""");
+         setEventMetadata("ADDRESSGRID.LOAD","""{"handler":"E15072","iparms":[{"av":"AV32walletInfo","fld":"vWALLETINFO","hsh":true,"type":""},{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"}]""");
          setEventMetadata("ADDRESSGRID.LOAD",""","oparms":[{"av":"edtavFirstlink_Link","ctrl":"vFIRSTLINK","prop":"Link"},{"av":"edtavSecondlink_Link","ctrl":"vSECONDLINK","prop":"Link"},{"av":"AV6firstLink","fld":"vFIRSTLINK","type":"char"},{"av":"edtavFirstlink_Linktarget","ctrl":"vFIRSTLINK","prop":"Linktarget"},{"av":"edtavSecondlink_Linktarget","ctrl":"vSECONDLINK","prop":"Linktarget"},{"av":"AV15secondLink","fld":"vSECONDLINK","type":"char"},{"av":"AV31txtConfirmations","fld":"vTXTCONFIRMATIONS","type":"char"}]}""");
          setEventMetadata("'SEND'","""{"handler":"E11071","iparms":[]}""");
          setEventMetadata("'GET KEY INFO'","""{"handler":"E16072","iparms":[{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"}]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E12072","iparms":[{"av":"AV13PopupName","fld":"vPOPUPNAME","type":"char"},{"av":"AV20transactions__postInput","fld":"vTRANSACTIONS__POSTINPUT","type":""},{"av":"AV12mainAddress","fld":"vMAINADDRESS","hsh":true,"type":"char"},{"av":"AV25oneReturnAddress","fld":"vONERETURNADDRESS","type":""},{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"},{"av":"ADDRESSGRID_nEOF","type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV23wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E12072","iparms":[{"av":"AV13PopupName","fld":"vPOPUPNAME","type":"char"},{"av":"AV20transactions__postInput","fld":"vTRANSACTIONS__POSTINPUT","type":""},{"av":"AV12mainAddress","fld":"vMAINADDRESS","hsh":true,"type":"char"},{"av":"AV25oneReturnAddress","fld":"vONERETURNADDRESS","type":""},{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"},{"av":"ADDRESSGRID_nEOF","type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV32walletInfo","fld":"vWALLETINFO","hsh":true,"type":""}]""");
          setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"},{"av":"AV21transactionsCount","fld":"vTRANSACTIONSCOUNT","pic":"ZZZZZZZZZ9","type":"int"},{"av":"AV19totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZZZ9.99999999","type":"decimal"},{"av":"AV20transactions__postInput","fld":"vTRANSACTIONS__POSTINPUT","type":""},{"av":"AV5error","fld":"vERROR","type":"char"},{"ctrl":"SEND","prop":"Visible"},{"av":"AV25oneReturnAddress","fld":"vONERETURNADDRESS","type":""}]}""");
-         setEventMetadata("'UPDATE BALANCE'","""{"handler":"E13072","iparms":[{"av":"AV20transactions__postInput","fld":"vTRANSACTIONS__POSTINPUT","type":""},{"av":"AV12mainAddress","fld":"vMAINADDRESS","hsh":true,"type":"char"},{"av":"AV25oneReturnAddress","fld":"vONERETURNADDRESS","type":""},{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"},{"av":"ADDRESSGRID_nEOF","type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV23wallet","fld":"vWALLET","hsh":true,"type":""}]""");
+         setEventMetadata("'UPDATE BALANCE'","""{"handler":"E13072","iparms":[{"av":"AV20transactions__postInput","fld":"vTRANSACTIONS__POSTINPUT","type":""},{"av":"AV12mainAddress","fld":"vMAINADDRESS","hsh":true,"type":"char"},{"av":"AV25oneReturnAddress","fld":"vONERETURNADDRESS","type":""},{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"},{"av":"ADDRESSGRID_nEOF","type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV32walletInfo","fld":"vWALLETINFO","hsh":true,"type":""}]""");
          setEventMetadata("'UPDATE BALANCE'",""","oparms":[{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"},{"av":"AV21transactionsCount","fld":"vTRANSACTIONSCOUNT","pic":"ZZZZZZZZZ9","type":"int"},{"av":"AV19totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZZZ9.99999999","type":"decimal"},{"av":"AV20transactions__postInput","fld":"vTRANSACTIONS__POSTINPUT","type":""},{"av":"AV5error","fld":"vERROR","type":"char"},{"ctrl":"SEND","prop":"Visible"},{"av":"AV25oneReturnAddress","fld":"vONERETURNADDRESS","type":""}]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Txtconfirmations","iparms":[]}""");
          return  ;
@@ -2195,7 +2195,7 @@ namespace GeneXus.Programs.wallet {
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
          sPrefix = "";
-         AV23wallet = new GeneXus.Programs.wallet.SdtWallet(context);
+         AV32walletInfo = new GeneXus.Programs.wallet.SdtWalletInfo(context);
          AV14SDTAddressHistory = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
          AV12mainAddress = "";
          sDynURL = "";
@@ -2227,7 +2227,7 @@ namespace GeneXus.Programs.wallet {
          hsh = "";
          AV11keyInfo = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
          GXt_SdtKeyInfo1 = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
-         GXt_SdtWallet2 = new GeneXus.Programs.wallet.SdtWallet(context);
+         GXt_SdtWalletInfo2 = new GeneXus.Programs.wallet.SdtWalletInfo(context);
          AV28StoredTransactions = new GeneXus.Programs.wallet.SdtStoredTransactions(context);
          AV5error = "";
          AddressgridRow = new GXWebRow();
@@ -2293,7 +2293,7 @@ namespace GeneXus.Programs.wallet {
       private int edtavCtlsentamount_Enabled ;
       private int edtavTxtconfirmations_Enabled ;
       private int bttSend_Visible ;
-      private int AV32GXV1 ;
+      private int AV33GXV1 ;
       private int subAddressgrid_Islastpage ;
       private int nGXsfl_29_fel_idx=1 ;
       private int nGXsfl_29_bak_idx=1 ;
@@ -2397,13 +2397,13 @@ namespace GeneXus.Programs.wallet {
       private GXWebColumn AddressgridColumn ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
-      private GeneXus.Programs.wallet.SdtWallet AV23wallet ;
+      private GeneXus.Programs.wallet.SdtWalletInfo AV32walletInfo ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV14SDTAddressHistory ;
       private SdtGxGetAddressess AV20transactions__postInput ;
       private GeneXus.Programs.wallet.SdtSDT_ReturnAddresses_SDT_ReturnAddressesItem AV25oneReturnAddress ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo AV11keyInfo ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo GXt_SdtKeyInfo1 ;
-      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet2 ;
+      private GeneXus.Programs.wallet.SdtWalletInfo GXt_SdtWalletInfo2 ;
       private GeneXus.Programs.wallet.SdtStoredTransactions AV28StoredTransactions ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV8historyWithBalance ;
       private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem> AV29allAddressess ;

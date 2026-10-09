@@ -16,7 +16,7 @@
         <Watch Include="$(WebDirectory)\*.config" />
         <Watch Include="$(WebDirectory)\app_offline.htm" />
         <Watch Include="$(WebDirectory)\_app_offline.htm" />
-        <Watch Include="..\**\*.dll" />
+        <Watch Include="..\*\bin\**\*.dll" />
     </ItemGroup>
 	
 </Project>

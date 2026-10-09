@@ -160,11 +160,11 @@ namespace GeneXus.Programs.wallet {
 
       public override short ExecuteStartEvent( )
       {
-         PA2G2( ) ;
+         PA2K2( ) ;
          gxajaxcallmode = (short)((isAjaxCallMode( ) ? 1 : 0));
          if ( ( gxajaxcallmode == 0 ) && ( GxWebError == 0 ) )
          {
-            START2G2( ) ;
+            START2K2( ) ;
          }
          return gxajaxcallmode ;
       }
@@ -199,10 +199,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -302,14 +302,14 @@ namespace GeneXus.Programs.wallet {
             context.WriteHtmlText( "<div") ;
             GxWebStd.ClassAttribute( context, "gx-ct-body"+" "+(String.IsNullOrEmpty(StringUtil.RTrim( Form.Class)) ? "form-horizontal Form" : Form.Class)+"-fx");
             context.WriteHtmlText( ">") ;
-            WE2G2( ) ;
+            WE2K2( ) ;
             context.WriteHtmlText( "</div>") ;
          }
       }
 
       public override void DispatchEvents( )
       {
-         EVT2G2( ) ;
+         EVT2K2( ) ;
       }
 
       public override bool HasEnterEvent( )
@@ -337,7 +337,7 @@ namespace GeneXus.Programs.wallet {
          return "Encrypted Passwords" ;
       }
 
-      protected void WB2G0( )
+      protected void WB2K0( )
       {
          if ( context.isAjaxRequest( ) )
          {
@@ -454,7 +454,7 @@ namespace GeneXus.Programs.wallet {
          wbLoad = true;
       }
 
-      protected void START2G2( )
+      protected void START2K2( )
       {
          wbLoad = false;
          wbEnd = 0;
@@ -463,7 +463,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_14-187820", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_16-189595", 0) ;
             }
          }
          Form.Meta.addItem("description", "Encrypted Passwords", 0) ;
@@ -474,16 +474,16 @@ namespace GeneXus.Programs.wallet {
          {
          }
          wbErr = false;
-         STRUP2G0( ) ;
+         STRUP2K0( ) ;
       }
 
-      protected void WS2G2( )
+      protected void WS2K2( )
       {
-         START2G2( ) ;
-         EVT2G2( ) ;
+         START2K2( ) ;
+         EVT2K2( ) ;
       }
 
-      protected void EVT2G2( )
+      protected void EVT2K2( )
       {
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
@@ -515,14 +515,14 @@ namespace GeneXus.Programs.wallet {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Start */
-                              E112G2 ();
+                              E112K2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Load */
-                              E122G2 ();
+                              E122K2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                            {
@@ -593,7 +593,7 @@ namespace GeneXus.Programs.wallet {
          }
       }
 
-      protected void WE2G2( )
+      protected void WE2K2( )
       {
          if ( ! GxWebStd.gx_redirect( context) )
          {
@@ -609,7 +609,7 @@ namespace GeneXus.Programs.wallet {
          }
       }
 
-      protected void PA2G2( )
+      protected void PA2K2( )
       {
          if ( nDonePA == 0 )
          {
@@ -663,7 +663,7 @@ namespace GeneXus.Programs.wallet {
       public void Refresh( )
       {
          send_integrity_hashes( ) ;
-         RF2G2( ) ;
+         RF2K2( ) ;
          if ( isFullAjaxMode( ) )
          {
             send_integrity_footer_hashes( ) ;
@@ -675,7 +675,7 @@ namespace GeneXus.Programs.wallet {
          /* GeneXus formulas. */
       }
 
-      protected void RF2G2( )
+      protected void RF2K2( )
       {
          initialize_formulas( ) ;
          clear_multi_value_controls( ) ;
@@ -705,12 +705,12 @@ namespace GeneXus.Programs.wallet {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E122G2 ();
-            WB2G0( ) ;
+            E122K2 ();
+            WB2K0( ) ;
          }
       }
 
-      protected void send_integrity_lvl_hashes2G2( )
+      protected void send_integrity_lvl_hashes2K2( )
       {
       }
 
@@ -719,14 +719,14 @@ namespace GeneXus.Programs.wallet {
          fix_multi_value_controls( ) ;
       }
 
-      protected void STRUP2G0( )
+      protected void STRUP2K0( )
       {
          /* Before Start, stand alone formulas. */
          before_start_formulas( ) ;
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E112G2 ();
+         E112K2 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
@@ -750,16 +750,16 @@ namespace GeneXus.Programs.wallet {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E112G2 ();
+         E112K2 ();
          if (returnInSub) return;
       }
 
-      protected void E112G2( )
+      protected void E112K2( )
       {
          /* Start Routine */
          returnInSub = false;
          AV5websession.Set("Group_EDIT", "");
-         AV6emptyGUID = Guid.Empty;
+         AV7emptyGUID = Guid.Empty;
          /* Object Property */
          if ( true )
          {
@@ -775,7 +775,7 @@ namespace GeneXus.Programs.wallet {
          if ( StringUtil.Len( WebComp_Comppassword_Component) != 0 )
          {
             WebComp_Comppassword.setjustcreated();
-            WebComp_Comppassword.componentprepare(new Object[] {(string)"W0014",(string)"",(Guid)AV6emptyGUID});
+            WebComp_Comppassword.componentprepare(new Object[] {(string)"W0014",(string)"",(Guid)AV7emptyGUID});
             WebComp_Comppassword.componentbind(new Object[] {(string)""});
          }
          /* Object Property */
@@ -793,7 +793,7 @@ namespace GeneXus.Programs.wallet {
          if ( StringUtil.Len( WebComp_Comptag_Component) != 0 )
          {
             WebComp_Comptag.setjustcreated();
-            WebComp_Comptag.componentprepare(new Object[] {(string)"W0022",(string)"",(Guid)AV6emptyGUID});
+            WebComp_Comptag.componentprepare(new Object[] {(string)"W0022",(string)"",(Guid)AV7emptyGUID});
             WebComp_Comptag.componentbind(new Object[] {(string)""});
          }
       }
@@ -802,7 +802,7 @@ namespace GeneXus.Programs.wallet {
       {
       }
 
-      protected void E122G2( )
+      protected void E122K2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -823,9 +823,9 @@ namespace GeneXus.Programs.wallet {
          nGotPars = (short)(1);
          nGXWrapped = (short)(1);
          context.SetWrapped(true);
-         PA2G2( ) ;
-         WS2G2( ) ;
-         WE2G2( ) ;
+         PA2K2( ) ;
+         WS2K2( ) ;
+         WE2K2( ) ;
          cleanup();
          context.SetWrapped(false);
          context.GX_msglist = BackMsgLst;
@@ -862,7 +862,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202613016302592", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20261071417323", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -878,7 +878,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("wallet/encryptedpasswords.js", "?202613016302593", false, true, false);
+         context.AddJavascriptSource("wallet/encryptedpasswords.js", "?20261071417323", false, true, false);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true, false);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true, false);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true, false);
@@ -968,7 +968,7 @@ namespace GeneXus.Programs.wallet {
          EvtRowId = "";
          sEvtType = "";
          AV5websession = context.GetSession();
-         AV6emptyGUID = Guid.Empty;
+         AV7emptyGUID = Guid.Empty;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          WebComp_Comppassword = new GeneXus.Http.GXNullWebComponent();
@@ -1022,7 +1022,7 @@ namespace GeneXus.Programs.wallet {
       private bool returnInSub ;
       private bool bDynCreated_Comppassword ;
       private bool bDynCreated_Comptag ;
-      private Guid AV6emptyGUID ;
+      private Guid AV7emptyGUID ;
       private GXWebComponent WebComp_Comppassword ;
       private GXWebComponent WebComp_Comptag ;
       private GXUserControl ucPasswordstab ;

@@ -199,10 +199,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 2351240), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -254,13 +254,13 @@ namespace GeneXus.Programs.wallet {
       {
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLET", AV14wallet);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLETINFO", AV29walletInfo);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLET", AV14wallet);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLETINFO", AV29walletInfo);
          }
-         GxWebStd.gx_hidden_field( context, "gxhash_vWALLET", GetSecureSignedToken( "", AV14wallet, context));
+         GxWebStd.gx_hidden_field( context, "gxhash_vWALLETINFO", GetSecureSignedToken( "", AV29walletInfo, context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -271,13 +271,13 @@ namespace GeneXus.Programs.wallet {
          send_integrity_footer_hashes( ) ;
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLET", AV14wallet);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLETINFO", AV29walletInfo);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLET", AV14wallet);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLETINFO", AV29walletInfo);
          }
-         GxWebStd.gx_hidden_field( context, "gxhash_vWALLET", GetSecureSignedToken( "", AV14wallet, context));
+         GxWebStd.gx_hidden_field( context, "gxhash_vWALLETINFO", GetSecureSignedToken( "", AV29walletInfo, context));
          GxWebStd.gx_hidden_field( context, "TABS_Pagecount", StringUtil.LTrim( StringUtil.NToC( (decimal)(Tabs_Pagecount), 9, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "TABS_Class", StringUtil.RTrim( Tabs_Class));
          GxWebStd.gx_hidden_field( context, "TABS_Historymanagement", StringUtil.BoolToStr( Tabs_Historymanagement));
@@ -459,7 +459,7 @@ namespace GeneXus.Programs.wallet {
          {
             if ( context.ExposeMetadata( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus .NET 18_0_14-187820", 0) ;
+               Form.Meta.addItem("generator", "GeneXus .NET 18_0_16-189595", 0) ;
             }
          }
          Form.Meta.addItem("description", "Balance", 0) ;
@@ -691,13 +691,13 @@ namespace GeneXus.Programs.wallet {
       {
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLET", AV14wallet);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLETINFO", AV29walletInfo);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLET", AV14wallet);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLETINFO", AV29walletInfo);
          }
-         GxWebStd.gx_hidden_field( context, "gxhash_vWALLET", GetSecureSignedToken( "", AV14wallet, context));
+         GxWebStd.gx_hidden_field( context, "gxhash_vWALLETINFO", GetSecureSignedToken( "", AV29walletInfo, context));
       }
 
       protected void before_start_formulas( )
@@ -718,7 +718,7 @@ namespace GeneXus.Programs.wallet {
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
             /* Read saved SDTs. */
-            ajax_req_read_hidden_sdt(cgiGet( "vWALLET"), AV14wallet);
+            ajax_req_read_hidden_sdt(cgiGet( "vWALLETINFO"), AV29walletInfo);
             /* Read saved values. */
             Tabs_Pagecount = (int)(Math.Round(context.localUtil.CToN( cgiGet( "TABS_Pagecount"), ".", ","), 18, MidpointRounding.ToEven));
             Tabs_Class = cgiGet( "TABS_Class");
@@ -746,201 +746,33 @@ namespace GeneXus.Programs.wallet {
       {
          /* Start Routine */
          returnInSub = false;
-         GXt_SdtWallet1 = AV14wallet;
-         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet1) ;
-         AV14wallet = GXt_SdtWallet1;
-         GXt_SdtKeyInfo2 = AV12keyInfo;
-         new GeneXus.Programs.wallet.getkey(context ).execute( out  GXt_SdtKeyInfo2) ;
-         AV12keyInfo = GXt_SdtKeyInfo2;
-         GXt_SdtExtKeyInfo3 = AV10extKeyInfo;
-         new GeneXus.Programs.wallet.getextkey(context ).execute( out  GXt_SdtExtKeyInfo3) ;
-         AV10extKeyInfo = GXt_SdtExtKeyInfo3;
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV12keyInfo.gxTpr_Publickey)) && String.IsNullOrEmpty(StringUtil.RTrim( AV10extKeyInfo.gxTpr_Publickey)) )
+         GXt_char1 = AV8error;
+         new GeneXus.Programs.wallet.unlockwallet(context ).execute( out  AV29walletInfo, out  AV27isOpen, out  AV28justUnlocked, out  AV26dispatchMessages, out  GXt_char1) ;
+         AV8error = GXt_char1;
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
          {
-            GXt_SdtWallet1 = AV14wallet;
-            new GeneXus.Programs.wallet.readwallet(context ).execute(  AV14wallet.gxTpr_Walletfilename, out  GXt_SdtWallet1) ;
-            AV14wallet = GXt_SdtWallet1;
-            AV13password = AV15webSession.Get("TempPassword");
-            AV18code = AV15webSession.Get("TempPINAuthenticator");
-            AV15webSession.Set("TempPassword", "");
-            AV15webSession.Set("TempPINAuthenticator", "");
-            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13password)) )
+            GX_msglist.addItem(AV8error);
+         }
+         if ( AV27isOpen )
+         {
+            if ( AV26dispatchMessages )
             {
-               new GeneXus.Programs.wallet.setwallet(context ).execute(  AV14wallet) ;
-               if ( ( StringUtil.StrCmp(AV14wallet.gxTpr_Wallettype, "BrainWallet") == 0 ) || ( StringUtil.StrCmp(AV14wallet.gxTpr_Wallettype, "ImportedWIF") == 0 ) )
+               this.executeExternalObjectMethod("", false, "GlobalEvents", "DistpachIncommingMessages", new Object[] {}, true);
+            }
+            if ( ! AV28justUnlocked )
+            {
+               if ( ( StringUtil.StrCmp(AV29walletInfo.gxTpr_Networktype, "TestNet") == 0 ) || ( StringUtil.StrCmp(AV29walletInfo.gxTpr_Networktype, "RegTest") == 0 ) )
                {
-                  AV11keyCreate.gxTpr_Createkeytype = 30;
-                  AV11keyCreate.gxTpr_Networktype = AV14wallet.gxTpr_Networktype;
-                  AV11keyCreate.gxTpr_Addresstype = 0;
-                  GXt_char4 = AV8error;
-                  GXt_char5 = AV11keyCreate.gxTpr_Createtext;
-                  new GeneXus.Programs.distributedcrypto.argon2encryption(context ).execute(  20,  AV13password,  AV14wallet.gxTpr_Encryptedsecret, out  GXt_char5, ref  GXt_char4) ;
-                  AV11keyCreate.gxTpr_Createtext = GXt_char5;
-                  AV8error = GXt_char4;
-                  if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
-                  {
-                     GXt_char5 = AV8error;
-                     new GeneXus.Programs.nbitcoin.createkey(context ).execute(  AV11keyCreate,  "", out  AV12keyInfo, out  GXt_char5) ;
-                     AV8error = GXt_char5;
-                     if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) || String.IsNullOrEmpty(StringUtil.RTrim( AV12keyInfo.gxTpr_Privatekey)) )
-                     {
-                        bttGetwalletinfo_Visible = 0;
-                        AssignProp("", false, bttGetwalletinfo_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttGetwalletinfo_Visible), 5, 0), true);
-                        Tabs_Visible = false;
-                        ucTabs.SendProperty(context, "", false, Tabs_Internalname, "Visible", StringUtil.BoolToStr( Tabs_Visible));
-                        GX_msglist.addItem(AV8error);
-                        GX_msglist.addItem("We couldn't decrypt the wallet with the password provided");
-                     }
-                     else
-                     {
-                        new GeneXus.Programs.wallet.setkey(context ).execute(  AV12keyInfo) ;
-                        new GeneXus.Programs.wallet.setdefaultjasonkey(context ).execute(  AV12keyInfo) ;
-                        /* Object Property */
-                        if ( true )
-                        {
-                           bDynCreated_Comp_mainwallet = true;
-                        }
-                        if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_mainwallet_Component), StringUtil.Lower( "Wallet.OneAddress")) != 0 )
-                        {
-                           WebComp_Comp_mainwallet = getWebComponent(GetType(), "GeneXus.Programs", "wallet.oneaddress", new Object[] {context} );
-                           WebComp_Comp_mainwallet.ComponentInit();
-                           WebComp_Comp_mainwallet.Name = "Wallet.OneAddress";
-                           WebComp_Comp_mainwallet_Component = "Wallet.OneAddress";
-                        }
-                        if ( StringUtil.Len( WebComp_Comp_mainwallet_Component) != 0 )
-                        {
-                           WebComp_Comp_mainwallet.setjustcreated();
-                           WebComp_Comp_mainwallet.componentprepare(new Object[] {(string)"W0019",(string)""});
-                           WebComp_Comp_mainwallet.componentbind(new Object[] {});
-                        }
-                     }
-                  }
-                  else
-                  {
-                     GX_msglist.addItem(AV8error);
-                  }
+                  lblWalletnet_Caption = "You are on TestNet don't send REAL Bitcoins to this address or will be lost forever!";
+                  AssignProp("", false, lblWalletnet_Internalname, "Caption", lblWalletnet_Caption, true);
                }
                else
                {
-                  GXt_char5 = AV8error;
-                  new GeneXus.Programs.distributedcrypto.argon2encryption(context ).execute(  20,  AV13password,  AV14wallet.gxTpr_Encryptedsecret, out  AV6clearText, ref  GXt_char5) ;
-                  AV8error = GXt_char5;
-                  AV19extendeSecretAndAuthenticator.FromJSonString(AV6clearText, null);
-                  AV9extKeyCreate.gxTpr_Extendedprivatekey = AV19extendeSecretAndAuthenticator.gxTpr_Extendedprivatekey;
-                  AV9extKeyCreate.gxTpr_Createextkeytype = 70;
-                  AV9extKeyCreate.gxTpr_Networktype = AV19extendeSecretAndAuthenticator.gxTpr_Networktype;
-                  AV14wallet.gxTpr_Networktype = AV19extendeSecretAndAuthenticator.gxTpr_Networktype;
-                  new GeneXus.Programs.wallet.setwallet(context ).execute(  AV14wallet) ;
-                  GXt_char5 = AV8error;
-                  new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV9extKeyCreate,  "", out  AV10extKeyInfo, out  GXt_char5) ;
-                  AV8error = GXt_char5;
-                  if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
-                  {
-                     if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV19extendeSecretAndAuthenticator.gxTpr_Authenticatorbase32)) )
-                     {
-                        AV21isValid = AV20TwoFactorAuthenticator.validatetwofactorpin(StringUtil.Trim( AV19extendeSecretAndAuthenticator.gxTpr_Authenticatorbase32), StringUtil.Trim( AV18code), true);
-                        if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) || ! AV21isValid )
-                        {
-                           AV8error = "Error validating Authenticator: " + AV8error;
-                           AV9extKeyCreate.gxTpr_Extendedprivatekey = "";
-                           AV10extKeyInfo.gxTpr_Privatekey = "";
-                           AV6clearText = "";
-                           AV19extendeSecretAndAuthenticator.gxTpr_Extendedprivatekey = "";
-                        }
-                     }
-                     if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) || String.IsNullOrEmpty(StringUtil.RTrim( AV10extKeyInfo.gxTpr_Privatekey)) )
-                     {
-                        bttGetwalletinfo_Visible = 0;
-                        AssignProp("", false, bttGetwalletinfo_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttGetwalletinfo_Visible), 5, 0), true);
-                        Tabs_Visible = false;
-                        ucTabs.SendProperty(context, "", false, Tabs_Internalname, "Visible", StringUtil.BoolToStr( Tabs_Visible));
-                        GX_msglist.addItem(AV8error);
-                        GX_msglist.addItem("We couldn't decrypt the wallet with the password provided");
-                     }
-                     else
-                     {
-                        new GeneXus.Programs.wallet.setextkey(context ).execute(  AV10extKeyInfo) ;
-                        AV17emptyKeyInfo.gxTpr_Privatekey = "";
-                        new GeneXus.Programs.wallet.setdefaultjasonkey(context ).execute(  AV17emptyKeyInfo) ;
-                        new GeneXus.Programs.wallet.setlogindistcrypt(context ).execute( ) ;
-                        new GeneXus.Programs.wallet.setfileenckey(context ).execute( ) ;
-                        GXt_char5 = AV8error;
-                        new GeneXus.Programs.distcrypt.sso.createandsaveexternaluser(context ).execute( out  GXt_char5) ;
-                        AV8error = GXt_char5;
-                        GXt_char5 = AV8error;
-                        new GeneXus.Programs.hsm.inithsm(context ).execute( out  GXt_char5) ;
-                        AV8error = GXt_char5;
-                        new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
-                        GXt_SdtExternalUser6 = AV16externalUser;
-                        new GeneXus.Programs.distcrypt.getexternaluser(context ).execute( out  GXt_SdtExternalUser6) ;
-                        AV16externalUser = GXt_SdtExternalUser6;
-                        if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV16externalUser.gxTpr_Externaltoken)) )
-                        {
-                           GXt_char5 = AV8error;
-                           new GeneXus.Programs.nostr.startconnection(context ).execute( out  GXt_char5) ;
-                           AV8error = GXt_char5;
-                           if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
-                           {
-                              GX_msglist.addItem(AV8error);
-                           }
-                           else
-                           {
-                              this.executeExternalObjectMethod("", false, "GlobalEvents", "DistpachIncommingMessages", new Object[] {}, true);
-                           }
-                        }
-                        /* Object Property */
-                        if ( true )
-                        {
-                           bDynCreated_Comp_mainwallet = true;
-                        }
-                        if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_mainwallet_Component), StringUtil.Lower( "Wallet.MultyAddress")) != 0 )
-                        {
-                           WebComp_Comp_mainwallet = getWebComponent(GetType(), "GeneXus.Programs", "wallet.multyaddress", new Object[] {context} );
-                           WebComp_Comp_mainwallet.ComponentInit();
-                           WebComp_Comp_mainwallet.Name = "Wallet.MultyAddress";
-                           WebComp_Comp_mainwallet_Component = "Wallet.MultyAddress";
-                        }
-                        if ( StringUtil.Len( WebComp_Comp_mainwallet_Component) != 0 )
-                        {
-                           WebComp_Comp_mainwallet.setjustcreated();
-                           WebComp_Comp_mainwallet.componentprepare(new Object[] {(string)"W0019",(string)""});
-                           WebComp_Comp_mainwallet.componentbind(new Object[] {});
-                        }
-                     }
-                  }
-                  else
-                  {
-                     bttGetwalletinfo_Visible = 0;
-                     AssignProp("", false, bttGetwalletinfo_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttGetwalletinfo_Visible), 5, 0), true);
-                     Tabs_Visible = false;
-                     ucTabs.SendProperty(context, "", false, Tabs_Internalname, "Visible", StringUtil.BoolToStr( Tabs_Visible));
-                     GX_msglist.addItem(AV8error);
-                  }
+                  lblWalletnet_Caption = "";
+                  AssignProp("", false, lblWalletnet_Internalname, "Caption", lblWalletnet_Caption, true);
                }
             }
-            else
-            {
-               bttGetwalletinfo_Visible = 0;
-               AssignProp("", false, bttGetwalletinfo_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttGetwalletinfo_Visible), 5, 0), true);
-               Tabs_Visible = false;
-               ucTabs.SendProperty(context, "", false, Tabs_Internalname, "Visible", StringUtil.BoolToStr( Tabs_Visible));
-               AV8error = "Password can not be empty!";
-               GX_msglist.addItem(AV8error);
-            }
-         }
-         else
-         {
-            if ( ( StringUtil.StrCmp(AV14wallet.gxTpr_Networktype, "TestNet") == 0 ) || ( StringUtil.StrCmp(AV14wallet.gxTpr_Networktype, "RegTest") == 0 ) )
-            {
-               lblWalletnet_Caption = "You are on TestNet don't send REAL Bitcoins to this address or will be lost forever!";
-               AssignProp("", false, lblWalletnet_Internalname, "Caption", lblWalletnet_Caption, true);
-            }
-            else
-            {
-               lblWalletnet_Caption = "";
-               AssignProp("", false, lblWalletnet_Internalname, "Caption", lblWalletnet_Caption, true);
-            }
-            if ( ( StringUtil.StrCmp(AV14wallet.gxTpr_Wallettype, "BrainWallet") == 0 ) || ( StringUtil.StrCmp(AV14wallet.gxTpr_Wallettype, "ImportedWIF") == 0 ) )
+            if ( ( StringUtil.StrCmp(AV29walletInfo.gxTpr_Wallettype, "BrainWallet") == 0 ) || ( StringUtil.StrCmp(AV29walletInfo.gxTpr_Wallettype, "ImportedWIF") == 0 ) )
             {
                /* Object Property */
                if ( true )
@@ -982,6 +814,13 @@ namespace GeneXus.Programs.wallet {
                   WebComp_Comp_mainwallet.componentbind(new Object[] {});
                }
             }
+         }
+         else
+         {
+            bttGetwalletinfo_Visible = 0;
+            AssignProp("", false, bttGetwalletinfo_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttGetwalletinfo_Visible), 5, 0), true);
+            Tabs_Visible = false;
+            ucTabs.SendProperty(context, "", false, Tabs_Internalname, "Visible", StringUtil.BoolToStr( Tabs_Visible));
          }
       }
 
@@ -1051,7 +890,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202613016301333", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610714165117", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1067,7 +906,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("wallet/balance.js", "?202613016301333", false, true, false);
+         context.AddJavascriptSource("wallet/balance.js", "?202610714165117", false, true, false);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true, false);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true, false);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true, false);
@@ -1124,9 +963,9 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV14wallet","fld":"vWALLET","hsh":true,"type":""}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV29walletInfo","fld":"vWALLETINFO","hsh":true,"type":""}]}""");
          setEventMetadata("'RETURN TO LIST OF WALLETS'","""{"handler":"E130Z2","iparms":[]}""");
-         setEventMetadata("'GET WALLET INFO'","""{"handler":"E110Z1","iparms":[{"av":"AV14wallet","fld":"vWALLET","hsh":true,"type":""}]}""");
+         setEventMetadata("'GET WALLET INFO'","""{"handler":"E110Z1","iparms":[{"av":"AV29walletInfo","fld":"vWALLETINFO","hsh":true,"type":""}]}""");
          return  ;
       }
 
@@ -1146,7 +985,7 @@ namespace GeneXus.Programs.wallet {
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
-         AV14wallet = new GeneXus.Programs.wallet.SdtWallet(context);
+         AV29walletInfo = new GeneXus.Programs.wallet.SdtWalletInfo(context);
          GXKey = "";
          GX_FocusControl = "";
          Form = new GXWebForm();
@@ -1164,25 +1003,9 @@ namespace GeneXus.Programs.wallet {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
-         AV12keyInfo = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
-         GXt_SdtKeyInfo2 = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
-         AV10extKeyInfo = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
-         GXt_SdtExtKeyInfo3 = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
-         GXt_SdtWallet1 = new GeneXus.Programs.wallet.SdtWallet(context);
-         AV13password = "";
-         AV15webSession = context.GetSession();
-         AV18code = "";
-         AV11keyCreate = new GeneXus.Programs.nbitcoin.SdtKeyCreate(context);
          AV8error = "";
-         GXt_char4 = "";
-         AV6clearText = "";
-         AV19extendeSecretAndAuthenticator = new GeneXus.Programs.wallet.SdtExtendeSecretAndAuthenticator(context);
-         AV9extKeyCreate = new GeneXus.Programs.nbitcoin.SdtExtKeyCreate(context);
-         AV20TwoFactorAuthenticator = new GeneXus.Programs.googleauthenticator.SdtTwoFactorAuthenticator(context);
-         AV17emptyKeyInfo = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
-         AV16externalUser = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
-         GXt_SdtExternalUser6 = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
-         GXt_char5 = "";
+         GXt_char1 = "";
+         AV15webSession = context.GetSession();
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          WebComp_Comp_mainwallet = new GeneXus.Http.GXNullWebComponent();
@@ -1229,11 +1052,7 @@ namespace GeneXus.Programs.wallet {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
-      private string AV13password ;
-      private string AV18code ;
-      private string AV8error ;
-      private string GXt_char4 ;
-      private string GXt_char5 ;
+      private string GXt_char1 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool Tabs_Historymanagement ;
@@ -1243,27 +1062,17 @@ namespace GeneXus.Programs.wallet {
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
+      private bool AV27isOpen ;
+      private bool AV28justUnlocked ;
+      private bool AV26dispatchMessages ;
       private bool bDynCreated_Comp_mainwallet ;
-      private bool AV21isValid ;
-      private string AV6clearText ;
-      private IGxSession AV15webSession ;
+      private string AV8error ;
       private GXWebComponent WebComp_Comp_mainwallet ;
       private GXUserControl ucTabs ;
+      private IGxSession AV15webSession ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
-      private GeneXus.Programs.wallet.SdtWallet AV14wallet ;
-      private GeneXus.Programs.nbitcoin.SdtKeyInfo AV12keyInfo ;
-      private GeneXus.Programs.nbitcoin.SdtKeyInfo GXt_SdtKeyInfo2 ;
-      private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV10extKeyInfo ;
-      private GeneXus.Programs.nbitcoin.SdtExtKeyInfo GXt_SdtExtKeyInfo3 ;
-      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
-      private GeneXus.Programs.nbitcoin.SdtKeyCreate AV11keyCreate ;
-      private GeneXus.Programs.wallet.SdtExtendeSecretAndAuthenticator AV19extendeSecretAndAuthenticator ;
-      private GeneXus.Programs.nbitcoin.SdtExtKeyCreate AV9extKeyCreate ;
-      private GeneXus.Programs.googleauthenticator.SdtTwoFactorAuthenticator AV20TwoFactorAuthenticator ;
-      private GeneXus.Programs.nbitcoin.SdtKeyInfo AV17emptyKeyInfo ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser AV16externalUser ;
-      private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser6 ;
+      private GeneXus.Programs.wallet.SdtWalletInfo AV29walletInfo ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

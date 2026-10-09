@@ -62,25 +62,29 @@ namespace GeneXus.Programs.electrum {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV10directory.Source = "Wallets";
+         GXt_char1 = "";
+         new GeneXus.Programs.wallet.getwalletsdir(context ).execute( out  GXt_char1) ;
+         AV10directory.Source = GXt_char1;
          if ( ! AV10directory.Exists() )
          {
             AV10directory.Create();
          }
-         GXt_boolean1 = false;
-         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean1) ;
+         GXt_char1 = "";
+         new GeneXus.Programs.wallet.getwalletsdir(context ).execute( out  GXt_char1) ;
          GXt_boolean2 = false;
          new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean2) ;
-         AV8configFile.Source = "Wallets"+(GXt_boolean2 ? "/" : "\\")+"electrum.conf";
+         GXt_boolean3 = false;
+         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
+         AV8configFile.Source = GXt_char1+(GXt_boolean3 ? "/" : "\\")+"electrum.conf";
          if ( AV8configFile.Exists() )
          {
             AV9ConnectionParameters.FromJSonFile(AV8configFile, null);
          }
          else
          {
-            GXt_objcol_SdtConnectionParameters_ConnectionParametersItem3 = AV9ConnectionParameters;
-            new GeneXus.Programs.electrum.defaultparameters(context ).execute( out  GXt_objcol_SdtConnectionParameters_ConnectionParametersItem3) ;
-            AV9ConnectionParameters = GXt_objcol_SdtConnectionParameters_ConnectionParametersItem3;
+            GXt_objcol_SdtConnectionParameters_ConnectionParametersItem4 = AV9ConnectionParameters;
+            new GeneXus.Programs.electrum.defaultparameters(context ).execute( out  GXt_objcol_SdtConnectionParameters_ConnectionParametersItem4) ;
+            AV9ConnectionParameters = GXt_objcol_SdtConnectionParameters_ConnectionParametersItem4;
             AV8configFile.WriteAllText(AV9ConnectionParameters.ToJSonString(false), "");
          }
          cleanup();
@@ -101,16 +105,18 @@ namespace GeneXus.Programs.electrum {
          AV9ConnectionParameters = new GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem>( context, "ConnectionParametersItem", "distributedcryptography");
          AV10directory = new GxDirectory(context.GetPhysicalPath());
          AV8configFile = new GxFile(context.GetPhysicalPath());
-         GXt_objcol_SdtConnectionParameters_ConnectionParametersItem3 = new GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem>( context, "ConnectionParametersItem", "distributedcryptography");
+         GXt_char1 = "";
+         GXt_objcol_SdtConnectionParameters_ConnectionParametersItem4 = new GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem>( context, "ConnectionParametersItem", "distributedcryptography");
          /* GeneXus formulas. */
       }
 
-      private bool GXt_boolean1 ;
+      private string GXt_char1 ;
       private bool GXt_boolean2 ;
+      private bool GXt_boolean3 ;
       private GxFile AV8configFile ;
       private GxDirectory AV10directory ;
       private GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem> AV9ConnectionParameters ;
-      private GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem> GXt_objcol_SdtConnectionParameters_ConnectionParametersItem3 ;
+      private GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem> GXt_objcol_SdtConnectionParameters_ConnectionParametersItem4 ;
       private GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem> aP0_ConnectionParameters ;
    }
 

@@ -36,18 +36,14 @@ namespace GeneXus.Programs.distributedcryptographylib {
          return (string)mapper[value]; ;
       }
 
-      public object gxTpr_Contactid
+      public Guid gxTpr_Contactid
       {
          get {
             if ( DistributedCryptographyLib_ContactItem_externalReference == null )
             {
                DistributedCryptographyLib_ContactItem_externalReference = new DistricutedCryptographyLib.ContactItem();
             }
-            object intValue;
-            System.Guid externalParm0;
-            externalParm0 = DistributedCryptographyLib_ContactItem_externalReference.ContactId;
-            intValue = (object)(externalParm0);
-            return intValue ;
+            return DistributedCryptographyLib_ContactItem_externalReference.ContactId ;
          }
 
          set {
@@ -55,7 +51,7 @@ namespace GeneXus.Programs.distributedcryptographylib {
             {
                DistributedCryptographyLib_ContactItem_externalReference = new DistricutedCryptographyLib.ContactItem();
             }
-            DistributedCryptographyLib_ContactItem_externalReference.ContactId = (System.Guid)(value);
+            DistributedCryptographyLib_ContactItem_externalReference.ContactId = value;
             SetDirty("Contactid");
          }
 
@@ -187,19 +183,14 @@ namespace GeneXus.Programs.distributedcryptographylib {
 
       }
 
-      public GxSimpleCollection<DateTime> gxTpr_Contactinvitationsent
+      public DateTime gxTpr_Contactinvitationsent
       {
          get {
             if ( DistributedCryptographyLib_ContactItem_externalReference == null )
             {
                DistributedCryptographyLib_ContactItem_externalReference = new DistricutedCryptographyLib.ContactItem();
             }
-            GxSimpleCollection<DateTime> intValue;
-            intValue = new GxSimpleCollection<DateTime>();
-            System.Nullable< System.DateTime> externalParm1;
-            externalParm1 = DistributedCryptographyLib_ContactItem_externalReference.ContactInvitationSent;
-            intValue.ExternalInstance = (IList)CollectionUtils.ConvertToInternal( typeof(System.Nullable< System.DateTime>), externalParm1);
-            return intValue ;
+            return DistributedCryptographyLib_ContactItem_externalReference.ContactInvitationSent ;
          }
 
          set {
@@ -207,29 +198,20 @@ namespace GeneXus.Programs.distributedcryptographylib {
             {
                DistributedCryptographyLib_ContactItem_externalReference = new DistricutedCryptographyLib.ContactItem();
             }
-            GxSimpleCollection<DateTime> intValue;
-            System.Nullable< System.DateTime> externalParm2;
-            intValue = value;
-            externalParm2 = (System.Nullable< System.DateTime>)CollectionUtils.ConvertToExternal( typeof(System.Nullable< System.DateTime>), intValue.ExternalInstance);
-            DistributedCryptographyLib_ContactItem_externalReference.ContactInvitationSent = externalParm2;
+            DistributedCryptographyLib_ContactItem_externalReference.ContactInvitationSent = value;
             SetDirty("Contactinvitationsent");
          }
 
       }
 
-      public GxSimpleCollection<DateTime> gxTpr_Contactinvitationaccepted
+      public DateTime gxTpr_Contactinvitationaccepted
       {
          get {
             if ( DistributedCryptographyLib_ContactItem_externalReference == null )
             {
                DistributedCryptographyLib_ContactItem_externalReference = new DistricutedCryptographyLib.ContactItem();
             }
-            GxSimpleCollection<DateTime> intValue;
-            intValue = new GxSimpleCollection<DateTime>();
-            System.Nullable< System.DateTime> externalParm3;
-            externalParm3 = DistributedCryptographyLib_ContactItem_externalReference.ContactInvitationAccepted;
-            intValue.ExternalInstance = (IList)CollectionUtils.ConvertToInternal( typeof(System.Nullable< System.DateTime>), externalParm3);
-            return intValue ;
+            return DistributedCryptographyLib_ContactItem_externalReference.ContactInvitationAccepted ;
          }
 
          set {
@@ -237,11 +219,7 @@ namespace GeneXus.Programs.distributedcryptographylib {
             {
                DistributedCryptographyLib_ContactItem_externalReference = new DistricutedCryptographyLib.ContactItem();
             }
-            GxSimpleCollection<DateTime> intValue;
-            System.Nullable< System.DateTime> externalParm4;
-            intValue = value;
-            externalParm4 = (System.Nullable< System.DateTime>)CollectionUtils.ConvertToExternal( typeof(System.Nullable< System.DateTime>), intValue.ExternalInstance);
-            DistributedCryptographyLib_ContactItem_externalReference.ContactInvitationAccepted = externalParm4;
+            DistributedCryptographyLib_ContactItem_externalReference.ContactInvitationAccepted = value;
             SetDirty("Contactinvitationaccepted");
          }
 
@@ -310,18 +288,14 @@ namespace GeneXus.Programs.distributedcryptographylib {
 
       }
 
-      public object gxTpr_Contactgroupid
+      public Guid gxTpr_Contactgroupid
       {
          get {
             if ( DistributedCryptographyLib_ContactItem_externalReference == null )
             {
                DistributedCryptographyLib_ContactItem_externalReference = new DistricutedCryptographyLib.ContactItem();
             }
-            object intValue;
-            System.Guid externalParm5;
-            externalParm5 = DistributedCryptographyLib_ContactItem_externalReference.ContactGroupId;
-            intValue = (object)(externalParm5);
-            return intValue ;
+            return DistributedCryptographyLib_ContactItem_externalReference.ContactGroupId ;
          }
 
          set {
@@ -329,7 +303,7 @@ namespace GeneXus.Programs.distributedcryptographylib {
             {
                DistributedCryptographyLib_ContactItem_externalReference = new DistricutedCryptographyLib.ContactItem();
             }
-            DistributedCryptographyLib_ContactItem_externalReference.ContactGroupId = (System.Guid)(value);
+            DistributedCryptographyLib_ContactItem_externalReference.ContactGroupId = value;
             SetDirty("Contactgroupid");
          }
 
@@ -440,6 +414,27 @@ namespace GeneXus.Programs.distributedcryptographylib {
 
       }
 
+      public string gxTpr_Extpubkeytimebountyreceiving
+      {
+         get {
+            if ( DistributedCryptographyLib_ContactItem_externalReference == null )
+            {
+               DistributedCryptographyLib_ContactItem_externalReference = new DistricutedCryptographyLib.ContactItem();
+            }
+            return DistributedCryptographyLib_ContactItem_externalReference.ExtPubKeyTimeBountyReceiving ;
+         }
+
+         set {
+            if ( DistributedCryptographyLib_ContactItem_externalReference == null )
+            {
+               DistributedCryptographyLib_ContactItem_externalReference = new DistricutedCryptographyLib.ContactItem();
+            }
+            DistributedCryptographyLib_ContactItem_externalReference.ExtPubKeyTimeBountyReceiving = value;
+            SetDirty("Extpubkeytimebountyreceiving");
+         }
+
+      }
+
       public GXExternalCollection<GeneXus.Programs.distributedcryptographylib.SdtMuSigSignaturesItem> gxTpr_Musigsignatures
       {
          get {
@@ -449,9 +444,9 @@ namespace GeneXus.Programs.distributedcryptographylib {
             }
             GXExternalCollection<GeneXus.Programs.distributedcryptographylib.SdtMuSigSignaturesItem> intValue;
             intValue = new GXExternalCollection<GeneXus.Programs.distributedcryptographylib.SdtMuSigSignaturesItem>( context, "GeneXus.Programs.distributedcryptographylib.SdtMuSigSignaturesItem", "GeneXus.Programs");
-            System.Collections.Generic.List< DistricutedCryptographyLib.MuSigSignaturesItem> externalParm6;
-            externalParm6 = DistributedCryptographyLib_ContactItem_externalReference.MuSigSignatures;
-            intValue.ExternalInstance = (IList)CollectionUtils.ConvertToInternal( typeof(System.Collections.Generic.List< DistricutedCryptographyLib.MuSigSignaturesItem>), externalParm6);
+            System.Collections.Generic.List< DistricutedCryptographyLib.MuSigSignaturesItem> externalParm0;
+            externalParm0 = DistributedCryptographyLib_ContactItem_externalReference.MuSigSignatures;
+            intValue.ExternalInstance = (IList)CollectionUtils.ConvertToInternal( typeof(System.Collections.Generic.List< DistricutedCryptographyLib.MuSigSignaturesItem>), externalParm0);
             return intValue ;
          }
 
@@ -461,10 +456,10 @@ namespace GeneXus.Programs.distributedcryptographylib {
                DistributedCryptographyLib_ContactItem_externalReference = new DistricutedCryptographyLib.ContactItem();
             }
             GXExternalCollection<GeneXus.Programs.distributedcryptographylib.SdtMuSigSignaturesItem> intValue;
-            System.Collections.Generic.List< DistricutedCryptographyLib.MuSigSignaturesItem> externalParm7;
+            System.Collections.Generic.List< DistricutedCryptographyLib.MuSigSignaturesItem> externalParm1;
             intValue = value;
-            externalParm7 = (System.Collections.Generic.List< DistricutedCryptographyLib.MuSigSignaturesItem>)CollectionUtils.ConvertToExternal( typeof(System.Collections.Generic.List< DistricutedCryptographyLib.MuSigSignaturesItem>), intValue.ExternalInstance);
-            DistributedCryptographyLib_ContactItem_externalReference.MuSigSignatures = externalParm7;
+            externalParm1 = (System.Collections.Generic.List< DistricutedCryptographyLib.MuSigSignaturesItem>)CollectionUtils.ConvertToExternal( typeof(System.Collections.Generic.List< DistricutedCryptographyLib.MuSigSignaturesItem>), intValue.ExternalInstance);
+            DistributedCryptographyLib_ContactItem_externalReference.MuSigSignatures = externalParm1;
             SetDirty("Musigsignatures");
          }
 
