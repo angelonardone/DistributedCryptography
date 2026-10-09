@@ -7,39 +7,103 @@ import YouTube from '../../../components/YouTube.astro';
 import { Steps } from '@astrojs/starlight/components';
 
 By default the application runs on Kestrel, the web server that comes with .NET. On a Windows server you can put
-Internet Information Services (IIS) in front of it.
+Internet Information Services (IIS) in front of it, so that people open their wallets from other computers.
+
+:::note[Wallets are not created through the web site]
+For security, the public address of the site only **opens wallets that already exist**. A wallet (vault) is
+created on the server itself, or copied from another installation: see [Creating wallets](#creating-wallets).
+:::
+
+## What you need
+
+- A Windows server with IIS.
+- The **zip file** of the application, not the installer: the installer is made for one person on their own
+  computer. See [Install on Windows, without the installer](/install/windows/#without-the-installer) for the
+  download and how to check it.
+- The **ASP.NET Core Runtime 10 Hosting Bundle**.
+
+## Steps
 
 <Steps>
 
 1. Install the **ASP.NET Core Runtime 10 Hosting Bundle** from the
    [.NET 10 download page](https://dotnet.microsoft.com/download/dotnet/10.0). IIS must be restarted afterwards.
 
-2. Download and unzip the zip file of the application (see
-   [Install on Windows, without the installer](/install/windows/#without-the-installer)). IIS needs
-   permission to read the files; the simplest way is to put the application under `C:\inetpub\wwwroot`.
+2. Unzip the zip file of the application. IIS needs permission to read the files; the simplest way is to unzip
+   it inside `C:\inetpub`, for example to `C:\inetpub\DistributedCryptography`.
 
 3. If they do not exist, create these folders inside the application folder and give **IIS_IUSRS** full access
    to them:
 
    - `PrivateTempStorage`
    - `PublicTempStorage`
-   - `Wallets`
 
-4. In IIS Manager, create a new web site that points to the application folder.
+4. In IIS Manager, create a new web site that points to the application folder, and give it two bindings:
 
-5. If the site can be reached from outside your network, install a certificate so that all the traffic is
-   encrypted (HTTPS).
+   - **The public one**, with the host name of your site (for example `wallet.example.com`). Do not leave the
+     host name empty.
+   - **The local one**: host name `localhost`, port `5000`. It is the address used on the server itself to
+     create wallets. **Do not open port 5000 in the firewall**: it must not be reachable from other computers.
 
-6. Open `https://<your web site>/wallet.wallets.aspx` in the browser.
+5. **Give the wallet a place for its data.** In IIS Manager open **Application Pools**, select the pool of the
+   site, choose **Advanced Settings** and set **Load User Profile** to **True**.
+
+   The wallets are then kept in `C:\Users\<name of the application pool>\DistributedCryptography\Wallets`. Only
+   that application pool and the administrators of the server can read the folder. **Include it in your
+   backups.**
+
+   Without this setting the wallet has nowhere to keep its data, and the wallets page answers with error 500.
+
+6. Install a certificate on the public binding, so that all the traffic is encrypted (HTTPS).
+
+7. On the server, open `http://localhost:5000/wallet.wallets.aspx` in the browser. You see the buttons to
+   create and restore wallets, and the folder where the wallets are kept.
 
 </Steps>
 
-<YouTube id="wJBd0skHHag" title="Installing on Internet Information Services" />
+## Creating wallets
+
+Through the public address the page shows the list of wallets and nothing else. The buttons **Create a new
+Wallet**, **Restore Wallet**, **Create/Restore Advance Brain Wallet** and **Configuration** appear only when the
+page is opened **on the server itself**, at `http://localhost:5000/wallet.wallets.aspx`.
+
+There are two ways to put a wallet on the server:
+
+- **Create or restore it on the server**, with a browser on the server, as the second video below shows.
+- **Copy it from another installation.** On the computer that has the wallet, the wallets page shows the
+  folder where the wallets are kept: each wallet is a folder with its name. Copy that folder into the `Wallets`
+  folder of the server (step 5). The wallet appears in the list the next time the page is opened.
 
 :::caution[The first online login must be done on the server itself]
 For security, the first time a wallet uses the online features you have to log in to our servers **from a
-browser on the server**, not through the public web site.
+browser on the server**, at `http://localhost:5000`, not through the public web site.
 :::
+
+## Keeping the wallets in another folder
+
+To choose the folder yourself, for example on another disk, create it **outside the application folder** and
+tell the application pool where it is. In a command prompt opened as administrator (replace the name of the pool
+and the folder):
+
+```powershell
+icacls D:\WalletData /grant "IIS APPPOOL\<name of the application pool>:(OI)(CI)M"
+
+%windir%\system32\inetsrv\appcmd set config -section:system.applicationHost/applicationPools /+"[name='<name of the application pool>'].environmentVariables.[name='DISTCRYPT_DATA_DIR',value='D:\WalletData']" /commit:apphost
+```
+
+Then recycle the application pool. With this setting **Load User Profile** is not needed.
+
+## Updating
+
+Stop the web site in IIS Manager, unzip the new version over the application folder, replacing the files, and
+start the site again. The wallets are not in that folder, so they are not touched.
+
+## Videos
+
+The videos were recorded with an earlier version, which kept the wallets in a `Wallets` folder inside the
+application. The rest is the same.
+
+<YouTube id="wJBd0skHHag" title="Installing on Internet Information Services" />
 
 <YouTube id="nswh6xExF-k" title="Creating your first wallet on IIS" />
 

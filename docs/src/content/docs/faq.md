@@ -156,7 +156,8 @@ so the channel does not need to be safe.
 
 ### On Linux the wallet shows an error where a QR code should be
 
-The library `libgdiplus` is missing. See [Install on Linux](/install/linux/#if-the-wallet-shows-an-error-instead-of-a-qr-code).
+QR codes need the library `libgdiplus` and, in version 0.923, one setting. See
+[QR codes on Linux](/install/linux/#qr-codes).
 
 ### On Mac the app does not open
 

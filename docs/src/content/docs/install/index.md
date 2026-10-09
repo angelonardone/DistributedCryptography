@@ -11,8 +11,8 @@ There are three ways to get the application. Choose the one that fits what you n
 | Ready-made download: [Windows](/install/windows/), [Mac](/install/mac/), [Linux](/install/linux/) | Everyday use on your own computer | Nothing else |
 | [Build from source](/install/build-from-source/) | Auditing the code, or checking the build yourself | The .NET 10 SDK |
 
-On a Windows server you can also publish the app with Internet Information Services: see
-[IIS (web app)](/install/iis/).
+To publish the app on a server, so that people open their wallets from other computers, see
+[IIS (web app)](/install/iis/) for Windows and [Linux server (web app)](/install/linux-server/) for Linux.
 
 ## After installing
 

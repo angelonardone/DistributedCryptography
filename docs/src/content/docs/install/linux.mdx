@@ -84,17 +84,30 @@ There is one download for each kind of processor. `uname -m` tells you which one
 The files are built by GitHub from the [public source code](https://github.com/angelonardone/DistributedCryptography),
 and every version stays available on the [releases page](https://github.com/angelonardone/DistributedCryptography/releases).
 
-## If the wallet shows an error instead of a QR code
+## QR codes
 
-If you see a screen like this one when you open the wallet:
-
-<Image src={qrError} alt="Error page shown when the library libgdiplus is missing" />
-
-the library `libgdiplus` is missing. Install it:
+The wallet draws QR codes with a library of the system, `libgdiplus`. Install it:
 
 ```bash
 sudo apt-get install libgdiplus
 ```
+
+**Version 0.923 also needs one setting**, which the following versions bring already. In the folder of the
+application run this command, and then start the wallet again:
+
+```bash
+sed -i 's/"configProperties": {/"configProperties": {\n      "System.Drawing.EnableUnixSupport": true,/' bin/GxWebStartup.runtimeconfig.json
+```
+
+Without the library or the setting, the wallet shows an error where a QR code should be, or a screen like this
+one:
+
+<Image src={qrError} alt="Error page shown when the library libgdiplus is missing" />
+
+## On a server
+
+To run the wallet as a service, with a public address and HTTPS, see
+[Linux server (web app)](/install/linux-server/).
 
 ## Next
 

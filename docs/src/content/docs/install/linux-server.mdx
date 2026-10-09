@@ -1,0 +1,194 @@
+---
+title: Install on a Linux server as a web app
+description: Run the wallet as a service on a Linux server, behind nginx with HTTPS.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+On a Linux server the wallet runs as a **service**, and a web server (nginx) in front of it gives it a public
+address with HTTPS, so that people open their wallets from other computers. It is the same idea as
+[IIS on Windows](/install/iis/).
+
+:::note[Wallets are not created through the web site]
+For security, the public address of the site only **opens wallets that already exist**. A wallet (vault) is
+created on the server itself, or copied from another installation: see [Creating wallets](#creating-wallets).
+:::
+
+The commands are for Debian and Ubuntu. They use the name `wallet.example.com` and the file for a 64-bit PC:
+replace them with the name of your site and, on ARM, with the `arm64` file.
+
+## Steps
+
+<Steps>
+
+1. **Download and check** the Linux file, as explained in [Install on Linux](/install/linux/) (steps 1 and 2).
+
+2. **Install** it in `/opt`, with a user of its own that cannot log in:
+
+   ```bash
+   sudo useradd --system --home-dir /var/lib/distcrypt --shell /usr/sbin/nologin distcrypt
+   sudo tar -xzf DistributedCryptography-Linux-x64.tar.gz -C /opt
+   sudo chown -R distcrypt:distcrypt /opt/DistributedCryptography
+   ```
+
+3. **QR codes** need a system library and, in version 0.923, one setting (see
+   [QR codes on Linux](/install/linux/#qr-codes)):
+
+   ```bash
+   sudo apt-get install -y libgdiplus
+   sudo sed -i 's/"configProperties": {/"configProperties": {\n      "System.Drawing.EnableUnixSupport": true,/' /opt/DistributedCryptography/bin/GxWebStartup.runtimeconfig.json
+   ```
+
+4. **Create the service.** Save this as `/etc/systemd/system/distcrypt.service`:
+
+   ```ini
+   [Unit]
+   Description=Distributed Cryptography wallet
+   After=network.target
+
+   [Service]
+   User=distcrypt
+   WorkingDirectory=/opt/DistributedCryptography
+   ExecStart=/opt/DistributedCryptography/bin/GxWebStartup
+   # This computer only: the public address is given by nginx
+   Environment=ASPNETCORE_URLS=http://127.0.0.1:5000
+   # nginx tells the wallet that the visitors use HTTPS
+   Environment=ASPNETCORE_FORWARDEDHEADERS_ENABLED=true
+   # The folder of the wallets: /var/lib/distcrypt, for this user only
+   StateDirectory=distcrypt
+   StateDirectoryMode=0700
+   UMask=0077
+   Restart=on-failure
+
+   [Install]
+   WantedBy=multi-user.target
+   ```
+
+5. **Start it**, now and every time the server starts:
+
+   ```bash
+   sudo systemctl daemon-reload
+   sudo systemctl enable --now distcrypt
+   systemctl status distcrypt
+   ```
+
+   The wallet now answers on the server itself, at `http://localhost:5000`, and nowhere else.
+
+6. **Put nginx in front.** Install it (`sudo apt-get install -y nginx`) and save this as
+   `/etc/nginx/sites-available/distcrypt`, with the paths of your certificate:
+
+   ```nginx
+   map $http_upgrade $connection_upgrade {
+       default upgrade;
+       ''      close;
+   }
+
+   # Requests that do not ask for the wallet by its name are closed
+   server {
+       listen 443 ssl default_server;
+       ssl_certificate     /etc/ssl/certs/wallet.crt;
+       ssl_certificate_key /etc/ssl/private/wallet.key;
+       return 444;
+   }
+
+   server {
+       listen 443 ssl;
+       server_name wallet.example.com;
+       ssl_certificate     /etc/ssl/certs/wallet.crt;
+       ssl_certificate_key /etc/ssl/private/wallet.key;
+
+       # Files sent to the wallet can be large
+       client_max_body_size 600m;
+
+       location / {
+           proxy_pass http://127.0.0.1:5000;
+           proxy_http_version 1.1;
+           proxy_set_header Host $host;
+           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+           proxy_set_header X-Forwarded-Proto $scheme;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection $connection_upgrade;
+           proxy_read_timeout 300s;
+       }
+   }
+   ```
+
+   Keep the line `proxy_set_header Host $host;` exactly as it is: the wallet uses the name in the address to
+   know whether it is being opened on the server or from outside.
+
+   Then turn the site on:
+
+   ```bash
+   sudo ln -s /etc/nginx/sites-available/distcrypt /etc/nginx/sites-enabled/distcrypt
+   sudo rm -f /etc/nginx/sites-enabled/default
+   sudo nginx -t
+   sudo systemctl restart nginx
+   ```
+
+7. **Firewall:** open port 443 only. Port 5000 is not offered to the network, and must stay that way.
+
+8. Open `https://wallet.example.com/wallet.wallets.aspx`. You see the list of wallets, empty for now.
+
+</Steps>
+
+## Where the wallets are kept
+
+In `/var/lib/distcrypt/DistributedCryptography/Wallets`. Only the user `distcrypt` (and `root`) can read the
+folder. **Include `/var/lib/distcrypt` in your backups.**
+
+## Creating wallets
+
+Through the public address the page shows the list of wallets and nothing else. The buttons **Create a new
+Wallet**, **Restore Wallet**, **Create/Restore Advance Brain Wallet** and **Configuration** appear only when the
+page is opened **on the server itself**, at `http://localhost:5000/wallet.wallets.aspx`.
+
+There are two ways to put a wallet on the server:
+
+- **Create or restore it on the server.** A server usually has no screen and no browser, so use an SSH tunnel:
+  it makes your own browser talk to the server as if it were on it. On your computer run
+
+  ```bash
+  ssh -L 5000:localhost:5000 you@wallet.example.com
+  ```
+
+  and, while that session is open, browse to `http://localhost:5000/wallet.wallets.aspx` on your computer. If
+  you run the wallet on your own computer too, stop it first: it uses the same port.
+
+- **Copy it from another installation.** On the computer that has the wallet, the wallets page shows the
+  folder where the wallets are kept: each wallet is a folder with its name. Copy that folder into
+  `/var/lib/distcrypt/DistributedCryptography/Wallets` and give it to the service:
+
+  ```bash
+  sudo chown -R distcrypt:distcrypt /var/lib/distcrypt/DistributedCryptography/Wallets
+  ```
+
+  The wallet appears in the list the next time the page is opened.
+
+:::caution[The first online login must be done on the server itself]
+For security, the first time a wallet uses the online features you have to log in to our servers through
+`http://localhost:5000` (the SSH tunnel above), not through the public web site.
+:::
+
+## Updating
+
+```bash
+sudo systemctl stop distcrypt
+sudo tar -xzf DistributedCryptography-Linux-x64.tar.gz -C /opt
+sudo chown -R distcrypt:distcrypt /opt/DistributedCryptography
+sudo systemctl start distcrypt
+```
+
+The wallets are not in `/opt`, so they are not touched. If step 3 applies to the version you install, repeat its
+second command.
+
+## If something does not work
+
+```bash
+systemctl status distcrypt
+sudo journalctl -u distcrypt -e
+```
+
+:::danger[Think before exposing a wallet to the internet]
+Anyone who can open the site can see the list of wallets and try passwords. Use HTTPS, restrict who can reach
+the site, and remember that the [HSM](/offline/hsm/) REST service has no authentication.
+:::

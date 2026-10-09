@@ -54,6 +54,7 @@ export default defineConfig({
 						{ label: 'Mac', slug: 'install/mac' },
 						{ label: 'Linux', slug: 'install/linux' },
 						{ label: 'IIS (web app)', slug: 'install/iis' },
+						{ label: 'Linux server (web app)', slug: 'install/linux-server' },
 						{ label: 'Build from source', slug: 'install/build-from-source' },
 					],
 				},

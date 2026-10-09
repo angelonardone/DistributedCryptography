@@ -120,6 +120,13 @@ jobs:
           # Left by the build, not part of the application
           rm -rf "$APP_NAME"/bin/*.pdb "$APP_NAME/GeneXus.Programs.Common"
 
+          # Outside Windows the QR codes (System.Drawing) only work with this switch, plus the library libgdiplus
+          if [ "$GROUP" != "windows" ]; then
+            perl -0pi -e 's/"configProperties": \{/"configProperties": {\n      "System.Drawing.EnableUnixSupport": true,/' \
+              "$APP_NAME/bin/GxWebStartup.runtimeconfig.json" "$APP_NAME/bin/GxNetCoreStartup.runtimeconfig.json"
+            grep -q '"System.Drawing.EnableUnixSupport": true' "$APP_NAME/bin/GxWebStartup.runtimeconfig.json"
+          fi
+
           case "$GROUP" in
             windows)
               7z a -tzip -mx=7 "dist/$PACKAGE_NAME.zip" "$APP_NAME" > /dev/null
