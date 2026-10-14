@@ -124,14 +124,10 @@ Any member can start a payment.
 
    ![The payment: amount, address and description](../../../assets/screens/delegated/07-send-form.png)
 
-3. Type your **wallet password** and click **Confirm**.
-
-   ![The window that asks for the password](../../../assets/screens/delegated/08-password.png)
-
-4. Choose the **fee**: one of the estimated levels in *Select Fee*, or tick *Manually select Fee* and type your
+3. Choose the **fee**: one of the estimated levels in *Select Fee*, or tick *Manually select Fee* and type your
    own. This is the **calculated fee**.
 
-5. Optional: tick up to **three extra fee options**. Each one is a percentage **above** the calculated fee:
+4. Optional: tick up to **three extra fee options**. Each one is a percentage **above** the calculated fee:
    *+10%*, *+20%* and so on up to *+100%*.
 
    The members may sign hours or days apart, and by the time the last one signs the network may ask for a
@@ -142,10 +138,20 @@ Any member can start a payment.
 
    ![The fee, the extra fee options +10% and +50%, and the Send Coins button](../../../assets/screens/delegated/09-fee-options.png)
 
+5. Type your **wallet password** and click **Confirm**. Your signature is made now.
+
+   ![The window that asks for the password](../../../assets/screens/delegated/08-password.png)
+
 6. The app shows **Signature added: your signature was added and forwarded to the other signers**. Nothing has
    been sent to the bitcoin network yet: the payment waits for the other signatures.
 
 </Steps>
+
+:::tip[The password comes last]
+You choose everything first (amount, address, fee) and type your password at the very end. The wallet unlocks the
+key that signs only for that moment: it signs, sends and locks it again. If you close the password window, nothing
+is signed.
+:::
 
 The payment is now in the **Signatures** tab:
 
@@ -168,16 +174,17 @@ signature sends the payment.
 
    ![The payment to check before signing, with the fee options](../../../assets/screens/delegated/13-check-payment.png)
 
-3. Type your **wallet password**.
-
-4. What happens next depends on how many signatures are still missing:
+3. What happens next depends on how many signatures are still missing:
 
    - **More signatures are needed after yours.** The window lists the fee options the first signer set. You
-     choose nothing: click **Send Coins**, and the payment goes on to the next signer.
+     choose nothing: click **Send Coins**.
    - **Yours is the last signature.** Choose the **Fee to pay**: the calculated fee, or one of the higher
      options if the network is busy. Click **Send Coins**. You sign only that transaction.
 
    ![The last signer chooses the fee to pay](../../../assets/screens/delegated/14-choose-fee.png)
+
+4. Type your **wallet password** and click **Confirm**. Your signature is made now: the payment goes on to the
+   next signer, or, if yours was the last one, it is sent to the bitcoin network.
 
 </Steps>
 
@@ -192,8 +199,8 @@ The *Signatures* tab shows the payment as *Fully signed*:
 
 ## 7. The owner pays alone
 
-The owner uses the same **Send** button of the *Wallet Balance* tab: amount, address, description, password and
-fee. There are no fee options and nobody else signs. Click **Send Coins** and the payment is sent at once.
+The owner uses the same **Send** button of the *Wallet Balance* tab: amount, address, description and fee, then
+**Send Coins** and the password. There are no fee options and nobody else signs: the payment is sent at once.
 
 ![The owner chooses the fee and sends](../../../assets/screens/delegated/17-owner-fee.png)
 
