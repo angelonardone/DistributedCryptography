@@ -32,7 +32,7 @@ When you [log in anonymously](/online/), this is what exists on our side.
 | **Messages** between users (invitations, group messages, signatures) | No. Each one is encrypted for the person who must read it. Messages are deleted once they have been delivered. |
 | **Chat** | No. It travels over Nostr relays, encrypted for your contact. |
 | **Files** you encrypt for other users | We never receive them. You send the encrypted file yourself, any way you like. |
-| Your **bitcoin addresses** | Balances are read from an Electrum server. As with any light wallet, the server that answers sees which addresses are asked about. They are not part of your user account. |
+| Your **bitcoin addresses** | Balances are read from an Electrum server. As with any light wallet, the server that answers sees which addresses are asked about. They are not part of your user account. You can [use your own Electrum server](/wallet/servers/). |
 
 ### What the server does know
 

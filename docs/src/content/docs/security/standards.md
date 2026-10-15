@@ -44,6 +44,11 @@ The wallet follows the published Bitcoin standards, so your coins are never tied
 ## Network
 
 The wallet reads balances and sends payments with the
-[Electrum protocol](https://electrumx-spesmilo.readthedocs.io/en/latest/protocol.html).
+[Electrum protocol](https://electrumx-spesmilo.readthedocs.io/en/latest/protocol.html), with the server
+[you choose](/wallet/servers/).
+
+The [anonymous login](/online/) signs a challenge of the server with
+[BIP 322](https://github.com/bitcoin/bips/blob/master/bip-0322.mediawiki), the standard for messages signed by a
+bitcoin address.
 
 It works on **MainNet** (real bitcoin) and on the test networks.

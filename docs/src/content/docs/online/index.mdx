@@ -44,9 +44,21 @@ is not an address to receive bitcoin.
 
 ## What happens when you log in
 
-The wallet proves to the server that it holds the key behind your user name by signing with it. This follows the
-single sign-on mechanism of the OAuth protocol. The server answers with a **token**, which is stored in an
-encrypted file inside your wallet folder. The token gives the application access to the online services.
+The wallet proves to the server that it holds the key behind your user name, without sending any password:
+
+1. The server sends a **challenge**, a random number that can be used only once and only for 5 minutes.
+2. The wallet signs a short message with the key of your user name. The message holds the challenge and the name
+   of the server. The signature follows [BIP-322](/security/standards/), the bitcoin standard for messages signed
+   by an address.
+3. The server checks the signature. The first time, it also checks that the user name really is the address of
+   that key, and creates your user.
+4. The server answers with a **token**, stored in an encrypted file inside your wallet folder. The token gives the
+   application access to the online services for 24 hours. After that the wallet logs in again by itself.
+
+Nothing secret travels: the challenge, the signature and your public key can be seen by anybody. A signature made
+for one server is refused by any other server, and it cannot be used twice.
+
+The login server is chosen per wallet in [Config](/wallet/servers/#login-server).
 
 ## What the services do
 
