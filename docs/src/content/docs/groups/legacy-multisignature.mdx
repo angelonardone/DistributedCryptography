@@ -93,15 +93,24 @@ Any member can start a payment.
    ![The payment: amount, address and description](../../../assets/screens/legacy/07-send-form.png)
 
 3. Choose the **fee**: one of the estimated levels in *Select Fee*, or tick *Manually select Fee* and type your
-   own. Click **Send Coins**.
+   own. This is the **calculated fee**.
 
-   ![The fee and the Send Coins button](../../../assets/screens/legacy/10-fee-manual.png)
+4. Optional: tick up to **three extra fee options**. Each one is a percentage **above** the calculated fee:
+   *+10%*, *+20%* and so on up to *+100%*.
 
-4. Type your **wallet password** and click **Confirm**. Your signature is made now.
+   The members may sign hours or days apart, and by the time the last one signs the network may ask for a
+   higher fee. With these options the last signer can pay more without starting again. You and every following
+   signer sign all the options; only one is ever sent.
+
+   Click **Send Coins**.
+
+   ![The fee, the extra fee options +10% and +50%, and the Send Coins button](../../../assets/screens/legacy/10-fee-manual.png)
+
+5. Type your **wallet password** and click **Confirm**. Your signature is made now.
 
    ![The window that asks for the password](../../../assets/screens/legacy/08-password.png)
 
-5. The app shows **Signature added: your signature was added and forwarded to the other signers**. Nothing has
+6. The app shows **Signature added: your signature was added and forwarded to the other signers**. Nothing has
    been sent to the bitcoin network yet: the payment waits for the other signatures.
 
 </Steps>
@@ -109,6 +118,13 @@ Any member can start a payment.
 The payment is now in the **Signatures** tab, with your signature and *Fully signed* still empty:
 
 ![The Signatures tab with the payment waiting for more signatures](../../../assets/screens/legacy/12-signatures-waiting.png)
+
+If the minimum of the group is **1**, there is nothing to wait for: you see no extra options, and your own
+signature sends the payment.
+
+A payment can use coins of several addresses of the group (the group moves to a new receiving address after each
+payment it receives, and the change of a payment goes to a change address of the group): every member signs each
+coin with the right key.
 
 ## 6. Sign the payment (each following signer)
 
@@ -124,14 +140,22 @@ The payment is now in the **Signatures** tab, with your signature and *Fully sig
 
    ![The payment to check before signing](../../../assets/screens/legacy/14-check-payment.png)
 
-3. Click **Send Coins**, then type your **wallet password** and click **Confirm**. Your signature is made now.
+3. What happens next depends on how many signatures are still missing:
 
-   ![The Send Coins button of the second signer](../../../assets/screens/legacy/15-second-signature.png)
+   - **More signatures are needed after yours.** The window lists the fee options the first signer set. You
+     choose nothing: click **Send Coins**.
+   - **Yours is the last signature.** Choose the **Fee to pay**: the calculated fee, or one of the higher
+     options if the network is busy. Click **Send Coins**. You sign only that transaction.
+
+   ![The last signer chooses the fee to pay](../../../assets/screens/legacy/15-second-signature.png)
+
+4. Type your **wallet password** and click **Confirm**. Your signature is made now: the payment goes on to the
+   next signer, or, if yours was the last one, it is sent to the bitcoin network.
 
 </Steps>
 
 When the **last needed signature** is added, the app shows **Transaction broadcast**: the payment has been sent
-to the bitcoin network. The *Signatures* tab shows it as *Fully signed*.
+to the bitcoin network with the fee the last signer chose. The *Signatures* tab shows it as *Fully signed*.
 
 ![The message Transaction broadcast and the payment fully signed](../../../assets/screens/legacy/16-broadcast.png)
 
