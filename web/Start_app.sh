@@ -31,5 +31,5 @@ kill_port 5000
 sleep 3
 
 # Open the URL in the default web browser
-xdg-open http://localhost:5000/wallet.wallets.aspx 2>/dev/null || open http://localhost:5000/wallet.wallets.aspx
+xdg-open http://localhost:5000/wallet.wallets 2>/dev/null || open http://localhost:5000/wallet.wallets
 

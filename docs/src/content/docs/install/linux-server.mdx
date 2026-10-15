@@ -127,7 +127,7 @@ replace them with the name of your site and, on ARM, with the `arm64` file.
 
 7. **Firewall:** open port 443 only. Port 5000 is not offered to the network, and must stay that way.
 
-8. Open `https://wallet.example.com/wallet.wallets.aspx`. You see the list of wallets, empty for now.
+8. Open `https://wallet.example.com/wallet.wallets`. You see the list of wallets, empty for now.
 
 </Steps>
 
@@ -140,7 +140,7 @@ folder. **Include `/var/lib/distcrypt` in your backups.**
 
 Through the public address the page shows the list of wallets and nothing else. The buttons **Create a new
 Wallet**, **Restore Wallet**, **Create/Restore Advance Brain Wallet** and **Configuration** appear only when the
-page is opened **on the server itself**, at `http://localhost:5000/wallet.wallets.aspx`.
+page is opened **on the server itself**, at `http://localhost:5000/wallet.wallets`.
 
 There are two ways to put a wallet on the server:
 
@@ -151,7 +151,7 @@ There are two ways to put a wallet on the server:
   ssh -L 5000:localhost:5000 you@wallet.example.com
   ```
 
-  and, while that session is open, browse to `http://localhost:5000/wallet.wallets.aspx` on your computer. If
+  and, while that session is open, browse to `http://localhost:5000/wallet.wallets` on your computer. If
   you run the wallet on your own computer too, stop it first: it uses the same port.
 
 - **Copy it from another installation.** On the computer that has the wallet, the wallets page shows the

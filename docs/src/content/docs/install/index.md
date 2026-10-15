@@ -19,7 +19,7 @@ To publish the app on a server, so that people open their wallets from other com
 The application is a local web server. Once it is running, open this address in your browser:
 
 ```
-http://localhost:5000/wallet.wallets.aspx
+http://localhost:5000/wallet.wallets
 ```
 
 Then [create your first wallet](/wallet/create/).

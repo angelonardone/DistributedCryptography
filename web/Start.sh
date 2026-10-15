@@ -23,7 +23,7 @@ start_gxweb() {
 # Function to open the browser in the background
 open_browser() {
     sleep 5
-    (xdg-open http://localhost:5000/wallet.wallets.aspx 2>/dev/null || open http://localhost:5000/wallet.wallets.aspx) &
+    (xdg-open http://localhost:5000/wallet.wallets 2>/dev/null || open http://localhost:5000/wallet.wallets) &
 }
 
 # Function to close the specific tab with localhost:5000 in Safari

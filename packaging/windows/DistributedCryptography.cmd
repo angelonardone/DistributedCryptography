@@ -7,7 +7,7 @@ cd /d "%~dp0"
 
 rem This computer only: the wallet is not offered to the rest of the network
 set ASPNETCORE_URLS=http://localhost:5000
-set APP_URL=http://localhost:5000/wallet.wallets.aspx
+set APP_URL=http://localhost:5000/wallet.wallets
 
 rem Already running (the shortcut was used twice): only show the page
 curl -s -o nul -f %APP_URL% 2>nul

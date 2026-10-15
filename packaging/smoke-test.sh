@@ -10,7 +10,7 @@ set -u
 
 PACKAGE="${1:?usage: smoke-test.sh <package>}"
 PORT="${SMOKE_PORT:-5055}"
-URL="http://127.0.0.1:$PORT/wallet.wallets.aspx"
+URL="http://127.0.0.1:$PORT/wallet.wallets"
 
 # The same AppId as packaging/windows/installer.iss
 UNINSTALL_KEY='HKCU\Software\Microsoft\Windows\CurrentVersion\Uninstall\{96A71195-51CC-489C-AB3F-EEFC0D2C5636}_is1'

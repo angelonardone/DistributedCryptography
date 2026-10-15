@@ -3,7 +3,7 @@
 # stops the server when the app is quit.
 
 PORT="5000"
-APP_URL="http://localhost:$PORT/wallet.wallets.aspx"
+APP_URL="http://localhost:$PORT/wallet.wallets"
 SERVER="bin/GxWebStartup"
 
 # <app>/Contents/MacOS/launch_app  ->  <app>/Contents/Resources/kestrel_app
