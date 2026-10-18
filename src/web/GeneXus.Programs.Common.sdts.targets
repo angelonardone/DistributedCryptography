@@ -30,14 +30,8 @@
  	<Compile Include="$(WebDirectory)\distcrypt\type_SdtExternalUserPublic_KeyInfo.cs" />
  	<Compile Include="$(WebDirectory)\distcrypt\type_SdtExternalUserPublic_ChatKeyInfo.cs" />
  	<Compile Include="$(WebDirectory)\distcrypt\type_SdtExternalUserPublic_GroupsKeyInfo.cs" />
- 	<Compile Include="$(WebDirectory)\distcrypt\type_SdtParametersSDT.cs" />
- 	<Compile Include="$(WebDirectory)\distcrypt\type_SdtRetrunParametersSDT.cs" />
- 	<Compile Include="$(WebDirectory)\distcrypt\sso\type_SdtGAMGAMRemoteErrorSDT.cs" />
- 	<Compile Include="$(WebDirectory)\distcrypt\sso\type_SdtGAMGAMRemoteTokenSDT.cs" />
- 	<Compile Include="$(WebDirectory)\distcrypt\sso\type_SdtGAMGAMRemoteUserSDT.cs" />
- 	<Compile Include="$(WebDirectory)\distcrypt\sso\type_SdtGAMWSLoginOutUserAttMVSDT.cs" />
- 	<Compile Include="$(WebDirectory)\distcrypt\sso\type_SdtGAMWSLoginOutUserAttSDT.cs" />
- 	<Compile Include="$(WebDirectory)\distcrypt\sso\type_SdtSDT_IdentityProvider.cs" />
+ 	<Compile Include="$(WebDirectory)\distcrypt\type_SdtServerParameters.cs" />
+ 	<Compile Include="$(WebDirectory)\distcrypt\type_SdtServerUserInfo.cs" />
  	<Compile Include="$(WebDirectory)\distributedcrypto\type_SdtdateTimeToUnixTimeTestSDT.cs" />
  	<Compile Include="$(WebDirectory)\electrum\type_SdtConnection.cs" />
  	<Compile Include="$(WebDirectory)\electrum\type_SdtConnectionParameters_ConnectionParametersItem.cs" />
@@ -56,6 +50,7 @@
  	<Compile Include="$(WebDirectory)\electrum\type_SdtretAddressElectrumFormatUnitTestSDT.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtFileUploadData.cs" />
  	<Compile Include="$(WebDirectory)\general\ui\type_SdtProgramNames_ProgramName.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtgetChallenge__postOutput.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtgetGroup__getOutput.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtgetMesssages__getOutput.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtgetUserContacts__getOutput.cs" />
@@ -69,6 +64,9 @@
  	<Compile Include="$(WebDirectory)\type_SdtGXUsedToItem.cs" />
  	<Compile Include="$(WebDirectory)\hsm\type_SdtHSMconfigSDT.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtLinkList_LinkItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_Sdtlogin__postInput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_Sdtlogin__postOutput.cs" />
+ 	<Compile Include="$(WebDirectory)\type_Sdtlogout__postOutput.cs" />
  	<Compile Include="$(WebDirectory)\math\type_SdtfinalCombination.cs" />
  	<Compile Include="$(WebDirectory)\math\type_SdttestCombinationsSDT.cs" />
  	<Compile Include="$(WebDirectory)\nbitcoin\type_SdtCreateExPubtKeyUnitTestSDT.cs" />

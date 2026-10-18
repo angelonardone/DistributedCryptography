@@ -764,7 +764,7 @@ namespace GeneXus.Programs.wallet.registered {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 11,'',false,'',0)\"";
             context.WriteHtmlText( "<div id=\""+edtavRestoredate_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-            GxWebStd.gx_single_line_edit( context, edtavRestoredate_Internalname, context.localUtil.Format(AV27restoreDate, "99/99/99"), context.localUtil.Format( AV27restoreDate, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',0,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',0,12,'eng',false,0);"+";gx.evt.onblur(this,11);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavRestoredate_Jsonclick, 0, "Attribute", "", "", "", "", edtavRestoredate_Visible, edtavRestoredate_Enabled, 0, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Wallet/registered/ApproveRestoreDate.htm");
+            GxWebStd.gx_single_line_edit( context, edtavRestoredate_Internalname, context.localUtil.Format(AV27restoreDate, "99/99/99"), context.localUtil.Format( AV27restoreDate, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',0,12,'eng',false,1);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',0,12,'eng',false,1);"+";gx.evt.onblur(this,11);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavRestoredate_Jsonclick, 0, "Attribute", "", "", "", "", edtavRestoredate_Visible, edtavRestoredate_Enabled, 0, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Wallet/registered/ApproveRestoreDate.htm");
             GxWebStd.gx_bitmap( context, edtavRestoredate_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((edtavRestoredate_Visible==0)||(edtavRestoredate_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "none", "HLP_Wallet/registered/ApproveRestoreDate.htm");
             context.WriteHtmlTextNl( "</div>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -821,7 +821,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20261071417576", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610161784120", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -837,7 +837,7 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("wallet/registered/approverestoredate.js", "?20261071417577", false, true, false);
+         context.AddJavascriptSource("wallet/registered/approverestoredate.js", "?202610161784120", false, true, false);
          /* End function include_jscripts */
       }
 

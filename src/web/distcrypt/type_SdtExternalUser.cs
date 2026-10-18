@@ -110,12 +110,12 @@ namespace GeneXus.Programs.distcrypt
 
 		[SoapElement(ElementName="UserInfo")]
 		[XmlElement(ElementName="UserInfo")]
-		public GeneXus.Programs.distcrypt.sso.SdtGAMGAMRemoteUserSDT gxTpr_Userinfo
+		public GeneXus.Programs.distcrypt.SdtServerUserInfo gxTpr_Userinfo
 		{
 			get {
 				if ( gxTv_SdtExternalUser_Userinfo == null )
 				{
-					gxTv_SdtExternalUser_Userinfo = new GeneXus.Programs.distcrypt.sso.SdtGAMGAMRemoteUserSDT(context);
+					gxTv_SdtExternalUser_Userinfo = new GeneXus.Programs.distcrypt.SdtServerUserInfo(context);
 					SetDirty("Userinfo");
 				}
 				return gxTv_SdtExternalUser_Userinfo; 
@@ -286,7 +286,7 @@ namespace GeneXus.Programs.distcrypt
 		protected string gxTv_SdtExternalUser_Externaltoken;
 		 
 
-		protected GeneXus.Programs.distcrypt.sso.SdtGAMGAMRemoteUserSDT gxTv_SdtExternalUser_Userinfo = null;
+		protected GeneXus.Programs.distcrypt.SdtServerUserInfo gxTv_SdtExternalUser_Userinfo = null;
 		protected bool gxTv_SdtExternalUser_Userinfo_N;
 		 
 
@@ -337,11 +337,11 @@ namespace GeneXus.Programs.distcrypt
 		[JsonPropertyOrder(1)]
 		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		[DataMember(Name="UserInfo", Order=1, EmitDefaultValue=false)]
-		public GeneXus.Programs.distcrypt.sso.SdtGAMGAMRemoteUserSDT_RESTInterface gxTpr_Userinfo
+		public GeneXus.Programs.distcrypt.SdtServerUserInfo_RESTInterface gxTpr_Userinfo
 		{
 			get { 
 				if (sdt.ShouldSerializegxTpr_Userinfo_Json())
-					return new GeneXus.Programs.distcrypt.sso.SdtGAMGAMRemoteUserSDT_RESTInterface(sdt.gxTpr_Userinfo);
+					return new GeneXus.Programs.distcrypt.SdtServerUserInfo_RESTInterface(sdt.gxTpr_Userinfo);
 				else
 					return null;
 

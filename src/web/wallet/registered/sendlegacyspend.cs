@@ -41,39 +41,41 @@ namespace GeneXus.Programs.wallet.registered {
                            decimal aP1_sendCoins ,
                            string aP2_sendTo ,
                            string aP3_description ,
-                           decimal aP4_manaulFee ,
-                           out bool aP5_broadcast ,
-                           out string aP6_warning ,
-                           out string aP7_errorTitle ,
-                           out string aP8_error )
+                           decimal aP4_baseFee ,
+                           string aP5_percentages ,
+                           short aP6_finalPercent ,
+                           out bool aP7_broadcast ,
+                           out string aP8_errorTitle ,
+                           out string aP9_error )
       {
          this.AV36sendAllCoins = aP0_sendAllCoins;
          this.AV37sendCoins = aP1_sendCoins;
          this.AV38sendTo = aP2_sendTo;
          this.AV15description = aP3_description;
-         this.AV29manaulFee = aP4_manaulFee;
+         this.AV51baseFee = aP4_baseFee;
+         this.AV61percentages = aP5_percentages;
+         this.AV48finalPercent = aP6_finalPercent;
          this.AV10broadcast = false ;
-         this.AV45warning = "" ;
          this.AV19errorTitle = "" ;
          this.AV17error = "" ;
          initialize();
          ExecuteImpl();
-         aP5_broadcast=this.AV10broadcast;
-         aP6_warning=this.AV45warning;
-         aP7_errorTitle=this.AV19errorTitle;
-         aP8_error=this.AV17error;
+         aP7_broadcast=this.AV10broadcast;
+         aP8_errorTitle=this.AV19errorTitle;
+         aP9_error=this.AV17error;
       }
 
       public string executeUdp( bool aP0_sendAllCoins ,
                                 decimal aP1_sendCoins ,
                                 string aP2_sendTo ,
                                 string aP3_description ,
-                                decimal aP4_manaulFee ,
-                                out bool aP5_broadcast ,
-                                out string aP6_warning ,
-                                out string aP7_errorTitle )
+                                decimal aP4_baseFee ,
+                                string aP5_percentages ,
+                                short aP6_finalPercent ,
+                                out bool aP7_broadcast ,
+                                out string aP8_errorTitle )
       {
-         execute(aP0_sendAllCoins, aP1_sendCoins, aP2_sendTo, aP3_description, aP4_manaulFee, out aP5_broadcast, out aP6_warning, out aP7_errorTitle, out aP8_error);
+         execute(aP0_sendAllCoins, aP1_sendCoins, aP2_sendTo, aP3_description, aP4_baseFee, aP5_percentages, aP6_finalPercent, out aP7_broadcast, out aP8_errorTitle, out aP9_error);
          return AV17error ;
       }
 
@@ -81,26 +83,27 @@ namespace GeneXus.Programs.wallet.registered {
                                  decimal aP1_sendCoins ,
                                  string aP2_sendTo ,
                                  string aP3_description ,
-                                 decimal aP4_manaulFee ,
-                                 out bool aP5_broadcast ,
-                                 out string aP6_warning ,
-                                 out string aP7_errorTitle ,
-                                 out string aP8_error )
+                                 decimal aP4_baseFee ,
+                                 string aP5_percentages ,
+                                 short aP6_finalPercent ,
+                                 out bool aP7_broadcast ,
+                                 out string aP8_errorTitle ,
+                                 out string aP9_error )
       {
          this.AV36sendAllCoins = aP0_sendAllCoins;
          this.AV37sendCoins = aP1_sendCoins;
          this.AV38sendTo = aP2_sendTo;
          this.AV15description = aP3_description;
-         this.AV29manaulFee = aP4_manaulFee;
+         this.AV51baseFee = aP4_baseFee;
+         this.AV61percentages = aP5_percentages;
+         this.AV48finalPercent = aP6_finalPercent;
          this.AV10broadcast = false ;
-         this.AV45warning = "" ;
          this.AV19errorTitle = "" ;
          this.AV17error = "" ;
          SubmitImpl();
-         aP5_broadcast=this.AV10broadcast;
-         aP6_warning=this.AV45warning;
-         aP7_errorTitle=this.AV19errorTitle;
-         aP8_error=this.AV17error;
+         aP7_broadcast=this.AV10broadcast;
+         aP8_errorTitle=this.AV19errorTitle;
+         aP9_error=this.AV17error;
       }
 
       protected override void ExecutePrivate( )
@@ -108,168 +111,228 @@ namespace GeneXus.Programs.wallet.registered {
          /* GeneXus formulas */
          /* Output device settings */
          AV10broadcast = false;
+         AV47chosenPercent = AV48finalPercent;
          GXt_SdtWalletInfo1 = AV44walletInfo;
          new GeneXus.Programs.wallet.getwalletinfo(context ).execute( out  GXt_SdtWalletInfo1) ;
          AV44walletInfo = GXt_SdtWalletInfo1;
          AV30networkType = AV44walletInfo.gxTpr_Networktype;
          AV25group_sdt.FromJSonString(AV46websession.Get("Group_EDIT_WALLET"), null);
          AV32oneMuSigSignatures.FromJSonString(AV46websession.Get("MuSign_ONE"), null);
-         GXt_SdtExtKeyInfo2 = AV21extKeyInfoBIP48;
+         AV42transactionFileName = StringUtil.Trim( AV25group_sdt.gxTpr_Groupid.ToString()) + ".gtrn";
+         GXt_SdtExtKeyInfo2 = AV55extKeyInfo;
          new GeneXus.Programs.wallet.getextkeybip48(context ).execute( out  GXt_SdtExtKeyInfo2) ;
-         AV21extKeyInfoBIP48 = GXt_SdtExtKeyInfo2;
-         AV28m48xprv = StringUtil.Trim( AV21extKeyInfoBIP48.gxTpr_Extended.gxTpr_Privatekey);
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV28m48xprv)) )
+         AV55extKeyInfo = GXt_SdtExtKeyInfo2;
+         AV50accountXprv = StringUtil.Trim( AV55extKeyInfo.gxTpr_Extended.gxTpr_Privatekey);
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV50accountXprv)) )
          {
             AV19errorTitle = "Signing key not available";
             AV17error = "Please re-enter your password";
             cleanup();
             if (true) return;
          }
+         /* Execute user subroutine: 'DERIVE CHAIN KEYS' */
+         S161 ();
+         if ( returnInSub )
+         {
+            cleanup();
+            if (true) return;
+         }
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV17error)) )
+         {
+            AV19errorTitle = "We couldn't prepare the signing key: ";
+            new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
+            cleanup();
+            if (true) return;
+         }
+         new GeneXus.Programs.wallet.registered.mapgrouptolegacyeo(context ).execute(  AV25group_sdt, out  AV56groupEO) ;
+         AV59ok = AV54groupProcessor.fromsdt(AV56groupEO);
+         if ( ! AV59ok )
+         {
+            AV19errorTitle = "We couldn't load the group";
+            AV17error = "Open the Wallet Balance tab of the group and try again";
+            new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
+            cleanup();
+            if (true) return;
+         }
          if ( (Guid.Empty==AV32oneMuSigSignatures.gxTpr_Id) )
          {
-            AV8allCoins = AV36sendAllCoins;
-            AV9amount = AV37sendCoins;
-            AV16destination = AV38sendTo;
-            AV23fee = AV29manaulFee;
-            GXt_objcol_SdtSDTAddressHistory3 = AV43transactionsToSend;
-            new GeneXus.Programs.wallet.selectcoinstosend(context ).execute(  AV15description,  AV9amount,  AV23fee, out  GXt_objcol_SdtSDTAddressHistory3) ;
-            AV43transactionsToSend = GXt_objcol_SdtSDTAddressHistory3;
-            GXt_char4 = AV12changeTo;
-            new GeneXus.Programs.wallet.pulloneaddress(context ).execute(  (short)(Math.Round(NumberUtil.Val( "3", "."), 18, MidpointRounding.ToEven)), out  GXt_char4) ;
-            AV12changeTo = GXt_char4;
-            /* Execute user subroutine: 'BUILD LEGACY UTXOS' */
-            S121 ();
+            /* Execute user subroutine: 'FIRST SIGNER' */
+            S111 ();
             if ( returnInSub )
             {
                cleanup();
                if (true) return;
             }
-            GXt_SdtLegacyPsbtResult5 = AV34psbtResult;
-            new GeneXus.Programs.wallet.registered.buildtransactionlegacy(context ).execute(  AV25group_sdt,  AV27legacyUtxos,  AV16destination,  AV9amount,  AV12changeTo,  AV23fee,  AV8allCoins,  AV39sequence,  AV26isChange,  AV30networkType, out  GXt_SdtLegacyPsbtResult5) ;
-            AV34psbtResult = GXt_SdtLegacyPsbtResult5;
-            if ( ! AV34psbtResult.gxTpr_Success )
-            {
-               AV19errorTitle = "There was a problem building the transaction: ";
-               AV17error = AV34psbtResult.gxTpr_Error;
-               new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
-            }
-            else
-            {
-               GXt_SdtLegacyPsbtResult5 = AV40signResult;
-               new GeneXus.Programs.wallet.registered.signlegacypsbt(context ).execute(  AV34psbtResult.gxTpr_Psbt,  AV39sequence,  AV11chainXprv,  AV30networkType, out  GXt_SdtLegacyPsbtResult5) ;
-               AV40signResult = GXt_SdtLegacyPsbtResult5;
-               if ( ! AV40signResult.gxTpr_Success )
-               {
-                  AV19errorTitle = "There was a problem signing the transaction: ";
-                  AV17error = AV40signResult.gxTpr_Error;
-                  new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
-               }
-               else
-               {
-                  AV13combinedPsbt = AV40signResult.gxTpr_Psbt;
-                  /* Execute user subroutine: 'TRY FINALIZE OR FORWARD' */
-                  S111 ();
-                  if ( returnInSub )
-                  {
-                     cleanup();
-                     if (true) return;
-                  }
-               }
-            }
          }
          else
          {
-            AV8allCoins = AV32oneMuSigSignatures.gxTpr_Sendallcoins;
-            AV9amount = AV32oneMuSigSignatures.gxTpr_Sendcoins;
-            AV16destination = StringUtil.Trim( AV32oneMuSigSignatures.gxTpr_Sendto);
-            AV23fee = AV32oneMuSigSignatures.gxTpr_Transactionfee;
-            AV12changeTo = StringUtil.Trim( AV32oneMuSigSignatures.gxTpr_Changeto);
-            AV43transactionsToSend = AV32oneMuSigSignatures.gxTpr_Transactions;
-            /* Execute user subroutine: 'RESOLVE SEQUENCE FROM TRANSACTIONS' */
+            /* Execute user subroutine: 'NEXT SIGNER' */
             S141 ();
             if ( returnInSub )
             {
                cleanup();
                if (true) return;
             }
-            GXt_SdtLegacyPsbtResult5 = AV40signResult;
-            new GeneXus.Programs.wallet.registered.signlegacypsbt(context ).execute(  AV32oneMuSigSignatures.gxTpr_Psbt,  AV39sequence,  AV11chainXprv,  AV30networkType, out  GXt_SdtLegacyPsbtResult5) ;
-            AV40signResult = GXt_SdtLegacyPsbtResult5;
-            if ( ! AV40signResult.gxTpr_Success )
-            {
-               AV19errorTitle = "There was a problem signing the transaction: ";
-               AV17error = AV40signResult.gxTpr_Error;
-               new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
-            }
-            else
-            {
-               AV35psbtsToCombine = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
-               AV35psbtsToCombine.Add(StringUtil.Trim( AV32oneMuSigSignatures.gxTpr_Psbt), 0);
-               AV35psbtsToCombine.Add(StringUtil.Trim( AV40signResult.gxTpr_Psbt), 0);
-               GXt_SdtLegacyPsbtResult5 = AV14combineResult;
-               new GeneXus.Programs.wallet.registered.combinelegacypsbts(context ).execute(  AV35psbtsToCombine,  AV30networkType, out  GXt_SdtLegacyPsbtResult5) ;
-               AV14combineResult = GXt_SdtLegacyPsbtResult5;
-               if ( ! AV14combineResult.gxTpr_Success )
-               {
-                  AV19errorTitle = "There was a problem combining the signatures: ";
-                  AV17error = AV14combineResult.gxTpr_Error;
-                  new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
-               }
-               else
-               {
-                  AV13combinedPsbt = AV14combineResult.gxTpr_Psbt;
-                  /* Execute user subroutine: 'TRY FINALIZE OR FORWARD' */
-                  S111 ();
-                  if ( returnInSub )
-                  {
-                     cleanup();
-                     if (true) return;
-                  }
-               }
-            }
          }
-         AV28m48xprv = "";
-         AV11chainXprv = "";
+         AV50accountXprv = "";
+         AV64receivingXprv = "";
+         AV53changeXprv = "";
+         new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
          cleanup();
       }
 
       protected void S111( )
       {
-         /* 'TRY FINALIZE OR FORWARD' Routine */
+         /* 'FIRST SIGNER' Routine */
          returnInSub = false;
-         GXt_SdtLegacyFinalResult6 = AV24finalResult;
-         new GeneXus.Programs.wallet.registered.finalizelegacypsbt(context ).execute(  AV13combinedPsbt,  AV30networkType, out  GXt_SdtLegacyFinalResult6) ;
-         AV24finalResult = GXt_SdtLegacyFinalResult6;
-         if ( AV24finalResult.gxTpr_Success )
+         AV8allCoins = AV36sendAllCoins;
+         AV9amount = AV37sendCoins;
+         AV16destination = StringUtil.Trim( AV38sendTo);
+         AV23fee = AV51baseFee;
+         AV65signatureID = AV32oneMuSigSignatures.gxTpr_Id;
+         AV49maxPercent = 0;
+         AV63percentTokens = (GxSimpleCollection<string>)(GxRegex.Split(AV61percentages,","));
+         AV69GXV1 = 1;
+         while ( AV69GXV1 <= AV63percentTokens.Count )
          {
-            GXt_char4 = AV17error;
-            new GeneXus.Programs.wallet.sendrawtransaction(context ).execute(  AV24finalResult.gxTpr_Txhex, out  AV41TransactionId, out  GXt_char4) ;
-            AV17error = GXt_char4;
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV17error)) )
+            AV62percentToken = ((string)AV63percentTokens.Item(AV69GXV1));
+            if ( ( NumberUtil.Val( StringUtil.Trim( AV62percentToken), ".") > Convert.ToDecimal( AV49maxPercent )) )
             {
-               AV42transactionFileName = StringUtil.Trim( AV25group_sdt.gxTpr_Groupid.ToString()) + ".gtrn";
-               GXt_char4 = AV18errorAfter;
-               new GeneXus.Programs.wallet.updatetransactionsaftercoinsent(context ).execute(  AV42transactionFileName,  AV41TransactionId,  AV43transactionsToSend, out  GXt_char4) ;
-               AV18errorAfter = GXt_char4;
-               GXt_char4 = AV18errorAfter;
-               new GeneXus.Programs.wallet.registered.updategroupandsendlegacypsbt(context ).execute(  AV25group_sdt,  AV8allCoins,  AV43transactionsToSend,  AV9amount,  AV16destination,  AV12changeTo,  AV23fee,  AV32oneMuSigSignatures.gxTpr_Id,  true,  AV13combinedPsbt, out  GXt_char4) ;
-               AV18errorAfter = GXt_char4;
-               new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
-               AV10broadcast = true;
+               AV49maxPercent = (short)(Math.Round(NumberUtil.Val( StringUtil.Trim( AV62percentToken), "."), 18, MidpointRounding.ToEven));
+            }
+            AV69GXV1 = (int)(AV69GXV1+1);
+         }
+         AV58maxFee = (decimal)(AV23fee*(100+AV49maxPercent)/ (decimal)(100));
+         GXt_objcol_SdtSDTAddressHistory3 = AV43transactionsToSend;
+         new GeneXus.Programs.wallet.selectcoinstosend(context ).execute(  AV15description,  AV9amount,  AV58maxFee, out  GXt_objcol_SdtSDTAddressHistory3) ;
+         AV43transactionsToSend = GXt_objcol_SdtSDTAddressHistory3;
+         GXt_char4 = AV12changeTo;
+         new GeneXus.Programs.wallet.pulloneaddress(context ).execute(  (short)(Math.Round(NumberUtil.Val( "3", "."), 18, MidpointRounding.ToEven)), out  GXt_char4) ;
+         AV12changeTo = GXt_char4;
+         /* Execute user subroutine: 'BUILD UTXOS' */
+         S121 ();
+         if (returnInSub) return;
+         AV57jsonText = AV54groupProcessor.buildlegacyspend(AV68utxos.ToJSonString(false), AV16destination, StringUtil.Trim( StringUtil.Str( AV9amount, 17, 8)), StringUtil.Trim( AV12changeTo), StringUtil.Trim( StringUtil.Str( AV23fee, 17, 8)), StringUtil.Trim( AV61percentages), AV8allCoins, AV30networkType);
+         AV67spendResult.FromJSonString(AV57jsonText, null);
+         if ( ! AV67spendResult.gxTpr_Success )
+         {
+            AV19errorTitle = "There was a problem building the transaction: ";
+            AV17error = AV67spendResult.gxTpr_Error;
+         }
+         else
+         {
+            if ( AV25group_sdt.gxTpr_Minimumshares == 1 )
+            {
+               if ( AV47chosenPercent < 0 )
+               {
+                  AV47chosenPercent = 0;
+               }
             }
             else
             {
-               AV19errorTitle = "There was a problem submitting the transaction: ";
-               new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
+               AV47chosenPercent = -1;
+            }
+            AV57jsonText = AV54groupProcessor.signlegacyspend(AV67spendResult.gxTpr_Bundle, AV64receivingXprv, AV53changeXprv, AV47chosenPercent, AV30networkType);
+            AV67spendResult.FromJSonString(AV57jsonText, null);
+            if ( ! AV67spendResult.gxTpr_Success )
+            {
+               AV19errorTitle = "There was a problem signing the transaction: ";
+               AV17error = AV67spendResult.gxTpr_Error;
+            }
+            else
+            {
+               /* Execute user subroutine: 'FINISH OR FORWARD' */
+               S131 ();
+               if (returnInSub) return;
+            }
+         }
+      }
+
+      protected void S141( )
+      {
+         /* 'NEXT SIGNER' Routine */
+         returnInSub = false;
+         AV8allCoins = AV32oneMuSigSignatures.gxTpr_Sendallcoins;
+         AV23fee = AV32oneMuSigSignatures.gxTpr_Transactionfee;
+         AV43transactionsToSend = AV32oneMuSigSignatures.gxTpr_Transactions;
+         AV65signatureID = AV32oneMuSigSignatures.gxTpr_Id;
+         AV57jsonText = AV54groupProcessor.describelegacyspend(StringUtil.Trim( AV32oneMuSigSignatures.gxTpr_Psbt), StringUtil.Trim( AV25group_sdt.gxTpr_Extpubkeymultisigreceiving), StringUtil.Trim( AV25group_sdt.gxTpr_Extpubkeymultisigchange), AV30networkType);
+         AV66spendInfo.FromJSonString(AV57jsonText, null);
+         if ( ! AV66spendInfo.gxTpr_Success )
+         {
+            AV19errorTitle = "This payment can not be signed: ";
+            AV17error = AV66spendInfo.gxTpr_Error;
+         }
+         else
+         {
+            AV9amount = AV66spendInfo.gxTpr_Amountbtc;
+            AV16destination = StringUtil.Trim( AV66spendInfo.gxTpr_Sendto);
+            AV12changeTo = StringUtil.Trim( AV66spendInfo.gxTpr_Changeto);
+            AV52changeBelongs = true;
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV12changeTo)) )
+            {
+               GXt_boolean5 = AV52changeBelongs;
+               GXt_boolean6 = false;
+               new GeneXus.Programs.wallet.doesaddressbelongtowallet(context ).execute(  AV12changeTo,  (short)(Math.Round(NumberUtil.Val( "3", "."), 18, MidpointRounding.ToEven)), ref  GXt_boolean6, out  GXt_boolean5) ;
+               AV52changeBelongs = GXt_boolean5;
+            }
+            if ( ! AV52changeBelongs )
+            {
+               AV19errorTitle = "This payment can not be signed: ";
+               AV17error = "The 'change address' does not belong to this group or it has already been used";
+            }
+            else
+            {
+               if ( AV66spendInfo.gxTpr_Nextislast )
+               {
+                  if ( AV47chosenPercent < 0 )
+                  {
+                     AV47chosenPercent = 0;
+                  }
+               }
+               else
+               {
+                  AV47chosenPercent = -1;
+               }
+               AV57jsonText = AV54groupProcessor.signlegacyspend(StringUtil.Trim( AV32oneMuSigSignatures.gxTpr_Psbt), AV64receivingXprv, AV53changeXprv, AV47chosenPercent, AV30networkType);
+               AV67spendResult.FromJSonString(AV57jsonText, null);
+               if ( ! AV67spendResult.gxTpr_Success )
+               {
+                  AV19errorTitle = "There was a problem signing the transaction: ";
+                  AV17error = AV67spendResult.gxTpr_Error;
+               }
+               else
+               {
+                  /* Execute user subroutine: 'FINISH OR FORWARD' */
+                  S131 ();
+                  if (returnInSub) return;
+               }
+            }
+         }
+      }
+
+      protected void S131( )
+      {
+         /* 'FINISH OR FORWARD' Routine */
+         returnInSub = false;
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV67spendResult.gxTpr_Txhex)) )
+         {
+            /* Execute user subroutine: 'BROADCAST' */
+            S151 ();
+            if (returnInSub) return;
+            if ( AV10broadcast )
+            {
+               AV23fee = AV67spendResult.gxTpr_Feebtc;
+               GXt_char4 = AV18errorAfter;
+               new GeneXus.Programs.wallet.registered.updategroupandsendlegacypsbt(context ).execute(  AV25group_sdt,  AV8allCoins,  AV43transactionsToSend,  AV9amount,  AV16destination,  AV12changeTo,  AV23fee,  AV65signatureID,  true,  AV67spendResult.gxTpr_Bundle, out  GXt_char4) ;
+               AV18errorAfter = GXt_char4;
             }
          }
          else
          {
-            AV45warning = AV24finalResult.gxTpr_Error;
             GXt_char4 = AV17error;
-            new GeneXus.Programs.wallet.registered.updategroupandsendlegacypsbt(context ).execute(  AV25group_sdt,  AV8allCoins,  AV43transactionsToSend,  AV9amount,  AV16destination,  AV12changeTo,  AV23fee,  AV32oneMuSigSignatures.gxTpr_Id,  false,  AV13combinedPsbt, out  GXt_char4) ;
+            new GeneXus.Programs.wallet.registered.updategroupandsendlegacypsbt(context ).execute(  AV25group_sdt,  AV8allCoins,  AV43transactionsToSend,  AV9amount,  AV16destination,  AV12changeTo,  AV23fee,  AV65signatureID,  false,  AV67spendResult.gxTpr_Bundle, out  GXt_char4) ;
             AV17error = GXt_char4;
-            new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
             if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV17error)) )
             {
                AV19errorTitle = "There was a problem forwarding the signature: ";
@@ -277,79 +340,84 @@ namespace GeneXus.Programs.wallet.registered {
          }
       }
 
-      protected void S121( )
+      protected void S151( )
       {
-         /* 'BUILD LEGACY UTXOS' Routine */
+         /* 'BROADCAST' Routine */
          returnInSub = false;
-         AV27legacyUtxos = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtLegacyUtxo>( context, "LegacyUtxo", "distributedcryptography");
-         AV47GXV1 = 1;
-         while ( AV47GXV1 <= AV43transactionsToSend.Count )
+         GXt_char4 = AV17error;
+         new GeneXus.Programs.wallet.sendrawtransaction(context ).execute(  AV67spendResult.gxTpr_Txhex, out  AV41TransactionId, out  GXt_char4) ;
+         AV17error = GXt_char4;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV17error)) )
          {
-            AV33oneTransaction = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV43transactionsToSend.Item(AV47GXV1));
-            AV31oneLegacyUtxo = new GeneXus.Programs.wallet.registered.SdtLegacyUtxo(context);
-            AV31oneLegacyUtxo.gxTpr_Txid = StringUtil.Trim( AV33oneTransaction.gxTpr_Receivedtransactionid);
-            AV31oneLegacyUtxo.gxTpr_Vout = (int)(AV33oneTransaction.gxTpr_Recivedn);
-            AV31oneLegacyUtxo.gxTpr_Amountbtc = StringUtil.Trim( StringUtil.Str( AV33oneTransaction.gxTpr_Balance, 17, 8));
-            AV27legacyUtxos.Add(AV31oneLegacyUtxo, 0);
-            AV39sequence = AV33oneTransaction.gxTpr_Addresscreationsequence;
-            if ( (Convert.ToDecimal( AV33oneTransaction.gxTpr_Addressgeneratedtype ) == NumberUtil.Val( "3", ".") ) )
+            GXt_char4 = AV18errorAfter;
+            new GeneXus.Programs.wallet.updatetransactionsaftercoinsent(context ).execute(  AV42transactionFileName,  AV41TransactionId,  AV43transactionsToSend, out  GXt_char4) ;
+            AV18errorAfter = GXt_char4;
+            AV70GXV2 = 1;
+            while ( AV70GXV2 <= AV43transactionsToSend.Count )
             {
-               AV26isChange = true;
+               AV33oneTransaction = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV43transactionsToSend.Item(AV70GXV2));
+               AV33oneTransaction.gxTpr_Senttransactionid = StringUtil.Trim( AV41TransactionId);
+               AV70GXV2 = (int)(AV70GXV2+1);
             }
-            else
-            {
-               AV26isChange = false;
-            }
-            AV47GXV1 = (int)(AV47GXV1+1);
-         }
-         /* Execute user subroutine: 'DERIVE CHAIN XPRV' */
-         S131 ();
-         if (returnInSub) return;
-      }
-
-      protected void S131( )
-      {
-         /* 'DERIVE CHAIN XPRV' Routine */
-         returnInSub = false;
-         AV20extKeyCreateChain.gxTpr_Createextkeytype = 70;
-         AV20extKeyCreateChain.gxTpr_Extendedprivatekey = AV28m48xprv;
-         if ( AV26isChange )
-         {
-            AV20extKeyCreateChain.gxTpr_Keypath = "1";
+            AV10broadcast = true;
          }
          else
          {
-            AV20extKeyCreateChain.gxTpr_Keypath = "0";
+            AV19errorTitle = "There was a problem submitting the transaction: ";
          }
-         AV20extKeyCreateChain.gxTpr_Networktype = AV30networkType;
-         GXt_char4 = AV17error;
-         new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV20extKeyCreateChain,  "", out  AV22extKeyInfoChain, out  GXt_char4) ;
-         AV17error = GXt_char4;
-         AV11chainXprv = StringUtil.Trim( AV22extKeyInfoChain.gxTpr_Extended.gxTpr_Privatekey);
       }
 
-      protected void S141( )
+      protected void S121( )
       {
-         /* 'RESOLVE SEQUENCE FROM TRANSACTIONS' Routine */
+         /* 'BUILD UTXOS' Routine */
          returnInSub = false;
-         AV48GXV2 = 1;
-         while ( AV48GXV2 <= AV43transactionsToSend.Count )
+         AV68utxos = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtDelegatedUtxo>( context, "DelegatedUtxo", "distributedcryptography");
+         AV71GXV3 = 1;
+         while ( AV71GXV3 <= AV43transactionsToSend.Count )
          {
-            AV33oneTransaction = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV43transactionsToSend.Item(AV48GXV2));
-            AV39sequence = AV33oneTransaction.gxTpr_Addresscreationsequence;
+            AV33oneTransaction = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV43transactionsToSend.Item(AV71GXV3));
+            AV60oneUtxo = new GeneXus.Programs.wallet.registered.SdtDelegatedUtxo(context);
+            AV60oneUtxo.gxTpr_Txid = StringUtil.Trim( AV33oneTransaction.gxTpr_Receivedtransactionid);
+            AV60oneUtxo.gxTpr_Vout = AV33oneTransaction.gxTpr_Recivedn;
+            AV60oneUtxo.gxTpr_Amountbtc = StringUtil.Trim( StringUtil.Str( AV33oneTransaction.gxTpr_Balance, 17, 8));
+            AV60oneUtxo.gxTpr_Sequence = AV33oneTransaction.gxTpr_Addresscreationsequence;
             if ( (Convert.ToDecimal( AV33oneTransaction.gxTpr_Addressgeneratedtype ) == NumberUtil.Val( "3", ".") ) )
             {
-               AV26isChange = true;
+               AV60oneUtxo.gxTpr_Ischange = true;
             }
             else
             {
-               AV26isChange = false;
+               AV60oneUtxo.gxTpr_Ischange = false;
             }
-            AV48GXV2 = (int)(AV48GXV2+1);
+            AV60oneUtxo.gxTpr_Address = StringUtil.Trim( AV33oneTransaction.gxTpr_Receivedaddress);
+            AV68utxos.Add(AV60oneUtxo, 0);
+            AV71GXV3 = (int)(AV71GXV3+1);
          }
-         /* Execute user subroutine: 'DERIVE CHAIN XPRV' */
-         S131 ();
-         if (returnInSub) return;
+      }
+
+      protected void S161( )
+      {
+         /* 'DERIVE CHAIN KEYS' Routine */
+         returnInSub = false;
+         AV20extKeyCreateChain.gxTpr_Createextkeytype = 70;
+         AV20extKeyCreateChain.gxTpr_Extendedprivatekey = AV50accountXprv;
+         AV20extKeyCreateChain.gxTpr_Networktype = AV30networkType;
+         AV20extKeyCreateChain.gxTpr_Keypath = "0";
+         GXt_char4 = AV17error;
+         new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV20extKeyCreateChain,  "", out  AV22extKeyInfoChain, out  GXt_char4) ;
+         AV17error = GXt_char4;
+         AV64receivingXprv = StringUtil.Trim( AV22extKeyInfoChain.gxTpr_Extended.gxTpr_Privatekey);
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV17error)) )
+         {
+            AV22extKeyInfoChain = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
+            AV20extKeyCreateChain.gxTpr_Keypath = "1";
+            GXt_char4 = AV17error;
+            new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV20extKeyCreateChain,  "", out  AV22extKeyInfoChain, out  GXt_char4) ;
+            AV17error = GXt_char4;
+            AV53changeXprv = StringUtil.Trim( AV22extKeyInfoChain.gxTpr_Extended.gxTpr_Privatekey);
+         }
+         AV22extKeyInfoChain = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
+         AV20extKeyCreateChain = new GeneXus.Programs.nbitcoin.SdtExtKeyCreate(context);
       }
 
       public override void cleanup( )
@@ -364,7 +432,6 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void initialize( )
       {
-         AV45warning = "";
          AV19errorTitle = "";
          AV17error = "";
          AV44walletInfo = new GeneXus.Programs.wallet.SdtWalletInfo(context);
@@ -373,86 +440,94 @@ namespace GeneXus.Programs.wallet.registered {
          AV25group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
          AV46websession = context.GetSession();
          AV32oneMuSigSignatures = new GeneXus.Programs.wallet.registered.SdtMuSigSignatures(context);
-         AV21extKeyInfoBIP48 = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
+         AV42transactionFileName = "";
+         AV55extKeyInfo = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
          GXt_SdtExtKeyInfo2 = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
-         AV28m48xprv = "";
+         AV50accountXprv = "";
+         AV56groupEO = new GeneXus.Programs.distributedcryptographylib.SdtGroupSDT(context);
+         AV54groupProcessor = new GeneXus.Programs.distributedcryptographylib.SdtGroupProcessor(context);
+         AV64receivingXprv = "";
+         AV53changeXprv = "";
          AV16destination = "";
+         AV65signatureID = Guid.Empty;
+         AV63percentTokens = new GxSimpleCollection<string>();
+         AV62percentToken = "";
          AV43transactionsToSend = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
          GXt_objcol_SdtSDTAddressHistory3 = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
          AV12changeTo = "";
-         AV34psbtResult = new GeneXus.Programs.wallet.registered.SdtLegacyPsbtResult(context);
-         AV27legacyUtxos = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtLegacyUtxo>( context, "LegacyUtxo", "distributedcryptography");
-         AV40signResult = new GeneXus.Programs.wallet.registered.SdtLegacyPsbtResult(context);
-         AV11chainXprv = "";
-         AV13combinedPsbt = "";
-         AV35psbtsToCombine = new GxSimpleCollection<string>();
-         AV14combineResult = new GeneXus.Programs.wallet.registered.SdtLegacyPsbtResult(context);
-         GXt_SdtLegacyPsbtResult5 = new GeneXus.Programs.wallet.registered.SdtLegacyPsbtResult(context);
-         AV24finalResult = new GeneXus.Programs.wallet.registered.SdtLegacyFinalResult(context);
-         GXt_SdtLegacyFinalResult6 = new GeneXus.Programs.wallet.registered.SdtLegacyFinalResult(context);
-         AV41TransactionId = "";
-         AV42transactionFileName = "";
+         AV57jsonText = "";
+         AV68utxos = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtDelegatedUtxo>( context, "DelegatedUtxo", "distributedcryptography");
+         AV67spendResult = new GeneXus.Programs.wallet.registered.SdtDelegatedSpendResult(context);
+         AV66spendInfo = new GeneXus.Programs.wallet.registered.SdtDelegatedSpendInfo(context);
          AV18errorAfter = "";
+         AV41TransactionId = "";
          AV33oneTransaction = new GeneXus.Programs.wallet.SdtSDTAddressHistory(context);
-         AV31oneLegacyUtxo = new GeneXus.Programs.wallet.registered.SdtLegacyUtxo(context);
+         AV60oneUtxo = new GeneXus.Programs.wallet.registered.SdtDelegatedUtxo(context);
          AV20extKeyCreateChain = new GeneXus.Programs.nbitcoin.SdtExtKeyCreate(context);
-         GXt_char4 = "";
          AV22extKeyInfoChain = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
+         GXt_char4 = "";
          /* GeneXus formulas. */
       }
 
-      private int AV47GXV1 ;
-      private int AV48GXV2 ;
-      private long AV39sequence ;
+      private short AV48finalPercent ;
+      private short AV47chosenPercent ;
+      private short AV49maxPercent ;
+      private int AV69GXV1 ;
+      private int AV70GXV2 ;
+      private int AV71GXV3 ;
       private decimal AV37sendCoins ;
-      private decimal AV29manaulFee ;
+      private decimal AV51baseFee ;
       private decimal AV9amount ;
       private decimal AV23fee ;
+      private decimal AV58maxFee ;
       private string AV38sendTo ;
-      private string AV45warning ;
       private string AV19errorTitle ;
       private string AV17error ;
       private string AV30networkType ;
-      private string AV28m48xprv ;
+      private string AV42transactionFileName ;
+      private string AV50accountXprv ;
+      private string AV64receivingXprv ;
+      private string AV53changeXprv ;
       private string AV16destination ;
       private string AV12changeTo ;
-      private string AV11chainXprv ;
-      private string AV41TransactionId ;
-      private string AV42transactionFileName ;
       private string AV18errorAfter ;
+      private string AV41TransactionId ;
       private string GXt_char4 ;
       private bool AV36sendAllCoins ;
       private bool AV10broadcast ;
-      private bool AV8allCoins ;
       private bool returnInSub ;
-      private bool AV26isChange ;
-      private string AV13combinedPsbt ;
+      private bool AV59ok ;
+      private bool AV8allCoins ;
+      private bool AV52changeBelongs ;
+      private bool GXt_boolean5 ;
+      private bool GXt_boolean6 ;
+      private string AV57jsonText ;
       private string AV15description ;
+      private string AV61percentages ;
+      private string AV62percentToken ;
+      private Guid AV65signatureID ;
       private IGxSession AV46websession ;
       private GeneXus.Programs.wallet.SdtWalletInfo AV44walletInfo ;
       private GeneXus.Programs.wallet.SdtWalletInfo GXt_SdtWalletInfo1 ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV25group_sdt ;
       private GeneXus.Programs.wallet.registered.SdtMuSigSignatures AV32oneMuSigSignatures ;
-      private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV21extKeyInfoBIP48 ;
+      private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV55extKeyInfo ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo GXt_SdtExtKeyInfo2 ;
+      private GeneXus.Programs.distributedcryptographylib.SdtGroupSDT AV56groupEO ;
+      private GeneXus.Programs.distributedcryptographylib.SdtGroupProcessor AV54groupProcessor ;
+      private GxSimpleCollection<string> AV63percentTokens ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV43transactionsToSend ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> GXt_objcol_SdtSDTAddressHistory3 ;
-      private GeneXus.Programs.wallet.registered.SdtLegacyPsbtResult AV34psbtResult ;
-      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtLegacyUtxo> AV27legacyUtxos ;
-      private GeneXus.Programs.wallet.registered.SdtLegacyPsbtResult AV40signResult ;
-      private GxSimpleCollection<string> AV35psbtsToCombine ;
-      private GeneXus.Programs.wallet.registered.SdtLegacyPsbtResult AV14combineResult ;
-      private GeneXus.Programs.wallet.registered.SdtLegacyPsbtResult GXt_SdtLegacyPsbtResult5 ;
-      private GeneXus.Programs.wallet.registered.SdtLegacyFinalResult AV24finalResult ;
-      private GeneXus.Programs.wallet.registered.SdtLegacyFinalResult GXt_SdtLegacyFinalResult6 ;
+      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtDelegatedUtxo> AV68utxos ;
+      private GeneXus.Programs.wallet.registered.SdtDelegatedSpendResult AV67spendResult ;
+      private GeneXus.Programs.wallet.registered.SdtDelegatedSpendInfo AV66spendInfo ;
       private GeneXus.Programs.wallet.SdtSDTAddressHistory AV33oneTransaction ;
-      private GeneXus.Programs.wallet.registered.SdtLegacyUtxo AV31oneLegacyUtxo ;
+      private GeneXus.Programs.wallet.registered.SdtDelegatedUtxo AV60oneUtxo ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyCreate AV20extKeyCreateChain ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV22extKeyInfoChain ;
-      private bool aP5_broadcast ;
-      private string aP6_warning ;
-      private string aP7_errorTitle ;
-      private string aP8_error ;
+      private bool aP7_broadcast ;
+      private string aP8_errorTitle ;
+      private string aP9_error ;
    }
 
 }

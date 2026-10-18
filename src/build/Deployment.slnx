@@ -1,9 +1,6 @@
 <Solution>
   <Project Path="areceivefromelectrum/areceivefromelectrum.csproj" />
   <Project Path="areceivefromnoster/areceivefromnoster.csproj" />
-  <Project Path="distcrypt.sso.weblogin/distcrypt.sso.weblogin.csproj" />
-  <Project Path="distcrypt.sso.webloginanonymous/distcrypt.sso.webloginanonymous.csproj" />
-  <Project Path="electrum.configelectrumservers/electrum.configelectrumservers.csproj" />
   <Project Path="general.ui.masterunanimosidebar/general.ui.masterunanimosidebar.csproj" />
   <Project Path="GeneXus.Programs.Common/GeneXus.Programs.Common.csproj" />
   <Project Path="GxWebStartup/GxWebStartup.csproj" />
@@ -17,7 +14,6 @@
   <Project Path="wallet.approvespending/wallet.approvespending.csproj" />
   <Project Path="wallet.autheticators/wallet.autheticators.csproj" />
   <Project Path="wallet.balance/wallet.balance.csproj" />
-  <Project Path="wallet.configuration/wallet.configuration.csproj" />
   <Project Path="wallet.configurenostrservers/wallet.configurenostrservers.csproj" />
   <Project Path="wallet.createrestoreadvancebrainwallet/wallet.createrestoreadvancebrainwallet.csproj" />
   <Project Path="wallet.createwallet/wallet.createwallet.csproj" />
@@ -76,6 +72,7 @@
   <Project Path="wallet.showtransactiondetail/wallet.showtransactiondetail.csproj" />
   <Project Path="wallet.tagswc/wallet.tagswc.csproj" />
   <Project Path="wallet.viewnote/wallet.viewnote.csproj" />
+  <Project Path="wallet.walletconfig/wallet.walletconfig.csproj" />
   <Project Path="wallet.wallets/wallet.wallets.csproj" />
   <Project Path="wallet.wwtags/wallet.wwtags.csproj" />
 </Solution>

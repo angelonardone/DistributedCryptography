@@ -65,6 +65,10 @@ namespace GeneXus.Programs.distcrypt {
          GXt_SdtExternalUser1 = AV9externalUser;
          new GeneXus.Programs.distcrypt.getexternaluser(context ).execute( out  GXt_SdtExternalUser1) ;
          AV9externalUser = GXt_SdtExternalUser1;
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV9externalUser.gxTpr_Externaltoken)) )
+         {
+            new GeneXus.Programs.distcrypt.restlogout(context ).execute(  AV13ServerUrlTemplatingVar,  AV9externalUser.gxTpr_Externaltoken, out  AV12logoutOut, out  AV10HttpMessage, out  AV11IsSuccess) ;
+         }
          AV9externalUser.gxTpr_Externaltoken = "";
          AV9externalUser.gxTpr_Userinfo = new();
          new GeneXus.Programs.distcrypt.setexternaluser(context ).execute(  AV9externalUser) ;
@@ -87,12 +91,19 @@ namespace GeneXus.Programs.distcrypt {
          AV8error = "";
          AV9externalUser = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
          GXt_SdtExternalUser1 = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
+         AV13ServerUrlTemplatingVar = new GXProperties();
+         AV12logoutOut = new Sdtlogout__postOutput(context);
+         AV10HttpMessage = new GeneXus.Utils.SdtMessages_Message(context);
          /* GeneXus formulas. */
       }
 
       private string AV8error ;
+      private bool AV11IsSuccess ;
+      private GXProperties AV13ServerUrlTemplatingVar ;
       private GeneXus.Programs.distcrypt.SdtExternalUser AV9externalUser ;
       private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
+      private Sdtlogout__postOutput AV12logoutOut ;
+      private GeneXus.Utils.SdtMessages_Message AV10HttpMessage ;
       private string aP0_error ;
    }
 

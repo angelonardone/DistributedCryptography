@@ -139,7 +139,7 @@ namespace GeneXus.Programs.general.ui {
             AV16SidebarItem.gxTpr_Sidebarsubitems.Add(AV18SubItem, 0);
             AV18SubItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem_SubItem(context);
             AV18SubItem.gxTpr_Id = "Autheticators";
-            AV18SubItem.gxTpr_Title = "Autheticators";
+            AV18SubItem.gxTpr_Title = "Authenticators";
             AV18SubItem.gxTpr_Target = formatLink("wallet.autheticators") ;
             AV16SidebarItem.gxTpr_Sidebarsubitems.Add(AV18SubItem, 0);
             AV18SubItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem_SubItem(context);
@@ -152,6 +152,11 @@ namespace GeneXus.Programs.general.ui {
             AV18SubItem.gxTpr_Title = "Split a secret";
             AV18SubItem.gxTpr_Target = formatLink("shamirss.shamirsecretsharing") ;
             AV16SidebarItem.gxTpr_Sidebarsubitems.Add(AV18SubItem, 0);
+            AV15SidebarItems.Add(AV16SidebarItem, 0);
+            AV16SidebarItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem(context);
+            AV16SidebarItem.gxTpr_Id = "Config";
+            AV16SidebarItem.gxTpr_Title = "Config";
+            AV16SidebarItem.gxTpr_Target = formatLink("wallet.walletconfig") ;
             AV15SidebarItems.Add(AV16SidebarItem, 0);
          }
          AV16SidebarItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem(context);

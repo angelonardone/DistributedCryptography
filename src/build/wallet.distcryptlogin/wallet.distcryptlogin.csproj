@@ -30,6 +30,9 @@
         <Reference Include="WebExtensionToolkit" >
             <HintPath>$(WebBinDirectory)\WebExtensionToolkit.dll</HintPath>
         </Reference>
+        <Reference Include="GeneXus" >
+            <HintPath>$(WebBinDirectory)\GeneXus.dll</HintPath>
+        </Reference>
         <Reference Include="Google.Authenticator" >
             <HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
         </Reference>
@@ -46,22 +49,35 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\distcryptlogin.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\signbip322.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluser.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
-		<Compile Include = "$(WebDirectory)\nostr\getnostrconfigservers.cs" />
-		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluserpublic.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\updateandsaveexternaluser.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\getserverparameters.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
+		<Compile Include = "$(WebDirectory)\openapicommon\callapionce.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\getdefaultserverparameters.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\distcryptlogin.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\logoutexternaluser.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\restlogin.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getlogindistcrypt.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\logintoserver.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\setexternaluser.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\iswalletopen.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluserpublic.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\restlogout.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\openapicommon\processserver.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\getserverbaseurl.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\restgetchallenge.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
+		<Compile Include = "$(WebDirectory)\nostr\getnostrconfigservers.cs" />
 
 	</ItemGroup>
 

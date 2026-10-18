@@ -91,7 +91,7 @@ namespace GeneXus.Programs.wallet.registered {
          AV17walletInfo = GXt_SdtWalletInfo1;
          AV13transactionFee = 0;
          GXt_char2 = AV8error;
-         new GeneXus.Programs.wallet.registered.buildtransactiontimebackup(context ).execute(  AV9group_sdt,  AV13transactionFee,  AV17walletInfo.gxTpr_Networktype,  AV11sendCoins,  AV12sendTo, ref  AV14transactionsToSend, out  AV16virtualSize, out  AV10hexTransaction, out  AV15verified, out  GXt_char2) ;
+         new GeneXus.Programs.wallet.registered.buildtransactiontimebackup(context ).execute(  AV9group_sdt,  true,  AV13transactionFee,  AV17walletInfo.gxTpr_Networktype,  AV11sendCoins,  AV12sendTo, ref  AV14transactionsToSend, out  AV16virtualSize, out  AV10hexTransaction, out  AV15verified, out  GXt_char2) ;
          AV8error = GXt_char2;
          AV10hexTransaction = "";
          cleanup();

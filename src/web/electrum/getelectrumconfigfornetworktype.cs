@@ -62,22 +62,24 @@ namespace GeneXus.Programs.electrum {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         GXt_objcol_SdtConnectionParameters_ConnectionParametersItem1 = AV9ConnectionParameters;
-         new GeneXus.Programs.electrum.getelectrumconfigservers(context ).execute( out  GXt_objcol_SdtConnectionParameters_ConnectionParametersItem1) ;
-         AV9ConnectionParameters = GXt_objcol_SdtConnectionParameters_ConnectionParametersItem1;
-         GXt_SdtWallet2 = AV12wallet;
-         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet2) ;
-         AV12wallet = GXt_SdtWallet2;
-         AV14GXV1 = 1;
-         while ( AV14GXV1 <= AV9ConnectionParameters.Count )
+         GXt_SdtWallet1 = AV12wallet;
+         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet1) ;
+         AV12wallet = GXt_SdtWallet1;
+         if ( new GeneXus.Programs.wallet.iswalletopen(context).executeUdp( ) )
          {
-            AV11oneConnParameter = ((GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)AV9ConnectionParameters.Item(AV14GXV1));
-            if ( StringUtil.StrCmp(AV11oneConnParameter.gxTpr_Networktype, AV12wallet.gxTpr_Networktype) == 0 )
+            GXt_char2 = AV15stored;
+            new GeneXus.Programs.wallet.readjsonencfile(context ).execute(  "electrum.conf", out  AV14error, out  GXt_char2) ;
+            AV15stored = GXt_char2;
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV14error)) && ! String.IsNullOrEmpty(StringUtil.RTrim( AV15stored)) )
             {
-               AV13walletConnParameter = (GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem)(AV11oneConnParameter.Clone());
-               if (true) break;
+               AV13walletConnParameter.FromJSonString(AV15stored, null);
             }
-            AV14GXV1 = (int)(AV14GXV1+1);
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13walletConnParameter.gxTpr_Hostname)) || ( StringUtil.StrCmp(AV13walletConnParameter.gxTpr_Networktype, AV12wallet.gxTpr_Networktype) != 0 ) )
+         {
+            GXt_SdtConnectionParameters_ConnectionParametersItem3 = AV13walletConnParameter;
+            new GeneXus.Programs.electrum.getdefaultelectrumconfig(context ).execute( out  GXt_SdtConnectionParameters_ConnectionParametersItem3) ;
+            AV13walletConnParameter = GXt_SdtConnectionParameters_ConnectionParametersItem3;
          }
          cleanup();
       }
@@ -95,21 +97,22 @@ namespace GeneXus.Programs.electrum {
       public override void initialize( )
       {
          AV13walletConnParameter = new GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem(context);
-         AV9ConnectionParameters = new GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem>( context, "ConnectionParametersItem", "distributedcryptography");
-         GXt_objcol_SdtConnectionParameters_ConnectionParametersItem1 = new GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem>( context, "ConnectionParametersItem", "distributedcryptography");
          AV12wallet = new GeneXus.Programs.wallet.SdtWallet(context);
-         GXt_SdtWallet2 = new GeneXus.Programs.wallet.SdtWallet(context);
-         AV11oneConnParameter = new GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem(context);
+         GXt_SdtWallet1 = new GeneXus.Programs.wallet.SdtWallet(context);
+         AV15stored = "";
+         GXt_char2 = "";
+         AV14error = "";
+         GXt_SdtConnectionParameters_ConnectionParametersItem3 = new GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem(context);
          /* GeneXus formulas. */
       }
 
-      private int AV14GXV1 ;
+      private string GXt_char2 ;
+      private string AV14error ;
+      private string AV15stored ;
       private GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem AV13walletConnParameter ;
-      private GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem> AV9ConnectionParameters ;
-      private GXBaseCollection<GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem> GXt_objcol_SdtConnectionParameters_ConnectionParametersItem1 ;
       private GeneXus.Programs.wallet.SdtWallet AV12wallet ;
-      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet2 ;
-      private GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem AV11oneConnParameter ;
+      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
+      private GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem GXt_SdtConnectionParameters_ConnectionParametersItem3 ;
       private GeneXus.Programs.electrum.SdtConnectionParameters_ConnectionParametersItem aP0_walletConnParameter ;
    }
 

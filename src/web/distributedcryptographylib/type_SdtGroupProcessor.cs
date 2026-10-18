@@ -78,65 +78,68 @@ namespace GeneXus.Programs.distributedcryptographylib {
          return returncreatelegacyaddress ;
       }
 
-      public string buildlegacypsbt( string gxTp_utxosJson ,
-                                     string gxTp_sendTo ,
-                                     string gxTp_amountBtc ,
-                                     string gxTp_changeAddr ,
-                                     string gxTp_feeBtc ,
-                                     bool gxTp_sendAll ,
-                                     int gxTp_sequence ,
-                                     bool gxTp_isChange ,
+      public string buildlegacyspend( string gxTp_utxosJson ,
+                                      string gxTp_sendTo ,
+                                      string gxTp_amountBtc ,
+                                      string gxTp_changeAddr ,
+                                      string gxTp_feeBtc ,
+                                      string gxTp_percentages ,
+                                      bool gxTp_sendAll ,
+                                      string gxTp_networkType )
+      {
+         string returnbuildlegacyspend;
+         if ( DistributedCryptographyLib_GroupProcessor_externalReference == null )
+         {
+            DistributedCryptographyLib_GroupProcessor_externalReference = new DistricutedCryptographyLib.GroupProcessor();
+         }
+         returnbuildlegacyspend = "";
+         returnbuildlegacyspend = (string)(DistributedCryptographyLib_GroupProcessor_externalReference.BuildLegacySpend(gxTp_utxosJson, gxTp_sendTo, gxTp_amountBtc, gxTp_changeAddr, gxTp_feeBtc, gxTp_percentages, gxTp_sendAll, gxTp_networkType));
+         return returnbuildlegacyspend ;
+      }
+
+      public string signlegacyspend( string gxTp_bundleJson ,
+                                     string gxTp_receivingExtPrivKey ,
+                                     string gxTp_changeExtPrivKey ,
+                                     int gxTp_finalPercent ,
                                      string gxTp_networkType )
       {
-         string returnbuildlegacypsbt;
+         string returnsignlegacyspend;
          if ( DistributedCryptographyLib_GroupProcessor_externalReference == null )
          {
             DistributedCryptographyLib_GroupProcessor_externalReference = new DistricutedCryptographyLib.GroupProcessor();
          }
-         returnbuildlegacypsbt = "";
-         returnbuildlegacypsbt = (string)(DistributedCryptographyLib_GroupProcessor_externalReference.BuildLegacyPsbt(gxTp_utxosJson, gxTp_sendTo, gxTp_amountBtc, gxTp_changeAddr, gxTp_feeBtc, gxTp_sendAll, gxTp_sequence, gxTp_isChange, gxTp_networkType));
-         return returnbuildlegacypsbt ;
+         returnsignlegacyspend = "";
+         returnsignlegacyspend = (string)(DistributedCryptographyLib_GroupProcessor_externalReference.SignLegacySpend(gxTp_bundleJson, gxTp_receivingExtPrivKey, gxTp_changeExtPrivKey, gxTp_finalPercent, gxTp_networkType));
+         return returnsignlegacyspend ;
       }
 
-      public string signlegacypsbt( string gxTp_psbtBase64 ,
-                                    int gxTp_sequence ,
-                                    string gxTp_signerExtPrivKey ,
-                                    string gxTp_networkType )
+      public string finalizelegacyspend( string gxTp_bundleJson ,
+                                         int gxTp_percent ,
+                                         string gxTp_networkType )
       {
-         string returnsignlegacypsbt;
+         string returnfinalizelegacyspend;
          if ( DistributedCryptographyLib_GroupProcessor_externalReference == null )
          {
             DistributedCryptographyLib_GroupProcessor_externalReference = new DistricutedCryptographyLib.GroupProcessor();
          }
-         returnsignlegacypsbt = "";
-         returnsignlegacypsbt = (string)(DistributedCryptographyLib_GroupProcessor_externalReference.SignLegacyPsbt(gxTp_psbtBase64, gxTp_sequence, gxTp_signerExtPrivKey, gxTp_networkType));
-         return returnsignlegacypsbt ;
+         returnfinalizelegacyspend = "";
+         returnfinalizelegacyspend = (string)(DistributedCryptographyLib_GroupProcessor_externalReference.FinalizeLegacySpend(gxTp_bundleJson, gxTp_percent, gxTp_networkType));
+         return returnfinalizelegacyspend ;
       }
 
-      public string combinelegacypsbts( string gxTp_psbtsJson ,
-                                        string gxTp_networkType )
+      public string describelegacyspend( string gxTp_bundleJson ,
+                                         string gxTp_myReceivingExtPubKey ,
+                                         string gxTp_myChangeExtPubKey ,
+                                         string gxTp_networkType )
       {
-         string returncombinelegacypsbts;
+         string returndescribelegacyspend;
          if ( DistributedCryptographyLib_GroupProcessor_externalReference == null )
          {
             DistributedCryptographyLib_GroupProcessor_externalReference = new DistricutedCryptographyLib.GroupProcessor();
          }
-         returncombinelegacypsbts = "";
-         returncombinelegacypsbts = (string)(DistributedCryptographyLib_GroupProcessor_externalReference.CombineLegacyPsbts(gxTp_psbtsJson, gxTp_networkType));
-         return returncombinelegacypsbts ;
-      }
-
-      public string finalizelegacypsbt( string gxTp_psbtBase64 ,
-                                        string gxTp_networkType )
-      {
-         string returnfinalizelegacypsbt;
-         if ( DistributedCryptographyLib_GroupProcessor_externalReference == null )
-         {
-            DistributedCryptographyLib_GroupProcessor_externalReference = new DistricutedCryptographyLib.GroupProcessor();
-         }
-         returnfinalizelegacypsbt = "";
-         returnfinalizelegacypsbt = (string)(DistributedCryptographyLib_GroupProcessor_externalReference.FinalizeLegacyPsbt(gxTp_psbtBase64, gxTp_networkType));
-         return returnfinalizelegacypsbt ;
+         returndescribelegacyspend = "";
+         returndescribelegacyspend = (string)(DistributedCryptographyLib_GroupProcessor_externalReference.DescribeLegacySpend(gxTp_bundleJson, gxTp_myReceivingExtPubKey, gxTp_myChangeExtPubKey, gxTp_networkType));
+         return returndescribelegacyspend ;
       }
 
       public string getlegacydescriptor( bool gxTp_isChange ,

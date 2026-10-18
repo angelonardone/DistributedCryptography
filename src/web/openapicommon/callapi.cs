@@ -116,65 +116,31 @@ namespace GeneXus.Programs.openapicommon {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         /* User Code */
-          System.Net.ServicePointManager.SecurityProtocol = System.Net.ServicePointManager.SecurityProtocol | System.Net.SecurityProtocolType.Tls12;
-         AV9httpClient.Timeout = AV18RequestSecondsTimeout;
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11ContentType)) )
+         GXt_SdtApiResponse1 = AV8ApiResponse;
+         new GeneXus.Programs.openapicommon.callapionce(context ).execute(  AV12Method,  AV20Url,  AV28VarHeaders,  AV22VarPathParams,  AV24VarQueryParams,  AV26FileFormParams,  AV13VarFormParams,  AV14PostData,  AV11ContentType,  AV19RetryCount,  AV18RequestSecondsTimeout, out  GXt_SdtApiResponse1) ;
+         AV8ApiResponse = GXt_SdtApiResponse1;
+         if ( ( AV8ApiResponse.gxTpr_Statuscode == 401 ) && ! String.IsNullOrEmpty(StringUtil.RTrim( AV28VarHeaders.Get("Authorization"))) )
          {
-            AV9httpClient.AddHeader("Content-Type", "application/json; char-set=utf-8");
+            GXt_char2 = AV32loginError;
+            new GeneXus.Programs.distcrypt.logintoserver(context ).execute( out  GXt_char2) ;
+            AV32loginError = GXt_char2;
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV32loginError)) )
+            {
+               GXt_SdtExternalUser3 = AV31externalUser;
+               new GeneXus.Programs.distcrypt.getexternaluser(context ).execute( out  GXt_SdtExternalUser3) ;
+               AV31externalUser = GXt_SdtExternalUser3;
+               AV29VarProperty = AV28VarHeaders.GetFirst();
+               while ( ! AV28VarHeaders.Eof() )
+               {
+                  AV33retryHeaders.Set(AV29VarProperty.Key, AV29VarProperty.Value);
+                  AV29VarProperty = AV28VarHeaders.GetNext();
+               }
+               AV33retryHeaders.Set("Authorization", StringUtil.Trim( AV31externalUser.gxTpr_Externaltoken));
+               GXt_SdtApiResponse1 = AV8ApiResponse;
+               new GeneXus.Programs.openapicommon.callapionce(context ).execute(  AV12Method,  AV20Url,  AV33retryHeaders,  AV22VarPathParams,  AV24VarQueryParams,  AV26FileFormParams,  AV13VarFormParams,  AV14PostData,  AV11ContentType,  AV19RetryCount,  AV18RequestSecondsTimeout, out  GXt_SdtApiResponse1) ;
+               AV8ApiResponse = GXt_SdtApiResponse1;
+            }
          }
-         else
-         {
-            AV9httpClient.AddHeader("Content-Type", AV11ContentType);
-         }
-         AV29VarProperty = AV28VarHeaders.GetFirst();
-         while ( ! AV28VarHeaders.Eof() )
-         {
-            AV9httpClient.AddHeader(AV29VarProperty.Key, AV29VarProperty.Value);
-            AV29VarProperty = AV28VarHeaders.GetNext();
-         }
-         AV29VarProperty = AV13VarFormParams.GetFirst();
-         while ( ! AV13VarFormParams.Eof() )
-         {
-            AV9httpClient.AddVariable(AV29VarProperty.Key, AV29VarProperty.Value);
-            AV29VarProperty = AV13VarFormParams.GetNext();
-         }
-         if ( StringUtil.StrCmp(AV14PostData, AV15EmptyPostData.ToJSonString()) != 0 )
-         {
-            AV9httpClient.AddString(AV14PostData);
-         }
-         AV27File = AV26FileFormParams.GetFirst();
-         while ( ! AV26FileFormParams.Eof() )
-         {
-            AV9httpClient.AddFile(AV27File.Value, AV27File.Key);
-            AV27File = AV26FileFormParams.GetNext();
-         }
-         AV21UrlWithParms = AV20Url;
-         AV17RegularExpression = "(\\{(\\w+?)\\})";
-         AV16RegExMatchCollection = GxRegex.Matches(AV21UrlWithParms,AV17RegularExpression);
-         AV31GXV1 = 1;
-         while ( AV31GXV1 <= AV16RegExMatchCollection.Count )
-         {
-            AV10RegExMatch = ((GxRegexMatch)AV16RegExMatchCollection.Item(AV31GXV1));
-            AV23VarPathValue = AV22VarPathParams.Get(((string)AV10RegExMatch.Groups.Item(2)));
-            AV21UrlWithParms = StringUtil.StringReplace( AV21UrlWithParms, AV10RegExMatch.Value, AV23VarPathValue);
-            AV31GXV1 = (int)(AV31GXV1+1);
-         }
-         AV25VarQueryValue = AV24VarQueryParams.GetFirst();
-         while ( ! AV24VarQueryParams.Eof() )
-         {
-            AV30QueryParams += StringUtil.Format( "%1=%2&", AV25VarQueryValue.Key, AV25VarQueryValue.Value, "", "", "", "", "", "", "");
-            AV25VarQueryValue = AV24VarQueryParams.GetNext();
-         }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV30QueryParams)) )
-         {
-            AV21UrlWithParms += "?" + AV30QueryParams;
-         }
-         AV9httpClient.Execute(AV12Method, AV21UrlWithParms);
-         AV8ApiResponse.gxTpr_Content = AV9httpClient.ToString();
-         AV8ApiResponse.gxTpr_Statuscode = AV9httpClient.StatusCode;
-         AV8ApiResponse.gxTpr_Errorcode = AV9httpClient.ErrCode;
-         AV8ApiResponse.gxTpr_Errormessage = AV9httpClient.ReasonLine;
          cleanup();
       }
 
@@ -191,44 +157,35 @@ namespace GeneXus.Programs.openapicommon {
       public override void initialize( )
       {
          AV8ApiResponse = new GeneXus.Programs.openapicommon.SdtApiResponse(context);
-         AV9httpClient = new GxHttpClient( context);
+         AV32loginError = "";
+         GXt_char2 = "";
+         AV31externalUser = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
+         GXt_SdtExternalUser3 = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
          AV29VarProperty = new GxKeyValuePair();
-         AV15EmptyPostData = new GXProperties();
-         AV27File = new GxKeyValuePair();
-         AV21UrlWithParms = "";
-         AV17RegularExpression = "";
-         AV16RegExMatchCollection = new GxUnknownObjectCollection();
-         AV10RegExMatch = new GxRegexMatch();
-         AV23VarPathValue = "";
-         AV25VarQueryValue = new GxKeyValuePair();
-         AV30QueryParams = "";
+         AV33retryHeaders = new GXProperties();
+         GXt_SdtApiResponse1 = new GeneXus.Programs.openapicommon.SdtApiResponse(context);
          /* GeneXus formulas. */
       }
 
       private short AV19RetryCount ;
       private short AV18RequestSecondsTimeout ;
-      private int AV31GXV1 ;
       private string AV12Method ;
       private string AV11ContentType ;
-      private string AV17RegularExpression ;
-      private string AV23VarPathValue ;
-      private string AV30QueryParams ;
+      private string AV32loginError ;
+      private string GXt_char2 ;
       private string AV20Url ;
       private string AV14PostData ;
-      private string AV21UrlWithParms ;
-      private GXProperties AV15EmptyPostData ;
-      private GxHttpClient AV9httpClient ;
       private GXProperties AV28VarHeaders ;
       private GXProperties AV22VarPathParams ;
       private GXProperties AV24VarQueryParams ;
       private GXProperties AV26FileFormParams ;
       private GXProperties AV13VarFormParams ;
+      private GXProperties AV33retryHeaders ;
       private GxKeyValuePair AV29VarProperty ;
-      private GxKeyValuePair AV27File ;
-      private GxKeyValuePair AV25VarQueryValue ;
-      private GxRegexMatch AV10RegExMatch ;
-      private GxUnknownObjectCollection AV16RegExMatchCollection ;
       private GeneXus.Programs.openapicommon.SdtApiResponse AV8ApiResponse ;
+      private GeneXus.Programs.distcrypt.SdtExternalUser AV31externalUser ;
+      private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser3 ;
+      private GeneXus.Programs.openapicommon.SdtApiResponse GXt_SdtApiResponse1 ;
       private GeneXus.Programs.openapicommon.SdtApiResponse aP11_ApiResponse ;
    }
 

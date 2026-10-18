@@ -49,37 +49,48 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\timewalletconfig.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluser.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\updateandsaveexternaluser.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\getserverparameters.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\updategroup.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\registered\preparetimevault.cs" />
+		<Compile Include = "$(WebDirectory)\openapicommon\callapionce.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\getdefaultserverparameters.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\updategrouponlocalfiles.cs" />
 		<Compile Include = "$(WebDirectory)\apibaseurlauth.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\getnewesttimeconstrain.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getlogindistcrypt.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\logintoserver.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\setexternaluser.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\iswalletopen.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\registered\creategroup.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\getgroupeditview.cs" />
 		<Compile Include = "$(WebDirectory)\desktopappservicesrestcreategrouppost.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\registered\isgroupreadytoactivate.cs" />
-		<Compile Include = "$(WebDirectory)\openapicommon\varchartojsonformat.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\restlogin.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\savetimevaultdate.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\creategroup.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\isgroupreadytoactivate.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\getlocalgroupforrow.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\processserver.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getlastjasonencritionkey.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\getserverbaseurl.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\restgetchallenge.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\callapi.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\registered\getnewesttimeconstrain.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\signbip322.cs" />
 		<Compile Include = "$(WebDirectory)\desktopappservicesrestupdategrouppost.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\registered\timewalletconfig.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\preparetimevault.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\getlocalgroupbyid.cs" />
+		<Compile Include = "$(WebDirectory)\openapicommon\varchartojsonformat.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\setgroupedit.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\registered\updategrouponlocalfiles.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
 
 	</ItemGroup>
 

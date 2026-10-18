@@ -82,11 +82,11 @@
 		<Compile Include = "$(WebDirectory)\nostr\getnostrconfigservers.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\createextkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
-		<Compile Include = "$(WebDirectory)\distcrypt\sso\createandsaveexternaluser.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setdefaultjasonkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\readcontactchat.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setlogindistcrypt.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setfileenckey.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\createandsaveexternaluser.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\parse_serialized_extended_key.cs" />
 
 	</ItemGroup>

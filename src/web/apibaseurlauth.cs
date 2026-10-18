@@ -66,19 +66,11 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         GXt_SdtWallet1 = AV11wallet;
-         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet1) ;
-         AV11wallet = GXt_SdtWallet1;
          if ( ( StringUtil.StrCmp(AV9PathAndMethod, "/getUserGroups - GET") == 0 ) || ( StringUtil.StrCmp(AV9PathAndMethod, "/getUserPubKey - GET") == 0 ) || ( StringUtil.StrCmp(AV9PathAndMethod, "/getUserContacts - GET") == 0 ) || ( StringUtil.StrCmp(AV9PathAndMethod, "/getGroup - GET") == 0 ) || ( StringUtil.StrCmp(AV9PathAndMethod, "/getMesssages - GET") == 0 ) || ( StringUtil.StrCmp(AV9PathAndMethod, "/createContact - POST") == 0 ) || ( StringUtil.StrCmp(AV9PathAndMethod, "/updateContact - POST") == 0 ) || ( StringUtil.StrCmp(AV9PathAndMethod, "/deleteContact - POST") == 0 ) || ( StringUtil.StrCmp(AV9PathAndMethod, "/sendMesage - POST") == 0 ) || ( StringUtil.StrCmp(AV9PathAndMethod, "/deleteMesage - POST") == 0 ) || ( StringUtil.StrCmp(AV9PathAndMethod, "/createGroup - POST") == 0 ) || ( StringUtil.StrCmp(AV9PathAndMethod, "/updateGroup - POST") == 0 ) || ( StringUtil.StrCmp(AV9PathAndMethod, "/deleteGroup - POST") == 0 ) )
          {
-            if ( StringUtil.StrCmp(AV11wallet.gxTpr_Networktype, "MainNet") == 0 )
-            {
-               AV8BaseURL = "http://auth.distributedcryptography.com//DesktopApp/services/rest";
-            }
-            else
-            {
-               AV8BaseURL = "http://auth-testnet.distributedcryptography.com//DesktopApp/services/rest";
-            }
+            GXt_char1 = AV8BaseURL;
+            new GeneXus.Programs.distcrypt.getserverbaseurl(context ).execute( out  GXt_char1) ;
+            AV8BaseURL = GXt_char1 + "//DesktopApp/services/rest";
          }
          cleanup();
       }
@@ -96,15 +88,13 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV8BaseURL = "";
-         AV11wallet = new GeneXus.Programs.wallet.SdtWallet(context);
-         GXt_SdtWallet1 = new GeneXus.Programs.wallet.SdtWallet(context);
+         GXt_char1 = "";
          /* GeneXus formulas. */
       }
 
       private string AV9PathAndMethod ;
+      private string GXt_char1 ;
       private string AV8BaseURL ;
-      private GeneXus.Programs.wallet.SdtWallet AV11wallet ;
-      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
       private string aP1_BaseURL ;
    }
 

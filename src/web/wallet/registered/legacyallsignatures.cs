@@ -1293,6 +1293,7 @@ namespace GeneXus.Programs.wallet.registered {
          }
          if ( AV5strFound > 0 )
          {
+            new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
             this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "RefreshSmartGroup", new Object[] {}, true);
          }
       }
@@ -1494,7 +1495,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610817252730", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610161764920", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1510,7 +1511,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/legacyallsignatures.js", "?202610817252730", false, true, false);
+         context.AddJavascriptSource("wallet/registered/legacyallsignatures.js", "?202610161764920", false, true, false);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
          /* End function include_jscripts */
       }
@@ -1628,7 +1629,7 @@ namespace GeneXus.Programs.wallet.registered {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 9,'" + sPrefix + "',false,'" + sGXsfl_6_idx + "',6)\"";
             ROClassString = "Attribute";
-            GridsignaturesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlsigneddatetime_Internalname,context.localUtil.TToC( ((GeneXus.Programs.wallet.registered.SdtLegacySignatureRow)AV22signatureRows.Item(AV24GXV1)).gxTpr_Signeddatetime, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.wallet.registered.SdtLegacySignatureRow)AV22signatureRows.Item(AV24GXV1)).gxTpr_Signeddatetime, "99/99/99 99:99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',8,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',8,12,'eng',false,0);"+";gx.evt.onblur(this,9);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlsigneddatetime_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlsigneddatetime_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+            GridsignaturesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlsigneddatetime_Internalname,context.localUtil.TToC( ((GeneXus.Programs.wallet.registered.SdtLegacySignatureRow)AV22signatureRows.Item(AV24GXV1)).gxTpr_Signeddatetime, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( ((GeneXus.Programs.wallet.registered.SdtLegacySignatureRow)AV22signatureRows.Item(AV24GXV1)).gxTpr_Signeddatetime, "99/99/99 99:99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',8,12,'eng',false,1);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',8,12,'eng',false,1);"+";gx.evt.onblur(this,9);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlsigneddatetime_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlsigneddatetime_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
             /* Subfile cell */
             if ( GridsignaturesContainer.GetWrapped() == 1 )
             {
@@ -1680,7 +1681,7 @@ namespace GeneXus.Programs.wallet.registered {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 14,'" + sPrefix + "',false,'" + sGXsfl_6_idx + "',6)\"";
             ROClassString = "Attribute";
-            GridsignaturesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSign_Internalname,StringUtil.RTrim( AV18sign),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,14);\"","'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'SIGN TRANSACTION\\'."+sGXsfl_6_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSign_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavSign_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridsignaturesRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSign_Internalname,StringUtil.RTrim( AV18sign),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,14);\"","'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'SIGN TRANSACTION\\'."+sGXsfl_6_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSign_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"no-wrap",(string)"",(short)-1,(int)edtavSign_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)6,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             send_integrity_lvl_hashes3D2( ) ;
             GridsignaturesContainer.AddRow(GridsignaturesRow);
             nGXsfl_6_idx = ((subGridsignatures_Islastpage==1)&&(nGXsfl_6_idx+1>subGridsignatures_fnc_Recordsperpage( )) ? 1 : nGXsfl_6_idx+1);

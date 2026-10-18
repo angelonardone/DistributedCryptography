@@ -83,9 +83,9 @@ namespace GeneXus.Programs.qrcoder {
             /* User Code */
              QRCoder.QRCodeData qrCodeData = qrGenerator.CreateQrCode(texto, QRCoder.QRCodeGenerator.ECCLevel.Q);
             /* User Code */
-             QRCoder.Base64QRCode qrCode = new QRCoder.Base64QRCode(qrCodeData);
+             QRCoder.PngByteQRCode qrCode = new QRCoder.PngByteQRCode(qrCodeData);
             /* User Code */
-             AV13base64text = qrCode.GetGraphic(20);
+             AV13base64text = System.Convert.ToBase64String(qrCode.GetGraphic(20, true));
             /* User Code */
             	}
             /* User Code */

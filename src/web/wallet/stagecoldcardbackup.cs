@@ -72,6 +72,12 @@ namespace GeneXus.Programs.wallet {
          /* GeneXus formulas */
          /* Output device settings */
          new GeneXus.Programs.wallet.discardcoldcardbackup(context ).execute( ) ;
+         if ( ! new GeneXus.Programs.wallet.islocalrequest(context).executeUdp( ) )
+         {
+            AV9error = "Wallets are created and restored only on the computer where the application runs, at http://localhost";
+            cleanup();
+            if (true) return;
+         }
          GXt_char1 = AV9error;
          new GeneXus.Programs.distributedcrypto.decryptcoldcardbackup(context ).execute(  StringUtil.Trim( AV8coldCardPassword),  AV12uploadedFile, out  AV10mnemonic, out  GXt_char1) ;
          AV9error = GXt_char1;

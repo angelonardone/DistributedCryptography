@@ -1129,7 +1129,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610714152727", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610161765763", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1145,7 +1145,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/editnote.js", "?202610714152727", false, true, false);
+         context.AddJavascriptSource("wallet/editnote.js", "?202610161765763", false, true, false);
          context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true, false);
          context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true, false);
          /* End function include_jscripts */

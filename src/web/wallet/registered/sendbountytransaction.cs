@@ -93,7 +93,7 @@ namespace GeneXus.Programs.wallet.registered {
          new GeneXus.Programs.wallet.getwalletinfo(context ).execute( out  GXt_SdtWalletInfo1) ;
          AV20walletInfo = GXt_SdtWalletInfo1;
          GXt_char2 = AV8error;
-         new GeneXus.Programs.wallet.registered.buildtransactiontimebackup(context ).execute(  AV10group_sdt,  AV12manaulFee,  AV20walletInfo.gxTpr_Networktype,  AV13sendCoins,  AV14sendTo, ref  AV17transactionsToSend, out  AV19virtualSize, out  AV11hexTransaction, out  AV18verified, out  GXt_char2) ;
+         new GeneXus.Programs.wallet.registered.buildtransactiontimebackup(context ).execute(  AV10group_sdt,  false,  AV12manaulFee,  AV20walletInfo.gxTpr_Networktype,  AV13sendCoins,  AV14sendTo, ref  AV17transactionsToSend, out  AV19virtualSize, out  AV11hexTransaction, out  AV18verified, out  GXt_char2) ;
          AV8error = GXt_char2;
          new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
@@ -115,7 +115,7 @@ namespace GeneXus.Programs.wallet.registered {
          AV11hexTransaction = "";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
          {
-            AV9errorTitle = "There was a problem submiting the transaction: ";
+            AV9errorTitle = "There was a problem submitting the transaction: ";
             cleanup();
             if (true) return;
          }

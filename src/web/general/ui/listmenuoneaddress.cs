@@ -62,6 +62,19 @@ namespace GeneXus.Programs.general.ui {
       {
          /* GeneXus formulas */
          /* Output device settings */
+         if ( new GeneXus.Programs.wallet.iswalletopen(context).executeUdp( ) )
+         {
+            AV12Name = "Config";
+            AV10description = "Config";
+            AV13Link = formatLink("wallet.walletconfig") ;
+            /* Execute user subroutine: 'ADDPROGRAM' */
+            S111 ();
+            if ( returnInSub )
+            {
+               cleanup();
+               if (true) return;
+            }
+         }
          AV12Name = "ReturnToWallets";
          AV10description = "Return to Wallets";
          AV13Link = formatLink("wallet.returntowallets") ;

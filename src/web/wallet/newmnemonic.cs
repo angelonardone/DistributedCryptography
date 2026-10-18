@@ -83,6 +83,12 @@ namespace GeneXus.Programs.wallet {
       {
          /* GeneXus formulas */
          /* Output device settings */
+         if ( ! new GeneXus.Programs.wallet.islocalrequest(context).executeUdp( ) )
+         {
+            AV8error = "Wallets are created and restored only on the computer where the application runs, at http://localhost";
+            cleanup();
+            if (true) return;
+         }
          AV9extKeyCreate.gxTpr_Networktype = AV14networkType;
          AV9extKeyCreate.gxTpr_Createextkeytype = 20;
          AV9extKeyCreate.gxTpr_Mnemonicnumberwords = AV12mnemonicNumberWords;

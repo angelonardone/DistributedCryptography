@@ -542,7 +542,7 @@ namespace GeneXus.Programs.wallet {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 32,'',false,'" + sGXsfl_57_idx + "',0)\"";
             context.WriteHtmlText( "<div id=\""+edtavCtldatetime_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-            GxWebStd.gx_single_line_edit( context, edtavCtldatetime_Internalname, context.localUtil.TToC( AV15showTransactionItem.gxTpr_Datetime, 10, 8, 1, 2, "/", ":", " "), context.localUtil.Format( AV15showTransactionItem.gxTpr_Datetime, "99/99/99 99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onblur(this,32);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtldatetime_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtldatetime_Enabled, 0, "text", "", 17, "chr", 1, "row", 17, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Wallet/ShowTransactionDetail.htm");
+            GxWebStd.gx_single_line_edit( context, edtavCtldatetime_Internalname, context.localUtil.TToC( AV15showTransactionItem.gxTpr_Datetime, 10, 8, 1, 2, "/", ":", " "), context.localUtil.Format( AV15showTransactionItem.gxTpr_Datetime, "99/99/99 99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,1);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,1);"+";gx.evt.onblur(this,32);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtldatetime_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtldatetime_Enabled, 0, "text", "", 17, "chr", 1, "row", 17, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Wallet/ShowTransactionDetail.htm");
             GxWebStd.gx_bitmap( context, edtavCtldatetime_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtavCtldatetime_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "none", "HLP_Wallet/ShowTransactionDetail.htm");
             context.WriteHtmlTextNl( "</div>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -619,7 +619,7 @@ namespace GeneXus.Programs.wallet {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 54,'',false,'" + sGXsfl_57_idx + "',0)\"";
             context.WriteHtmlText( "<div id=\""+edtavCtldatetime2_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-            GxWebStd.gx_single_line_edit( context, edtavCtldatetime2_Internalname, context.localUtil.TToC( AV15showTransactionItem.gxTpr_Usedin.gxTpr_Datetime, 10, 8, 1, 2, "/", ":", " "), context.localUtil.Format( AV15showTransactionItem.gxTpr_Usedin.gxTpr_Datetime, "99/99/99 99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onblur(this,54);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtldatetime2_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtldatetime2_Enabled, 0, "text", "", 17, "chr", 1, "row", 17, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Wallet/ShowTransactionDetail.htm");
+            GxWebStd.gx_single_line_edit( context, edtavCtldatetime2_Internalname, context.localUtil.TToC( AV15showTransactionItem.gxTpr_Usedin.gxTpr_Datetime, 10, 8, 1, 2, "/", ":", " "), context.localUtil.Format( AV15showTransactionItem.gxTpr_Usedin.gxTpr_Datetime, "99/99/99 99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,1);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,1);"+";gx.evt.onblur(this,54);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCtldatetime2_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavCtldatetime2_Enabled, 0, "text", "", 17, "chr", 1, "row", 17, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Wallet/ShowTransactionDetail.htm");
             GxWebStd.gx_bitmap( context, edtavCtldatetime2_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtavCtldatetime2_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "none", "HLP_Wallet/ShowTransactionDetail.htm");
             context.WriteHtmlTextNl( "</div>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1339,7 +1339,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610714164627", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610161782278", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1356,7 +1356,7 @@ namespace GeneXus.Programs.wallet {
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("wallet/showtransactiondetail.js", "?202610714164627", false, true, false);
+         context.AddJavascriptSource("wallet/showtransactiondetail.js", "?202610161782278", false, true, false);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
          /* End function include_jscripts */
       }

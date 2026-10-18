@@ -240,7 +240,7 @@ namespace GeneXus.Programs.wallet {
                         new GeneXus.Programs.wallet.setlogindistcrypt(context ).execute( ) ;
                         new GeneXus.Programs.wallet.setfileenckey(context ).execute( ) ;
                         GXt_char5 = AV8auxError;
-                        new GeneXus.Programs.distcrypt.sso.createandsaveexternaluser(context ).execute( out  GXt_char5) ;
+                        new GeneXus.Programs.distcrypt.createandsaveexternaluser(context ).execute( out  GXt_char5) ;
                         AV8auxError = GXt_char5;
                         GXt_char5 = AV8auxError;
                         new GeneXus.Programs.hsm.inithsm(context ).execute( out  GXt_char5) ;

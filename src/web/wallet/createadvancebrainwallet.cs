@@ -101,13 +101,78 @@ namespace GeneXus.Programs.wallet {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV20salt = StringUtil.Trim( StringUtil.Str( (decimal)(AV24year), 4, 0)) + StringUtil.Trim( StringUtil.Str( (decimal)(AV16month), 4, 0)) + StringUtil.Trim( StringUtil.Str( (decimal)(AV10day), 4, 0)) + StringUtil.Trim( StringUtil.Str( AV9chosenPIN, 28, 0));
          GXt_char1 = AV11error;
-         new GeneXus.Programs.distributedcrypto.argon2derivekey512(context ).execute(  AV18newPass,  AV20salt, out  AV21seedForKey, out  GXt_char1) ;
+         new GeneXus.Programs.wallet.checkwalletcreation(context ).execute(  AV23walletName, out  GXt_char1) ;
+         AV11error = GXt_char1;
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
+         {
+            cleanup();
+            if (true) return;
+         }
+         AV30validDate = false;
+         /* User Code */
+          try
+         /* User Code */
+          {
+         /* User Code */
+              string gxTyped = (AV18newPass ?? "").Trim();
+         /* User Code */
+              AV29phraseLength = (short)System.Math.Min(gxTyped.Length, 9999);
+         /* User Code */
+              AV26differentChars = (short)System.Math.Min(new System.Collections.Generic.HashSet<char>(gxTyped).Count, 9999);
+         /* User Code */
+              AV28phrase = gxTyped.Normalize(System.Text.NormalizationForm.FormKD);
+         /* User Code */
+              System.DateTime gxDate = System.DateTime.MinValue;
+         /* User Code */
+              string gxDateTyped = string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:0000}-{1:00}-{2:00}", AV24year, AV16month, AV10day);
+         /* User Code */
+              AV30validDate = AV24year >= 1000 && System.DateTime.TryParseExact(gxDateTyped, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out gxDate);
+         /* User Code */
+              AV25dateText = AV30validDate ? gxDate.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture) : "";
+         /* User Code */
+              AV27numberText = AV9chosenPIN.ToString("0", System.Globalization.CultureInfo.InvariantCulture);
+         /* User Code */
+          }
+         /* User Code */
+          catch (Exception ex)
+         /* User Code */
+          {
+         /* User Code */
+              AV11error = ex.Message.ToString();
+         /* User Code */
+          }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
+         {
+            if ( AV29phraseLength < 20 )
+            {
+               AV11error = "The phrase is too short: use at least 20 characters. Five or six words that have nothing to do with each other make a good phrase.";
+            }
+            else if ( AV26differentChars < 8 )
+            {
+               AV11error = "The phrase repeats the same few characters. Use a phrase with more different letters.";
+            }
+            else if ( ! AV30validDate )
+            {
+               AV11error = "The date is not a real date. Type the year with its 4 digits, the month from 1 to 12 and a day of that month.";
+            }
+            else if ( ( AV9chosenPIN < Convert.ToDecimal( 10000000 )) )
+            {
+               AV11error = "The number is too short: use at least 8 digits. Zeros at the beginning do not count.";
+            }
+         }
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
+         {
+            cleanup();
+            if (true) return;
+         }
+         AV20salt = "DistributedCryptography/AdvanceBrainWallet/2|" + StringUtil.Trim( AV25dateText) + "|" + StringUtil.Trim( AV27numberText);
+         GXt_char1 = AV11error;
+         new GeneXus.Programs.distributedcrypto.argon2derivekey512(context ).execute(  AV28phrase,  AV20salt, out  AV21seedForKey, out  GXt_char1) ;
          AV11error = GXt_char1;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
          {
-            AV19preSeed = StringUtil.Trim( StringUtil.Str( (decimal)(AV24year), 4, 0)) + StringUtil.Trim( StringUtil.Str( (decimal)(AV16month), 4, 0)) + StringUtil.Trim( AV21seedForKey) + StringUtil.Trim( StringUtil.Str( (decimal)(AV10day), 4, 0)) + StringUtil.Trim( StringUtil.Str( AV9chosenPIN, 28, 0));
+            AV19preSeed = AV20salt + "|" + StringUtil.Trim( AV21seedForKey);
             GXt_char1 = AV11error;
             new GeneXus.Programs.nbitcoin.sha512(context ).execute(  AV19preSeed, out  AV15extKeySeed, out  GXt_char1) ;
             AV11error = GXt_char1;
@@ -161,6 +226,9 @@ namespace GeneXus.Programs.wallet {
       public override void initialize( )
       {
          AV11error = "";
+         AV28phrase = "";
+         AV25dateText = "";
+         AV27numberText = "";
          AV20salt = "";
          AV21seedForKey = "";
          AV19preSeed = "";
@@ -177,18 +245,24 @@ namespace GeneXus.Programs.wallet {
       private short AV24year ;
       private short AV16month ;
       private short AV10day ;
+      private short AV29phraseLength ;
+      private short AV26differentChars ;
       private decimal AV9chosenPIN ;
       private string AV23walletName ;
       private string AV17networkType ;
       private string AV18newPass ;
       private string AV8authenticatorBase32 ;
       private string AV11error ;
+      private string AV25dateText ;
+      private string AV27numberText ;
       private string AV21seedForKey ;
       private string AV15extKeySeed ;
       private string GXt_char1 ;
       private string GXt_char2 ;
+      private bool AV30validDate ;
       private string AV20salt ;
       private string AV19preSeed ;
+      private string AV28phrase ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyCreate AV13extKeyCreate ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV14extKeyInfo ;
       private GeneXus.Programs.wallet.SdtWallet AV22wallet ;

@@ -54,7 +54,9 @@
 		<Compile Include = "$(WebDirectory)\wallet\safefilename.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\sha512.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\createrandomkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\checkwalletcreation.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\hextobase32.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\islocalrequest.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\argon2derivekey512.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\createadvancebrainwallet.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\createwalletfiles.cs" />

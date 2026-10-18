@@ -91,6 +91,14 @@ namespace GeneXus.Programs.wallet {
       {
          /* GeneXus formulas */
          /* Output device settings */
+         GXt_char1 = AV9error;
+         new GeneXus.Programs.wallet.checkwalletcreation(context ).execute(  AV18walletName, out  GXt_char1) ;
+         AV9error = GXt_char1;
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
+         {
+            cleanup();
+            if (true) return;
+         }
          AV11extKeyCreate.gxTpr_Networktype = AV15networkType;
          AV11extKeyCreate.gxTpr_Createextkeytype = 30;
          AV11extKeyCreate.gxTpr_Mnemoniclanguage = AV13mnemonicLanguage;

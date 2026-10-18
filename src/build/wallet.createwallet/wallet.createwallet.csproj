@@ -53,7 +53,9 @@
 		<Compile Include = "$(WebDirectory)\wallet\safefilename.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\createwalletfrommnemonic.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\createrandomkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\checkwalletcreation.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\hextobase32.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\islocalrequest.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\newmnemonic.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\createwalletfiles.cs" />
 

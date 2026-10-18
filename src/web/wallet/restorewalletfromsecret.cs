@@ -116,7 +116,14 @@ namespace GeneXus.Programs.wallet {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV11error = "";
+         GXt_char1 = AV11error;
+         new GeneXus.Programs.wallet.checkwalletcreation(context ).execute(  AV24walletName, out  GXt_char1) ;
+         AV11error = GXt_char1;
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
+         {
+            cleanup();
+            if (true) return;
+         }
          if ( ( StringUtil.StrCmp(AV26walletType, "ImportedWIF") == 0 ) || ( StringUtil.StrCmp(AV26walletType, "BrainWallet") == 0 ) )
          {
             if ( StringUtil.StrCmp(AV26walletType, "ImportedWIF") == 0 )
