@@ -6,7 +6,9 @@ services:
     ports:
       # External port is configurable via APP_PORT (defaults to 5000).
       # The app always listens on 5000 inside the container.
-      - "${APP_PORT:-5000}:5000"
+      # Only on this computer (127.0.0.1): wallets are created and used from the computer where the wallet runs,
+      # and the HSM service has no authentication.
+      - "127.0.0.1:${APP_PORT:-5000}:5000"
     volumes:
       # Everything the wallet keeps (DISTCRYPT_DATA_DIR=/data) persists across container recreations
       - distcrypt-data:/data

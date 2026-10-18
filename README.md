@@ -24,7 +24,7 @@ Then open http://localhost:5000 (it redirects to the wallets page).
 
 * Wallet data is stored in the `distcrypt-wallets` and `distcrypt-data` Docker volumes, so it survives container rebuilds and updates. **It is only deleted if you run `docker compose down -v`.**
 * To use a different external port, create a `.env` file with `APP_PORT=8080` (the app always listens on 5000 inside the container).
-* The HSM REST APIs are exposed at `http://localhost:5000/HSM/rest/...` (see `web/HSM.rest.yaml` for the OpenAPI spec). **They require no authentication, so do not expose the port to untrusted networks.** To keep them local-only, change the port mapping to `127.0.0.1:5000:5000` in `docker-compose.yml`.
+* The HSM REST APIs are exposed at `http://localhost:5000/HSM/rest/...` (see `web/HSM.rest.yaml` for the OpenAPI spec). **They require no authentication, so do not expose the port to untrusted networks.** `docker-compose.yml` publishes the port on `127.0.0.1` only: the wallet answers only on this computer, where wallets are created and used.
 * To rebuild after pulling new code: `docker compose up -d --build`.
 
 

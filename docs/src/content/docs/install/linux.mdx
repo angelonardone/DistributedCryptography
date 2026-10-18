@@ -7,7 +7,6 @@ import { Image } from 'astro:assets';
 import Sha256 from '../../../components/Sha256.astro';
 import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 import { downloadUrl, files } from '../../../downloads';
-import qrError from '../../../assets/linux-qrcode-error.jpg';
 
 There is one download for each kind of processor. `uname -m` tells you which one you have: `x86_64` is a
 64-bit PC, `aarch64` is ARM (a Raspberry Pi, for example).
@@ -86,23 +85,9 @@ and every version stays available on the [releases page](https://github.com/ange
 
 ## QR codes
 
-The wallet draws QR codes with a library of the system, `libgdiplus`. Install it:
-
-```bash
-sudo apt-get install libgdiplus
-```
-
-**Version 0.923 also needs one setting**, which the following versions bring already. In the folder of the
-application run this command, and then start the wallet again:
-
-```bash
-sed -i 's/"configProperties": {/"configProperties": {\n      "System.Drawing.EnableUnixSupport": true,/' bin/GxWebStartup.runtimeconfig.json
-```
-
-Without the library or the setting, the wallet shows an error where a QR code should be, or a screen like this
-one:
-
-<Image src={qrError} alt="Error page shown when the library libgdiplus is missing" />
+Since version 0.924 the wallet draws QR codes by itself: no system library is needed. Version 0.923 needed
+the library `libgdiplus` and one setting; if it shows an error where a QR code should be, install the latest
+version.
 
 ## On a server
 

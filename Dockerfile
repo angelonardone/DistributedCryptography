@@ -44,6 +44,12 @@ RUN mkdir -p PublicTempStorage PrivateTempStorage private /data \
 # which docker-compose.yml stores in a volume
 ENV DISTCRYPT_DATA_DIR=/data
 
+# Wallets are created, restored and configured only from the computer where the wallet runs (address
+# http://localhost:<port> and a loopback connection). The browser of the host never reaches a container through
+# loopback, so in the container only the address is checked; docker-compose.yml publishes the port on the
+# host's 127.0.0.1 only, which keeps "this computer" true.
+ENV DISTCRYPT_TRUST_LOCALHOST_NAME=1
+
 # Listen on all interfaces so the port is reachable from outside the container
 ENV ASPNETCORE_URLS=http://+:5000
 EXPOSE 5000

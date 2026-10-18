@@ -31,14 +31,6 @@ replace them with the name of your site and, on ARM, with the `arm64` file.
    sudo chown -R distcrypt:distcrypt /opt/DistributedCryptography
    ```
 
-3. **QR codes** need a system library and, in version 0.923, one setting (see
-   [QR codes on Linux](/install/linux/#qr-codes)):
-
-   ```bash
-   sudo apt-get install -y libgdiplus
-   sudo sed -i 's/"configProperties": {/"configProperties": {\n      "System.Drawing.EnableUnixSupport": true,/' /opt/DistributedCryptography/bin/GxWebStartup.runtimeconfig.json
-   ```
-
 4. **Create the service.** Save this as `/etc/systemd/system/distcrypt.service`:
 
    ```ini

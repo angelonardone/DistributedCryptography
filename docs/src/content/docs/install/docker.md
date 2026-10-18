@@ -13,6 +13,8 @@ docker compose up -d
 
 Then open `http://localhost:5000` in your browser. It takes you to the wallets page.
 
+The wallet answers only on this computer: wallets are created and used from the computer where the wallet runs.
+
 The first run builds the application from the source code, so it takes a few minutes.
 
 ## Where your wallets are kept
@@ -45,9 +47,9 @@ docker compose up -d --build
 
 ## The HSM service
 
-The [HSM](/offline/hsm/) REST service is published at `http://localhost:5000/HSM/rest/...`.
+The [HSM](/offline/hsm/) REST service is published at `http://localhost:5000/HSM/rest/...`, on this computer only.
 
 :::caution
-The HSM service has **no authentication**. Do not open the port to networks you do not trust. To keep it on your
-own machine only, change the port line in `docker-compose.yml` to `127.0.0.1:5000:5000`.
+The HSM service has **no authentication**. Do not publish the port to networks you do not trust: keep the
+`127.0.0.1:` of the port line in `docker-compose.yml`.
 :::

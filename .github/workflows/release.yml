@@ -208,6 +208,13 @@ jobs:
             docker logs distcrypt-test | tail -n 60
             exit 1
           fi
+          # From the host, at http://localhost, the wallets page must offer to create a wallet
+          # (DISTCRYPT_TRUST_LOCALHOST_NAME of the Dockerfile; without it the buttons are hidden)
+          curl -s -o local.html http://localhost:5055/wallet.wallets
+          if grep -q '"CREATEANEWWALLET_Visible":"0"' local.html; then
+            echo "The wallets page of the container hides Create a new Wallet at http://localhost"
+            exit 1
+          fi
           # The wallets must be created in the data folder that docker-compose.yml keeps in a volume
           docker exec distcrypt-test test -d /data/Wallets
           echo "Docker image OK"
