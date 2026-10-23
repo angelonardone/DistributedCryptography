@@ -74,6 +74,7 @@ export default defineConfig({
 						{ label: 'Anonymous login', slug: 'online' },
 						{ label: 'Contacts', slug: 'online/contacts' },
 						{ label: 'Chat', slug: 'online/chat' },
+						{ label: 'Notifications', slug: 'online/notifications', badge: nextRelease },
 						{ label: 'Send encrypted files', slug: 'online/send-files' },
 					],
 				},
@@ -113,6 +114,13 @@ export default defineConfig({
 				{
 					label: 'Guides',
 					items: [{ label: 'Bitcoin multisignature: a practical guide', slug: 'guides/multisig' }],
+				},
+				{
+					label: 'Reference',
+					items: [
+						{ label: 'The Bitcoin BLAKE2b fork (BTCB2)', slug: 'reference/bitcoin-blake2b-fork' },
+						{ label: 'BIP-110 and multisignature groups', slug: 'reference/bip110-multisignature' },
+					],
 				},
 			],
 		}),
