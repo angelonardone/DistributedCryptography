@@ -88,6 +88,7 @@ export default defineConfig({
 						{ label: 'Legacy Multisignature', slug: 'groups/legacy-multisignature' },
 						{ label: 'Time-Encrypted Vault', slug: 'groups/time-encrypted-vault' },
 						{ label: 'Shared passwords', slug: 'groups/shared-passwords' },
+						{ label: 'Group Chat', slug: 'groups/group-chat', badge: nextRelease },
 					],
 				},
 				{

@@ -13,6 +13,8 @@ can do alone. The jobs are:
 | [Delegated Multisignature](/groups/delegated-multisignature/) | A bitcoin wallet you can always spend from alone, and that K of the N people you choose can also spend from, built on Taproot |
 | [Legacy Multisignature](/groups/legacy-multisignature/) | A classic multisignature wallet where K of N equal members must approve each payment, compatible with other software |
 | [Shared passwords](/groups/shared-passwords/) (in the app: *Encrypted Passwords*) | A password vault where you decide which member sees which password |
+| [Multi Signature](/groups/multi-signature/) (next release) | A Taproot bitcoin wallet where everybody, the creator included, is an equal signer and K of the N must sign each payment |
+| [Group Chat](/groups/group-chat/) (next release) | A chat of several people, everyone with everyone, encrypted and signed |
 
 ## How every group works
 
