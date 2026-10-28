@@ -23,7 +23,9 @@ All the types follow the same four steps.
 1. **Create.** Open **Online → Smart Groups**, create a group, choose its type and give it a name.
 2. **Invite.** Add members from your [contacts](/online/contacts/) and click **Send Invitation**. For the types
    that vote, you also set how many votes (shares) each member has and the **minimum** needed.
-3. **Accept.** Each member opens *Smart Groups* in their own wallet and clicks **Accept Invitation**.
+3. **Accept.** Each member opens *Smart Groups* in their own wallet and clicks **Accept Invitation**, or
+   **Decline Invitation**. Until a member accepts, the group does not open in their wallet. When a member
+   declines, the owner gets a notification and sees that member as *(declined)* (next release).
 4. **Activate.** When everybody has accepted, the owner activates the group. This is the moment the secret is
    split, or the shared wallet becomes ready. Password groups and Legacy Multisignature groups need no
    activation.
@@ -45,6 +47,19 @@ and delivery can take about a minute.
   computer, but it is stored **encrypted with a key only the members have**. See
   [What our servers can see](/security/privacy/).
 - **Recover groups from server**, in *Smart Groups*, brings your groups back after you restore your wallet.
+
+## What the members see of each other
+
+The name you give a contact is **yours alone**. It never travels in a group: not in the invitations, not in
+the group messages, and not in the copy of the group stored on our servers. In a group, every wallet shows
+each member as:
+
+- **me**, for yourself;
+- **your own name** for that person, when the member is one of your contacts;
+- otherwise only the **beginning of the user name**, followed by `...`.
+
+So a member who is not your contact learns nothing about who that person is, and nobody sees the names you
+chose, not even in a group you created (next release).
 
 ## Choosing between the two multisignature types
 

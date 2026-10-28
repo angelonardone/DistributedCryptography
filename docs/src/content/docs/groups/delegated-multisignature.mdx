@@ -6,13 +6,6 @@ description: A Taproot bitcoin wallet that you can always spend from alone, and 
 import { Steps } from '@astrojs/starlight/components';
 import YouTube from '../../../components/YouTube.astro';
 
-:::caution[Upgrading from an earlier version]
-Since version 0.923 the addresses of a Delegated group are built in a standard way that other wallets can
-reproduce. They are **different addresses** from the ones of earlier versions. A group created with an earlier
-version does not show its old coins after the upgrade: **send them out of the group before you upgrade**, then
-create the group again.
-:::
-
 With Delegated Multisignature you **delegate** the spending of a wallet to a group of people you trust, without
 giving up your own control:
 
@@ -210,7 +203,12 @@ The owner uses the same **Send** button of the *Wallet Balance* tab: amount, add
 The owner does not sign the payments the members start: in the owner's *Signatures* tab they are listed, without
 the link *Sign transaction*.
 
-After **Update Balance**, everybody's *Wallet Balance* tab shows the new balance:
+The balance follows the payment by itself (next release): the payment shows up at once as *Sent* with its fee,
+the change is already in the balance, and every member sees it the next time they open the group, with its
+confirmations going up. Opening a group with a payment on its way takes a few seconds more, because the app reads
+its balance first. In the version you can download today, click **Update Balance**.
+
+Everybody's *Wallet Balance* tab shows the new balance:
 
 ![The balance of the group after the two payments](../../../assets/screens/delegated/19-balance-after.png)
 

@@ -14,6 +14,8 @@ These never leave your computer:
 - Your bitcoin keys.
 - Your encrypted notes, files, passwords and authenticator backups.
 - Your chat history.
+- The names you give your contacts. They are not sent in groups either: the other members see only the
+  beginning of a user name, or their own name for their own contacts.
 
 They are stored in your wallet folder, encrypted. See [How your data is protected](/security/).
 
