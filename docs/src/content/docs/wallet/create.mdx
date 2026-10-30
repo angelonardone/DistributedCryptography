@@ -92,7 +92,9 @@ The menu on the left has:
 
 1. Give the **receiving address** to the person who pays you: copy the text, or let them scan the QR code.
 
-2. After the payment has been sent, click **Update Balance**.
+2. After the payment has been sent, click **Rescan Balance**. Opening the wallet already looks for new payments
+   on the addresses it is waiting on; **Rescan Balance** asks the Electrum server again for every address the wallet
+   ever used, so it also finds a payment sent to an old address.
 
    ![The balance after receiving a payment](../../../assets/screens/wallet/10-balance-received.png)
 
@@ -114,8 +116,7 @@ and if you close the password window nothing is sent.
 
 The payment shows up at once in **Transactions** as *Sent*, with its fee, and the change is already in the
 balance. While a payment has fewer than 6 confirmations, opening the wallet reads the balance again, so the
-confirmations go up without **Update Balance** (next release; in the version you can download today, click
-**Update Balance**).
+confirmations go up without **Rescan Balance**.
 
 ## Optional: protect the wallet with an authenticator
 

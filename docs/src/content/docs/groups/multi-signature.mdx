@@ -5,11 +5,6 @@ description: A Taproot bitcoin wallet shared by a group where everybody, you inc
 
 import { Steps } from '@astrojs/starlight/components';
 
-:::tip[Next release]
-Multi Signature is part of the next release of Distributed Cryptography. It is not in the version you can
-download today.
-:::
-
 With Multi Signature a group of people shares one bitcoin wallet and **every payment needs K of the N signatures**.
 You create the group, but you are **one more signer**: you have no special power, and **nobody can pay alone** -
 not you, not any member.
@@ -39,6 +34,9 @@ savings of a couple or a family, the reserve of a project.
 Multi Signature is the modern version of Legacy Multisignature: the same trust model, with the lower fees and the
 better privacy of Taproot.
 
+When the signers can sign at the same time, [Multi Signature 2](/groups/musig2/) is even cheaper and more private:
+one MuSig2 signature per payment.
+
 ## How the address is built
 
 A Taproot address has two ways to be spent:
@@ -61,7 +59,8 @@ We had three options for that key. This is the one we chose, and why:
    stored or shared.
 2. **Nobody can sign with it alone.** A signature with the aggregate key needs **all N signers together**, in a
    live signing session (MuSig2). That is stricter than the K of N the group asks for, so it gives nobody a shortcut.
-   Distributed Cryptography never uses it: every payment goes through the K-of-N scripts.
+   A Multi Signature group never uses it: every payment goes through the K-of-N scripts. A
+   [Multi Signature 2](/groups/musig2/) group does, when all the signers are in its signing room.
 3. **It is not the plain sum of the keys.** Adding the N public keys together looks simpler, but it is unsafe: a
    member could choose his key as *"the key I want, minus the sum of the others"*. The sum would then be a key that
    only he knows, and he could empty the wallet **alone** (this is called a *rogue-key attack*). BIP327 multiplies

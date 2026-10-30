@@ -13,8 +13,9 @@ can do alone. The jobs are:
 | [Delegated Multisignature](/groups/delegated-multisignature/) | A bitcoin wallet you can always spend from alone, and that K of the N people you choose can also spend from, built on Taproot |
 | [Legacy Multisignature](/groups/legacy-multisignature/) | A classic multisignature wallet where K of N equal members must approve each payment, compatible with other software |
 | [Shared passwords](/groups/shared-passwords/) (in the app: *Encrypted Passwords*) | A password vault where you decide which member sees which password |
-| [Multi Signature](/groups/multi-signature/) (next release) | A Taproot bitcoin wallet where everybody, the creator included, is an equal signer and K of the N must sign each payment |
-| [Group Chat](/groups/group-chat/) (next release) | A chat of several people, everyone with everyone, encrypted and signed |
+| [Multi Signature](/groups/multi-signature/) | A Taproot bitcoin wallet where everybody, the creator included, is an equal signer and K of the N must sign each payment |
+| [MuSig2 wallets](/groups/musig2/): *Delegated Multi Signature 2* and *Multi Signature 2* | Taproot bitcoin wallets whose payments carry one single signature, signed live by the members who are there at the same time |
+| [Group Chat](/groups/group-chat/) | A chat of several people, everyone with everyone, encrypted and signed |
 
 ## How every group works
 
@@ -25,7 +26,7 @@ All the types follow the same four steps.
    that vote, you also set how many votes (shares) each member has and the **minimum** needed.
 3. **Accept.** Each member opens *Smart Groups* in their own wallet and clicks **Accept Invitation**, or
    **Decline Invitation**. Until a member accepts, the group does not open in their wallet. When a member
-   declines, the owner gets a notification and sees that member as *(declined)* (next release).
+   declines, the owner gets a notification and sees that member as *(declined)*.
 4. **Activate.** When everybody has accepted, the owner activates the group. This is the moment the secret is
    split, or the shared wallet becomes ready. Password groups and Legacy Multisignature groups need no
    activation.
@@ -59,7 +60,7 @@ each member as:
 - otherwise only the **beginning of the user name**, followed by `...`.
 
 So a member who is not your contact learns nothing about who that person is, and nobody sees the names you
-chose, not even in a group you created (next release).
+chose, not even in a group you created.
 
 ## Choosing between the two multisignature types
 
