@@ -91,9 +91,9 @@ namespace GeneXus.Programs.wallet.registered {
                   AV12item.gxTpr_Grouptype = AV10group_sdt.gxTpr_Grouptype;
                   AV12item.gxTpr_Subgrouptype = AV10group_sdt.gxTpr_Subgrouptype;
                   AV12item.gxTpr_Amigroupowner = AV10group_sdt.gxTpr_Amigroupowner;
-                  AV12item.gxTpr_Isactive = AV10group_sdt.gxTpr_Isactive;
+                  AV12item.gxTpr_Isactive = (bool)(AV10group_sdt.gxTpr_Isactive&&!(Guid.Empty==AV10group_sdt.gxTpr_Groupid));
                   AV12item.gxTpr_Bountygroupid = AV10group_sdt.gxTpr_Bountygroupid;
-                  AV11groupList.Add(AV12item, 0);
+                  AV11groupList.Add(AV12item, 1);
                }
             }
             AV14GXV1 = (int)(AV14GXV1+1);

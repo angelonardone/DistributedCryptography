@@ -1,6 +1,6 @@
 /*
-				   File: type_SdtLegacyFinalResult
-			Description: LegacyFinalResult
+				   File: type_SdtMuSig2VsizeResult
+			Description: MuSig2VsizeResult
 				 Author: Nemo 🐠 for C# (.NET) version 18.0.16.189595
 		   Program type: Callable routine
 			  Main DBMS: 
@@ -25,23 +25,20 @@ using GeneXus.Programs.wallet;
 
 namespace GeneXus.Programs.wallet.registered
 {
-	[XmlRoot(ElementName="LegacyFinalResult")]
-	[XmlType(TypeName="LegacyFinalResult" , Namespace="distributedcryptography" )]
+	[XmlRoot(ElementName="MuSig2VsizeResult")]
+	[XmlType(TypeName="MuSig2VsizeResult" , Namespace="distributedcryptography" )]
 	[Serializable]
-	public class SdtLegacyFinalResult : GxUserType
+	public class SdtMuSig2VsizeResult : GxUserType
 	{
-		public SdtLegacyFinalResult( )
+		public SdtMuSig2VsizeResult( )
 		{
 			/* Constructor for serialization */
-			gxTv_SdtLegacyFinalResult_Error = "";
+			gxTv_SdtMuSig2VsizeResult_Error = "";
 
-			gxTv_SdtLegacyFinalResult_Txhex = "";
-
-			gxTv_SdtLegacyFinalResult_Txid = "";
 
 		}
 
-		public SdtLegacyFinalResult(IGxContext context)
+		public SdtMuSig2VsizeResult(IGxContext context)
 		{
 			this.context = context;	
 			initialize();
@@ -72,10 +69,7 @@ namespace GeneXus.Programs.wallet.registered
 			AddObjectProperty("error", gxTpr_Error, false);
 
 
-			AddObjectProperty("txHex", gxTpr_Txhex, false);
-
-
-			AddObjectProperty("txId", gxTpr_Txid, false);
+			AddObjectProperty("vsize", gxTpr_Vsize, false);
 
 			return;
 		}
@@ -88,10 +82,10 @@ namespace GeneXus.Programs.wallet.registered
 		public bool gxTpr_Success
 		{
 			get {
-				return gxTv_SdtLegacyFinalResult_Success; 
+				return gxTv_SdtMuSig2VsizeResult_Success; 
 			}
 			set {
-				gxTv_SdtLegacyFinalResult_Success = value;
+				gxTv_SdtMuSig2VsizeResult_Success = value;
 				SetDirty("Success");
 			}
 		}
@@ -104,10 +98,10 @@ namespace GeneXus.Programs.wallet.registered
 		public string gxTpr_Error
 		{
 			get {
-				return gxTv_SdtLegacyFinalResult_Error; 
+				return gxTv_SdtMuSig2VsizeResult_Error; 
 			}
 			set {
-				gxTv_SdtLegacyFinalResult_Error = value;
+				gxTv_SdtMuSig2VsizeResult_Error = value;
 				SetDirty("Error");
 			}
 		}
@@ -115,32 +109,16 @@ namespace GeneXus.Programs.wallet.registered
 
 
 
-		[SoapElement(ElementName="txHex")]
-		[XmlElement(ElementName="txHex")]
-		public string gxTpr_Txhex
+		[SoapElement(ElementName="vsize")]
+		[XmlElement(ElementName="vsize")]
+		public long gxTpr_Vsize
 		{
 			get {
-				return gxTv_SdtLegacyFinalResult_Txhex; 
+				return gxTv_SdtMuSig2VsizeResult_Vsize; 
 			}
 			set {
-				gxTv_SdtLegacyFinalResult_Txhex = value;
-				SetDirty("Txhex");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="txId")]
-		[XmlElement(ElementName="txId")]
-		public string gxTpr_Txid
-		{
-			get {
-				return gxTv_SdtLegacyFinalResult_Txid; 
-			}
-			set {
-				gxTv_SdtLegacyFinalResult_Txid = value;
-				SetDirty("Txid");
+				gxTv_SdtMuSig2VsizeResult_Vsize = value;
+				SetDirty("Vsize");
 			}
 		}
 
@@ -167,9 +145,8 @@ namespace GeneXus.Programs.wallet.registered
 
 		public void initialize( )
 		{
-			gxTv_SdtLegacyFinalResult_Error = "";
-			gxTv_SdtLegacyFinalResult_Txhex = "";
-			gxTv_SdtLegacyFinalResult_Txid = "";
+			gxTv_SdtMuSig2VsizeResult_Error = "";
+
 			return  ;
 		}
 
@@ -179,16 +156,13 @@ namespace GeneXus.Programs.wallet.registered
 
 		#region Declaration
 
-		protected bool gxTv_SdtLegacyFinalResult_Success;
+		protected bool gxTv_SdtMuSig2VsizeResult_Success;
 		 
 
-		protected string gxTv_SdtLegacyFinalResult_Error;
+		protected string gxTv_SdtMuSig2VsizeResult_Error;
 		 
 
-		protected string gxTv_SdtLegacyFinalResult_Txhex;
-		 
-
-		protected string gxTv_SdtLegacyFinalResult_Txid;
+		protected long gxTv_SdtMuSig2VsizeResult_Vsize;
 		 
 
 
@@ -196,14 +170,14 @@ namespace GeneXus.Programs.wallet.registered
 	}
 	#region Rest interface
 	[GxJsonSerialization("default")]
-	[DataContract(Name=@"LegacyFinalResult", Namespace="distributedcryptography")]
-	public class SdtLegacyFinalResult_RESTInterface : GxGenericCollectionItem<SdtLegacyFinalResult>, System.Web.SessionState.IRequiresSessionState
+	[DataContract(Name=@"MuSig2VsizeResult", Namespace="distributedcryptography")]
+	public class SdtMuSig2VsizeResult_RESTInterface : GxGenericCollectionItem<SdtMuSig2VsizeResult>, System.Web.SessionState.IRequiresSessionState
 	{
-		public SdtLegacyFinalResult_RESTInterface( ) : base()
+		public SdtMuSig2VsizeResult_RESTInterface( ) : base()
 		{	
 		}
 
-		public SdtLegacyFinalResult_RESTInterface( SdtLegacyFinalResult psdt ) : base(psdt)
+		public SdtMuSig2VsizeResult_RESTInterface( SdtMuSig2VsizeResult psdt ) : base(psdt)
 		{	
 		}
 
@@ -237,41 +211,27 @@ namespace GeneXus.Programs.wallet.registered
 			}
 		}
 
-		[JsonPropertyName("txHex")]
+		[JsonPropertyName("vsize")]
 		[JsonPropertyOrder(2)]
-		[DataMember(Name="txHex", Order=2)]
-		public  string gxTpr_Txhex
+		[DataMember(Name="vsize", Order=2)]
+		public  string gxTpr_Vsize
 		{
 			get { 
-				return StringUtil.RTrim( sdt.gxTpr_Txhex);
+				return StringUtil.LTrim( StringUtil.Str( (decimal) sdt.gxTpr_Vsize, 10, 0));
 
 			}
 			set { 
-				 sdt.gxTpr_Txhex = value;
-			}
-		}
-
-		[JsonPropertyName("txId")]
-		[JsonPropertyOrder(3)]
-		[DataMember(Name="txId", Order=3)]
-		public  string gxTpr_Txid
-		{
-			get { 
-				return StringUtil.RTrim( sdt.gxTpr_Txid);
-
-			}
-			set { 
-				 sdt.gxTpr_Txid = value;
+				sdt.gxTpr_Vsize = (long) NumberUtil.Val( value, ".");
 			}
 		}
 
 
 		#endregion
 		[JsonIgnore]
-		public SdtLegacyFinalResult sdt
+		public SdtMuSig2VsizeResult sdt
 		{
 			get { 
-				return (SdtLegacyFinalResult)Sdt;
+				return (SdtMuSig2VsizeResult)Sdt;
 			}
 			set {
 				Sdt = value;
@@ -283,7 +243,7 @@ namespace GeneXus.Programs.wallet.registered
 		{
 			if ( sdt == null )
 			{
-				sdt = new SdtLegacyFinalResult() ;
+				sdt = new SdtMuSig2VsizeResult() ;
 			}
 		}
 	}

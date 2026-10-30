@@ -69,17 +69,48 @@ namespace GeneXus.Programs.wallet {
          GXt_objcol_SdtSDT_Addressess_SDT_AddressessItem1 = AV14sdt_Addresses;
          new GeneXus.Programs.wallet.getalladdress(context ).execute( out  GXt_objcol_SdtSDT_Addressess_SDT_AddressessItem1) ;
          AV14sdt_Addresses = GXt_objcol_SdtSDT_Addressess_SDT_AddressessItem1;
-         AV17GXV1 = 1;
-         while ( AV17GXV1 <= AV14sdt_Addresses.Count )
+         if ( (Convert.ToDecimal( AV13GeneratedType ) == NumberUtil.Val( "0", ".") ) )
          {
-            AV16one_sdt_address = ((GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem)AV14sdt_Addresses.Item(AV17GXV1));
+            GXt_objcol_char2 = AV19reserved;
+            new GeneXus.Programs.wallet.getreservedaddresses(context ).execute(  AV21noGroup, out  GXt_objcol_char2) ;
+            AV19reserved = GXt_objcol_char2;
+         }
+         if ( (Convert.ToDecimal( AV13GeneratedType ) == NumberUtil.Val( "2", ".") ) )
+         {
+            AV20group_sdt.FromJSonString(AV22websession.Get("Group_EDIT_WALLET"), null);
+            if ( ! (Guid.Empty==AV20group_sdt.gxTpr_Groupid) )
+            {
+               GXt_objcol_char2 = AV19reserved;
+               new GeneXus.Programs.wallet.getreservedaddresses(context ).execute(  AV20group_sdt.gxTpr_Groupid, out  GXt_objcol_char2) ;
+               AV19reserved = GXt_objcol_char2;
+            }
+         }
+         AV23GXV1 = 1;
+         while ( AV23GXV1 <= AV14sdt_Addresses.Count )
+         {
+            AV16one_sdt_address = ((GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem)AV14sdt_Addresses.Item(AV23GXV1));
             if ( ! AV16one_sdt_address.gxTpr_Isused && ( AV16one_sdt_address.gxTpr_Generatedtype == AV13GeneratedType ) )
             {
-               AV9oneAddress = StringUtil.Trim( AV16one_sdt_address.gxTpr_Address);
-               AV16one_sdt_address.gxTpr_Isused = true;
-               if (true) break;
+               AV17isReserved = false;
+               AV24GXV2 = 1;
+               while ( AV24GXV2 <= AV19reserved.Count )
+               {
+                  AV18oneReserved = AV19reserved.GetString(AV24GXV2);
+                  if ( StringUtil.StrCmp(StringUtil.Trim( AV18oneReserved), StringUtil.Trim( AV16one_sdt_address.gxTpr_Address)) == 0 )
+                  {
+                     AV17isReserved = true;
+                     if (true) break;
+                  }
+                  AV24GXV2 = (int)(AV24GXV2+1);
+               }
+               if ( ! AV17isReserved )
+               {
+                  AV9oneAddress = StringUtil.Trim( AV16one_sdt_address.gxTpr_Address);
+                  AV16one_sdt_address.gxTpr_Isused = true;
+                  if (true) break;
+               }
             }
-            AV17GXV1 = (int)(AV17GXV1+1);
+            AV23GXV1 = (int)(AV23GXV1+1);
          }
          new GeneXus.Programs.wallet.setalladdress(context ).execute(  AV14sdt_Addresses) ;
          cleanup();
@@ -100,15 +131,29 @@ namespace GeneXus.Programs.wallet {
          AV9oneAddress = "";
          AV14sdt_Addresses = new GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem>( context, "SDT_AddressessItem", "distributedcryptography");
          GXt_objcol_SdtSDT_Addressess_SDT_AddressessItem1 = new GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem>( context, "SDT_AddressessItem", "distributedcryptography");
+         AV19reserved = new GxSimpleCollection<string>();
+         AV21noGroup = Guid.Empty;
+         AV20group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
+         AV22websession = context.GetSession();
+         GXt_objcol_char2 = new GxSimpleCollection<string>();
          AV16one_sdt_address = new GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem(context);
+         AV18oneReserved = "";
          /* GeneXus formulas. */
       }
 
       private short AV13GeneratedType ;
-      private int AV17GXV1 ;
+      private int AV23GXV1 ;
+      private int AV24GXV2 ;
       private string AV9oneAddress ;
+      private string AV18oneReserved ;
+      private bool AV17isReserved ;
+      private Guid AV21noGroup ;
+      private IGxSession AV22websession ;
       private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem> AV14sdt_Addresses ;
       private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem> GXt_objcol_SdtSDT_Addressess_SDT_AddressessItem1 ;
+      private GxSimpleCollection<string> AV19reserved ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV20group_sdt ;
+      private GxSimpleCollection<string> GXt_objcol_char2 ;
       private GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem AV16one_sdt_address ;
       private string aP1_oneAddress ;
    }

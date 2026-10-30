@@ -122,7 +122,7 @@ namespace GeneXus.Programs.wallet.registered {
             }
             AV8changeDescriptor = StringUtil.Trim( AV13result.gxTpr_Descriptor);
          }
-         else if ( AV10group_sdt.gxTpr_Grouptype == 30 )
+         else if ( ( AV10group_sdt.gxTpr_Grouptype == 30 ) || ( AV10group_sdt.gxTpr_Grouptype == 60 ) || ( AV10group_sdt.gxTpr_Grouptype == 80 ) || ( AV10group_sdt.gxTpr_Grouptype == 90 ) )
          {
             GXt_SdtGroupDescriptorResult2 = AV13result;
             new GeneXus.Programs.wallet.registered.getdelegateddescriptor(context ).execute(  AV10group_sdt,  AV14walletInfo.gxTpr_Networktype,  false, out  GXt_SdtGroupDescriptorResult2) ;

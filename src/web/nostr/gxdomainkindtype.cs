@@ -25,6 +25,7 @@ namespace GeneXus.Programs.nostr {
          domain[(int)0] = "Metadata";
          domain[(int)1] = "Short Text Note";
          domain[(int)4] = "Encrypted Dm";
+         domain[(int)20004] = "Ephemeral Group Room (NIP-01: 20000-29999, relays do not store it)";
       }
 
       public static string getDescription( IGxContext context ,
@@ -55,6 +56,7 @@ namespace GeneXus.Programs.nostr {
             domainMap["Metadata"] = (int)0;
             domainMap["ShortTextNote"] = (int)1;
             domainMap["EncryptedDm"] = (int)4;
+            domainMap["EphemeralGroupRoom"] = (int)20004;
          }
          return (int)domainMap[key] ;
       }

@@ -1226,7 +1226,7 @@ namespace GeneXus.Programs.wallet.registered {
          AV21error = GXt_char2;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV21error)) )
          {
-            if ( AV23groupType == 30 )
+            if ( ( AV23groupType == 30 ) || ( AV23groupType == 60 ) )
             {
                context.PopUp(formatLink("wallet.registered.sendcoinsdelegated") , new Object[] {});
             }
@@ -1495,7 +1495,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610161764920", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013253665", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1511,7 +1511,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/legacyallsignatures.js", "?202610161764920", false, true, false);
+         context.AddJavascriptSource("wallet/registered/legacyallsignatures.js", "?2026103013253665", false, true, false);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
          /* End function include_jscripts */
       }

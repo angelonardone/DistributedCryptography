@@ -815,7 +815,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610161783453", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013272813", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -831,7 +831,7 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("wallet/registered/createsmartgroup.js", "?202610161783453", false, true, false);
+         context.AddJavascriptSource("wallet/registered/createsmartgroup.js", "?2026103013272813", false, true, false);
          /* End function include_jscripts */
       }
 
@@ -845,6 +845,10 @@ namespace GeneXus.Programs.wallet.registered {
          cmbavGrouptype.addItem("40", "Encrypted Passwords", 0);
          cmbavGrouptype.addItem("20", "Time Encrypted Vault", 0);
          cmbavGrouptype.addItem("50", "Legacy Multi-Signature Wallet", 0);
+         cmbavGrouptype.addItem("60", "Multi Signature", 0);
+         cmbavGrouptype.addItem("70", "Group Chat", 0);
+         cmbavGrouptype.addItem("80", "Delegated Multi Signature 2", 0);
+         cmbavGrouptype.addItem("90", "Multi Signature 2", 0);
          if ( cmbavGrouptype.ItemCount > 0 )
          {
             AV9groupType = (short)(Math.Round(NumberUtil.Val( cmbavGrouptype.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(AV9groupType), 4, 0))), "."), 18, MidpointRounding.ToEven));

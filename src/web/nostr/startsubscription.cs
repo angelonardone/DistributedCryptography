@@ -73,7 +73,7 @@ namespace GeneXus.Programs.nostr {
             GXt_int3 = AV20lastChatTimeInSeconds;
             new GeneXus.Programs.wallet.registered.getlastchattime(context ).execute( out  GXt_int3) ;
             AV20lastChatTimeInSeconds = GXt_int3;
-            AV18message = "[\"REQ\", \"" + AV13externalUser.gxTpr_Keyinfo.gxTpr_Address + "\" , " + "{" + "\"kinds\": [4]," + "\"#p\": [\"" + StringUtil.Trim( AV13externalUser.gxTpr_Keyinfo.gxTpr_Taprootpubkey) + "\"]," + "\"since\": " + StringUtil.Trim( StringUtil.Str( (decimal)(AV20lastChatTimeInSeconds), 18, 0)) + "}" + "]";
+            AV18message = "[\"REQ\", \"" + AV13externalUser.gxTpr_Keyinfo.gxTpr_Address + "\" , " + "{" + "\"kinds\": [4, 20004]," + "\"#p\": [\"" + StringUtil.Trim( AV13externalUser.gxTpr_Keyinfo.gxTpr_Taprootpubkey) + "\"]," + "\"since\": " + StringUtil.Trim( StringUtil.Str( (decimal)(AV20lastChatTimeInSeconds), 18, 0)) + "}" + "]";
             AV23OperationResult = GxInternetLibWs.sendmessage(AV12Key, AV18message);
             if ( ! AV23OperationResult.gxTpr_Success )
             {

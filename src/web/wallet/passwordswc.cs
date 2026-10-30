@@ -518,7 +518,7 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", cmbavTagname.Visible, 0, "px", 0, "px", "form-group gx-form-group gx-default-form-group", "start", "top", ""+" data-gx-for=\""+cmbavTagname_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, cmbavTagname_Internalname, "Filter by Tag", "gx-form-item AttributeLabel", 1, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, cmbavTagname_Internalname, "Tag", "gx-form-item AttributeLabel", 1, true, "width: 25%;");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 10,'" + sPrefix + "',false,'" + sGXsfl_22_idx + "',0)\"";
@@ -534,7 +534,7 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", cmbavUsername.Visible, 0, "px", 0, "px", "form-group gx-form-group gx-default-form-group", "start", "top", ""+" data-gx-for=\""+cmbavUsername_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, cmbavUsername_Internalname, "Filter by Contact", "gx-form-item AttributeLabel", 1, true, "width: 30%;");
+            GxWebStd.gx_label_element( context, cmbavUsername_Internalname, "Contact", "gx-form-item AttributeLabel", 1, true, "width: 30%;");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 70, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 14,'" + sPrefix + "',false,'" + sGXsfl_22_idx + "',0)\"";
@@ -2173,7 +2173,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610161765562", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013254219", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2189,7 +2189,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/passwordswc.js", "?202610161765562", false, true, false);
+         context.AddJavascriptSource("wallet/passwordswc.js", "?2026103013254219", false, true, false);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
          context.AddJavascriptSource("UserControls/Wallet.UC_Clipboard_v1Render.js", "", false, true, false);
          /* End function include_jscripts */
@@ -2491,7 +2491,7 @@ namespace GeneXus.Programs.wallet {
             context.SendWebValue( "Description") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "login") ;
+            context.SendWebValue( "Login") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Image"+" "+((StringUtil.StrCmp(edtavCopylogin_gximage, "")==0) ? "" : "GX_Image_"+edtavCopylogin_gximage+"_Class")+"\" "+" style=\""+""+""+"\" "+">") ;
             context.SendWebValue( "") ;

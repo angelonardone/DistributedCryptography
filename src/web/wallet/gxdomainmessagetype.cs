@@ -34,6 +34,9 @@ namespace GeneXus.Programs.wallet {
          domain[(int)100] = "notify Group Restore";
          domain[(int)110] = "Mu Sig One Signature";
          domain[(int)120] = "Mu Sig Finished Signature";
+         domain[(int)130] = "Group Chat Message";
+         domain[(int)140] = "Invite Group Decline";
+         domain[(int)150] = "MuSig2 Signing Room";
       }
 
       public static string getDescription( IGxContext context ,
@@ -73,6 +76,9 @@ namespace GeneXus.Programs.wallet {
             domainMap["notifyGroupRestore"] = (int)100;
             domainMap["MuSigOneSignature"] = (int)110;
             domainMap["MuSigFinishedSignature"] = (int)120;
+            domainMap["GroupChatMessage"] = (int)130;
+            domainMap["InviteGroupDecline"] = (int)140;
+            domainMap["MuSig2Room"] = (int)150;
          }
          return (int)domainMap[key] ;
       }

@@ -105,7 +105,13 @@ namespace GeneXus.Programs.wallet.registered {
                AV13viewContact = new GeneXus.Programs.wallet.registered.SdtWalletBackupView_ContactItem(context);
                AV13viewContact.gxTpr_Contactid = AV10groupContact.gxTpr_Contactid;
                AV13viewContact.gxTpr_Numshares = AV10groupContact.gxTpr_Numshares;
-               AV13viewContact.gxTpr_Contactprivatename = AV10groupContact.gxTpr_Contactprivatename;
+               GXt_char2 = "";
+               new GeneXus.Programs.wallet.registered.getmemberdisplayname(context ).execute(  AV10groupContact.gxTpr_Contactusername, out  GXt_char2) ;
+               AV13viewContact.gxTpr_Contactprivatename = GXt_char2;
+               if ( AV10groupContact.gxTpr_Contactinvitationdelined )
+               {
+                  AV13viewContact.gxTpr_Contactprivatename = StringUtil.Trim( AV13viewContact.gxTpr_Contactprivatename)+" (declined)";
+               }
                AV13viewContact.gxTpr_Contactusername = AV10groupContact.gxTpr_Contactusername;
                AV13viewContact.gxTpr_Contactuserpubkey = AV10groupContact.gxTpr_Contactuserpubkey;
                AV13viewContact.gxTpr_Contactinvitationsent = AV10groupContact.gxTpr_Contactinvitationsent;
@@ -137,11 +143,13 @@ namespace GeneXus.Programs.wallet.registered {
          AV14websession = context.GetSession();
          AV10groupContact = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem(context);
          AV13viewContact = new GeneXus.Programs.wallet.registered.SdtWalletBackupView_ContactItem(context);
+         GXt_char2 = "";
          /* GeneXus formulas. */
       }
 
       private int AV15GXV1 ;
       private string AV8error ;
+      private string GXt_char2 ;
       private Guid AV11groupId ;
       private IGxSession AV14websession ;
       private GeneXus.Programs.wallet.registered.SdtWalletBackupView AV12view ;

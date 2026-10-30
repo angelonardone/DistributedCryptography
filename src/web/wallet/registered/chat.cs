@@ -1237,12 +1237,10 @@ namespace GeneXus.Programs.wallet.registered {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
-            /* Active images/pictures */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 35,'',false,'',0)\"";
-            ClassString = "gxchaticon" + " " + ((StringUtil.StrCmp(imgChatsendimage_gximage, "")==0) ? "GX_Image_ChatSend_Class" : "GX_Image_"+imgChatsendimage_gximage+"_Class");
+            ClassString = "Button";
             StyleString = "";
-            sImgUrl = (string)(context.GetImagePath( "a772b4b9-378a-4381-880b-793e6dfdca14", "", context.GetTheme( )));
-            GxWebStd.gx_bitmap( context, imgChatsendimage_Internalname, sImgUrl, "", "", "", context.GetTheme( ), 1, 1, "", "", 0, 0, 0, "px", 0, "px", 0, 0, 5, imgChatsendimage_Jsonclick, "'"+""+"'"+",false,"+"'"+"E\\'SEND\\'."+"'", StyleString, ClassString, "", "", "", "", " "+"data-gx-image"+" "+TempTags, "", "", 1, false, false, context.GetImageSrcSet( sImgUrl), "none", "HLP_Wallet/registered/Chat.htm");
+            GxWebStd.gx_button_ctrl( context, bttSend_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(14), 2, 0)+","+"null"+");", "Send", bttSend_Jsonclick, 5, "Send", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'SEND\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Wallet/registered/Chat.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -1295,7 +1293,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610161783283", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013272597", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1312,7 +1310,7 @@ namespace GeneXus.Programs.wallet.registered {
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("wallet/registered/chat.js", "?202610161783285", false, true, false);
+         context.AddJavascriptSource("wallet/registered/chat.js", "?2026103013272597", false, true, false);
          /* End function include_jscripts */
       }
 
@@ -1538,7 +1536,7 @@ namespace GeneXus.Programs.wallet.registered {
          tblTablemessage_Internalname = "TABLEMESSAGE";
          divGridmessagestable_Internalname = "GRIDMESSAGESTABLE";
          edtavSendcleartext_Internalname = "vSENDCLEARTEXT";
-         imgChatsendimage_Internalname = "CHATSENDIMAGE";
+         bttSend_Internalname = "SEND";
          tblTable1_Internalname = "TABLE1";
          divChattable_Internalname = "CHATTABLE";
          divMaintable_Internalname = "MAINTABLE";
@@ -1648,9 +1646,7 @@ namespace GeneXus.Programs.wallet.registered {
          AV20taprootPubKey = "";
          GXt_char9 = "";
          GridchatRow = new GXWebRow();
-         imgChatsendimage_gximage = "";
-         sImgUrl = "";
-         imgChatsendimage_Jsonclick = "";
+         bttSend_Jsonclick = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          subGridchat_Linesclass = "";
@@ -1732,10 +1728,8 @@ namespace GeneXus.Programs.wallet.registered {
       private string tblTablemessage_Class ;
       private string tblTablemessage_Internalname ;
       private string tblTable1_Internalname ;
-      private string imgChatsendimage_gximage ;
-      private string sImgUrl ;
-      private string imgChatsendimage_Internalname ;
-      private string imgChatsendimage_Jsonclick ;
+      private string bttSend_Internalname ;
+      private string bttSend_Jsonclick ;
       private string edtavCtldatetime_Internalname ;
       private string edtavCtlmsessageenc_Internalname ;
       private string subGridchat_Class ;

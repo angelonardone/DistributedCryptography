@@ -420,7 +420,7 @@ namespace GeneXus.Programs.shamirss {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTotalshares_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTotalshares_Internalname, "Total number of shares", "col-sm-3 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTotalshares_Internalname, "Shares", "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -434,7 +434,7 @@ namespace GeneXus.Programs.shamirss {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavMinimumshares_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavMinimumshares_Internalname, "Minimum amount to recover the secret", "col-sm-3 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavMinimumshares_Internalname, "Needed to recover", "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -473,7 +473,14 @@ namespace GeneXus.Programs.shamirss {
             }
             else
             {
-               sStyleString = "";
+               if ( subGrid1_Visible != 0 )
+               {
+                  sStyleString = "";
+               }
+               else
+               {
+                  sStyleString = " style=\"display:none;\"";
+               }
                context.WriteHtmlText( "<div id=\""+"Grid1Container"+"Div\" "+sStyleString+">"+"</div>") ;
                context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Grid1", Grid1Container, subGrid1_Internalname);
                if ( ! context.isAjaxRequest( ) && ! context.isSpaRequest( ) )
@@ -512,7 +519,7 @@ namespace GeneXus.Programs.shamirss {
             StyleString = "";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_html_textarea( context, edtavEntershares_Internalname, AV18enterShares, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,31);\"", 0, 1, edtavEntershares_Enabled, 0, 80, "chr", 10, "row", 0, StyleString, ClassString, "", "", "2097152", -1, 0, "", "Enter here the shares you want to use to recover the secet (one per line, include the numbers identifying the sare)", -1, true, "", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_ShamirSS/ShamirSecretSharing.htm");
+            GxWebStd.gx_html_textarea( context, edtavEntershares_Internalname, AV18enterShares, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,31);\"", 0, 1, edtavEntershares_Enabled, 0, 80, "chr", 10, "row", 0, StyleString, ClassString, "", "", "2097152", -1, 0, "", "Enter here the shares you want to use to recover the secret (one per line, include the numbers identifying the share)", -1, true, "", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_ShamirSS/ShamirSecretSharing.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -570,7 +577,14 @@ namespace GeneXus.Programs.shamirss {
                }
                else
                {
-                  sStyleString = "";
+                  if ( subGrid1_Visible != 0 )
+                  {
+                     sStyleString = "";
+                  }
+                  else
+                  {
+                     sStyleString = " style=\"display:none;\"";
+                  }
                   context.WriteHtmlText( "<div id=\""+"Grid1Container"+"Div\" "+sStyleString+">"+"</div>") ;
                   context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Grid1", Grid1Container, subGrid1_Internalname);
                   if ( ! context.isAjaxRequest( ) && ! context.isSpaRequest( ) )
@@ -863,6 +877,7 @@ namespace GeneXus.Programs.shamirss {
          Grid1Container.AddObjectProperty("Cellpadding", StringUtil.LTrim( StringUtil.NToC( (decimal)(1), 4, 0, ".", "")));
          Grid1Container.AddObjectProperty("Cellspacing", StringUtil.LTrim( StringUtil.NToC( (decimal)(2), 4, 0, ".", "")));
          Grid1Container.AddObjectProperty("Backcolorstyle", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid1_Backcolorstyle), 1, 0, ".", "")));
+         Grid1Container.AddObjectProperty("Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid1_Visible), 5, 0, ".", "")));
          Grid1Container.PageSize = subGrid1_fnc_Recordsperpage( );
          if ( subGrid1_Islastpage != 0 )
          {
@@ -992,6 +1007,8 @@ namespace GeneXus.Programs.shamirss {
          AssignAttri("", false, "AV6totalShares", StringUtil.LTrimStr( (decimal)(AV6totalShares), 4, 0));
          AV7minimumShares = 3;
          AssignAttri("", false, "AV7minimumShares", StringUtil.LTrimStr( (decimal)(AV7minimumShares), 4, 0));
+         subGrid1_Visible = 0;
+         AssignProp("", false, "Grid1ContainerDiv", "Visible", StringUtil.LTrimStr( (decimal)(subGrid1_Visible), 5, 0), true);
       }
 
       protected void E111H2( )
@@ -1003,6 +1020,8 @@ namespace GeneXus.Programs.shamirss {
          AV8error = GXt_char1;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
          {
+            subGrid1_Visible = 1;
+            AssignProp("", false, "Grid1ContainerDiv", "Visible", StringUtil.LTrimStr( (decimal)(subGrid1_Visible), 5, 0), true);
             gxgrGrid1_refresh( AV10shares) ;
          }
          else
@@ -1101,7 +1120,7 @@ namespace GeneXus.Programs.shamirss {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610161783361", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013272657", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1119,7 +1138,7 @@ namespace GeneXus.Programs.shamirss {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-            context.AddJavascriptSource("shamirss/shamirsecretsharing.js", "?202610161783361", false, true, false);
+            context.AddJavascriptSource("shamirss/shamirsecretsharing.js", "?2026103013272657", false, true, false);
          }
          /* End function include_jscripts */
       }
@@ -1224,6 +1243,10 @@ namespace GeneXus.Programs.shamirss {
          {
             context.WriteHtmlText( "<div id=\""+"Grid1Container"+"DivS\" data-gxgridid=\"23\">") ;
             sStyleString = "";
+            if ( subGrid1_Visible == 0 )
+            {
+               sStyleString += "display:none;";
+            }
             GxWebStd.gx_table_start( context, subGrid1_Internalname, subGrid1_Internalname, "", "Grid", 0, "", "", 1, 2, sStyleString, "", "", 0);
             /* Subfile titles */
             context.WriteHtmlText( "<tr") ;
@@ -1269,6 +1292,7 @@ namespace GeneXus.Programs.shamirss {
             Grid1Container.AddObjectProperty("Cellpadding", StringUtil.LTrim( StringUtil.NToC( (decimal)(1), 4, 0, ".", "")));
             Grid1Container.AddObjectProperty("Cellspacing", StringUtil.LTrim( StringUtil.NToC( (decimal)(2), 4, 0, ".", "")));
             Grid1Container.AddObjectProperty("Backcolorstyle", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid1_Backcolorstyle), 1, 0, ".", "")));
+            Grid1Container.AddObjectProperty("Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid1_Visible), 5, 0, ".", "")));
             Grid1Container.AddObjectProperty("CmpContext", "");
             Grid1Container.AddObjectProperty("InMasterPage", "false");
             Grid1Column = GXWebColumn.GetNew(isAjaxCallMode( ));
@@ -1317,6 +1341,7 @@ namespace GeneXus.Programs.shamirss {
          subGrid1_Backcolorstyle = 0;
          edtavRecoveredsecret_Enabled = 1;
          edtavEntershares_Enabled = 1;
+         subGrid1_Visible = 1;
          edtavMinimumshares_Jsonclick = "";
          edtavMinimumshares_Enabled = 1;
          edtavTotalshares_Jsonclick = "";
@@ -1342,7 +1367,7 @@ namespace GeneXus.Programs.shamirss {
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID1_nFirstRecordOnPage","type":"int"},{"av":"GRID1_nEOF","type":"int"},{"av":"AV10shares","fld":"vSHARES","type":""}]}""");
          setEventMetadata("'CREATE SHARES'","""{"handler":"E111H2","iparms":[{"av":"GRID1_nFirstRecordOnPage","type":"int"},{"av":"GRID1_nEOF","type":"int"},{"av":"AV10shares","fld":"vSHARES","type":""},{"av":"AV5secret","fld":"vSECRET","type":"vchar"},{"av":"AV6totalShares","fld":"vTOTALSHARES","pic":"ZZZ9","type":"int"},{"av":"AV7minimumShares","fld":"vMINIMUMSHARES","pic":"ZZZ9","type":"int"}]""");
-         setEventMetadata("'CREATE SHARES'",""","oparms":[{"av":"AV10shares","fld":"vSHARES","type":""}]}""");
+         setEventMetadata("'CREATE SHARES'",""","oparms":[{"av":"AV10shares","fld":"vSHARES","type":""},{"av":"subGrid1_Visible","ctrl":"GRID1","prop":"Visible"}]}""");
          setEventMetadata("'RECOVER SECRET'","""{"handler":"E121H2","iparms":[{"av":"AV18enterShares","fld":"vENTERSHARES","type":"vchar"}]""");
          setEventMetadata("'RECOVER SECRET'",""","oparms":[{"av":"AV11recoveredSecret","fld":"vRECOVEREDSECRET","type":"vchar"}]}""");
          setEventMetadata("GRID1.LOAD","""{"handler":"E141H2","iparms":[{"av":"AV10shares","fld":"vSHARES","type":""}]""");
@@ -1426,6 +1451,7 @@ namespace GeneXus.Programs.shamirss {
       private int edtavSecret_Enabled ;
       private int edtavTotalshares_Enabled ;
       private int edtavMinimumshares_Enabled ;
+      private int subGrid1_Visible ;
       private int edtavEntershares_Enabled ;
       private int edtavRecoveredsecret_Enabled ;
       private int subGrid1_Islastpage ;

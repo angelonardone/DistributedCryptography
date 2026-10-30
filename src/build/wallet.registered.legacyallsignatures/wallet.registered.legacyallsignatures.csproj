@@ -55,6 +55,7 @@
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\cleanprivatekeys.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\getcontactid.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\getlocalgroupbyid.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluser.cs" />
@@ -62,6 +63,7 @@
 		<Compile Include = "$(WebDirectory)\wallet\registered\setlegacysignaturetosign.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\getlegacysignaturerows.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluserpublic.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\getmemberdisplayname.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\setexternaluser.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\needtoshowsignmsg.cs" />

@@ -49,9 +49,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include = "$(WebDirectory)\wallet\createunusedaddresses.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\buildpaymenturi.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getpaymentrequests.cs" />
 		<Compile Include = "$(WebDirectory)\sudodb\savetransaction.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\deriveoneaddressfromextpubkey.cs" />
 		<Compile Include = "$(WebDirectory)\sudodb\savetolocaldb.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\haspendingtransactions.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\get_transaction.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\getelectrumconnid.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
@@ -61,13 +64,15 @@
 		<Compile Include = "$(WebDirectory)\wallet\getkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\cleanprivatekeys.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\parse_serialized_extended_key.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\retaddresselectrumformat.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\searchinalladdress.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\connect.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setalladdress.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\searchinalladdress.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\loadhistoryfromtransactions.cs" />
 		<Compile Include = "$(WebDirectory)\qrcoder\generateqrcodestring.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\setkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\areenoughunusedaddresses.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\setelectrumconnid.cs" />
@@ -75,12 +80,13 @@
 		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\createexpubtkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwalletinfo.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\multyaddress.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\setkey.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
-		<Compile Include = "$(WebDirectory)\electrum\retaddresselectrumformat.cs" />
-		<Compile Include = "$(WebDirectory)\electrum\defaultparameters.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\deriveaddresssfromextendedpubkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\multyaddress.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getreservedaddresses.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\gethistorywithbalance.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\defaultparameters.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\addrescanaddresses.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\reversehexstring.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\get_history.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\pulloneaddress.cs" />
@@ -90,12 +96,14 @@
 		<Compile Include = "$(WebDirectory)\wallet\getalladdress.cs" />
 		<Compile Include = "$(WebDirectory)\receivefromelectrum.cs" />
 		<Compile Include = "$(WebDirectory)\sudodb\savevins.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\deriveoneaddressfromextpubkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getaddresscontext.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\markinalladdressasused.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\createunusedaddresses.cs" />
 		<Compile Include = "$(WebDirectory)\sudodb\savevouts.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\sethistorywithbalance.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\sendmessage.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\sethistorywithbalance.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\buildaddressqrtext.cs" />
 		<Compile Include = "$(WebDirectory)\sudodb\gettransactionsfromaddress.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\getelectrumconfigfornetworktype.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gettransactionsfromservice.cs" />

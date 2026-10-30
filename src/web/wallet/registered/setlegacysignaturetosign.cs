@@ -87,7 +87,7 @@ namespace GeneXus.Programs.wallet.registered {
          new GeneXus.Programs.wallet.registered.getlocalgroupbyid(context ).execute(  AV10groupId, out  GXt_SdtGroup_SDT1) ;
          AV9group_sdt = GXt_SdtGroup_SDT1;
          AV17groupType = AV9group_sdt.gxTpr_Grouptype;
-         if ( ! ( AV17groupType == 50 ) && ! ( AV17groupType == 30 ) )
+         if ( ! ( AV17groupType == 50 ) && ! ( AV17groupType == 30 ) && ! ( AV17groupType == 60 ) )
          {
             AV8error = "This is not a multisignature group";
             cleanup();

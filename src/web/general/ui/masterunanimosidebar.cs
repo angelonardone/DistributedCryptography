@@ -160,7 +160,7 @@ namespace GeneXus.Programs.general.ui {
          context.AddJavascriptSource("Toastr/toastr.min.js", "", false, true, false);
          context.AddJavascriptSource("Toastr/ToastrRender.js", "", false, true, false);
          context.AddJavascriptSource("UserControls/GeneXusUnanimo.SidebarMenuRender.js", "", false, true, false);
-         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?202610161782831", false, true, false);
+         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?2026103013272138", false, true, false);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -658,7 +658,7 @@ namespace GeneXus.Programs.general.ui {
          GXt_SdtWallet1 = AV14wallet;
          new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet1) ;
          AV14wallet = GXt_SdtWallet1;
-         Sidebarmenu_Footertext = "version 0.924 - © 2022-2026 Distributed Cryptography";
+         Sidebarmenu_Footertext = "version 0.925 - © 2022-2026 Distributed Cryptography";
          ucSidebarmenu.SendProperty(context, "", true, Sidebarmenu_Internalname, "FooterText", Sidebarmenu_Footertext);
          Sidebarmenu_Distancetotop = 60;
          ucSidebarmenu.SendProperty(context, "", true, Sidebarmenu_Internalname, "DistanceToTop", StringUtil.LTrimStr( (decimal)(Sidebarmenu_Distancetotop), 9, 0));
@@ -815,7 +815,7 @@ namespace GeneXus.Programs.general.ui {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?202610161782864", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?2026103013272172", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -830,7 +830,8 @@ namespace GeneXus.Programs.general.ui {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?202610161782865", false, true, false);
+         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?2026103013272172", false, true, false);
+         context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
          context.AddJavascriptSource("UserControls/.modules/chameleon/chameleon.esm.js", "", false, true, true);
          context.AddJavascriptSource("Unanimo_chameleon/chameleon-loader.js", "", false, true, false);
          context.AddJavascriptSource("UserControls/GeneXusUnanimo.IconRender.js", "", false, true, false);

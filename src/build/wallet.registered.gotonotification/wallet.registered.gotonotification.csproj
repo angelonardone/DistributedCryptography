@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
+	
+	
+	<PropertyGroup>
+		<AssemblyName>wallet.registered.gotonotification</AssemblyName>
+		<TargetFramework>$(TargetFramework)</TargetFramework>
+		<OutputType>Library</OutputType>
+		<GenerateDependencyFile>false</GenerateDependencyFile>
+		<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+		<PostgresqlSupport>false</PostgresqlSupport>
+		<OfficeSupport>false</OfficeSupport>
+		<MailSupport>false</MailSupport>
+		<GrpcClientSupport>false</GrpcClientSupport>
+		<PdfLibrary></PdfLibrary>
+		<SAPErpSupport>false</SAPErpSupport>
+		<PDFSupport>false</PDFSupport>
+		<SearchSupport>false</SearchSupport>
+	</PropertyGroup>
+
+	<ItemGroup>
+
+        <ProjectReference Include="..\GeneXus.Programs.Common\GeneXus.Programs.Common.csproj" >
+            <OutputItemType>$(CommonOutputItemType)</OutputItemType>
+        </ProjectReference>
+
+	</ItemGroup>
+
+	<ItemGroup>
+
+        <Reference Include="Google.Authenticator" >
+            <HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
+        </Reference>
+        <Reference Include="GxInternetLib" >
+            <HintPath>$(WebBinDirectory)\GxInternetLib.dll</HintPath>
+        </Reference>
+        <Reference Include="DistricutedCryptographyLib" >
+            <HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
+        </Reference>
+        <Reference Include="GxJadeLib" >
+            <HintPath>$(WebBinDirectory)\GxJadeLib.dll</HintPath>
+        </Reference>
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include = "$(WebDirectory)\wallet\setcontact.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\gotonotification.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\setgroupedit.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\getlocalgroupforrow.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\opennotificationtarget.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
+
+	</ItemGroup>
+
+	<Import Project="..\DotNetCoreBaseProject.targets"/>	
+</Project>
+

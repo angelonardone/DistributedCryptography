@@ -33,6 +33,9 @@
         <Reference Include="GeneXusUnanimo" >
             <HintPath>$(WebBinDirectory)\GeneXusUnanimo.dll</HintPath>
         </Reference>
+        <Reference Include="WebExtensionToolkit" >
+            <HintPath>$(WebBinDirectory)\WebExtensionToolkit.dll</HintPath>
+        </Reference>
         <Reference Include="Google.Authenticator" >
             <HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
         </Reference>
@@ -51,21 +54,22 @@
 	<ItemGroup>
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
-		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluser.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
 		<Compile Include = "$(WebDirectory)\general\ui\sidebarmenu.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
 		<Compile Include = "$(WebDirectory)\general\ui\listmenuoneaddress.cs" />
-		<Compile Include = "$(WebDirectory)\distcrypt\setexternaluser.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\iswalletopen.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getlogindistcrypt.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluser.cs" />
 		<Compile Include = "$(WebDirectory)\general\ui\masterunanimosidebar.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\iswalletopen.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getlogindistcrypt.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
 		<Compile Include = "$(WebDirectory)\general\ui\sidebaritemsoneaddressdp.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\setexternaluser.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\getnotifications.cs" />
 
 	</ItemGroup>
 

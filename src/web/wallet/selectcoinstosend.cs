@@ -80,14 +80,44 @@ namespace GeneXus.Programs.wallet {
          new GeneXus.Programs.wallet.gethistorywithbalance(context ).execute( out  GXt_objcol_SdtSDTAddressHistory1) ;
          AV9historyWithBalance = GXt_objcol_SdtSDTAddressHistory1;
          AV16neededAmount = (decimal)(AV8amountToSend+AV15transactionFee);
+         GXt_objcol_svchar2 = AV22selected;
+         new GeneXus.Programs.wallet.getselectedcoins(context ).execute( out  GXt_objcol_svchar2) ;
+         AV22selected = GXt_objcol_svchar2;
+         if ( AV22selected.Count > 0 )
+         {
+            AV23GXV1 = 1;
+            while ( AV23GXV1 <= AV9historyWithBalance.Count )
+            {
+               AV10oneAddressHistory = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV9historyWithBalance.Item(AV23GXV1));
+               if ( ( AV10oneAddressHistory.gxTpr_Balance > Convert.ToDecimal( 0 )) )
+               {
+                  AV21outpoint = StringUtil.Trim( AV10oneAddressHistory.gxTpr_Receivedtransactionid) + ":" + StringUtil.Trim( StringUtil.Str( (decimal)(AV10oneAddressHistory.gxTpr_Recivedn), 10, 0));
+                  AV24GXV2 = 1;
+                  while ( AV24GXV2 <= AV22selected.Count )
+                  {
+                     AV20oneOutpoint = ((string)AV22selected.Item(AV24GXV2));
+                     if ( StringUtil.StrCmp(StringUtil.Trim( AV20oneOutpoint), StringUtil.Trim( AV21outpoint)) == 0 )
+                     {
+                        AV10oneAddressHistory.gxTpr_Description = StringUtil.Trim( AV14description);
+                        AV12transactionsToSend.Add(AV10oneAddressHistory, 0);
+                        if (true) break;
+                     }
+                     AV24GXV2 = (int)(AV24GXV2+1);
+                  }
+               }
+               AV23GXV1 = (int)(AV23GXV1+1);
+            }
+            cleanup();
+            if (true) return;
+         }
          AV9historyWithBalance.Sort("Balance");
          AV17bestSingleIndex = 0;
          AV18bestSingleBalance = 0;
          AV19currentIndex = 0;
-         AV20GXV1 = 1;
-         while ( AV20GXV1 <= AV9historyWithBalance.Count )
+         AV25GXV3 = 1;
+         while ( AV25GXV3 <= AV9historyWithBalance.Count )
          {
-            AV10oneAddressHistory = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV9historyWithBalance.Item(AV20GXV1));
+            AV10oneAddressHistory = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV9historyWithBalance.Item(AV25GXV3));
             AV19currentIndex = (long)(AV19currentIndex+1);
             if ( AV10oneAddressHistory.gxTpr_Balance >= AV16neededAmount )
             {
@@ -95,15 +125,15 @@ namespace GeneXus.Programs.wallet {
                AV18bestSingleBalance = AV10oneAddressHistory.gxTpr_Balance;
                if (true) break;
             }
-            AV20GXV1 = (int)(AV20GXV1+1);
+            AV25GXV3 = (int)(AV25GXV3+1);
          }
          if ( AV17bestSingleIndex > 0 )
          {
             AV19currentIndex = 0;
-            AV21GXV2 = 1;
-            while ( AV21GXV2 <= AV9historyWithBalance.Count )
+            AV26GXV4 = 1;
+            while ( AV26GXV4 <= AV9historyWithBalance.Count )
             {
-               AV10oneAddressHistory = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV9historyWithBalance.Item(AV21GXV2));
+               AV10oneAddressHistory = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV9historyWithBalance.Item(AV26GXV4));
                AV19currentIndex = (long)(AV19currentIndex+1);
                if ( AV19currentIndex == AV17bestSingleIndex )
                {
@@ -111,17 +141,17 @@ namespace GeneXus.Programs.wallet {
                   AV12transactionsToSend.Add(AV10oneAddressHistory, 0);
                   if (true) break;
                }
-               AV21GXV2 = (int)(AV21GXV2+1);
+               AV26GXV4 = (int)(AV26GXV4+1);
             }
          }
          else
          {
             AV9historyWithBalance.Sort("[Balance]");
             AV11totalBalance = 0;
-            AV22GXV3 = 1;
-            while ( AV22GXV3 <= AV9historyWithBalance.Count )
+            AV27GXV5 = 1;
+            while ( AV27GXV5 <= AV9historyWithBalance.Count )
             {
-               AV10oneAddressHistory = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV9historyWithBalance.Item(AV22GXV3));
+               AV10oneAddressHistory = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV9historyWithBalance.Item(AV27GXV5));
                AV10oneAddressHistory.gxTpr_Description = StringUtil.Trim( AV14description);
                AV11totalBalance = (decimal)(AV11totalBalance+(AV10oneAddressHistory.gxTpr_Balance));
                AV12transactionsToSend.Add(AV10oneAddressHistory, 0);
@@ -129,7 +159,7 @@ namespace GeneXus.Programs.wallet {
                {
                   if (true) break;
                }
-               AV22GXV3 = (int)(AV22GXV3+1);
+               AV27GXV5 = (int)(AV27GXV5+1);
             }
          }
          cleanup();
@@ -150,13 +180,19 @@ namespace GeneXus.Programs.wallet {
          AV12transactionsToSend = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
          AV9historyWithBalance = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
          GXt_objcol_SdtSDTAddressHistory1 = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
+         AV22selected = new GxSimpleCollection<string>();
+         GXt_objcol_svchar2 = new GxSimpleCollection<string>();
          AV10oneAddressHistory = new GeneXus.Programs.wallet.SdtSDTAddressHistory(context);
+         AV21outpoint = "";
+         AV20oneOutpoint = "";
          /* GeneXus formulas. */
       }
 
-      private int AV20GXV1 ;
-      private int AV21GXV2 ;
-      private int AV22GXV3 ;
+      private int AV23GXV1 ;
+      private int AV24GXV2 ;
+      private int AV25GXV3 ;
+      private int AV26GXV4 ;
+      private int AV27GXV5 ;
       private long AV17bestSingleIndex ;
       private long AV19currentIndex ;
       private decimal AV8amountToSend ;
@@ -165,9 +201,13 @@ namespace GeneXus.Programs.wallet {
       private decimal AV18bestSingleBalance ;
       private decimal AV11totalBalance ;
       private string AV14description ;
+      private string AV21outpoint ;
+      private string AV20oneOutpoint ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV12transactionsToSend ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV9historyWithBalance ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> GXt_objcol_SdtSDTAddressHistory1 ;
+      private GxSimpleCollection<string> AV22selected ;
+      private GxSimpleCollection<string> GXt_objcol_svchar2 ;
       private GeneXus.Programs.wallet.SdtSDTAddressHistory AV10oneAddressHistory ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> aP3_transactionsToSend ;
    }

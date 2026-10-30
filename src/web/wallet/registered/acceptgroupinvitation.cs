@@ -110,7 +110,7 @@ namespace GeneXus.Programs.wallet.registered {
                AV18group_sdt.gxTpr_Encpassword = AV12encryptionKey;
                AV20group_sdt_temp.gxTpr_Encpassword = AV12encryptionKey;
             }
-            else if ( AV18group_sdt.gxTpr_Grouptype == 30 )
+            else if ( ( AV18group_sdt.gxTpr_Grouptype == 30 ) || ( AV18group_sdt.gxTpr_Grouptype == 60 ) || ( AV18group_sdt.gxTpr_Grouptype == 80 ) || ( AV18group_sdt.gxTpr_Grouptype == 90 ) )
             {
                GXt_char5 = AV13error;
                new GeneXus.Programs.nbitcoin.createexpubtkey(context ).execute(  AV15extKeyInfoRoot.gxTpr_Extended.gxTpr_Nuterpublickeytaproot,  AV25wallet.gxTpr_Networktype,  "2", out  AV17extPubKeyInfo, out  GXt_char5) ;
@@ -183,6 +183,9 @@ namespace GeneXus.Programs.wallet.registered {
                }
             }
             else if ( AV18group_sdt.gxTpr_Grouptype == 40 )
+            {
+            }
+            else if ( AV18group_sdt.gxTpr_Grouptype == 70 )
             {
             }
             else

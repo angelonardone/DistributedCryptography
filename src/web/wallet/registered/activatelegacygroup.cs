@@ -87,75 +87,81 @@ namespace GeneXus.Programs.wallet.registered {
          GXt_SdtWalletInfo3 = AV22walletInfo;
          new GeneXus.Programs.wallet.getwalletinfo(context ).execute( out  GXt_SdtWalletInfo3) ;
          AV22walletInfo = GXt_SdtWalletInfo3;
-         if ( AV14group_sdt.gxTpr_Grouptype == 30 )
+         if ( AV14group_sdt.gxTpr_Grouptype == 70 )
          {
-            GXt_SdtExtKeyInfo4 = AV24extKeyInfoRoot;
-            new GeneXus.Programs.wallet.getextkey(context ).execute( out  GXt_SdtExtKeyInfo4) ;
-            AV24extKeyInfoRoot = GXt_SdtExtKeyInfo4;
-            GXt_char5 = AV9error;
-            new GeneXus.Programs.nbitcoin.createexpubtkey(context ).execute(  AV24extKeyInfoRoot.gxTpr_Extended.gxTpr_Nuterpublickeytaproot,  AV22walletInfo.gxTpr_Networktype,  "2", out  AV12extPubKeyInfo, out  GXt_char5) ;
-            AV9error = GXt_char5;
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
-            {
-               AV14group_sdt.gxTpr_Extpubkeymultisigreceiving = AV12extPubKeyInfo.gxTpr_Publickeytaproot;
-               GXt_char5 = AV9error;
-               new GeneXus.Programs.nbitcoin.createexpubtkey(context ).execute(  AV24extKeyInfoRoot.gxTpr_Extended.gxTpr_Nuterpublickeytaproot,  AV22walletInfo.gxTpr_Networktype,  "3", out  AV12extPubKeyInfo, out  GXt_char5) ;
-               AV9error = GXt_char5;
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
-               {
-                  AV14group_sdt.gxTpr_Extpubkeymultisigchange = AV12extPubKeyInfo.gxTpr_Publickeytaproot;
-               }
-               else
-               {
-                  AV9error = "We couldn't create the Change Extended Public Key for the multisignature: " + AV9error;
-                  cleanup();
-                  if (true) return;
-               }
-            }
-            else
-            {
-               AV9error = "We couldn't create the Receiving Extended Public Key for the multisignature: " + AV9error;
-               cleanup();
-               if (true) return;
-            }
          }
          else
          {
-            GXt_SdtExtKeyInfo4 = AV11extKeyInfoRootBIP48;
-            new GeneXus.Programs.wallet.getextkeybip48(context ).execute( out  GXt_SdtExtKeyInfo4) ;
-            AV11extKeyInfoRootBIP48 = GXt_SdtExtKeyInfo4;
-            GXt_char5 = AV9error;
-            new GeneXus.Programs.nbitcoin.createexpubtkey(context ).execute(  AV11extKeyInfoRootBIP48.gxTpr_Extended.gxTpr_Nuterpublickey,  AV22walletInfo.gxTpr_Networktype,  "0", out  AV12extPubKeyInfo, out  GXt_char5) ;
-            AV9error = GXt_char5;
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
+            if ( ( AV14group_sdt.gxTpr_Grouptype == 30 ) || ( AV14group_sdt.gxTpr_Grouptype == 60 ) || ( AV14group_sdt.gxTpr_Grouptype == 80 ) || ( AV14group_sdt.gxTpr_Grouptype == 90 ) )
             {
-               AV14group_sdt.gxTpr_Extpubkeymultisigreceiving = AV12extPubKeyInfo.gxTpr_Publickey;
+               GXt_SdtExtKeyInfo4 = AV24extKeyInfoRoot;
+               new GeneXus.Programs.wallet.getextkey(context ).execute( out  GXt_SdtExtKeyInfo4) ;
+               AV24extKeyInfoRoot = GXt_SdtExtKeyInfo4;
                GXt_char5 = AV9error;
-               new GeneXus.Programs.nbitcoin.createexpubtkey(context ).execute(  AV11extKeyInfoRootBIP48.gxTpr_Extended.gxTpr_Nuterpublickey,  AV22walletInfo.gxTpr_Networktype,  "1", out  AV12extPubKeyInfo, out  GXt_char5) ;
+               new GeneXus.Programs.nbitcoin.createexpubtkey(context ).execute(  AV24extKeyInfoRoot.gxTpr_Extended.gxTpr_Nuterpublickeytaproot,  AV22walletInfo.gxTpr_Networktype,  "2", out  AV12extPubKeyInfo, out  GXt_char5) ;
                AV9error = GXt_char5;
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
                {
-                  AV14group_sdt.gxTpr_Extpubkeymultisigchange = AV12extPubKeyInfo.gxTpr_Publickey;
+                  AV14group_sdt.gxTpr_Extpubkeymultisigreceiving = AV12extPubKeyInfo.gxTpr_Publickeytaproot;
+                  GXt_char5 = AV9error;
+                  new GeneXus.Programs.nbitcoin.createexpubtkey(context ).execute(  AV24extKeyInfoRoot.gxTpr_Extended.gxTpr_Nuterpublickeytaproot,  AV22walletInfo.gxTpr_Networktype,  "3", out  AV12extPubKeyInfo, out  GXt_char5) ;
+                  AV9error = GXt_char5;
+                  if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
+                  {
+                     AV14group_sdt.gxTpr_Extpubkeymultisigchange = AV12extPubKeyInfo.gxTpr_Publickeytaproot;
+                  }
+                  else
+                  {
+                     AV9error = "We couldn't create the Change Extended Public Key for the multisignature: " + AV9error;
+                     cleanup();
+                     if (true) return;
+                  }
                }
                else
                {
-                  AV9error = "We couldn't create the Change Extended Public Key for the Legacy multisignature: " + AV9error;
+                  AV9error = "We couldn't create the Receiving Extended Public Key for the multisignature: " + AV9error;
                   cleanup();
                   if (true) return;
                }
             }
             else
             {
-               AV9error = "We couldn't create the Receiving Extended Public Key for the Legacy multisignature: " + AV9error;
-               cleanup();
-               if (true) return;
+               GXt_SdtExtKeyInfo4 = AV11extKeyInfoRootBIP48;
+               new GeneXus.Programs.wallet.getextkeybip48(context ).execute( out  GXt_SdtExtKeyInfo4) ;
+               AV11extKeyInfoRootBIP48 = GXt_SdtExtKeyInfo4;
+               GXt_char5 = AV9error;
+               new GeneXus.Programs.nbitcoin.createexpubtkey(context ).execute(  AV11extKeyInfoRootBIP48.gxTpr_Extended.gxTpr_Nuterpublickey,  AV22walletInfo.gxTpr_Networktype,  "0", out  AV12extPubKeyInfo, out  GXt_char5) ;
+               AV9error = GXt_char5;
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
+               {
+                  AV14group_sdt.gxTpr_Extpubkeymultisigreceiving = AV12extPubKeyInfo.gxTpr_Publickey;
+                  GXt_char5 = AV9error;
+                  new GeneXus.Programs.nbitcoin.createexpubtkey(context ).execute(  AV11extKeyInfoRootBIP48.gxTpr_Extended.gxTpr_Nuterpublickey,  AV22walletInfo.gxTpr_Networktype,  "1", out  AV12extPubKeyInfo, out  GXt_char5) ;
+                  AV9error = GXt_char5;
+                  if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
+                  {
+                     AV14group_sdt.gxTpr_Extpubkeymultisigchange = AV12extPubKeyInfo.gxTpr_Publickey;
+                  }
+                  else
+                  {
+                     AV9error = "We couldn't create the Change Extended Public Key for the Legacy multisignature: " + AV9error;
+                     cleanup();
+                     if (true) return;
+                  }
+               }
+               else
+               {
+                  AV9error = "We couldn't create the Receiving Extended Public Key for the Legacy multisignature: " + AV9error;
+                  cleanup();
+                  if (true) return;
+               }
             }
          }
          AV14group_sdt.gxTpr_Isactive = true;
          AV14group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeymultisigreceiving = AV14group_sdt.gxTpr_Extpubkeymultisigreceiving;
          AV14group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeymultisigchange = AV14group_sdt.gxTpr_Extpubkeymultisigchange;
          AV14group_sdt.gxTpr_Othergroup.gxTpr_Referenceusernname = StringUtil.Trim( AV10externalUserPublic.gxTpr_Userinfo.gxTpr_Username);
-         if ( AV14group_sdt.gxTpr_Grouptype == 30 )
+         if ( ( AV14group_sdt.gxTpr_Grouptype == 30 ) || ( AV14group_sdt.gxTpr_Grouptype == 60 ) || ( AV14group_sdt.gxTpr_Grouptype == 80 ) || ( AV14group_sdt.gxTpr_Grouptype == 90 ) )
          {
             GXt_SdtDelegatedAddressResult6 = AV23addressResult;
             new GeneXus.Programs.wallet.registered.deriveaddressdelegated(context ).execute(  AV14group_sdt,  AV22walletInfo.gxTpr_Networktype,  0,  false, out  GXt_SdtDelegatedAddressResult6) ;
@@ -209,6 +215,7 @@ namespace GeneXus.Programs.wallet.registered {
             AV15group_sdt_temp.gxTpr_Contact.Add((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)(AV20oneGroupContact.Clone()), 0);
             AV26GXV2 = (int)(AV26GXV2+1);
          }
+         new GeneXus.Programs.wallet.registered.removeprivatenames(context ).execute( ref  AV15group_sdt_temp) ;
          AV19message_signature.gxTpr_Username = StringUtil.Trim( AV10externalUserPublic.gxTpr_Userinfo.gxTpr_Username);
          AV19message_signature.gxTpr_Grouppubkey = StringUtil.Trim( AV10externalUserPublic.gxTpr_Groupskeyinfo.gxTpr_Publickey);
          GXt_char5 = AV9error;

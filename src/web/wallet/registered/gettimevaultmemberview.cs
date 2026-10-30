@@ -127,7 +127,9 @@ namespace GeneXus.Programs.wallet.registered {
             AV20viewContact = new GeneXus.Programs.wallet.registered.SdtWalletBackupView_ContactItem(context);
             AV20viewContact.gxTpr_Contactid = AV11groupContact.gxTpr_Contactid;
             AV20viewContact.gxTpr_Numshares = AV11groupContact.gxTpr_Numshares;
-            AV20viewContact.gxTpr_Contactprivatename = AV11groupContact.gxTpr_Contactprivatename;
+            GXt_char2 = "";
+            new GeneXus.Programs.wallet.registered.getmemberdisplayname(context ).execute(  AV11groupContact.gxTpr_Contactusername, out  GXt_char2) ;
+            AV20viewContact.gxTpr_Contactprivatename = GXt_char2;
             AV20viewContact.gxTpr_Contactusername = AV11groupContact.gxTpr_Contactusername;
             AV20viewContact.gxTpr_Contactinvitationsent = AV11groupContact.gxTpr_Contactinvitationsent;
             AV20viewContact.gxTpr_Contactinvitacionaccepted = AV11groupContact.gxTpr_Contactinvitacionaccepted;

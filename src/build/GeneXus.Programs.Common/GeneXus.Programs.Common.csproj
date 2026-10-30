@@ -52,6 +52,7 @@
 		<Compile Include = "$(WebDirectory)\distributedcrypto\gxdomainencryptaction.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gxdomainwalletrestoremethod.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomaincreatekeytype.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\type_SdtMuSig2Processor.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\gxdomainmnemonicnumberwords.cs" />
 		<Compile Include = "$(WebDirectory)\gxjadelib\type_SdtGxVersionInfo.cs" />
 		<Compile Include = "$(WebDirectory)\gxjadelib\type_SdtGxHsmPubkeyResult.cs" />

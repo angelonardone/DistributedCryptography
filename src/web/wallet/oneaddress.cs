@@ -581,7 +581,7 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTransactionscount_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTransactionscount_Internalname, "Number of Transactions", "col-sm-3 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTransactionscount_Internalname, "Coins received", "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -606,7 +606,7 @@ namespace GeneXus.Programs.wallet {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 26,'" + sPrefix + "',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttUpdatebalance_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(29), 2, 0)+","+"null"+");", "Update Balance", bttUpdatebalance_Jsonclick, 5, "Update Balance", "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'UPDATE BALANCE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Wallet/OneAddress.htm");
+            GxWebStd.gx_button_ctrl( context, bttUpdatebalance_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(29), 2, 0)+","+"null"+");", "Rescan Balance", bttUpdatebalance_Jsonclick, 5, "Rescan Balance", "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'RESCAN BALANCE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Wallet/OneAddress.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -783,7 +783,7 @@ namespace GeneXus.Programs.wallet {
                                  }
                               }
                            }
-                           else if ( StringUtil.StrCmp(sEvt, "'UPDATE BALANCE'") == 0 )
+                           else if ( StringUtil.StrCmp(sEvt, "'RESCAN BALANCE'") == 0 )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
@@ -795,7 +795,7 @@ namespace GeneXus.Programs.wallet {
                                  if ( ! wbErr )
                                  {
                                     dynload_actions( ) ;
-                                    /* Execute user event: 'Update Balance' */
+                                    /* Execute user event: 'Rescan Balance' */
                                     E13072 ();
                                  }
                               }
@@ -1466,7 +1466,7 @@ namespace GeneXus.Programs.wallet {
          {
             AV14SDTAddressHistory.CurrentItem = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV14SDTAddressHistory.Item(AV33GXV1));
          }
-         /* 'Update Balance' Routine */
+         /* 'Rescan Balance' Routine */
          returnInSub = false;
          /* Execute user subroutine: 'GET BALANCE' */
          S122 ();
@@ -1733,7 +1733,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20261016177159", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013254658", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1749,7 +1749,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/oneaddress.js", "?20261016177159", false, true, false);
+         context.AddJavascriptSource("wallet/oneaddress.js", "?2026103013254658", false, true, false);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
          /* End function include_jscripts */
       }
@@ -2176,8 +2176,8 @@ namespace GeneXus.Programs.wallet {
          setEventMetadata("'GET KEY INFO'","""{"handler":"E16072","iparms":[{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"}]}""");
          setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E12072","iparms":[{"av":"AV13PopupName","fld":"vPOPUPNAME","type":"char"},{"av":"AV20transactions__postInput","fld":"vTRANSACTIONS__POSTINPUT","type":""},{"av":"AV12mainAddress","fld":"vMAINADDRESS","hsh":true,"type":"char"},{"av":"AV25oneReturnAddress","fld":"vONERETURNADDRESS","type":""},{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"},{"av":"ADDRESSGRID_nEOF","type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV32walletInfo","fld":"vWALLETINFO","hsh":true,"type":""}]""");
          setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"},{"av":"AV21transactionsCount","fld":"vTRANSACTIONSCOUNT","pic":"ZZZZZZZZZ9","type":"int"},{"av":"AV19totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZZZ9.99999999","type":"decimal"},{"av":"AV20transactions__postInput","fld":"vTRANSACTIONS__POSTINPUT","type":""},{"av":"AV5error","fld":"vERROR","type":"char"},{"ctrl":"SEND","prop":"Visible"},{"av":"AV25oneReturnAddress","fld":"vONERETURNADDRESS","type":""}]}""");
-         setEventMetadata("'UPDATE BALANCE'","""{"handler":"E13072","iparms":[{"av":"AV20transactions__postInput","fld":"vTRANSACTIONS__POSTINPUT","type":""},{"av":"AV12mainAddress","fld":"vMAINADDRESS","hsh":true,"type":"char"},{"av":"AV25oneReturnAddress","fld":"vONERETURNADDRESS","type":""},{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"},{"av":"ADDRESSGRID_nEOF","type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV32walletInfo","fld":"vWALLETINFO","hsh":true,"type":""}]""");
-         setEventMetadata("'UPDATE BALANCE'",""","oparms":[{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"},{"av":"AV21transactionsCount","fld":"vTRANSACTIONSCOUNT","pic":"ZZZZZZZZZ9","type":"int"},{"av":"AV19totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZZZ9.99999999","type":"decimal"},{"av":"AV20transactions__postInput","fld":"vTRANSACTIONS__POSTINPUT","type":""},{"av":"AV5error","fld":"vERROR","type":"char"},{"ctrl":"SEND","prop":"Visible"},{"av":"AV25oneReturnAddress","fld":"vONERETURNADDRESS","type":""}]}""");
+         setEventMetadata("'RESCAN BALANCE'","""{"handler":"E13072","iparms":[{"av":"AV20transactions__postInput","fld":"vTRANSACTIONS__POSTINPUT","type":""},{"av":"AV12mainAddress","fld":"vMAINADDRESS","hsh":true,"type":"char"},{"av":"AV25oneReturnAddress","fld":"vONERETURNADDRESS","type":""},{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"},{"av":"ADDRESSGRID_nEOF","type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV32walletInfo","fld":"vWALLETINFO","hsh":true,"type":""}]""");
+         setEventMetadata("'RESCAN BALANCE'",""","oparms":[{"av":"AV14SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":29,"type":""},{"av":"nGXsfl_29_idx","ctrl":"GRID","prop":"GridCurrRow","grid":29},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_29","ctrl":"ADDRESSGRID","prop":"GridRC","grid":29,"type":"int"},{"av":"AV21transactionsCount","fld":"vTRANSACTIONSCOUNT","pic":"ZZZZZZZZZ9","type":"int"},{"av":"AV19totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZZZ9.99999999","type":"decimal"},{"av":"AV20transactions__postInput","fld":"vTRANSACTIONS__POSTINPUT","type":""},{"av":"AV5error","fld":"vERROR","type":"char"},{"ctrl":"SEND","prop":"Visible"},{"av":"AV25oneReturnAddress","fld":"vONERETURNADDRESS","type":""}]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Txtconfirmations","iparms":[]}""");
          return  ;
       }

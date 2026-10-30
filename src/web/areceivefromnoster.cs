@@ -126,14 +126,23 @@ namespace GeneXus.Programs {
          {
             AV31queueDirectory.Create();
          }
-         GXt_int1 = AV29miliseconds;
-         new GeneXus.Programs.distributedcrypto.getunixtimemilisecondsutc(context ).execute( out  GXt_int1) ;
-         AV29miliseconds = GXt_int1;
+         GXt_boolean1 = false;
+         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean1) ;
          GXt_boolean2 = false;
          new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean2) ;
-         GXt_boolean3 = false;
-         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
-         AV32queueFile.Source = AV31queueDirectory.GetAbsoluteName()+(GXt_boolean3 ? "/" : "\\")+StringUtil.Trim( StringUtil.Str( (decimal)(AV29miliseconds), 18, 0))+".queue";
+         AV31queueDirectory.Source = "Comqueue"+(GXt_boolean2 ? "/" : "\\")+StringUtil.Trim( AV10key.ToString());
+         if ( ! AV31queueDirectory.Exists() )
+         {
+            AV31queueDirectory.Create();
+         }
+         GXt_int3 = AV29miliseconds;
+         new GeneXus.Programs.distributedcrypto.getunixtimemilisecondsutc(context ).execute( out  GXt_int3) ;
+         AV29miliseconds = GXt_int3;
+         GXt_boolean2 = false;
+         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean2) ;
+         GXt_boolean1 = false;
+         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean1) ;
+         AV32queueFile.Source = AV31queueDirectory.GetAbsoluteName()+(GXt_boolean1 ? "/" : "\\")+StringUtil.Trim( StringUtil.Str( (decimal)(AV29miliseconds), 18, 0))+".queue";
          AV32queueFile.WriteAllText(AV12NotificationInfo.ToJSonString(false, true), "");
          cleanup();
       }
@@ -158,11 +167,11 @@ namespace GeneXus.Programs {
       }
 
       private long AV29miliseconds ;
-      private long GXt_int1 ;
+      private long GXt_int3 ;
       private string AV14topic ;
       private DateTime AV8datetime ;
       private bool GXt_boolean2 ;
-      private bool GXt_boolean3 ;
+      private bool GXt_boolean1 ;
       private string AV11message ;
       private Guid AV10key ;
       private GxFile AV32queueFile ;

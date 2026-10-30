@@ -129,7 +129,9 @@ namespace GeneXus.Programs.wallet {
                {
                   AV25vaultContact = new GeneXus.Programs.wallet.SdtVaultContact(context);
                   AV25vaultContact.gxTpr_Contactid = AV15oneContact.gxTpr_Contactid;
-                  AV25vaultContact.gxTpr_Contactprivatename = AV15oneContact.gxTpr_Contactprivatename;
+                  GXt_char1 = "";
+                  new GeneXus.Programs.wallet.registered.getmemberdisplayname(context ).execute(  AV15oneContact.gxTpr_Contactusername, out  GXt_char1) ;
+                  AV25vaultContact.gxTpr_Contactprivatename = GXt_char1;
                   AV10contacts.Add(AV25vaultContact, 0);
                }
                AV26GXV1 = (int)(AV26GXV1+1);
@@ -195,12 +197,12 @@ namespace GeneXus.Programs.wallet {
          AV23tags = new GXBaseCollection<GeneXus.Programs.wallet.SdtPassword_tag>( context, "Password_tag", "distributedcryptography");
          AV10contacts = new GXBaseCollection<GeneXus.Programs.wallet.SdtVaultContact>( context, "VaultContact", "distributedcryptography");
          AV11error = "";
-         GXt_char1 = "";
          AV24vault = new GeneXus.Programs.wallet.SdtPasswords_and_tags(context);
          AV12group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
          GXt_SdtGroup_SDT2 = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
          AV15oneContact = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem(context);
          AV25vaultContact = new GeneXus.Programs.wallet.SdtVaultContact(context);
+         GXt_char1 = "";
          AV16onePassword = new GeneXus.Programs.wallet.SdtPassword(context);
          AV17oneTag = new GeneXus.Programs.wallet.SdtPassword_tag(context);
          AV20sharedWith = Guid.Empty;

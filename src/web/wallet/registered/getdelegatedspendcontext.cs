@@ -150,7 +150,7 @@ namespace GeneXus.Programs.wallet.registered {
          AV29walletInfo = GXt_SdtWalletInfo1;
          AV18networkType = AV29walletInfo.gxTpr_Networktype;
          AV13group_sdt.FromJSonString(AV30websession.Get("Group_EDIT_WALLET"), null);
-         AV8amIgroupOwner = AV13group_sdt.gxTpr_Amigroupowner;
+         AV8amIgroupOwner = (bool)(AV13group_sdt.gxTpr_Amigroupowner&&(AV13group_sdt.gxTpr_Grouptype==30));
          AV17minSig = AV13group_sdt.gxTpr_Minimumshares;
          AV19numMembers = 0;
          AV31GXV1 = 1;
@@ -162,6 +162,10 @@ namespace GeneXus.Programs.wallet.registered {
                AV19numMembers = (short)(AV19numMembers+1);
             }
             AV31GXV1 = (int)(AV31GXV1+1);
+         }
+         if ( AV13group_sdt.gxTpr_Grouptype == 60 )
+         {
+            AV19numMembers = (short)(AV19numMembers+1);
          }
          AV15isLastSigner = false;
          AV28spendInfo = new GeneXus.Programs.wallet.registered.SdtDelegatedSpendInfo(context);

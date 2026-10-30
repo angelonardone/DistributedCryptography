@@ -175,6 +175,7 @@ namespace GeneXus.Programs.wallet.registered {
             AV16group_sdt_temp.gxTpr_Contact.Add((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)(AV21oneGroupContact.Clone()), 0);
             AV26GXV3 = (int)(AV26GXV3+1);
          }
+         new GeneXus.Programs.wallet.registered.removeprivatenames(context ).execute( ref  AV16group_sdt_temp) ;
          AV20message_signature.gxTpr_Username = StringUtil.Trim( AV11externalUserPublic.gxTpr_Userinfo.gxTpr_Username);
          AV20message_signature.gxTpr_Grouppubkey = StringUtil.Trim( AV11externalUserPublic.gxTpr_Groupskeyinfo.gxTpr_Publickey);
          GXt_char7 = AV10error;

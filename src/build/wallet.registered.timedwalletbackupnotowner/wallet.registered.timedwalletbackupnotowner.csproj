@@ -53,6 +53,7 @@
 		<Compile Include = "$(WebDirectory)\wallet\registered\updategrouponlocalfiles.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\getelectrumconfigfornetworktype.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\signwithgroupskey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\postupdategroup.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\getlocalgroupbyid.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\getgroupbyid.cs" />
 		<Compile Include = "$(WebDirectory)\desktopappservicesrestgetgroupget.cs" />
@@ -65,6 +66,7 @@
 		<Compile Include = "$(WebDirectory)\electrum\get_history.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\connect.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\restgetchallenge.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\getmemberdisplayname.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\processserver.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\callapionce.cs" />
@@ -76,8 +78,10 @@
 		<Compile Include = "$(WebDirectory)\distcrypt\logintoserver.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccsignmsg.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\getunixtimemilisecondsutc.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\removeprivatenames.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\getgroupeditview.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\sha256.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\callapi.cs" />
 		<Compile Include = "$(WebDirectory)\shamirss\combineshares.cs" />
@@ -98,21 +102,20 @@
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjsonto.cs" />
 		<Compile Include = "$(WebDirectory)\desktopappservicesrestsendmesagepost.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjsonwithpassword.cs" />
-		<Compile Include = "$(WebDirectory)\desktopappservicesrestupdategrouppost.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\get_transaction.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\getnewesttimeconstrain.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjsonfor.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\registered\getgroupeditview.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\getdefaultserverparameters.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\decryptwithgroupskey.cs" />
-		<Compile Include = "$(WebDirectory)\electrum\get_transaction.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\sendmessage.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\sendmessage.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\signbip322.cs" />
 		<Compile Include = "$(WebDirectory)\apibaseurlauth.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\updategroup.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\signtimevaultrestore.cs" />
-		<Compile Include = "$(WebDirectory)\distcrypt\getdefaultserverparameters.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\retaddresselectrumformat.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\getcontactid.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluser.cs" />
 
 	</ItemGroup>

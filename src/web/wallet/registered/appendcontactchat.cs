@@ -72,10 +72,25 @@ namespace GeneXus.Programs.wallet.registered {
          new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
          AV10contac_file_name = "Chat" + (GXt_boolean3 ? "/" : "\\") + StringUtil.Trim( AV8contactId.ToString()) + ".json";
          AV12sdt_all_chats.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  AV10contac_file_name, out  AV9error), null);
-         AV12sdt_all_chats.Add(AV11sdt_chat, 0);
-         GXt_char4 = AV9error;
-         new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  AV10contac_file_name,  AV12sdt_all_chats.ToJSonString(false), out  GXt_char4) ;
-         AV9error = GXt_char4;
+         AV16found = false;
+         AV18GXV1 = 1;
+         while ( AV18GXV1 <= AV12sdt_all_chats.Count )
+         {
+            AV17one_chat = ((GeneXus.Programs.nostr.SdtSDT_Chat)AV12sdt_all_chats.Item(AV18GXV1));
+            if ( AV17one_chat.gxTpr_Id == AV11sdt_chat.gxTpr_Id )
+            {
+               AV16found = true;
+               if (true) break;
+            }
+            AV18GXV1 = (int)(AV18GXV1+1);
+         }
+         if ( ! AV16found )
+         {
+            AV12sdt_all_chats.Add(AV11sdt_chat, 0);
+            GXt_char4 = AV9error;
+            new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  AV10contac_file_name,  AV12sdt_all_chats.ToJSonString(false), out  GXt_char4) ;
+            AV9error = GXt_char4;
+         }
          cleanup();
       }
 
@@ -97,21 +112,25 @@ namespace GeneXus.Programs.wallet.registered {
          AV10contac_file_name = "";
          AV12sdt_all_chats = new GXBaseCollection<GeneXus.Programs.nostr.SdtSDT_Chat>( context, "SDT_Chat", "distributedcryptography");
          AV9error = "";
+         AV17one_chat = new GeneXus.Programs.nostr.SdtSDT_Chat(context);
          GXt_char4 = "";
          /* GeneXus formulas. */
       }
 
+      private int AV18GXV1 ;
       private string AV10contac_file_name ;
       private string AV9error ;
       private string GXt_char4 ;
       private bool GXt_boolean2 ;
       private bool GXt_boolean3 ;
+      private bool AV16found ;
       private Guid AV8contactId ;
       private GxDirectory AV13directory ;
       private GeneXus.Programs.nostr.SdtSDT_Chat AV11sdt_chat ;
       private GeneXus.Programs.wallet.SdtWallet AV14wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
       private GXBaseCollection<GeneXus.Programs.nostr.SdtSDT_Chat> AV12sdt_all_chats ;
+      private GeneXus.Programs.nostr.SdtSDT_Chat AV17one_chat ;
    }
 
 }

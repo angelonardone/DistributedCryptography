@@ -78,25 +78,18 @@ namespace GeneXus.Programs.wallet.registered {
          AV9externalUser = GXt_SdtExternalUser1;
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV9externalUser.gxTpr_Externaltoken)) )
          {
+            AV17groupToStore.FromJSonString(AV10group.ToJSonString(false, true), null);
+            new GeneXus.Programs.wallet.registered.removeprivatenames(context ).execute( ref  AV17groupToStore) ;
             GXt_char2 = AV8error;
             GXt_char3 = AV12body.gxTpr_Groupencryptedkey;
             GXt_char4 = AV12body.gxTpr_Groupencrypted;
-            new GeneXus.Programs.distributedcryptographylib.encryptjson(context ).execute(  AV10group.ToJSonString(false, true),  "", out  GXt_char3, out  GXt_char4, out  GXt_char2) ;
+            new GeneXus.Programs.distributedcryptographylib.encryptjson(context ).execute(  AV17groupToStore.ToJSonString(false, true),  "", out  GXt_char3, out  GXt_char4, out  GXt_char2) ;
             AV12body.gxTpr_Groupencryptedkey = GXt_char3;
             AV12body.gxTpr_Groupencrypted = GXt_char4;
             AV8error = GXt_char2;
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
             {
-               new desktopappservicesrestcreategrouppost(context ).execute(  AV16properties,  AV12body,  AV9externalUser.gxTpr_Externaltoken, out  AV13createGroup__postOutputOUT, out  AV14HttpMessage, out  AV15IsSuccess) ;
-               if ( ! AV15IsSuccess )
-               {
-                  AV8error = AV14HttpMessage.gxTpr_Description;
-               }
-               else
-               {
-                  AV8error = AV13createGroup__postOutputOUT.gxTpr_Error;
-                  AV11groupId = AV13createGroup__postOutputOUT.gxTpr_Groupid;
-               }
+               new GeneXus.Programs.wallet.registered.postcreategroup(context ).execute(  AV12body, out  AV11groupId, out  AV8error) ;
             }
          }
          else
@@ -122,13 +115,11 @@ namespace GeneXus.Programs.wallet.registered {
          AV8error = "";
          AV9externalUser = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
          GXt_SdtExternalUser1 = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
+         AV17groupToStore = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
          GXt_char2 = "";
          AV12body = new SdtcreateGroup__postInput(context);
          GXt_char3 = "";
          GXt_char4 = "";
-         AV16properties = new GXProperties();
-         AV13createGroup__postOutputOUT = new SdtcreateGroup__postOutput(context);
-         AV14HttpMessage = new GeneXus.Utils.SdtMessages_Message(context);
          /* GeneXus formulas. */
       }
 
@@ -136,15 +127,12 @@ namespace GeneXus.Programs.wallet.registered {
       private string GXt_char2 ;
       private string GXt_char3 ;
       private string GXt_char4 ;
-      private bool AV15IsSuccess ;
       private Guid AV11groupId ;
-      private GXProperties AV16properties ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV10group ;
       private GeneXus.Programs.distcrypt.SdtExternalUser AV9externalUser ;
       private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV17groupToStore ;
       private SdtcreateGroup__postInput AV12body ;
-      private SdtcreateGroup__postOutput AV13createGroup__postOutputOUT ;
-      private GeneXus.Utils.SdtMessages_Message AV14HttpMessage ;
       private Guid aP1_groupId ;
       private string aP2_error ;
    }

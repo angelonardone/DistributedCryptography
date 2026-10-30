@@ -49,8 +49,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Include = "$(WebDirectory)\wallet\getextkeybip48.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluser.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\registered\getgrouplist.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\postupdategroup.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\postcreategroup.cs" />
 		<Compile Include = "$(WebDirectory)\desktopappservicesrestdeletegrouppost.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\updateandsaveexternaluser.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getserverparameters.cs" />
@@ -61,7 +63,6 @@
 		<Compile Include = "$(WebDirectory)\openapicommon\callapionce.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getdefaultserverparameters.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\registered\getgroups.cs" />
 		<Compile Include = "$(WebDirectory)\apibaseurlauth.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
@@ -74,14 +75,17 @@
 		<Compile Include = "$(WebDirectory)\wallet\iswalletopen.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjsonto.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\getgrouplist.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\sendmessage.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\createexpubtkey.cs" />
-		<Compile Include = "$(WebDirectory)\desktopappservicesrestcreategrouppost.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluserpublic.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\getgroups.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\restlogin.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\varchartojsonformat.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getextkeybip48.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\removeprivatenames.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\creategroup.cs" />
+		<Compile Include = "$(WebDirectory)\distcrypt\signwithgroupskey.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\desktopappservicesrestgetusergroupsget.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getextkey.cs" />
@@ -94,7 +98,6 @@
 		<Compile Include = "$(WebDirectory)\openapicommon\callapi.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\signbip322.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\recovergroupsfromserver.cs" />
-		<Compile Include = "$(WebDirectory)\desktopappservicesrestupdategrouppost.cs" />
 		<Compile Include = "$(WebDirectory)\desktopappservicesrestsendmesagepost.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccsignmsg.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\acceptgroupinvitation.cs" />

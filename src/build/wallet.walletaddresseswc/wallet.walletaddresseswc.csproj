@@ -1,0 +1,84 @@
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
+	
+	
+	<PropertyGroup>
+		<AssemblyName>wallet.walletaddresseswc</AssemblyName>
+		<TargetFramework>$(TargetFramework)</TargetFramework>
+		<OutputType>Library</OutputType>
+		<GenerateDependencyFile>false</GenerateDependencyFile>
+		<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+		<PostgresqlSupport>false</PostgresqlSupport>
+		<OfficeSupport>false</OfficeSupport>
+		<MailSupport>false</MailSupport>
+		<GrpcClientSupport>false</GrpcClientSupport>
+		<PdfLibrary></PdfLibrary>
+		<SAPErpSupport>false</SAPErpSupport>
+		<PDFSupport>false</PDFSupport>
+		<SearchSupport>false</SearchSupport>
+	</PropertyGroup>
+
+	<ItemGroup>
+
+        <ProjectReference Include="..\GeneXus.Programs.Common\GeneXus.Programs.Common.csproj" >
+            <OutputItemType>$(CommonOutputItemType)</OutputItemType>
+        </ProjectReference>
+
+	</ItemGroup>
+
+	<ItemGroup>
+
+        <Reference Include="GeneXus" >
+            <HintPath>$(WebBinDirectory)\GeneXus.dll</HintPath>
+        </Reference>
+        <Reference Include="Google.Authenticator" >
+            <HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
+        </Reference>
+        <Reference Include="GxInternetLib" >
+            <HintPath>$(WebBinDirectory)\GxInternetLib.dll</HintPath>
+        </Reference>
+        <Reference Include="DistricutedCryptographyLib" >
+            <HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
+        </Reference>
+        <Reference Include="GxJadeLib" >
+            <HintPath>$(WebBinDirectory)\GxJadeLib.dll</HintPath>
+        </Reference>
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include = "$(WebDirectory)\wallet\buildpaymenturi.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getpaymentrequests.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\deriveaddresssfromextendedpubkey.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwalletaddresses.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\mapgrouptodelegatedeo.cs" />
+		<Compile Include = "$(WebDirectory)\qrcoder\generateqrcodestring.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getextkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\createexpubtkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwalletinfo.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\deriveaddressdelegated.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\walletaddresseswc.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\deriveaddresslegacy.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\deriveaddresssforlegacy.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getgroupaddresses.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\deriveaddresssfordelegated.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getaddresscontext.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\deriveoneaddressfromextpubkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\setgroupeditwallet.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\buildaddressqrtext.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\getlocalgroupbyid.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\parse_serialized_extended_key.cs" />
+
+	</ItemGroup>
+
+	<Import Project="..\DotNetCoreBaseProject.targets"/>	
+</Project>
+

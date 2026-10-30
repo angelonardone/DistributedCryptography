@@ -154,7 +154,7 @@ namespace GeneXus.Programs.wallet.registered {
             cleanup();
             if (true) return;
          }
-         if ( AV27group_sdt.gxTpr_Amigroupowner )
+         if ( AV27group_sdt.gxTpr_Amigroupowner && ( AV27group_sdt.gxTpr_Grouptype == 30 ) )
          {
             /* Execute user subroutine: 'OWNER SPENDS ALONE' */
             S111 ();
@@ -234,15 +234,15 @@ namespace GeneXus.Programs.wallet.registered {
          AV44signatureID = AV34oneMuSigSignatures.gxTpr_Id;
          AV31maxPercent = 0;
          AV39percentTokens = (GxSimpleCollection<string>)(GxRegex.Split(AV37percentages,","));
-         AV54GXV1 = 1;
-         while ( AV54GXV1 <= AV39percentTokens.Count )
+         AV58GXV1 = 1;
+         while ( AV58GXV1 <= AV39percentTokens.Count )
          {
-            AV38percentToken = ((string)AV39percentTokens.Item(AV54GXV1));
+            AV38percentToken = ((string)AV39percentTokens.Item(AV58GXV1));
             if ( ( NumberUtil.Val( StringUtil.Trim( AV38percentToken), ".") > Convert.ToDecimal( AV31maxPercent )) )
             {
                AV31maxPercent = (short)(Math.Round(NumberUtil.Val( StringUtil.Trim( AV38percentToken), "."), 18, MidpointRounding.ToEven));
             }
-            AV54GXV1 = (int)(AV54GXV1+1);
+            AV58GXV1 = (int)(AV58GXV1+1);
          }
          AV30maxFee = (decimal)(AV25fee*(100+AV31maxPercent)/ (decimal)(100));
          GXt_objcol_SdtSDTAddressHistory3 = AV49transactionsToSend;
@@ -317,6 +317,19 @@ namespace GeneXus.Programs.wallet.registered {
                GXt_boolean6 = false;
                new GeneXus.Programs.wallet.doesaddressbelongtowallet(context ).execute(  AV14changeTo,  (short)(Math.Round(NumberUtil.Val( "3", "."), 18, MidpointRounding.ToEven)), ref  GXt_boolean6, out  GXt_boolean5) ;
                AV13changeBelongs = GXt_boolean5;
+               if ( ! AV13changeBelongs )
+               {
+                  GXt_char4 = AV55discoverError;
+                  new GeneXus.Programs.wallet.discovergroupaddresses(context ).execute( out  AV54addressess_to_look_for, out  AV56SDTAddressHistory, out  AV57totalBalance, out  GXt_char4) ;
+                  AV55discoverError = GXt_char4;
+                  if ( String.IsNullOrEmpty(StringUtil.RTrim( AV55discoverError)) )
+                  {
+                     GXt_boolean6 = AV13changeBelongs;
+                     GXt_boolean5 = false;
+                     new GeneXus.Programs.wallet.doesaddressbelongtowallet(context ).execute(  AV14changeTo,  (short)(Math.Round(NumberUtil.Val( "3", "."), 18, MidpointRounding.ToEven)), ref  GXt_boolean5, out  GXt_boolean6) ;
+                     AV13changeBelongs = GXt_boolean6;
+                  }
+               }
             }
             if ( ! AV13changeBelongs )
             {
@@ -394,12 +407,18 @@ namespace GeneXus.Programs.wallet.registered {
             GXt_char4 = AV20errorAfter;
             new GeneXus.Programs.wallet.updatetransactionsaftercoinsent(context ).execute(  AV47transactionFileName,  AV48TransactionId,  AV49transactionsToSend, out  GXt_char4) ;
             AV20errorAfter = GXt_char4;
-            AV55GXV2 = 1;
-            while ( AV55GXV2 <= AV49transactionsToSend.Count )
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV20errorAfter)) )
             {
-               AV35oneTransaction = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV49transactionsToSend.Item(AV55GXV2));
+               GXt_char4 = AV20errorAfter;
+               new GeneXus.Programs.wallet.recordsentoutputs(context ).execute(  AV47transactionFileName,  AV48TransactionId,  AV46spendResult.gxTpr_Txhex, out  GXt_char4) ;
+               AV20errorAfter = GXt_char4;
+            }
+            AV59GXV2 = 1;
+            while ( AV59GXV2 <= AV49transactionsToSend.Count )
+            {
+               AV35oneTransaction = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV49transactionsToSend.Item(AV59GXV2));
                AV35oneTransaction.gxTpr_Senttransactionid = StringUtil.Trim( AV48TransactionId);
-               AV55GXV2 = (int)(AV55GXV2+1);
+               AV59GXV2 = (int)(AV59GXV2+1);
             }
             AV12broadcast = true;
          }
@@ -414,10 +433,10 @@ namespace GeneXus.Programs.wallet.registered {
          /* 'BUILD UTXOS' Routine */
          returnInSub = false;
          AV50utxos = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtDelegatedUtxo>( context, "DelegatedUtxo", "distributedcryptography");
-         AV56GXV3 = 1;
-         while ( AV56GXV3 <= AV49transactionsToSend.Count )
+         AV60GXV3 = 1;
+         while ( AV60GXV3 <= AV49transactionsToSend.Count )
          {
-            AV35oneTransaction = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV49transactionsToSend.Item(AV56GXV3));
+            AV35oneTransaction = ((GeneXus.Programs.wallet.SdtSDTAddressHistory)AV49transactionsToSend.Item(AV60GXV3));
             AV36oneUtxo = new GeneXus.Programs.wallet.registered.SdtDelegatedUtxo(context);
             AV36oneUtxo.gxTpr_Txid = StringUtil.Trim( AV35oneTransaction.gxTpr_Receivedtransactionid);
             AV36oneUtxo.gxTpr_Vout = AV35oneTransaction.gxTpr_Recivedn;
@@ -433,7 +452,7 @@ namespace GeneXus.Programs.wallet.registered {
             }
             AV36oneUtxo.gxTpr_Address = StringUtil.Trim( AV35oneTransaction.gxTpr_Receivedaddress);
             AV50utxos.Add(AV36oneUtxo, 0);
-            AV56GXV3 = (int)(AV56GXV3+1);
+            AV60GXV3 = (int)(AV60GXV3+1);
          }
       }
 
@@ -501,6 +520,9 @@ namespace GeneXus.Programs.wallet.registered {
          AV38percentToken = "";
          GXt_objcol_SdtSDTAddressHistory3 = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
          AV45spendInfo = new GeneXus.Programs.wallet.registered.SdtDelegatedSpendInfo(context);
+         AV55discoverError = "";
+         AV54addressess_to_look_for = new SdtGxGetAddressess(context);
+         AV56SDTAddressHistory = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
          AV20errorAfter = "";
          AV48TransactionId = "";
          AV35oneTransaction = new GeneXus.Programs.wallet.SdtSDTAddressHistory(context);
@@ -514,14 +536,15 @@ namespace GeneXus.Programs.wallet.registered {
       private short AV26finalPercent ;
       private short AV53chosenPercent ;
       private short AV31maxPercent ;
-      private int AV54GXV1 ;
-      private int AV55GXV2 ;
-      private int AV56GXV3 ;
+      private int AV58GXV1 ;
+      private int AV59GXV2 ;
+      private int AV60GXV3 ;
       private decimal AV42sendCoins ;
       private decimal AV11baseFee ;
       private decimal AV10amount ;
       private decimal AV25fee ;
       private decimal AV30maxFee ;
+      private decimal AV57totalBalance ;
       private string AV43sendTo ;
       private string AV21errorTitle ;
       private string AV19error ;
@@ -532,6 +555,7 @@ namespace GeneXus.Programs.wallet.registered {
       private string AV15changeXprv ;
       private string AV18destination ;
       private string AV14changeTo ;
+      private string AV55discoverError ;
       private string AV20errorAfter ;
       private string AV48TransactionId ;
       private string GXt_char4 ;
@@ -541,8 +565,8 @@ namespace GeneXus.Programs.wallet.registered {
       private bool AV33ok ;
       private bool AV9allCoins ;
       private bool AV13changeBelongs ;
-      private bool GXt_boolean5 ;
       private bool GXt_boolean6 ;
+      private bool GXt_boolean5 ;
       private string AV29jsonText ;
       private string AV17description ;
       private string AV37percentages ;
@@ -563,6 +587,8 @@ namespace GeneXus.Programs.wallet.registered {
       private GxSimpleCollection<string> AV39percentTokens ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> GXt_objcol_SdtSDTAddressHistory3 ;
       private GeneXus.Programs.wallet.registered.SdtDelegatedSpendInfo AV45spendInfo ;
+      private SdtGxGetAddressess AV54addressess_to_look_for ;
+      private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV56SDTAddressHistory ;
       private GeneXus.Programs.wallet.SdtSDTAddressHistory AV35oneTransaction ;
       private GeneXus.Programs.wallet.registered.SdtDelegatedUtxo AV36oneUtxo ;
       private GeneXus.Programs.nbitcoin.SdtExtKeyCreate AV22extKeyCreateChain ;

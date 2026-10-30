@@ -239,7 +239,6 @@ namespace GeneXus.Programs.wallet {
 
       protected void send_integrity_footer_hashes( )
       {
-         GxWebStd.gx_hidden_field( context, "gxhash_vTOTALBALANCE", GetSecureSignedToken( "", context.localUtil.Format( AV18totalBalance, "ZZZZZZ9.99999999"), context));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLETINFO", AV34walletInfo);
@@ -250,11 +249,6 @@ namespace GeneXus.Programs.wallet {
          }
          GxWebStd.gx_hidden_field( context, "gxhash_vWALLETINFO", GetSecureSignedToken( "", AV34walletInfo, context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-         forbiddenHiddens = new GXProperties();
-         forbiddenHiddens.Add("hshsalt", "hsh"+"SendCoins");
-         forbiddenHiddens.Add("totalBalance", context.localUtil.Format( AV18totalBalance, "ZZZZZZ9.99999999"));
-         GxWebStd.gx_hidden_field( context, "hsh", GetEncryptedHash( forbiddenHiddens.ToString(), GXKey));
-         GXUtil.WriteLogInfo("wallet\\sendcoins:[ SendSecurityCheck value for]"+forbiddenHiddens.ToJSonString());
       }
 
       protected void SendCloseFormHiddens( )
@@ -272,6 +266,7 @@ namespace GeneXus.Programs.wallet {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLETINFO", AV34walletInfo);
          }
          GxWebStd.gx_hidden_field( context, "gxhash_vWALLETINFO", GetSecureSignedToken( "", AV34walletInfo, context));
+         GxWebStd.gx_hidden_field( context, "vSELECTEDCOUNT", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV38selectedCount), 10, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "vPOPUPNAME", StringUtil.RTrim( AV25PopupName));
          GxWebStd.gx_hidden_field( context, "vCHANGETO", StringUtil.RTrim( AV13changeTo));
       }
@@ -348,6 +343,21 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 11,'',false,'',0)\"";
+            ClassString = "Button";
+            StyleString = "";
+            GxWebStd.gx_button_ctrl( context, bttChoosecoins_Internalname, "", "Choose Coins", bttChoosecoins_Jsonclick, 7, "Choose Coins", "", StyleString, ClassString, bttChoosecoins_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"e11081_client"+"'", TempTags, "", 2, "HLP_Wallet/SendCoins.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblTbcoinselection_Internalname, lblTbcoinselection_Caption, "", "", lblTbcoinselection_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Wallet/SendCoins.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+chkavSendallcoins_Internalname+"\"", "", "div");
@@ -356,10 +366,10 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Check box */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 13,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 18,'',false,'',0)\"";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavSendallcoins_Internalname, StringUtil.BoolToStr( AV24sendAllCoins), "", "Send total balance", 1, chkavSendallcoins.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(13, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,13);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavSendallcoins_Internalname, StringUtil.BoolToStr( AV24sendAllCoins), "", "Send total balance", 1, chkavSendallcoins.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(18, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,18);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -375,8 +385,8 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 18,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavSendcoins_Internalname, StringUtil.LTrim( StringUtil.NToC( AV14sendCoins, 16, 8, ".", "")), StringUtil.LTrim( context.localUtil.Format( AV14sendCoins, "ZZZZZZ9.99999999")), TempTags+" onchange=\""+"gx.num.valid_decimal( this, ',','.','8');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_decimal( this, ',','.','8');"+";gx.evt.onblur(this,18);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSendcoins_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSendcoins_Enabled, 1, "text", "", 16, "chr", 1, "row", 16, 0, 0, 0, 0, -1, 0, true, "NBitcoin\\BTC", "end", false, "", "HLP_Wallet/SendCoins.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 23,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavSendcoins_Internalname, StringUtil.LTrim( StringUtil.NToC( AV14sendCoins, 16, 8, ".", "")), StringUtil.LTrim( context.localUtil.Format( AV14sendCoins, "ZZZZZZ9.99999999")), TempTags+" onchange=\""+"gx.num.valid_decimal( this, ',','.','8');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_decimal( this, ',','.','8');"+";gx.evt.onblur(this,23);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSendcoins_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSendcoins_Enabled, 1, "text", "", 16, "chr", 1, "row", 16, 0, 0, 0, 0, -1, 0, true, "NBitcoin\\BTC", "end", false, "", "HLP_Wallet/SendCoins.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -392,12 +402,12 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Multiple line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 23,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 28,'',false,'',0)\"";
             ClassString = "Attribute";
             StyleString = "";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_html_textarea( context, edtavSendto_Internalname, StringUtil.RTrim( AV15sendTo), "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,23);\"", 0, 1, edtavSendto_Enabled, 1, 80, "chr", 2, "row", 0, StyleString, ClassString, "", "", "250", 1, 0, "", "", -1, true, "NBitcoin\\scriptPubKey_address", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Wallet/SendCoins.htm");
+            GxWebStd.gx_html_textarea( context, edtavSendto_Internalname, StringUtil.RTrim( AV15sendTo), "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,28);\"", 0, 1, edtavSendto_Enabled, 1, 80, "chr", 2, "row", 0, StyleString, ClassString, "", "", "250", 1, 0, "", "", -1, true, "NBitcoin\\scriptPubKey_address", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Wallet/SendCoins.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -413,12 +423,12 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Multiple line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 28,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 33,'',false,'',0)\"";
             ClassString = "Attribute";
             StyleString = "";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_html_textarea( context, edtavDescription_Internalname, AV31description, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,28);\"", 0, 1, edtavDescription_Enabled, 1, 80, "chr", 4, "row", 0, StyleString, ClassString, "", "", "250", -1, 0, "", "", -1, true, "", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Wallet/SendCoins.htm");
+            GxWebStd.gx_html_textarea( context, edtavDescription_Internalname, AV31description, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,33);\"", 0, 1, edtavDescription_Enabled, 1, 80, "chr", 4, "row", 0, StyleString, ClassString, "", "", "250", -1, 0, "", "", -1, true, "", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Wallet/SendCoins.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -433,9 +443,9 @@ namespace GeneXus.Programs.wallet {
             GxWebStd.gx_label_element( context, cmbavUserfee_Internalname, "Select Fee", "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 33,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 38,'',false,'',0)\"";
             /* ComboBox */
-            GxWebStd.gx_combobox_ctrl1( context, cmbavUserfee, cmbavUserfee_Internalname, StringUtil.Trim( StringUtil.Str( AV21userFee, 16, 8)), 1, cmbavUserfee_Jsonclick, 0, "'"+""+"'"+",false,"+"'"+""+"'", "decimal", "", cmbavUserfee.Visible, cmbavUserfee.Enabled, 1, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,33);\"", "", true, 0, "HLP_Wallet/SendCoins.htm");
+            GxWebStd.gx_combobox_ctrl1( context, cmbavUserfee, cmbavUserfee_Internalname, StringUtil.Trim( StringUtil.Str( AV21userFee, 16, 8)), 1, cmbavUserfee_Jsonclick, 0, "'"+""+"'"+",false,"+"'"+""+"'", "decimal", "", cmbavUserfee.Visible, cmbavUserfee.Enabled, 1, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,38);\"", "", true, 0, "HLP_Wallet/SendCoins.htm");
             cmbavUserfee.CurrentValue = StringUtil.Trim( StringUtil.Str( AV21userFee, 16, 8));
             AssignProp("", false, cmbavUserfee_Internalname, "Values", (string)(cmbavUserfee.ToJavascriptSource()), true);
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -456,10 +466,10 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-3 gx-attribute", "start", "top", "", "", "div");
             /* Check box */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 40,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 45,'',false,'',0)\"";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavActivatemanaulfee_Internalname, StringUtil.BoolToStr( AV33activateManaulFee), "", "Manauly select Fee", chkavActivatemanaulfee.Visible, chkavActivatemanaulfee.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(40, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,40);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavActivatemanaulfee_Internalname, StringUtil.BoolToStr( AV33activateManaulFee), "", "Manauly select Fee", chkavActivatemanaulfee.Visible, chkavActivatemanaulfee.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(45, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,45);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -472,8 +482,8 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 44,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavManaulfee_Internalname, StringUtil.LTrim( StringUtil.NToC( AV32manaulFee, 16, 8, ".", "")), StringUtil.LTrim( context.localUtil.Format( AV32manaulFee, "ZZZZZZ9.99999999")), TempTags+" onchange=\""+"gx.num.valid_decimal( this, ',','.','8');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_decimal( this, ',','.','8');"+";gx.evt.onblur(this,44);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavManaulfee_Jsonclick, 0, "Attribute", "", "", "", "", edtavManaulfee_Visible, edtavManaulfee_Enabled, 1, "text", "", 16, "chr", 1, "row", 16, 0, 0, 0, 0, -1, 0, true, "NBitcoin\\BTC", "end", false, "", "HLP_Wallet/SendCoins.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 49,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavManaulfee_Internalname, StringUtil.LTrim( StringUtil.NToC( AV32manaulFee, 16, 8, ".", "")), StringUtil.LTrim( context.localUtil.Format( AV32manaulFee, "ZZZZZZ9.99999999")), TempTags+" onchange=\""+"gx.num.valid_decimal( this, ',','.','8');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_decimal( this, ',','.','8');"+";gx.evt.onblur(this,49);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavManaulfee_Jsonclick, 0, "Attribute", "", "", "", "", edtavManaulfee_Visible, edtavManaulfee_Enabled, 1, "text", "", 16, "chr", 1, "row", 16, 0, 0, 0, 0, -1, 0, true, "NBitcoin\\BTC", "end", false, "", "HLP_Wallet/SendCoins.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -485,7 +495,7 @@ namespace GeneXus.Programs.wallet {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 47,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 52,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttNext_Internalname, "", "Next", bttNext_Jsonclick, 5, "Next", "", StyleString, ClassString, bttNext_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'NEXT\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Wallet/SendCoins.htm");
@@ -495,17 +505,17 @@ namespace GeneXus.Programs.wallet {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 50,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 55,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttSendcoins_Internalname, "", "Send Coins", bttSendcoins_Jsonclick, 7, "Send Coins", "", StyleString, ClassString, bttSendcoins_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"e11081_client"+"'", TempTags, "", 2, "HLP_Wallet/SendCoins.htm");
+            GxWebStd.gx_button_ctrl( context, bttSendcoins_Internalname, "", "Send Coins", bttSendcoins_Jsonclick, 7, "Send Coins", "", StyleString, ClassString, bttSendcoins_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"e12081_client"+"'", TempTags, "", 2, "HLP_Wallet/SendCoins.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "end", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 53,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 58,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttCancel_Internalname, "", "Cancel", bttCancel_Jsonclick, 5, "Cancel", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'CANCEL\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Wallet/SendCoins.htm");
@@ -576,34 +586,34 @@ namespace GeneXus.Programs.wallet {
                            context.wbHandled = 1;
                            dynload_actions( ) ;
                            /* Execute user event: Start */
-                           E12082 ();
+                           E13082 ();
                         }
                         else if ( StringUtil.StrCmp(sEvt, "'NEXT'") == 0 )
                         {
                            context.wbHandled = 1;
                            dynload_actions( ) ;
                            /* Execute user event: 'Next' */
-                           E13082 ();
+                           E14082 ();
                         }
                         else if ( StringUtil.StrCmp(sEvt, "'CANCEL'") == 0 )
                         {
                            context.wbHandled = 1;
                            dynload_actions( ) ;
                            /* Execute user event: 'Cancel' */
-                           E14082 ();
+                           E15082 ();
                         }
                         else if ( StringUtil.StrCmp(sEvt, "GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED") == 0 )
                         {
                            context.wbHandled = 1;
                            dynload_actions( ) ;
-                           E15082 ();
+                           E16082 ();
                         }
                         else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                         {
                            context.wbHandled = 1;
                            dynload_actions( ) ;
                            /* Execute user event: Load */
-                           E16082 ();
+                           E17082 ();
                         }
                         else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                         {
@@ -742,14 +752,13 @@ namespace GeneXus.Programs.wallet {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E16082 ();
+            E17082 ();
             WB080( ) ;
          }
       }
 
       protected void send_integrity_lvl_hashes082( )
       {
-         GxWebStd.gx_hidden_field( context, "gxhash_vTOTALBALANCE", GetSecureSignedToken( "", context.localUtil.Format( AV18totalBalance, "ZZZZZZ9.99999999"), context));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLETINFO", AV34walletInfo);
@@ -775,13 +784,15 @@ namespace GeneXus.Programs.wallet {
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E12082 ();
+         E13082 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
             /* Read saved SDTs. */
             /* Read saved values. */
+            AV38selectedCount = (long)(Math.Round(context.localUtil.CToN( cgiGet( "vSELECTEDCOUNT"), ".", ","), 18, MidpointRounding.ToEven));
+            AssignAttri("", false, "AV38selectedCount", StringUtil.LTrimStr( (decimal)(AV38selectedCount), 10, 0));
             AV7error = cgiGet( "vERROR");
             /* Read variables values. */
             if ( ( ( context.localUtil.CToN( cgiGet( edtavTotalbalance_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavTotalbalance_Internalname), ".", ",") > 9999999.99999999m ) ) )
@@ -792,13 +803,11 @@ namespace GeneXus.Programs.wallet {
                wbErr = true;
                AV18totalBalance = 0;
                AssignAttri("", false, "AV18totalBalance", StringUtil.LTrimStr( AV18totalBalance, 16, 8));
-               GxWebStd.gx_hidden_field( context, "gxhash_vTOTALBALANCE", GetSecureSignedToken( "", context.localUtil.Format( AV18totalBalance, "ZZZZZZ9.99999999"), context));
             }
             else
             {
                AV18totalBalance = context.localUtil.CToN( cgiGet( edtavTotalbalance_Internalname), ".", ",");
                AssignAttri("", false, "AV18totalBalance", StringUtil.LTrimStr( AV18totalBalance, 16, 8));
-               GxWebStd.gx_hidden_field( context, "gxhash_vTOTALBALANCE", GetSecureSignedToken( "", context.localUtil.Format( AV18totalBalance, "ZZZZZZ9.99999999"), context));
             }
             AV24sendAllCoins = StringUtil.StrToBool( cgiGet( chkavSendallcoins_Internalname));
             AssignAttri("", false, "AV24sendAllCoins", AV24sendAllCoins);
@@ -842,24 +851,6 @@ namespace GeneXus.Programs.wallet {
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-            forbiddenHiddens = new GXProperties();
-            forbiddenHiddens.Add("hshsalt", "hsh"+"SendCoins");
-            AV18totalBalance = context.localUtil.CToN( cgiGet( edtavTotalbalance_Internalname), ".", ",");
-            AssignAttri("", false, "AV18totalBalance", StringUtil.LTrimStr( AV18totalBalance, 16, 8));
-            GxWebStd.gx_hidden_field( context, "gxhash_vTOTALBALANCE", GetSecureSignedToken( "", context.localUtil.Format( AV18totalBalance, "ZZZZZZ9.99999999"), context));
-            forbiddenHiddens.Add("totalBalance", context.localUtil.Format( AV18totalBalance, "ZZZZZZ9.99999999"));
-            hsh = cgiGet( "hsh");
-            if ( ! GXUtil.CheckEncryptedHash( forbiddenHiddens.ToString(), hsh, GXKey) )
-            {
-               GXUtil.WriteLogError("wallet\\sendcoins:[ SecurityCheckFailed (403 Forbidden) value for]"+forbiddenHiddens.ToJSonString());
-               GxWebError = 1;
-               context.HttpContext.Response.StatusCode = 403;
-               context.WriteHtmlText( "<title>403 Forbidden</title>") ;
-               context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
-               context.WriteHtmlText( "<p /><hr />") ;
-               GXUtil.WriteLog("send_http_error_code " + 403.ToString());
-               return  ;
-            }
          }
          else
          {
@@ -870,11 +861,11 @@ namespace GeneXus.Programs.wallet {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E12082 ();
+         E13082 ();
          if (returnInSub) return;
       }
 
-      protected void E12082( )
+      protected void E13082( )
       {
          /* Start Routine */
          returnInSub = false;
@@ -898,11 +889,14 @@ namespace GeneXus.Programs.wallet {
          new GeneXus.Programs.wallet.getbalancefromhistorywithbalance(context ).execute( out  GXt_decimal3) ;
          AV18totalBalance = GXt_decimal3;
          AssignAttri("", false, "AV18totalBalance", StringUtil.LTrimStr( AV18totalBalance, 16, 8));
-         GxWebStd.gx_hidden_field( context, "gxhash_vTOTALBALANCE", GetSecureSignedToken( "", context.localUtil.Format( AV18totalBalance, "ZZZZZZ9.99999999"), context));
          new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
+         new GeneXus.Programs.wallet.clearselectedcoins(context ).execute( ) ;
+         /* Execute user subroutine: 'SHOW COIN SELECTION' */
+         S112 ();
+         if (returnInSub) return;
       }
 
-      protected void E13082( )
+      protected void E14082( )
       {
          /* 'Next' Routine */
          returnInSub = false;
@@ -930,8 +924,10 @@ namespace GeneXus.Programs.wallet {
                {
                   chkavSendallcoins.Enabled = 0;
                   AssignProp("", false, chkavSendallcoins_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(chkavSendallcoins.Enabled), 5, 0), true);
+                  bttChoosecoins_Visible = 0;
+                  AssignProp("", false, bttChoosecoins_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttChoosecoins_Visible), 5, 0), true);
                   /* Execute user subroutine: 'ESTIMATE FEES' */
-                  S112 ();
+                  S122 ();
                   if (returnInSub) return;
                }
             }
@@ -941,11 +937,12 @@ namespace GeneXus.Programs.wallet {
          AssignProp("", false, cmbavUserfee_Internalname, "Values", cmbavUserfee.ToJavascriptSource(), true);
       }
 
-      protected void E14082( )
+      protected void E15082( )
       {
          /* 'Cancel' Routine */
          returnInSub = false;
          new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
+         new GeneXus.Programs.wallet.clearselectedcoins(context ).execute( ) ;
          context.setWebReturnParms(new Object[] {});
          context.setWebReturnParmsMetadata(new Object[] {});
          context.wjLocDisableFrm = 1;
@@ -954,7 +951,7 @@ namespace GeneXus.Programs.wallet {
          if (true) return;
       }
 
-      protected void E15082( )
+      protected void E16082( )
       {
          /* Extensions\Web\Popup_Onpopupclosed Routine */
          returnInSub = false;
@@ -978,6 +975,7 @@ namespace GeneXus.Programs.wallet {
                AssignAttri("", false, "AV7error", AV7error);
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV7error)) )
                {
+                  new GeneXus.Programs.wallet.clearselectedcoins(context ).execute( ) ;
                   bttSendcoins_Visible = 0;
                   AssignProp("", false, bttSendcoins_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttSendcoins_Visible), 5, 0), true);
                   cmbavUserfee.Enabled = 0;
@@ -1001,10 +999,45 @@ namespace GeneXus.Programs.wallet {
                }
             }
          }
+         else
+         {
+            AV37CoinControlPopupName = "Wallet.CoinControl";
+            AV27strFound = (short)(StringUtil.StringSearch( AV25PopupName, StringUtil.Lower( AV37CoinControlPopupName), 1));
+            if ( AV27strFound > 0 )
+            {
+               /* Execute user subroutine: 'SHOW COIN SELECTION' */
+               S112 ();
+               if (returnInSub) return;
+            }
+         }
          /*  Sending Event outputs  */
       }
 
       protected void S112( )
+      {
+         /* 'SHOW COIN SELECTION' Routine */
+         returnInSub = false;
+         new GeneXus.Programs.wallet.getspendablebalance(context ).execute( out  AV38selectedCount, out  AV18totalBalance) ;
+         AssignAttri("", false, "AV38selectedCount", StringUtil.LTrimStr( (decimal)(AV38selectedCount), 10, 0));
+         AssignAttri("", false, "AV18totalBalance", StringUtil.LTrimStr( AV18totalBalance, 16, 8));
+         if ( AV38selectedCount == 0 )
+         {
+            lblTbcoinselection_Caption = "Coins: automatic selection";
+            AssignProp("", false, lblTbcoinselection_Internalname, "Caption", lblTbcoinselection_Caption, true);
+         }
+         else
+         {
+            lblTbcoinselection_Caption = "Coins: "+StringUtil.Trim( StringUtil.Str( (decimal)(AV38selectedCount), 10, 0))+" selected by you (the balance shown is theirs)";
+            AssignProp("", false, lblTbcoinselection_Internalname, "Caption", lblTbcoinselection_Caption, true);
+         }
+         if ( AV24sendAllCoins )
+         {
+            AV14sendCoins = AV18totalBalance;
+            AssignAttri("", false, "AV14sendCoins", StringUtil.LTrimStr( AV14sendCoins, 16, 8));
+         }
+      }
+
+      protected void S122( )
       {
          /* 'ESTIMATE FEES' Routine */
          returnInSub = false;
@@ -1101,7 +1134,7 @@ namespace GeneXus.Programs.wallet {
       {
       }
 
-      protected void E16082( )
+      protected void E17082( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -1146,7 +1179,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610161782062", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013271439", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1163,7 +1196,7 @@ namespace GeneXus.Programs.wallet {
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("wallet/sendcoins.js", "?202610161782062", false, true, false);
+         context.AddJavascriptSource("wallet/sendcoins.js", "?2026103013271440", false, true, false);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
          /* End function include_jscripts */
       }
@@ -1197,6 +1230,8 @@ namespace GeneXus.Programs.wallet {
       protected void init_default_properties( )
       {
          edtavTotalbalance_Internalname = "vTOTALBALANCE";
+         bttChoosecoins_Internalname = "CHOOSECOINS";
+         lblTbcoinselection_Internalname = "TBCOINSELECTION";
          chkavSendallcoins_Internalname = "vSENDALLCOINS";
          edtavSendcoins_Internalname = "vSENDCOINS";
          edtavSendto_Internalname = "vSENDTO";
@@ -1238,6 +1273,8 @@ namespace GeneXus.Programs.wallet {
          edtavSendcoins_Jsonclick = "";
          edtavSendcoins_Enabled = 1;
          chkavSendallcoins.Enabled = 1;
+         lblTbcoinselection_Caption = "Coins: automatic selection";
+         bttChoosecoins_Visible = 1;
          edtavTotalbalance_Jsonclick = "";
          edtavTotalbalance_Enabled = 1;
          if ( context.isSpaRequest( ) )
@@ -1253,13 +1290,14 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV24sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV33activateManaulFee","fld":"vACTIVATEMANAULFEE","type":"boolean"},{"av":"AV34walletInfo","fld":"vWALLETINFO","hsh":true,"type":""},{"av":"AV18totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZ9.99999999","hsh":true,"type":"decimal"}]}""");
-         setEventMetadata("'NEXT'","""{"handler":"E13082","iparms":[{"av":"AV14sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV18totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZ9.99999999","hsh":true,"type":"decimal"},{"av":"AV24sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"AV15sendTo","fld":"vSENDTO","type":"char"},{"av":"AV34walletInfo","fld":"vWALLETINFO","hsh":true,"type":""},{"av":"AV31description","fld":"vDESCRIPTION","type":"svchar"},{"av":"cmbavUserfee"},{"av":"AV21userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999","type":"decimal"}]""");
-         setEventMetadata("'NEXT'",""","oparms":[{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"chkavSendallcoins.Enabled","ctrl":"vSENDALLCOINS","prop":"Enabled"},{"av":"edtavSendcoins_Enabled","ctrl":"vSENDCOINS","prop":"Enabled"},{"av":"edtavSendto_Enabled","ctrl":"vSENDTO","prop":"Enabled"},{"av":"edtavDescription_Enabled","ctrl":"vDESCRIPTION","prop":"Enabled"},{"av":"AV13changeTo","fld":"vCHANGETO","type":"char"},{"ctrl":"NEXT","prop":"Visible"},{"ctrl":"SENDCOINS","prop":"Visible"},{"av":"cmbavUserfee"},{"av":"AV21userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"edtavManaulfee_Caption","ctrl":"vMANAULFEE","prop":"Caption"},{"av":"edtavManaulfee_Visible","ctrl":"vMANAULFEE","prop":"Visible"},{"av":"edtavManaulfee_Enabled","ctrl":"vMANAULFEE","prop":"Enabled"},{"av":"chkavActivatemanaulfee.Visible","ctrl":"vACTIVATEMANAULFEE","prop":"Visible"}]}""");
-         setEventMetadata("'SEND COINS'","""{"handler":"E11081","iparms":[{"av":"AV32manaulFee","fld":"vMANAULFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV7error","fld":"vERROR","type":"char"}]}""");
-         setEventMetadata("'CANCEL'","""{"handler":"E14082","iparms":[]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E15082","iparms":[{"av":"AV25PopupName","fld":"vPOPUPNAME","type":"char"},{"av":"AV24sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV32manaulFee","fld":"vMANAULFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV34walletInfo","fld":"vWALLETINFO","hsh":true,"type":""},{"av":"AV14sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV15sendTo","fld":"vSENDTO","type":"char"},{"av":"AV13changeTo","fld":"vCHANGETO","type":"char"},{"av":"AV31description","fld":"vDESCRIPTION","type":"svchar"}]""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV7error","fld":"vERROR","type":"char"},{"ctrl":"SENDCOINS","prop":"Visible"},{"av":"cmbavUserfee"},{"av":"edtavManaulfee_Enabled","ctrl":"vMANAULFEE","prop":"Enabled"},{"av":"chkavActivatemanaulfee.Enabled","ctrl":"vACTIVATEMANAULFEE","prop":"Enabled"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV24sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV33activateManaulFee","fld":"vACTIVATEMANAULFEE","type":"boolean"},{"av":"AV34walletInfo","fld":"vWALLETINFO","hsh":true,"type":""}]}""");
+         setEventMetadata("'CHOOSE COINS'","""{"handler":"E11081","iparms":[]}""");
+         setEventMetadata("'NEXT'","""{"handler":"E14082","iparms":[{"av":"AV14sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV18totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV24sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"AV15sendTo","fld":"vSENDTO","type":"char"},{"av":"AV34walletInfo","fld":"vWALLETINFO","hsh":true,"type":""},{"av":"AV31description","fld":"vDESCRIPTION","type":"svchar"},{"av":"cmbavUserfee"},{"av":"AV21userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999","type":"decimal"}]""");
+         setEventMetadata("'NEXT'",""","oparms":[{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"chkavSendallcoins.Enabled","ctrl":"vSENDALLCOINS","prop":"Enabled"},{"ctrl":"CHOOSECOINS","prop":"Visible"},{"av":"edtavSendcoins_Enabled","ctrl":"vSENDCOINS","prop":"Enabled"},{"av":"edtavSendto_Enabled","ctrl":"vSENDTO","prop":"Enabled"},{"av":"edtavDescription_Enabled","ctrl":"vDESCRIPTION","prop":"Enabled"},{"av":"AV13changeTo","fld":"vCHANGETO","type":"char"},{"ctrl":"NEXT","prop":"Visible"},{"ctrl":"SENDCOINS","prop":"Visible"},{"av":"cmbavUserfee"},{"av":"AV21userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"edtavManaulfee_Caption","ctrl":"vMANAULFEE","prop":"Caption"},{"av":"edtavManaulfee_Visible","ctrl":"vMANAULFEE","prop":"Visible"},{"av":"edtavManaulfee_Enabled","ctrl":"vMANAULFEE","prop":"Enabled"},{"av":"chkavActivatemanaulfee.Visible","ctrl":"vACTIVATEMANAULFEE","prop":"Visible"}]}""");
+         setEventMetadata("'SEND COINS'","""{"handler":"E12081","iparms":[{"av":"AV32manaulFee","fld":"vMANAULFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"AV38selectedCount","fld":"vSELECTEDCOUNT","pic":"ZZZZZZZZZ9","type":"int"},{"av":"AV24sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV14sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV18totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZ9.99999999","type":"decimal"}]}""");
+         setEventMetadata("'CANCEL'","""{"handler":"E15082","iparms":[]}""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E16082","iparms":[{"av":"AV25PopupName","fld":"vPOPUPNAME","type":"char"},{"av":"AV24sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV32manaulFee","fld":"vMANAULFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV34walletInfo","fld":"vWALLETINFO","hsh":true,"type":""},{"av":"AV14sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV15sendTo","fld":"vSENDTO","type":"char"},{"av":"AV13changeTo","fld":"vCHANGETO","type":"char"},{"av":"AV31description","fld":"vDESCRIPTION","type":"svchar"}]""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV7error","fld":"vERROR","type":"char"},{"ctrl":"SENDCOINS","prop":"Visible"},{"av":"cmbavUserfee"},{"av":"edtavManaulfee_Enabled","ctrl":"vMANAULFEE","prop":"Enabled"},{"av":"chkavActivatemanaulfee.Enabled","ctrl":"vACTIVATEMANAULFEE","prop":"Enabled"},{"av":"AV18totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV38selectedCount","fld":"vSELECTEDCOUNT","pic":"ZZZZZZZZZ9","type":"int"},{"av":"lblTbcoinselection_Caption","ctrl":"TBCOINSELECTION","prop":"Caption"},{"av":"AV14sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"}]}""");
          return  ;
       }
 
@@ -1281,7 +1319,6 @@ namespace GeneXus.Programs.wallet {
          bodyStyle = "";
          AV34walletInfo = new GeneXus.Programs.wallet.SdtWalletInfo(context);
          GXKey = "";
-         forbiddenHiddens = new GXProperties();
          AV7error = "";
          AV25PopupName = "";
          AV13changeTo = "";
@@ -1290,6 +1327,8 @@ namespace GeneXus.Programs.wallet {
          TempTags = "";
          ClassString = "";
          StyleString = "";
+         bttChoosecoins_Jsonclick = "";
+         lblTbcoinselection_Jsonclick = "";
          AV15sendTo = "";
          AV31description = "";
          bttNext_Jsonclick = "";
@@ -1300,11 +1339,11 @@ namespace GeneXus.Programs.wallet {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
-         hsh = "";
          GXt_SdtWalletInfo1 = new GeneXus.Programs.wallet.SdtWalletInfo(context);
          AV11historyWithBalance = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
          AV26ApproveSpendingPopupName = "";
          AV35errorTitle = "";
+         AV37CoinControlPopupName = "";
          AV20transactionsToSend = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
          GXt_objcol_SdtSDTAddressHistory2 = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
          GXt_char4 = "";
@@ -1326,6 +1365,7 @@ namespace GeneXus.Programs.wallet {
       private short AV8fastestBlocks ;
       private short nGXWrapped ;
       private int edtavTotalbalance_Enabled ;
+      private int bttChoosecoins_Visible ;
       private int edtavSendcoins_Enabled ;
       private int edtavSendto_Enabled ;
       private int edtavDescription_Enabled ;
@@ -1334,6 +1374,7 @@ namespace GeneXus.Programs.wallet {
       private int bttNext_Visible ;
       private int bttSendcoins_Visible ;
       private int idxLst ;
+      private long AV38selectedCount ;
       private long AV22virtualSize ;
       private decimal AV18totalBalance ;
       private decimal AV14sendCoins ;
@@ -1359,9 +1400,14 @@ namespace GeneXus.Programs.wallet {
       private string divMaintable_Internalname ;
       private string TempTags ;
       private string edtavTotalbalance_Jsonclick ;
-      private string chkavSendallcoins_Internalname ;
       private string ClassString ;
       private string StyleString ;
+      private string bttChoosecoins_Internalname ;
+      private string bttChoosecoins_Jsonclick ;
+      private string lblTbcoinselection_Internalname ;
+      private string lblTbcoinselection_Caption ;
+      private string lblTbcoinselection_Jsonclick ;
+      private string chkavSendallcoins_Internalname ;
       private string edtavSendcoins_Internalname ;
       private string edtavSendcoins_Jsonclick ;
       private string edtavSendto_Internalname ;
@@ -1384,9 +1430,9 @@ namespace GeneXus.Programs.wallet {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
-      private string hsh ;
       private string AV26ApproveSpendingPopupName ;
       private string AV35errorTitle ;
+      private string AV37CoinControlPopupName ;
       private string GXt_char4 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
@@ -1400,7 +1446,6 @@ namespace GeneXus.Programs.wallet {
       private bool AV36keysAvailable ;
       private bool GXt_boolean5 ;
       private string AV31description ;
-      private GXProperties forbiddenHiddens ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
       private GXCheckbox chkavSendallcoins ;

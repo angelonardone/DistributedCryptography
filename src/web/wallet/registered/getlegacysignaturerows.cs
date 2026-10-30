@@ -125,7 +125,9 @@ namespace GeneXus.Programs.wallet.registered {
             AV18row.gxTpr_Id = AV16oneMuSigSignatures.gxTpr_Id;
             AV18row.gxTpr_Description = AV16oneMuSigSignatures.gxTpr_Description;
             AV18row.gxTpr_Signeddatetime = AV16oneMuSigSignatures.gxTpr_Signeddatetime;
-            AV18row.gxTpr_Senderusername = AV16oneMuSigSignatures.gxTpr_Senderusername;
+            GXt_char3 = "";
+            new GeneXus.Programs.wallet.registered.getmemberdisplayname(context ).execute(  AV16oneMuSigSignatures.gxTpr_Senderusername, out  GXt_char3) ;
+            AV18row.gxTpr_Senderusername = GXt_char3;
             AV18row.gxTpr_Compleated = AV16oneMuSigSignatures.gxTpr_Compleated;
             AV18row.gxTpr_Sendcoins = AV16oneMuSigSignatures.gxTpr_Sendcoins;
             AV18row.gxTpr_Sendto = AV16oneMuSigSignatures.gxTpr_Sendto;
@@ -173,6 +175,7 @@ namespace GeneXus.Programs.wallet.registered {
          AV16oneMuSigSignatures = new GeneXus.Programs.wallet.registered.SdtMuSigSignatures(context);
          AV17previousId = Guid.Empty;
          AV18row = new GeneXus.Programs.wallet.registered.SdtLegacySignatureRow(context);
+         GXt_char3 = "";
          /* GeneXus formulas. */
       }
 
@@ -181,6 +184,7 @@ namespace GeneXus.Programs.wallet.registered {
       private int AV23GXV2 ;
       private int AV24GXV3 ;
       private int AV25GXV4 ;
+      private string GXt_char3 ;
       private Guid AV13groupId ;
       private Guid AV17previousId ;
       private IGxSession AV21websession ;

@@ -106,6 +106,7 @@ namespace GeneXus.Programs.wallet.registered {
                         AV17oneGroup.gxTpr_Contact.Add((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)(AV23oneGroupContact.Clone()), 0);
                         AV26GXV3 = (int)(AV26GXV3+1);
                      }
+                     new GeneXus.Programs.wallet.registered.removeprivatenames(context ).execute( ref  AV17oneGroup) ;
                      AV17oneGroup.gxTpr_Othergroup.gxTpr_Extpubkeymultisigreceiving = AV12group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeymultisigreceiving;
                      AV17oneGroup.gxTpr_Othergroup.gxTpr_Extpubkeymultisigchange = AV12group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeymultisigchange;
                      AV17oneGroup.gxTpr_Othergroup.gxTpr_Extpubkeytimebountyreceiving = AV12group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeytimebountyreceiving;

@@ -454,7 +454,7 @@ namespace GeneXus.Programs.wallet.registered {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTbvalidate_Internalname, "When you click \"Validate user\" we will check that the user exist in our server. The rest of the encryption process is done off-line", "", "", lblTbvalidate_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", lblTbvalidate_Visible, 1, 0, 0, "HLP_Wallet/registered/EncryptTo.htm");
+            GxWebStd.gx_label_ctrl( context, lblTbvalidate_Internalname, "When you click \"Validate user\" we will check that the user exists on our server. The rest of the encryption process is done off-line", "", "", lblTbvalidate_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", lblTbvalidate_Visible, 1, 0, 0, "HLP_Wallet/registered/EncryptTo.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -1107,7 +1107,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610161765469", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013254125", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1123,7 +1123,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/encryptto.js", "?202610161765469", false, true, false);
+         context.AddJavascriptSource("wallet/registered/encryptto.js", "?2026103013254125", false, true, false);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
          context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true, false);
          /* End function include_jscripts */

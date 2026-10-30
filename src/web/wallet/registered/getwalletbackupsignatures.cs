@@ -94,12 +94,9 @@ namespace GeneXus.Programs.wallet.registered {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         GXt_SdtExternalUserPublic1 = AV14externalUserPublic;
-         new GeneXus.Programs.distcrypt.getexternaluserpublic(context ).execute( out  GXt_SdtExternalUserPublic1) ;
-         AV14externalUserPublic = GXt_SdtExternalUserPublic1;
-         GXt_SdtGroup_SDT2 = AV15group_sdt;
-         new GeneXus.Programs.wallet.registered.getlocalgroupbyid(context ).execute(  AV19groupId, out  GXt_SdtGroup_SDT2) ;
-         AV15group_sdt = GXt_SdtGroup_SDT2;
+         GXt_SdtGroup_SDT1 = AV15group_sdt;
+         new GeneXus.Programs.wallet.registered.getlocalgroupbyid(context ).execute(  AV19groupId, out  GXt_SdtGroup_SDT1) ;
+         AV15group_sdt = GXt_SdtGroup_SDT1;
          AV20isOwner = AV15group_sdt.gxTpr_Amigroupowner;
          AV24signatures.Clear();
          AV9signedShares = 0;
@@ -110,11 +107,10 @@ namespace GeneXus.Programs.wallet.registered {
          }
          else
          {
-            GXt_char3 = AV12error;
-            new GeneXus.Programs.wallet.registered.getgroupbyid(context ).execute(  AV15group_sdt.gxTpr_Othergroup.gxTpr_Referencegroupid,  AV15group_sdt.gxTpr_Othergroup.gxTpr_Encpassword, out  AV16group_sdt_owner, out  GXt_char3) ;
-            AV12error = GXt_char3;
+            GXt_char2 = AV12error;
+            new GeneXus.Programs.wallet.registered.getgroupbyid(context ).execute(  AV15group_sdt.gxTpr_Othergroup.gxTpr_Referencegroupid,  AV15group_sdt.gxTpr_Othergroup.gxTpr_Encpassword, out  AV16group_sdt_owner, out  GXt_char2) ;
+            AV12error = GXt_char2;
          }
-         AV10allContacts.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "contacts.enc", out  AV13errorContacts), null);
          AV25GXV1 = 1;
          while ( AV25GXV1 <= AV16group_sdt_owner.gxTpr_Contact.Count )
          {
@@ -136,32 +132,9 @@ namespace GeneXus.Programs.wallet.registered {
                   AV26GXV2 = (int)(AV26GXV2+1);
                }
             }
-            if ( AV20isOwner )
-            {
-               AV21oneSignature.gxTpr_Contactprivatename = AV17groupContact.gxTpr_Contactprivatename;
-            }
-            else
-            {
-               if ( StringUtil.StrCmp(StringUtil.Trim( AV17groupContact.gxTpr_Contactusername), StringUtil.Trim( AV14externalUserPublic.gxTpr_Userinfo.gxTpr_Username)) == 0 )
-               {
-                  AV21oneSignature.gxTpr_Contactprivatename = "(me)";
-               }
-               else
-               {
-                  AV21oneSignature.gxTpr_Contactprivatename = AV17groupContact.gxTpr_Contactusername;
-                  AV27GXV3 = 1;
-                  while ( AV27GXV3 <= AV10allContacts.Count )
-                  {
-                     AV11contact = ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV10allContacts.Item(AV27GXV3));
-                     if ( StringUtil.StrCmp(StringUtil.Trim( AV11contact.gxTpr_Username), StringUtil.Trim( AV17groupContact.gxTpr_Contactusername)) == 0 )
-                     {
-                        AV21oneSignature.gxTpr_Contactprivatename = AV11contact.gxTpr_Userprivatename;
-                        if (true) break;
-                     }
-                     AV27GXV3 = (int)(AV27GXV3+1);
-                  }
-               }
-            }
+            GXt_char2 = "";
+            new GeneXus.Programs.wallet.registered.getmemberdisplayname(context ).execute(  AV17groupContact.gxTpr_Contactusername, out  GXt_char2) ;
+            AV21oneSignature.gxTpr_Contactprivatename = GXt_char2;
             if ( ! (DateTime.MinValue==AV21oneSignature.gxTpr_Restoresigneddatetime) )
             {
                AV9signedShares = (short)(AV9signedShares+(AV17groupContact.gxTpr_Numshares));
@@ -212,18 +185,13 @@ namespace GeneXus.Programs.wallet.registered {
          AV22restoreStatus = "";
          AV24signatures = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtWalletBackupView_ContactItem>( context, "WalletBackupView.ContactItem", "distributedcryptography");
          AV12error = "";
-         AV14externalUserPublic = new GeneXus.Programs.distcrypt.SdtExternalUserPublic(context);
-         GXt_SdtExternalUserPublic1 = new GeneXus.Programs.distcrypt.SdtExternalUserPublic(context);
          AV15group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
-         GXt_SdtGroup_SDT2 = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
+         GXt_SdtGroup_SDT1 = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
          AV16group_sdt_owner = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
-         GXt_char3 = "";
-         AV10allContacts = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT>( context, "Contact_SDT", "distributedcryptography");
-         AV13errorContacts = "";
          AV17groupContact = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem(context);
          AV21oneSignature = new GeneXus.Programs.wallet.registered.SdtWalletBackupView_ContactItem(context);
          AV18groupContactMy = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem(context);
-         AV11contact = new GeneXus.Programs.wallet.registered.SdtContact_SDT(context);
+         GXt_char2 = "";
          /* GeneXus formulas. */
       }
 
@@ -231,25 +199,19 @@ namespace GeneXus.Programs.wallet.registered {
       private short AV8signedMembers ;
       private int AV25GXV1 ;
       private int AV26GXV2 ;
-      private int AV27GXV3 ;
       private string AV22restoreStatus ;
       private string AV12error ;
-      private string GXt_char3 ;
-      private string AV13errorContacts ;
+      private string GXt_char2 ;
       private bool AV20isOwner ;
       private bool AV23restoreStopped ;
       private Guid AV19groupId ;
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtWalletBackupView_ContactItem> AV24signatures ;
-      private GeneXus.Programs.distcrypt.SdtExternalUserPublic AV14externalUserPublic ;
-      private GeneXus.Programs.distcrypt.SdtExternalUserPublic GXt_SdtExternalUserPublic1 ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV15group_sdt ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT GXt_SdtGroup_SDT2 ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT GXt_SdtGroup_SDT1 ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV16group_sdt_owner ;
-      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtContact_SDT> AV10allContacts ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV17groupContact ;
       private GeneXus.Programs.wallet.registered.SdtWalletBackupView_ContactItem AV21oneSignature ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV18groupContactMy ;
-      private GeneXus.Programs.wallet.registered.SdtContact_SDT AV11contact ;
       private bool aP1_isOwner ;
       private bool aP2_restoreStopped ;
       private string aP3_restoreStatus ;

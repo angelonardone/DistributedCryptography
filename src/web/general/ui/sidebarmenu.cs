@@ -90,6 +90,19 @@ namespace GeneXus.Programs.general.ui {
                AV16SidebarItem.gxTpr_Title = "Online";
                AV16SidebarItem.gxTpr_Target = "";
                AV16SidebarItem.gxTpr_Hassubitems = true;
+               new GeneXus.Programs.wallet.registered.getnotifications(context ).execute( out  AV20notifications, out  AV21unreadNotifications) ;
+               AV18SubItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem_SubItem(context);
+               AV18SubItem.gxTpr_Id = "Notifications";
+               if ( AV21unreadNotifications > 0 )
+               {
+                  AV18SubItem.gxTpr_Title = StringUtil.Format( "Notifications (%1)", StringUtil.Trim( StringUtil.Str( (decimal)(AV21unreadNotifications), 4, 0)), "", "", "", "", "", "", "", "");
+               }
+               else
+               {
+                  AV18SubItem.gxTpr_Title = "Notifications";
+               }
+               AV18SubItem.gxTpr_Target = formatLink("wallet.registered.notifications") ;
+               AV16SidebarItem.gxTpr_Sidebarsubitems.Add(AV18SubItem, 0);
                AV18SubItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem_SubItem(context);
                AV18SubItem.gxTpr_Id = "UserInfo";
                AV18SubItem.gxTpr_Title = "User Info";
@@ -185,16 +198,19 @@ namespace GeneXus.Programs.general.ui {
          AV19keyInfo = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
          GXt_SdtKeyInfo2 = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
          AV16SidebarItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem(context);
+         AV20notifications = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtNotificationTarget>( context, "NotificationTarget", "distributedcryptography");
          AV18SubItem = new GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem_SubItem(context);
          /* GeneXus formulas. */
       }
 
+      private short AV21unreadNotifications ;
       private GXBaseCollection<GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem> AV15SidebarItems ;
       private GeneXus.Programs.distcrypt.SdtExternalUser AV13externalUser ;
       private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo AV19keyInfo ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo GXt_SdtKeyInfo2 ;
       private GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem AV16SidebarItem ;
+      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtNotificationTarget> AV20notifications ;
       private GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem_SubItem AV18SubItem ;
       private GXBaseCollection<GeneXus.Programs.genexusunanimo.SdtSidebarItems_SidebarItem> aP0_SidebarItems ;
    }

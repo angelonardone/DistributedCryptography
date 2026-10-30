@@ -252,6 +252,8 @@ namespace GeneXus.Programs.wallet {
 
       protected void send_integrity_footer_hashes( )
       {
+         GxWebStd.gx_hidden_field( context, "vNOGROUP", AV31noGroup.ToString());
+         GxWebStd.gx_hidden_field( context, "gxhash_vNOGROUP", GetSecureSignedToken( "", AV31noGroup, context));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLETINFO", AV29walletInfo);
@@ -269,6 +271,8 @@ namespace GeneXus.Programs.wallet {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
+         GxWebStd.gx_hidden_field( context, "vNOGROUP", AV31noGroup.ToString());
+         GxWebStd.gx_hidden_field( context, "gxhash_vNOGROUP", GetSecureSignedToken( "", AV31noGroup, context));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLETINFO", AV29walletInfo);
@@ -278,10 +282,12 @@ namespace GeneXus.Programs.wallet {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWALLETINFO", AV29walletInfo);
          }
          GxWebStd.gx_hidden_field( context, "gxhash_vWALLETINFO", GetSecureSignedToken( "", AV29walletInfo, context));
+         GxWebStd.gx_hidden_field( context, "vCOMPONENTNAME", StringUtil.RTrim( AV30componentName));
          GxWebStd.gx_hidden_field( context, "TABS_Pagecount", StringUtil.LTrim( StringUtil.NToC( (decimal)(Tabs_Pagecount), 9, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "TABS_Class", StringUtil.RTrim( Tabs_Class));
          GxWebStd.gx_hidden_field( context, "TABS_Historymanagement", StringUtil.BoolToStr( Tabs_Historymanagement));
          GxWebStd.gx_hidden_field( context, "TABS_Visible", StringUtil.BoolToStr( Tabs_Visible));
+         GxWebStd.gx_hidden_field( context, "TABS_Activepagecontrolname", StringUtil.RTrim( Tabs_Activepagecontrolname));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -306,6 +312,18 @@ namespace GeneXus.Programs.wallet {
          if ( ! ( WebComp_Comp_mainwallet == null ) )
          {
             WebComp_Comp_mainwallet.componentjscripts();
+         }
+         if ( ! ( WebComp_Comp_addresses == null ) )
+         {
+            WebComp_Comp_addresses.componentjscripts();
+         }
+         if ( ! ( WebComp_Comp_paymentrequests == null ) )
+         {
+            WebComp_Comp_paymentrequests.componentjscripts();
+         }
+         if ( ! ( WebComp_Comp_transactions == null ) )
+         {
+            WebComp_Comp_transactions.componentjscripts();
          }
       }
 
@@ -425,6 +443,129 @@ namespace GeneXus.Programs.wallet {
                   }
                   WebComp_Comp_mainwallet.componentdraw();
                   if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_mainwallet), StringUtil.Lower( WebComp_Comp_mainwallet_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspEndCmp();
+                  }
+               }
+               context.WriteHtmlText( "</div>") ;
+            }
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            context.WriteHtmlText( "</div>") ;
+            context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"title2"+"\" style=\"display:none;\">") ;
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblAddresses_title_Internalname, "Addresses", "", "", lblAddresses_title_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Wallet/Balance.htm");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "Section", "start", "top", "", "display:none;", "div");
+            context.WriteHtmlText( "Addresses") ;
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            context.WriteHtmlText( "</div>") ;
+            context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"panel2"+"\" style=\"display:none;\">") ;
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divTabpage2table_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            if ( ! isFullAjaxMode( ) )
+            {
+               /* WebComponent */
+               GxWebStd.gx_hidden_field( context, "W0027"+"", StringUtil.RTrim( WebComp_Comp_addresses_Component));
+               context.WriteHtmlText( "<div") ;
+               GxWebStd.ClassAttribute( context, "gxwebcomponent");
+               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0027"+""+"\""+"") ;
+               context.WriteHtmlText( ">") ;
+               if ( StringUtil.Len( WebComp_Comp_addresses_Component) != 0 )
+               {
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_addresses), StringUtil.Lower( WebComp_Comp_addresses_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0027"+"");
+                  }
+                  WebComp_Comp_addresses.componentdraw();
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_addresses), StringUtil.Lower( WebComp_Comp_addresses_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspEndCmp();
+                  }
+               }
+               context.WriteHtmlText( "</div>") ;
+            }
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            context.WriteHtmlText( "</div>") ;
+            context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"title3"+"\" style=\"display:none;\">") ;
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblPaymentrequests_title_Internalname, "Payment Requests", "", "", lblPaymentrequests_title_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Wallet/Balance.htm");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "Section", "start", "top", "", "display:none;", "div");
+            context.WriteHtmlText( "PaymentRequests") ;
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            context.WriteHtmlText( "</div>") ;
+            context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"panel3"+"\" style=\"display:none;\">") ;
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divTabpage3table_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            if ( ! isFullAjaxMode( ) )
+            {
+               /* WebComponent */
+               GxWebStd.gx_hidden_field( context, "W0035"+"", StringUtil.RTrim( WebComp_Comp_paymentrequests_Component));
+               context.WriteHtmlText( "<div") ;
+               GxWebStd.ClassAttribute( context, "gxwebcomponent");
+               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0035"+""+"\""+"") ;
+               context.WriteHtmlText( ">") ;
+               if ( StringUtil.Len( WebComp_Comp_paymentrequests_Component) != 0 )
+               {
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_paymentrequests), StringUtil.Lower( WebComp_Comp_paymentrequests_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0035"+"");
+                  }
+                  WebComp_Comp_paymentrequests.componentdraw();
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_paymentrequests), StringUtil.Lower( WebComp_Comp_paymentrequests_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspEndCmp();
+                  }
+               }
+               context.WriteHtmlText( "</div>") ;
+            }
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            context.WriteHtmlText( "</div>") ;
+            context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"title4"+"\" style=\"display:none;\">") ;
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblTransactions_title_Internalname, "Transactions", "", "", lblTransactions_title_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Wallet/Balance.htm");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "Section", "start", "top", "", "display:none;", "div");
+            context.WriteHtmlText( "Transactions") ;
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            context.WriteHtmlText( "</div>") ;
+            context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"panel4"+"\" style=\"display:none;\">") ;
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divTabpage4table_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            if ( ! isFullAjaxMode( ) )
+            {
+               /* WebComponent */
+               GxWebStd.gx_hidden_field( context, "W0043"+"", StringUtil.RTrim( WebComp_Comp_transactions_Component));
+               context.WriteHtmlText( "<div") ;
+               GxWebStd.ClassAttribute( context, "gxwebcomponent");
+               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0043"+""+"\""+"") ;
+               context.WriteHtmlText( ">") ;
+               if ( StringUtil.Len( WebComp_Comp_transactions_Component) != 0 )
+               {
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_transactions), StringUtil.Lower( WebComp_Comp_transactions_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0043"+"");
+                  }
+                  WebComp_Comp_transactions.componentdraw();
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_transactions), StringUtil.Lower( WebComp_Comp_transactions_Component)) != 0 )
                   {
                      context.httpAjaxContext.ajax_rspEndCmp();
                   }
@@ -572,6 +713,54 @@ namespace GeneXus.Programs.wallet {
                            }
                            WebComp_Comp_mainwallet_Component = OldComp_mainwallet;
                         }
+                        else if ( nCmpId == 27 )
+                        {
+                           OldComp_addresses = cgiGet( "W0027");
+                           if ( ( StringUtil.Len( OldComp_addresses) == 0 ) || ( StringUtil.StrCmp(OldComp_addresses, WebComp_Comp_addresses_Component) != 0 ) )
+                           {
+                              WebComp_Comp_addresses = getWebComponent(GetType(), "GeneXus.Programs", OldComp_addresses, new Object[] {context} );
+                              WebComp_Comp_addresses.ComponentInit();
+                              WebComp_Comp_addresses.Name = "OldComp_addresses";
+                              WebComp_Comp_addresses_Component = OldComp_addresses;
+                           }
+                           if ( StringUtil.Len( WebComp_Comp_addresses_Component) != 0 )
+                           {
+                              WebComp_Comp_addresses.componentprocess("W0027", "", sEvt);
+                           }
+                           WebComp_Comp_addresses_Component = OldComp_addresses;
+                        }
+                        else if ( nCmpId == 35 )
+                        {
+                           OldComp_paymentrequests = cgiGet( "W0035");
+                           if ( ( StringUtil.Len( OldComp_paymentrequests) == 0 ) || ( StringUtil.StrCmp(OldComp_paymentrequests, WebComp_Comp_paymentrequests_Component) != 0 ) )
+                           {
+                              WebComp_Comp_paymentrequests = getWebComponent(GetType(), "GeneXus.Programs", OldComp_paymentrequests, new Object[] {context} );
+                              WebComp_Comp_paymentrequests.ComponentInit();
+                              WebComp_Comp_paymentrequests.Name = "OldComp_paymentrequests";
+                              WebComp_Comp_paymentrequests_Component = OldComp_paymentrequests;
+                           }
+                           if ( StringUtil.Len( WebComp_Comp_paymentrequests_Component) != 0 )
+                           {
+                              WebComp_Comp_paymentrequests.componentprocess("W0035", "", sEvt);
+                           }
+                           WebComp_Comp_paymentrequests_Component = OldComp_paymentrequests;
+                        }
+                        else if ( nCmpId == 43 )
+                        {
+                           OldComp_transactions = cgiGet( "W0043");
+                           if ( ( StringUtil.Len( OldComp_transactions) == 0 ) || ( StringUtil.StrCmp(OldComp_transactions, WebComp_Comp_transactions_Component) != 0 ) )
+                           {
+                              WebComp_Comp_transactions = getWebComponent(GetType(), "GeneXus.Programs", OldComp_transactions, new Object[] {context} );
+                              WebComp_Comp_transactions.ComponentInit();
+                              WebComp_Comp_transactions.Name = "OldComp_transactions";
+                              WebComp_Comp_transactions_Component = OldComp_transactions;
+                           }
+                           if ( StringUtil.Len( WebComp_Comp_transactions_Component) != 0 )
+                           {
+                              WebComp_Comp_transactions.componentprocess("W0043", "", sEvt);
+                           }
+                           WebComp_Comp_transactions_Component = OldComp_transactions;
+                        }
                      }
                      context.wbHandled = 1;
                   }
@@ -676,6 +865,36 @@ namespace GeneXus.Programs.wallet {
                }
             }
          }
+         if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+         {
+            if ( 1 != 0 )
+            {
+               if ( StringUtil.Len( WebComp_Comp_addresses_Component) != 0 )
+               {
+                  WebComp_Comp_addresses.componentstart();
+               }
+            }
+         }
+         if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+         {
+            if ( 1 != 0 )
+            {
+               if ( StringUtil.Len( WebComp_Comp_paymentrequests_Component) != 0 )
+               {
+                  WebComp_Comp_paymentrequests.componentstart();
+               }
+            }
+         }
+         if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+         {
+            if ( 1 != 0 )
+            {
+               if ( StringUtil.Len( WebComp_Comp_transactions_Component) != 0 )
+               {
+                  WebComp_Comp_transactions.componentstart();
+               }
+            }
+         }
          gxdyncontrolsrefreshing = true;
          fix_multi_value_controls( ) ;
          gxdyncontrolsrefreshing = false;
@@ -689,6 +908,8 @@ namespace GeneXus.Programs.wallet {
 
       protected void send_integrity_lvl_hashes0Z2( )
       {
+         GxWebStd.gx_hidden_field( context, "vNOGROUP", AV31noGroup.ToString());
+         GxWebStd.gx_hidden_field( context, "gxhash_vNOGROUP", GetSecureSignedToken( "", AV31noGroup, context));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWALLETINFO", AV29walletInfo);
@@ -720,6 +941,8 @@ namespace GeneXus.Programs.wallet {
             /* Read saved SDTs. */
             ajax_req_read_hidden_sdt(cgiGet( "vWALLETINFO"), AV29walletInfo);
             /* Read saved values. */
+            AV31noGroup = StringUtil.StrToGuid( cgiGet( "vNOGROUP"));
+            AV30componentName = cgiGet( "vCOMPONENTNAME");
             Tabs_Pagecount = (int)(Math.Round(context.localUtil.CToN( cgiGet( "TABS_Pagecount"), ".", ","), 18, MidpointRounding.ToEven));
             Tabs_Class = cgiGet( "TABS_Class");
             Tabs_Historymanagement = StringUtil.StrToBool( cgiGet( "TABS_Historymanagement"));
@@ -761,9 +984,14 @@ namespace GeneXus.Programs.wallet {
             }
             if ( ! AV28justUnlocked )
             {
-               if ( ( StringUtil.StrCmp(AV29walletInfo.gxTpr_Networktype, "TestNet") == 0 ) || ( StringUtil.StrCmp(AV29walletInfo.gxTpr_Networktype, "RegTest") == 0 ) )
+               if ( StringUtil.StrCmp(AV29walletInfo.gxTpr_Networktype, "TestNet") == 0 )
                {
-                  lblWalletnet_Caption = "You are on TestNet don't send REAL Bitcoins to this address or will be lost forever!";
+                  lblWalletnet_Caption = "This wallet is on TestNet: do not send REAL bitcoins to it, they would be lost forever.";
+                  AssignProp("", false, lblWalletnet_Internalname, "Caption", lblWalletnet_Caption, true);
+               }
+               else if ( StringUtil.StrCmp(AV29walletInfo.gxTpr_Networktype, "RegTest") == 0 )
+               {
+                  lblWalletnet_Caption = "This wallet is on RegTest (a local test network): do not send REAL bitcoins to it, they would be lost forever.";
                   AssignProp("", false, lblWalletnet_Internalname, "Caption", lblWalletnet_Caption, true);
                }
                else
@@ -792,6 +1020,8 @@ namespace GeneXus.Programs.wallet {
                   WebComp_Comp_mainwallet.componentprepare(new Object[] {(string)"W0019",(string)""});
                   WebComp_Comp_mainwallet.componentbind(new Object[] {});
                }
+               this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)2});
+               this.executeUsercontrolMethod("", false, "TABSContainer", "HideTab", "", new Object[] {(short)3});
             }
             else
             {
@@ -882,6 +1112,27 @@ namespace GeneXus.Programs.wallet {
                WebComp_Comp_mainwallet.componentthemes();
             }
          }
+         if ( ! ( WebComp_Comp_addresses == null ) )
+         {
+            if ( StringUtil.Len( WebComp_Comp_addresses_Component) != 0 )
+            {
+               WebComp_Comp_addresses.componentthemes();
+            }
+         }
+         if ( ! ( WebComp_Comp_paymentrequests == null ) )
+         {
+            if ( StringUtil.Len( WebComp_Comp_paymentrequests_Component) != 0 )
+            {
+               WebComp_Comp_paymentrequests.componentthemes();
+            }
+         }
+         if ( ! ( WebComp_Comp_transactions == null ) )
+         {
+            if ( StringUtil.Len( WebComp_Comp_transactions_Component) != 0 )
+            {
+               WebComp_Comp_transactions.componentthemes();
+            }
+         }
          bool outputEnabled = isOutputEnabled( );
          if ( context.isSpaRequest( ) )
          {
@@ -890,7 +1141,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610161782810", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013272144", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -906,7 +1157,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("wallet/balance.js", "?202610161782810", false, true, false);
+         context.AddJavascriptSource("wallet/balance.js", "?2026103013272144", false, true, false);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true, false);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true, false);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true, false);
@@ -926,6 +1177,12 @@ namespace GeneXus.Programs.wallet {
          lblWalletnet_Internalname = "WALLETNET";
          lblBalance_title_Internalname = "BALANCE_TITLE";
          divTabpage1table_Internalname = "TABPAGE1TABLE";
+         lblAddresses_title_Internalname = "ADDRESSES_TITLE";
+         divTabpage2table_Internalname = "TABPAGE2TABLE";
+         lblPaymentrequests_title_Internalname = "PAYMENTREQUESTS_TITLE";
+         divTabpage3table_Internalname = "TABPAGE3TABLE";
+         lblTransactions_title_Internalname = "TRANSACTIONS_TITLE";
+         divTabpage4table_Internalname = "TABPAGE4TABLE";
          Tabs_Internalname = "TABS";
          divMaintable_Internalname = "MAINTABLE";
          Form.Internalname = "FORM";
@@ -944,7 +1201,7 @@ namespace GeneXus.Programs.wallet {
          Tabs_Visible = Convert.ToBoolean( -1);
          Tabs_Historymanagement = Convert.ToBoolean( 0);
          Tabs_Class = "Tab";
-         Tabs_Pagecount = 1;
+         Tabs_Pagecount = 4;
          Form.Headerrawhtml = "";
          Form.Background = "";
          Form.Textcolor = 0;
@@ -963,7 +1220,7 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV29walletInfo","fld":"vWALLETINFO","hsh":true,"type":""}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV31noGroup","fld":"vNOGROUP","hsh":true,"type":"guid"},{"av":"AV29walletInfo","fld":"vWALLETINFO","hsh":true,"type":""}]}""");
          setEventMetadata("'RETURN TO LIST OF WALLETS'","""{"handler":"E130Z2","iparms":[]}""");
          setEventMetadata("'GET WALLET INFO'","""{"handler":"E110Z1","iparms":[{"av":"AV29walletInfo","fld":"vWALLETINFO","hsh":true,"type":""}]}""");
          return  ;
@@ -980,13 +1237,16 @@ namespace GeneXus.Programs.wallet {
 
       public override void initialize( )
       {
+         Tabs_Activepagecontrolname = "";
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
+         AV31noGroup = Guid.Empty;
          AV29walletInfo = new GeneXus.Programs.wallet.SdtWalletInfo(context);
          GXKey = "";
+         AV30componentName = "";
          GX_FocusControl = "";
          Form = new GXWebForm();
          sPrefix = "";
@@ -999,6 +1259,15 @@ namespace GeneXus.Programs.wallet {
          lblBalance_title_Jsonclick = "";
          WebComp_Comp_mainwallet_Component = "";
          OldComp_mainwallet = "";
+         lblAddresses_title_Jsonclick = "";
+         WebComp_Comp_addresses_Component = "";
+         OldComp_addresses = "";
+         lblPaymentrequests_title_Jsonclick = "";
+         WebComp_Comp_paymentrequests_Component = "";
+         OldComp_paymentrequests = "";
+         lblTransactions_title_Jsonclick = "";
+         WebComp_Comp_transactions_Component = "";
+         OldComp_transactions = "";
          sEvt = "";
          EvtGridId = "";
          EvtRowId = "";
@@ -1009,6 +1278,9 @@ namespace GeneXus.Programs.wallet {
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          WebComp_Comp_mainwallet = new GeneXus.Http.GXNullWebComponent();
+         WebComp_Comp_addresses = new GeneXus.Http.GXNullWebComponent();
+         WebComp_Comp_paymentrequests = new GeneXus.Http.GXNullWebComponent();
+         WebComp_Comp_transactions = new GeneXus.Http.GXNullWebComponent();
          /* GeneXus formulas. */
       }
 
@@ -1024,12 +1296,14 @@ namespace GeneXus.Programs.wallet {
       private int Tabs_Pagecount ;
       private int bttGetwalletinfo_Visible ;
       private int idxLst ;
+      private string Tabs_Activepagecontrolname ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
       private string sDynURL ;
       private string FormProcess ;
       private string bodyStyle ;
       private string GXKey ;
+      private string AV30componentName ;
       private string Tabs_Class ;
       private string GX_FocusControl ;
       private string sPrefix ;
@@ -1048,6 +1322,21 @@ namespace GeneXus.Programs.wallet {
       private string divTabpage1table_Internalname ;
       private string WebComp_Comp_mainwallet_Component ;
       private string OldComp_mainwallet ;
+      private string lblAddresses_title_Internalname ;
+      private string lblAddresses_title_Jsonclick ;
+      private string divTabpage2table_Internalname ;
+      private string WebComp_Comp_addresses_Component ;
+      private string OldComp_addresses ;
+      private string lblPaymentrequests_title_Internalname ;
+      private string lblPaymentrequests_title_Jsonclick ;
+      private string divTabpage3table_Internalname ;
+      private string WebComp_Comp_paymentrequests_Component ;
+      private string OldComp_paymentrequests ;
+      private string lblTransactions_title_Internalname ;
+      private string lblTransactions_title_Jsonclick ;
+      private string divTabpage4table_Internalname ;
+      private string WebComp_Comp_transactions_Component ;
+      private string OldComp_transactions ;
       private string sEvt ;
       private string EvtGridId ;
       private string EvtRowId ;
@@ -1067,7 +1356,11 @@ namespace GeneXus.Programs.wallet {
       private bool AV26dispatchMessages ;
       private bool bDynCreated_Comp_mainwallet ;
       private string AV8error ;
+      private Guid AV31noGroup ;
       private GXWebComponent WebComp_Comp_mainwallet ;
+      private GXWebComponent WebComp_Comp_addresses ;
+      private GXWebComponent WebComp_Comp_paymentrequests ;
+      private GXWebComponent WebComp_Comp_transactions ;
       private GXUserControl ucTabs ;
       private IGxSession AV15webSession ;
       private GXWebForm Form ;

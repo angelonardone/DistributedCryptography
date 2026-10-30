@@ -66,14 +66,18 @@ namespace GeneXus.Programs.wallet.registered {
       {
          /* GeneXus formulas */
          /* Output device settings */
+         AV10groupEO.gxTpr_Grouptype = AV9group_sdt.gxTpr_Grouptype;
+         AV10groupEO.gxTpr_Amigroupowner = AV9group_sdt.gxTpr_Amigroupowner;
+         AV12otherGroupEO.gxTpr_Referenceusername = AV9group_sdt.gxTpr_Othergroup.gxTpr_Referenceusernname;
+         AV10groupEO.gxTpr_Othergroup = AV12otherGroupEO;
          AV10groupEO.gxTpr_Extpubkeymultisigreceiving = AV9group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeymultisigreceiving;
          AV10groupEO.gxTpr_Extpubkeymultisigchange = AV9group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeymultisigchange;
          AV10groupEO.gxTpr_Groupname = AV9group_sdt.gxTpr_Groupname;
          AV10groupEO.gxTpr_Minimumshares = AV9group_sdt.gxTpr_Minimumshares;
-         AV12GXV1 = 1;
-         while ( AV12GXV1 <= AV9group_sdt.gxTpr_Contact.Count )
+         AV13GXV1 = 1;
+         while ( AV13GXV1 <= AV9group_sdt.gxTpr_Contact.Count )
          {
-            AV11oneContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV9group_sdt.gxTpr_Contact.Item(AV12GXV1));
+            AV11oneContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV9group_sdt.gxTpr_Contact.Item(AV13GXV1));
             if ( ! ( ( AV11oneContact.gxTpr_Contactid == AV11oneContact.gxTpr_Contactgroupid ) ) )
             {
                AV8contactEO = new GeneXus.Programs.distributedcryptographylib.SdtContactItem(context);
@@ -82,7 +86,7 @@ namespace GeneXus.Programs.wallet.registered {
                AV8contactEO.gxTpr_Extpubkeymultisigchange = AV11oneContact.gxTpr_Extpubkeymultisigchange;
                AV10groupEO.gxTpr_Contact.Add(AV8contactEO, 0);
             }
-            AV12GXV1 = (int)(AV12GXV1+1);
+            AV13GXV1 = (int)(AV13GXV1+1);
          }
          cleanup();
       }
@@ -100,14 +104,16 @@ namespace GeneXus.Programs.wallet.registered {
       public override void initialize( )
       {
          AV10groupEO = new GeneXus.Programs.distributedcryptographylib.SdtGroupSDT(context);
+         AV12otherGroupEO = new GeneXus.Programs.distributedcryptographylib.SdtOtherGroup(context);
          AV11oneContact = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem(context);
          AV8contactEO = new GeneXus.Programs.distributedcryptographylib.SdtContactItem(context);
          /* GeneXus formulas. */
       }
 
-      private int AV12GXV1 ;
+      private int AV13GXV1 ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV9group_sdt ;
       private GeneXus.Programs.distributedcryptographylib.SdtGroupSDT AV10groupEO ;
+      private GeneXus.Programs.distributedcryptographylib.SdtOtherGroup AV12otherGroupEO ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV11oneContact ;
       private GeneXus.Programs.distributedcryptographylib.SdtContactItem AV8contactEO ;
       private GeneXus.Programs.distributedcryptographylib.SdtGroupSDT aP1_groupEO ;

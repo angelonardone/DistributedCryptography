@@ -323,6 +323,7 @@ namespace GeneXus.Programs.wallet.registered {
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV9screen_name", StringUtil.RTrim( wcpOAV9screen_name));
          GxWebStd.gx_hidden_field( context, sPrefix+"vSCREEN_NAME", StringUtil.RTrim( AV9screen_name));
          GxWebStd.gx_hidden_field( context, sPrefix+"vLASTMESSAGEID", AV23lastMessageId.ToString());
+         GxWebStd.gx_hidden_field( context, sPrefix+"vNOTICEJSON", AV34noticeJson);
       }
 
       protected void RenderHtmlCloseForm192( )
@@ -706,6 +707,7 @@ namespace GeneXus.Programs.wallet.registered {
             /* Read saved SDTs. */
             /* Read saved values. */
             wcpOAV9screen_name = cgiGet( sPrefix+"wcpOAV9screen_name");
+            AV34noticeJson = cgiGet( sPrefix+"vNOTICEJSON");
             /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
@@ -729,14 +731,22 @@ namespace GeneXus.Programs.wallet.registered {
          {
             AV30isChatScreen = false;
          }
-         new GeneXus.Programs.wallet.registered.processincomingmessages(context ).execute(  AV30isChatScreen, ref  AV23lastMessageId, out  AV31notifications, out  AV33refreshChat) ;
-         AssignAttri(sPrefix, false, "AV23lastMessageId", AV23lastMessageId.ToString());
-         AV34GXV1 = 1;
-         while ( AV34GXV1 <= AV31notifications.Count )
+         if ( StringUtil.StrCmp(StringUtil.Trim( AV9screen_name), "Wallet.registered.SmartGroup") == 0 )
          {
-            AV32oneNotification = ((GeneXus.Programs.wallet.registered.SdtIncomingNotification)AV31notifications.Item(AV34GXV1));
-            this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {AV32oneNotification.gxTpr_Toasttype,AV32oneNotification.gxTpr_Title,AV32oneNotification.gxTpr_Text}, true);
-            AV34GXV1 = (int)(AV34GXV1+1);
+            AV35isGroupScreen = true;
+         }
+         else
+         {
+            AV35isGroupScreen = false;
+         }
+         new GeneXus.Programs.wallet.registered.processincomingmessages(context ).execute(  AV30isChatScreen,  AV35isGroupScreen, ref  AV23lastMessageId, out  AV31notifications, out  AV33refreshChat) ;
+         AssignAttri(sPrefix, false, "AV23lastMessageId", AV23lastMessageId.ToString());
+         AV36GXV1 = 1;
+         while ( AV36GXV1 <= AV31notifications.Count )
+         {
+            AV32oneNotification = ((GeneXus.Programs.wallet.registered.SdtIncomingNotification)AV31notifications.Item(AV36GXV1));
+            this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowNotice", new Object[] {AV32oneNotification.ToJSonString(false, true)}, true);
+            AV36GXV1 = (int)(AV36GXV1+1);
          }
          if ( AV33refreshChat )
          {
@@ -952,7 +962,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610161765728", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610301325433", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -968,7 +978,8 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/dispatchincommingmessage.js", "?202610161765728", false, true, false);
+         context.AddJavascriptSource("wallet/registered/dispatchincommingmessage.js", "?202610301325433", false, true, false);
+         context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
          /* End function include_jscripts */
       }
 
@@ -1039,6 +1050,7 @@ namespace GeneXus.Programs.wallet.registered {
          bodyStyle = "";
          GXKey = "";
          AV23lastMessageId = Guid.Empty;
+         AV34noticeJson = "";
          GX_FocusControl = "";
          Form = new GXWebForm();
          sXEvt = "";
@@ -1064,7 +1076,7 @@ namespace GeneXus.Programs.wallet.registered {
       private short nDonePA ;
       private short gxcookieaux ;
       private short nGXWrapped ;
-      private int AV34GXV1 ;
+      private int AV36GXV1 ;
       private int idxLst ;
       private string AV9screen_name ;
       private string wcpOAV9screen_name ;
@@ -1093,7 +1105,9 @@ namespace GeneXus.Programs.wallet.registered {
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private bool AV30isChatScreen ;
+      private bool AV35isGroupScreen ;
       private bool AV33refreshChat ;
+      private string AV34noticeJson ;
       private Guid AV23lastMessageId ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;

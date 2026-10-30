@@ -112,6 +112,7 @@ namespace GeneXus.Programs.wallet.registered {
          GXt_char2 = AV8error;
          new GeneXus.Programs.wallet.sendrawtransaction(context ).execute(  AV11hexTransaction, out  AV15TransactionId, out  GXt_char2) ;
          AV8error = GXt_char2;
+         AV22sentHex = AV11hexTransaction;
          AV11hexTransaction = "";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
          {
@@ -123,6 +124,13 @@ namespace GeneXus.Programs.wallet.registered {
          GXt_char2 = AV8error;
          new GeneXus.Programs.wallet.updatetransactionsaftercoinsent(context ).execute(  AV16transactionFileName,  AV15TransactionId,  AV17transactionsToSend, out  GXt_char2) ;
          AV8error = GXt_char2;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
+         {
+            GXt_char2 = AV8error;
+            new GeneXus.Programs.wallet.recordsentoutputs(context ).execute(  AV16transactionFileName,  AV15TransactionId,  AV22sentHex, out  GXt_char2) ;
+            AV8error = GXt_char2;
+         }
+         AV22sentHex = "";
          cleanup();
       }
 
@@ -146,6 +154,7 @@ namespace GeneXus.Programs.wallet.registered {
          GXt_SdtWalletInfo1 = new GeneXus.Programs.wallet.SdtWalletInfo(context);
          AV11hexTransaction = "";
          AV15TransactionId = "";
+         AV22sentHex = "";
          AV16transactionFileName = "";
          GXt_char2 = "";
          /* GeneXus formulas. */
@@ -162,6 +171,7 @@ namespace GeneXus.Programs.wallet.registered {
       private string GXt_char2 ;
       private bool AV18verified ;
       private string AV11hexTransaction ;
+      private string AV22sentHex ;
       private IGxSession AV21websession ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV17transactionsToSend ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV10group_sdt ;

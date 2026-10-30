@@ -76,12 +76,6 @@ namespace GeneXus.Programs.wallet.registered {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         if ( AV8minimumShares < 1 )
-         {
-            AV10error = "The \"Minimum amount of users  to approve a spend\" has to be at least 1";
-            cleanup();
-            if (true) return;
-         }
          GXt_SdtGroup_SDT1 = AV12group_sdt;
          new GeneXus.Programs.wallet.registered.getlocalgroupbyid(context ).execute(  AV15groupId, out  GXt_SdtGroup_SDT1) ;
          AV12group_sdt = GXt_SdtGroup_SDT1;
@@ -91,84 +85,154 @@ namespace GeneXus.Programs.wallet.registered {
             cleanup();
             if (true) return;
          }
+         if ( AV12group_sdt.gxTpr_Grouptype == 70 )
+         {
+            if ( AV9contacts.Count < 1 )
+            {
+               AV10error = "A Group Chat needs at least 1 member besides you";
+               cleanup();
+               if (true) return;
+            }
+            AV8minimumShares = 1;
+         }
+         if ( AV8minimumShares < 1 )
+         {
+            AV10error = "The \"Minimum amount of users  to approve a spend\" has to be at least 1";
+            cleanup();
+            if (true) return;
+         }
          if ( AV12group_sdt.gxTpr_Isactive )
          {
             AV10error = "The group is already active and can not be changed";
             cleanup();
             if (true) return;
          }
-         if ( AV12group_sdt.gxTpr_Grouptype == 30 )
+         if ( AV12group_sdt.gxTpr_Grouptype == 70 )
          {
-            if ( AV9contacts.Count < 2 )
-            {
-               AV10error = "A Delegated multisignature group needs at least 2 members";
-               cleanup();
-               if (true) return;
-            }
-            if ( AV8minimumShares > AV9contacts.Count )
-            {
-               AV10error = "The \"Minimum amount of users  to approve a spend\" cannot be more than the amount of users selected";
-               cleanup();
-               if (true) return;
-            }
-            AV21smallerK = AV8minimumShares;
-            if ( AV9contacts.Count - AV8minimumShares < AV21smallerK )
-            {
-               AV21smallerK = (short)(AV9contacts.Count-AV8minimumShares);
-            }
-            AV19combinations = 1;
-            AV20i = 1;
-            while ( AV20i <= AV21smallerK )
-            {
-               AV19combinations = (long)(AV19combinations*(AV9contacts.Count-AV20i+1)/ (decimal)(AV20i));
-               AV20i = (short)(AV20i+1);
-            }
-            if ( AV19combinations > 2000 )
-            {
-               AV10error = "This group would have " + StringUtil.Trim( StringUtil.Str( (decimal)(AV19combinations), 18, 0)) + " combinations of signers; the maximum is 2000. Use fewer members, or a minimum closer to 1 or to all the members";
-               cleanup();
-               if (true) return;
-            }
          }
          else
          {
-            if ( AV8minimumShares > AV9contacts.Count + 1 )
+            AV23maxCombinations = 2000;
+            if ( ( AV12group_sdt.gxTpr_Grouptype == 80 ) || ( AV12group_sdt.gxTpr_Grouptype == 90 ) )
             {
-               AV10error = "The \"Minimum amount of users  to approve a spend\" cannot be more than the users selected plus you";
-               cleanup();
-               if (true) return;
+               AV23maxCombinations = 500;
+               if ( AV8minimumShares < 2 )
+               {
+                  AV10error = "A MuSig2 group needs a minimum of at least 2 signers (for 1, use a Delegated multisignature group)";
+                  cleanup();
+                  if (true) return;
+               }
             }
-            if ( AV8minimumShares > 16 )
+            if ( ( AV12group_sdt.gxTpr_Grouptype == 60 ) || ( AV12group_sdt.gxTpr_Grouptype == 90 ) )
             {
-               AV10error = "The \"Maximum amount of users  to approve a spend\" cannot be more than 16";
-               cleanup();
-               if (true) return;
+               AV22signers = (short)(AV9contacts.Count+1);
+               if ( AV9contacts.Count < 1 )
+               {
+                  AV10error = "A Multi Signature group needs at least 1 member besides you";
+                  cleanup();
+                  if (true) return;
+               }
+               if ( AV8minimumShares > AV22signers )
+               {
+                  AV10error = "The \"Minimum amount of users  to approve a spend\" cannot be more than the users selected plus you";
+                  cleanup();
+                  if (true) return;
+               }
+               AV21smallerK = AV8minimumShares;
+               if ( AV22signers - AV8minimumShares < AV21smallerK )
+               {
+                  AV21smallerK = (short)(AV22signers-AV8minimumShares);
+               }
+               AV19combinations = 1;
+               AV20i = 1;
+               while ( AV20i <= AV21smallerK )
+               {
+                  AV19combinations = (long)(AV19combinations*(AV22signers-AV20i+1)/ (decimal)(AV20i));
+                  AV20i = (short)(AV20i+1);
+               }
+               if ( AV19combinations > AV23maxCombinations )
+               {
+                  AV10error = "This group would have " + StringUtil.Trim( StringUtil.Str( (decimal)(AV19combinations), 18, 0)) + " combinations of signers; the maximum is " + StringUtil.Trim( StringUtil.Str( (decimal)(AV23maxCombinations), 18, 0)) + ". Use fewer members, or a minimum closer to 1 or to all the signers";
+                  cleanup();
+                  if (true) return;
+               }
             }
-            if ( AV9contacts.Count + 1 > 16 )
+            else
             {
-               AV10error = "A Legacy multisignature group can have at most 16 signers: you and 15 other users";
-               cleanup();
-               if (true) return;
+               if ( ( AV12group_sdt.gxTpr_Grouptype == 30 ) || ( AV12group_sdt.gxTpr_Grouptype == 80 ) )
+               {
+                  if ( AV9contacts.Count < 2 )
+                  {
+                     AV10error = "A Delegated multisignature group needs at least 2 members";
+                     cleanup();
+                     if (true) return;
+                  }
+                  if ( AV8minimumShares > AV9contacts.Count )
+                  {
+                     AV10error = "The \"Minimum amount of users  to approve a spend\" cannot be more than the amount of users selected";
+                     cleanup();
+                     if (true) return;
+                  }
+                  AV21smallerK = AV8minimumShares;
+                  if ( AV9contacts.Count - AV8minimumShares < AV21smallerK )
+                  {
+                     AV21smallerK = (short)(AV9contacts.Count-AV8minimumShares);
+                  }
+                  AV19combinations = 1;
+                  AV20i = 1;
+                  while ( AV20i <= AV21smallerK )
+                  {
+                     AV19combinations = (long)(AV19combinations*(AV9contacts.Count-AV20i+1)/ (decimal)(AV20i));
+                     AV20i = (short)(AV20i+1);
+                  }
+                  if ( AV19combinations > AV23maxCombinations )
+                  {
+                     AV10error = "This group would have " + StringUtil.Trim( StringUtil.Str( (decimal)(AV19combinations), 18, 0)) + " combinations of signers; the maximum is " + StringUtil.Trim( StringUtil.Str( (decimal)(AV23maxCombinations), 18, 0)) + ". Use fewer members, or a minimum closer to 1 or to all the members";
+                     cleanup();
+                     if (true) return;
+                  }
+               }
+               else
+               {
+                  if ( AV8minimumShares > AV9contacts.Count + 1 )
+                  {
+                     AV10error = "The \"Minimum amount of users  to approve a spend\" cannot be more than the users selected plus you";
+                     cleanup();
+                     if (true) return;
+                  }
+                  if ( AV8minimumShares > 16 )
+                  {
+                     AV10error = "The \"Maximum amount of users  to approve a spend\" cannot be more than 16";
+                     cleanup();
+                     if (true) return;
+                  }
+                  if ( AV9contacts.Count + 1 > 16 )
+                  {
+                     AV10error = "A Legacy multisignature group can have at most 16 signers: you and 15 other users";
+                     cleanup();
+                     if (true) return;
+                  }
+               }
             }
          }
          AV12group_sdt.gxTpr_Minimumshares = AV8minimumShares;
          AV17newContacts.Clear();
-         AV22GXV1 = 1;
-         while ( AV22GXV1 <= AV9contacts.Count )
+         AV24GXV1 = 1;
+         while ( AV24GXV1 <= AV9contacts.Count )
          {
-            AV18viewContact = ((GeneXus.Programs.wallet.registered.SdtWalletBackupView_ContactItem)AV9contacts.Item(AV22GXV1));
+            AV18viewContact = ((GeneXus.Programs.wallet.registered.SdtWalletBackupView_ContactItem)AV9contacts.Item(AV24GXV1));
             AV11found = false;
-            AV23GXV2 = 1;
-            while ( AV23GXV2 <= AV12group_sdt.gxTpr_Contact.Count )
+            AV25GXV2 = 1;
+            while ( AV25GXV2 <= AV12group_sdt.gxTpr_Contact.Count )
             {
-               AV13groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV12group_sdt.gxTpr_Contact.Item(AV23GXV2));
+               AV13groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV12group_sdt.gxTpr_Contact.Item(AV25GXV2));
                if ( AV13groupContact.gxTpr_Contactid == AV18viewContact.gxTpr_Contactid )
                {
                   AV14groupContactNew = (GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)(AV13groupContact.Clone());
                   AV11found = true;
                   if (true) break;
                }
-               AV23GXV2 = (int)(AV23GXV2+1);
+               AV25GXV2 = (int)(AV25GXV2+1);
             }
             if ( ! AV11found )
             {
@@ -179,7 +243,7 @@ namespace GeneXus.Programs.wallet.registered {
                AV14groupContactNew.gxTpr_Contactuserpubkey = AV18viewContact.gxTpr_Contactuserpubkey;
             }
             AV17newContacts.Add(AV14groupContactNew, 0);
-            AV22GXV1 = (int)(AV22GXV1+1);
+            AV24GXV1 = (int)(AV24GXV1+1);
          }
          AV12group_sdt.gxTpr_Contact.Clear();
          AV12group_sdt.gxTpr_Contact = AV17newContacts;
@@ -220,10 +284,12 @@ namespace GeneXus.Programs.wallet.registered {
       }
 
       private short AV8minimumShares ;
+      private short AV22signers ;
       private short AV21smallerK ;
       private short AV20i ;
-      private int AV22GXV1 ;
-      private int AV23GXV2 ;
+      private int AV24GXV1 ;
+      private int AV25GXV2 ;
+      private long AV23maxCombinations ;
       private long AV19combinations ;
       private string AV10error ;
       private string GXt_char2 ;

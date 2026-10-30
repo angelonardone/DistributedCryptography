@@ -110,7 +110,16 @@ namespace GeneXus.Programs.wallet.registered {
                AV14viewContact = new GeneXus.Programs.wallet.registered.SdtWalletBackupView_ContactItem(context);
                AV14viewContact.gxTpr_Contactid = AV11groupContact.gxTpr_Contactid;
                AV14viewContact.gxTpr_Numshares = AV11groupContact.gxTpr_Numshares;
-               AV14viewContact.gxTpr_Contactprivatename = AV11groupContact.gxTpr_Contactprivatename;
+               GXt_char2 = "";
+               new GeneXus.Programs.wallet.registered.getmemberdisplayname(context ).execute(  AV11groupContact.gxTpr_Contactusername, out  GXt_char2) ;
+               AV14viewContact.gxTpr_Contactprivatename = GXt_char2;
+               if ( AV9group_sdt.gxTpr_Amigroupowner )
+               {
+                  if ( AV11groupContact.gxTpr_Contactinvitationdelined )
+                  {
+                     AV14viewContact.gxTpr_Contactprivatename = StringUtil.Trim( AV14viewContact.gxTpr_Contactprivatename)+" (declined)";
+                  }
+               }
                AV14viewContact.gxTpr_Contactusername = AV11groupContact.gxTpr_Contactusername;
                AV14viewContact.gxTpr_Contactuserpubkey = AV11groupContact.gxTpr_Contactuserpubkey;
                AV14viewContact.gxTpr_Contactinvitationsent = AV11groupContact.gxTpr_Contactinvitationsent;
@@ -147,9 +156,9 @@ namespace GeneXus.Programs.wallet.registered {
          AV9group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
          GXt_SdtGroup_SDT1 = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
          AV10group_sdt_owner = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
-         GXt_char2 = "";
          AV11groupContact = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem(context);
          AV14viewContact = new GeneXus.Programs.wallet.registered.SdtWalletBackupView_ContactItem(context);
+         GXt_char2 = "";
          /* GeneXus formulas. */
       }
 

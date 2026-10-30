@@ -71,6 +71,7 @@ namespace GeneXus.Programs.nostr {
          AV15OperationResult = GxInternetLibWs.disconnect(AV8Key);
          if ( AV15OperationResult.gxTpr_Success )
          {
+            new GeneXus.Programs.nostr.cleanqueue(context ).execute(  AV8Key,  true) ;
             AV8Key = Guid.Empty;
             new GeneXus.Programs.nostr.settnostrconnectionid(context ).execute(  AV8Key) ;
          }

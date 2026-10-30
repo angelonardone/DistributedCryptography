@@ -82,7 +82,14 @@ namespace GeneXus.Programs.wallet.registered {
          /* GeneXus formulas */
          /* Output device settings */
          new GeneXus.Programs.wallet.registered.mapgrouptodelegatedeo(context ).execute(  AV9group_sdt, out  AV10groupEO) ;
-         AV14ok = AV8delegatedProcessor.fromsdt(AV10groupEO);
+         if ( ( AV9group_sdt.gxTpr_Grouptype == 80 ) || ( AV9group_sdt.gxTpr_Grouptype == 90 ) )
+         {
+            AV14ok = AV17muSig2Processor.fromsdt(AV10groupEO);
+         }
+         else
+         {
+            AV14ok = AV8delegatedProcessor.fromsdt(AV10groupEO);
+         }
          if ( ! AV14ok )
          {
             AV15result.gxTpr_Success = false;
@@ -90,7 +97,14 @@ namespace GeneXus.Programs.wallet.registered {
             cleanup();
             if (true) return;
          }
-         AV12jsonText = AV8delegatedProcessor.createaddress((int)(AV16sequence), AV11isChange, AV13networkType);
+         if ( ( AV9group_sdt.gxTpr_Grouptype == 80 ) || ( AV9group_sdt.gxTpr_Grouptype == 90 ) )
+         {
+            AV12jsonText = AV17muSig2Processor.createaddress((int)(AV16sequence), AV11isChange, AV13networkType);
+         }
+         else
+         {
+            AV12jsonText = AV8delegatedProcessor.createaddress((int)(AV16sequence), AV11isChange, AV13networkType);
+         }
          AV15result.FromJSonString(AV12jsonText, null);
          cleanup();
       }
@@ -109,6 +123,7 @@ namespace GeneXus.Programs.wallet.registered {
       {
          AV15result = new GeneXus.Programs.wallet.registered.SdtDelegatedAddressResult(context);
          AV10groupEO = new GeneXus.Programs.distributedcryptographylib.SdtGroupSDT(context);
+         AV17muSig2Processor = new GeneXus.Programs.distributedcryptographylib.SdtMuSig2Processor(context);
          AV8delegatedProcessor = new GeneXus.Programs.distributedcryptographylib.SdtDelegatedProcessor(context);
          AV12jsonText = "";
          /* GeneXus formulas. */
@@ -122,6 +137,7 @@ namespace GeneXus.Programs.wallet.registered {
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV9group_sdt ;
       private GeneXus.Programs.wallet.registered.SdtDelegatedAddressResult AV15result ;
       private GeneXus.Programs.distributedcryptographylib.SdtGroupSDT AV10groupEO ;
+      private GeneXus.Programs.distributedcryptographylib.SdtMuSig2Processor AV17muSig2Processor ;
       private GeneXus.Programs.distributedcryptographylib.SdtDelegatedProcessor AV8delegatedProcessor ;
       private GeneXus.Programs.wallet.registered.SdtDelegatedAddressResult aP4_result ;
    }

@@ -39,6 +39,9 @@ namespace GeneXus.Programs.wallet.registered
 
 			gxTv_SdtIncomingNotification_Text = "";
 
+			gxTv_SdtIncomingNotification_Url = "";
+
+
 		}
 
 		public SdtIncomingNotification(IGxContext context)
@@ -73,6 +76,12 @@ namespace GeneXus.Programs.wallet.registered
 
 
 			AddObjectProperty("text", gxTpr_Text, false);
+
+
+			AddObjectProperty("url", gxTpr_Url, false);
+
+
+			AddObjectProperty("sticky", gxTpr_Sticky, false);
 
 			return;
 		}
@@ -127,6 +136,38 @@ namespace GeneXus.Programs.wallet.registered
 
 
 
+
+		[SoapElement(ElementName="url")]
+		[XmlElement(ElementName="url")]
+		public string gxTpr_Url
+		{
+			get {
+				return gxTv_SdtIncomingNotification_Url; 
+			}
+			set {
+				gxTv_SdtIncomingNotification_Url = value;
+				SetDirty("Url");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="sticky")]
+		[XmlElement(ElementName="sticky")]
+		public bool gxTpr_Sticky
+		{
+			get {
+				return gxTv_SdtIncomingNotification_Sticky; 
+			}
+			set {
+				gxTv_SdtIncomingNotification_Sticky = value;
+				SetDirty("Sticky");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -151,6 +192,8 @@ namespace GeneXus.Programs.wallet.registered
 			gxTv_SdtIncomingNotification_Toasttype = "";
 			gxTv_SdtIncomingNotification_Title = "";
 			gxTv_SdtIncomingNotification_Text = "";
+			gxTv_SdtIncomingNotification_Url = "";
+
 			return  ;
 		}
 
@@ -167,6 +210,12 @@ namespace GeneXus.Programs.wallet.registered
 		 
 
 		protected string gxTv_SdtIncomingNotification_Text;
+		 
+
+		protected string gxTv_SdtIncomingNotification_Url;
+		 
+
+		protected bool gxTv_SdtIncomingNotification_Sticky;
 		 
 
 
@@ -225,6 +274,35 @@ namespace GeneXus.Programs.wallet.registered
 			}
 			set { 
 				 sdt.gxTpr_Text = value;
+			}
+		}
+
+		[JsonPropertyName("url")]
+		[JsonPropertyOrder(3)]
+		[DataMember(Name="url", Order=3)]
+		public  string gxTpr_Url
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Url);
+
+			}
+			set { 
+				 sdt.gxTpr_Url = value;
+			}
+		}
+
+		[JsonPropertyName("sticky")]
+		[JsonPropertyOrder(4)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
+		[DataMember(Name="sticky", Order=4)]
+		public bool gxTpr_Sticky
+		{
+			get { 
+				return sdt.gxTpr_Sticky;
+
+			}
+			set { 
+				sdt.gxTpr_Sticky = value;
 			}
 		}
 

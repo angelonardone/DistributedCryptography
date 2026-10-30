@@ -129,6 +129,7 @@ namespace GeneXus.Programs.wallet {
          GXt_char2 = AV10error;
          new GeneXus.Programs.wallet.sendrawtransaction(context ).execute(  AV12hexTransaction, out  AV18TransactionId, out  GXt_char2) ;
          AV10error = GXt_char2;
+         AV21sentHex = AV12hexTransaction;
          AV12hexTransaction = "";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV10error)) )
          {
@@ -139,6 +140,13 @@ namespace GeneXus.Programs.wallet {
          GXt_char2 = AV10error;
          new GeneXus.Programs.wallet.updatetransactionsaftercoinsent(context ).execute(  "transactions.trn",  AV18TransactionId,  AV19transactionsToSend, out  GXt_char2) ;
          AV10error = GXt_char2;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV10error)) )
+         {
+            GXt_char2 = AV10error;
+            new GeneXus.Programs.wallet.recordsentoutputs(context ).execute(  "transactions.trn",  AV18TransactionId,  AV21sentHex, out  GXt_char2) ;
+            AV10error = GXt_char2;
+         }
+         AV21sentHex = "";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV10error)) )
          {
             AV11errorTitle = "The transaction was sent, but the wallet could not record it: ";
@@ -164,6 +172,7 @@ namespace GeneXus.Programs.wallet {
          GXt_objcol_SdtSDTAddressHistory1 = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
          AV12hexTransaction = "";
          AV18TransactionId = "";
+         AV21sentHex = "";
          GXt_char2 = "";
          /* GeneXus formulas. */
       }
@@ -180,6 +189,7 @@ namespace GeneXus.Programs.wallet {
       private string GXt_char2 ;
       private bool AV15sendAllCoins ;
       private string AV12hexTransaction ;
+      private string AV21sentHex ;
       private string AV9description ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV19transactionsToSend ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> GXt_objcol_SdtSDTAddressHistory1 ;
