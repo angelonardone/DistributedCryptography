@@ -17,7 +17,7 @@ control blocks larger than **257 bytes** invalid. That allows **7 levels**, so a
 
 ## Why it matters for our groups
 
-[Multi Signature](/groups/multi-signature/) and [Delegated Multisignature](/groups/delegated-multisignature/)
+[Multi Signature Wallet](/groups/multi-signature/) and [Delegated Multi Signature Wallet](/groups/delegated-multisignature/)
 put **one script for every combination of K signers** in the tree. Today a group can have up to 2000 combinations,
 an 11-level tree. Under BIP-110 only groups with **128 combinations or fewer** could pay with their scripts.
 
@@ -32,16 +32,16 @@ an 11-level tree. Under BIP-110 only groups with **128 combinations or fewer** c
 | 4 of 10 | 210 | Does not work |
 | 5 of 10 | 252 | Does not work |
 
-In Multi Signature, N counts everybody, the creator included. In Delegated Multisignature, N counts the members
+In a Multi Signature Wallet, N counts everybody, the creator included. In a Delegated Multi Signature Wallet, N counts the members
 without the owner.
 
 What it means in practice:
 
-- **Multi Signature** pays only with its scripts. A group above 128 combinations could not spend coins it received
+- **Multi Signature Wallet** pays only with its scripts. A group above 128 combinations could not spend coins it received
   on BTCB2 after the split.
-- **Delegated Multisignature**: the owner still pays alone, without scripts. The members' K-of-N payments would have
+- **Delegated Multi Signature Wallet**: the owner still pays alone, without scripts. The members' K-of-N payments would have
   the same limit.
-- **[Legacy Multisignature](/groups/legacy-multisignature/)** (addresses starting with `3`) does not use Taproot
+- **[Legacy Multi Signature Wallet](/groups/legacy-multisignature/)** (addresses starting with `3`) does not use Taproot
   trees and is not affected.
 - **Coins received before the split** (8 August 2026) are exempt from all the BIP-110 rules.
 - None of our scripts uses the other things BIP-110 forbids (`OP_IF` in Taproot scripts, outputs longer than 34

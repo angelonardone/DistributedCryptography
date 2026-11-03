@@ -11,6 +11,8 @@ const nextRelease = { text: 'Next release', variant: 'tip' };
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://distributedcryptography.com',
+	// the MuSig2 page of 0.925 became the two Advanced pages (2026-11-02)
+	redirects: { '/groups/musig2/': '/groups/advanced-delegated-multisignature/' },
 	integrations: [
 		starlight({
 			title: 'Distributed Cryptography',
@@ -83,10 +85,11 @@ export default defineConfig({
 					items: [
 						{ label: 'What is a Smart Group?', slug: 'groups' },
 						{ label: 'Consensus Backup', slug: 'groups/consensus-backup' },
-						{ label: 'Multi Signature', slug: 'groups/multi-signature' },
-						{ label: 'MuSig2 wallets (signed live)', slug: 'groups/musig2' },
-						{ label: 'Delegated Multisignature', slug: 'groups/delegated-multisignature' },
-						{ label: 'Legacy Multisignature', slug: 'groups/legacy-multisignature' },
+						{ label: 'Delegated Multi Signature Wallet', slug: 'groups/delegated-multisignature' },
+						{ label: 'Advanced Delegated Multi Signature Wallet', slug: 'groups/advanced-delegated-multisignature' },
+						{ label: 'Multi Signature Wallet', slug: 'groups/multi-signature' },
+						{ label: 'Advanced Multi Signature Wallet', slug: 'groups/advanced-multi-signature' },
+						{ label: 'Legacy Multi Signature Wallet', slug: 'groups/legacy-multisignature' },
 						{ label: 'Time-Encrypted Vault', slug: 'groups/time-encrypted-vault' },
 						{ label: 'Shared passwords', slug: 'groups/shared-passwords' },
 						{ label: 'Group Chat', slug: 'groups/group-chat' },

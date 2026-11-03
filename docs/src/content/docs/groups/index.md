@@ -10,11 +10,12 @@ can do alone. The jobs are:
 |---|---|
 | [Consensus Backup](/groups/consensus-backup/) (in the app: *Wallet Backup*) | A backup of your wallet that a minimum number of members must agree to restore |
 | [Time-Encrypted Vault](/groups/time-encrypted-vault/) | A backup that can only be opened after a date you keep renewing: inheritance and business continuity |
-| [Delegated Multisignature](/groups/delegated-multisignature/) | A bitcoin wallet you can always spend from alone, and that K of the N people you choose can also spend from, built on Taproot |
-| [Legacy Multisignature](/groups/legacy-multisignature/) | A classic multisignature wallet where K of N equal members must approve each payment, compatible with other software |
+| [Delegated Multi Signature Wallet](/groups/delegated-multisignature/) | A bitcoin wallet you can always spend from alone, and that K of the N people you choose can also spend from, built on Taproot |
+| [Advanced Delegated Multi Signature Wallet](/groups/advanced-delegated-multisignature/) (in 0.925: *Delegated Multi Signature 2*) | The same, but the K members sign online at the same time (MuSig2): every payment carries one single signature |
+| [Multi Signature Wallet](/groups/multi-signature/) | A Taproot bitcoin wallet where everybody, the creator included, is an equal signer and K of the N must sign each payment |
+| [Advanced Multi Signature Wallet](/groups/advanced-multi-signature/) (in 0.925: *Multi Signature 2*) | The same, but the K signers sign online at the same time (MuSig2): every payment carries one single signature |
+| [Legacy Multi Signature Wallet](/groups/legacy-multisignature/) | A classic multisignature wallet where K of N equal members must approve each payment, compatible with other software |
 | [Shared passwords](/groups/shared-passwords/) (in the app: *Encrypted Passwords*) | A password vault where you decide which member sees which password |
-| [Multi Signature](/groups/multi-signature/) | A Taproot bitcoin wallet where everybody, the creator included, is an equal signer and K of the N must sign each payment |
-| [MuSig2 wallets](/groups/musig2/): *Delegated Multi Signature 2* and *Multi Signature 2* | Taproot bitcoin wallets whose payments carry one single signature, signed live by the members who are there at the same time |
 | [Group Chat](/groups/group-chat/) | A chat of several people, everyone with everyone, encrypted and signed |
 
 ## How every group works
@@ -28,7 +29,7 @@ All the types follow the same four steps.
    **Decline Invitation**. Until a member accepts, the group does not open in their wallet. When a member
    declines, the owner gets a notification and sees that member as *(declined)*.
 4. **Activate.** When everybody has accepted, the owner activates the group. This is the moment the secret is
-   split, or the shared wallet becomes ready. Password groups and Legacy Multisignature groups need no
+   split, or the shared wallet becomes ready. Password groups and Legacy Multi Signature Wallet groups need no
    activation.
 
 :::note[Give it a minute]
@@ -62,15 +63,20 @@ each member as:
 So a member who is not your contact learns nothing about who that person is, and nobody sees the names you
 chose, not even in a group you created.
 
-## Choosing between the two multisignature types
+## Choosing a multisignature wallet
 
-The difference is **who can pay alone**:
+Two questions decide it: **can the owner pay alone?** and **can the signers be online at the same time?**
 
-- In [Delegated Multisignature](/groups/delegated-multisignature/) the **owner can always pay alone**, and K of the
-  N members can pay without the owner. It costs less in fees and shows less on the blockchain.
-- In [Legacy Multisignature](/groups/legacy-multisignature/) **nobody pays alone**: every member, the owner
-  included, is an equal signer and K of the N must approve each payment. It is the classic kind that other
-  wallets and tools understand, and it is limited to 16 members.
+| | The signers sign one after the other, whenever each one can | The signers sign online at the same time (MuSig2) |
+|---|---|---|
+| **The owner can always pay alone** | [Delegated Multi Signature Wallet](/groups/delegated-multisignature/) | [Advanced Delegated Multi Signature Wallet](/groups/advanced-delegated-multisignature/) |
+| **Nobody pays alone** (the creator is one more signer) | [Multi Signature Wallet](/groups/multi-signature/), or the [Legacy Multi Signature Wallet](/groups/legacy-multisignature/) | [Advanced Multi Signature Wallet](/groups/advanced-multi-signature/) |
 
-Both can show their **descriptors**, so another wallet can watch the group without our software. The guide
+- The **Advanced** wallets are the cheapest and the most private: a payment shows one key and one signature,
+  whatever the number of signers. The price is that the K signers must be online during the same few minutes,
+  each from their own wallet, wherever they are.
+- The **Legacy Multi Signature Wallet** is the classic kind that other wallets and tools understand. It is not
+  Taproot, it costs more in fees and it is limited to 16 members.
+
+All of them can show their **descriptors**, so another wallet can watch the group without our software. The guide
 [Bitcoin multisignature: a practical guide](/guides/multisig/) compares the costs with real numbers.

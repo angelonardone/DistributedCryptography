@@ -103,11 +103,11 @@ This is a good reason not to set the minimum equal to the number of members.
 
 It depends on who should be able to pay alone.
 
-Use [Delegated Multisignature](/groups/delegated-multisignature/) when the wallet is **yours** and you want
+Use [Delegated Multi Signature Wallet](/groups/delegated-multisignature/) when the wallet is **yours** and you want
 people you trust to be able to spend from it without you: you can always pay alone, and K of the N members can
 pay together. It costs less in fees and shows less on the blockchain.
 
-Use [Legacy Multisignature](/groups/legacy-multisignature/) when **nobody** should pay alone, you included, or
+Use [Legacy Multi Signature Wallet](/groups/legacy-multisignature/) when **nobody** should pay alone, you included, or
 when you need the classic format that other wallets and tools understand.
 
 ### Can I see my multisignature group in another wallet?
@@ -115,8 +115,8 @@ when you need the classic format that other wallets and tools understand.
 Yes. The **Descriptors** button of the group's *Wallet Balance* tab shows two standard texts that
 describe all the addresses of the group. A wallet that understands descriptors, Bitcoin Core for example, shows
 the same addresses and coins from them. They hold only public keys: they can watch, never spend. See
-[Delegated Multisignature](/groups/delegated-multisignature/#8-see-the-group-in-another-wallet-descriptors) and
-[Legacy Multisignature](/groups/legacy-multisignature/#7-see-the-group-in-another-wallet-descriptors).
+[Delegated Multi Signature Wallet](/groups/delegated-multisignature/#8-see-the-group-in-another-wallet-descriptors) and
+[Legacy Multi Signature Wallet](/groups/legacy-multisignature/#7-see-the-group-in-another-wallet-descriptors).
 
 ### Do all the signers have to be connected at the same time?
 

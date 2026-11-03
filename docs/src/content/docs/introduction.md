@@ -15,7 +15,7 @@ open at `http://localhost:5000`. Your keys are created there and stay there, enc
   you trust. Nobody can restore it alone. See [Consensus Backup](/groups/consensus-backup/).
 - **A plan for when you cannot log in.** A [Time-Encrypted Vault](/groups/time-encrypted-vault/) opens for a group
   you chose only after a date that you keep moving forward.
-- **Cheaper, more private multisignature.** [Delegated Multisignature](/groups/delegated-multisignature/) uses
+- **Cheaper, more private multisignature.** [Delegated Multi Signature Wallet](/groups/delegated-multisignature/) uses
   Taproot, so a K-of-N payment costs less in fees and shows only the people who signed.
 - **A vault for everything else.** Notes, files, passwords and authenticator backups are encrypted with keys that
   come from the same wallet. See [Offline tools](/offline/).

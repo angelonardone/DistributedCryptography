@@ -1,11 +1,11 @@
 ---
-title: Multi Signature
+title: Multi Signature Wallet
 description: A Taproot bitcoin wallet shared by a group where everybody, you included, is an equal signer and nobody can pay alone - K of the N people must sign every payment.
 ---
 
 import { Steps } from '@astrojs/starlight/components';
 
-With Multi Signature a group of people shares one bitcoin wallet and **every payment needs K of the N signatures**.
+With a Multi Signature Wallet a group of people shares one bitcoin wallet and **every payment needs K of the N signatures**.
 You create the group, but you are **one more signer**: you have no special power, and **nobody can pay alone** -
 not you, not any member.
 
@@ -22,7 +22,7 @@ savings of a couple or a family, the reserve of a project.
 
 ## Which multisignature wallet?
 
-| | Multi Signature | [Delegated Multisignature](/groups/delegated-multisignature/) | [Legacy Multisignature](/groups/legacy-multisignature/) |
+| | Multi Signature Wallet | [Delegated Multi Signature Wallet](/groups/delegated-multisignature/) | [Legacy Multi Signature Wallet](/groups/legacy-multisignature/) |
 |---|---|---|---|
 | Can somebody pay alone? | **No**, nobody | Yes, the owner | No, nobody |
 | The creator of the group | One more signer | The owner, who also pays alone | One more signer |
@@ -31,10 +31,10 @@ savings of a couple or a family, the reserve of a project.
 | Size of the payment | Small | Small | Larger: higher fees |
 | Largest group | Up to 2000 combinations of K signers | Up to 2000 combinations of K members | 16 signers |
 
-Multi Signature is the modern version of Legacy Multisignature: the same trust model, with the lower fees and the
+The Multi Signature Wallet is the modern version of the Legacy Multi Signature Wallet: the same trust model, with the lower fees and the
 better privacy of Taproot.
 
-When the signers can sign at the same time, [Multi Signature 2](/groups/musig2/) is even cheaper and more private:
+When the signers can sign at the same time, [Advanced Multi Signature Wallet](/groups/advanced-multi-signature/) is even cheaper and more private:
 one MuSig2 signature per payment.
 
 ## How the address is built
@@ -47,7 +47,7 @@ A Taproot address has two ways to be spent:
 - **The key path.** One public key, the *internal key*, that could spend alone with a single signature. In a
   Delegated group it is the owner's key: that is why the owner pays alone.
 
-In Multi Signature the internal key belongs to nobody. It is the **MuSig2 aggregate of the keys of all the N
+In a Multi Signature Wallet the internal key belongs to nobody. It is the **MuSig2 aggregate of the keys of all the N
 signers** ([BIP327](https://github.com/bitcoin/bips/blob/master/bip-0327.mediawiki)).
 
 ### Why the MuSig2 aggregate of all the signers
@@ -59,8 +59,8 @@ We had three options for that key. This is the one we chose, and why:
    stored or shared.
 2. **Nobody can sign with it alone.** A signature with the aggregate key needs **all N signers together**, in a
    live signing session (MuSig2). That is stricter than the K of N the group asks for, so it gives nobody a shortcut.
-   A Multi Signature group never uses it: every payment goes through the K-of-N scripts. A
-   [Multi Signature 2](/groups/musig2/) group does, when all the signers are in its signing room.
+   A Multi Signature Wallet never uses it: every payment goes through the K-of-N scripts. A
+   [Advanced Multi Signature Wallet](/groups/advanced-multi-signature/) does, when all the signers are in its signing room.
 3. **It is not the plain sum of the keys.** Adding the N public keys together looks simpler, but it is unsafe: a
    member could choose his key as *"the key I want, minus the sum of the others"*. The sum would then be a key that
    only he knows, and he could empty the wallet **alone** (this is called a *rogue-key attack*). BIP327 multiplies
@@ -78,10 +78,10 @@ We had three options for that key. This is the one we chose, and why:
 
 <Steps>
 
-1. Open **Online → Smart Groups** and click **Create Group**. Choose the type **Multi Signature**, type a name and
+1. Open **Online → Smart Groups** and click **Create Group**. Choose the type **Multi Signature Wallet**, type a name and
    click **Create**.
 
-   ![The group type Multi Signature and the name of the group](../../../assets/screens/multisig/01-create-group.png)
+   ![The group type Multi Signature Wallet and the name of the group](../../../assets/screens/multisig/01-create-group.png)
 
 2. Open the group. Click **Add a contact** for each person. Set the **minimum amount of users to approve a
    spend**: this is the K of "K of N". **You count as one of the N**: with 2 contacts the group has 3 signers, and
@@ -192,6 +192,6 @@ and rebuild every address without Distributed Cryptography.
 ## Related
 
 - [What is a Smart Group?](/groups/)
-- [Delegated Multisignature](/groups/delegated-multisignature/)
-- [Legacy Multisignature](/groups/legacy-multisignature/)
+- [Delegated Multi Signature Wallet](/groups/delegated-multisignature/)
+- [Legacy Multi Signature Wallet](/groups/legacy-multisignature/)
 - [Bitcoin multisignature: a practical guide](/guides/multisig/)

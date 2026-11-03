@@ -1,0 +1,221 @@
+---
+title: Advanced Delegated Multi Signature Wallet
+description: A Taproot bitcoin wallet you can always spend from alone, and that K of the N people you choose can also spend from, signing online at the same time with MuSig2 - every payment carries one single signature.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+:::tip[Version 0.925]
+In version 0.925 of the app this type is called **Delegated Multi Signature 2**.
+:::
+
+An **Advanced Delegated Multi Signature Wallet** works like the
+[Delegated Multi Signature Wallet](/groups/delegated-multisignature/): **you, the owner, can always pay alone**, and
+**K of the N members** you choose can also pay without you. The difference is how the members sign: they sign
+**together, online at the same time**, with MuSig2. Their payment then looks on the blockchain like a payment of
+**one single key with one signature**, whatever the size of the group: the cheapest and most private payment of a
+group.
+
+:::note[A signing room is virtual]
+The members sign in a **signing room**, which is **not a place**. It is a page of the app, the **Signatures** tab of
+the group, that every member opens **in their own wallet, on their own computer, wherever they are in the world**.
+The members never meet and never share a screen: each one only needs the app open and an internet connection
+**during the same few minutes**. The app connects them through encrypted messages.
+
+Think of it as a short online meeting: the group agrees on a time (by chat, phone or email), everybody opens the
+group at that time, and the payment is signed in a couple of minutes.
+:::
+
+| | |
+|---|---|
+| Who can pay alone | **The owner** (the creator of the group), with one signature |
+| Who else can pay | Any **K of the N members**, online at the same time (the owner is not one of the N) |
+| Addresses | Taproot (they start with `bc1p`; with `tb1p` or `bcrt1p` on the test networks) |
+| A payment of K members shows | One aggregated key and one 64-byte signature (instead of K keys and K signatures) |
+| Minimum | At least 2 signers (with 1, use the [Delegated Multi Signature Wallet](/groups/delegated-multisignature/)) |
+| Size of the group | Up to 500 combinations of K signers (for example 2 of 32, 3 of 15, 4 of 12, 8 of 12) |
+| Standards | [BIP341](https://github.com/bitcoin/bips/blob/master/bip-0341.mediawiki) Taproot, [BIP327](https://github.com/bitcoin/bips/blob/master/bip-0327.mediawiki) MuSig2, [BIP386](https://github.com/bitcoin/bips/blob/master/bip-0386.mediawiki) / [BIP390](https://github.com/bitcoin/bips/blob/master/bip-0390.mediawiki) descriptors |
+
+## Which one?
+
+| | Signed one after the other ([Delegated](/groups/delegated-multisignature/), [Multi Signature](/groups/multi-signature/), [Legacy](/groups/legacy-multisignature/)) | Signed online at the same time (the **Advanced** wallets) |
+|---|---|---|
+| When do the signers sign? | Whenever each one can, hours or days apart | Online at the same time (each from wherever they are), within 3 minutes |
+| Size of a payment of K signers | Grows with K | The same for any K |
+| What the payment reveals | The K keys that signed | One key |
+| Fee | Chosen by the first signer, with options for the last one | The network's at the moment of signing |
+
+Choose an Advanced wallet when the signers can be **online at the same time** to pay - each from their own computer,
+in any city or country: the savings of a family, the treasury of a team spread over several countries that agrees on
+a time to pay. Choose the others when the signers are rarely online at the same time.
+
+When nobody should pay alone, not even the creator, use the
+[Advanced Multi Signature Wallet](/groups/advanced-multi-signature/).
+
+## How it works
+
+Each address has one small script for every combination of K members, and **each script is a single MuSig2 key**:
+the [BIP327](https://github.com/bitcoin/bips/blob/master/bip-0327.mediawiki) aggregate of the keys of those K
+people. The owner's own key is the Taproot *key path*: the owner pays with it alone, like a personal wallet. To pay
+without the owner, K members run MuSig2 together:
+
+1. **Round 1 - nonces.** Each signer's wallet creates a fresh secret number (a *nonce*) and sends its public part to
+   the others. No password is needed for this, and it happens by itself.
+2. **Round 2 - signatures.** Each signer types the password; the wallet makes a *partial signature* and sends it.
+3. **Aggregation.** When every partial signature is there, the wallet of the last signer combines them into one
+   Schnorr signature, checks it and sends the payment to the network.
+
+The secret nonces **never leave the memory of the app** - not to a file, not to the browser - and each one is used
+once. A secret nonce used twice could give away the private key, so if anything goes wrong (somebody leaves, the
+time runs out, the app restarts) the session is closed and a new one starts with new nonces.
+
+## Before you start
+
+- You are [logged in](/online/).
+- Every person you want in the group is an **accepted** [contact](/online/contacts/).
+
+## 1. Create the group and invite the members (owner)
+
+<Steps>
+
+1. Open **Online → Smart Groups** and click **Create Group**. Choose the type
+   **Advanced Delegated Multi Signature Wallet**, type a name and click **Create**.
+
+   ![The group type Advanced Delegated Multi Signature Wallet and the name of the group](../../../assets/screens/advdelegated/01-create-group.png)
+
+2. Click **Add a contact** for each member. Type the **minimum** of members who must sign a payment without you
+   (at least 2; you are not one of them) and click **Send invitation to group members**.
+
+   ![Three members, a minimum of 2 and the button Send invitation to group members](../../../assets/screens/advdelegated/02-members-and-minimum.png)
+
+</Steps>
+
+## 2. Accept the invitation (each member)
+
+Each member opens **Online → Smart Groups** in their own wallet and clicks **Accept Invitation**.
+
+![Accept Invitation in the list of Smart Groups](../../../assets/screens/advdelegated/03-accept-invitation.png)
+
+## 3. Activate the group (owner)
+
+When every member has accepted, open the group and click **Activate Group**, then type your password. From now on
+the members and the minimum do not change.
+
+![All the invitations accepted and the button Activate Group](../../../assets/screens/advdelegated/04-activate.png)
+
+## 4. Receive
+
+The **Wallet Balance** tab shows the next receiving address and its QR, the balance and the **Descriptors**. The tabs
+**Addresses**, **Payment Requests** and **Transactions** work like the ones of your own wallet. **Rescan Balance**
+looks up every address of the group again.
+
+![The Wallet Balance tab of the group: its receiving address, the balance and Rescan Balance](../../../assets/screens/advdelegated/05-wallet-balance.png)
+
+## 5. The owner pays alone
+
+Every payment of the group is made in its **Signatures** tab. The owner pays alone, with one signature and without a
+signing room:
+
+<Steps>
+
+1. In **Signatures** click **Pay alone**.
+
+   ![The Signatures tab of the owner, with the button Pay alone](../../../assets/screens/advdelegated/06-pay-alone-button.png)
+
+2. Type the amount, the destination and a description. Click **Estimate fee** and choose one of the three fees (or
+   type one). Type your password and click **Pay**.
+
+   ![The Pay alone form: amount, destination, description, the fee, the password and Pay](../../../assets/screens/advdelegated/07-pay-alone-form.png)
+
+3. The payment is signed and sent to the network at once.
+
+   ![Transaction broadcast](../../../assets/screens/advdelegated/08-paid-alone.png)
+
+</Steps>
+
+## 6. The members pay together: the signing room
+
+Each member does these steps **in their own wallet**, from wherever they are; the app keeps everybody's screen up to
+date by itself. Agree on a time first, so that the signers are online together.
+
+<Steps>
+
+1. **Open a payment session** (any member). In **Signatures** click **New payment**, type the amount, the
+   destination and a description, and click **Open payment session**. Every member of the group receives it (a
+   notification if they are on another page) and the session waits **15 minutes** for the signers to join. The one
+   who opens a session needs the group's balance in his wallet: click **Rescan Balance** in **Wallet Balance** first.
+
+   ![New payment: the amount, the destination, the description and Open payment session](../../../assets/screens/advdelegated/09-new-payment.png)
+
+2. **Join it** (the other signers). Open the group's **Signatures** tab in your own wallet. The tab lists every
+   payment session of the group; the open one is selected, and below the list it shows what it pays, who has joined
+   (*Joined (online now)*) and who has not yet (*Not joined yet*). Check the payment and click **I'm here** to say
+   you are online and you agree with it. The session has its own **chat**, to ask or confirm anything while it is
+   open.
+
+   A member who is not one of your contacts shows as the beginning of their user name (for example
+   `bcrt1pmwfqjj4x...`), never with the name somebody else gave them: see
+   [What the members see of each other](/groups/#what-the-members-see-of-each-other).
+
+   ![The open session in the Signatures tab of another member, with the button I'm here](../../../assets/screens/advdelegated/10-join.png)
+
+3. **Start signing** (the one who opened it). When enough members have joined, click **Start signing**. It does not
+   sign anything yet: it fixes who signs (the members present), the coins and the fee - the network's fee at that
+   moment. Every signer's wallet checks the payment, reads its coins from its own server and exchanges its nonces by
+   itself.
+
+   ![Every signer has joined, a line in the chat of the session, and the button Start signing](../../../assets/screens/advdelegated/11-start-signing.png)
+
+4. **Sign with password** (each signer). Click **Sign with password**, type your password and click **Sign**. The
+   signers have **3 minutes**.
+
+   ![The session ready to sign, with the button Sign with password](../../../assets/screens/advdelegated/12-sign-with-password.png)
+
+   ![The password and the button Sign](../../../assets/screens/advdelegated/13-password.png)
+
+   Until the last signature each signer sees *Signature sent*.
+
+   ![Signature sent: the session waits for the other signers](../../../assets/screens/advdelegated/14-signature-sent.png)
+
+5. **Transaction broadcast.** The last signature completes the payment and sends it to the network: that signer
+   sees *Transaction broadcast* with its transaction id, and the session shows *Paid* for everybody.
+
+   ![Transaction broadcast, seen by the last signer](../../../assets/screens/advdelegated/15-broadcast.png)
+
+   ![The session paid, in the Signatures tab of the one who opened it](../../../assets/screens/advdelegated/16-paid.png)
+
+</Steps>
+
+Anybody in the session can click **Leave**: it closes for everybody and its nonces are wiped. A session whose time
+runs out closes by itself.
+
+## 7. See the group in another wallet (descriptors)
+
+In **Wallet Balance** click **Descriptors**. The group is described by two standard descriptors, one for the
+receiving addresses and one for the change:
+
+```
+tr(OWNER/*,{pk(musig(xpubA/*,xpubB/*)),pk(musig(xpubA/*,xpubC/*)),...})
+```
+
+`musig()` is the BIP390 way to write a MuSig2 key. Bitcoin Core 30 and later derive every address of the group from
+these descriptors; our tests check it on every release.
+
+![The two descriptors of the group, written with musig()](../../../assets/screens/advdelegated/17-descriptors.png)
+
+## Good to know
+
+- **Online, not in person.** The signers never have to be in the same place: each one signs from their own wallet,
+  anywhere in the world. What they share is the time: if a signer is not online during those minutes, the session
+  cannot complete - open it again at a time that suits everybody, or use the
+  [Delegated Multi Signature Wallet](/groups/delegated-multisignature/), which is signed one after the other.
+- **Nothing secret travels.** A session only carries the payment, the public nonces and the partial signatures,
+  encrypted for each member.
+- **Back up your own wallet** as usual: your keys of the group come from it.
+
+## Related
+
+- [What is a Smart Group?](/groups/)
+- [Advanced Multi Signature Wallet](/groups/advanced-multi-signature/)
+- [Delegated Multi Signature Wallet](/groups/delegated-multisignature/)
+- [Bitcoin multisignature: a practical guide](/guides/multisig/)
