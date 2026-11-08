@@ -39,19 +39,15 @@
         <Reference Include="DistricutedCryptographyLib" >
             <HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
         </Reference>
-        <Reference Include="GxJadeLib" >
-            <HintPath>$(WebBinDirectory)\GxJadeLib.dll</HintPath>
-        </Reference>
 
 	</ItemGroup>
 
 	<ItemGroup>
 		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getprivatetempdir.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\downloadfile.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\preparelocalfiledownload.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\readallfiles.cs" />
@@ -61,6 +57,8 @@
 		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\filedecryptv2.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\preparelocalfiledownload.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\walletfilepath.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\fileencryptv2.cs" />

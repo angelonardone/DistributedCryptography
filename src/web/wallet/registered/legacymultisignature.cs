@@ -286,18 +286,18 @@ namespace GeneXus.Programs.wallet.registered {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          if ( StringUtil.Len( sPrefix) == 0 )
          {
             context.CloseHtmlHeader();
@@ -1219,22 +1219,22 @@ namespace GeneXus.Programs.wallet.registered {
          AV33groupView = GXt_SdtGroupListItem1;
          if ( AV33groupView.gxTpr_Grouptype == 30 )
          {
-            lblMsgtoowner_Caption = "Delegated multisignature (Taproot): you, the owner, can always spend alone. The members you pick can also spend without you, when the minimum number of them sign. Pick the members and that minimum.";
+            lblMsgtoowner_Caption = "Delegated Multi Signature Wallet (Taproot): you, the owner, can always spend alone. The members you pick can also spend without you, when the minimum number of them sign. Pick the members and that minimum.";
             AssignProp(sPrefix, false, lblMsgtoowner_Internalname, "Caption", lblMsgtoowner_Caption, true);
          }
          else if ( AV33groupView.gxTpr_Grouptype == 60 )
          {
-            lblMsgtoowner_Caption = "Multi Signature (Taproot): every member, including you, is an equal signer and nobody can spend alone. Pick the members and the minimum number of signatures needed to spend: you count as one of the signers.";
+            lblMsgtoowner_Caption = "Multi Signature Wallet (Taproot): every member, including you, is an equal signer and nobody can spend alone. Pick the members and the minimum number of signatures needed to spend: you count as one of the signers.";
             AssignProp(sPrefix, false, lblMsgtoowner_Internalname, "Caption", lblMsgtoowner_Caption, true);
          }
          else if ( AV33groupView.gxTpr_Grouptype == 80 )
          {
-            lblMsgtoowner_Caption = "Delegated Multi Signature 2 (Taproot, MuSig2): you, the owner, can always spend alone. The members you pick can also spend without you: the minimum number of them sign online at the same time, each from their own wallet wherever they are (a virtual signing room), and the payment carries one single signature. Pick the members and that minimum (at least 2).";
+            lblMsgtoowner_Caption = "Advanced Delegated Multi Signature Wallet (Taproot, MuSig2): you, the owner, can always spend alone. The members you pick can also spend without you: the minimum number of them sign online at the same time, each from their own wallet wherever they are (a virtual signing room), and the payment carries one single signature. Pick the members and that minimum (at least 2).";
             AssignProp(sPrefix, false, lblMsgtoowner_Internalname, "Caption", lblMsgtoowner_Caption, true);
          }
          else if ( AV33groupView.gxTpr_Grouptype == 90 )
          {
-            lblMsgtoowner_Caption = "Multi Signature 2 (Taproot, MuSig2): every member, including you, is an equal signer and nobody can spend alone. The minimum number of signers sign online at the same time, each from their own wallet wherever they are (a virtual signing room); when all of you join it the payment is the cheapest and most private one. Pick the members and the minimum (at least 2): you count as one of the signers.";
+            lblMsgtoowner_Caption = "Advanced Multi Signature Wallet (Taproot, MuSig2): every member, including you, is an equal signer and nobody can spend alone. The minimum number of signers sign online at the same time, each from their own wallet wherever they are (a virtual signing room); when all of you join it the payment is the cheapest and most private one. Pick the members and the minimum (at least 2): you count as one of the signers.";
             AssignProp(sPrefix, false, lblMsgtoowner_Internalname, "Caption", lblMsgtoowner_Caption, true);
          }
          else if ( AV33groupView.gxTpr_Grouptype == 70 )
@@ -1246,7 +1246,7 @@ namespace GeneXus.Programs.wallet.registered {
          }
          else
          {
-            lblMsgtoowner_Caption = "Legacy multisignature (SegWit P2SH-P2WSH N-of-M): every member, including you, is an equal signer. Pick the members and the minimum number of signatures needed to spend.";
+            lblMsgtoowner_Caption = "Legacy Multi Signature Wallet (SegWit P2SH-P2WSH N-of-M): every member, including you, is an equal signer. Pick the members and the minimum number of signatures needed to spend.";
             AssignProp(sPrefix, false, lblMsgtoowner_Internalname, "Caption", lblMsgtoowner_Caption, true);
          }
          GXt_char2 = AV9error;
@@ -1261,12 +1261,12 @@ namespace GeneXus.Programs.wallet.registered {
             }
             else if ( ( AV33groupView.gxTpr_Grouptype == 80 ) || ( AV33groupView.gxTpr_Grouptype == 90 ) )
             {
-               lblMsgtoowner_Caption = "This MuSig2 group is active: its wallet is in the Wallet Balance tab and its payments are made in the Signatures tab (signed online at the same time, each member from his own wallet); the members and the minimum do not change any more.";
+               lblMsgtoowner_Caption = "This group is active: its wallet is in the Wallet Balance tab and its payments are made in the Signatures tab (signed online at the same time, each member from his own wallet); the members and the minimum do not change any more.";
                AssignProp(sPrefix, false, lblMsgtoowner_Internalname, "Caption", lblMsgtoowner_Caption, true);
             }
             else if ( AV33groupView.gxTpr_Grouptype == 30 )
             {
-               lblMsgtoowner_Caption = "This Delegated multisignature group is active: the owner can spend alone and the minimum of the members below can spend together. Its wallet is in the Wallet Balance and Signatures tabs; the members and the minimum do not change any more.";
+               lblMsgtoowner_Caption = "This group is active: the owner can spend alone and the minimum of the members below can spend together. Its wallet is in the Wallet Balance and Signatures tabs; the members and the minimum do not change any more.";
                AssignProp(sPrefix, false, lblMsgtoowner_Internalname, "Caption", lblMsgtoowner_Caption, true);
             }
             else
@@ -1727,7 +1727,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013253754", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202611814232779", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1743,7 +1743,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/legacymultisignature.js", "?2026103013253754", false, true, false);
+         context.AddJavascriptSource("wallet/registered/legacymultisignature.js", "?202611814232781", false, true, false);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
          /* End function include_jscripts */
       }

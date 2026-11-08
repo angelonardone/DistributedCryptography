@@ -42,9 +42,6 @@
         <Reference Include="DistricutedCryptographyLib" >
             <HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
         </Reference>
-        <Reference Include="GxJadeLib" >
-            <HintPath>$(WebBinDirectory)\GxJadeLib.dll</HintPath>
-        </Reference>
 
 	</ItemGroup>
 
@@ -64,7 +61,6 @@
 		<Compile Include = "$(WebDirectory)\apibaseurlauth.cs" />
 		<Compile Include = "$(WebDirectory)\desktopappservicesrestdeletecontactpost.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getlogindistcrypt.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\createcontact.cs" />
@@ -83,17 +79,21 @@
 		<Compile Include = "$(WebDirectory)\wallet\registered\getcontacts.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluserpublic.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\signbip322.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwalletinfo.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\messageenvelopetext.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjsonto.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\processserver.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getserverbaseurl.cs" />
-		<Compile Include = "$(WebDirectory)\desktopappservicesrestcreatecontactpost.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\walletfilepath.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\deletecontact.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\restgetchallenge.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\callapi.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
-		<Compile Include = "$(WebDirectory)\desktopappservicesrestsendmesagepost.cs" />
+		<Compile Include = "$(WebDirectory)\desktopappservicesrestcreatecontactpost.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccsignmsg.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\postsendmessage.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\sealmessage.cs" />
 
 	</ItemGroup>
 

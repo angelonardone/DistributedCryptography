@@ -181,6 +181,7 @@ namespace GeneXus.Programs.wallet.registered {
          AV15group_sdt_temp.gxTpr_Othergroup.gxTpr_Referencegroupid = AV14group_sdt.gxTpr_Othergroup.gxTpr_Referencegroupid;
          AV15group_sdt_temp.gxTpr_Othergroup.gxTpr_Extpubkeymultisigreceiving = AV14group_sdt.gxTpr_Extpubkeymultisigreceiving;
          AV15group_sdt_temp.gxTpr_Othergroup.gxTpr_Extpubkeymultisigchange = AV14group_sdt.gxTpr_Extpubkeymultisigchange;
+         AV15group_sdt_temp.gxTpr_Othergroup.gxTpr_Encpassword = AV14group_sdt.gxTpr_Othergroup.gxTpr_Encpassword;
          AV13firstInvitationSent = (DateTime)(DateTime.MinValue);
          AV25GXV1 = 1;
          while ( AV25GXV1 <= AV14group_sdt.gxTpr_Contact.Count )

@@ -188,7 +188,6 @@ namespace GeneXus.Programs.wallet {
          subTransactionsgrid_Rows = (int)(Math.Round(NumberUtil.Val( GetPar( "subTransactionsgrid_Rows"), "."), 18, MidpointRounding.ToEven));
          AV17groupId = StringUtil.StrToGuid( GetPar( "groupId"));
          ajax_req_read_hidden_sdt(GetNextPar( ), AV10transactions);
-         AV20transactionFileName = GetPar( "transactionFileName");
          sPrefix = GetPar( "sPrefix");
          init_default_properties( ) ;
          setAjaxCallMode();
@@ -197,7 +196,7 @@ namespace GeneXus.Programs.wallet {
             GxWebError = 1;
             return  ;
          }
-         gxgrTransactionsgrid_refresh( subTransactionsgrid_Rows, AV17groupId, AV10transactions, AV20transactionFileName, sPrefix) ;
+         gxgrTransactionsgrid_refresh( subTransactionsgrid_Rows, AV17groupId, AV10transactions, sPrefix) ;
          AddString( context.getJSONResponse( )) ;
          /* End function gxgrTransactionsgrid_refresh_invoke */
       }
@@ -296,18 +295,18 @@ namespace GeneXus.Programs.wallet {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          if ( StringUtil.Len( sPrefix) == 0 )
          {
             context.CloseHtmlHeader();
@@ -376,8 +375,6 @@ namespace GeneXus.Programs.wallet {
 
       protected void send_integrity_footer_hashes( )
       {
-         GxWebStd.gx_hidden_field( context, sPrefix+"vTRANSACTIONFILENAME", StringUtil.RTrim( AV20transactionFileName));
-         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vTRANSACTIONFILENAME", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV20transactionFileName, "")), context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -405,8 +402,6 @@ namespace GeneXus.Programs.wallet {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vTRANSACTIONS", AV10transactions);
          }
-         GxWebStd.gx_hidden_field( context, sPrefix+"vTRANSACTIONFILENAME", StringUtil.RTrim( AV20transactionFileName));
-         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vTRANSACTIONFILENAME", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV20transactionFileName, "")), context));
          GxWebStd.gx_hidden_field( context, sPrefix+"vPOPUPNAME", StringUtil.RTrim( AV25PopupName));
          GxWebStd.gx_hidden_field( context, sPrefix+"TRANSACTIONSGRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(TRANSACTIONSGRID_nFirstRecordOnPage), 15, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"TRANSACTIONSGRID_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(TRANSACTIONSGRID_nEOF), 1, 0, ".", "")));
@@ -956,7 +951,6 @@ namespace GeneXus.Programs.wallet {
       protected void gxgrTransactionsgrid_refresh( int subTransactionsgrid_Rows ,
                                                    Guid AV17groupId ,
                                                    GXBaseCollection<GeneXus.Programs.wallet.SdtWalletTransactionItem> AV10transactions ,
-                                                   string AV20transactionFileName ,
                                                    string sPrefix )
       {
          initialize_formulas( ) ;
@@ -1056,8 +1050,6 @@ namespace GeneXus.Programs.wallet {
 
       protected void send_integrity_lvl_hashes3N2( )
       {
-         GxWebStd.gx_hidden_field( context, sPrefix+"vTRANSACTIONFILENAME", StringUtil.RTrim( AV20transactionFileName));
-         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vTRANSACTIONFILENAME", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV20transactionFileName, "")), context));
       }
 
       protected int subTransactionsgrid_fnc_Pagecount( )
@@ -1091,7 +1083,7 @@ namespace GeneXus.Programs.wallet {
          GxWebStd.gx_hidden_field( context, sPrefix+"TRANSACTIONSGRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(TRANSACTIONSGRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrTransactionsgrid_refresh( subTransactionsgrid_Rows, AV17groupId, AV10transactions, AV20transactionFileName, sPrefix) ;
+            gxgrTransactionsgrid_refresh( subTransactionsgrid_Rows, AV17groupId, AV10transactions, sPrefix) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1112,7 +1104,7 @@ namespace GeneXus.Programs.wallet {
          TransactionsgridContainer.AddObjectProperty("TRANSACTIONSGRID_nFirstRecordOnPage", TRANSACTIONSGRID_nFirstRecordOnPage);
          if ( isFullAjaxMode( ) )
          {
-            gxgrTransactionsgrid_refresh( subTransactionsgrid_Rows, AV17groupId, AV10transactions, AV20transactionFileName, sPrefix) ;
+            gxgrTransactionsgrid_refresh( subTransactionsgrid_Rows, AV17groupId, AV10transactions, sPrefix) ;
          }
          send_integrity_footer_hashes( ) ;
          return (short)(((TRANSACTIONSGRID_nEOF==0) ? 0 : 2)) ;
@@ -1131,7 +1123,7 @@ namespace GeneXus.Programs.wallet {
          GxWebStd.gx_hidden_field( context, sPrefix+"TRANSACTIONSGRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(TRANSACTIONSGRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrTransactionsgrid_refresh( subTransactionsgrid_Rows, AV17groupId, AV10transactions, AV20transactionFileName, sPrefix) ;
+            gxgrTransactionsgrid_refresh( subTransactionsgrid_Rows, AV17groupId, AV10transactions, sPrefix) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1158,7 +1150,7 @@ namespace GeneXus.Programs.wallet {
          GxWebStd.gx_hidden_field( context, sPrefix+"TRANSACTIONSGRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(TRANSACTIONSGRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrTransactionsgrid_refresh( subTransactionsgrid_Rows, AV17groupId, AV10transactions, AV20transactionFileName, sPrefix) ;
+            gxgrTransactionsgrid_refresh( subTransactionsgrid_Rows, AV17groupId, AV10transactions, sPrefix) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1177,7 +1169,7 @@ namespace GeneXus.Programs.wallet {
          GxWebStd.gx_hidden_field( context, sPrefix+"TRANSACTIONSGRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(TRANSACTIONSGRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrTransactionsgrid_refresh( subTransactionsgrid_Rows, AV17groupId, AV10transactions, AV20transactionFileName, sPrefix) ;
+            gxgrTransactionsgrid_refresh( subTransactionsgrid_Rows, AV17groupId, AV10transactions, sPrefix) ;
          }
          send_integrity_footer_hashes( ) ;
          return (int)(0) ;
@@ -1260,8 +1252,6 @@ namespace GeneXus.Programs.wallet {
          /* Refresh Routine */
          returnInSub = false;
          new GeneXus.Programs.wallet.getaddresscontext(context ).execute(  AV17groupId, out  AV20transactionFileName, out  AV19requestsFileName, out  AV18receivingType, out  AV16changeType) ;
-         AssignAttri(sPrefix, false, "AV20transactionFileName", AV20transactionFileName);
-         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vTRANSACTIONFILENAME", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV20transactionFileName, "")), context));
          new GeneXus.Programs.wallet.getwallettransactions(context ).execute(  AV20transactionFileName, out  AV10transactions, out  AV6confirmedBalance, out  AV8pendingBalance, out  AV7error) ;
          gx_BV14 = true;
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV7error)) )
@@ -1355,7 +1345,7 @@ namespace GeneXus.Programs.wallet {
          }
          /* 'Show Transaction' Routine */
          returnInSub = false;
-         context.PopUp(formatLink("wallet.showwallettransaction", new object[] {UrlEncode(StringUtil.RTrim(((GeneXus.Programs.wallet.SdtWalletTransactionItem)(AV10transactions.CurrentItem)).gxTpr_Transactionid)),UrlEncode(StringUtil.RTrim(AV20transactionFileName))}, new string[] {"transactionId","transactionFileName"}) , new Object[] {});
+         context.PopUp(formatLink("wallet.showwallettransaction", new object[] {UrlEncode(StringUtil.RTrim(((GeneXus.Programs.wallet.SdtWalletTransactionItem)(AV10transactions.CurrentItem)).gxTpr_Transactionid)),UrlEncode(AV17groupId.ToString())}, new string[] {"transactionId","groupId"}) , new Object[] {});
       }
 
       protected void E113N2( )
@@ -1368,7 +1358,7 @@ namespace GeneXus.Programs.wallet {
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV10transactions", AV10transactions);
             nGXsfl_14_bak_idx = nGXsfl_14_idx;
-            gxgrTransactionsgrid_refresh( subTransactionsgrid_Rows, AV17groupId, AV10transactions, AV20transactionFileName, sPrefix) ;
+            gxgrTransactionsgrid_refresh( subTransactionsgrid_Rows, AV17groupId, AV10transactions, sPrefix) ;
             nGXsfl_14_idx = nGXsfl_14_bak_idx;
             sGXsfl_14_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_14_idx), 4, 0), 4, "0");
             SubsflControlProps_142( ) ;
@@ -1385,7 +1375,7 @@ namespace GeneXus.Programs.wallet {
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV10transactions", AV10transactions);
             nGXsfl_14_bak_idx = nGXsfl_14_idx;
-            gxgrTransactionsgrid_refresh( subTransactionsgrid_Rows, AV17groupId, AV10transactions, AV20transactionFileName, sPrefix) ;
+            gxgrTransactionsgrid_refresh( subTransactionsgrid_Rows, AV17groupId, AV10transactions, sPrefix) ;
             nGXsfl_14_idx = nGXsfl_14_bak_idx;
             sGXsfl_14_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_14_idx), 4, 0), 4, "0");
             SubsflControlProps_142( ) ;
@@ -1589,7 +1579,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013253229", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202611814232247", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1605,7 +1595,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/wallettransactionswc.js", "?2026103013253229", false, true, false);
+         context.AddJavascriptSource("wallet/wallettransactionswc.js", "?202611814232247", false, true, false);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
          /* End function include_jscripts */
       }
@@ -1970,23 +1960,23 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"TRANSACTIONSGRID_nEOF","type":"int"},{"av":"subTransactionsgrid_Rows","ctrl":"TRANSACTIONSGRID","prop":"Rows"},{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV17groupId","fld":"vGROUPID","type":"guid"},{"av":"AV20transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"}]""");
-         setEventMetadata("REFRESH",""","oparms":[{"av":"AV20transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"lblTbtransactionssummary_Caption","ctrl":"TBTRANSACTIONSSUMMARY","prop":"Caption"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"TRANSACTIONSGRID_nEOF","type":"int"},{"av":"subTransactionsgrid_Rows","ctrl":"TRANSACTIONSGRID","prop":"Rows"},{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV17groupId","fld":"vGROUPID","type":"guid"}]""");
+         setEventMetadata("REFRESH",""","oparms":[{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"lblTbtransactionssummary_Caption","ctrl":"TBTRANSACTIONSSUMMARY","prop":"Caption"}]}""");
          setEventMetadata("TRANSACTIONSGRID.LOAD","""{"handler":"E143N2","iparms":[{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"}]""");
          setEventMetadata("TRANSACTIONSGRID.LOAD",""","oparms":[{"av":"AV21txtKind","fld":"vTXTKIND","type":"char"},{"av":"AV11txtConfirmations","fld":"vTXTCONFIRMATIONS","type":"char"},{"av":"AV15txtAmount","fld":"vTXTAMOUNT","type":"char"},{"av":"AV12txtFee","fld":"vTXTFEE","type":"char"}]}""");
-         setEventMetadata("'SHOW TRANSACTION'","""{"handler":"E153N2","iparms":[{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"AV20transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"}]}""");
-         setEventMetadata("'RELOAD'","""{"handler":"E113N2","iparms":[{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"TRANSACTIONSGRID_nEOF","type":"int"},{"av":"subTransactionsgrid_Rows","ctrl":"TRANSACTIONSGRID","prop":"Rows"},{"av":"AV17groupId","fld":"vGROUPID","type":"guid"},{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"AV20transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"sPrefix","type":"char"}]""");
-         setEventMetadata("'RELOAD'",""","oparms":[{"av":"AV20transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"lblTbtransactionssummary_Caption","ctrl":"TBTRANSACTIONSSUMMARY","prop":"Caption"}]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E123N2","iparms":[{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"TRANSACTIONSGRID_nEOF","type":"int"},{"av":"subTransactionsgrid_Rows","ctrl":"TRANSACTIONSGRID","prop":"Rows"},{"av":"AV17groupId","fld":"vGROUPID","type":"guid"},{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"AV20transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"sPrefix","type":"char"},{"av":"AV25PopupName","fld":"vPOPUPNAME","type":"char"}]""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV20transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"lblTbtransactionssummary_Caption","ctrl":"TBTRANSACTIONSSUMMARY","prop":"Caption"}]}""");
-         setEventMetadata("TRANSACTIONSGRID_FIRSTPAGE","""{"handler":"subtransactionsgrid_firstpage","iparms":[{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"TRANSACTIONSGRID_nEOF","type":"int"},{"av":"subTransactionsgrid_Rows","ctrl":"TRANSACTIONSGRID","prop":"Rows"},{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"AV20transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"sPrefix","type":"char"},{"av":"AV17groupId","fld":"vGROUPID","type":"guid"}]""");
-         setEventMetadata("TRANSACTIONSGRID_FIRSTPAGE",""","oparms":[{"av":"AV20transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"lblTbtransactionssummary_Caption","ctrl":"TBTRANSACTIONSSUMMARY","prop":"Caption"}]}""");
-         setEventMetadata("TRANSACTIONSGRID_PREVPAGE","""{"handler":"subtransactionsgrid_previouspage","iparms":[{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"TRANSACTIONSGRID_nEOF","type":"int"},{"av":"subTransactionsgrid_Rows","ctrl":"TRANSACTIONSGRID","prop":"Rows"},{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"AV20transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"sPrefix","type":"char"},{"av":"AV17groupId","fld":"vGROUPID","type":"guid"}]""");
-         setEventMetadata("TRANSACTIONSGRID_PREVPAGE",""","oparms":[{"av":"AV20transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"lblTbtransactionssummary_Caption","ctrl":"TBTRANSACTIONSSUMMARY","prop":"Caption"}]}""");
-         setEventMetadata("TRANSACTIONSGRID_NEXTPAGE","""{"handler":"subtransactionsgrid_nextpage","iparms":[{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"TRANSACTIONSGRID_nEOF","type":"int"},{"av":"subTransactionsgrid_Rows","ctrl":"TRANSACTIONSGRID","prop":"Rows"},{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"AV20transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"sPrefix","type":"char"},{"av":"AV17groupId","fld":"vGROUPID","type":"guid"}]""");
-         setEventMetadata("TRANSACTIONSGRID_NEXTPAGE",""","oparms":[{"av":"AV20transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"lblTbtransactionssummary_Caption","ctrl":"TBTRANSACTIONSSUMMARY","prop":"Caption"}]}""");
-         setEventMetadata("TRANSACTIONSGRID_LASTPAGE","""{"handler":"subtransactionsgrid_lastpage","iparms":[{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"TRANSACTIONSGRID_nEOF","type":"int"},{"av":"subTransactionsgrid_Rows","ctrl":"TRANSACTIONSGRID","prop":"Rows"},{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"AV20transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"sPrefix","type":"char"},{"av":"AV17groupId","fld":"vGROUPID","type":"guid"}]""");
-         setEventMetadata("TRANSACTIONSGRID_LASTPAGE",""","oparms":[{"av":"AV20transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"lblTbtransactionssummary_Caption","ctrl":"TBTRANSACTIONSSUMMARY","prop":"Caption"}]}""");
+         setEventMetadata("'SHOW TRANSACTION'","""{"handler":"E153N2","iparms":[{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"AV17groupId","fld":"vGROUPID","type":"guid"}]}""");
+         setEventMetadata("'RELOAD'","""{"handler":"E113N2","iparms":[{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"TRANSACTIONSGRID_nEOF","type":"int"},{"av":"subTransactionsgrid_Rows","ctrl":"TRANSACTIONSGRID","prop":"Rows"},{"av":"AV17groupId","fld":"vGROUPID","type":"guid"},{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"sPrefix","type":"char"}]""");
+         setEventMetadata("'RELOAD'",""","oparms":[{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"lblTbtransactionssummary_Caption","ctrl":"TBTRANSACTIONSSUMMARY","prop":"Caption"}]}""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E123N2","iparms":[{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"TRANSACTIONSGRID_nEOF","type":"int"},{"av":"subTransactionsgrid_Rows","ctrl":"TRANSACTIONSGRID","prop":"Rows"},{"av":"AV17groupId","fld":"vGROUPID","type":"guid"},{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV25PopupName","fld":"vPOPUPNAME","type":"char"}]""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"lblTbtransactionssummary_Caption","ctrl":"TBTRANSACTIONSSUMMARY","prop":"Caption"}]}""");
+         setEventMetadata("TRANSACTIONSGRID_FIRSTPAGE","""{"handler":"subtransactionsgrid_firstpage","iparms":[{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"TRANSACTIONSGRID_nEOF","type":"int"},{"av":"subTransactionsgrid_Rows","ctrl":"TRANSACTIONSGRID","prop":"Rows"},{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV17groupId","fld":"vGROUPID","type":"guid"}]""");
+         setEventMetadata("TRANSACTIONSGRID_FIRSTPAGE",""","oparms":[{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"lblTbtransactionssummary_Caption","ctrl":"TBTRANSACTIONSSUMMARY","prop":"Caption"}]}""");
+         setEventMetadata("TRANSACTIONSGRID_PREVPAGE","""{"handler":"subtransactionsgrid_previouspage","iparms":[{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"TRANSACTIONSGRID_nEOF","type":"int"},{"av":"subTransactionsgrid_Rows","ctrl":"TRANSACTIONSGRID","prop":"Rows"},{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV17groupId","fld":"vGROUPID","type":"guid"}]""");
+         setEventMetadata("TRANSACTIONSGRID_PREVPAGE",""","oparms":[{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"lblTbtransactionssummary_Caption","ctrl":"TBTRANSACTIONSSUMMARY","prop":"Caption"}]}""");
+         setEventMetadata("TRANSACTIONSGRID_NEXTPAGE","""{"handler":"subtransactionsgrid_nextpage","iparms":[{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"TRANSACTIONSGRID_nEOF","type":"int"},{"av":"subTransactionsgrid_Rows","ctrl":"TRANSACTIONSGRID","prop":"Rows"},{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV17groupId","fld":"vGROUPID","type":"guid"}]""");
+         setEventMetadata("TRANSACTIONSGRID_NEXTPAGE",""","oparms":[{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"lblTbtransactionssummary_Caption","ctrl":"TBTRANSACTIONSSUMMARY","prop":"Caption"}]}""");
+         setEventMetadata("TRANSACTIONSGRID_LASTPAGE","""{"handler":"subtransactionsgrid_lastpage","iparms":[{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"TRANSACTIONSGRID_nEOF","type":"int"},{"av":"subTransactionsgrid_Rows","ctrl":"TRANSACTIONSGRID","prop":"Rows"},{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV17groupId","fld":"vGROUPID","type":"guid"}]""");
+         setEventMetadata("TRANSACTIONSGRID_LASTPAGE",""","oparms":[{"av":"AV10transactions","fld":"vTRANSACTIONS","grid":14,"type":""},{"av":"nGXsfl_14_idx","ctrl":"GRID","prop":"GridCurrRow","grid":14},{"av":"TRANSACTIONSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_14","ctrl":"TRANSACTIONSGRID","prop":"GridRC","grid":14,"type":"int"},{"av":"lblTbtransactionssummary_Caption","ctrl":"TBTRANSACTIONSSUMMARY","prop":"Caption"}]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Gxv5","iparms":[]}""");
          return  ;
       }
@@ -2007,7 +1997,6 @@ namespace GeneXus.Programs.wallet {
          gxfirstwebparm_bkp = "";
          sPrefix = "";
          AV10transactions = new GXBaseCollection<GeneXus.Programs.wallet.SdtWalletTransactionItem>( context, "WalletTransactionItem", "distributedcryptography");
-         AV20transactionFileName = "";
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
@@ -2032,6 +2021,7 @@ namespace GeneXus.Programs.wallet {
          AV15txtAmount = "";
          AV12txtFee = "";
          AV11txtConfirmations = "";
+         AV20transactionFileName = "";
          AV19requestsFileName = "";
          AV7error = "";
          TransactionsgridRow = new GXWebRow();
@@ -2107,7 +2097,6 @@ namespace GeneXus.Programs.wallet {
       private string sCompPrefix ;
       private string sSFPrefix ;
       private string sGXsfl_14_idx="0001" ;
-      private string AV20transactionFileName ;
       private string edtavCtldatetime_Internalname ;
       private string edtavTxtkind_Internalname ;
       private string edtavCtllabel_Internalname ;
@@ -2145,6 +2134,7 @@ namespace GeneXus.Programs.wallet {
       private string AV12txtFee ;
       private string AV11txtConfirmations ;
       private string sGXsfl_14_fel_idx="0001" ;
+      private string AV20transactionFileName ;
       private string AV19requestsFileName ;
       private string AV7error ;
       private string sCtrlAV17groupId ;

@@ -206,10 +206,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -388,7 +388,15 @@ namespace GeneXus.Programs.wallet {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 16,'',false,'',0)\"";
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblRubyhint_Internalname, "This wallet uses Ruby: after Enter, type the PIN on Ruby (connected by USB) and wait until the wallet opens.", "", "", lblRubyhint_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", lblRubyhint_Visible, 1, 0, 0, "HLP_Wallet/EnterPassword.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 19,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttEnter_Internalname, "", "Confirm", bttEnter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Wallet/EnterPassword.htm");
@@ -657,6 +665,13 @@ namespace GeneXus.Programs.wallet {
          AV10walletInfo = GXt_SdtWalletInfo1;
          edtavCode_Visible = (AV10walletInfo.gxTpr_Useauthenticator ? 1 : 0);
          AssignProp("", false, edtavCode_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavCode_Visible), 5, 0), true);
+         lblRubyhint_Visible = 0;
+         AssignProp("", false, lblRubyhint_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(lblRubyhint_Visible), 5, 0), true);
+         if ( StringUtil.StrCmp(AV10walletInfo.gxTpr_Keystorage, "Ruby") == 0 )
+         {
+            lblRubyhint_Visible = 1;
+            AssignProp("", false, lblRubyhint_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(lblRubyhint_Visible), 5, 0), true);
+         }
       }
 
       public void GXEnter( )
@@ -732,7 +747,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013271717", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202611814251744", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -748,7 +763,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("wallet/enterpassword.js", "?2026103013271717", false, true, false);
+         context.AddJavascriptSource("wallet/enterpassword.js", "?202611814251744", false, true, false);
          /* End function include_jscripts */
       }
 
@@ -761,6 +776,7 @@ namespace GeneXus.Programs.wallet {
       {
          edtavPassword_Internalname = "vPASSWORD";
          edtavCode_Internalname = "vCODE";
+         lblRubyhint_Internalname = "RUBYHINT";
          bttEnter_Internalname = "ENTER";
          divMaintable_Internalname = "MAINTABLE";
          Form.Internalname = "FORM";
@@ -774,6 +790,7 @@ namespace GeneXus.Programs.wallet {
             disableJsOutput();
          }
          init_default_properties( ) ;
+         lblRubyhint_Visible = 1;
          edtavCode_Jsonclick = "";
          edtavCode_Enabled = 1;
          edtavCode_Visible = 1;
@@ -826,6 +843,7 @@ namespace GeneXus.Programs.wallet {
          TempTags = "";
          AV5password = "";
          AV9code = "";
+         lblRubyhint_Jsonclick = "";
          ClassString = "";
          StyleString = "";
          bttEnter_Jsonclick = "";
@@ -852,6 +870,7 @@ namespace GeneXus.Programs.wallet {
       private int edtavPassword_Enabled ;
       private int edtavCode_Visible ;
       private int edtavCode_Enabled ;
+      private int lblRubyhint_Visible ;
       private int idxLst ;
       private string AV6walletName ;
       private string wcpOAV6walletName ;
@@ -871,6 +890,8 @@ namespace GeneXus.Programs.wallet {
       private string edtavCode_Internalname ;
       private string AV9code ;
       private string edtavCode_Jsonclick ;
+      private string lblRubyhint_Internalname ;
+      private string lblRubyhint_Jsonclick ;
       private string ClassString ;
       private string StyleString ;
       private string bttEnter_Internalname ;

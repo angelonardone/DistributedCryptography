@@ -73,6 +73,19 @@ namespace GeneXus.Programs.wallet {
          GXt_SdtWallet1 = AV12wallet;
          new GeneXus.Programs.wallet.readwallet(context ).execute(  AV12wallet.gxTpr_Walletfilename, out  GXt_SdtWallet1) ;
          AV12wallet = GXt_SdtWallet1;
+         if ( StringUtil.StrCmp(AV12wallet.gxTpr_Keystorage, "Ruby") == 0 )
+         {
+            GXt_char2 = AV8error;
+            new GeneXus.Programs.distributedcrypto.argon2encryption(context ).execute(  20,  AV11password,  AV12wallet.gxTpr_Encryptedsecret, out  AV13clearText, ref  GXt_char2) ;
+            AV8error = GXt_char2;
+            AV13clearText = "";
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV8error)) )
+            {
+               AV8error = "We couldn't decrypt the wallet with the password provided: " + AV8error;
+            }
+            cleanup();
+            if (true) return;
+         }
          if ( ( StringUtil.StrCmp(AV12wallet.gxTpr_Wallettype, "BrainWallet") == 0 ) || ( StringUtil.StrCmp(AV12wallet.gxTpr_Wallettype, "ImportedWIF") == 0 ) )
          {
             AV9keyCreate.gxTpr_Createkeytype = 30;
@@ -127,6 +140,7 @@ namespace GeneXus.Programs.wallet {
          AV8error = "";
          AV12wallet = new GeneXus.Programs.wallet.SdtWallet(context);
          GXt_SdtWallet1 = new GeneXus.Programs.wallet.SdtWallet(context);
+         AV13clearText = "";
          AV9keyCreate = new GeneXus.Programs.nbitcoin.SdtKeyCreate(context);
          GXt_char2 = "";
          AV10keyInfo = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
@@ -137,6 +151,7 @@ namespace GeneXus.Programs.wallet {
       private string AV11password ;
       private string GXt_char2 ;
       private string GXt_char3 ;
+      private string AV13clearText ;
       private string AV8error ;
       private GeneXus.Programs.wallet.SdtWallet AV12wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;

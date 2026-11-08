@@ -96,6 +96,10 @@ namespace GeneXus.Programs.wallet.registered {
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
             {
                new GeneXus.Programs.wallet.registered.postupdategroup(context ).execute(  AV11body, out  AV26outGroupId, out  AV9error) ;
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) && AV10group.gxTpr_Amigroupowner )
+               {
+                  new GeneXus.Programs.wallet.registered.sendgroupaccess(context ).execute(  AV10group, out  AV29membersError) ;
+               }
             }
          }
          else
@@ -126,6 +130,7 @@ namespace GeneXus.Programs.wallet.registered {
          GXt_char2 = "";
          GXt_char3 = "";
          GXt_char4 = "";
+         AV29membersError = "";
          /* GeneXus formulas. */
       }
 
@@ -134,6 +139,7 @@ namespace GeneXus.Programs.wallet.registered {
       private string GXt_char2 ;
       private string GXt_char3 ;
       private string GXt_char4 ;
+      private string AV29membersError ;
       private Guid AV26outGroupId ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV10group ;
       private GeneXus.Programs.distcrypt.SdtExternalUser AV8externalUser ;

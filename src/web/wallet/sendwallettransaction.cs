@@ -116,9 +116,21 @@ namespace GeneXus.Programs.wallet {
             cleanup();
             if (true) return;
          }
-         GXt_char2 = AV10error;
-         new GeneXus.Programs.wallet.buildtransaction(context ).execute(  AV15sendAllCoins,  AV13manaulFee,  AV14networkType,  AV19transactionsToSend,  AV16sendCoins,  AV17sendTo,  AV8changeTo, out  AV20virtualSize, out  AV12hexTransaction, out  GXt_char2) ;
-         AV10error = GXt_char2;
+         GXt_SdtWallet3 = AV22wallet;
+         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet3) ;
+         AV22wallet = GXt_SdtWallet3;
+         if ( StringUtil.StrCmp(AV22wallet.gxTpr_Keystorage, "Ruby") == 0 )
+         {
+            GXt_char2 = AV10error;
+            new GeneXus.Programs.wallet.buildrubytransaction(context ).execute(  AV15sendAllCoins,  AV13manaulFee,  AV14networkType,  AV19transactionsToSend,  AV16sendCoins,  AV17sendTo,  AV8changeTo, out  AV20virtualSize, out  AV12hexTransaction, out  GXt_char2) ;
+            AV10error = GXt_char2;
+         }
+         else
+         {
+            GXt_char2 = AV10error;
+            new GeneXus.Programs.wallet.buildtransaction(context ).execute(  AV15sendAllCoins,  AV13manaulFee,  AV14networkType,  AV19transactionsToSend,  AV16sendCoins,  AV17sendTo,  AV8changeTo, out  AV20virtualSize, out  AV12hexTransaction, out  GXt_char2) ;
+            AV10error = GXt_char2;
+         }
          new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV10error)) )
          {
@@ -170,6 +182,8 @@ namespace GeneXus.Programs.wallet {
          AV10error = "";
          AV19transactionsToSend = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
          GXt_objcol_SdtSDTAddressHistory1 = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
+         AV22wallet = new GeneXus.Programs.wallet.SdtWallet(context);
+         GXt_SdtWallet3 = new GeneXus.Programs.wallet.SdtWallet(context);
          AV12hexTransaction = "";
          AV18TransactionId = "";
          AV21sentHex = "";
@@ -193,6 +207,8 @@ namespace GeneXus.Programs.wallet {
       private string AV9description ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> AV19transactionsToSend ;
       private GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory> GXt_objcol_SdtSDTAddressHistory1 ;
+      private GeneXus.Programs.wallet.SdtWallet AV22wallet ;
+      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet3 ;
       private string aP7_errorTitle ;
       private string aP8_error ;
    }

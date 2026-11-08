@@ -241,18 +241,18 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -1123,12 +1123,18 @@ namespace GeneXus.Programs.wallet.registered {
             AV14sdt_message.gxTpr_Messagetype = 50;
             AV14sdt_message.gxTpr_Message = AV15sdt_chat.ToJSonString(false, true);
             GXt_char7 = AV5error;
-            GXt_char8 = AV18json_enc.gxTpr_Encryptedkey;
-            GXt_char9 = AV18json_enc.gxTpr_Encryptedtext;
-            new GeneXus.Programs.distributedcryptographylib.encryptjsonto(context ).execute(  AV14sdt_message.ToJSonString(false, true),  AV12contact.gxTpr_Userpubkey, out  GXt_char8, out  GXt_char9, out  GXt_char7) ;
-            AV18json_enc.gxTpr_Encryptedkey = GXt_char8;
-            AV18json_enc.gxTpr_Encryptedtext = GXt_char9;
+            new GeneXus.Programs.wallet.registered.sealmessage(context ).execute(  StringUtil.Trim( AV12contact.gxTpr_Username), ref  AV14sdt_message, out  GXt_char7) ;
             AV5error = GXt_char7;
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV5error)) )
+            {
+               GXt_char7 = AV5error;
+               GXt_char8 = AV18json_enc.gxTpr_Encryptedkey;
+               GXt_char9 = AV18json_enc.gxTpr_Encryptedtext;
+               new GeneXus.Programs.distributedcryptographylib.encryptjsonto(context ).execute(  AV14sdt_message.ToJSonString(false, true),  AV12contact.gxTpr_Userpubkey, out  GXt_char8, out  GXt_char9, out  GXt_char7) ;
+               AV18json_enc.gxTpr_Encryptedkey = GXt_char8;
+               AV18json_enc.gxTpr_Encryptedtext = GXt_char9;
+               AV5error = GXt_char7;
+            }
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV5error)) )
             {
                GXt_char9 = AV5error;
@@ -1293,7 +1299,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013272597", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202611814252710", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1309,8 +1315,8 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("wallet/registered/chat.js", "?2026103013272597", false, true, false);
+         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("wallet/registered/chat.js", "?202611814252710", false, true, false);
          /* End function include_jscripts */
       }
 

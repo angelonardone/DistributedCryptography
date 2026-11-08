@@ -83,6 +83,7 @@ namespace GeneXus.Programs.wallet.registered {
          AV12group_sdt_temp.gxTpr_Grouptype = AV11group_sdt.gxTpr_Grouptype;
          AV12group_sdt_temp.gxTpr_Othergroup.gxTpr_Referenceusernname = StringUtil.Trim( AV10externalUserPublic.gxTpr_Userinfo.gxTpr_Username);
          AV12group_sdt_temp.gxTpr_Othergroup.gxTpr_Referencegroupid = AV11group_sdt.gxTpr_Othergroup.gxTpr_Referencegroupid;
+         AV12group_sdt_temp.gxTpr_Othergroup.gxTpr_Encpassword = AV11group_sdt.gxTpr_Othergroup.gxTpr_Encpassword;
          AV16message_signature.gxTpr_Username = StringUtil.Trim( AV10externalUserPublic.gxTpr_Userinfo.gxTpr_Username);
          AV16message_signature.gxTpr_Grouppubkey = StringUtil.Trim( AV10externalUserPublic.gxTpr_Groupskeyinfo.gxTpr_Publickey);
          GXt_char3 = AV9error;

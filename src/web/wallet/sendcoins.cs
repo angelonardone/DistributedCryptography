@@ -196,10 +196,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -267,8 +267,9 @@ namespace GeneXus.Programs.wallet {
          }
          GxWebStd.gx_hidden_field( context, "gxhash_vWALLETINFO", GetSecureSignedToken( "", AV34walletInfo, context));
          GxWebStd.gx_hidden_field( context, "vSELECTEDCOUNT", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV38selectedCount), 10, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "vPOPUPNAME", StringUtil.RTrim( AV25PopupName));
+         GxWebStd.gx_boolean_hidden_field( context, "vSENT", AV39sent);
          GxWebStd.gx_hidden_field( context, "vCHANGETO", StringUtil.RTrim( AV13changeTo));
+         GxWebStd.gx_hidden_field( context, "vPOPUPNAME", StringUtil.RTrim( AV25PopupName));
       }
 
       protected void RenderHtmlCloseForm082( )
@@ -508,7 +509,7 @@ namespace GeneXus.Programs.wallet {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 55,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttSendcoins_Internalname, "", "Send Coins", bttSendcoins_Jsonclick, 7, "Send Coins", "", StyleString, ClassString, bttSendcoins_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"e12081_client"+"'", TempTags, "", 2, "HLP_Wallet/SendCoins.htm");
+            GxWebStd.gx_button_ctrl( context, bttSendcoins_Internalname, "", bttSendcoins_Caption, bttSendcoins_Jsonclick, 5, "Send Coins", "", StyleString, ClassString, bttSendcoins_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'SEND COINS\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Wallet/SendCoins.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -586,13 +587,20 @@ namespace GeneXus.Programs.wallet {
                            context.wbHandled = 1;
                            dynload_actions( ) ;
                            /* Execute user event: Start */
-                           E13082 ();
+                           E12082 ();
                         }
                         else if ( StringUtil.StrCmp(sEvt, "'NEXT'") == 0 )
                         {
                            context.wbHandled = 1;
                            dynload_actions( ) ;
                            /* Execute user event: 'Next' */
+                           E13082 ();
+                        }
+                        else if ( StringUtil.StrCmp(sEvt, "'SEND COINS'") == 0 )
+                        {
+                           context.wbHandled = 1;
+                           dynload_actions( ) ;
+                           /* Execute user event: 'Send Coins' */
                            E14082 ();
                         }
                         else if ( StringUtil.StrCmp(sEvt, "'CANCEL'") == 0 )
@@ -784,16 +792,13 @@ namespace GeneXus.Programs.wallet {
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E13082 ();
+         E12082 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
             /* Read saved SDTs. */
             /* Read saved values. */
-            AV38selectedCount = (long)(Math.Round(context.localUtil.CToN( cgiGet( "vSELECTEDCOUNT"), ".", ","), 18, MidpointRounding.ToEven));
-            AssignAttri("", false, "AV38selectedCount", StringUtil.LTrimStr( (decimal)(AV38selectedCount), 10, 0));
-            AV7error = cgiGet( "vERROR");
             /* Read variables values. */
             if ( ( ( context.localUtil.CToN( cgiGet( edtavTotalbalance_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavTotalbalance_Internalname), ".", ",") > 9999999.99999999m ) ) )
             {
@@ -861,11 +866,11 @@ namespace GeneXus.Programs.wallet {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E13082 ();
+         E12082 ();
          if (returnInSub) return;
       }
 
-      protected void E13082( )
+      protected void E12082( )
       {
          /* Start Routine */
          returnInSub = false;
@@ -894,9 +899,14 @@ namespace GeneXus.Programs.wallet {
          /* Execute user subroutine: 'SHOW COIN SELECTION' */
          S112 ();
          if (returnInSub) return;
+         if ( StringUtil.StrCmp(AV34walletInfo.gxTpr_Keystorage, "Ruby") == 0 )
+         {
+            bttSendcoins_Caption = "Send Coins (confirm on Ruby)";
+            AssignProp("", false, bttSendcoins_Internalname, "Caption", bttSendcoins_Caption, true);
+         }
       }
 
-      protected void E14082( )
+      protected void E13082( )
       {
          /* 'Next' Routine */
          returnInSub = false;
@@ -937,6 +947,46 @@ namespace GeneXus.Programs.wallet {
          AssignProp("", false, cmbavUserfee_Internalname, "Values", cmbavUserfee.ToJavascriptSource(), true);
       }
 
+      protected void E14082( )
+      {
+         /* 'Send Coins' Routine */
+         returnInSub = false;
+         if ( (Convert.ToDecimal(0)==AV32manaulFee) || ( AV32manaulFee <= Convert.ToDecimal( 0 )) )
+         {
+            this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"warning",(string)"Please select an Estimated Transaction Fee to pay",(string)AV7error}, true);
+         }
+         else
+         {
+            if ( ( AV38selectedCount > 0 ) && ! AV24sendAllCoins && ( AV14sendCoins + AV32manaulFee > AV18totalBalance ) )
+            {
+               this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"warning",(string)"The selected coins are not enough",(string)"The selected coins must cover the amount plus the fee: choose more coins or a lower amount"}, true);
+            }
+            else
+            {
+               if ( StringUtil.StrCmp(AV34walletInfo.gxTpr_Keystorage, "Ruby") == 0 )
+               {
+                  /* Execute user subroutine: 'SEND PAYMENT' */
+                  S132 ();
+                  if (returnInSub) return;
+                  if ( AV39sent )
+                  {
+                     context.setWebReturnParms(new Object[] {});
+                     context.setWebReturnParmsMetadata(new Object[] {});
+                     context.wjLocDisableFrm = 1;
+                     context.nUserReturn = 1;
+                     returnInSub = true;
+                     if (true) return;
+                  }
+               }
+               else
+               {
+                  context.PopUp(formatLink("wallet.approvespending") , new Object[] {});
+               }
+            }
+         }
+         /*  Sending Event outputs  */
+      }
+
       protected void E15082( )
       {
          /* 'Cancel' Routine */
@@ -969,33 +1019,17 @@ namespace GeneXus.Programs.wallet {
             }
             else
             {
-               GXt_char4 = AV7error;
-               new GeneXus.Programs.wallet.sendwallettransaction(context ).execute(  AV24sendAllCoins,  AV32manaulFee,  AV34walletInfo.gxTpr_Networktype,  AV14sendCoins,  AV15sendTo,  AV13changeTo,  AV31description, out  AV35errorTitle, out  GXt_char4) ;
-               AV7error = GXt_char4;
-               AssignAttri("", false, "AV7error", AV7error);
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV7error)) )
+               /* Execute user subroutine: 'SEND PAYMENT' */
+               S132 ();
+               if (returnInSub) return;
+               if ( AV39sent )
                {
-                  new GeneXus.Programs.wallet.clearselectedcoins(context ).execute( ) ;
-                  bttSendcoins_Visible = 0;
-                  AssignProp("", false, bttSendcoins_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttSendcoins_Visible), 5, 0), true);
-                  cmbavUserfee.Enabled = 0;
-                  AssignProp("", false, cmbavUserfee_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbavUserfee.Enabled), 5, 0), true);
-                  edtavManaulfee_Enabled = 0;
-                  AssignProp("", false, edtavManaulfee_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavManaulfee_Enabled), 5, 0), true);
-                  chkavActivatemanaulfee.Enabled = 0;
-                  AssignProp("", false, chkavActivatemanaulfee_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(chkavActivatemanaulfee.Enabled), 5, 0), true);
-                  this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"success",(string)"Coins submitted successfully",(string)AV7error}, true);
                   context.setWebReturnParms(new Object[] {});
                   context.setWebReturnParmsMetadata(new Object[] {});
                   context.wjLocDisableFrm = 1;
                   context.nUserReturn = 1;
                   returnInSub = true;
                   if (true) return;
-               }
-               else
-               {
-                  new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
-                  this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)AV35errorTitle,(string)AV7error}, true);
                }
             }
          }
@@ -1011,6 +1045,38 @@ namespace GeneXus.Programs.wallet {
             }
          }
          /*  Sending Event outputs  */
+      }
+
+      protected void S132( )
+      {
+         /* 'SEND PAYMENT' Routine */
+         returnInSub = false;
+         AV39sent = false;
+         AssignAttri("", false, "AV39sent", AV39sent);
+         GXt_char4 = AV7error;
+         new GeneXus.Programs.wallet.sendwallettransaction(context ).execute(  AV24sendAllCoins,  AV32manaulFee,  AV34walletInfo.gxTpr_Networktype,  AV14sendCoins,  AV15sendTo,  AV13changeTo,  AV31description, out  AV35errorTitle, out  GXt_char4) ;
+         AV7error = GXt_char4;
+         AssignAttri("", false, "AV7error", AV7error);
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV7error)) )
+         {
+            new GeneXus.Programs.wallet.clearselectedcoins(context ).execute( ) ;
+            bttSendcoins_Visible = 0;
+            AssignProp("", false, bttSendcoins_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttSendcoins_Visible), 5, 0), true);
+            cmbavUserfee.Enabled = 0;
+            AssignProp("", false, cmbavUserfee_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbavUserfee.Enabled), 5, 0), true);
+            edtavManaulfee_Enabled = 0;
+            AssignProp("", false, edtavManaulfee_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavManaulfee_Enabled), 5, 0), true);
+            chkavActivatemanaulfee.Enabled = 0;
+            AssignProp("", false, chkavActivatemanaulfee_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(chkavActivatemanaulfee.Enabled), 5, 0), true);
+            this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"success",(string)"Coins submitted successfully",(string)AV7error}, true);
+            AV39sent = true;
+            AssignAttri("", false, "AV39sent", AV39sent);
+         }
+         else
+         {
+            new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
+            this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)AV35errorTitle,(string)AV7error}, true);
+         }
       }
 
       protected void S112( )
@@ -1098,9 +1164,9 @@ namespace GeneXus.Programs.wallet {
                      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV7error)) )
                      {
                         cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( (decimal)(0), 16, 8)), "Select Estimated Transaction Fee", 0);
-                        cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV6economicalFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV6economicalFee, 16, 8))+" in about "+StringUtil.Str( (decimal)(AV5economicalBlocks), 4, 0)+" Blocks", 0);
-                        cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV17standardFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV17standardFee, 16, 8))+" in about "+StringUtil.Str( (decimal)(AV16standarBlocks), 4, 0)+" Blocks", 0);
-                        cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV9fastestFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV9fastestFee, 16, 8))+" in about "+StringUtil.Str( (decimal)(AV8fastestBlocks), 4, 0)+" Blocks", 0);
+                        cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV6economicalFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV6economicalFee, 16, 8))+" in about "+StringUtil.Trim( StringUtil.Str( (decimal)(AV5economicalBlocks), 4, 0))+((AV5economicalBlocks==1) ? " block" : " blocks"), 0);
+                        cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV17standardFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV17standardFee, 16, 8))+" in about "+StringUtil.Trim( StringUtil.Str( (decimal)(AV16standarBlocks), 4, 0))+((AV16standarBlocks==1) ? " block" : " blocks"), 0);
+                        cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV9fastestFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV9fastestFee, 16, 8))+" in about "+StringUtil.Trim( StringUtil.Str( (decimal)(AV8fastestBlocks), 4, 0))+((AV8fastestBlocks==1) ? " block" : " blocks"), 0);
                         cmbavUserfee.Visible = 1;
                         AssignProp("", false, cmbavUserfee_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(cmbavUserfee.Visible), 5, 0), true);
                         edtavManaulfee_Caption = "Transaction fee:";
@@ -1179,7 +1245,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013271439", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202611814251460", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1195,8 +1261,8 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("wallet/sendcoins.js", "?2026103013271440", false, true, false);
+         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("wallet/sendcoins.js", "?202611814251460", false, true, false);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
          /* End function include_jscripts */
       }
@@ -1257,6 +1323,7 @@ namespace GeneXus.Programs.wallet {
          init_default_properties( ) ;
          chkavActivatemanaulfee.Caption = "Manauly select Fee";
          chkavSendallcoins.Caption = "Send total balance";
+         bttSendcoins_Caption = "Send Coins";
          bttSendcoins_Visible = 1;
          bttNext_Visible = 1;
          edtavManaulfee_Jsonclick = "";
@@ -1292,12 +1359,13 @@ namespace GeneXus.Programs.wallet {
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV24sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV33activateManaulFee","fld":"vACTIVATEMANAULFEE","type":"boolean"},{"av":"AV34walletInfo","fld":"vWALLETINFO","hsh":true,"type":""}]}""");
          setEventMetadata("'CHOOSE COINS'","""{"handler":"E11081","iparms":[]}""");
-         setEventMetadata("'NEXT'","""{"handler":"E14082","iparms":[{"av":"AV14sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV18totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV24sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"AV15sendTo","fld":"vSENDTO","type":"char"},{"av":"AV34walletInfo","fld":"vWALLETINFO","hsh":true,"type":""},{"av":"AV31description","fld":"vDESCRIPTION","type":"svchar"},{"av":"cmbavUserfee"},{"av":"AV21userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999","type":"decimal"}]""");
+         setEventMetadata("'NEXT'","""{"handler":"E13082","iparms":[{"av":"AV14sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV18totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV24sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"AV15sendTo","fld":"vSENDTO","type":"char"},{"av":"AV34walletInfo","fld":"vWALLETINFO","hsh":true,"type":""},{"av":"AV31description","fld":"vDESCRIPTION","type":"svchar"},{"av":"cmbavUserfee"},{"av":"AV21userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999","type":"decimal"}]""");
          setEventMetadata("'NEXT'",""","oparms":[{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"chkavSendallcoins.Enabled","ctrl":"vSENDALLCOINS","prop":"Enabled"},{"ctrl":"CHOOSECOINS","prop":"Visible"},{"av":"edtavSendcoins_Enabled","ctrl":"vSENDCOINS","prop":"Enabled"},{"av":"edtavSendto_Enabled","ctrl":"vSENDTO","prop":"Enabled"},{"av":"edtavDescription_Enabled","ctrl":"vDESCRIPTION","prop":"Enabled"},{"av":"AV13changeTo","fld":"vCHANGETO","type":"char"},{"ctrl":"NEXT","prop":"Visible"},{"ctrl":"SENDCOINS","prop":"Visible"},{"av":"cmbavUserfee"},{"av":"AV21userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"edtavManaulfee_Caption","ctrl":"vMANAULFEE","prop":"Caption"},{"av":"edtavManaulfee_Visible","ctrl":"vMANAULFEE","prop":"Visible"},{"av":"edtavManaulfee_Enabled","ctrl":"vMANAULFEE","prop":"Enabled"},{"av":"chkavActivatemanaulfee.Visible","ctrl":"vACTIVATEMANAULFEE","prop":"Visible"}]}""");
-         setEventMetadata("'SEND COINS'","""{"handler":"E12081","iparms":[{"av":"AV32manaulFee","fld":"vMANAULFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"AV38selectedCount","fld":"vSELECTEDCOUNT","pic":"ZZZZZZZZZ9","type":"int"},{"av":"AV24sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV14sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV18totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZ9.99999999","type":"decimal"}]}""");
+         setEventMetadata("'SEND COINS'","""{"handler":"E14082","iparms":[{"av":"AV32manaulFee","fld":"vMANAULFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV7error","fld":"vERROR","type":"char"},{"av":"AV38selectedCount","fld":"vSELECTEDCOUNT","pic":"ZZZZZZZZZ9","type":"int"},{"av":"AV24sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV14sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV18totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV34walletInfo","fld":"vWALLETINFO","hsh":true,"type":""},{"av":"AV39sent","fld":"vSENT","type":"boolean"},{"av":"AV15sendTo","fld":"vSENDTO","type":"char"},{"av":"AV13changeTo","fld":"vCHANGETO","type":"char"},{"av":"AV31description","fld":"vDESCRIPTION","type":"svchar"}]""");
+         setEventMetadata("'SEND COINS'",""","oparms":[{"av":"AV39sent","fld":"vSENT","type":"boolean"},{"av":"AV7error","fld":"vERROR","type":"char"},{"ctrl":"SENDCOINS","prop":"Visible"},{"av":"cmbavUserfee"},{"av":"edtavManaulfee_Enabled","ctrl":"vMANAULFEE","prop":"Enabled"},{"av":"chkavActivatemanaulfee.Enabled","ctrl":"vACTIVATEMANAULFEE","prop":"Enabled"}]}""");
          setEventMetadata("'CANCEL'","""{"handler":"E15082","iparms":[]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E16082","iparms":[{"av":"AV25PopupName","fld":"vPOPUPNAME","type":"char"},{"av":"AV24sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV32manaulFee","fld":"vMANAULFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV34walletInfo","fld":"vWALLETINFO","hsh":true,"type":""},{"av":"AV14sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV15sendTo","fld":"vSENDTO","type":"char"},{"av":"AV13changeTo","fld":"vCHANGETO","type":"char"},{"av":"AV31description","fld":"vDESCRIPTION","type":"svchar"}]""");
-         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV7error","fld":"vERROR","type":"char"},{"ctrl":"SENDCOINS","prop":"Visible"},{"av":"cmbavUserfee"},{"av":"edtavManaulfee_Enabled","ctrl":"vMANAULFEE","prop":"Enabled"},{"av":"chkavActivatemanaulfee.Enabled","ctrl":"vACTIVATEMANAULFEE","prop":"Enabled"},{"av":"AV18totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV38selectedCount","fld":"vSELECTEDCOUNT","pic":"ZZZZZZZZZ9","type":"int"},{"av":"lblTbcoinselection_Caption","ctrl":"TBCOINSELECTION","prop":"Caption"},{"av":"AV14sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"}]}""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED","""{"handler":"E16082","iparms":[{"av":"AV25PopupName","fld":"vPOPUPNAME","type":"char"},{"av":"AV39sent","fld":"vSENT","type":"boolean"},{"av":"AV24sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV32manaulFee","fld":"vMANAULFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV34walletInfo","fld":"vWALLETINFO","hsh":true,"type":""},{"av":"AV14sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV15sendTo","fld":"vSENDTO","type":"char"},{"av":"AV13changeTo","fld":"vCHANGETO","type":"char"},{"av":"AV31description","fld":"vDESCRIPTION","type":"svchar"}]""");
+         setEventMetadata("GX.EXTENSIONS.WEB.POPUP.ONPOPUPCLOSED",""","oparms":[{"av":"AV39sent","fld":"vSENT","type":"boolean"},{"av":"AV7error","fld":"vERROR","type":"char"},{"ctrl":"SENDCOINS","prop":"Visible"},{"av":"cmbavUserfee"},{"av":"edtavManaulfee_Enabled","ctrl":"vMANAULFEE","prop":"Enabled"},{"av":"chkavActivatemanaulfee.Enabled","ctrl":"vACTIVATEMANAULFEE","prop":"Enabled"},{"av":"AV18totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV38selectedCount","fld":"vSELECTEDCOUNT","pic":"ZZZZZZZZZ9","type":"int"},{"av":"lblTbcoinselection_Caption","ctrl":"TBCOINSELECTION","prop":"Caption"},{"av":"AV14sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"}]}""");
          return  ;
       }
 
@@ -1320,8 +1388,8 @@ namespace GeneXus.Programs.wallet {
          AV34walletInfo = new GeneXus.Programs.wallet.SdtWalletInfo(context);
          GXKey = "";
          AV7error = "";
-         AV25PopupName = "";
          AV13changeTo = "";
+         AV25PopupName = "";
          GX_FocusControl = "";
          sPrefix = "";
          TempTags = "";
@@ -1342,8 +1410,8 @@ namespace GeneXus.Programs.wallet {
          GXt_SdtWalletInfo1 = new GeneXus.Programs.wallet.SdtWalletInfo(context);
          AV11historyWithBalance = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
          AV26ApproveSpendingPopupName = "";
-         AV35errorTitle = "";
          AV37CoinControlPopupName = "";
+         AV35errorTitle = "";
          AV20transactionsToSend = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
          GXt_objcol_SdtSDTAddressHistory2 = new GXBaseCollection<GeneXus.Programs.wallet.SdtSDTAddressHistory>( context, "SDTAddressHistory", "distributedcryptography");
          GXt_char4 = "";
@@ -1393,8 +1461,8 @@ namespace GeneXus.Programs.wallet {
       private string bodyStyle ;
       private string GXKey ;
       private string AV7error ;
-      private string AV25PopupName ;
       private string AV13changeTo ;
+      private string AV25PopupName ;
       private string GX_FocusControl ;
       private string sPrefix ;
       private string divMaintable_Internalname ;
@@ -1423,6 +1491,7 @@ namespace GeneXus.Programs.wallet {
       private string bttNext_Internalname ;
       private string bttNext_Jsonclick ;
       private string bttSendcoins_Internalname ;
+      private string bttSendcoins_Caption ;
       private string bttSendcoins_Jsonclick ;
       private string bttCancel_Internalname ;
       private string bttCancel_Jsonclick ;
@@ -1431,11 +1500,12 @@ namespace GeneXus.Programs.wallet {
       private string EvtRowId ;
       private string sEvtType ;
       private string AV26ApproveSpendingPopupName ;
-      private string AV35errorTitle ;
       private string AV37CoinControlPopupName ;
+      private string AV35errorTitle ;
       private string GXt_char4 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
+      private bool AV39sent ;
       private bool wbLoad ;
       private bool AV24sendAllCoins ;
       private bool AV33activateManaulFee ;

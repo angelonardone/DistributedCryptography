@@ -202,10 +202,10 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -929,7 +929,7 @@ namespace GeneXus.Programs.wallet.registered {
          AssignProp("", false, edtavManaulfee_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavManaulfee_Visible), 5, 0), true);
          if ( AV18ownerPaysAlone )
          {
-            lblTbmode_Caption = "You are the owner of this Delegated MultiSig 2 group: you pay alone, with one signature.";
+            lblTbmode_Caption = "You are the owner of this Advanced Delegated Multi Signature Wallet: you pay alone, with one signature.";
             AssignProp("", false, lblTbmode_Internalname, "Caption", lblTbmode_Caption, true);
             bttOpenroom_Visible = 0;
             AssignProp("", false, bttOpenroom_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttOpenroom_Visible), 5, 0), true);
@@ -1036,9 +1036,9 @@ namespace GeneXus.Programs.wallet.registered {
                else
                {
                   cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( (decimal)(0), 16, 8)), "Select Estimated Transaction Fee", 0);
-                  cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV10economicalFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV10economicalFee, 16, 8))+" in about "+StringUtil.Str( (decimal)(AV9economicalBlocks), 10, 0)+" Blocks", 0);
-                  cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV27standardFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV27standardFee, 16, 8))+" in about "+StringUtil.Str( (decimal)(AV26standarBlocks), 10, 0)+" Blocks", 0);
-                  cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV14fastestFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV14fastestFee, 16, 8))+" in about "+StringUtil.Str( (decimal)(AV13fastestBlocks), 10, 0)+" Blocks", 0);
+                  cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV10economicalFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV10economicalFee, 16, 8))+" in about "+StringUtil.Trim( StringUtil.Str( (decimal)(AV9economicalBlocks), 10, 0))+((AV9economicalBlocks==1) ? " block" : " blocks"), 0);
+                  cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV27standardFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV27standardFee, 16, 8))+" in about "+StringUtil.Trim( StringUtil.Str( (decimal)(AV26standarBlocks), 10, 0))+((AV26standarBlocks==1) ? " block" : " blocks"), 0);
+                  cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV14fastestFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV14fastestFee, 16, 8))+" in about "+StringUtil.Trim( StringUtil.Str( (decimal)(AV13fastestBlocks), 10, 0))+((AV13fastestBlocks==1) ? " block" : " blocks"), 0);
                   cmbavUserfee.Visible = 1;
                   AssignProp("", false, cmbavUserfee_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(cmbavUserfee.Visible), 5, 0), true);
                   chkavActivatemanaulfee.Visible = 1;
@@ -1303,7 +1303,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013274613", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202611814254559", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1319,8 +1319,8 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("wallet/registered/sendmusig2payment.js", "?2026103013274613", false, true, false);
+         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("wallet/registered/sendmusig2payment.js", "?202611814254559", false, true, false);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
          /* End function include_jscripts */
       }

@@ -300,18 +300,18 @@ namespace GeneXus.Programs.wallet {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          if ( StringUtil.Len( sPrefix) == 0 )
          {
             context.CloseHtmlHeader();
@@ -496,7 +496,7 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTbrequestsinfo_Internalname, "Reserve a receiving address for a charge. While the request is Pending the wallet does not offer that address to anybody else. Amount 0 = any amount. The status follows the last balance check (Rescan Balance asks for every address again).", "", "", lblTbrequestsinfo_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Wallet/PaymentRequestsWC.htm");
+            GxWebStd.gx_label_ctrl( context, lblTbrequestsinfo_Internalname, lblTbrequestsinfo_Caption, "", "", lblTbrequestsinfo_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Wallet/PaymentRequestsWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -1413,6 +1413,11 @@ namespace GeneXus.Programs.wallet {
          AssignProp(sPrefix, false, lblTbrequestqr_Internalname, "Caption", lblTbrequestqr_Caption, true);
          edtavRequesturi_Visible = 0;
          AssignProp(sPrefix, false, edtavRequesturi_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavRequesturi_Visible), 5, 0), true);
+         if ( ! (Guid.Empty==AV16groupId) )
+         {
+            lblTbrequestsinfo_Caption = "Reserve a receiving address for a charge. While the request is Pending the wallet does not offer that address to anybody else. Amount 0 = any amount. The status follows the last balance check (Rescan Balance asks for every address again). The requests of a group are shared with every member: the server keeps them encrypted with the group key, so two members never reserve the same address. Only the member who created a request, or the owner, can cancel it.";
+            AssignProp(sPrefix, false, lblTbrequestsinfo_Internalname, "Caption", lblTbrequestsinfo_Caption, true);
+         }
       }
 
       protected void E143M2( )
@@ -1450,7 +1455,7 @@ namespace GeneXus.Programs.wallet {
                AV9gridAddress = StringUtil.Substring( AV9gridAddress, 1, 14) + "..." + StringUtil.Substring( AV9gridAddress, StringUtil.Len( AV9gridAddress)-7, 8);
                AssignAttri(sPrefix, false, edtavGridaddress_Internalname, AV9gridAddress);
             }
-            if ( StringUtil.StrCmp(((GeneXus.Programs.wallet.SdtPaymentRequest)(AV13requests.CurrentItem)).gxTpr_Status, "Pending") == 0 )
+            if ( ((GeneXus.Programs.wallet.SdtPaymentRequest)(AV13requests.CurrentItem)).gxTpr_Cancancel )
             {
                AV6cancelText = "Cancel";
                AssignAttri(sPrefix, false, edtavCanceltext_Internalname, AV6cancelText);
@@ -1553,7 +1558,7 @@ namespace GeneXus.Programs.wallet {
          }
          /* 'Cancel Request' Routine */
          returnInSub = false;
-         if ( StringUtil.StrCmp(((GeneXus.Programs.wallet.SdtPaymentRequest)(AV13requests.CurrentItem)).gxTpr_Status, "Pending") == 0 )
+         if ( ((GeneXus.Programs.wallet.SdtPaymentRequest)(AV13requests.CurrentItem)).gxTpr_Cancancel )
          {
             new GeneXus.Programs.wallet.cancelpaymentrequest(context ).execute(  AV16groupId,  ((GeneXus.Programs.wallet.SdtPaymentRequest)(AV13requests.CurrentItem)).gxTpr_Requestid, out  AV7error) ;
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV7error)) )
@@ -1808,7 +1813,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013253321", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202611814232342", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1824,7 +1829,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/paymentrequestswc.js", "?2026103013253321", false, true, false);
+         context.AddJavascriptSource("wallet/paymentrequestswc.js", "?202611814232343", false, true, false);
          /* End function include_jscripts */
       }
 
@@ -2205,6 +2210,7 @@ namespace GeneXus.Programs.wallet {
          edtavRequestamount_Enabled = 1;
          edtavRequestlabel_Jsonclick = "";
          edtavRequestlabel_Enabled = 1;
+         lblTbrequestsinfo_Caption = "Reserve a receiving address for a charge. While the request is Pending the wallet does not offer that address to anybody else. Amount 0 = any amount. The status follows the last balance check (Rescan Balance asks for every address again).";
          edtavCtlrequestid_Enabled = -1;
          edtavCtlexpiresat_Enabled = -1;
          edtavCtlreceivedamount_Enabled = -1;
@@ -2392,6 +2398,7 @@ namespace GeneXus.Programs.wallet {
       private string GX_FocusControl ;
       private string divMaintable_Internalname ;
       private string lblTbrequestsinfo_Internalname ;
+      private string lblTbrequestsinfo_Caption ;
       private string lblTbrequestsinfo_Jsonclick ;
       private string edtavRequestlabel_Internalname ;
       private string TempTags ;

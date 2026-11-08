@@ -53,6 +53,8 @@ namespace GeneXus.Programs.wallet {
       protected override void createObjects( )
       {
          cmbavNetworktype = new GXCombobox();
+         radavKeystorage = new GXRadio();
+         cmbavRubydevice = new GXCombobox();
          chkavAuthenticator = new GXCheckbox();
          chkavShowauthenticatorcode = new GXCheckbox();
          cmbavMnemoniclanguage = new GXCombobox();
@@ -204,10 +206,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -260,6 +262,7 @@ namespace GeneXus.Programs.wallet {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
+         GxWebStd.gx_boolean_hidden_field( context, "vCREATED", AV34created);
       }
 
       public override void RenderHtmlCloseForm( )
@@ -389,14 +392,67 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+radavKeystorage_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, "", "Where the keys live", "col-sm-3 AttributeLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
+            /* Radio button */
+            ClassString = "Attribute";
+            StyleString = "";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 18,'',false,'',0)\"";
+            GxWebStd.gx_radio_ctrl( context, radavKeystorage, radavKeystorage_Internalname, StringUtil.RTrim( AV36keyStorage), "", 1, 1, 1, 1, StyleString, ClassString, "", "", 0, radavKeystorage_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", TempTags+" onclick="+"\""+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,18);\"", "HLP_Wallet/CreateWallet.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", cmbavRubydevice.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbavRubydevice_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, cmbavRubydevice_Internalname, "Ruby device", "col-sm-3 AttributeLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 23,'',false,'',0)\"";
+            /* ComboBox */
+            GxWebStd.gx_combobox_ctrl1( context, cmbavRubydevice, cmbavRubydevice_Internalname, StringUtil.RTrim( AV37rubyDevice), 1, cmbavRubydevice_Jsonclick, 0, "'"+""+"'"+",false,"+"'"+""+"'", "svchar", "", cmbavRubydevice.Visible, cmbavRubydevice.Enabled, 0, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,23);\"", "", true, 0, "HLP_Wallet/CreateWallet.htm");
+            cmbavRubydevice.CurrentValue = StringUtil.RTrim( AV37rubyDevice);
+            AssignProp("", false, cmbavRubydevice_Internalname, "Values", (string)(cmbavRubydevice.ToJavascriptSource()), true);
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 25,'',false,'',0)\"";
+            ClassString = "Button";
+            StyleString = "";
+            GxWebStd.gx_button_ctrl( context, bttFindruby_Internalname, "", "Find Ruby", bttFindruby_Jsonclick, 5, "Find Ruby", "", StyleString, ClassString, bttFindruby_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'FIND RUBY\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Wallet/CreateWallet.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblRubyhelp_Internalname, "When you press Create Wallet, Ruby pairs with this wallet (its PIN oracle lives in this wallet) and asks you to create new words (write them down) or restore yours, and to choose its PIN. The words alone restore this wallet (no passphrase). The password protects this wallet file.", "", "", lblRubyhelp_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", lblRubyhelp_Visible, 1, 0, 0, "HLP_Wallet/CreateWallet.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavNewpass_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
             GxWebStd.gx_label_element( context, edtavNewpass_Internalname, "New Password", "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 18,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavNewpass_Internalname, StringUtil.RTrim( AV16newPass), StringUtil.RTrim( context.localUtil.Format( AV16newPass, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,18);\""+" "+"data-gx-password-reveal"+" ", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavNewpass_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavNewpass_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, -1, 0, 0, 0, 0, -1, true, "", "start", true, "", "HLP_Wallet/CreateWallet.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 33,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavNewpass_Internalname, StringUtil.RTrim( AV16newPass), StringUtil.RTrim( context.localUtil.Format( AV16newPass, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,33);\""+" "+"data-gx-password-reveal"+" ", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavNewpass_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavNewpass_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, -1, 0, 0, 0, 0, -1, true, "", "start", true, "", "HLP_Wallet/CreateWallet.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -412,8 +468,8 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 23,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavNewpassconfirm_Internalname, StringUtil.RTrim( AV17newPassConfirm), StringUtil.RTrim( context.localUtil.Format( AV17newPassConfirm, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,23);\""+" "+"data-gx-password-reveal"+" ", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavNewpassconfirm_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavNewpassconfirm_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, -1, 0, 0, 0, 0, -1, true, "", "start", true, "", "HLP_Wallet/CreateWallet.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 38,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavNewpassconfirm_Internalname, StringUtil.RTrim( AV17newPassConfirm), StringUtil.RTrim( context.localUtil.Format( AV17newPassConfirm, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,38);\""+" "+"data-gx-password-reveal"+" ", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavNewpassconfirm_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavNewpassconfirm_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, -1, 0, 0, 0, 0, -1, true, "", "start", true, "", "HLP_Wallet/CreateWallet.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -429,10 +485,10 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Check box */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 28,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 43,'',false,'',0)\"";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavAuthenticator_Internalname, StringUtil.BoolToStr( AV23authenticator), "", "Use 2FA (authenticator) for extra security", 1, chkavAuthenticator.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(28, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,28);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavAuthenticator_Internalname, StringUtil.BoolToStr( AV23authenticator), "", "Use 2FA (authenticator) for extra security", 1, chkavAuthenticator.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(43, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,43);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -450,8 +506,8 @@ namespace GeneXus.Programs.wallet {
             /* Static Bitmap Variable */
             ClassString = "Image" + " " + ((StringUtil.StrCmp(imgavQrcode_gximage, "")==0) ? "" : "GX_Image_"+imgavQrcode_gximage+"_Class");
             StyleString = "";
-            AV24qrcode_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV24qrcode))&&String.IsNullOrEmpty(StringUtil.RTrim( AV34Qrcode_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV24qrcode)));
-            sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV24qrcode)) ? AV34Qrcode_GXI : context.PathToRelativeUrl( AV24qrcode));
+            AV24qrcode_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV24qrcode))&&String.IsNullOrEmpty(StringUtil.RTrim( AV40Qrcode_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV24qrcode)));
+            sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV24qrcode)) ? AV40Qrcode_GXI : context.PathToRelativeUrl( AV24qrcode));
             GxWebStd.gx_bitmap( context, imgavQrcode_Internalname, sImgUrl, "", "", "", context.GetTheme( ), imgavQrcode_Visible, 0, "", "", 0, -1, 0, "", 0, "", 0, 0, 0, "", "", StyleString, ClassString, "", "", "", "", "", "", "", 1, AV24qrcode_IsBlob, false, context.GetImageSrcSet( sImgUrl), "none", "HLP_Wallet/CreateWallet.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -468,10 +524,10 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Check box */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 38,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 53,'',false,'',0)\"";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavShowauthenticatorcode_Internalname, StringUtil.BoolToStr( AV28showAuthenticatorCode), "", "Show Authenticator Code", chkavShowauthenticatorcode.Visible, chkavShowauthenticatorcode.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(38, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,38);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavShowauthenticatorcode_Internalname, StringUtil.BoolToStr( AV28showAuthenticatorCode), "", "Show Authenticator Code", chkavShowauthenticatorcode.Visible, chkavShowauthenticatorcode.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(53, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,53);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -485,8 +541,8 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 43,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavBase32string_Internalname, StringUtil.RTrim( AV27base32String), StringUtil.RTrim( context.localUtil.Format( AV27base32String, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,43);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavBase32string_Jsonclick, 0, "Attribute", "", "", "", "", edtavBase32string_Visible, edtavBase32string_Enabled, 0, "text", "", 80, "chr", 1, "row", 120, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Wallet/CreateWallet.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 58,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavBase32string_Internalname, StringUtil.RTrim( AV27base32String), StringUtil.RTrim( context.localUtil.Format( AV27base32String, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,58);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavBase32string_Jsonclick, 0, "Attribute", "", "", "", "", edtavBase32string_Visible, edtavBase32string_Enabled, 0, "text", "", 80, "chr", 1, "row", 120, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Wallet/CreateWallet.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -496,14 +552,14 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbavMnemoniclanguage_Internalname+"\"", "", "div");
+            GxWebStd.gx_div_start( context, "", cmbavMnemoniclanguage.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbavMnemoniclanguage_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
             GxWebStd.gx_label_element( context, cmbavMnemoniclanguage_Internalname, "Select you Language", "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 48,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 63,'',false,'',0)\"";
             /* ComboBox */
-            GxWebStd.gx_combobox_ctrl1( context, cmbavMnemoniclanguage, cmbavMnemoniclanguage_Internalname, StringUtil.Trim( StringUtil.Str( (decimal)(AV12mnemonicLanguage), 4, 0)), 1, cmbavMnemoniclanguage_Jsonclick, 0, "'"+""+"'"+",false,"+"'"+""+"'", "int", "", 1, cmbavMnemoniclanguage.Enabled, 0, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,48);\"", "", true, 0, "HLP_Wallet/CreateWallet.htm");
+            GxWebStd.gx_combobox_ctrl1( context, cmbavMnemoniclanguage, cmbavMnemoniclanguage_Internalname, StringUtil.Trim( StringUtil.Str( (decimal)(AV12mnemonicLanguage), 4, 0)), 1, cmbavMnemoniclanguage_Jsonclick, 0, "'"+""+"'"+",false,"+"'"+""+"'", "int", "", cmbavMnemoniclanguage.Visible, cmbavMnemoniclanguage.Enabled, 0, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,63);\"", "", true, 0, "HLP_Wallet/CreateWallet.htm");
             cmbavMnemoniclanguage.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(AV12mnemonicLanguage), 4, 0));
             AssignProp("", false, cmbavMnemoniclanguage_Internalname, "Values", (string)(cmbavMnemoniclanguage.ToJavascriptSource()), true);
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -515,14 +571,14 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbavMnemonicnumberwords_Internalname+"\"", "", "div");
+            GxWebStd.gx_div_start( context, "", cmbavMnemonicnumberwords.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbavMnemonicnumberwords_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
             GxWebStd.gx_label_element( context, cmbavMnemonicnumberwords_Internalname, "Number of Mnemonic Words", "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 53,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 68,'',false,'',0)\"";
             /* ComboBox */
-            GxWebStd.gx_combobox_ctrl1( context, cmbavMnemonicnumberwords, cmbavMnemonicnumberwords_Internalname, StringUtil.Trim( StringUtil.Str( (decimal)(AV13mnemonicNumberWords), 4, 0)), 1, cmbavMnemonicnumberwords_Jsonclick, 0, "'"+""+"'"+",false,"+"'"+""+"'", "int", "", 1, cmbavMnemonicnumberwords.Enabled, 0, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,53);\"", "", true, 0, "HLP_Wallet/CreateWallet.htm");
+            GxWebStd.gx_combobox_ctrl1( context, cmbavMnemonicnumberwords, cmbavMnemonicnumberwords_Internalname, StringUtil.Trim( StringUtil.Str( (decimal)(AV13mnemonicNumberWords), 4, 0)), 1, cmbavMnemonicnumberwords_Jsonclick, 0, "'"+""+"'"+",false,"+"'"+""+"'", "int", "", cmbavMnemonicnumberwords.Visible, cmbavMnemonicnumberwords.Enabled, 0, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,68);\"", "", true, 0, "HLP_Wallet/CreateWallet.htm");
             cmbavMnemonicnumberwords.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(AV13mnemonicNumberWords), 4, 0));
             AssignProp("", false, cmbavMnemonicnumberwords_Internalname, "Values", (string)(cmbavMnemonicnumberwords.ToJavascriptSource()), true);
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -534,18 +590,18 @@ namespace GeneXus.Programs.wallet {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavMnemonictext_Internalname+"\"", "", "div");
+            GxWebStd.gx_div_start( context, "", edtavMnemonictext_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavMnemonictext_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
             GxWebStd.gx_label_element( context, edtavMnemonictext_Internalname, "Mnemonic Text (seed)", "col-sm-3 AttSubTitleLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Multiple line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 58,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 73,'',false,'',0)\"";
             ClassString = "AttSubTitle";
             StyleString = "";
             ClassString = "AttSubTitle";
             StyleString = "";
-            GxWebStd.gx_html_textarea( context, edtavMnemonictext_Internalname, AV14MnemonicText, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,58);\"", 0, 1, edtavMnemonictext_Enabled, 0, 80, "chr", 10, "row", 0, StyleString, ClassString, "", "", "2097152", -1, 0, "", "", -1, true, "", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Wallet/CreateWallet.htm");
+            GxWebStd.gx_html_textarea( context, edtavMnemonictext_Internalname, AV14MnemonicText, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,73);\"", 0, edtavMnemonictext_Visible, edtavMnemonictext_Enabled, 0, 80, "chr", 10, "row", 0, StyleString, ClassString, "", "", "2097152", -1, 0, "", "", -1, true, "", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Wallet/CreateWallet.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -562,14 +618,14 @@ namespace GeneXus.Programs.wallet {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 64,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 79,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttCreatewallet_Internalname, "", "Create Wallet", bttCreatewallet_Jsonclick, 5, "Create Wallet", "", StyleString, ClassString, bttCreatewallet_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'CREATE WALLET\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Wallet/CreateWallet.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "end", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 66,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 81,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttCancel_Internalname, "", "Cancel and close", bttCancel_Jsonclick, 5, "Cancel and close", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'CANCEL AND CLOSE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Wallet/CreateWallet.htm");
@@ -644,38 +700,51 @@ namespace GeneXus.Programs.wallet {
                               /* Execute user event: Start */
                               E110K2 ();
                            }
-                           else if ( StringUtil.StrCmp(sEvt, "VMNEMONICNUMBERWORDS.CONTROLVALUECHANGED") == 0 )
+                           else if ( StringUtil.StrCmp(sEvt, "VKEYSTORAGE.CONTROLVALUECHANGED") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               E120K2 ();
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "'FIND RUBY'") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: 'Find Ruby' */
+                              E130K2 ();
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "VMNEMONICNUMBERWORDS.CONTROLVALUECHANGED") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              E140K2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "'CREATE WALLET'") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: 'Create Wallet' */
-                              E130K2 ();
+                              E150K2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "'CANCEL AND CLOSE'") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: 'Cancel and close' */
-                              E140K2 ();
+                              E160K2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "VAUTHENTICATOR.CONTROLVALUECHANGED") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
-                              E150K2 ();
+                              E170K2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Load */
-                              E160K2 ();
+                              E180K2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                            {
@@ -785,6 +854,18 @@ namespace GeneXus.Programs.wallet {
             cmbavNetworktype.CurrentValue = StringUtil.RTrim( AV15networkType);
             AssignProp("", false, cmbavNetworktype_Internalname, "Values", cmbavNetworktype.ToJavascriptSource(), true);
          }
+         AV36keyStorage = StringUtil.RTrim( AV36keyStorage);
+         AssignAttri("", false, "AV36keyStorage", AV36keyStorage);
+         if ( cmbavRubydevice.ItemCount > 0 )
+         {
+            AV37rubyDevice = cmbavRubydevice.getValidValue(AV37rubyDevice);
+            AssignAttri("", false, "AV37rubyDevice", AV37rubyDevice);
+         }
+         if ( context.isAjaxRequest( ) )
+         {
+            cmbavRubydevice.CurrentValue = StringUtil.RTrim( AV37rubyDevice);
+            AssignProp("", false, cmbavRubydevice_Internalname, "Values", cmbavRubydevice.ToJavascriptSource(), true);
+         }
          AV23authenticator = StringUtil.StrToBool( StringUtil.BoolToStr( AV23authenticator));
          AssignAttri("", false, "AV23authenticator", AV23authenticator);
          AV28showAuthenticatorCode = StringUtil.StrToBool( StringUtil.BoolToStr( AV28showAuthenticatorCode));
@@ -840,7 +921,7 @@ namespace GeneXus.Programs.wallet {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E160K2 ();
+            E180K2 ();
             WB0K0( ) ;
          }
       }
@@ -878,6 +959,11 @@ namespace GeneXus.Programs.wallet {
             cmbavNetworktype.CurrentValue = cgiGet( cmbavNetworktype_Internalname);
             AV15networkType = cgiGet( cmbavNetworktype_Internalname);
             AssignAttri("", false, "AV15networkType", AV15networkType);
+            AV36keyStorage = cgiGet( radavKeystorage_Internalname);
+            AssignAttri("", false, "AV36keyStorage", AV36keyStorage);
+            cmbavRubydevice.CurrentValue = cgiGet( cmbavRubydevice_Internalname);
+            AV37rubyDevice = cgiGet( cmbavRubydevice_Internalname);
+            AssignAttri("", false, "AV37rubyDevice", AV37rubyDevice);
             AV16newPass = cgiGet( edtavNewpass_Internalname);
             AssignAttri("", false, "AV16newPass", AV16newPass);
             AV17newPassConfirm = cgiGet( edtavNewpassconfirm_Internalname);
@@ -930,9 +1016,121 @@ namespace GeneXus.Programs.wallet {
          AssignProp("", false, chkavShowauthenticatorcode_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkavShowauthenticatorcode.Visible), 5, 0), true);
          edtavBase32string_Visible = 0;
          AssignProp("", false, edtavBase32string_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavBase32string_Visible), 5, 0), true);
+         AV36keyStorage = "Software";
+         AssignAttri("", false, "AV36keyStorage", AV36keyStorage);
+         /* Execute user subroutine: 'SHOW KEY STORAGE' */
+         S112 ();
+         if (returnInSub) return;
       }
 
       protected void E120K2( )
+      {
+         /* Keystorage_Controlvaluechanged Routine */
+         returnInSub = false;
+         /* Execute user subroutine: 'SHOW KEY STORAGE' */
+         S112 ();
+         if (returnInSub) return;
+         if ( StringUtil.StrCmp(AV36keyStorage, "Ruby") == 0 )
+         {
+            /* Execute user subroutine: 'FIND RUBY' */
+            S122 ();
+            if (returnInSub) return;
+         }
+         /*  Sending Event outputs  */
+         cmbavRubydevice.CurrentValue = StringUtil.RTrim( AV37rubyDevice);
+         AssignProp("", false, cmbavRubydevice_Internalname, "Values", cmbavRubydevice.ToJavascriptSource(), true);
+      }
+
+      protected void E130K2( )
+      {
+         /* 'Find Ruby' Routine */
+         returnInSub = false;
+         /* Execute user subroutine: 'FIND RUBY' */
+         S122 ();
+         if (returnInSub) return;
+         /*  Sending Event outputs  */
+         cmbavRubydevice.CurrentValue = StringUtil.RTrim( AV37rubyDevice);
+         AssignProp("", false, cmbavRubydevice_Internalname, "Values", cmbavRubydevice.ToJavascriptSource(), true);
+      }
+
+      protected void S112( )
+      {
+         /* 'SHOW KEY STORAGE' Routine */
+         returnInSub = false;
+         if ( StringUtil.StrCmp(AV36keyStorage, "Ruby") == 0 )
+         {
+            cmbavMnemoniclanguage.Visible = 0;
+            AssignProp("", false, cmbavMnemoniclanguage_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(cmbavMnemoniclanguage.Visible), 5, 0), true);
+            cmbavMnemonicnumberwords.Visible = 0;
+            AssignProp("", false, cmbavMnemonicnumberwords_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(cmbavMnemonicnumberwords.Visible), 5, 0), true);
+            edtavMnemonictext_Visible = 0;
+            AssignProp("", false, edtavMnemonictext_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavMnemonictext_Visible), 5, 0), true);
+            lblTxt1_Visible = 0;
+            AssignProp("", false, lblTxt1_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(lblTxt1_Visible), 5, 0), true);
+            cmbavRubydevice.Visible = 1;
+            AssignProp("", false, cmbavRubydevice_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(cmbavRubydevice.Visible), 5, 0), true);
+            bttFindruby_Visible = 1;
+            AssignProp("", false, bttFindruby_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttFindruby_Visible), 5, 0), true);
+            lblRubyhelp_Visible = 1;
+            AssignProp("", false, lblRubyhelp_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(lblRubyhelp_Visible), 5, 0), true);
+            bttCreatewallet_Visible = 1;
+            AssignProp("", false, bttCreatewallet_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttCreatewallet_Visible), 5, 0), true);
+         }
+         else
+         {
+            cmbavMnemoniclanguage.Visible = 1;
+            AssignProp("", false, cmbavMnemoniclanguage_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(cmbavMnemoniclanguage.Visible), 5, 0), true);
+            cmbavMnemonicnumberwords.Visible = 1;
+            AssignProp("", false, cmbavMnemonicnumberwords_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(cmbavMnemonicnumberwords.Visible), 5, 0), true);
+            edtavMnemonictext_Visible = 1;
+            AssignProp("", false, edtavMnemonictext_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavMnemonictext_Visible), 5, 0), true);
+            cmbavRubydevice.Visible = 0;
+            AssignProp("", false, cmbavRubydevice_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(cmbavRubydevice.Visible), 5, 0), true);
+            bttFindruby_Visible = 0;
+            AssignProp("", false, bttFindruby_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttFindruby_Visible), 5, 0), true);
+            lblRubyhelp_Visible = 0;
+            AssignProp("", false, lblRubyhelp_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(lblRubyhelp_Visible), 5, 0), true);
+            lblTxt1_Visible = 0;
+            AssignProp("", false, lblTxt1_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(lblTxt1_Visible), 5, 0), true);
+            bttCreatewallet_Visible = 0;
+            AssignProp("", false, bttCreatewallet_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttCreatewallet_Visible), 5, 0), true);
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14MnemonicText)) )
+            {
+               lblTxt1_Visible = 1;
+               AssignProp("", false, lblTxt1_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(lblTxt1_Visible), 5, 0), true);
+               bttCreatewallet_Visible = 1;
+               AssignProp("", false, bttCreatewallet_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttCreatewallet_Visible), 5, 0), true);
+            }
+         }
+      }
+
+      protected void S122( )
+      {
+         /* 'FIND RUBY' Routine */
+         returnInSub = false;
+         cmbavRubydevice.removeAllItems();
+         AV39rubyResult.FromJSonString(AV38rubyProcessor.finddevices(), null);
+         AV35i = 1;
+         while ( AV35i <= AV39rubyResult.gxTpr_Devices.Count )
+         {
+            cmbavRubydevice.addItem(StringUtil.Trim( ((GeneXus.Programs.wallet.SdtRubyResult_devicesItem)AV39rubyResult.gxTpr_Devices.Item(AV35i)).gxTpr_Device), "Ruby on "+StringUtil.Trim( ((GeneXus.Programs.wallet.SdtRubyResult_devicesItem)AV39rubyResult.gxTpr_Devices.Item(AV35i)).gxTpr_Device)+" ("+StringUtil.Trim( ((GeneXus.Programs.wallet.SdtRubyResult_devicesItem)AV39rubyResult.gxTpr_Devices.Item(AV35i)).gxTpr_State)+")", 0);
+            AV35i = (short)(AV35i+1);
+         }
+         cmbavRubydevice.addItem("tcp:127.0.0.1:30121", "Ruby emulator (tcp:127.0.0.1:30121)", 0);
+         if ( AV39rubyResult.gxTpr_Devices.Count == 0 )
+         {
+            AV37rubyDevice = "tcp:127.0.0.1:30121";
+            AssignAttri("", false, "AV37rubyDevice", AV37rubyDevice);
+            this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"warning",(string)"No Ruby found on USB",(string)"Connect Ruby and press Find Ruby, or use the emulator"}, true);
+         }
+         else
+         {
+            AV37rubyDevice = StringUtil.Trim( ((GeneXus.Programs.wallet.SdtRubyResult_devicesItem)AV39rubyResult.gxTpr_Devices.Item(1)).gxTpr_Device);
+            AssignAttri("", false, "AV37rubyDevice", AV37rubyDevice);
+         }
+      }
+
+      protected void E140K2( )
       {
          /* Mnemonicnumberwords_Controlvaluechanged Routine */
          returnInSub = false;
@@ -956,7 +1154,7 @@ namespace GeneXus.Programs.wallet {
          /*  Sending Event outputs  */
       }
 
-      protected void E130K2( )
+      protected void E150K2( )
       {
          /* 'Create Wallet' Routine */
          returnInSub = false;
@@ -984,38 +1182,56 @@ namespace GeneXus.Programs.wallet {
                   }
                   else
                   {
-                     if ( (0==AV12mnemonicLanguage) )
+                     if ( StringUtil.StrCmp(AV36keyStorage, "Ruby") == 0 )
                      {
-                        GX_msglist.addItem("Please select your Language");
+                        /* Execute user subroutine: 'CREATE RUBY WALLET' */
+                        S132 ();
+                        if (returnInSub) return;
+                        if ( AV34created )
+                        {
+                           context.setWebReturnParms(new Object[] {});
+                           context.setWebReturnParmsMetadata(new Object[] {});
+                           context.wjLocDisableFrm = 1;
+                           context.nUserReturn = 1;
+                           returnInSub = true;
+                           if (true) return;
+                        }
                      }
                      else
                      {
-                        if ( (0==AV13mnemonicNumberWords) || String.IsNullOrEmpty(StringUtil.RTrim( AV14MnemonicText)) )
+                        if ( (0==AV12mnemonicLanguage) )
                         {
-                           GX_msglist.addItem("Please select number of Words for your Mnemonic");
+                           GX_msglist.addItem("Please select your Language");
                         }
                         else
                         {
-                           AV33authenticatorBase32 = "";
-                           if ( AV23authenticator )
+                           if ( (0==AV13mnemonicNumberWords) || String.IsNullOrEmpty(StringUtil.RTrim( AV14MnemonicText)) )
                            {
-                              AV33authenticatorBase32 = StringUtil.Trim( AV27base32String);
-                           }
-                           GXt_char1 = AV7error;
-                           new GeneXus.Programs.wallet.createwalletfrommnemonic(context ).execute(  AV20walletName,  AV15networkType,  AV14MnemonicText,  AV12mnemonicLanguage,  AV16newPass,  AV33authenticatorBase32, out  GXt_char1) ;
-                           AV7error = GXt_char1;
-                           if ( String.IsNullOrEmpty(StringUtil.RTrim( AV7error)) )
-                           {
-                              context.setWebReturnParms(new Object[] {});
-                              context.setWebReturnParmsMetadata(new Object[] {});
-                              context.wjLocDisableFrm = 1;
-                              context.nUserReturn = 1;
-                              returnInSub = true;
-                              if (true) return;
+                              GX_msglist.addItem("Please select number of Words for your Mnemonic");
                            }
                            else
                            {
-                              GX_msglist.addItem(AV7error);
+                              AV33authenticatorBase32 = "";
+                              if ( AV23authenticator )
+                              {
+                                 AV33authenticatorBase32 = StringUtil.Trim( AV27base32String);
+                              }
+                              GXt_char1 = AV7error;
+                              new GeneXus.Programs.wallet.createwalletfrommnemonic(context ).execute(  AV20walletName,  AV15networkType,  AV14MnemonicText,  AV12mnemonicLanguage,  AV16newPass,  AV33authenticatorBase32, out  GXt_char1) ;
+                              AV7error = GXt_char1;
+                              if ( String.IsNullOrEmpty(StringUtil.RTrim( AV7error)) )
+                              {
+                                 context.setWebReturnParms(new Object[] {});
+                                 context.setWebReturnParmsMetadata(new Object[] {});
+                                 context.wjLocDisableFrm = 1;
+                                 context.nUserReturn = 1;
+                                 returnInSub = true;
+                                 if (true) return;
+                              }
+                              else
+                              {
+                                 GX_msglist.addItem(AV7error);
+                              }
                            }
                         }
                      }
@@ -1023,9 +1239,49 @@ namespace GeneXus.Programs.wallet {
                }
             }
          }
+         /*  Sending Event outputs  */
       }
 
-      protected void E140K2( )
+      protected void S132( )
+      {
+         /* 'CREATE RUBY WALLET' Routine */
+         returnInSub = false;
+         AV34created = false;
+         AssignAttri("", false, "AV34created", AV34created);
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV16newPass)) )
+         {
+            GX_msglist.addItem("The password is mandatory for a Ruby wallet: it protects the wallet file and the oracle of your PIN");
+         }
+         else
+         {
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV37rubyDevice)) )
+            {
+               GX_msglist.addItem("Please choose the Ruby device (press Find Ruby)");
+            }
+            else
+            {
+               AV33authenticatorBase32 = "";
+               if ( AV23authenticator )
+               {
+                  AV33authenticatorBase32 = StringUtil.Trim( AV27base32String);
+               }
+               GXt_char1 = AV7error;
+               new GeneXus.Programs.wallet.createrubywallet(context ).execute(  AV20walletName,  AV15networkType,  AV37rubyDevice,  AV16newPass,  AV33authenticatorBase32, out  GXt_char1) ;
+               AV7error = GXt_char1;
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV7error)) )
+               {
+                  AV34created = true;
+                  AssignAttri("", false, "AV34created", AV34created);
+               }
+               else
+               {
+                  GX_msglist.addItem(AV7error);
+               }
+            }
+         }
+      }
+
+      protected void E160K2( )
       {
          /* 'Cancel and close' Routine */
          returnInSub = false;
@@ -1037,7 +1293,7 @@ namespace GeneXus.Programs.wallet {
          if (true) return;
       }
 
-      protected void E150K2( )
+      protected void E170K2( )
       {
          /* Authenticator_Controlvaluechanged Routine */
          returnInSub = false;
@@ -1054,10 +1310,10 @@ namespace GeneXus.Programs.wallet {
                AV7error = GXt_char1;
                AV25SetupCode = AV26TwoFactorAuthenticator.generatesetupcode("Distributed Cryptography", AV20walletName, StringUtil.Trim( AV27base32String), true, 3);
                AV24qrcode = AV25SetupCode.gxTpr_Qrcodesetupimageurl;
-               AssignProp("", false, imgavQrcode_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV24qrcode)) ? AV34Qrcode_GXI : context.convertURL( context.PathToRelativeUrl( AV24qrcode))), true);
+               AssignProp("", false, imgavQrcode_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV24qrcode)) ? AV40Qrcode_GXI : context.convertURL( context.PathToRelativeUrl( AV24qrcode))), true);
                AssignProp("", false, imgavQrcode_Internalname, "SrcSet", context.GetImageSrcSet( AV24qrcode), true);
-               AV34Qrcode_GXI = GXDbFile.PathToUrl( AV25SetupCode.gxTpr_Qrcodesetupimageurl, context);
-               AssignProp("", false, imgavQrcode_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV24qrcode)) ? AV34Qrcode_GXI : context.convertURL( context.PathToRelativeUrl( AV24qrcode))), true);
+               AV40Qrcode_GXI = GXDbFile.PathToUrl( AV25SetupCode.gxTpr_Qrcodesetupimageurl, context);
+               AssignProp("", false, imgavQrcode_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV24qrcode)) ? AV40Qrcode_GXI : context.convertURL( context.PathToRelativeUrl( AV24qrcode))), true);
                AssignProp("", false, imgavQrcode_Internalname, "SrcSet", context.GetImageSrcSet( AV24qrcode), true);
                imgavQrcode_Visible = 1;
                AssignProp("", false, imgavQrcode_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(imgavQrcode_Visible), 5, 0), true);
@@ -1088,7 +1344,7 @@ namespace GeneXus.Programs.wallet {
       {
       }
 
-      protected void E160K2( )
+      protected void E180K2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -1133,7 +1389,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013271934", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202611814252162", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1149,7 +1405,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("wallet/createwallet.js", "?2026103013271934", false, true, false);
+         context.AddJavascriptSource("wallet/createwallet.js", "?202611814252162", false, true, false);
          /* End function include_jscripts */
       }
 
@@ -1164,6 +1420,17 @@ namespace GeneXus.Programs.wallet {
          {
             AV15networkType = cmbavNetworktype.getValidValue(AV15networkType);
             AssignAttri("", false, "AV15networkType", AV15networkType);
+         }
+         radavKeystorage.Name = "vKEYSTORAGE";
+         radavKeystorage.WebTags = "";
+         radavKeystorage.addItem("Software", "Software (the password protects the keys)", 0);
+         radavKeystorage.addItem("Ruby", "Ruby hardware key", 0);
+         cmbavRubydevice.Name = "vRUBYDEVICE";
+         cmbavRubydevice.WebTags = "";
+         if ( cmbavRubydevice.ItemCount > 0 )
+         {
+            AV37rubyDevice = cmbavRubydevice.getValidValue(AV37rubyDevice);
+            AssignAttri("", false, "AV37rubyDevice", AV37rubyDevice);
          }
          chkavAuthenticator.Name = "vAUTHENTICATOR";
          chkavAuthenticator.WebTags = "";
@@ -1209,6 +1476,10 @@ namespace GeneXus.Programs.wallet {
       {
          edtavWalletname_Internalname = "vWALLETNAME";
          cmbavNetworktype_Internalname = "vNETWORKTYPE";
+         radavKeystorage_Internalname = "vKEYSTORAGE";
+         cmbavRubydevice_Internalname = "vRUBYDEVICE";
+         bttFindruby_Internalname = "FINDRUBY";
+         lblRubyhelp_Internalname = "RUBYHELP";
          edtavNewpass_Internalname = "vNEWPASS";
          edtavNewpassconfirm_Internalname = "vNEWPASSCONFIRM";
          chkavAuthenticator_Internalname = "vAUTHENTICATOR";
@@ -1239,10 +1510,13 @@ namespace GeneXus.Programs.wallet {
          lblTxt1_Caption = "This seed will allow you to recover your wallet in case of computer failure.";
          lblTxt1_Visible = 1;
          edtavMnemonictext_Enabled = 1;
+         edtavMnemonictext_Visible = 1;
          cmbavMnemonicnumberwords_Jsonclick = "";
          cmbavMnemonicnumberwords.Enabled = 1;
+         cmbavMnemonicnumberwords.Visible = 1;
          cmbavMnemoniclanguage_Jsonclick = "";
          cmbavMnemoniclanguage.Enabled = 1;
+         cmbavMnemoniclanguage.Visible = 1;
          edtavBase32string_Jsonclick = "";
          edtavBase32string_Enabled = 1;
          edtavBase32string_Visible = 1;
@@ -1255,6 +1529,12 @@ namespace GeneXus.Programs.wallet {
          edtavNewpassconfirm_Enabled = 1;
          edtavNewpass_Jsonclick = "";
          edtavNewpass_Enabled = 1;
+         lblRubyhelp_Visible = 1;
+         bttFindruby_Visible = 1;
+         cmbavRubydevice_Jsonclick = "";
+         cmbavRubydevice.Enabled = 1;
+         cmbavRubydevice.Visible = 1;
+         radavKeystorage_Jsonclick = "";
          cmbavNetworktype_Jsonclick = "";
          cmbavNetworktype.Enabled = 1;
          edtavWalletname_Enabled = 1;
@@ -1276,14 +1556,20 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV23authenticator","fld":"vAUTHENTICATOR","type":"boolean"},{"av":"AV28showAuthenticatorCode","fld":"vSHOWAUTHENTICATORCODE","type":"boolean"}]}""");
-         setEventMetadata("VMNEMONICNUMBERWORDS.CONTROLVALUECHANGED","""{"handler":"E120K2","iparms":[{"av":"cmbavNetworktype"},{"av":"AV15networkType","fld":"vNETWORKTYPE","type":"char"},{"av":"cmbavMnemonicnumberwords"},{"av":"AV13mnemonicNumberWords","fld":"vMNEMONICNUMBERWORDS","pic":"ZZZ9","type":"int"},{"av":"cmbavMnemoniclanguage"},{"av":"AV12mnemonicLanguage","fld":"vMNEMONICLANGUAGE","pic":"ZZZ9","type":"int"}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"radavKeystorage"},{"av":"AV36keyStorage","fld":"vKEYSTORAGE","type":"char"},{"av":"AV23authenticator","fld":"vAUTHENTICATOR","type":"boolean"},{"av":"AV28showAuthenticatorCode","fld":"vSHOWAUTHENTICATORCODE","type":"boolean"}]}""");
+         setEventMetadata("VKEYSTORAGE.CONTROLVALUECHANGED","""{"handler":"E120K2","iparms":[{"av":"radavKeystorage"},{"av":"AV36keyStorage","fld":"vKEYSTORAGE","type":"char"},{"av":"AV14MnemonicText","fld":"vMNEMONICTEXT","type":"vchar"}]""");
+         setEventMetadata("VKEYSTORAGE.CONTROLVALUECHANGED",""","oparms":[{"av":"cmbavMnemoniclanguage"},{"av":"cmbavMnemonicnumberwords"},{"av":"edtavMnemonictext_Visible","ctrl":"vMNEMONICTEXT","prop":"Visible"},{"av":"lblTxt1_Visible","ctrl":"TXT1","prop":"Visible"},{"av":"cmbavRubydevice"},{"ctrl":"FINDRUBY","prop":"Visible"},{"av":"lblRubyhelp_Visible","ctrl":"RUBYHELP","prop":"Visible"},{"ctrl":"CREATEWALLET","prop":"Visible"},{"av":"AV37rubyDevice","fld":"vRUBYDEVICE","type":"svchar"}]}""");
+         setEventMetadata("'FIND RUBY'","""{"handler":"E130K2","iparms":[]""");
+         setEventMetadata("'FIND RUBY'",""","oparms":[{"av":"cmbavRubydevice"},{"av":"AV37rubyDevice","fld":"vRUBYDEVICE","type":"svchar"}]}""");
+         setEventMetadata("VMNEMONICNUMBERWORDS.CONTROLVALUECHANGED","""{"handler":"E140K2","iparms":[{"av":"cmbavNetworktype"},{"av":"AV15networkType","fld":"vNETWORKTYPE","type":"char"},{"av":"cmbavMnemonicnumberwords"},{"av":"AV13mnemonicNumberWords","fld":"vMNEMONICNUMBERWORDS","pic":"ZZZ9","type":"int"},{"av":"cmbavMnemoniclanguage"},{"av":"AV12mnemonicLanguage","fld":"vMNEMONICLANGUAGE","pic":"ZZZ9","type":"int"}]""");
          setEventMetadata("VMNEMONICNUMBERWORDS.CONTROLVALUECHANGED",""","oparms":[{"av":"AV14MnemonicText","fld":"vMNEMONICTEXT","type":"vchar"},{"av":"lblTxt1_Visible","ctrl":"TXT1","prop":"Visible"},{"ctrl":"CREATEWALLET","prop":"Visible"},{"av":"lblTxt1_Caption","ctrl":"TXT1","prop":"Caption"}]}""");
-         setEventMetadata("'CREATE WALLET'","""{"handler":"E130K2","iparms":[{"av":"AV20walletName","fld":"vWALLETNAME","type":"char"},{"av":"AV16newPass","fld":"vNEWPASS","type":"char"},{"av":"AV17newPassConfirm","fld":"vNEWPASSCONFIRM","type":"char"},{"av":"cmbavMnemoniclanguage"},{"av":"AV12mnemonicLanguage","fld":"vMNEMONICLANGUAGE","pic":"ZZZ9","type":"int"},{"av":"cmbavMnemonicnumberwords"},{"av":"AV13mnemonicNumberWords","fld":"vMNEMONICNUMBERWORDS","pic":"ZZZ9","type":"int"},{"av":"AV14MnemonicText","fld":"vMNEMONICTEXT","type":"vchar"},{"av":"AV23authenticator","fld":"vAUTHENTICATOR","type":"boolean"},{"av":"AV27base32String","fld":"vBASE32STRING","type":"char"},{"av":"cmbavNetworktype"},{"av":"AV15networkType","fld":"vNETWORKTYPE","type":"char"}]}""");
-         setEventMetadata("'CANCEL AND CLOSE'","""{"handler":"E140K2","iparms":[]}""");
-         setEventMetadata("VAUTHENTICATOR.CONTROLVALUECHANGED","""{"handler":"E150K2","iparms":[{"av":"AV20walletName","fld":"vWALLETNAME","type":"char"},{"av":"AV16newPass","fld":"vNEWPASS","type":"char"},{"av":"AV23authenticator","fld":"vAUTHENTICATOR","type":"boolean"}]""");
+         setEventMetadata("'CREATE WALLET'","""{"handler":"E150K2","iparms":[{"av":"AV20walletName","fld":"vWALLETNAME","type":"char"},{"av":"AV16newPass","fld":"vNEWPASS","type":"char"},{"av":"AV17newPassConfirm","fld":"vNEWPASSCONFIRM","type":"char"},{"av":"radavKeystorage"},{"av":"AV36keyStorage","fld":"vKEYSTORAGE","type":"char"},{"av":"AV34created","fld":"vCREATED","type":"boolean"},{"av":"cmbavMnemoniclanguage"},{"av":"AV12mnemonicLanguage","fld":"vMNEMONICLANGUAGE","pic":"ZZZ9","type":"int"},{"av":"cmbavMnemonicnumberwords"},{"av":"AV13mnemonicNumberWords","fld":"vMNEMONICNUMBERWORDS","pic":"ZZZ9","type":"int"},{"av":"AV14MnemonicText","fld":"vMNEMONICTEXT","type":"vchar"},{"av":"AV23authenticator","fld":"vAUTHENTICATOR","type":"boolean"},{"av":"AV27base32String","fld":"vBASE32STRING","type":"char"},{"av":"cmbavNetworktype"},{"av":"AV15networkType","fld":"vNETWORKTYPE","type":"char"},{"av":"cmbavRubydevice"},{"av":"AV37rubyDevice","fld":"vRUBYDEVICE","type":"svchar"}]""");
+         setEventMetadata("'CREATE WALLET'",""","oparms":[{"av":"AV34created","fld":"vCREATED","type":"boolean"}]}""");
+         setEventMetadata("'CANCEL AND CLOSE'","""{"handler":"E160K2","iparms":[]}""");
+         setEventMetadata("VAUTHENTICATOR.CONTROLVALUECHANGED","""{"handler":"E170K2","iparms":[{"av":"AV20walletName","fld":"vWALLETNAME","type":"char"},{"av":"AV16newPass","fld":"vNEWPASS","type":"char"},{"av":"AV23authenticator","fld":"vAUTHENTICATOR","type":"boolean"}]""");
          setEventMetadata("VAUTHENTICATOR.CONTROLVALUECHANGED",""","oparms":[{"av":"AV27base32String","fld":"vBASE32STRING","type":"char"},{"av":"AV24qrcode","fld":"vQRCODE","type":"bits"},{"av":"AV28showAuthenticatorCode","fld":"vSHOWAUTHENTICATORCODE","type":"boolean"},{"av":"edtavBase32string_Visible","ctrl":"vBASE32STRING","prop":"Visible"},{"av":"imgavQrcode_Visible","ctrl":"vQRCODE","prop":"Visible"},{"av":"chkavShowauthenticatorcode.Visible","ctrl":"vSHOWAUTHENTICATORCODE","prop":"Visible"},{"av":"AV23authenticator","fld":"vAUTHENTICATOR","type":"boolean"}]}""");
          setEventMetadata("VALIDV_NETWORKTYPE","""{"handler":"Validv_Networktype","iparms":[]}""");
+         setEventMetadata("VALIDV_KEYSTORAGE","""{"handler":"Validv_Keystorage","iparms":[]}""");
          setEventMetadata("VALIDV_MNEMONICLANGUAGE","""{"handler":"Validv_Mnemoniclanguage","iparms":[]}""");
          setEventMetadata("VALIDV_MNEMONICNUMBERWORDS","""{"handler":"Validv_Mnemonicnumberwords","iparms":[]}""");
          return  ;
@@ -1314,10 +1600,14 @@ namespace GeneXus.Programs.wallet {
          StyleString = "";
          AV20walletName = "";
          AV15networkType = "";
+         AV36keyStorage = "";
+         AV37rubyDevice = "";
+         bttFindruby_Jsonclick = "";
+         lblRubyhelp_Jsonclick = "";
          AV16newPass = "";
          AV17newPassConfirm = "";
          AV24qrcode = "";
-         AV34Qrcode_GXI = "";
+         AV40Qrcode_GXI = "";
          sImgUrl = "";
          AV27base32String = "";
          AV14MnemonicText = "";
@@ -1328,6 +1618,8 @@ namespace GeneXus.Programs.wallet {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
+         AV39rubyResult = new GeneXus.Programs.wallet.SdtRubyResult(context);
+         AV38rubyProcessor = new GeneXus.Programs.distributedcryptographylib.SdtRubyProcessor(context);
          AV7error = "";
          AV33authenticatorBase32 = "";
          AV11keyInfo = new GeneXus.Programs.nbitcoin.SdtKeyInfo(context);
@@ -1350,13 +1642,17 @@ namespace GeneXus.Programs.wallet {
       private short AV13mnemonicNumberWords ;
       private short nDonePA ;
       private short gxcookieaux ;
+      private short AV35i ;
       private short nGXWrapped ;
       private int edtavWalletname_Enabled ;
+      private int bttFindruby_Visible ;
+      private int lblRubyhelp_Visible ;
       private int edtavNewpass_Enabled ;
       private int edtavNewpassconfirm_Enabled ;
       private int imgavQrcode_Visible ;
       private int edtavBase32string_Visible ;
       private int edtavBase32string_Enabled ;
+      private int edtavMnemonictext_Visible ;
       private int edtavMnemonictext_Enabled ;
       private int lblTxt1_Visible ;
       private int bttCreatewallet_Visible ;
@@ -1378,6 +1674,15 @@ namespace GeneXus.Programs.wallet {
       private string cmbavNetworktype_Internalname ;
       private string AV15networkType ;
       private string cmbavNetworktype_Jsonclick ;
+      private string radavKeystorage_Internalname ;
+      private string AV36keyStorage ;
+      private string radavKeystorage_Jsonclick ;
+      private string cmbavRubydevice_Internalname ;
+      private string cmbavRubydevice_Jsonclick ;
+      private string bttFindruby_Internalname ;
+      private string bttFindruby_Jsonclick ;
+      private string lblRubyhelp_Internalname ;
+      private string lblRubyhelp_Jsonclick ;
       private string edtavNewpass_Internalname ;
       private string AV16newPass ;
       private string edtavNewpass_Jsonclick ;
@@ -1413,6 +1718,7 @@ namespace GeneXus.Programs.wallet {
       private string GXt_char1 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
+      private bool AV34created ;
       private bool wbLoad ;
       private bool AV23authenticator ;
       private bool AV24qrcode_IsBlob ;
@@ -1422,15 +1728,20 @@ namespace GeneXus.Programs.wallet {
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private string AV14MnemonicText ;
-      private string AV34Qrcode_GXI ;
+      private string AV37rubyDevice ;
+      private string AV40Qrcode_GXI ;
       private string AV24qrcode ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
       private GXCombobox cmbavNetworktype ;
+      private GXRadio radavKeystorage ;
+      private GXCombobox cmbavRubydevice ;
       private GXCheckbox chkavAuthenticator ;
       private GXCheckbox chkavShowauthenticatorcode ;
       private GXCombobox cmbavMnemoniclanguage ;
       private GXCombobox cmbavMnemonicnumberwords ;
+      private GeneXus.Programs.wallet.SdtRubyResult AV39rubyResult ;
+      private GeneXus.Programs.distributedcryptographylib.SdtRubyProcessor AV38rubyProcessor ;
       private GeneXus.Programs.nbitcoin.SdtKeyInfo AV11keyInfo ;
       private GeneXus.Programs.googleauthenticator.SdtSetupCode AV25SetupCode ;
       private GeneXus.Programs.googleauthenticator.SdtTwoFactorAuthenticator AV26TwoFactorAuthenticator ;

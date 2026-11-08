@@ -44,6 +44,9 @@ namespace GeneXus.Programs.wallet
 
 			gxTv_SdtPaymentRequest_Uri = "";
 
+			gxTv_SdtPaymentRequest_Createdby = "";
+
+
 		}
 
 		public SdtPaymentRequest(IGxContext context)
@@ -142,6 +145,12 @@ namespace GeneXus.Programs.wallet
 
 
 			AddObjectProperty("uri", gxTpr_Uri, false);
+
+
+			AddObjectProperty("createdBy", gxTpr_Createdby, false);
+
+
+			AddObjectProperty("canCancel", gxTpr_Cancancel, false);
 
 			return;
 		}
@@ -364,6 +373,38 @@ namespace GeneXus.Programs.wallet
 
 
 
+
+		[SoapElement(ElementName="createdBy")]
+		[XmlElement(ElementName="createdBy")]
+		public string gxTpr_Createdby
+		{
+			get {
+				return gxTv_SdtPaymentRequest_Createdby; 
+			}
+			set {
+				gxTv_SdtPaymentRequest_Createdby = value;
+				SetDirty("Createdby");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="canCancel")]
+		[XmlElement(ElementName="canCancel")]
+		public bool gxTpr_Cancancel
+		{
+			get {
+				return gxTv_SdtPaymentRequest_Cancancel; 
+			}
+			set {
+				gxTv_SdtPaymentRequest_Cancancel = value;
+				SetDirty("Cancancel");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -395,6 +436,8 @@ namespace GeneXus.Programs.wallet
 			gxTv_SdtPaymentRequest_Status = "";
 
 			gxTv_SdtPaymentRequest_Uri = "";
+			gxTv_SdtPaymentRequest_Createdby = "";
+
 			datetime_STZ = (DateTime)(DateTime.MinValue);
 			sDateCnv = "";
 			sNumToPad = "";
@@ -442,6 +485,12 @@ namespace GeneXus.Programs.wallet
 		 
 
 		protected string gxTv_SdtPaymentRequest_Uri;
+		 
+
+		protected string gxTv_SdtPaymentRequest_Createdby;
+		 
+
+		protected bool gxTv_SdtPaymentRequest_Cancancel;
 		 
 
 
@@ -613,6 +662,35 @@ namespace GeneXus.Programs.wallet
 			}
 			set { 
 				 sdt.gxTpr_Uri = value;
+			}
+		}
+
+		[JsonPropertyName("createdBy")]
+		[JsonPropertyOrder(11)]
+		[DataMember(Name="createdBy", Order=11)]
+		public  string gxTpr_Createdby
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Createdby);
+
+			}
+			set { 
+				 sdt.gxTpr_Createdby = value;
+			}
+		}
+
+		[JsonPropertyName("canCancel")]
+		[JsonPropertyOrder(12)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
+		[DataMember(Name="canCancel", Order=12)]
+		public bool gxTpr_Cancancel
+		{
+			get { 
+				return sdt.gxTpr_Cancancel;
+
+			}
+			set { 
+				sdt.gxTpr_Cancancel = value;
 			}
 		}
 

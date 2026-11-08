@@ -200,10 +200,10 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -815,7 +815,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013272813", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202611814252933", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -831,7 +831,7 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("wallet/registered/createsmartgroup.js", "?2026103013272813", false, true, false);
+         context.AddJavascriptSource("wallet/registered/createsmartgroup.js", "?202611814252933", false, true, false);
          /* End function include_jscripts */
       }
 
@@ -841,14 +841,14 @@ namespace GeneXus.Programs.wallet.registered {
          cmbavGrouptype.WebTags = "";
          cmbavGrouptype.addItem("0", "Select Group Type", 0);
          cmbavGrouptype.addItem("10", "Wallet Backup", 0);
-         cmbavGrouptype.addItem("30", "Delegation Multi-Signature Wallet", 0);
+         cmbavGrouptype.addItem("30", "Delegated Multi Signature Wallet", 0);
          cmbavGrouptype.addItem("40", "Encrypted Passwords", 0);
          cmbavGrouptype.addItem("20", "Time Encrypted Vault", 0);
-         cmbavGrouptype.addItem("50", "Legacy Multi-Signature Wallet", 0);
-         cmbavGrouptype.addItem("60", "Multi Signature", 0);
+         cmbavGrouptype.addItem("50", "Legacy Multi Signature Wallet", 0);
+         cmbavGrouptype.addItem("60", "Multi Signature Wallet", 0);
          cmbavGrouptype.addItem("70", "Group Chat", 0);
-         cmbavGrouptype.addItem("80", "Delegated Multi Signature 2", 0);
-         cmbavGrouptype.addItem("90", "Multi Signature 2", 0);
+         cmbavGrouptype.addItem("80", "Advanced Delegated Multi Signature Wallet", 0);
+         cmbavGrouptype.addItem("90", "Advanced Multi Signature Wallet", 0);
          if ( cmbavGrouptype.ItemCount > 0 )
          {
             AV9groupType = (short)(Math.Round(NumberUtil.Val( cmbavGrouptype.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(AV9groupType), 4, 0))), "."), 18, MidpointRounding.ToEven));

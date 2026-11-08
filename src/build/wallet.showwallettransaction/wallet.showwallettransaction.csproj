@@ -42,39 +42,37 @@
         <Reference Include="DistricutedCryptographyLib" >
             <HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
         </Reference>
-        <Reference Include="GxJadeLib" >
-            <HintPath>$(WebBinDirectory)\GxJadeLib.dll</HintPath>
-        </Reference>
 
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include = "$(WebDirectory)\wallet\gettransactiondetail.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
-		<Compile Include = "$(WebDirectory)\electrum\getdefaultelectrumconfig.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
-		<Compile Include = "$(WebDirectory)\electrum\get_transaction.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\iswalletopen.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\forgetunseenpayment.cs" />
-		<Compile Include = "$(WebDirectory)\electrum\connect.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getwalletinfo.cs" />
-		<Compile Include = "$(WebDirectory)\electrum\defaultparameters.cs" />
-		<Compile Include = "$(WebDirectory)\receivefromelectrum.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
-		<Compile Include = "$(WebDirectory)\electrum\setelectrumconnid.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\showwallettransaction.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\getdefaultelectrumconfig.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\getelectrumconnid.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\gettransactionvsize.cs" />
-		<Compile Include = "$(WebDirectory)\electrum\getelectrumconfigfornetworktype.cs" />
+		<Compile Include = "$(WebDirectory)\receivefromelectrum.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\forgetunseenpayment.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\setelectrumconnid.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\iswalletopen.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwalletinfo.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\connect.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallettransactions.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getaddresscontext.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\gettransactiondetail.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\walletfilepath.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\get_transaction.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\sendmessage.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\getelectrumconfigfornetworktype.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\gettransactionvsize.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\defaultparameters.cs" />
 
 	</ItemGroup>
 

@@ -44,6 +44,7 @@
   <Project Path="wallet.registered.groupchatwc/wallet.registered.groupchatwc.csproj" />
   <Project Path="wallet.registered.groupdescriptors/wallet.registered.groupdescriptors.csproj" />
   <Project Path="wallet.registered.groupwallet/wallet.registered.groupwallet.csproj" />
+  <Project Path="wallet.registered.incomingmessagelistener/wallet.registered.incomingmessagelistener.csproj" />
   <Project Path="wallet.registered.largefiles/wallet.registered.largefiles.csproj" />
   <Project Path="wallet.registered.legacyallsignatures/wallet.registered.legacyallsignatures.csproj" />
   <Project Path="wallet.registered.legacymultisignature/wallet.registered.legacymultisignature.csproj" />

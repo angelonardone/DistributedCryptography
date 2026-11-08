@@ -38,6 +38,8 @@ namespace GeneXus.Programs.wallet
 
 			gxTv_SdtExtendeSecretAndAuthenticator_Networktype = "";
 
+			gxTv_SdtExtendeSecretAndAuthenticator_Oraclekey = "";
+
 		}
 
 		public SdtExtendeSecretAndAuthenticator(IGxContext context)
@@ -72,6 +74,9 @@ namespace GeneXus.Programs.wallet
 
 
 			AddObjectProperty("NetworkType", gxTpr_Networktype, false);
+
+
+			AddObjectProperty("OracleKey", gxTpr_Oraclekey, false);
 
 			return;
 		}
@@ -126,6 +131,22 @@ namespace GeneXus.Programs.wallet
 
 
 
+
+		[SoapElement(ElementName="OracleKey")]
+		[XmlElement(ElementName="OracleKey")]
+		public string gxTpr_Oraclekey
+		{
+			get {
+				return gxTv_SdtExtendeSecretAndAuthenticator_Oraclekey; 
+			}
+			set {
+				gxTv_SdtExtendeSecretAndAuthenticator_Oraclekey = value;
+				SetDirty("Oraclekey");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -150,6 +171,7 @@ namespace GeneXus.Programs.wallet
 			gxTv_SdtExtendeSecretAndAuthenticator_Extendedprivatekey = "";
 			gxTv_SdtExtendeSecretAndAuthenticator_Authenticatorbase32 = "";
 			gxTv_SdtExtendeSecretAndAuthenticator_Networktype = "";
+			gxTv_SdtExtendeSecretAndAuthenticator_Oraclekey = "";
 			return  ;
 		}
 
@@ -166,6 +188,9 @@ namespace GeneXus.Programs.wallet
 		 
 
 		protected string gxTv_SdtExtendeSecretAndAuthenticator_Networktype;
+		 
+
+		protected string gxTv_SdtExtendeSecretAndAuthenticator_Oraclekey;
 		 
 
 
@@ -224,6 +249,20 @@ namespace GeneXus.Programs.wallet
 			}
 			set { 
 				 sdt.gxTpr_Networktype = value;
+			}
+		}
+
+		[JsonPropertyName("OracleKey")]
+		[JsonPropertyOrder(3)]
+		[DataMember(Name="OracleKey", Order=3)]
+		public  string gxTpr_Oraclekey
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Oraclekey);
+
+			}
+			set { 
+				 sdt.gxTpr_Oraclekey = value;
 			}
 		}
 

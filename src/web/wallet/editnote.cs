@@ -235,10 +235,10 @@ namespace GeneXus.Programs.wallet {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -325,14 +325,6 @@ namespace GeneXus.Programs.wallet {
          GxWebStd.gx_hidden_field( context, sPrefix+"vTEXT", AV12text);
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV8fileName", wcpOAV8fileName);
          GxWebStd.gx_hidden_field( context, sPrefix+"vFILENAME", AV8fileName);
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vNOTE", AV10note);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vNOTE", AV10note);
-         }
          GxWebStd.gx_hidden_field( context, sPrefix+"TEXT_Enabled", StringUtil.BoolToStr( Text_Enabled));
          GxWebStd.gx_hidden_field( context, sPrefix+"TEXT_Skin", StringUtil.RTrim( Text_Skin));
          GxWebStd.gx_hidden_field( context, sPrefix+"TEXT_Toolbar", StringUtil.RTrim( Text_Toolbar));
@@ -840,10 +832,9 @@ namespace GeneXus.Programs.wallet {
          {
             edtavDescription_Enabled = 0;
             AssignProp(sPrefix, false, edtavDescription_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavDescription_Enabled), 5, 0), true);
-            AV10note.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  StringUtil.Trim( AV8fileName), out  AV6error), null);
-            AV5description = AV10note.gxTpr_Description;
+            AV20save = false;
+            new GeneXus.Programs.wallet.walletnote(context ).execute(  AV8fileName,  AV20save, ref  AV5description, ref  AV12text, out  AV6error) ;
             AssignAttri(sPrefix, false, "AV5description", AV5description);
-            AV12text = AV10note.gxTpr_Notetext;
             AssignAttri(sPrefix, false, "AV12text", AV12text);
             if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
             {
@@ -856,71 +847,26 @@ namespace GeneXus.Programs.wallet {
       {
          /* 'Save' Routine */
          returnInSub = false;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV8fileName)) )
+         AV20save = true;
+         new GeneXus.Programs.wallet.walletnote(context ).execute(  AV8fileName,  AV20save, ref  AV5description, ref  AV12text, out  AV6error) ;
+         AssignAttri(sPrefix, false, "AV5description", AV5description);
+         AssignAttri(sPrefix, false, "AV12text", AV12text);
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
          {
-            AV10note.gxTpr_Notetext = AV12text;
-            GXt_char1 = AV6error;
-            new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  StringUtil.Trim( AV8fileName),  AV10note.ToJSonString(false, true), out  GXt_char1) ;
-            AV6error = GXt_char1;
-            AssignAttri(sPrefix, false, "AV6error", AV6error);
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
+            this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "DoneWithNotes", new Object[] {}, true);
+         }
+         else
+         {
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8fileName)) )
             {
-               this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "DoneWithNotes", new Object[] {}, true);
+               GX_msglist.addItem(AV6error);
             }
             else
             {
                this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"Note ",(string)AV6error}, true);
             }
          }
-         else
-         {
-            GXt_SdtWallet2 = AV15wallet;
-            new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet2) ;
-            AV15wallet = GXt_SdtWallet2;
-            AV16directory.Source = AV15wallet.gxTpr_Walletbasedirectory;
-            AV17noteDirectory.Source = AV15wallet.gxTpr_Walletbasedirectory+"Notes";
-            if ( ! AV17noteDirectory.Exists() )
-            {
-               AV17noteDirectory.Create();
-            }
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV5description)) )
-            {
-               GX_msglist.addItem("The Description is mandatory");
-            }
-            else
-            {
-               if ( GxRegex.IsMatch(AV5description,"^[ ]") )
-               {
-                  GX_msglist.addItem("Spaces at the beginning of the name are not allowed");
-               }
-               else
-               {
-                  AV18newRndName = Guid.NewGuid( ).ToString();
-                  GXt_boolean3 = false;
-                  new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
-                  GXt_boolean4 = false;
-                  new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean4) ;
-                  AV19noteFileName = "Notes" + (GXt_boolean4 ? "/" : "\\") + StringUtil.Trim( AV18newRndName) + ".note";
-                  AV10note.gxTpr_Description = StringUtil.Trim( AV5description);
-                  AV10note.gxTpr_Created = DateTimeUtil.Now( context);
-                  AV10note.gxTpr_Notetext = AV12text;
-                  GXt_char1 = AV6error;
-                  new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  AV19noteFileName,  AV10note.ToJSonString(false, true), out  GXt_char1) ;
-                  AV6error = GXt_char1;
-                  AssignAttri(sPrefix, false, "AV6error", AV6error);
-                  if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
-                  {
-                     this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "DoneWithNotes", new Object[] {}, true);
-                  }
-                  else
-                  {
-                     this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"error",(string)"Note ",(string)AV6error}, true);
-                  }
-               }
-            }
-         }
          /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV10note", AV10note);
       }
 
       protected void nextLoad( )
@@ -1129,7 +1075,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013254496", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202611814233365", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1145,7 +1091,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/editnote.js", "?2026103013254498", false, true, false);
+         context.AddJavascriptSource("wallet/editnote.js", "?202611814233365", false, true, false);
          context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true, false);
          context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true, false);
          /* End function include_jscripts */
@@ -1205,8 +1151,8 @@ namespace GeneXus.Programs.wallet {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
-         setEventMetadata("'SAVE'","""{"handler":"E130D2","iparms":[{"av":"AV8fileName","fld":"vFILENAME","type":"svchar"},{"av":"AV12text","fld":"vTEXT","type":"vchar"},{"av":"AV10note","fld":"vNOTE","type":""},{"av":"AV5description","fld":"vDESCRIPTION","type":"char"}]""");
-         setEventMetadata("'SAVE'",""","oparms":[{"av":"AV10note","fld":"vNOTE","type":""},{"av":"AV6error","fld":"vERROR","type":"char"}]}""");
+         setEventMetadata("'SAVE'","""{"handler":"E130D2","iparms":[{"av":"AV8fileName","fld":"vFILENAME","type":"svchar"},{"av":"AV5description","fld":"vDESCRIPTION","type":"char"},{"av":"AV12text","fld":"vTEXT","type":"vchar"}]""");
+         setEventMetadata("'SAVE'",""","oparms":[{"av":"AV12text","fld":"vTEXT","type":"vchar"},{"av":"AV5description","fld":"vDESCRIPTION","type":"char"}]}""");
          setEventMetadata("'CANCEL AND RETURN'","""{"handler":"E110D1","iparms":[]}""");
          return  ;
       }
@@ -1231,7 +1177,6 @@ namespace GeneXus.Programs.wallet {
          bodyStyle = "";
          GXKey = "";
          AV12text = "";
-         AV10note = new GeneXus.Programs.wallet.SdtNote(context);
          GX_FocusControl = "";
          TempTags = "";
          AV5description = "";
@@ -1247,13 +1192,6 @@ namespace GeneXus.Programs.wallet {
          EvtRowId = "";
          sEvtType = "";
          AV6error = "";
-         AV15wallet = new GeneXus.Programs.wallet.SdtWallet(context);
-         GXt_SdtWallet2 = new GeneXus.Programs.wallet.SdtWallet(context);
-         AV16directory = new GxDirectory(context.GetPhysicalPath());
-         AV17noteDirectory = new GxDirectory(context.GetPhysicalPath());
-         AV18newRndName = "";
-         AV19noteFileName = "";
-         GXt_char1 = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          sCtrlAV8fileName = "";
@@ -1305,9 +1243,6 @@ namespace GeneXus.Programs.wallet {
       private string EvtRowId ;
       private string sEvtType ;
       private string AV6error ;
-      private string AV18newRndName ;
-      private string AV19noteFileName ;
-      private string GXt_char1 ;
       private string sCtrlAV8fileName ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
@@ -1317,19 +1252,13 @@ namespace GeneXus.Programs.wallet {
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
-      private bool GXt_boolean3 ;
-      private bool GXt_boolean4 ;
+      private bool AV20save ;
       private string AV12text ;
       private string AV8fileName ;
       private string wcpOAV8fileName ;
       private GXUserControl ucText ;
       private GXWebForm Form ;
-      private GxDirectory AV16directory ;
-      private GxDirectory AV17noteDirectory ;
       private IGxDataStore dsDefault ;
-      private GeneXus.Programs.wallet.SdtNote AV10note ;
-      private GeneXus.Programs.wallet.SdtWallet AV15wallet ;
-      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet2 ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

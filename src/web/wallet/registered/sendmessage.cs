@@ -76,24 +76,29 @@ namespace GeneXus.Programs.wallet.registered {
          AV17externalUser = GXt_SdtExternalUser1;
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV17externalUser.gxTpr_Externaltoken)) )
          {
+            AV23sealed = (GeneXus.Programs.nostr.SdtSDT_message)(AV10sdt_message.Clone());
+            GXt_char2 = AV9error;
+            new GeneXus.Programs.wallet.registered.sealmessage(context ).execute(  StringUtil.Trim( AV21contact.gxTpr_Username), ref  AV23sealed, out  GXt_char2) ;
+            AV9error = GXt_char2;
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
+            {
+               cleanup();
+               if (true) return;
+            }
             GXt_char2 = AV9error;
             GXt_char3 = AV13body.gxTpr_Messageencryptedkey;
             GXt_char4 = AV13body.gxTpr_Messageencrypted;
-            new GeneXus.Programs.distributedcryptographylib.encryptjsonto(context ).execute(  AV10sdt_message.ToJSonString(false, true),  StringUtil.Trim( AV21contact.gxTpr_Messagepubkey), out  GXt_char3, out  GXt_char4, out  GXt_char2) ;
+            new GeneXus.Programs.distributedcryptographylib.encryptjsonto(context ).execute(  AV23sealed.ToJSonString(false, true),  StringUtil.Trim( AV21contact.gxTpr_Messagepubkey), out  GXt_char3, out  GXt_char4, out  GXt_char2) ;
             AV13body.gxTpr_Messageencryptedkey = GXt_char3;
             AV13body.gxTpr_Messageencrypted = GXt_char4;
             AV9error = GXt_char2;
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
+            {
+               cleanup();
+               if (true) return;
+            }
             AV13body.gxTpr_Username = StringUtil.Trim( AV21contact.gxTpr_Username);
-            new desktopappservicesrestsendmesagepost(context ).execute(  AV14ServerUrlTemplatingVar,  AV13body,  StringUtil.Trim( AV17externalUser.gxTpr_Externaltoken), out  AV16sendMesage__postOutputOUT, out  AV11HttpMessage, out  AV12IsSuccess) ;
-            if ( ! AV12IsSuccess )
-            {
-               AV9error = AV11HttpMessage.gxTpr_Description;
-            }
-            else
-            {
-               AV9error = AV16sendMesage__postOutputOUT.gxTpr_Error;
-               AV19MessageId = AV16sendMesage__postOutputOUT.gxTpr_Messageid;
-            }
+            new GeneXus.Programs.wallet.registered.postsendmessage(context ).execute(  AV13body, out  AV19MessageId, out  AV9error) ;
          }
          else
          {
@@ -117,13 +122,11 @@ namespace GeneXus.Programs.wallet.registered {
          AV9error = "";
          AV17externalUser = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
          GXt_SdtExternalUser1 = new GeneXus.Programs.distcrypt.SdtExternalUser(context);
+         AV23sealed = new GeneXus.Programs.nostr.SdtSDT_message(context);
          GXt_char2 = "";
          AV13body = new SdtsendMesage__postInput(context);
          GXt_char3 = "";
          GXt_char4 = "";
-         AV14ServerUrlTemplatingVar = new GXProperties();
-         AV16sendMesage__postOutputOUT = new SdtsendMesage__postOutput(context);
-         AV11HttpMessage = new GeneXus.Utils.SdtMessages_Message(context);
          AV19MessageId = Guid.Empty;
          /* GeneXus formulas. */
       }
@@ -132,16 +135,13 @@ namespace GeneXus.Programs.wallet.registered {
       private string GXt_char2 ;
       private string GXt_char3 ;
       private string GXt_char4 ;
-      private bool AV12IsSuccess ;
       private Guid AV19MessageId ;
-      private GXProperties AV14ServerUrlTemplatingVar ;
       private GeneXus.Programs.wallet.registered.SdtContact_SDT AV21contact ;
       private GeneXus.Programs.nostr.SdtSDT_message AV10sdt_message ;
       private GeneXus.Programs.distcrypt.SdtExternalUser AV17externalUser ;
       private GeneXus.Programs.distcrypt.SdtExternalUser GXt_SdtExternalUser1 ;
+      private GeneXus.Programs.nostr.SdtSDT_message AV23sealed ;
       private SdtsendMesage__postInput AV13body ;
-      private SdtsendMesage__postOutput AV16sendMesage__postOutputOUT ;
-      private GeneXus.Utils.SdtMessages_Message AV11HttpMessage ;
       private string aP2_error ;
    }
 

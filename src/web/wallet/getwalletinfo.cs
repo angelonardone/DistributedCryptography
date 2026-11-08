@@ -71,6 +71,7 @@ namespace GeneXus.Programs.wallet {
          AV9walletInfo.gxTpr_Useauthenticator = AV8wallet.gxTpr_Useauthenticator;
          AV9walletInfo.gxTpr_Networktype = AV8wallet.gxTpr_Networktype;
          AV9walletInfo.gxTpr_Walletreadbalanceonstart = AV8wallet.gxTpr_Walletreadbalanceonstart;
+         AV9walletInfo.gxTpr_Keystorage = AV8wallet.gxTpr_Keystorage;
          cleanup();
       }
 

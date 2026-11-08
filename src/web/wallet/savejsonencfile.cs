@@ -71,23 +71,22 @@ namespace GeneXus.Programs.wallet {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         GXt_SdtWallet1 = AV17wallet;
-         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet1) ;
-         AV17wallet = GXt_SdtWallet1;
-         GXt_char2 = AV13error;
-         GXt_char3 = AV16json_enc.gxTpr_Encryptedkey;
-         GXt_char4 = AV16json_enc.gxTpr_Encryptedtext;
-         new GeneXus.Programs.distributedcryptographylib.encryptjson(context ).execute(  AV8clearText,  "", out  GXt_char3, out  GXt_char4, out  GXt_char2) ;
-         AV16json_enc.gxTpr_Encryptedkey = GXt_char3;
-         AV16json_enc.gxTpr_Encryptedtext = GXt_char4;
-         AV13error = GXt_char2;
+         new GeneXus.Programs.wallet.walletfilepath(context ).execute(  AV9fileName, out  AV19fullPath, out  AV13error) ;
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
+         {
+            cleanup();
+            if (true) return;
+         }
+         GXt_char1 = AV13error;
+         GXt_char2 = AV16json_enc.gxTpr_Encryptedkey;
+         GXt_char3 = AV16json_enc.gxTpr_Encryptedtext;
+         new GeneXus.Programs.distributedcryptographylib.encryptjson(context ).execute(  AV8clearText,  "", out  GXt_char2, out  GXt_char3, out  GXt_char1) ;
+         AV16json_enc.gxTpr_Encryptedkey = GXt_char2;
+         AV16json_enc.gxTpr_Encryptedtext = GXt_char3;
+         AV13error = GXt_char1;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
          {
-            GXt_boolean5 = false;
-            new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean5) ;
-            GXt_boolean6 = false;
-            new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean6) ;
-            AV18file.Source = AV17wallet.gxTpr_Walletbasedirectory+(GXt_boolean6 ? "/" : "\\")+StringUtil.Trim( AV9fileName);
+            AV18file.Source = AV19fullPath;
             AV18file.WriteAllText(AV16json_enc.ToJSonString(false, true), "");
          }
          cleanup();
@@ -106,27 +105,23 @@ namespace GeneXus.Programs.wallet {
       public override void initialize( )
       {
          AV13error = "";
-         AV17wallet = new GeneXus.Programs.wallet.SdtWallet(context);
-         GXt_SdtWallet1 = new GeneXus.Programs.wallet.SdtWallet(context);
-         GXt_char2 = "";
+         AV19fullPath = "";
+         GXt_char1 = "";
          AV16json_enc = new GeneXus.Programs.wallet.SdtSDT_Json_Enc(context);
+         GXt_char2 = "";
          GXt_char3 = "";
-         GXt_char4 = "";
          AV18file = new GxFile(context.GetPhysicalPath());
          /* GeneXus formulas. */
       }
 
       private string AV9fileName ;
       private string AV13error ;
+      private string GXt_char1 ;
       private string GXt_char2 ;
       private string GXt_char3 ;
-      private string GXt_char4 ;
-      private bool GXt_boolean5 ;
-      private bool GXt_boolean6 ;
       private string AV8clearText ;
+      private string AV19fullPath ;
       private GxFile AV18file ;
-      private GeneXus.Programs.wallet.SdtWallet AV17wallet ;
-      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
       private GeneXus.Programs.wallet.SdtSDT_Json_Enc AV16json_enc ;
       private string aP2_error ;
    }

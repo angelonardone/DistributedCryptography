@@ -136,6 +136,11 @@
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroupChatMessage.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroupDescriptorResult.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroupListItem.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroupRecordRequest.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroupRecordResponse.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroupRecordResponse_records.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroupRecordResponse_records_RecordItem.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroupSharedRecord.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroup_SDT.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroup_SDT_TimeConstrainItem.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtGroup_SDT_ContactItem.cs" />
@@ -155,9 +160,13 @@
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtMuSig2VsizeResult.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtMuSigSignatures.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtNotificationTarget.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtProcessedMessage.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtQueuedNostrEvent.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtWalletBackupView.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtWalletBackupView_ContactItem.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtRubyInput.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtRubyResult.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtRubyResult_devicesItem.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtSDTAddressHistory.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtSDT_Json_Enc.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtSDT_ReturnAddresses_SDT_ReturnAddressesItem.cs" />

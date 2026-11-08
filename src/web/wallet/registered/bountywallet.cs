@@ -313,18 +313,18 @@ namespace GeneXus.Programs.wallet.registered {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
-         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          if ( StringUtil.Len( sPrefix) == 0 )
          {
             context.CloseHtmlHeader();
@@ -1634,7 +1634,7 @@ namespace GeneXus.Programs.wallet.registered {
          }
          /* 'Get Key Info' Routine */
          returnInSub = false;
-         context.PopUp(formatLink("wallet.showtransactiondetail", new object[] {UrlEncode(StringUtil.RTrim(((GeneXus.Programs.wallet.SdtSDTAddressHistory)(AV25SDTAddressHistory.CurrentItem)).gxTpr_Receivedtransactionid)),UrlEncode(StringUtil.LTrimStr(((GeneXus.Programs.wallet.SdtSDTAddressHistory)(AV25SDTAddressHistory.CurrentItem)).gxTpr_Recivedn,10,0)),UrlEncode(StringUtil.RTrim(AV32transactionFileName))}, new string[] {"transactionId","n","transactionFileName"}) , new Object[] {});
+         context.PopUp(formatLink("wallet.showtransactiondetail", new object[] {UrlEncode(StringUtil.RTrim(((GeneXus.Programs.wallet.SdtSDTAddressHistory)(AV25SDTAddressHistory.CurrentItem)).gxTpr_Receivedtransactionid)),UrlEncode(StringUtil.LTrimStr(((GeneXus.Programs.wallet.SdtSDTAddressHistory)(AV25SDTAddressHistory.CurrentItem)).gxTpr_Recivedn,10,0)),UrlEncode(AV16groupId.ToString())}, new string[] {"transactionId","n","groupId"}) , new Object[] {});
       }
 
       protected void E122X2( )
@@ -2004,7 +2004,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013253976", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202611814232995", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2020,7 +2020,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/bountywallet.js", "?2026103013253976", false, true, false);
+         context.AddJavascriptSource("wallet/registered/bountywallet.js", "?202611814232995", false, true, false);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
          /* End function include_jscripts */
       }
@@ -2453,7 +2453,7 @@ namespace GeneXus.Programs.wallet.registered {
          setEventMetadata("REFRESH",""","oparms":[{"av":"AV45walletInfo","fld":"vWALLETINFO","hsh":true,"type":""},{"av":"AV31totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZZZ9.99999999","type":"decimal"},{"av":"AV32transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"edtavBountydate_Visible","ctrl":"vBOUNTYDATE","prop":"Visible"},{"av":"AV43bountySequence","fld":"vBOUNTYSEQUENCE","pic":"ZZZZZZZZZ9","hsh":true,"type":"int"},{"av":"AV42bountyAddress","fld":"vBOUNTYADDRESS","hsh":true,"type":"char"},{"av":"AV39bountyDate","fld":"vBOUNTYDATE","type":"date"},{"av":"AV44isOwner","fld":"vISOWNER","hsh":true,"type":"boolean"},{"av":"AV22recevingAddress","fld":"vRECEVINGADDRESS","type":"char"},{"ctrl":"SEND","prop":"Visible"},{"av":"AV25SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":32,"type":""},{"av":"nGXsfl_32_idx","ctrl":"GRID","prop":"GridCurrRow","grid":32},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_32","ctrl":"ADDRESSGRID","prop":"GridRC","grid":32,"type":"int"},{"av":"lblTbqrcodeaddress_Caption","ctrl":"TBQRCODEADDRESS","prop":"Caption"},{"av":"lblTbqrcodeaddress_Visible","ctrl":"TBQRCODEADDRESS","prop":"Visible"},{"av":"edtavRecevingaddress_Visible","ctrl":"vRECEVINGADDRESS","prop":"Visible"}]}""");
          setEventMetadata("ADDRESSGRID.LOAD","""{"handler":"E152X2","iparms":[{"av":"AV45walletInfo","fld":"vWALLETINFO","hsh":true,"type":""},{"av":"AV25SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":32,"type":""},{"av":"nGXsfl_32_idx","ctrl":"GRID","prop":"GridCurrRow","grid":32},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_32","ctrl":"ADDRESSGRID","prop":"GridRC","grid":32,"type":"int"}]""");
          setEventMetadata("ADDRESSGRID.LOAD",""","oparms":[{"av":"edtavFirstlink_Link","ctrl":"vFIRSTLINK","prop":"Link"},{"av":"edtavSecondlink_Link","ctrl":"vSECONDLINK","prop":"Link"},{"av":"AV13firstLink","fld":"vFIRSTLINK","type":"char"},{"av":"edtavFirstlink_Linktarget","ctrl":"vFIRSTLINK","prop":"Linktarget"},{"av":"edtavSecondlink_Linktarget","ctrl":"vSECONDLINK","prop":"Linktarget"},{"av":"AV26secondLink","fld":"vSECONDLINK","type":"char"},{"av":"AV34transactionsCount","fld":"vTRANSACTIONSCOUNT","pic":"ZZZZZZZZZ9","type":"int"},{"av":"AV35txtConfirmations","fld":"vTXTCONFIRMATIONS","type":"char"},{"av":"AV14gridRecevingAddress","fld":"vGRIDRECEVINGADDRESS","type":"char"}]}""");
-         setEventMetadata("'GET KEY INFO'","""{"handler":"E162X2","iparms":[{"av":"AV25SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":32,"type":""},{"av":"nGXsfl_32_idx","ctrl":"GRID","prop":"GridCurrRow","grid":32},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_32","ctrl":"ADDRESSGRID","prop":"GridRC","grid":32,"type":"int"},{"av":"AV32transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"}]}""");
+         setEventMetadata("'GET KEY INFO'","""{"handler":"E162X2","iparms":[{"av":"AV25SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":32,"type":""},{"av":"nGXsfl_32_idx","ctrl":"GRID","prop":"GridCurrRow","grid":32},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_32","ctrl":"ADDRESSGRID","prop":"GridRC","grid":32,"type":"int"},{"av":"AV16groupId","fld":"vGROUPID","type":"guid"}]}""");
          setEventMetadata("'RESCAN BALANCE'","""{"handler":"E122X2","iparms":[{"av":"AV32transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"AV44isOwner","fld":"vISOWNER","hsh":true,"type":"boolean"},{"av":"AV31totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZZZ9.99999999","type":"decimal"},{"av":"AV42bountyAddress","fld":"vBOUNTYADDRESS","hsh":true,"type":"char"},{"av":"AV43bountySequence","fld":"vBOUNTYSEQUENCE","pic":"ZZZZZZZZZ9","hsh":true,"type":"int"},{"av":"AV25SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":32,"type":""},{"av":"nGXsfl_32_idx","ctrl":"GRID","prop":"GridCurrRow","grid":32},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_32","ctrl":"ADDRESSGRID","prop":"GridRC","grid":32,"type":"int"},{"av":"ADDRESSGRID_nEOF","type":"int"},{"av":"subAddressgrid_Rows","ctrl":"ADDRESSGRID","prop":"Rows"},{"av":"sPrefix","type":"char"},{"av":"AV16groupId","fld":"vGROUPID","type":"guid"},{"av":"AV45walletInfo","fld":"vWALLETINFO","hsh":true,"type":""}]""");
          setEventMetadata("'RESCAN BALANCE'",""","oparms":[{"av":"AV25SDTAddressHistory","fld":"vSDTADDRESSHISTORY","grid":32,"type":""},{"av":"nGXsfl_32_idx","ctrl":"GRID","prop":"GridCurrRow","grid":32},{"av":"ADDRESSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_32","ctrl":"ADDRESSGRID","prop":"GridRC","grid":32,"type":"int"},{"av":"AV31totalBalance","fld":"vTOTALBALANCE","pic":"ZZZZZZZZ9.99999999","type":"decimal"},{"ctrl":"SEND","prop":"Visible"},{"av":"AV22recevingAddress","fld":"vRECEVINGADDRESS","type":"char"},{"av":"lblTbqrcodeaddress_Caption","ctrl":"TBQRCODEADDRESS","prop":"Caption"},{"av":"lblTbqrcodeaddress_Visible","ctrl":"TBQRCODEADDRESS","prop":"Visible"},{"av":"edtavRecevingaddress_Visible","ctrl":"vRECEVINGADDRESS","prop":"Visible"}]}""");
          setEventMetadata("'SEND'","""{"handler":"E112X1","iparms":[]}""");

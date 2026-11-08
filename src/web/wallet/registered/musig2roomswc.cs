@@ -303,10 +303,10 @@ namespace GeneXus.Programs.wallet.registered {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -534,7 +534,7 @@ namespace GeneXus.Programs.wallet.registered {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 stack-bottom-m", "start", "top", "", "", "div");
             /* Text block */
             GxWebStd.gx_label_ctrl( context, lblTbnew_Internalname, lblTbnew_Caption, "", "", lblTbnew_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Wallet/registered/MuSig2RoomsWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -720,7 +720,7 @@ namespace GeneXus.Programs.wallet.registered {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 stack-bottom-m", "start", "top", "", "", "div");
             /* Text block */
             GxWebStd.gx_label_ctrl( context, lblTbsign_Internalname, lblTbsign_Caption, "", "", lblTbsign_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Wallet/registered/MuSig2RoomsWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -2021,7 +2021,7 @@ namespace GeneXus.Programs.wallet.registered {
             AV7lines.CurrentItem = ((GeneXus.Programs.wallet.registered.SdtMuSig2RoomLine)AV7lines.Item(AV46GXV1));
             if ( ((GeneXus.Programs.wallet.registered.SdtMuSig2RoomLine)(AV7lines.CurrentItem)).gxTpr_Roomid == AV43selectedRoomId )
             {
-               AV45mark = "?";
+               AV45mark = "»";
                AssignAttri(sPrefix, false, edtavMark_Internalname, AV45mark);
                AV41open = "";
                AssignAttri(sPrefix, false, edtavOpen_Internalname, AV41open);
@@ -2165,9 +2165,9 @@ namespace GeneXus.Programs.wallet.registered {
             else
             {
                cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( (decimal)(0), 16, 8)), "Select Estimated Transaction Fee", 0);
-               cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV24economicalFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV24economicalFee, 16, 8))+" in about "+StringUtil.Trim( StringUtil.Str( (decimal)(AV23economicalBlocks), 10, 0))+" Blocks", 0);
-               cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV32standardFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV32standardFee, 16, 8))+" in about "+StringUtil.Trim( StringUtil.Str( (decimal)(AV31standarBlocks), 10, 0))+" Blocks", 0);
-               cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV27fastestFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV27fastestFee, 16, 8))+" in about "+StringUtil.Trim( StringUtil.Str( (decimal)(AV26fastestBlocks), 10, 0))+" Blocks", 0);
+               cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV24economicalFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV24economicalFee, 16, 8))+" in about "+StringUtil.Trim( StringUtil.Str( (decimal)(AV23economicalBlocks), 10, 0))+((AV23economicalBlocks==1) ? " block" : " blocks"), 0);
+               cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV32standardFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV32standardFee, 16, 8))+" in about "+StringUtil.Trim( StringUtil.Str( (decimal)(AV31standarBlocks), 10, 0))+((AV31standarBlocks==1) ? " block" : " blocks"), 0);
+               cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV27fastestFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV27fastestFee, 16, 8))+" in about "+StringUtil.Trim( StringUtil.Str( (decimal)(AV26fastestBlocks), 10, 0))+((AV26fastestBlocks==1) ? " block" : " blocks"), 0);
                divOwnerfeetable_Visible = 1;
                AssignProp(sPrefix, false, divOwnerfeetable_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divOwnerfeetable_Visible), 5, 0), true);
                bttEstimatefee_Visible = 0;
@@ -2454,7 +2454,7 @@ namespace GeneXus.Programs.wallet.registered {
          AssignAttri(sPrefix, false, "AV13formOpen", AV13formOpen);
          divListtable_Visible = 0;
          AssignProp(sPrefix, false, divListtable_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divListtable_Visible), 5, 0), true);
-         this.executeExternalObjectMethod(sPrefix, false, "gx.extensions.web.interop", "runJS", new Object[] {"window.scrollTo(0,0);"}, false);
+         this.executeExternalObjectMethod(sPrefix, false, "gx.extensions.web.interop", "runJS", new Object[] {"setTimeout(function(){var f=[].slice.call(document.querySelectorAll('[id$=SIGNTABLE],[id$=NEWTABLE]')).filter(function(e){return e.offsetParent!==null;})[0];if(f){f.scrollIntoView({block:'start'});}else{window.scrollTo(0,0);}},300);"}, false);
       }
 
       protected void S112( )
@@ -2916,7 +2916,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610301325352", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202611814232468", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2932,7 +2932,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/musig2roomswc.js", "?202610301325352", false, true, false);
+         context.AddJavascriptSource("wallet/registered/musig2roomswc.js", "?202611814232468", false, true, false);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
          /* End function include_jscripts */
       }

@@ -34,6 +34,12 @@ namespace GeneXus.Programs.nostr
 			/* Constructor for serialization */
 			gxTv_SdtSDT_message_Message = "";
 
+			gxTv_SdtSDT_message_From = "";
+
+			gxTv_SdtSDT_message_To = "";
+
+			gxTv_SdtSDT_message_Signature = "";
+
 		}
 
 		public SdtSDT_message(IGxContext context)
@@ -71,6 +77,15 @@ namespace GeneXus.Programs.nostr
 
 
 			AddObjectProperty("Message", gxTpr_Message, false);
+
+
+			AddObjectProperty("From", gxTpr_From, false);
+
+
+			AddObjectProperty("To", gxTpr_To, false);
+
+
+			AddObjectProperty("Signature", gxTpr_Signature, false);
 
 			return;
 		}
@@ -141,6 +156,54 @@ namespace GeneXus.Programs.nostr
 
 
 
+
+		[SoapElement(ElementName="From")]
+		[XmlElement(ElementName="From")]
+		public string gxTpr_From
+		{
+			get {
+				return gxTv_SdtSDT_message_From; 
+			}
+			set {
+				gxTv_SdtSDT_message_From = value;
+				SetDirty("From");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="To")]
+		[XmlElement(ElementName="To")]
+		public string gxTpr_To
+		{
+			get {
+				return gxTv_SdtSDT_message_To; 
+			}
+			set {
+				gxTv_SdtSDT_message_To = value;
+				SetDirty("To");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="Signature")]
+		[XmlElement(ElementName="Signature")]
+		public string gxTpr_Signature
+		{
+			get {
+				return gxTv_SdtSDT_message_Signature; 
+			}
+			set {
+				gxTv_SdtSDT_message_Signature = value;
+				SetDirty("Signature");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -163,6 +226,9 @@ namespace GeneXus.Programs.nostr
 		public void initialize( )
 		{
 			gxTv_SdtSDT_message_Message = "";
+			gxTv_SdtSDT_message_From = "";
+			gxTv_SdtSDT_message_To = "";
+			gxTv_SdtSDT_message_Signature = "";
 			return  ;
 		}
 
@@ -182,6 +248,15 @@ namespace GeneXus.Programs.nostr
 		 
 
 		protected string gxTv_SdtSDT_message_Message;
+		 
+
+		protected string gxTv_SdtSDT_message_From;
+		 
+
+		protected string gxTv_SdtSDT_message_To;
+		 
+
+		protected string gxTv_SdtSDT_message_Signature;
 		 
 
 
@@ -254,6 +329,48 @@ namespace GeneXus.Programs.nostr
 			}
 			set { 
 				 sdt.gxTpr_Message = value;
+			}
+		}
+
+		[JsonPropertyName("From")]
+		[JsonPropertyOrder(4)]
+		[DataMember(Name="From", Order=4)]
+		public  string gxTpr_From
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_From);
+
+			}
+			set { 
+				 sdt.gxTpr_From = value;
+			}
+		}
+
+		[JsonPropertyName("To")]
+		[JsonPropertyOrder(5)]
+		[DataMember(Name="To", Order=5)]
+		public  string gxTpr_To
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_To);
+
+			}
+			set { 
+				 sdt.gxTpr_To = value;
+			}
+		}
+
+		[JsonPropertyName("Signature")]
+		[JsonPropertyOrder(6)]
+		[DataMember(Name="Signature", Order=6)]
+		public  string gxTpr_Signature
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Signature);
+
+			}
+			set { 
+				 sdt.gxTpr_Signature = value;
 			}
 		}
 

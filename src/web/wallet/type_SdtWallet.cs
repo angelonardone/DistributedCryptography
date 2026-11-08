@@ -44,6 +44,13 @@ namespace GeneXus.Programs.wallet
 
 			gxTv_SdtWallet_Walletbasedirectory = "";
 
+			gxTv_SdtWallet_Keystorage = "";
+
+			gxTv_SdtWallet_Rubydevice = "";
+
+			gxTv_SdtWallet_Rubyfingerprint = "";
+
+			gxTv_SdtWallet_Encryptedoracle = "";
 
 		}
 
@@ -94,6 +101,18 @@ namespace GeneXus.Programs.wallet
 
 
 			AddObjectProperty("WalletReadBalanceOnStart", gxTpr_Walletreadbalanceonstart, false);
+
+
+			AddObjectProperty("KeyStorage", gxTpr_Keystorage, false);
+
+
+			AddObjectProperty("RubyDevice", gxTpr_Rubydevice, false);
+
+
+			AddObjectProperty("RubyFingerprint", gxTpr_Rubyfingerprint, false);
+
+
+			AddObjectProperty("EncryptedOracle", gxTpr_Encryptedoracle, false);
 
 			return;
 		}
@@ -228,6 +247,70 @@ namespace GeneXus.Programs.wallet
 
 
 
+
+		[SoapElement(ElementName="KeyStorage")]
+		[XmlElement(ElementName="KeyStorage")]
+		public string gxTpr_Keystorage
+		{
+			get {
+				return gxTv_SdtWallet_Keystorage; 
+			}
+			set {
+				gxTv_SdtWallet_Keystorage = value;
+				SetDirty("Keystorage");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="RubyDevice")]
+		[XmlElement(ElementName="RubyDevice")]
+		public string gxTpr_Rubydevice
+		{
+			get {
+				return gxTv_SdtWallet_Rubydevice; 
+			}
+			set {
+				gxTv_SdtWallet_Rubydevice = value;
+				SetDirty("Rubydevice");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="RubyFingerprint")]
+		[XmlElement(ElementName="RubyFingerprint")]
+		public string gxTpr_Rubyfingerprint
+		{
+			get {
+				return gxTv_SdtWallet_Rubyfingerprint; 
+			}
+			set {
+				gxTv_SdtWallet_Rubyfingerprint = value;
+				SetDirty("Rubyfingerprint");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="EncryptedOracle")]
+		[XmlElement(ElementName="EncryptedOracle")]
+		public string gxTpr_Encryptedoracle
+		{
+			get {
+				return gxTv_SdtWallet_Encryptedoracle; 
+			}
+			set {
+				gxTv_SdtWallet_Encryptedoracle = value;
+				SetDirty("Encryptedoracle");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -257,6 +340,10 @@ namespace GeneXus.Programs.wallet
 			gxTv_SdtWallet_Walletfilename = "";
 			gxTv_SdtWallet_Walletbasedirectory = "";
 
+			gxTv_SdtWallet_Keystorage = "";
+			gxTv_SdtWallet_Rubydevice = "";
+			gxTv_SdtWallet_Rubyfingerprint = "";
+			gxTv_SdtWallet_Encryptedoracle = "";
 			return  ;
 		}
 
@@ -288,6 +375,18 @@ namespace GeneXus.Programs.wallet
 		 
 
 		protected bool gxTv_SdtWallet_Walletreadbalanceonstart;
+		 
+
+		protected string gxTv_SdtWallet_Keystorage;
+		 
+
+		protected string gxTv_SdtWallet_Rubydevice;
+		 
+
+		protected string gxTv_SdtWallet_Rubyfingerprint;
+		 
+
+		protected string gxTv_SdtWallet_Encryptedoracle;
 		 
 
 
@@ -418,6 +517,62 @@ namespace GeneXus.Programs.wallet
 			}
 			set { 
 				sdt.gxTpr_Walletreadbalanceonstart = value;
+			}
+		}
+
+		[JsonPropertyName("KeyStorage")]
+		[JsonPropertyOrder(8)]
+		[DataMember(Name="KeyStorage", Order=8)]
+		public  string gxTpr_Keystorage
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Keystorage);
+
+			}
+			set { 
+				 sdt.gxTpr_Keystorage = value;
+			}
+		}
+
+		[JsonPropertyName("RubyDevice")]
+		[JsonPropertyOrder(9)]
+		[DataMember(Name="RubyDevice", Order=9)]
+		public  string gxTpr_Rubydevice
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Rubydevice);
+
+			}
+			set { 
+				 sdt.gxTpr_Rubydevice = value;
+			}
+		}
+
+		[JsonPropertyName("RubyFingerprint")]
+		[JsonPropertyOrder(10)]
+		[DataMember(Name="RubyFingerprint", Order=10)]
+		public  string gxTpr_Rubyfingerprint
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Rubyfingerprint);
+
+			}
+			set { 
+				 sdt.gxTpr_Rubyfingerprint = value;
+			}
+		}
+
+		[JsonPropertyName("EncryptedOracle")]
+		[JsonPropertyOrder(11)]
+		[DataMember(Name="EncryptedOracle", Order=11)]
+		public  string gxTpr_Encryptedoracle
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Encryptedoracle);
+
+			}
+			set { 
+				 sdt.gxTpr_Encryptedoracle = value;
 			}
 		}
 

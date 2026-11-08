@@ -38,6 +38,7 @@ namespace GeneXus.Programs.wallet
 
 			gxTv_SdtWalletInfo_Networktype = "";
 
+			gxTv_SdtWalletInfo_Keystorage = "";
 
 		}
 
@@ -79,6 +80,9 @@ namespace GeneXus.Programs.wallet
 
 
 			AddObjectProperty("WalletReadBalanceOnStart", gxTpr_Walletreadbalanceonstart, false);
+
+
+			AddObjectProperty("KeyStorage", gxTpr_Keystorage, false);
 
 			return;
 		}
@@ -165,6 +169,22 @@ namespace GeneXus.Programs.wallet
 
 
 
+
+		[SoapElement(ElementName="KeyStorage")]
+		[XmlElement(ElementName="KeyStorage")]
+		public string gxTpr_Keystorage
+		{
+			get {
+				return gxTv_SdtWalletInfo_Keystorage; 
+			}
+			set {
+				gxTv_SdtWalletInfo_Keystorage = value;
+				SetDirty("Keystorage");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -191,6 +211,7 @@ namespace GeneXus.Programs.wallet
 
 			gxTv_SdtWalletInfo_Networktype = "";
 
+			gxTv_SdtWalletInfo_Keystorage = "";
 			return  ;
 		}
 
@@ -213,6 +234,9 @@ namespace GeneXus.Programs.wallet
 		 
 
 		protected bool gxTv_SdtWalletInfo_Walletreadbalanceonstart;
+		 
+
+		protected string gxTv_SdtWalletInfo_Keystorage;
 		 
 
 
@@ -301,6 +325,20 @@ namespace GeneXus.Programs.wallet
 			}
 			set { 
 				sdt.gxTpr_Walletreadbalanceonstart = value;
+			}
+		}
+
+		[JsonPropertyName("KeyStorage")]
+		[JsonPropertyOrder(5)]
+		[DataMember(Name="KeyStorage", Order=5)]
+		public  string gxTpr_Keystorage
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Keystorage);
+
+			}
+			set { 
+				 sdt.gxTpr_Keystorage = value;
 			}
 		}
 

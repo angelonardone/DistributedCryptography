@@ -235,10 +235,10 @@ namespace GeneXus.Programs.wallet.registered {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -322,8 +322,6 @@ namespace GeneXus.Programs.wallet.registered {
          send_integrity_footer_hashes( ) ;
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV9screen_name", StringUtil.RTrim( wcpOAV9screen_name));
          GxWebStd.gx_hidden_field( context, sPrefix+"vSCREEN_NAME", StringUtil.RTrim( AV9screen_name));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vLASTMESSAGEID", AV23lastMessageId.ToString());
-         GxWebStd.gx_hidden_field( context, sPrefix+"vNOTICEJSON", AV34noticeJson);
       }
 
       protected void RenderHtmlCloseForm192( )
@@ -352,6 +350,10 @@ namespace GeneXus.Programs.wallet.registered {
                enableOutput();
             }
             include_jscripts( ) ;
+            if ( ! ( WebComp_Comp_listener == null ) )
+            {
+               WebComp_Comp_listener.componentjscripts();
+            }
             context.WriteHtmlTextNl( "</body>") ;
             context.WriteHtmlTextNl( "</html>") ;
             if ( context.isSpaRequest( ) )
@@ -405,6 +407,34 @@ namespace GeneXus.Programs.wallet.registered {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "Section", "start", "top", " "+"data-gx-base-lib=\"none\""+" "+"data-abstract-form"+" ", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, divMaintable_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            if ( ! isFullAjaxMode( ) )
+            {
+               /* WebComponent */
+               GxWebStd.gx_hidden_field( context, sPrefix+"W0006"+"", StringUtil.RTrim( WebComp_Comp_listener_Component));
+               context.WriteHtmlText( "<div") ;
+               GxWebStd.ClassAttribute( context, "gxwebcomponent");
+               context.WriteHtmlText( " id=\""+sPrefix+"gxHTMLWrpW0006"+""+"\""+"") ;
+               context.WriteHtmlText( ">") ;
+               if ( StringUtil.Len( WebComp_Comp_listener_Component) != 0 )
+               {
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_listener), StringUtil.Lower( WebComp_Comp_listener_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspStartCmp(sPrefix+"gxHTMLWrpW0006"+"");
+                  }
+                  WebComp_Comp_listener.componentdraw();
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldComp_listener), StringUtil.Lower( WebComp_Comp_listener_Component)) != 0 )
+                  {
+                     context.httpAjaxContext.ajax_rspEndCmp();
+                  }
+               }
+               context.WriteHtmlText( "</div>") ;
+            }
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
          }
@@ -494,7 +524,7 @@ namespace GeneXus.Programs.wallet.registered {
                                  }
                               }
                            }
-                           else if ( StringUtil.StrCmp(sEvt, "GLOBALEVENTS.DISTPACHINCOMMINGMESSAGES") == 0 )
+                           else if ( StringUtil.StrCmp(sEvt, "START") == 0 )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
@@ -506,6 +536,7 @@ namespace GeneXus.Programs.wallet.registered {
                                  if ( ! wbErr )
                                  {
                                     dynload_actions( ) ;
+                                    /* Execute user event: Start */
                                     E11192 ();
                                  }
                               }
@@ -569,6 +600,28 @@ namespace GeneXus.Programs.wallet.registered {
                         }
                         else
                         {
+                        }
+                     }
+                     else if ( StringUtil.StrCmp(sEvtType, "W") == 0 )
+                     {
+                        sEvtType = StringUtil.Left( sEvt, 4);
+                        sEvt = StringUtil.Right( sEvt, (short)(StringUtil.Len( sEvt)-4));
+                        nCmpId = (short)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
+                        if ( nCmpId == 6 )
+                        {
+                           OldComp_listener = cgiGet( sPrefix+"W0006");
+                           if ( ( StringUtil.Len( OldComp_listener) == 0 ) || ( StringUtil.StrCmp(OldComp_listener, WebComp_Comp_listener_Component) != 0 ) )
+                           {
+                              WebComp_Comp_listener = getWebComponent(GetType(), "GeneXus.Programs", OldComp_listener, new Object[] {context} );
+                              WebComp_Comp_listener.ComponentInit();
+                              WebComp_Comp_listener.Name = "OldComp_listener";
+                              WebComp_Comp_listener_Component = OldComp_listener;
+                           }
+                           if ( StringUtil.Len( WebComp_Comp_listener_Component) != 0 )
+                           {
+                              WebComp_Comp_listener.componentprocess(sPrefix+"W0006", "", sEvt);
+                           }
+                           WebComp_Comp_listener_Component = OldComp_listener;
                         }
                      }
                      context.wbHandled = 1;
@@ -674,6 +727,16 @@ namespace GeneXus.Programs.wallet.registered {
       {
          initialize_formulas( ) ;
          clear_multi_value_controls( ) ;
+         if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+         {
+            if ( 1 != 0 )
+            {
+               if ( StringUtil.Len( WebComp_Comp_listener_Component) != 0 )
+               {
+                  WebComp_Comp_listener.componentstart();
+               }
+            }
+         }
          gxdyncontrolsrefreshing = true;
          fix_multi_value_controls( ) ;
          gxdyncontrolsrefreshing = false;
@@ -698,6 +761,10 @@ namespace GeneXus.Programs.wallet.registered {
       {
          /* Before Start, stand alone formulas. */
          before_start_formulas( ) ;
+         /* Execute Start event if defined. */
+         context.wbGlbDoneStart = 0;
+         /* Execute user event: Start */
+         E11192 ();
          context.wbGlbDoneStart = 1;
          nDoneStart = 1;
          /* After Start, stand alone formulas. */
@@ -707,7 +774,6 @@ namespace GeneXus.Programs.wallet.registered {
             /* Read saved SDTs. */
             /* Read saved values. */
             wcpOAV9screen_name = cgiGet( sPrefix+"wcpOAV9screen_name");
-            AV34noticeJson = cgiGet( sPrefix+"vNOTICEJSON");
             /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
@@ -719,41 +785,35 @@ namespace GeneXus.Programs.wallet.registered {
          }
       }
 
+      protected void GXStart( )
+      {
+         /* Execute user event: Start */
+         E11192 ();
+         if (returnInSub) return;
+      }
+
       protected void E11192( )
       {
-         /* GlobalEvents_Distpachincommingmessages Routine */
+         /* Start Routine */
          returnInSub = false;
-         if ( StringUtil.StrCmp(StringUtil.Trim( AV9screen_name), "Wallet.registered.Chat") == 0 )
+         /* Object Property */
+         if ( StringUtil.Len( sPrefix) == 0 )
          {
-            AV30isChatScreen = true;
+            bDynCreated_Comp_listener = true;
          }
-         else
+         if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Comp_listener_Component), StringUtil.Lower( "Wallet.registered.incomingMessageListener")) != 0 )
          {
-            AV30isChatScreen = false;
+            WebComp_Comp_listener = getWebComponent(GetType(), "GeneXus.Programs", "wallet.registered.incomingmessagelistener", new Object[] {context} );
+            WebComp_Comp_listener.ComponentInit();
+            WebComp_Comp_listener.Name = "Wallet.registered.incomingMessageListener";
+            WebComp_Comp_listener_Component = "Wallet.registered.incomingMessageListener";
          }
-         if ( StringUtil.StrCmp(StringUtil.Trim( AV9screen_name), "Wallet.registered.SmartGroup") == 0 )
+         if ( StringUtil.Len( WebComp_Comp_listener_Component) != 0 )
          {
-            AV35isGroupScreen = true;
+            WebComp_Comp_listener.setjustcreated();
+            WebComp_Comp_listener.componentprepare(new Object[] {(string)sPrefix+"W0006",(string)"",(string)AV9screen_name});
+            WebComp_Comp_listener.componentbind(new Object[] {(string)""});
          }
-         else
-         {
-            AV35isGroupScreen = false;
-         }
-         new GeneXus.Programs.wallet.registered.processincomingmessages(context ).execute(  AV30isChatScreen,  AV35isGroupScreen, ref  AV23lastMessageId, out  AV31notifications, out  AV33refreshChat) ;
-         AssignAttri(sPrefix, false, "AV23lastMessageId", AV23lastMessageId.ToString());
-         AV36GXV1 = 1;
-         while ( AV36GXV1 <= AV31notifications.Count )
-         {
-            AV32oneNotification = ((GeneXus.Programs.wallet.registered.SdtIncomingNotification)AV31notifications.Item(AV36GXV1));
-            this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowNotice", new Object[] {AV32oneNotification.ToJSonString(false, true)}, true);
-            AV36GXV1 = (int)(AV36GXV1+1);
-         }
-         if ( AV33refreshChat )
-         {
-            this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ReceiveChat", new Object[] {}, true);
-         }
-         AV31notifications.Clear();
-         /*  Sending Event outputs  */
       }
 
       protected void nextLoad( )
@@ -944,6 +1004,10 @@ namespace GeneXus.Programs.wallet.registered {
       public override void componentjscripts( )
       {
          include_jscripts( ) ;
+         if ( ! ( WebComp_Comp_listener == null ) )
+         {
+            WebComp_Comp_listener.componentjscripts();
+         }
       }
 
       public override void componentthemes( )
@@ -954,6 +1018,13 @@ namespace GeneXus.Programs.wallet.registered {
       protected void define_styles( )
       {
          AddThemeStyleSheetFile("", context.GetTheme( )+".css", "?"+GetCacheInvalidationToken( ));
+         if ( ! ( WebComp_Comp_listener == null ) )
+         {
+            if ( StringUtil.Len( WebComp_Comp_listener_Component) != 0 )
+            {
+               WebComp_Comp_listener.componentthemes();
+            }
+         }
          bool outputEnabled = isOutputEnabled( );
          if ( context.isSpaRequest( ) )
          {
@@ -962,7 +1033,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202610301325433", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202611814233232", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -978,8 +1049,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/dispatchincommingmessage.js", "?202610301325433", false, true, false);
-         context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
+         context.AddJavascriptSource("wallet/registered/dispatchincommingmessage.js", "?202611814233232", false, true, false);
          /* End function include_jscripts */
       }
 
@@ -1025,8 +1095,6 @@ namespace GeneXus.Programs.wallet.registered {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
-         setEventMetadata("GLOBALEVENTS.DISTPACHINCOMMINGMESSAGES","""{"handler":"E11192","iparms":[{"av":"AV9screen_name","fld":"vSCREEN_NAME","type":"char"},{"av":"AV23lastMessageId","fld":"vLASTMESSAGEID","type":"guid"}]""");
-         setEventMetadata("GLOBALEVENTS.DISTPACHINCOMMINGMESSAGES",""","oparms":[{"av":"AV23lastMessageId","fld":"vLASTMESSAGEID","type":"guid"}]}""");
          return  ;
       }
 
@@ -1049,20 +1117,19 @@ namespace GeneXus.Programs.wallet.registered {
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
-         AV23lastMessageId = Guid.Empty;
-         AV34noticeJson = "";
          GX_FocusControl = "";
+         WebComp_Comp_listener_Component = "";
+         OldComp_listener = "";
          Form = new GXWebForm();
          sXEvt = "";
          sEvt = "";
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
-         AV31notifications = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtIncomingNotification>( context, "IncomingNotification", "distributedcryptography");
-         AV32oneNotification = new GeneXus.Programs.wallet.registered.SdtIncomingNotification(context);
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          sCtrlAV9screen_name = "";
+         WebComp_Comp_listener = new GeneXus.Http.GXNullWebComponent();
          /* GeneXus formulas. */
       }
 
@@ -1073,10 +1140,10 @@ namespace GeneXus.Programs.wallet.registered {
       private short wbStart ;
       private short nDraw ;
       private short nDoneStart ;
+      private short nCmpId ;
       private short nDonePA ;
       private short gxcookieaux ;
       private short nGXWrapped ;
-      private int AV36GXV1 ;
       private int idxLst ;
       private string AV9screen_name ;
       private string wcpOAV9screen_name ;
@@ -1091,6 +1158,8 @@ namespace GeneXus.Programs.wallet.registered {
       private string GXKey ;
       private string GX_FocusControl ;
       private string divMaintable_Internalname ;
+      private string WebComp_Comp_listener_Component ;
+      private string OldComp_listener ;
       private string sXEvt ;
       private string sEvt ;
       private string EvtGridId ;
@@ -1104,15 +1173,10 @@ namespace GeneXus.Programs.wallet.registered {
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
-      private bool AV30isChatScreen ;
-      private bool AV35isGroupScreen ;
-      private bool AV33refreshChat ;
-      private string AV34noticeJson ;
-      private Guid AV23lastMessageId ;
+      private bool bDynCreated_Comp_listener ;
+      private GXWebComponent WebComp_Comp_listener ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
-      private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtIncomingNotification> AV31notifications ;
-      private GeneXus.Programs.wallet.registered.SdtIncomingNotification AV32oneNotification ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

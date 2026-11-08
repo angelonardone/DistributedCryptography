@@ -40,10 +40,10 @@ namespace GeneXus.Programs.wallet {
       }
 
       public void execute( string aP0_transactionId ,
-                           string aP1_transactionFileName )
+                           Guid aP1_groupId )
       {
          this.AV13transactionId = aP0_transactionId;
-         this.AV12transactionFileName = aP1_transactionFileName;
+         this.AV17groupId = aP1_groupId;
          ExecuteImpl();
       }
 
@@ -137,9 +137,9 @@ namespace GeneXus.Programs.wallet {
                GxWebStd.gx_hidden_field( context, "gxhash_vTRANSACTIONID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV13transactionId, "")), context));
                if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
                {
-                  AV12transactionFileName = GetPar( "transactionFileName");
-                  AssignAttri("", false, "AV12transactionFileName", AV12transactionFileName);
-                  GxWebStd.gx_hidden_field( context, "gxhash_vTRANSACTIONFILENAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12transactionFileName, "")), context));
+                  AV17groupId = StringUtil.StrToGuid( GetPar( "groupId"));
+                  AssignAttri("", false, "AV17groupId", AV17groupId.ToString());
+                  GxWebStd.gx_hidden_field( context, "gxhash_vGROUPID", GetSecureSignedToken( "", AV17groupId, context));
                }
             }
             if ( toggleJsOutput )
@@ -175,7 +175,7 @@ namespace GeneXus.Programs.wallet {
       {
          subInputsgrid_Rows = (int)(Math.Round(NumberUtil.Val( GetPar( "subInputsgrid_Rows"), "."), 18, MidpointRounding.ToEven));
          subOutputsgrid_Rows = (int)(Math.Round(NumberUtil.Val( GetPar( "subOutputsgrid_Rows"), "."), 18, MidpointRounding.ToEven));
-         AV12transactionFileName = GetPar( "transactionFileName");
+         AV17groupId = StringUtil.StrToGuid( GetPar( "groupId"));
          AV13transactionId = GetPar( "transactionId");
          setAjaxCallMode();
          if ( ! IsValidAjaxCall( true) )
@@ -183,7 +183,7 @@ namespace GeneXus.Programs.wallet {
             GxWebError = 1;
             return  ;
          }
-         gxgrInputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV12transactionFileName, AV13transactionId) ;
+         gxgrInputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV17groupId, AV13transactionId) ;
          AddString( context.getJSONResponse( )) ;
          /* End function gxgrInputsgrid_refresh_invoke */
       }
@@ -207,7 +207,7 @@ namespace GeneXus.Programs.wallet {
       {
          subInputsgrid_Rows = (int)(Math.Round(NumberUtil.Val( GetPar( "subInputsgrid_Rows"), "."), 18, MidpointRounding.ToEven));
          subOutputsgrid_Rows = (int)(Math.Round(NumberUtil.Val( GetPar( "subOutputsgrid_Rows"), "."), 18, MidpointRounding.ToEven));
-         AV12transactionFileName = GetPar( "transactionFileName");
+         AV17groupId = StringUtil.StrToGuid( GetPar( "groupId"));
          AV13transactionId = GetPar( "transactionId");
          setAjaxCallMode();
          if ( ! IsValidAjaxCall( true) )
@@ -215,7 +215,7 @@ namespace GeneXus.Programs.wallet {
             GxWebError = 1;
             return  ;
          }
-         gxgrOutputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV12transactionFileName, AV13transactionId) ;
+         gxgrOutputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV17groupId, AV13transactionId) ;
          AddString( context.getJSONResponse( )) ;
          /* End function gxgrOutputsgrid_refresh_invoke */
       }
@@ -310,10 +310,10 @@ namespace GeneXus.Programs.wallet {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -338,7 +338,7 @@ namespace GeneXus.Programs.wallet {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.showwallettransaction", new object[] {UrlEncode(StringUtil.RTrim(AV13transactionId)),UrlEncode(StringUtil.RTrim(AV12transactionFileName))}, new string[] {"transactionId","transactionFileName"}) +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wallet.showwallettransaction", new object[] {UrlEncode(StringUtil.RTrim(AV13transactionId)),UrlEncode(AV17groupId.ToString())}, new string[] {"transactionId","groupId"}) +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -353,8 +353,8 @@ namespace GeneXus.Programs.wallet {
 
       protected void send_integrity_footer_hashes( )
       {
-         GxWebStd.gx_hidden_field( context, "vTRANSACTIONFILENAME", StringUtil.RTrim( AV12transactionFileName));
-         GxWebStd.gx_hidden_field( context, "gxhash_vTRANSACTIONFILENAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12transactionFileName, "")), context));
+         GxWebStd.gx_hidden_field( context, "vGROUPID", AV17groupId.ToString());
+         GxWebStd.gx_hidden_field( context, "gxhash_vGROUPID", GetSecureSignedToken( "", AV17groupId, context));
          GxWebStd.gx_hidden_field( context, "vTRANSACTIONID", StringUtil.RTrim( AV13transactionId));
          GxWebStd.gx_hidden_field( context, "gxhash_vTRANSACTIONID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV13transactionId, "")), context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -384,8 +384,8 @@ namespace GeneXus.Programs.wallet {
          GxWebStd.gx_hidden_field( context, "nRC_GXsfl_25", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_25), 8, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "nRC_GXsfl_35", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_35), 8, 0, ".", "")));
          GxWebStd.gx_boolean_hidden_field( context, "vUSERRESPONSE", AV15userResponse);
-         GxWebStd.gx_hidden_field( context, "vTRANSACTIONFILENAME", StringUtil.RTrim( AV12transactionFileName));
-         GxWebStd.gx_hidden_field( context, "gxhash_vTRANSACTIONFILENAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12transactionFileName, "")), context));
+         GxWebStd.gx_hidden_field( context, "vGROUPID", AV17groupId.ToString());
+         GxWebStd.gx_hidden_field( context, "gxhash_vGROUPID", GetSecureSignedToken( "", AV17groupId, context));
          GxWebStd.gx_hidden_field( context, "vTRANSACTIONID", StringUtil.RTrim( AV13transactionId));
          GxWebStd.gx_hidden_field( context, "gxhash_vTRANSACTIONID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV13transactionId, "")), context));
          if ( context.isAjaxRequest( ) )
@@ -542,7 +542,7 @@ namespace GeneXus.Programs.wallet {
             {
                InputsgridContainer.AddObjectProperty("INPUTSGRID_nEOF", INPUTSGRID_nEOF);
                InputsgridContainer.AddObjectProperty("INPUTSGRID_nFirstRecordOnPage", INPUTSGRID_nFirstRecordOnPage);
-               AV16GXV1 = nGXsfl_25_idx;
+               AV20GXV1 = nGXsfl_25_idx;
                sStyleString = "";
                context.WriteHtmlText( "<div id=\""+"InputsgridContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Inputsgrid", InputsgridContainer, subInputsgrid_Internalname);
@@ -590,7 +590,7 @@ namespace GeneXus.Programs.wallet {
             {
                OutputsgridContainer.AddObjectProperty("OUTPUTSGRID_nEOF", OUTPUTSGRID_nEOF);
                OutputsgridContainer.AddObjectProperty("OUTPUTSGRID_nFirstRecordOnPage", OUTPUTSGRID_nFirstRecordOnPage);
-               AV21GXV6 = nGXsfl_35_idx;
+               AV25GXV6 = nGXsfl_35_idx;
                sStyleString = "";
                context.WriteHtmlText( "<div id=\""+"OutputsgridContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Outputsgrid", OutputsgridContainer, subOutputsgrid_Internalname);
@@ -626,7 +626,7 @@ namespace GeneXus.Programs.wallet {
                {
                   InputsgridContainer.AddObjectProperty("INPUTSGRID_nEOF", INPUTSGRID_nEOF);
                   InputsgridContainer.AddObjectProperty("INPUTSGRID_nFirstRecordOnPage", INPUTSGRID_nFirstRecordOnPage);
-                  AV16GXV1 = nGXsfl_25_idx;
+                  AV20GXV1 = nGXsfl_25_idx;
                   sStyleString = "";
                   context.WriteHtmlText( "<div id=\""+"InputsgridContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                   context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Inputsgrid", InputsgridContainer, subInputsgrid_Internalname);
@@ -659,7 +659,7 @@ namespace GeneXus.Programs.wallet {
                {
                   OutputsgridContainer.AddObjectProperty("OUTPUTSGRID_nEOF", OUTPUTSGRID_nEOF);
                   OutputsgridContainer.AddObjectProperty("OUTPUTSGRID_nFirstRecordOnPage", OUTPUTSGRID_nFirstRecordOnPage);
-                  AV21GXV6 = nGXsfl_35_idx;
+                  AV25GXV6 = nGXsfl_35_idx;
                   sStyleString = "";
                   context.WriteHtmlText( "<div id=\""+"OutputsgridContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                   context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Outputsgrid", OutputsgridContainer, subOutputsgrid_Internalname);
@@ -806,10 +806,10 @@ namespace GeneXus.Programs.wallet {
                            nGXsfl_35_idx = (int)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
                            sGXsfl_35_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_35_idx), 4, 0), 4, "0");
                            SubsflControlProps_353( ) ;
-                           AV21GXV6 = (int)(nGXsfl_35_idx+OUTPUTSGRID_nFirstRecordOnPage);
-                           if ( ( AV10outputs.Count >= AV21GXV6 ) && ( AV21GXV6 > 0 ) )
+                           AV25GXV6 = (int)(nGXsfl_35_idx+OUTPUTSGRID_nFirstRecordOnPage);
+                           if ( ( AV10outputs.Count >= AV25GXV6 ) && ( AV25GXV6 > 0 ) )
                            {
-                              AV10outputs.CurrentItem = ((GeneXus.Programs.wallet.SdtTransactionLine)AV10outputs.Item(AV21GXV6));
+                              AV10outputs.CurrentItem = ((GeneXus.Programs.wallet.SdtTransactionLine)AV10outputs.Item(AV25GXV6));
                            }
                            sEvtType = StringUtil.Right( sEvt, 1);
                            if ( StringUtil.StrCmp(sEvtType, ".") == 0 )
@@ -837,10 +837,10 @@ namespace GeneXus.Programs.wallet {
                            nGXsfl_25_idx = (int)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
                            sGXsfl_25_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_25_idx), 4, 0), 4, "0");
                            SubsflControlProps_252( ) ;
-                           AV16GXV1 = (int)(nGXsfl_25_idx+INPUTSGRID_nFirstRecordOnPage);
-                           if ( ( AV9inputs.Count >= AV16GXV1 ) && ( AV16GXV1 > 0 ) )
+                           AV20GXV1 = (int)(nGXsfl_25_idx+INPUTSGRID_nFirstRecordOnPage);
+                           if ( ( AV9inputs.Count >= AV20GXV1 ) && ( AV20GXV1 > 0 ) )
                            {
-                              AV9inputs.CurrentItem = ((GeneXus.Programs.wallet.SdtTransactionLine)AV9inputs.Item(AV16GXV1));
+                              AV9inputs.CurrentItem = ((GeneXus.Programs.wallet.SdtTransactionLine)AV9inputs.Item(AV20GXV1));
                            }
                            sEvtType = StringUtil.Right( sEvt, 1);
                            if ( StringUtil.StrCmp(sEvtType, ".") == 0 )
@@ -972,7 +972,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void gxgrInputsgrid_refresh( int subInputsgrid_Rows ,
                                              int subOutputsgrid_Rows ,
-                                             string AV12transactionFileName ,
+                                             Guid AV17groupId ,
                                              string AV13transactionId )
       {
          initialize_formulas( ) ;
@@ -987,7 +987,7 @@ namespace GeneXus.Programs.wallet {
 
       protected void gxgrOutputsgrid_refresh( int subInputsgrid_Rows ,
                                               int subOutputsgrid_Rows ,
-                                              string AV12transactionFileName ,
+                                              Guid AV17groupId ,
                                               string AV13transactionId )
       {
          initialize_formulas( ) ;
@@ -1170,7 +1170,7 @@ namespace GeneXus.Programs.wallet {
          GxWebStd.gx_hidden_field( context, "INPUTSGRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(INPUTSGRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrInputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV12transactionFileName, AV13transactionId) ;
+            gxgrInputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV17groupId, AV13transactionId) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1191,7 +1191,7 @@ namespace GeneXus.Programs.wallet {
          InputsgridContainer.AddObjectProperty("INPUTSGRID_nFirstRecordOnPage", INPUTSGRID_nFirstRecordOnPage);
          if ( isFullAjaxMode( ) )
          {
-            gxgrInputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV12transactionFileName, AV13transactionId) ;
+            gxgrInputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV17groupId, AV13transactionId) ;
          }
          send_integrity_footer_hashes( ) ;
          return (short)(((INPUTSGRID_nEOF==0) ? 0 : 2)) ;
@@ -1210,7 +1210,7 @@ namespace GeneXus.Programs.wallet {
          GxWebStd.gx_hidden_field( context, "INPUTSGRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(INPUTSGRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrInputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV12transactionFileName, AV13transactionId) ;
+            gxgrInputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV17groupId, AV13transactionId) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1237,7 +1237,7 @@ namespace GeneXus.Programs.wallet {
          GxWebStd.gx_hidden_field( context, "INPUTSGRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(INPUTSGRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrInputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV12transactionFileName, AV13transactionId) ;
+            gxgrInputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV17groupId, AV13transactionId) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1256,7 +1256,7 @@ namespace GeneXus.Programs.wallet {
          GxWebStd.gx_hidden_field( context, "INPUTSGRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(INPUTSGRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrInputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV12transactionFileName, AV13transactionId) ;
+            gxgrInputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV17groupId, AV13transactionId) ;
          }
          send_integrity_footer_hashes( ) ;
          return (int)(0) ;
@@ -1293,7 +1293,7 @@ namespace GeneXus.Programs.wallet {
          GxWebStd.gx_hidden_field( context, "OUTPUTSGRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(OUTPUTSGRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrOutputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV12transactionFileName, AV13transactionId) ;
+            gxgrOutputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV17groupId, AV13transactionId) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1314,7 +1314,7 @@ namespace GeneXus.Programs.wallet {
          OutputsgridContainer.AddObjectProperty("OUTPUTSGRID_nFirstRecordOnPage", OUTPUTSGRID_nFirstRecordOnPage);
          if ( isFullAjaxMode( ) )
          {
-            gxgrOutputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV12transactionFileName, AV13transactionId) ;
+            gxgrOutputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV17groupId, AV13transactionId) ;
          }
          send_integrity_footer_hashes( ) ;
          return (short)(((OUTPUTSGRID_nEOF==0) ? 0 : 2)) ;
@@ -1333,7 +1333,7 @@ namespace GeneXus.Programs.wallet {
          GxWebStd.gx_hidden_field( context, "OUTPUTSGRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(OUTPUTSGRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrOutputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV12transactionFileName, AV13transactionId) ;
+            gxgrOutputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV17groupId, AV13transactionId) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1360,7 +1360,7 @@ namespace GeneXus.Programs.wallet {
          GxWebStd.gx_hidden_field( context, "OUTPUTSGRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(OUTPUTSGRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrOutputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV12transactionFileName, AV13transactionId) ;
+            gxgrOutputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV17groupId, AV13transactionId) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1379,7 +1379,7 @@ namespace GeneXus.Programs.wallet {
          GxWebStd.gx_hidden_field( context, "OUTPUTSGRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(OUTPUTSGRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrOutputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV12transactionFileName, AV13transactionId) ;
+            gxgrOutputsgrid_refresh( subInputsgrid_Rows, subOutputsgrid_Rows, AV17groupId, AV13transactionId) ;
          }
          send_integrity_footer_hashes( ) ;
          return (int)(0) ;
@@ -1433,10 +1433,10 @@ namespace GeneXus.Programs.wallet {
                nGXsfl_25_fel_idx = ((subInputsgrid_Islastpage==1)&&(nGXsfl_25_fel_idx+1>subInputsgrid_fnc_Recordsperpage( )) ? 1 : nGXsfl_25_fel_idx+1);
                sGXsfl_25_fel_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_25_fel_idx), 4, 0), 4, "0");
                SubsflControlProps_fel_252( ) ;
-               AV16GXV1 = (int)(nGXsfl_25_fel_idx+INPUTSGRID_nFirstRecordOnPage);
-               if ( ( AV9inputs.Count >= AV16GXV1 ) && ( AV16GXV1 > 0 ) )
+               AV20GXV1 = (int)(nGXsfl_25_fel_idx+INPUTSGRID_nFirstRecordOnPage);
+               if ( ( AV9inputs.Count >= AV20GXV1 ) && ( AV20GXV1 > 0 ) )
                {
-                  AV9inputs.CurrentItem = ((GeneXus.Programs.wallet.SdtTransactionLine)AV9inputs.Item(AV16GXV1));
+                  AV9inputs.CurrentItem = ((GeneXus.Programs.wallet.SdtTransactionLine)AV9inputs.Item(AV20GXV1));
                }
             }
             if ( nGXsfl_25_fel_idx == 0 )
@@ -1453,10 +1453,10 @@ namespace GeneXus.Programs.wallet {
                nGXsfl_35_fel_idx = ((subOutputsgrid_Islastpage==1)&&(nGXsfl_35_fel_idx+1>subOutputsgrid_fnc_Recordsperpage( )) ? 1 : nGXsfl_35_fel_idx+1);
                sGXsfl_35_fel_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_35_fel_idx), 4, 0), 4, "0");
                SubsflControlProps_fel_353( ) ;
-               AV21GXV6 = (int)(nGXsfl_35_fel_idx+OUTPUTSGRID_nFirstRecordOnPage);
-               if ( ( AV10outputs.Count >= AV21GXV6 ) && ( AV21GXV6 > 0 ) )
+               AV25GXV6 = (int)(nGXsfl_35_fel_idx+OUTPUTSGRID_nFirstRecordOnPage);
+               if ( ( AV10outputs.Count >= AV25GXV6 ) && ( AV25GXV6 > 0 ) )
                {
-                  AV10outputs.CurrentItem = ((GeneXus.Programs.wallet.SdtTransactionLine)AV10outputs.Item(AV21GXV6));
+                  AV10outputs.CurrentItem = ((GeneXus.Programs.wallet.SdtTransactionLine)AV10outputs.Item(AV25GXV6));
                }
             }
             if ( nGXsfl_35_fel_idx == 0 )
@@ -1494,6 +1494,7 @@ namespace GeneXus.Programs.wallet {
       {
          /* Start Routine */
          returnInSub = false;
+         new GeneXus.Programs.wallet.getaddresscontext(context ).execute(  AV17groupId, out  AV12transactionFileName, out  AV19requestsFileName, out  AV18receivingType, out  AV16changeType) ;
          new GeneXus.Programs.wallet.gettransactiondetail(context ).execute(  AV13transactionId,  AV12transactionFileName, out  AV7header, out  AV9inputs, out  AV10outputs, out  AV5error) ;
          gx_BV25 = true;
          gx_BV35 = true;
@@ -1587,6 +1588,7 @@ namespace GeneXus.Programs.wallet {
          returnInSub = false;
          if ( AV15userResponse )
          {
+            new GeneXus.Programs.wallet.getaddresscontext(context ).execute(  AV17groupId, out  AV12transactionFileName, out  AV19requestsFileName, out  AV18receivingType, out  AV16changeType) ;
             new GeneXus.Programs.wallet.forgetunseenpayment(context ).execute(  AV12transactionFileName,  AV13transactionId, out  AV5error) ;
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV5error)) )
             {
@@ -1609,10 +1611,10 @@ namespace GeneXus.Programs.wallet {
       {
          /* Inputsgrid_Load Routine */
          returnInSub = false;
-         AV16GXV1 = 1;
-         while ( AV16GXV1 <= AV9inputs.Count )
+         AV20GXV1 = 1;
+         while ( AV20GXV1 <= AV9inputs.Count )
          {
-            AV9inputs.CurrentItem = ((GeneXus.Programs.wallet.SdtTransactionLine)AV9inputs.Item(AV16GXV1));
+            AV9inputs.CurrentItem = ((GeneXus.Programs.wallet.SdtTransactionLine)AV9inputs.Item(AV20GXV1));
             /* Load Method */
             if ( wbStart != -1 )
             {
@@ -1629,7 +1631,7 @@ namespace GeneXus.Programs.wallet {
             {
                DoAjaxLoad(25, InputsgridRow);
             }
-            AV16GXV1 = (int)(AV16GXV1+1);
+            AV20GXV1 = (int)(AV20GXV1+1);
          }
       }
 
@@ -1637,10 +1639,10 @@ namespace GeneXus.Programs.wallet {
       {
          /* Outputsgrid_Load Routine */
          returnInSub = false;
-         AV21GXV6 = 1;
-         while ( AV21GXV6 <= AV10outputs.Count )
+         AV25GXV6 = 1;
+         while ( AV25GXV6 <= AV10outputs.Count )
          {
-            AV10outputs.CurrentItem = ((GeneXus.Programs.wallet.SdtTransactionLine)AV10outputs.Item(AV21GXV6));
+            AV10outputs.CurrentItem = ((GeneXus.Programs.wallet.SdtTransactionLine)AV10outputs.Item(AV25GXV6));
             /* Load Method */
             if ( wbStart != -1 )
             {
@@ -1657,7 +1659,7 @@ namespace GeneXus.Programs.wallet {
             {
                DoAjaxLoad(35, OutputsgridRow);
             }
-            AV21GXV6 = (int)(AV21GXV6+1);
+            AV25GXV6 = (int)(AV25GXV6+1);
          }
       }
 
@@ -1668,9 +1670,9 @@ namespace GeneXus.Programs.wallet {
          AV13transactionId = (string)getParm(obj,0);
          AssignAttri("", false, "AV13transactionId", AV13transactionId);
          GxWebStd.gx_hidden_field( context, "gxhash_vTRANSACTIONID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV13transactionId, "")), context));
-         AV12transactionFileName = (string)getParm(obj,1);
-         AssignAttri("", false, "AV12transactionFileName", AV12transactionFileName);
-         GxWebStd.gx_hidden_field( context, "gxhash_vTRANSACTIONFILENAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12transactionFileName, "")), context));
+         AV17groupId = (Guid)getParm(obj,1);
+         AssignAttri("", false, "AV17groupId", AV17groupId.ToString());
+         GxWebStd.gx_hidden_field( context, "gxhash_vGROUPID", GetSecureSignedToken( "", AV17groupId, context));
       }
 
       public override string getresponse( string sGXDynURL )
@@ -1706,7 +1708,7 @@ namespace GeneXus.Programs.wallet {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013274511", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202611814254446", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1722,7 +1724,7 @@ namespace GeneXus.Programs.wallet {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("wallet/showwallettransaction.js", "?2026103013274511", false, true, false);
+         context.AddJavascriptSource("wallet/showwallettransaction.js", "?202611814254446", false, true, false);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
          /* End function include_jscripts */
       }
@@ -1815,7 +1817,7 @@ namespace GeneXus.Programs.wallet {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 26,'',false,'" + sGXsfl_25_idx + "',25)\"";
             ROClassString = "Attribute";
-            InputsgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlinowner_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtTransactionLine)AV9inputs.Item(AV16GXV1)).gxTpr_Owner),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,26);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlinowner_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlinowner_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)25,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            InputsgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlinowner_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtTransactionLine)AV9inputs.Item(AV20GXV1)).gxTpr_Owner),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,26);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlinowner_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlinowner_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)25,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( InputsgridContainer.GetWrapped() == 1 )
             {
@@ -1824,7 +1826,7 @@ namespace GeneXus.Programs.wallet {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 27,'',false,'" + sGXsfl_25_idx + "',25)\"";
             ROClassString = "Attribute";
-            InputsgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlinaddress_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtTransactionLine)AV9inputs.Item(AV16GXV1)).gxTpr_Address),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,27);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlinaddress_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlinaddress_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)25,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            InputsgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlinaddress_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtTransactionLine)AV9inputs.Item(AV20GXV1)).gxTpr_Address),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,27);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlinaddress_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlinaddress_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)25,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( InputsgridContainer.GetWrapped() == 1 )
             {
@@ -1833,7 +1835,7 @@ namespace GeneXus.Programs.wallet {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 28,'',false,'" + sGXsfl_25_idx + "',25)\"";
             ROClassString = "Attribute";
-            InputsgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlinvalue_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtTransactionLine)AV9inputs.Item(AV16GXV1)).gxTpr_Valuetext),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,28);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlinvalue_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlinvalue_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)25,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            InputsgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlinvalue_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtTransactionLine)AV9inputs.Item(AV20GXV1)).gxTpr_Valuetext),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,28);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlinvalue_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlinvalue_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)25,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( InputsgridContainer.GetWrapped() == 1 )
             {
@@ -1842,7 +1844,7 @@ namespace GeneXus.Programs.wallet {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'',false,'" + sGXsfl_25_idx + "',25)\"";
             ROClassString = "Attribute";
-            InputsgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlinoutpoint_Internalname,((GeneXus.Programs.wallet.SdtTransactionLine)AV9inputs.Item(AV16GXV1)).gxTpr_Outpoint,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,29);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlinoutpoint_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlinoutpoint_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)25,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            InputsgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtlinoutpoint_Internalname,((GeneXus.Programs.wallet.SdtTransactionLine)AV9inputs.Item(AV20GXV1)).gxTpr_Outpoint,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,29);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtlinoutpoint_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtlinoutpoint_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)25,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             send_integrity_lvl_hashes3O2( ) ;
             InputsgridContainer.AddRow(InputsgridRow);
             nGXsfl_25_idx = ((subInputsgrid_Islastpage==1)&&(nGXsfl_25_idx+1>subInputsgrid_fnc_Recordsperpage( )) ? 1 : nGXsfl_25_idx+1);
@@ -1940,7 +1942,7 @@ namespace GeneXus.Programs.wallet {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 36,'',false,'" + sGXsfl_35_idx + "',35)\"";
             ROClassString = "Attribute";
-            OutputsgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtloutn_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(((GeneXus.Programs.wallet.SdtTransactionLine)AV10outputs.Item(AV21GXV6)).gxTpr_N), 10, 0, ".", "")),StringUtil.LTrim( ((edtavCtloutn_Enabled!=0) ? context.localUtil.Format( (decimal)(((GeneXus.Programs.wallet.SdtTransactionLine)AV10outputs.Item(AV21GXV6)).gxTpr_N), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(((GeneXus.Programs.wallet.SdtTransactionLine)AV10outputs.Item(AV21GXV6)).gxTpr_N), "ZZZZZZZZZ9")))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,36);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtloutn_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtloutn_Enabled,(short)0,(string)"text",(string)"1",(short)0,(string)"px",(short)17,(string)"px",(short)10,(short)0,(short)0,(short)35,(short)0,(short)-1,(short)0,(bool)false,(string)"",(string)"end",(bool)false,(string)""});
+            OutputsgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtloutn_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(((GeneXus.Programs.wallet.SdtTransactionLine)AV10outputs.Item(AV25GXV6)).gxTpr_N), 10, 0, ".", "")),StringUtil.LTrim( ((edtavCtloutn_Enabled!=0) ? context.localUtil.Format( (decimal)(((GeneXus.Programs.wallet.SdtTransactionLine)AV10outputs.Item(AV25GXV6)).gxTpr_N), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(((GeneXus.Programs.wallet.SdtTransactionLine)AV10outputs.Item(AV25GXV6)).gxTpr_N), "ZZZZZZZZZ9")))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,36);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtloutn_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtloutn_Enabled,(short)0,(string)"text",(string)"1",(short)0,(string)"px",(short)17,(string)"px",(short)10,(short)0,(short)0,(short)35,(short)0,(short)-1,(short)0,(bool)false,(string)"",(string)"end",(bool)false,(string)""});
             /* Subfile cell */
             if ( OutputsgridContainer.GetWrapped() == 1 )
             {
@@ -1949,7 +1951,7 @@ namespace GeneXus.Programs.wallet {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 37,'',false,'" + sGXsfl_35_idx + "',35)\"";
             ROClassString = "Attribute";
-            OutputsgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtloutowner_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtTransactionLine)AV10outputs.Item(AV21GXV6)).gxTpr_Owner),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,37);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtloutowner_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtloutowner_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)35,(short)0,(short)-1,(short)-1,(bool)false,(string)"",(string)"start",(bool)true,(string)""});
+            OutputsgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtloutowner_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtTransactionLine)AV10outputs.Item(AV25GXV6)).gxTpr_Owner),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,37);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtloutowner_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtloutowner_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)35,(short)0,(short)-1,(short)-1,(bool)false,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( OutputsgridContainer.GetWrapped() == 1 )
             {
@@ -1958,7 +1960,7 @@ namespace GeneXus.Programs.wallet {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 38,'',false,'" + sGXsfl_35_idx + "',35)\"";
             ROClassString = "Attribute";
-            OutputsgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtloutaddress_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtTransactionLine)AV10outputs.Item(AV21GXV6)).gxTpr_Address),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,38);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtloutaddress_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtloutaddress_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)35,(short)0,(short)-1,(short)-1,(bool)false,(string)"",(string)"start",(bool)true,(string)""});
+            OutputsgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtloutaddress_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtTransactionLine)AV10outputs.Item(AV25GXV6)).gxTpr_Address),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,38);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtloutaddress_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtloutaddress_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)250,(short)0,(short)0,(short)35,(short)0,(short)-1,(short)-1,(bool)false,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( OutputsgridContainer.GetWrapped() == 1 )
             {
@@ -1967,7 +1969,7 @@ namespace GeneXus.Programs.wallet {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 39,'',false,'" + sGXsfl_35_idx + "',35)\"";
             ROClassString = "Attribute";
-            OutputsgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtloutvalue_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtTransactionLine)AV10outputs.Item(AV21GXV6)).gxTpr_Valuetext),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,39);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtloutvalue_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtloutvalue_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)35,(short)0,(short)-1,(short)-1,(bool)false,(string)"",(string)"start",(bool)true,(string)""});
+            OutputsgridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCtloutvalue_Internalname,StringUtil.RTrim( ((GeneXus.Programs.wallet.SdtTransactionLine)AV10outputs.Item(AV25GXV6)).gxTpr_Valuetext),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,39);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCtloutvalue_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(short)-1,(int)edtavCtloutvalue_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)35,(short)0,(short)-1,(short)-1,(bool)false,(string)"",(string)"start",(bool)true,(string)""});
             send_integrity_lvl_hashes3O3( ) ;
             OutputsgridContainer.AddRow(OutputsgridRow);
             nGXsfl_35_idx = ((subOutputsgrid_Islastpage==1)&&(nGXsfl_35_idx+1>subOutputsgrid_fnc_Recordsperpage( )) ? 1 : nGXsfl_35_idx+1);
@@ -2238,18 +2240,18 @@ namespace GeneXus.Programs.wallet {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"INPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"INPUTSGRID_nEOF","type":"int"},{"av":"AV9inputs","fld":"vINPUTS","grid":25,"type":""},{"av":"nGXsfl_25_idx","ctrl":"GRID","prop":"GridCurrRow","grid":25},{"av":"nRC_GXsfl_25","ctrl":"INPUTSGRID","prop":"GridRC","grid":25,"type":"int"},{"av":"OUTPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"OUTPUTSGRID_nEOF","type":"int"},{"av":"AV10outputs","fld":"vOUTPUTS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"nRC_GXsfl_35","ctrl":"OUTPUTSGRID","prop":"GridRC","grid":35,"type":"int"},{"av":"subInputsgrid_Rows","ctrl":"INPUTSGRID","prop":"Rows"},{"av":"subOutputsgrid_Rows","ctrl":"OUTPUTSGRID","prop":"Rows"},{"av":"AV12transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"INPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"INPUTSGRID_nEOF","type":"int"},{"av":"AV9inputs","fld":"vINPUTS","grid":25,"type":""},{"av":"nGXsfl_25_idx","ctrl":"GRID","prop":"GridCurrRow","grid":25},{"av":"nRC_GXsfl_25","ctrl":"INPUTSGRID","prop":"GridRC","grid":25,"type":"int"},{"av":"OUTPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"OUTPUTSGRID_nEOF","type":"int"},{"av":"AV10outputs","fld":"vOUTPUTS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"nRC_GXsfl_35","ctrl":"OUTPUTSGRID","prop":"GridRC","grid":35,"type":"int"},{"av":"subInputsgrid_Rows","ctrl":"INPUTSGRID","prop":"Rows"},{"av":"subOutputsgrid_Rows","ctrl":"OUTPUTSGRID","prop":"Rows"},{"av":"AV17groupId","fld":"vGROUPID","hsh":true,"type":"guid"},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"}]}""");
          setEventMetadata("'CLOSE'","""{"handler":"E123O2","iparms":[]}""");
          setEventMetadata("'FORGET PAYMENT'","""{"handler":"E113O1","iparms":[]}""");
-         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED","""{"handler":"E133O2","iparms":[{"av":"AV15userResponse","fld":"vUSERRESPONSE","type":"boolean"},{"av":"AV12transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"}]}""");
-         setEventMetadata("INPUTSGRID_FIRSTPAGE","""{"handler":"subinputsgrid_firstpage","iparms":[{"av":"INPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"INPUTSGRID_nEOF","type":"int"},{"av":"AV9inputs","fld":"vINPUTS","grid":25,"type":""},{"av":"nGXsfl_25_idx","ctrl":"GRID","prop":"GridCurrRow","grid":25},{"av":"nRC_GXsfl_25","ctrl":"INPUTSGRID","prop":"GridRC","grid":25,"type":"int"},{"av":"subInputsgrid_Rows","ctrl":"INPUTSGRID","prop":"Rows"},{"av":"subOutputsgrid_Rows","ctrl":"OUTPUTSGRID","prop":"Rows"},{"av":"AV12transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV10outputs","fld":"vOUTPUTS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"OUTPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_35","ctrl":"OUTPUTSGRID","prop":"GridRC","grid":35,"type":"int"}]}""");
-         setEventMetadata("INPUTSGRID_PREVPAGE","""{"handler":"subinputsgrid_previouspage","iparms":[{"av":"INPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"INPUTSGRID_nEOF","type":"int"},{"av":"AV9inputs","fld":"vINPUTS","grid":25,"type":""},{"av":"nGXsfl_25_idx","ctrl":"GRID","prop":"GridCurrRow","grid":25},{"av":"nRC_GXsfl_25","ctrl":"INPUTSGRID","prop":"GridRC","grid":25,"type":"int"},{"av":"subInputsgrid_Rows","ctrl":"INPUTSGRID","prop":"Rows"},{"av":"subOutputsgrid_Rows","ctrl":"OUTPUTSGRID","prop":"Rows"},{"av":"AV12transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV10outputs","fld":"vOUTPUTS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"OUTPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_35","ctrl":"OUTPUTSGRID","prop":"GridRC","grid":35,"type":"int"}]}""");
-         setEventMetadata("INPUTSGRID_NEXTPAGE","""{"handler":"subinputsgrid_nextpage","iparms":[{"av":"INPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"INPUTSGRID_nEOF","type":"int"},{"av":"AV9inputs","fld":"vINPUTS","grid":25,"type":""},{"av":"nGXsfl_25_idx","ctrl":"GRID","prop":"GridCurrRow","grid":25},{"av":"nRC_GXsfl_25","ctrl":"INPUTSGRID","prop":"GridRC","grid":25,"type":"int"},{"av":"subInputsgrid_Rows","ctrl":"INPUTSGRID","prop":"Rows"},{"av":"subOutputsgrid_Rows","ctrl":"OUTPUTSGRID","prop":"Rows"},{"av":"AV12transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV10outputs","fld":"vOUTPUTS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"OUTPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_35","ctrl":"OUTPUTSGRID","prop":"GridRC","grid":35,"type":"int"}]}""");
-         setEventMetadata("INPUTSGRID_LASTPAGE","""{"handler":"subinputsgrid_lastpage","iparms":[{"av":"INPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"INPUTSGRID_nEOF","type":"int"},{"av":"AV9inputs","fld":"vINPUTS","grid":25,"type":""},{"av":"nGXsfl_25_idx","ctrl":"GRID","prop":"GridCurrRow","grid":25},{"av":"nRC_GXsfl_25","ctrl":"INPUTSGRID","prop":"GridRC","grid":25,"type":"int"},{"av":"subInputsgrid_Rows","ctrl":"INPUTSGRID","prop":"Rows"},{"av":"subOutputsgrid_Rows","ctrl":"OUTPUTSGRID","prop":"Rows"},{"av":"AV12transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV10outputs","fld":"vOUTPUTS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"OUTPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_35","ctrl":"OUTPUTSGRID","prop":"GridRC","grid":35,"type":"int"}]}""");
-         setEventMetadata("OUTPUTSGRID_FIRSTPAGE","""{"handler":"suboutputsgrid_firstpage","iparms":[{"av":"OUTPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"OUTPUTSGRID_nEOF","type":"int"},{"av":"AV10outputs","fld":"vOUTPUTS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"nRC_GXsfl_35","ctrl":"OUTPUTSGRID","prop":"GridRC","grid":35,"type":"int"},{"av":"subInputsgrid_Rows","ctrl":"INPUTSGRID","prop":"Rows"},{"av":"subOutputsgrid_Rows","ctrl":"OUTPUTSGRID","prop":"Rows"},{"av":"AV12transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV9inputs","fld":"vINPUTS","grid":25,"type":""},{"av":"nGXsfl_25_idx","ctrl":"GRID","prop":"GridCurrRow","grid":25},{"av":"INPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_25","ctrl":"INPUTSGRID","prop":"GridRC","grid":25,"type":"int"}]}""");
-         setEventMetadata("OUTPUTSGRID_PREVPAGE","""{"handler":"suboutputsgrid_previouspage","iparms":[{"av":"OUTPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"OUTPUTSGRID_nEOF","type":"int"},{"av":"AV10outputs","fld":"vOUTPUTS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"nRC_GXsfl_35","ctrl":"OUTPUTSGRID","prop":"GridRC","grid":35,"type":"int"},{"av":"subInputsgrid_Rows","ctrl":"INPUTSGRID","prop":"Rows"},{"av":"subOutputsgrid_Rows","ctrl":"OUTPUTSGRID","prop":"Rows"},{"av":"AV12transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV9inputs","fld":"vINPUTS","grid":25,"type":""},{"av":"nGXsfl_25_idx","ctrl":"GRID","prop":"GridCurrRow","grid":25},{"av":"INPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_25","ctrl":"INPUTSGRID","prop":"GridRC","grid":25,"type":"int"}]}""");
-         setEventMetadata("OUTPUTSGRID_NEXTPAGE","""{"handler":"suboutputsgrid_nextpage","iparms":[{"av":"OUTPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"OUTPUTSGRID_nEOF","type":"int"},{"av":"AV10outputs","fld":"vOUTPUTS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"nRC_GXsfl_35","ctrl":"OUTPUTSGRID","prop":"GridRC","grid":35,"type":"int"},{"av":"subInputsgrid_Rows","ctrl":"INPUTSGRID","prop":"Rows"},{"av":"subOutputsgrid_Rows","ctrl":"OUTPUTSGRID","prop":"Rows"},{"av":"AV12transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV9inputs","fld":"vINPUTS","grid":25,"type":""},{"av":"nGXsfl_25_idx","ctrl":"GRID","prop":"GridCurrRow","grid":25},{"av":"INPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_25","ctrl":"INPUTSGRID","prop":"GridRC","grid":25,"type":"int"}]}""");
-         setEventMetadata("OUTPUTSGRID_LASTPAGE","""{"handler":"suboutputsgrid_lastpage","iparms":[{"av":"OUTPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"OUTPUTSGRID_nEOF","type":"int"},{"av":"AV10outputs","fld":"vOUTPUTS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"nRC_GXsfl_35","ctrl":"OUTPUTSGRID","prop":"GridRC","grid":35,"type":"int"},{"av":"subInputsgrid_Rows","ctrl":"INPUTSGRID","prop":"Rows"},{"av":"subOutputsgrid_Rows","ctrl":"OUTPUTSGRID","prop":"Rows"},{"av":"AV12transactionFileName","fld":"vTRANSACTIONFILENAME","hsh":true,"type":"char"},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV9inputs","fld":"vINPUTS","grid":25,"type":""},{"av":"nGXsfl_25_idx","ctrl":"GRID","prop":"GridCurrRow","grid":25},{"av":"INPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_25","ctrl":"INPUTSGRID","prop":"GridRC","grid":25,"type":"int"}]}""");
+         setEventMetadata("GX.EXTENSIONS.WEB.DIALOGS.ONCONFIRMCLOSED","""{"handler":"E133O2","iparms":[{"av":"AV15userResponse","fld":"vUSERRESPONSE","type":"boolean"},{"av":"AV17groupId","fld":"vGROUPID","hsh":true,"type":"guid"},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"}]}""");
+         setEventMetadata("INPUTSGRID_FIRSTPAGE","""{"handler":"subinputsgrid_firstpage","iparms":[{"av":"INPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"INPUTSGRID_nEOF","type":"int"},{"av":"AV9inputs","fld":"vINPUTS","grid":25,"type":""},{"av":"nGXsfl_25_idx","ctrl":"GRID","prop":"GridCurrRow","grid":25},{"av":"nRC_GXsfl_25","ctrl":"INPUTSGRID","prop":"GridRC","grid":25,"type":"int"},{"av":"subInputsgrid_Rows","ctrl":"INPUTSGRID","prop":"Rows"},{"av":"subOutputsgrid_Rows","ctrl":"OUTPUTSGRID","prop":"Rows"},{"av":"AV17groupId","fld":"vGROUPID","hsh":true,"type":"guid"},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV10outputs","fld":"vOUTPUTS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"OUTPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_35","ctrl":"OUTPUTSGRID","prop":"GridRC","grid":35,"type":"int"}]}""");
+         setEventMetadata("INPUTSGRID_PREVPAGE","""{"handler":"subinputsgrid_previouspage","iparms":[{"av":"INPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"INPUTSGRID_nEOF","type":"int"},{"av":"AV9inputs","fld":"vINPUTS","grid":25,"type":""},{"av":"nGXsfl_25_idx","ctrl":"GRID","prop":"GridCurrRow","grid":25},{"av":"nRC_GXsfl_25","ctrl":"INPUTSGRID","prop":"GridRC","grid":25,"type":"int"},{"av":"subInputsgrid_Rows","ctrl":"INPUTSGRID","prop":"Rows"},{"av":"subOutputsgrid_Rows","ctrl":"OUTPUTSGRID","prop":"Rows"},{"av":"AV17groupId","fld":"vGROUPID","hsh":true,"type":"guid"},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV10outputs","fld":"vOUTPUTS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"OUTPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_35","ctrl":"OUTPUTSGRID","prop":"GridRC","grid":35,"type":"int"}]}""");
+         setEventMetadata("INPUTSGRID_NEXTPAGE","""{"handler":"subinputsgrid_nextpage","iparms":[{"av":"INPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"INPUTSGRID_nEOF","type":"int"},{"av":"AV9inputs","fld":"vINPUTS","grid":25,"type":""},{"av":"nGXsfl_25_idx","ctrl":"GRID","prop":"GridCurrRow","grid":25},{"av":"nRC_GXsfl_25","ctrl":"INPUTSGRID","prop":"GridRC","grid":25,"type":"int"},{"av":"subInputsgrid_Rows","ctrl":"INPUTSGRID","prop":"Rows"},{"av":"subOutputsgrid_Rows","ctrl":"OUTPUTSGRID","prop":"Rows"},{"av":"AV17groupId","fld":"vGROUPID","hsh":true,"type":"guid"},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV10outputs","fld":"vOUTPUTS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"OUTPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_35","ctrl":"OUTPUTSGRID","prop":"GridRC","grid":35,"type":"int"}]}""");
+         setEventMetadata("INPUTSGRID_LASTPAGE","""{"handler":"subinputsgrid_lastpage","iparms":[{"av":"INPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"INPUTSGRID_nEOF","type":"int"},{"av":"AV9inputs","fld":"vINPUTS","grid":25,"type":""},{"av":"nGXsfl_25_idx","ctrl":"GRID","prop":"GridCurrRow","grid":25},{"av":"nRC_GXsfl_25","ctrl":"INPUTSGRID","prop":"GridRC","grid":25,"type":"int"},{"av":"subInputsgrid_Rows","ctrl":"INPUTSGRID","prop":"Rows"},{"av":"subOutputsgrid_Rows","ctrl":"OUTPUTSGRID","prop":"Rows"},{"av":"AV17groupId","fld":"vGROUPID","hsh":true,"type":"guid"},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV10outputs","fld":"vOUTPUTS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"OUTPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_35","ctrl":"OUTPUTSGRID","prop":"GridRC","grid":35,"type":"int"}]}""");
+         setEventMetadata("OUTPUTSGRID_FIRSTPAGE","""{"handler":"suboutputsgrid_firstpage","iparms":[{"av":"OUTPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"OUTPUTSGRID_nEOF","type":"int"},{"av":"AV10outputs","fld":"vOUTPUTS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"nRC_GXsfl_35","ctrl":"OUTPUTSGRID","prop":"GridRC","grid":35,"type":"int"},{"av":"subInputsgrid_Rows","ctrl":"INPUTSGRID","prop":"Rows"},{"av":"subOutputsgrid_Rows","ctrl":"OUTPUTSGRID","prop":"Rows"},{"av":"AV17groupId","fld":"vGROUPID","hsh":true,"type":"guid"},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV9inputs","fld":"vINPUTS","grid":25,"type":""},{"av":"nGXsfl_25_idx","ctrl":"GRID","prop":"GridCurrRow","grid":25},{"av":"INPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_25","ctrl":"INPUTSGRID","prop":"GridRC","grid":25,"type":"int"}]}""");
+         setEventMetadata("OUTPUTSGRID_PREVPAGE","""{"handler":"suboutputsgrid_previouspage","iparms":[{"av":"OUTPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"OUTPUTSGRID_nEOF","type":"int"},{"av":"AV10outputs","fld":"vOUTPUTS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"nRC_GXsfl_35","ctrl":"OUTPUTSGRID","prop":"GridRC","grid":35,"type":"int"},{"av":"subInputsgrid_Rows","ctrl":"INPUTSGRID","prop":"Rows"},{"av":"subOutputsgrid_Rows","ctrl":"OUTPUTSGRID","prop":"Rows"},{"av":"AV17groupId","fld":"vGROUPID","hsh":true,"type":"guid"},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV9inputs","fld":"vINPUTS","grid":25,"type":""},{"av":"nGXsfl_25_idx","ctrl":"GRID","prop":"GridCurrRow","grid":25},{"av":"INPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_25","ctrl":"INPUTSGRID","prop":"GridRC","grid":25,"type":"int"}]}""");
+         setEventMetadata("OUTPUTSGRID_NEXTPAGE","""{"handler":"suboutputsgrid_nextpage","iparms":[{"av":"OUTPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"OUTPUTSGRID_nEOF","type":"int"},{"av":"AV10outputs","fld":"vOUTPUTS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"nRC_GXsfl_35","ctrl":"OUTPUTSGRID","prop":"GridRC","grid":35,"type":"int"},{"av":"subInputsgrid_Rows","ctrl":"INPUTSGRID","prop":"Rows"},{"av":"subOutputsgrid_Rows","ctrl":"OUTPUTSGRID","prop":"Rows"},{"av":"AV17groupId","fld":"vGROUPID","hsh":true,"type":"guid"},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV9inputs","fld":"vINPUTS","grid":25,"type":""},{"av":"nGXsfl_25_idx","ctrl":"GRID","prop":"GridCurrRow","grid":25},{"av":"INPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_25","ctrl":"INPUTSGRID","prop":"GridRC","grid":25,"type":"int"}]}""");
+         setEventMetadata("OUTPUTSGRID_LASTPAGE","""{"handler":"suboutputsgrid_lastpage","iparms":[{"av":"OUTPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"OUTPUTSGRID_nEOF","type":"int"},{"av":"AV10outputs","fld":"vOUTPUTS","grid":35,"type":""},{"av":"nGXsfl_35_idx","ctrl":"GRID","prop":"GridCurrRow","grid":35},{"av":"nRC_GXsfl_35","ctrl":"OUTPUTSGRID","prop":"GridRC","grid":35,"type":"int"},{"av":"subInputsgrid_Rows","ctrl":"INPUTSGRID","prop":"Rows"},{"av":"subOutputsgrid_Rows","ctrl":"OUTPUTSGRID","prop":"Rows"},{"av":"AV17groupId","fld":"vGROUPID","hsh":true,"type":"guid"},{"av":"AV13transactionId","fld":"vTRANSACTIONID","hsh":true,"type":"char"},{"av":"AV9inputs","fld":"vINPUTS","grid":25,"type":""},{"av":"nGXsfl_25_idx","ctrl":"GRID","prop":"GridCurrRow","grid":25},{"av":"INPUTSGRID_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_25","ctrl":"INPUTSGRID","prop":"GridRC","grid":25,"type":"int"}]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Gxv5","iparms":[]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Gxv10","iparms":[]}""");
          return  ;
@@ -2267,7 +2269,7 @@ namespace GeneXus.Programs.wallet {
       public override void initialize( )
       {
          wcpOAV13transactionId = "";
-         wcpOAV12transactionFileName = "";
+         wcpOAV17groupId = Guid.Empty;
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
          sDynURL = "";
@@ -2296,6 +2298,8 @@ namespace GeneXus.Programs.wallet {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
+         AV12transactionFileName = "";
+         AV19requestsFileName = "";
          AV7header = new GeneXus.Programs.wallet.SdtWalletTransactionItem(context);
          AV5error = "";
          AV8headerText = "";
@@ -2335,6 +2339,8 @@ namespace GeneXus.Programs.wallet {
       private short gxcookieaux ;
       private short subInputsgrid_Backcolorstyle ;
       private short subOutputsgrid_Backcolorstyle ;
+      private short AV18receivingType ;
+      private short AV16changeType ;
       private short nGXWrapped ;
       private short subInputsgrid_Backstyle ;
       private short subOutputsgrid_Backstyle ;
@@ -2365,8 +2371,8 @@ namespace GeneXus.Programs.wallet {
       private int edtavCtloutaddress_Enabled ;
       private int edtavCtloutvalue_Enabled ;
       private int bttForgetpayment_Visible ;
-      private int AV16GXV1 ;
-      private int AV21GXV6 ;
+      private int AV20GXV1 ;
+      private int AV25GXV6 ;
       private int subInputsgrid_Islastpage ;
       private int subOutputsgrid_Islastpage ;
       private int INPUTSGRID_nGridOutOfScope ;
@@ -2393,9 +2399,7 @@ namespace GeneXus.Programs.wallet {
       private long INPUTSGRID_nRecordCount ;
       private long OUTPUTSGRID_nRecordCount ;
       private string AV13transactionId ;
-      private string AV12transactionFileName ;
       private string wcpOAV13transactionId ;
-      private string wcpOAV12transactionFileName ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
       private string sGXsfl_25_idx="0001" ;
@@ -2445,6 +2449,8 @@ namespace GeneXus.Programs.wallet {
       private string sEvtType ;
       private string sGXsfl_25_fel_idx="0001" ;
       private string sGXsfl_35_fel_idx="0001" ;
+      private string AV12transactionFileName ;
+      private string AV19requestsFileName ;
       private string AV5error ;
       private string subInputsgrid_Class ;
       private string subInputsgrid_Linesclass ;
@@ -2475,6 +2481,8 @@ namespace GeneXus.Programs.wallet {
       private bool gx_BV35 ;
       private string AV11shownTransactionId ;
       private string AV8headerText ;
+      private Guid AV17groupId ;
+      private Guid wcpOAV17groupId ;
       private GXWebGrid InputsgridContainer ;
       private GXWebGrid OutputsgridContainer ;
       private GXWebRow InputsgridRow ;

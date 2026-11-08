@@ -42,9 +42,6 @@
         <Reference Include="DistricutedCryptographyLib" >
             <HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
         </Reference>
-        <Reference Include="GxJadeLib" >
-            <HintPath>$(WebBinDirectory)\GxJadeLib.dll</HintPath>
-        </Reference>
 
 	</ItemGroup>
 
@@ -66,7 +63,7 @@
 		<Compile Include = "$(WebDirectory)\electrum\connect.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getspendablebalance.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getselectedcoins.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\createkey.cs" />
 		<Compile Include = "$(WebDirectory)\sudodb\getrawtransactionfromdb.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\sendcoinsbounty.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
@@ -81,7 +78,6 @@
 		<Compile Include = "$(WebDirectory)\wallet\setkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gethistorywithbalance.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\createkey.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\parse_serialized_extended_key.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\isaddressvalid.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\derivekeysfromextkey.cs" />
@@ -94,6 +90,7 @@
 		<Compile Include = "$(WebDirectory)\receivefromelectrum.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\datetimetounixtime.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\createextkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\walletfilepath.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\recordsentoutputs.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\broadcast_transaction.cs" />

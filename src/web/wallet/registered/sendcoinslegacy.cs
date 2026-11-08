@@ -213,10 +213,10 @@ namespace GeneXus.Programs.wallet.registered {
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
          context.AddJavascriptSource("gxcfg.js", "?"+GetCacheInvalidationToken( ), false, true, false);
          if ( context.isSpaRequest( ) )
          {
@@ -1556,9 +1556,9 @@ namespace GeneXus.Programs.wallet.registered {
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV12error)) )
                {
                   cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( (decimal)(0), 16, 8)), "Select Estimated Transaction Fee", 0);
-                  cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV41economicalFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV41economicalFee, 16, 8))+" in about "+StringUtil.Str( (decimal)(AV40economicalBlocks), 10, 0)+" Blocks", 0);
-                  cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV53standardFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV53standardFee, 16, 8))+" in about "+StringUtil.Str( (decimal)(AV52standarBlocks), 10, 0)+" Blocks", 0);
-                  cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV44fastestFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV44fastestFee, 16, 8))+" in about "+StringUtil.Str( (decimal)(AV43fastestBlocks), 10, 0)+" Blocks", 0);
+                  cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV41economicalFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV41economicalFee, 16, 8))+" in about "+StringUtil.Trim( StringUtil.Str( (decimal)(AV40economicalBlocks), 10, 0))+((AV40economicalBlocks==1) ? " block" : " blocks"), 0);
+                  cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV53standardFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV53standardFee, 16, 8))+" in about "+StringUtil.Trim( StringUtil.Str( (decimal)(AV52standarBlocks), 10, 0))+((AV52standarBlocks==1) ? " block" : " blocks"), 0);
+                  cmbavUserfee.addItem(StringUtil.Trim( StringUtil.Str( AV44fastestFee, 16, 8)), StringUtil.Trim( StringUtil.Str( AV44fastestFee, 16, 8))+" in about "+StringUtil.Trim( StringUtil.Str( (decimal)(AV43fastestBlocks), 10, 0))+((AV43fastestBlocks==1) ? " block" : " blocks"), 0);
                   cmbavUserfee.Visible = 1;
                   AssignProp("", false, cmbavUserfee_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(cmbavUserfee.Visible), 5, 0), true);
                   edtavManaulfee_Enabled = 0;
@@ -1636,7 +1636,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2026103013274335", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202611814254286", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1652,8 +1652,8 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1550520), false, true, false);
-         context.AddJavascriptSource("wallet/registered/sendcoinslegacy.js", "?2026103013274335", false, true, false);
+         context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1450520), false, true, false);
+         context.AddJavascriptSource("wallet/registered/sendcoinslegacy.js", "?202611814254286", false, true, false);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
          /* End function include_jscripts */
       }

@@ -24,14 +24,14 @@ namespace GeneXus.Programs.wallet {
       {
          domain[(short)0] = "Select Group Type";
          domain[(short)10] = "Wallet Backup";
-         domain[(short)30] = "Delegation Multi-Signature Wallet";
+         domain[(short)30] = "Delegated Multi Signature Wallet";
          domain[(short)40] = "Encrypted Passwords";
          domain[(short)20] = "Time Encrypted Vault";
-         domain[(short)50] = "Legacy Multi-Signature Wallet";
-         domain[(short)60] = "Multi Signature";
+         domain[(short)50] = "Legacy Multi Signature Wallet";
+         domain[(short)60] = "Multi Signature Wallet";
          domain[(short)70] = "Group Chat";
-         domain[(short)80] = "Delegated Multi Signature 2";
-         domain[(short)90] = "Multi Signature 2";
+         domain[(short)80] = "Advanced Delegated Multi Signature Wallet";
+         domain[(short)90] = "Advanced Multi Signature Wallet";
       }
 
       public static string getDescription( IGxContext context ,

@@ -105,7 +105,7 @@ namespace GeneXus.Programs.wallet.registered {
          }
          if ( ( AV11group_sdt.gxTpr_Grouptype == 80 ) && AV11group_sdt.gxTpr_Amigroupowner )
          {
-            AV8error = "The owner of a Delegated MultiSig 2 group is not one of the signers of the members";
+            AV8error = "The owner of an Advanced Delegated Multi Signature Wallet is not one of the signers of the members";
             cleanup();
             if (true) return;
          }

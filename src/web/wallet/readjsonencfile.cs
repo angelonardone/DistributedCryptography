@@ -73,20 +73,20 @@ namespace GeneXus.Programs.wallet {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         GXt_SdtWallet1 = AV17wallet;
-         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet1) ;
-         AV17wallet = GXt_SdtWallet1;
-         GXt_boolean2 = false;
-         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean2) ;
-         GXt_boolean3 = false;
-         new GeneXus.Programs.wallet.isosunix(context ).execute( out  GXt_boolean3) ;
-         AV18file.Source = AV17wallet.gxTpr_Walletbasedirectory+(GXt_boolean3 ? "/" : "\\")+StringUtil.Trim( AV9fileName);
+         new GeneXus.Programs.wallet.walletfilepath(context ).execute(  AV9fileName, out  AV19fullPath, out  AV13error) ;
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
+         {
+            AV8clearText = "";
+            cleanup();
+            if (true) return;
+         }
+         AV18file.Source = AV19fullPath;
          if ( AV18file.Exists() )
          {
             AV16json_enc.FromJSonFile(AV18file, null);
-            GXt_char4 = AV13error;
-            new GeneXus.Programs.distributedcryptographylib.decryptjson(context ).execute(  AV16json_enc.gxTpr_Encryptedtext,  AV16json_enc.gxTpr_Encryptedkey, out  AV8clearText, out  GXt_char4) ;
-            AV13error = GXt_char4;
+            GXt_char1 = AV13error;
+            new GeneXus.Programs.distributedcryptographylib.decryptjson(context ).execute(  AV16json_enc.gxTpr_Encryptedtext,  AV16json_enc.gxTpr_Encryptedkey, out  AV8clearText, out  GXt_char1) ;
+            AV13error = GXt_char1;
             if ( StringUtil.StrCmp(AV8clearText, "_empty_") == 0 )
             {
                AV8clearText = "";
@@ -94,13 +94,13 @@ namespace GeneXus.Programs.wallet {
          }
          else
          {
-            GXt_char4 = AV13error;
-            GXt_char5 = AV16json_enc.gxTpr_Encryptedkey;
-            GXt_char6 = AV16json_enc.gxTpr_Encryptedtext;
-            new GeneXus.Programs.distributedcryptographylib.encryptjson(context ).execute(  "_empty_",  "", out  GXt_char5, out  GXt_char6, out  GXt_char4) ;
-            AV16json_enc.gxTpr_Encryptedkey = GXt_char5;
-            AV16json_enc.gxTpr_Encryptedtext = GXt_char6;
-            AV13error = GXt_char4;
+            GXt_char1 = AV13error;
+            GXt_char2 = AV16json_enc.gxTpr_Encryptedkey;
+            GXt_char3 = AV16json_enc.gxTpr_Encryptedtext;
+            new GeneXus.Programs.distributedcryptographylib.encryptjson(context ).execute(  "_empty_",  "", out  GXt_char2, out  GXt_char3, out  GXt_char1) ;
+            AV16json_enc.gxTpr_Encryptedkey = GXt_char2;
+            AV16json_enc.gxTpr_Encryptedtext = GXt_char3;
+            AV13error = GXt_char1;
             AV18file.WriteAllText(AV16json_enc.ToJSonString(false, true), "");
          }
          cleanup();
@@ -120,27 +120,23 @@ namespace GeneXus.Programs.wallet {
       {
          AV13error = "";
          AV8clearText = "";
-         AV17wallet = new GeneXus.Programs.wallet.SdtWallet(context);
-         GXt_SdtWallet1 = new GeneXus.Programs.wallet.SdtWallet(context);
+         AV19fullPath = "";
          AV18file = new GxFile(context.GetPhysicalPath());
          AV16json_enc = new GeneXus.Programs.wallet.SdtSDT_Json_Enc(context);
-         GXt_char4 = "";
-         GXt_char5 = "";
-         GXt_char6 = "";
+         GXt_char1 = "";
+         GXt_char2 = "";
+         GXt_char3 = "";
          /* GeneXus formulas. */
       }
 
       private string AV9fileName ;
       private string AV13error ;
-      private string GXt_char4 ;
-      private string GXt_char5 ;
-      private string GXt_char6 ;
-      private bool GXt_boolean2 ;
-      private bool GXt_boolean3 ;
+      private string GXt_char1 ;
+      private string GXt_char2 ;
+      private string GXt_char3 ;
       private string AV8clearText ;
+      private string AV19fullPath ;
       private GxFile AV18file ;
-      private GeneXus.Programs.wallet.SdtWallet AV17wallet ;
-      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
       private GeneXus.Programs.wallet.SdtSDT_Json_Enc AV16json_enc ;
       private string aP1_error ;
       private string aP2_clearText ;

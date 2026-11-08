@@ -128,20 +128,27 @@ namespace GeneXus.Programs.wallet.registered {
          AV21sdt_message.gxTpr_Datetimeunix = AV16message.gxTpr_Datetimeunix;
          AV21sdt_message.gxTpr_Messagetype = 150;
          AV21sdt_message.gxTpr_Message = AV16message.ToJSonString(false, true);
-         AV26GXV1 = 1;
-         while ( AV26GXV1 <= AV11group_sdt.gxTpr_Contact.Count )
+         AV27GXV1 = 1;
+         while ( AV27GXV1 <= AV11group_sdt.gxTpr_Contact.Count )
          {
-            AV12groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV11group_sdt.gxTpr_Contact.Item(AV26GXV1));
+            AV12groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV11group_sdt.gxTpr_Contact.Item(AV27GXV1));
             if ( ! ( StringUtil.StrCmp(StringUtil.Trim( AV12groupContact.gxTpr_Contactusername), AV16message.gxTpr_Fromusername) == 0 ) )
             {
                AV14json_enc = new GeneXus.Programs.wallet.SdtSDT_Json_Enc(context);
+               AV26sealed = (GeneXus.Programs.nostr.SdtSDT_message)(AV21sdt_message.Clone());
                GXt_char5 = AV9error;
-               GXt_char6 = AV14json_enc.gxTpr_Encryptedkey;
-               GXt_char7 = AV14json_enc.gxTpr_Encryptedtext;
-               new GeneXus.Programs.distributedcryptographylib.encryptjsonto(context ).execute(  AV21sdt_message.ToJSonString(false, true),  StringUtil.Trim( AV12groupContact.gxTpr_Contactuserpubkey), out  GXt_char6, out  GXt_char7, out  GXt_char5) ;
-               AV14json_enc.gxTpr_Encryptedkey = GXt_char6;
-               AV14json_enc.gxTpr_Encryptedtext = GXt_char7;
+               new GeneXus.Programs.wallet.registered.sealmessage(context ).execute(  StringUtil.Trim( AV12groupContact.gxTpr_Contactusername), ref  AV26sealed, out  GXt_char5) ;
                AV9error = GXt_char5;
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
+               {
+                  GXt_char5 = AV9error;
+                  GXt_char6 = AV14json_enc.gxTpr_Encryptedkey;
+                  GXt_char7 = AV14json_enc.gxTpr_Encryptedtext;
+                  new GeneXus.Programs.distributedcryptographylib.encryptjsonto(context ).execute(  AV26sealed.ToJSonString(false, true),  StringUtil.Trim( AV12groupContact.gxTpr_Contactuserpubkey), out  GXt_char6, out  GXt_char7, out  GXt_char5) ;
+                  AV14json_enc.gxTpr_Encryptedkey = GXt_char6;
+                  AV14json_enc.gxTpr_Encryptedtext = GXt_char7;
+                  AV9error = GXt_char5;
+               }
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
                {
                   GXt_char7 = AV9error;
@@ -170,7 +177,7 @@ namespace GeneXus.Programs.wallet.registered {
                   if (true) return;
                }
             }
-            AV26GXV1 = (int)(AV26GXV1+1);
+            AV27GXV1 = (int)(AV27GXV1+1);
          }
          cleanup();
       }
@@ -201,6 +208,7 @@ namespace GeneXus.Programs.wallet.registered {
          AV21sdt_message = new GeneXus.Programs.nostr.SdtSDT_message(context);
          AV12groupContact = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem(context);
          AV14json_enc = new GeneXus.Programs.wallet.SdtSDT_Json_Enc(context);
+         AV26sealed = new GeneXus.Programs.nostr.SdtSDT_message(context);
          GXt_char5 = "";
          GXt_char6 = "";
          AV24taprootPubKey = "";
@@ -208,7 +216,7 @@ namespace GeneXus.Programs.wallet.registered {
          /* GeneXus formulas. */
       }
 
-      private int AV26GXV1 ;
+      private int AV27GXV1 ;
       private long GXt_int4 ;
       private string AV9error ;
       private string GXt_char5 ;
@@ -234,6 +242,7 @@ namespace GeneXus.Programs.wallet.registered {
       private GeneXus.Programs.nostr.SdtSDT_message AV21sdt_message ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV12groupContact ;
       private GeneXus.Programs.wallet.SdtSDT_Json_Enc AV14json_enc ;
+      private GeneXus.Programs.nostr.SdtSDT_message AV26sealed ;
       private string aP4_error ;
    }
 
