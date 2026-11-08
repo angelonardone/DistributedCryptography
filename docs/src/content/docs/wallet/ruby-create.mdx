@@ -1,0 +1,118 @@
+---
+title: Create a wallet with Ruby
+description: Step by step, create a wallet whose words and spending keys live on a Ruby hardware key, and open it with the password and Ruby's PIN.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+:::note
+What Ruby is and what you need: [Ruby hardware key](/wallet/ruby/).
+:::
+
+:::caution[Demo words]
+The words in these pictures belong to a demo **TestNet** wallet and are public. Never use them, or any words you
+have shown to anyone, for real funds.
+:::
+
+You need a Ruby **not set up yet** (its home screen says *Uninitialized*) connected by USB, and paper and pen for
+the words. Ruby's buttons: **A** (left) = previous, **B** (middle) = select, **C** (right) = next.
+
+## 1. Start the wallet in the application
+
+<Steps>
+
+1. On the wallets page click **Create a new wallet**.
+
+2. Type a **Wallet Name** and choose the **network**: *MainNet* for real bitcoin (*TestNet* in these pictures).
+
+3. In **Where the keys live** choose **Ruby hardware key**. The application looks for Ruby and shows it in **Ruby
+   device** with its port (for example `COM4` on Windows or `/dev/cu.usbmodem…` on a Mac). If it is not there,
+   check the cable and click **Find Ruby**.
+
+4. Type the **New Password** twice. It protects the wallet file on this computer. It is not Ruby's PIN, and it is
+   not needed to restore the wallet from the words.
+
+   ![Create a wallet with Ruby: name, network, Ruby hardware key, Ruby device and the password](../../../assets/screens/ruby/create-02-app-create-ruby.png)
+
+5. Click **Create Wallet**. The page turns grey and waits while you set up Ruby (up to 2 hours).
+
+   ![The application waits for Ruby](../../../assets/screens/ruby/create-03-app-waiting-for-ruby.png)
+
+</Steps>
+
+Ruby pairs with the new wallet by itself: its PIN oracle lives in this wallet, so Ruby asks nothing about it.
+
+## 2. Set up Ruby
+
+| | |
+|---|---|
+| ![Ruby: Continue](../../../assets/screens/ruby/create-04-ruby-setup-start.png) | **Continue** (B). |
+| ![Ruby: Begin Setup](../../../assets/screens/ruby/create-05-ruby-setup-type.png) | **Begin Setup** (B). |
+| ![Ruby: Create New Wallet](../../../assets/screens/ruby/create-06-ruby-setup-method.png) | **Create New Wallet** (B) for new words. (*Restore Wallet* is for words you already have: see [Restore a Ruby wallet](/wallet/ruby-restore/).) |
+| ![Ruby is about to show the words](../../../assets/screens/ruby/create-07-ruby-words-intro.png) | Ruby is about to show the words: **Continue** (B). |
+
+### Write down the 12 words
+
+Ruby shows them in three pages of four. **Write them down in order** on paper, then go to the next page (B).
+
+| | | |
+|---|---|---|
+| ![Words 1 to 4](../../../assets/screens/ruby/create-08-ruby-words-1-4.png) | ![Words 5 to 8](../../../assets/screens/ruby/create-09-ruby-words-5-8.png) | ![Words 9 to 12](../../../assets/screens/ruby/create-10-ruby-words-9-12.png) |
+
+These words **are** the wallet: with them alone (no passphrase) it can be restored. Keep the paper offline and
+never type the words into a computer.
+
+### Confirm four words
+
+Ruby asks for four of the words, at random. The green band is the word you choose: **C** and **A** change it, **B**
+confirms it. The rows above and below show the neighbouring words, as a hint.
+
+![Ruby asks to confirm a word](../../../assets/screens/ruby/create-11-ruby-confirm-word.png)
+
+### Choose the PIN
+
+The PIN has 6 digits. Each box is a wheel: **C** goes to the next digit, **A** to the previous one, **B** accepts
+the digit and moves to the next box. Each box starts at a random digit. After 9 the wheel shows a backspace sign
+(⌫): accepting it erases the previous digit.
+
+| | |
+|---|---|
+| ![Enter New PIN](../../../assets/screens/ruby/create-12-ruby-new-pin.png) | **Enter New PIN**: the first box. |
+| ![The last digit of the PIN](../../../assets/screens/ruby/create-13-ruby-new-pin-done.png) | The last digit; **B** accepts the PIN. |
+| ![Confirm PIN](../../../assets/screens/ruby/create-14-ruby-confirm-pin.png) | **Confirm PIN**: the same PIN again. |
+| ![Ruby stores the PIN](../../../assets/screens/ruby/create-15-ruby-persisting-pin.png) | Ruby stores the PIN with the wallet's oracle. |
+| ![Ruby is Active](../../../assets/screens/ruby/create-16-ruby-ready.png) | Done: Ruby is **Active** and shows the fingerprint of its wallet. |
+
+:::caution
+Three wrong PINs erase Ruby's key. The words are then the only way back.
+:::
+
+The application finishes by itself and shows the new wallet in the list:
+
+![The new Ruby wallet in the list of wallets](../../../assets/screens/ruby/create-17-app-wallets.png)
+
+## 3. Open the wallet
+
+<Steps>
+
+1. Click the wallet name, type the **password** and click **Confirm**.
+
+   ![The password of the wallet](../../../assets/screens/ruby/create-18-app-password.png)
+
+2. If Ruby is locked (it locks when it is unplugged, or after a while), it asks for its PIN: **Unlock Ruby**, with
+   the same wheels as when you chose it.
+
+   ![Unlock Ruby with the PIN](../../../assets/screens/ruby/create-18b-ruby-unlock-pin.png)
+
+3. Ruby checks the PIN with the wallet's oracle and goes back to its home screen, **Active**. The wallet opens.
+   There is nothing to confirm on Ruby.
+
+   ![The balance of the new wallet, with its receiving address](../../../assets/screens/ruby/create-20-app-balance.png)
+
+</Steps>
+
+The receiving address, the **Addresses** tab, payment requests and **Get Wallet Info** work as in any wallet.
+**Get Wallet Info** shows the account public key (`xpub…`, or `tpub…` on TestNet), which is all the application
+gets from Ruby: the private keys never leave it.
+
+To pay, see [Send a payment](/wallet/ruby/#send-a-payment).

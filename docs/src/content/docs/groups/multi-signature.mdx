@@ -112,6 +112,15 @@ and nobody can change its members or its minimum.
 Open the group's **Wallet Balance** tab: it shows the next receiving address and its QR. Anybody can pay to it.
 The tabs **Addresses**, **Payment Requests** and **Transactions** work like the ones of your own wallet.
 
+:::tip[Payment requests shared by the group]
+The payment requests of a group are shared by every member. A request made by one member
+reserves its address for everybody, so two members never give the same address to two payers. The server keeps the
+requests encrypted with the key of the group: it cannot read them, it cannot even tell that they are payment
+requests, and it does not know who the members are. Only
+the member who made a request, or the creator of the group, can cancel it: the other members do not see **Cancel**.
+It works in the groups created with version 0.926 or later.
+:::
+
 ![The Wallet Balance tab of the group with its receiving address and the button Send](../../../assets/screens/multisig/05-wallet-balance.png)
 
 ## 5. Start a payment (the first signer)

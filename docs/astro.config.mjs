@@ -66,6 +66,9 @@ export default defineConfig({
 					items: [
 						{ label: 'Create a wallet', slug: 'wallet/create' },
 						{ label: 'Restore a wallet', slug: 'wallet/restore' },
+						{ label: 'Ruby hardware key', slug: 'wallet/ruby' },
+						{ label: 'Create a wallet with Ruby', slug: 'wallet/ruby-create' },
+						{ label: 'Restore a Ruby wallet', slug: 'wallet/ruby-restore' },
 						{ label: 'Advance Brain Wallet', slug: 'wallet/advance-brain-wallet' },
 						{ label: 'Choose your servers', slug: 'wallet/servers' },
 					],

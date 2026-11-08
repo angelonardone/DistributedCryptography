@@ -21,6 +21,22 @@
 	border-radius: 0.5rem;
 }
 
+/* Pictures of the Ruby device screen (file names *-ruby-*): small, next to their text. */
+.sl-markdown-content img[src*='-ruby-'] {
+	width: 240px;
+	max-width: 100%;
+}
+.sl-markdown-content tr:has(img[src*='-ruby-']) td {
+	vertical-align: middle;
+}
+/* Photo of the Ruby device (M5Stack Basic). */
+.sl-markdown-content img[src*='ruby-m5stack'] {
+	display: block;
+	width: 360px;
+	max-width: 100%;
+	margin-inline: auto;
+}
+
 /* ---------- Home page ---------- */
 /* Small label above a section title. */
 .dc-kicker {
