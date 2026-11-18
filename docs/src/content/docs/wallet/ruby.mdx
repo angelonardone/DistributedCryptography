@@ -72,12 +72,88 @@ The application looks for Ruby by itself; **Find Ruby** searches again if you pl
 
 - [Create a wallet with Ruby](/wallet/ruby-create/), step by step.
 - [Restore a Ruby wallet](/wallet/ruby-restore/) from its words, typed on a Ruby.
+- [Use Ruby in a Smart Group](#smart-groups-with-ruby): Legacy, Delegated, Multi Signature, the two Advanced
+  (MuSig2) wallets and Group Chat.
 
 ### Send a payment
 
 Open the wallet, click **Send** and fill in the address, the amount and the fee as in any wallet. For a Ruby wallet
-no password is asked: the button says **Send Coins (confirm on Ruby)**. Ruby shows the address, the amount and the fee: check them on Ruby's screen,
-not on the computer, and confirm on Ruby. Ruby signs, and the application broadcasts the payment.
+no password is asked: the button says **Send Coins (confirm on Ruby)**, and the page waits for Ruby.
+
+Ruby then shows what it will really sign. Check it **on Ruby's screen**, not on the computer: malware can change
+what the computer shows, not what Ruby shows.
+
+| | |
+|---|---|
+| ![Output 1/1](../../../assets/screens/ruby/send-01-ruby-output.png) | **Output 1/1**: the address you pay (*To:*) and the amount. The change goes back to an address of this same wallet: Ruby checks that by itself and does not show it. With several payees Ruby shows one output after the other. **B** goes on. |
+| ![Send Transaction, X selected](../../../assets/screens/ruby/send-02-ruby-fee.png) | **Send Transaction**: the fee. **X** (cancel) is selected first, on purpose. |
+| ![Send Transaction, tick selected](../../../assets/screens/ruby/send-03-ruby-fee-confirm.png) | **C** moves to ✓ and **B** approves. Ruby signs, and the application sends the payment. |
+
+With **Send total balance** Ruby shows a single output, the balance minus the fee, and no change.
+
+**To decline**, go to **X** (**A**) and press **B** on any of those screens. Ruby signs nothing, and the application
+says *The payment was declined on Ruby*: nothing is sent, and the Send page stays open to fix the payment.
+
+![X selected on Ruby](../../../assets/screens/ruby/send-04-ruby-reject.png)
+
+## Smart Groups with Ruby
+
+:::note[Next release]
+Ruby wallets in Smart Groups come with the next release of the application, and need the current Ruby firmware.
+:::
+
+A Ruby wallet takes part in a group like any other wallet: it is invited, accepts and is activated in the same way,
+and nothing is asked on Ruby for that (the group needs only public keys, which Ruby gave the wallet when it was
+opened). The difference comes when you pay: **no password is asked, and Ruby shows the payment and signs it**.
+
+| Group | What a Ruby wallet can do |
+|---|---|
+| [Legacy Multi Signature](/groups/legacy-multisignature/#a-member-with-a-ruby-wallet) | be a member, as the first signer or a following one |
+| [Delegated Multi Signature](/groups/delegated-multisignature/#with-a-ruby-wallet) | be the **owner** who pays alone, or a member who signs |
+| [Multi Signature](/groups/multi-signature/#with-a-ruby-wallet) | create the group or be a signer |
+| [Advanced Delegated Multi Signature](/groups/advanced-delegated-multisignature/#with-a-ruby-wallet) (MuSig2) | be the owner who pays alone, or a member in the signing rooms |
+| [Advanced Multi Signature](/groups/advanced-multi-signature/#with-a-ruby-wallet) (MuSig2) | create the group or be a signer in the signing rooms |
+| [Group Chat](/groups/group-chat/) | everything: nothing is asked on Ruby |
+| Consensus Backup, Time-Encrypted Vault | not yet (see [below](#not-yet-with-ruby)) |
+
+### The first time: register the group on Ruby
+
+The first time Ruby pays with a Taproot group (Delegated, Multi Signature and the two Advanced wallets), it asks to
+**register** the group. It is done once per group and Ruby. Registered, Ruby calculates the group's addresses by
+itself: it recognises the **change** that goes back to the group and does not show it, so you only check the payment
+and the fee. (A Legacy group is registered in the same way, with its own screens: see its
+[page](/groups/legacy-multisignature/#the-first-time-register-the-group-on-ruby).)
+
+| | |
+|---|---|
+| ![Register Group, No selected](../../../assets/screens/ruby/group-01-ruby-register.png) | **Register Group**: the name of the group, its type and minimum (*Delegated 2 of 3*) and your role in it (*You are the owner*, *You are a member*, *You are a signer*). **No** is selected first: **C** moves to **Yes**. |
+| ![Register Group, Yes selected](../../../assets/screens/ruby/group-02-ruby-register-yes.png) | **B** registers the group. |
+| ![Group Address 1](../../../assets/screens/ruby/group-03-ruby-address.png) | **Group Address 1**: the first receiving address of the group, calculated by Ruby. Compare it with the group's first address in the application. **C** moves to ✓, **B** confirms. |
+
+If you answer **No**, nothing is lost: the payment goes on, and Ruby shows the change as one more output (check that
+it is an address of the group). Ruby asks again the next time.
+
+Registered groups are on Ruby under **Options > Wallet > Registered Wallets**: **View Group** shows each one with
+its first address, and **Delete Group** removes it (the next payment registers it again). A group whose members
+change is registered again under a new name.
+
+### Approve a group payment
+
+| | |
+|---|---|
+| ![Output 1/1](../../../assets/screens/ruby/group-04-ruby-output.png) | **Output 1/1**: the address paid and the amount. The change back to the group is not shown. **B**. |
+| ![Send Transaction, X selected](../../../assets/screens/ruby/group-05-ruby-fee.png) | **Send Transaction**: the fee. **X** is selected first: **C** moves to ✓, **B** approves. |
+
+In a Delegated or Multi Signature group, **when Ruby starts a payment with extra fee options** it signs one
+transaction per option, but asks only once: the payment, then one screen with every fee.
+
+![Sign 3 Fees: the calculated fee, +10 % and +50 %](../../../assets/screens/ruby/group-06-ruby-sign-fees.png)
+
+Ruby accepts the other fees with that one approval only because each of them pays exactly the same outputs and only
+the change gets less, by exactly the extra fee. Anything else asks again on Ruby.
+
+To decline, go to **X** (**A**) and press **B** on any of those screens: the application says *The payment was
+declined on Ruby*, and nothing is signed or sent.
 
 ## Your backup is the words
 
@@ -127,6 +203,6 @@ describes what they do on a Jade.
 
 ## Not yet with Ruby
 
-- **Smart Groups** (Consensus Backup, Delegated, Multi Signature, MuSig2, Legacy, Time-Encrypted Vault) cannot use a
-  Ruby wallet yet: they need keys that only Ruby has.
+- **Consensus Backup** and **Time-Encrypted Vault**: they back up the words of the wallet, which a Ruby wallet does
+  not have on the computer. Ruby will have to split them itself.
 - **Bluetooth:** Ruby works over USB only, for now.

@@ -163,6 +163,59 @@ are the scripts of K signers. Bitcoin Core 30 and later derive every address of 
 
 ![The two descriptors of the group, written with musig()](../../../assets/screens/advmulti/14-descriptors.png)
 
+## With a Ruby wallet
+
+:::note[Next release]
+Ruby wallets in the Advanced (MuSig2) groups come with the next release of the application, and need the current
+Ruby firmware.
+:::
+
+A [Ruby wallet](/wallet/ruby/) can **create** the group or be one of its **signers**. Creating, accepting and
+activating are the same as above (the creator activates with the password of the wallet file; nothing is asked on
+Ruby). In the signing room no password is asked: Ruby signs, after you check the payment on its screen. Keep Ruby
+**connected and unlocked** during the whole session.
+
+<Steps>
+
+1. **Open a payment session or click I'm here.** The first time, Ruby asks to **register** the group: its name,
+   *Adv. Multi Signature 2 of 3* and *You are a signer*. Choose **Yes** (**C**, then **B**), check *Group Address 1*
+   against the group's first address in the application and confirm with ✓. It happens now, before the 3 minutes of
+   the signing start, and only once per group. Registered, Ruby recognises the change of the group and does not show
+   it. (The same screens are explained in [Smart Groups with Ruby](/wallet/ruby/#the-first-time-register-the-group-on-ruby).)
+
+   ![Register Group: the group, Adv. Multi Signature 2 of 3, You are a signer](../../../assets/screens/ruby/musig2-01-ruby-register.png)
+
+   If you answer **No** you still join: Ruby will show the change as one more output. If Ruby is not connected or
+   is locked, the application says *Connect and unlock Ruby first* and you do not join, so that the session does
+   not fail later for everybody.
+
+2. **Start signing.** When the session starts signing, your wallet asks Ruby for its part of the first round (the
+   nonces) by itself. **Ruby shows nothing**: making nonces signs nothing. But it must be connected and unlocked: if
+   it is not, the session closes at once for everybody with *Ruby could not join the signing*, and nobody waits
+   for nothing.
+
+   ![Ruby's home screen: nothing is shown in the first round](../../../assets/screens/ruby/musig2-02-ruby-nothing-shown.png)
+
+3. **Sign on Ruby.** Instead of *Sign with password* your button says **Sign on Ruby**, and the session's status
+   says *you: press Sign on Ruby*. Click it within the 3 minutes.
+
+   ![The session signing: the button Sign on Ruby](../../../assets/screens/ruby/musig2-05-app-sign-on-ruby.png)
+
+4. **Approve on Ruby.** Ruby shows what it signs: the payment and the fee.
+
+   | | |
+   |---|---|
+   | ![Output 1/1](../../../assets/screens/ruby/musig2-03-ruby-output.png) | **Output 1/1**: the address paid and the amount. The change back to the group is not shown. **B**. |
+   | ![Send Transaction, tick selected](../../../assets/screens/ruby/musig2-04-ruby-fee.png) | **Send Transaction**: the fee. **X** is selected first: **C** moves to ✓, **B** signs. |
+
+   As with a password, the last signature sends the payment and the session shows *Paid*.
+
+</Steps>
+
+**A nonce is never used twice.** Ruby keeps the secret part of its nonces only in its memory, never in its storage,
+and for **one** payment: they are wiped when it signs or you decline, when another payment starts, when Ruby locks,
+and after 10 minutes. If anything fails, open a new session: it starts with fresh nonces.
+
 ## Good to know
 
 - **Online, not in person.** Each signer signs from their own wallet, anywhere in the world; what they share is the

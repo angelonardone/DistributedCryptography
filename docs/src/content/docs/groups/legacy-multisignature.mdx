@@ -198,6 +198,55 @@ and the same coins, **without our software**.
 The descriptors hold only **public keys**: whoever has them can watch the group, never spend from it. They do
 show every address of the group, so share them only with people who may see its balance.
 
+## A member with a Ruby wallet
+
+:::note[Next release]
+Ruby wallets in Legacy groups come with the next release of the application.
+:::
+
+A [Ruby wallet](/wallet/ruby/) is a member like any other, and **it signs on Ruby**: no password is asked and no
+private key reaches the computer. Ruby shows each transaction and you approve it there.
+
+- **Joining** asks nothing on Ruby: accept the invitation as in [step 2](#2-accept-the-invitation-each-member). The
+  group needs only public keys, which Ruby gave the wallet when it was opened.
+- **Signing**, as the first signer or a following one: the steps are the same as above, but the button says
+  **Send Coins (confirm on Ruby)** and, instead of the password, you approve on Ruby.
+
+### The first time: register the group on Ruby
+
+The first time Ruby signs for a group, it asks to **register** it. It is done once per group and Ruby. Registered,
+Ruby knows every key of the group: it checks that the coins spent belong to the group and recognises the change,
+which it then does not show.
+
+| | |
+|---|---|
+| ![Register Multisig](../../../assets/screens/ruby/legacy-01-ruby-register.png) | **Register Multisig**: the name of the group on Ruby (the start of the group name and a code made from its keys), the minimum (**2of3**) and **Sorted: Yes**. **B**. |
+| ![Signer 1/3](../../../assets/screens/ruby/legacy-02-ruby-register-signer.png) | **Signer 1/3 … 3/3**: the fingerprint, the path and the public key of each member. **B** for each one. |
+| ![Signer 3/3 with an asterisk](../../../assets/screens/ruby/legacy-03-ruby-register-signer-own.png) | The signer marked with **\*** is this Ruby. |
+| ![Register Multisig, tick selected](../../../assets/screens/ruby/legacy-04-ruby-register-confirm.png) | **C** moves to ✓, **B** registers the group. |
+
+### Approve the payment
+
+| | |
+|---|---|
+| ![Output 1/1](../../../assets/screens/ruby/legacy-05-ruby-output.png) | **Output 1/1**: the address paid and the amount. The change, back to the group, is not shown. **B**. |
+| ![Send Transaction, tick selected](../../../assets/screens/ruby/legacy-06-ruby-fee-confirm.png) | **Send Transaction**: the fee you chose (when Ruby gives the last signature) or the calculated fee. **X** is selected first: **C** moves to ✓, **B** approves. |
+
+**When Ruby starts a payment with extra fee options**, it signs one transaction per option, but asks only **once**:
+the payment, and then one screen with every fee.
+
+| | |
+|---|---|
+| ![Sign 3 Fees](../../../assets/screens/ruby/legacy-07-ruby-sign-fees.png) | **Sign 3 Fees**: the calculated fee and the options (+10 %, +50 %). |
+| ![Sign 3 Fees, tick selected](../../../assets/screens/ruby/legacy-08-ruby-sign-fees-confirm.png) | **C** moves to ✓, **B** approves them all. Ruby signs the other options only if they spend the same coins and pay the same address and amount. |
+
+To decline, go to **X** (**A**) and press **B** on any of those screens: the application says *The payment was
+declined on Ruby*, and nothing is signed or sent.
+
+The registration and the single screen for every fee need a group created with the next release and the current
+Ruby firmware. In an older group Ruby still signs, but it shows the change as one more output and asks once for each
+fee option.
+
 ## Good to know
 
 - **Signers do not have to be connected at the same time.** A payment to sign arrives when the member opens

@@ -212,6 +212,28 @@ these descriptors; our tests check it on every release.
 
 ![The two descriptors of the group, written with musig()](../../../assets/screens/advdelegated/17-descriptors.png)
 
+## With a Ruby wallet
+
+:::note[Next release]
+Ruby wallets in the Advanced (MuSig2) groups come with the next release of the application, and need the current
+Ruby firmware.
+:::
+
+A [Ruby wallet](/wallet/ruby/) can be the **owner** of the group or one of its **members**. Creating, accepting and
+activating are the same as above (the owner activates with the password of the wallet file; nothing is asked on
+Ruby). No password is asked in any payment: Ruby signs, after you check the payment on its screen.
+
+- **The owner pays alone** ([step 5](#5-the-owner-pays-alone)): the *Pay alone* form has no password box. Click
+  **Pay** and approve on Ruby: the payment and the fee. The first payment registers the group on Ruby (*You are the
+  owner*), so that Ruby recognises the change and does not show it.
+- **A member in a signing room** ([step 6](#6-the-members-pay-together-the-signing-room)): when you open a session
+  or click **I'm here**, Ruby registers the group the first time (*You are a member*). When the signing starts, Ruby
+  makes its nonces by itself and shows nothing, but it must stay **connected and unlocked**. Then click **Sign on
+  Ruby** instead of *Sign with password* and approve the payment on Ruby.
+
+The screens of each step: [the signing room with Ruby](/groups/advanced-multi-signature/#with-a-ruby-wallet) (the
+same for both Advanced wallets) and [Smart Groups with Ruby](/wallet/ruby/#smart-groups-with-ruby).
+
 ## Good to know
 
 - **Online, not in person.** The signers never have to be in the same place: each one signs from their own wallet,
