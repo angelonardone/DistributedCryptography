@@ -72,6 +72,8 @@ The application looks for Ruby by itself; **Find Ruby** searches again if you pl
 
 - [Create a wallet with Ruby](/wallet/ruby-create/), step by step.
 - [Restore a Ruby wallet](/wallet/ruby-restore/) from its words, typed on a Ruby.
+- [Make hot wallets](/wallet/ruby-hot-wallets/): everyday software wallets made by Ruby from its words (BIP85),
+  for small amounts (from the next release).
 - [Use Ruby in a Smart Group](#smart-groups-with-ruby): Legacy, Delegated, Multi Signature, the two Advanced
   (MuSig2) wallets and Group Chat.
 
@@ -175,6 +177,9 @@ What happens if something is lost:
 | the computer (the wallet file) | Ruby stays locked: its oracle was in that file | reset Ruby, [restore the words](/wallet/ruby-restore/) on it |
 | three wrong PINs | Ruby erases its key | [restore the words](/wallet/ruby-restore/) |
 
+The same words also bring back every [hot wallet](/wallet/ruby-hot-wallets/#a-lost-hot-wallet) made from this
+Ruby wallet, by its number.
+
 :::danger[Do not type the words into the computer]
 The whole point of a hardware key is that the words, and with them the master key, never leave the device. To
 restore, type them **on a Ruby**. *Restore Wallet* in the application (with the words and the original password
@@ -195,7 +200,8 @@ a wallet with another one, reset it first.
 ## Other Ruby menus
 
 Ruby keeps menus that come from Jade and that Distributed Cryptography wallets do not use: QR mode and the PIN
-server over QR, SeedQR, BIP85 keys, one-time passwords (OTP), USB storage, temporary and duress wallets, the genuine
+server over QR, SeedQR, the BIP85 menu (the application asks Ruby for BIP85 words by itself, for
+[hot wallets](/wallet/ruby-hot-wallets/)), one-time passwords (OTP), USB storage, temporary and duress wallets, the genuine
 check and firmware upgrades, address and wallet scanning, and Bluetooth. They are not documented here yet and are
 not tested with the application. On the M5Stack Basic the QR menus do not work at all (it has no camera), and
 Bluetooth is off for now. Blockstream's [Jade documentation](https://help.blockstream.com/blockstream-jade)
