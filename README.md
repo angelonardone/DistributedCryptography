@@ -68,3 +68,17 @@ By integrating these advanced security features and leveraging the strength of t
 * [SecretSharingDotNet](https://github.com/shinji-san/SecretSharingDotNet)
 * [GoogleAuthenticator](https://github.com/BrandonPotter/GoogleAuthenticator)
 * [QRCoder](https://github.com/codebude/QRCoder)
+
+## License
+
+Copyright © 2022-2026 Distributed Cryptography Inc.
+
+Distributed Cryptography is **source-available, not open source**: anyone can read, audit and build the code, and it
+is free to use for individuals and for companies with fewer than 100 people and less than USD 1,000,000 of revenue a
+year. You may change it for your own use, but not distribute changed versions. Larger companies need a commercial
+license. The terms are in [License.txt](License.txt); a summary is in
+[License and patents](https://distributedcryptography.com/reference/license/).
+
+**Consensus Backup** and **Time-Encrypted Vault** are patent pending.
+
+The software includes components of other authors under their own licenses (for example NBitcoin, MIT License).

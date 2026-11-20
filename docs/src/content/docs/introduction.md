@@ -43,8 +43,8 @@ The Bitcoin wallet itself needs a connection to read balances and to send paymen
 ## The source code is public
 
 The code is on [GitHub](https://github.com/angelonardone/DistributedCryptography). You can read it, audit it and
-[build it yourself](/install/build-from-source/). The terms are in the
-[license](https://github.com/angelonardone/DistributedCryptography/blob/main/License.txt).
+[build it yourself](/install/build-from-source/). It is source-available, the property of Distributed Cryptography
+Inc., and free for individuals and small companies: see [License and patents](/reference/license/).
 
 We rely on these projects, with thanks:
 

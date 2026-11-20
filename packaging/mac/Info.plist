@@ -22,7 +22,7 @@
     <key>LSMinimumSystemVersion</key>
     <string>12.0</string>
     <key>NSHumanReadableCopyright</key>
-    <string>Distributed Cryptography. Open source, see License.txt in the repository.</string>
+    <string>Copyright © 2022-2026 Distributed Cryptography Inc. Source-available, see License.txt in the repository.</string>
     <key>NSHighResolutionCapable</key>
     <true/>
     <key>LSApplicationCategoryType</key>

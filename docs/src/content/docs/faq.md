@@ -28,9 +28,10 @@ Windows, Mac and Linux, and anywhere Docker runs. See [Install](/install/).
 ### Can I see the source code?
 
 Yes. The code is public on [GitHub](https://github.com/angelonardone/DistributedCryptography). The
-[license](https://github.com/angelonardone/DistributedCryptography/blob/main/License.txt) lets you read it,
-audit it, [build it yourself](/install/build-from-source/), use it and share it. It does not allow distributing
-modified versions.
+[license](/reference/license/) lets you read it, audit it and [build it yourself](/install/build-from-source/).
+It is **source-available, not open source**: it is free for individuals and for companies with fewer than 100 people
+and less than USD 1 million of revenue a year; larger companies need a commercial license. You may change it for
+your own use, but not distribute changed versions.
 
 ## Passwords and backups
 

@@ -129,6 +129,7 @@ export default defineConfig({
 					items: [
 						{ label: 'The Bitcoin BLAKE2b fork (BTCB2)', slug: 'reference/bitcoin-blake2b-fork' },
 						{ label: 'BIP-110 and multisignature groups', slug: 'reference/bip110-multisignature' },
+						{ label: 'License and patents', slug: 'reference/license' },
 					],
 				},
 			],
