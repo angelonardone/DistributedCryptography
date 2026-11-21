@@ -32,22 +32,45 @@ This is a Digital Vault/Wallet designed to operate seamlessly on any PC or serve
 
 In addition, we support a novel interactive backup process that enhances security and user experience. Furthermore, our wallet incorporates a custom Taproot algorithm that significantly reduces transaction fees for any K-of-N multisignature setup, making it many times cheaper than traditional multisignature mechanisms. This combination of advanced features ensures that users can enjoy both cutting-edge security and cost-efficiency in their Bitcoin transactions.
 
-The wallet sopport the following Bitcoin standards:
+The wallet supports the following standards (details and where each one is used: [Bitcoin standards](https://distributedcryptography.com/security/standards/)):
 
-* Brain Wallets (not recommended).
-* Wallet Import Format (WIF) for legacy individual keys.
-* Hierarchical Deterministic Wallets [(BIP 32)](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki)
-* Mnemonic code for generating deterministic keys [(BIP 39)](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)
-* Multi-Account Hierarchy for Deterministic Wallets - Legacy Format of HD [(BIP 44)](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki)
-* Derivation scheme for P2WPKH-nested-in-P2SH based accounts [(BIP 49)](https://github.com/bitcoin/bips/blob/master/bip-0049.mediawiki)
-* Derivation scheme for P2WPKH based accounts [(BIP 84)](https://github.com/bitcoin/bips/blob/master/bip-0084.mediawiki)
-* Segregated Witness [(BIP 141)](https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki), [(BIP 143)](https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki) and [(BIP 144)](https://github.com/bitcoin/bips/blob/master/bip-0144.mediawiki)
-* Bech32 segwit address implementation with error detection [(BIP 163)](https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki)
+**Wallets and keys**
+* Hierarchical Deterministic Wallets [(BIP 32)](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki): the wallet file keeps only the encrypted seed
+* Mnemonic code for generating deterministic keys [(BIP 39)](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki), English and Spanish
 * Key Derivation for Single Key P2TR Outputs [(BIP 86)](https://github.com/bitcoin/bips/blob/master/bip-0086.mediawiki) ~ <b>our default mode</b>
-* Validation of Taproot Scripts ([BIP 341](https://github.com/bitcoin/bips/blob/master/bip-0341.mediawiki) and [BIP 342](https://github.com/bitcoin/bips/blob/master/bip-0342.mediawiki))
-* Multy spending paths (address and script)
-* K of N multisignature on Taproot: each combination of K signers is one [BIP 387](https://github.com/bitcoin/bips/blob/master/bip-0387.mediawiki) `sortedmulti_a` script, and the wallet is one [BIP 386](https://github.com/bitcoin/bips/blob/master/bip-0386.mediawiki) `tr()` descriptor that other wallets can import
-* Classic SegWit multisignature (P2SH-P2WSH) with [BIP 48](https://github.com/bitcoin/bips/blob/master/bip-0048.mediawiki) keys sorted as in [BIP 67](https://github.com/bitcoin/bips/blob/master/bip-0067.mediawiki), signed with [PSBT (BIP 174)](https://github.com/bitcoin/bips/blob/master/bip-0174.mediawiki)
+* Derivation schemes [BIP 44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki), [BIP 49](https://github.com/bitcoin/bips/blob/master/bip-0049.mediawiki) and [BIP 84](https://github.com/bitcoin/bips/blob/master/bip-0084.mediawiki), with [SLIP-132](https://github.com/satoshilabs/slips/blob/master/slip-0132.md) `ypub`/`zpub` keys
+* Multisignature keys [(BIP 48)](https://github.com/bitcoin/bips/blob/master/bip-0048.mediawiki)
+* Child seeds [(BIP 85)](https://github.com/bitcoin/bips/blob/master/bip-0085.mediawiki): hot wallets made by the Ruby hardware key from its words
+* Wallet Import Format (WIF) for legacy individual keys, and classic Brain Wallets (not recommended)
+
+**Backups**
+* codex32 [(BIP 93)](https://github.com/bitcoin/bips/blob/master/bip-0093.mediawiki): Consensus Backup and Time-Encrypted Vault split the wallet seed into checksummed shares (a Ruby splits its own seed on the device)
+* Restore from COLDCARD backup files
+
+**Transactions and addresses**
+* Segregated Witness [(BIP 141)](https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki), [(BIP 143)](https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki) and [(BIP 144)](https://github.com/bitcoin/bips/blob/master/bip-0144.mediawiki)
+* Bech32 and bech32m addresses [(BIP 173)](https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki), [(BIP 350)](https://github.com/bitcoin/bips/blob/master/bip-0350.mediawiki)
+* Schnorr signatures [(BIP 340)](https://github.com/bitcoin/bips/blob/master/bip-0340.mediawiki) and Taproot ([BIP 341](https://github.com/bitcoin/bips/blob/master/bip-0341.mediawiki) and [BIP 342](https://github.com/bitcoin/bips/blob/master/bip-0342.mediawiki)): multiple spending paths (key and scripts)
+* Time locks [(BIP 65)](https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki) for the bounty of the Time-Encrypted Vault
+* Replace-by-fee [(BIP 125)](https://github.com/bitcoin/bips/blob/master/bip-0125.mediawiki) for the fee levels signed in advance in group payments
+* `bitcoin:` payment links and QR codes [(BIP 21)](https://github.com/bitcoin/bips/blob/master/bip-0021.mediawiki)
+
+**Multisignature**
+* MuSig2 [(BIP 327)](https://github.com/bitcoin/bips/blob/master/bip-0327.mediawiki): several signers produce one key and one signature (Multi Signature key path, Advanced Delegated and Advanced Multi Signature wallets)
+* K of N multisignature on Taproot: each combination of K signers is one script of the tree, a [BIP 387](https://github.com/bitcoin/bips/blob/master/bip-0387.mediawiki) `sortedmulti_a` or a MuSig2 key
+* Classic SegWit multisignature (P2SH-P2WSH) with BIP 48 keys sorted as in [BIP 67](https://github.com/bitcoin/bips/blob/master/bip-0067.mediawiki)
+* Partially signed transactions [(PSBT, BIP 174)](https://github.com/bitcoin/bips/blob/master/bip-0174.mediawiki), with the Taproot [(BIP 371)](https://github.com/bitcoin/bips/blob/master/bip-0371.mediawiki) and MuSig2 [(BIP 373)](https://github.com/bitcoin/bips/blob/master/bip-0373.mediawiki) fields
+
+**Descriptors** — every group wallet is one output descriptor that other wallets can import
+* Key expressions and checksum [(BIP 380)](https://github.com/bitcoin/bips/blob/master/bip-0380.mediawiki)
+* `sh(wsh(sortedmulti(...)))` for Legacy groups ([BIP 381](https://github.com/bitcoin/bips/blob/master/bip-0381.mediawiki), [BIP 382](https://github.com/bitcoin/bips/blob/master/bip-0382.mediawiki), [BIP 383](https://github.com/bitcoin/bips/blob/master/bip-0383.mediawiki))
+* `tr()` with a script tree [(BIP 386)](https://github.com/bitcoin/bips/blob/master/bip-0386.mediawiki), `multi_a`/`sortedmulti_a` [(BIP 387)](https://github.com/bitcoin/bips/blob/master/bip-0387.mediawiki) and `musig()` [(BIP 390)](https://github.com/bitcoin/bips/blob/master/bip-0390.mediawiki) for the Taproot groups
+
+**Messages, login and network**
+* Signed messages [(BIP 322)](https://github.com/bitcoin/bips/blob/master/bip-0322.mediawiki): the anonymous login and every message between wallets
+* Nostr [(NIP-01)](https://github.com/nostr-protocol/nips/blob/master/01.md) as the transport of end-to-end encrypted messages
+* [Electrum protocol](https://electrumx-spesmilo.readthedocs.io/en/latest/protocol.html) (plain or TLS) with the server you choose
+* Authenticator codes (TOTP, [RFC 6238](https://www.rfc-editor.org/rfc/rfc6238))
 
 
 ## Advanced Encryption Algorithms

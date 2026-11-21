@@ -114,6 +114,14 @@ The backup holds the root of your wallet, so a restored wallet has everything th
 your user name, and your place in your other groups.
 :::
 
+:::note[Next release: codex32 shares]
+From the next release the secret that is split is the wallet's **seed** (the root of BIP32), and it is split with
+[codex32 (BIP93)](https://github.com/bitcoin/bips/blob/master/bip-0093.mediawiki), the standard for sharing a seed.
+Every share carries a strong checksum, so a damaged or wrong share is detected instead of giving a wrong wallet.
+codex32 sets two limits: the **minimum** can be at most **9** votes, and all the members together at most
+**31** votes.
+:::
+
 ## Restore the wallet (members)
 
 <Steps>
@@ -137,6 +145,67 @@ your user name, and your place in your other groups.
 </Steps>
 
 <YouTube id="sRo47Et5k1I" title="Restoring a Consensus Backup" />
+
+## With a Ruby wallet
+
+:::note[Next release]
+Consensus Backup with Ruby comes with the next release of the application, and needs Ruby firmware
+**ruby-1.0.0** or later.
+:::
+
+### Back up a Ruby wallet (owner)
+
+A [Ruby wallet](/wallet/ruby/) has no words on the computer, so **Ruby splits its own seed**. The steps are the
+same as above until you activate the group with your wallet password. Then Ruby shows:
+
+1. **Wallet Backup — Split the wallet seed**: the minimum, the number of shares and the number of members.
+2. One screen for **each member**: the name, the number of shares, and the beginning and the end of that member's
+   key (for example `02a1b2c3d4..e5f6a7b8`). Compare the key with the member in the app before you go on.
+
+Ruby splits the seed, encrypts each member's shares **for that member** and gives them to the app. The seed and the
+shares never appear on the computer. If you decline any screen, nothing is activated.
+
+:::caution[A Ruby set up with an older firmware]
+Before ruby-1.0.0, Ruby did not keep the seed. If Ruby answers *This Ruby has no seed*, set up the wallet again on
+Ruby from its words ([Restore a Ruby wallet](/wallet/ruby-restore/)).
+:::
+
+The members restore exactly as above: nothing changes for them.
+
+### Restore to a Ruby (members)
+
+A member who clicks **Create recovered wallet** chooses **where the keys of the new wallet live**:
+
+- **Software**: a normal wallet file, protected by the new password.
+- **Ruby hardware key**: the recovered wallet goes to a Ruby, and the computer keeps no words. Use a **new Ruby or
+  one reset**: a Ruby holds one wallet, and a Ruby that already has one refuses it.
+
+The owner's wallet does not need to be a Ruby wallet for this: any backed-up wallet can be restored to a Ruby.
+
+<Steps>
+
+1. Choose **Ruby hardware key** and the Ruby. The page shows the **fingerprint** Ruby will show. Type the new
+   password twice and click **Restore Wallet**.
+
+   ![Create recovered wallet: Ruby hardware key, the Ruby device and the fingerprint Ruby will show](../../../assets/screens/ruby/backup-01-app-choose-ruby.png)
+
+2. Ruby asks **Load the recovered wallet on this Ruby?** with the fingerprint. If it is the same as on the page,
+   move to **Yes** (C) and press it (B). **No** leaves Ruby as it was.
+
+   | | |
+   |---|---|
+   | ![Restore Wallet on Ruby: Load the recovered wallet on this Ruby? and the fingerprint, No selected](../../../assets/screens/ruby/backup-02-ruby-restore-wallet.png) | ![Yes selected](../../../assets/screens/ruby/backup-03-ruby-yes.png) |
+
+3. Choose the **PIN** on Ruby, and confirm it.
+
+   ![Enter New PIN on Ruby](../../../assets/screens/ruby/backup-04-ruby-new-pin.png)
+
+4. Ruby is **Active**, with the same fingerprint, and the recovered wallet is in the list of wallets. It is the
+   owner's wallet, now with its keys on Ruby: open it with the password and the PIN.
+
+   ![Ruby active, with the fingerprint of the recovered wallet](../../../assets/screens/ruby/backup-05-ruby-active.png)
+
+</Steps>
 
 ## You stay in control: the Signatures tab (owner)
 

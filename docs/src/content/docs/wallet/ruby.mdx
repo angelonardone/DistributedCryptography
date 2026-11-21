@@ -45,7 +45,8 @@ and to test, on TestNet or with small amounts.
 - The **Ruby firmware** written to the board. Today it is built from its source code, published at
   [github.com/angelonardone/Ruby](https://github.com/angelonardone/Ruby) (branch `m5stack-basic`), and written to
   the board over USB with Espressif's `esptool`. A ready-made firmware and writing it from the application are
-  planned.
+  planned. Ruby has its own version numbers since **ruby-1.0.0** (the first one that keeps the wallet's seed, needed
+  by the [Consensus Backup](/groups/consensus-backup/#with-a-ruby-wallet) of a Ruby wallet).
 - A **USB cable** between the board and the computer that runs Distributed Cryptography.
 
 ### Ruby's buttons
@@ -116,7 +117,8 @@ opened). The difference comes when you pay: **no password is asked, and Ruby sho
 | [Advanced Delegated Multi Signature](/groups/advanced-delegated-multisignature/#with-a-ruby-wallet) (MuSig2) | be the owner who pays alone, or a member in the signing rooms |
 | [Advanced Multi Signature](/groups/advanced-multi-signature/#with-a-ruby-wallet) (MuSig2) | create the group or be a signer in the signing rooms |
 | [Group Chat](/groups/group-chat/) | everything: nothing is asked on Ruby |
-| Consensus Backup, Time-Encrypted Vault | not yet (see [below](#not-yet-with-ruby)) |
+| [Consensus Backup](/groups/consensus-backup/#with-a-ruby-wallet) | back up a Ruby wallet (**Ruby splits its own seed**, firmware ruby-1.0.0), or restore any backed-up wallet onto a new Ruby |
+| [Time-Encrypted Vault](/groups/time-encrypted-vault/) | the owner's wallet can be a Ruby wallet (Ruby splits its seed), and the restore group can recover it onto a new Ruby; a Ruby member cannot collect the **bounty** yet |
 
 ### The first time: register the group on Ruby
 
@@ -180,6 +182,9 @@ What happens if something is lost:
 The same words also bring back every [hot wallet](/wallet/ruby-hot-wallets/#a-lost-hot-wallet) made from this
 Ruby wallet, by its number.
 
+Besides the words, people you trust can hold a [Consensus Backup](/groups/consensus-backup/#with-a-ruby-wallet) of
+a Ruby wallet (from the next release): Ruby splits its seed itself, and the wallet can be restored onto a new Ruby.
+
 :::danger[Do not type the words into the computer]
 The whole point of a hardware key is that the words, and with them the master key, never leave the device. To
 restore, type them **on a Ruby**. *Restore Wallet* in the application (with the words and the original password
@@ -209,6 +214,6 @@ describes what they do on a Jade.
 
 ## Not yet with Ruby
 
-- **Consensus Backup** and **Time-Encrypted Vault**: they back up the words of the wallet, which a Ruby wallet does
-  not have on the computer. Ruby will have to split them itself.
+- **The bounty of a Time-Encrypted Vault:** a member of the bounty group with a Ruby wallet cannot collect it yet;
+  use a software wallet in the bounty group.
 - **Bluetooth:** Ruby works over USB only, for now.

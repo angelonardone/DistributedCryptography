@@ -130,6 +130,19 @@ Open **Online → Smart Groups** in your own wallet and click **Accept Invitatio
 On activation your wallet secret is split on your computer, and every piece is encrypted for the member who
 keeps it.
 
+:::note[Next release: codex32 shares and Ruby wallets]
+From the next release the vault protects the wallet's **seed**, split with
+[codex32 (BIP93)](https://github.com/bitcoin/bips/blob/master/bip-0093.mediawiki), as in a
+[Consensus Backup](/groups/consensus-backup/): every share has a checksum, the minimum of the restore group can be
+at most 9 votes and the whole restore group at most 31.
+
+The owner can also be a [Ruby wallet](/wallet/ruby/) (firmware ruby-1.0.0 or later): on activation **Ruby** shows
+*Time Vault — Split the wallet seed* and every member of the restore group with their key, and splits the seed
+itself. The seed never appears on the computer. The restore group can recover the wallet as a software wallet or
+onto a new Ruby, as described in
+[Restore to a Ruby](/groups/consensus-backup/#restore-to-a-ruby-members).
+:::
+
 ## 7. Fund the bounty (owner)
 
 <Steps>
@@ -209,6 +222,8 @@ Before the restore date the bitcoin network rejects this payment, so there is no
    ![The button Create recovered wallet](../../../assets/screens/tev/18-create-recovered-wallet.png)
 
 4. Type a **name** for the recovered wallet and a **new password**, twice. Click **Restore Wallet**.
+   (From the next release you also choose where the keys live: **Software**, or a new
+   [Ruby](/groups/consensus-backup/#restore-to-a-ruby-members).)
 
    ![The name and the new password of the recovered wallet](../../../assets/screens/tev/19-recovered-wallet-form.png)
 
