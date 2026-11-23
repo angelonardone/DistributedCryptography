@@ -5,10 +5,6 @@ description: A Taproot bitcoin wallet you can always spend from alone, and that 
 
 import { Steps } from '@astrojs/starlight/components';
 
-:::tip[Version 0.925]
-In version 0.925 of the app this type is called **Delegated Multi Signature 2**.
-:::
-
 An **Advanced Delegated Multi Signature Wallet** works like the
 [Delegated Multi Signature Wallet](/groups/delegated-multisignature/): **you, the owner, can always pay alone**, and
 **K of the N members** you choose can also pay without you. The difference is how the members sign: they sign
@@ -115,7 +111,6 @@ reserves its address for everybody, so two members never give the same address t
 requests encrypted with the key of the group: it cannot read them, it cannot even tell that they are payment
 requests, and it does not know who the members are. Only
 the member who made a request, or the creator of the group, can cancel it: the other members do not see **Cancel**.
-It works in the groups created with version 0.926 or later.
 :::
 
 ![The Wallet Balance tab of the group: its receiving address, the balance and Rescan Balance](../../../assets/screens/advdelegated/05-wallet-balance.png)
@@ -213,11 +208,6 @@ these descriptors; our tests check it on every release.
 ![The two descriptors of the group, written with musig()](../../../assets/screens/advdelegated/17-descriptors.png)
 
 ## With a Ruby wallet
-
-:::note[Next release]
-Ruby wallets in the Advanced (MuSig2) groups come with the next release of the application, and need the current
-Ruby firmware.
-:::
 
 A [Ruby wallet](/wallet/ruby/) can be the **owner** of the group or one of its **members**. Creating, accepting and
 activating are the same as above (the owner activates with the password of the wallet file; nothing is asked on

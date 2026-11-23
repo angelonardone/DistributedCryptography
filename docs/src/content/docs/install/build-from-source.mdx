@@ -35,6 +35,8 @@ GitHub from this repository, with the workflow
    dotnet publish src\build\Deployment.slnx -c Release -r win-x64 --self-contained true
    dotnet publish src\build\GxWebStartup\GxWebStartup.csproj -c Release -r win-x64 --self-contained true -o web\bin
    ```
+
+   On Windows on ARM use `-r win-arm64` instead of `-r win-x64`.
    </TabItem>
    <TabItem label="Mac">
    ```bash

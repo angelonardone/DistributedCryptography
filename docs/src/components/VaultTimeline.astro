@@ -1,0 +1,153 @@
+---
+// How a Time-Encrypted Vault works, drawn as a timeline: while the owner keeps renewing the date the vault
+// stays closed; when the date passes, the people the owner chose open it together. Used on the home page.
+---
+
+<figure class="dc-diagram not-content">
+	<svg viewBox="0 0 760 250" role="img" aria-labelledby="dc-tev-title" xmlns="http://www.w3.org/2000/svg">
+		<title id="dc-tev-title">A timeline. While you keep renewing the date, the vault stays closed. When the date you set passes, the people you chose open it together.</title>
+
+		<text x="40" y="34" class="label head">While you renew the date, it stays closed</text>
+		<text x="730" y="34" class="label head" text-anchor="end">After the date, they open it</text>
+
+		<!-- the track -->
+		<line x1="40" y1="140" x2="710" y2="140" class="track" />
+		<line x1="40" y1="140" x2="520" y2="140" class="closed" />
+		<line x1="520" y1="140" x2="710" y2="140" class="open" />
+
+		<!-- today -->
+		<circle cx="40" cy="140" r="7" class="point" />
+		<text x="40" y="176" class="label strong" text-anchor="middle">Today</text>
+
+		<!-- renewals -->
+		<g class="renew">
+			<g transform="translate(160 140)"><circle r="7" class="point" /><path d="M-6 -30 l12 0 m-5 -5 l5 5 l-5 5" class="arrow" /></g>
+			<g transform="translate(280 140)"><circle r="7" class="point" /><path d="M-6 -30 l12 0 m-5 -5 l5 5 l-5 5" class="arrow" /></g>
+			<g transform="translate(400 140)"><circle r="7" class="point" /><path d="M-6 -30 l12 0 m-5 -5 l5 5 l-5 5" class="arrow" /></g>
+		</g>
+		<text x="280" y="176" class="label" text-anchor="middle">You renew it every few months</text>
+		<text x="280" y="197" class="label small" text-anchor="middle">a minute each time</text>
+
+		<!-- the date, with the closed lock -->
+		<line x1="520" y1="100" x2="520" y2="160" class="tick" />
+		<g transform="translate(520 78)">
+			<path d="M-9 0 v-9 a9 9 0 0 1 18 0 v9" class="shackle" />
+			<rect x="-15" y="0" width="30" height="22" rx="5" class="lock" />
+			<circle cy="11" r="3.5" class="keyhole" />
+		</g>
+		<text x="520" y="176" class="label strong" text-anchor="middle">The date you set</text>
+		<text x="520" y="197" class="label small" text-anchor="middle">enforced by the Bitcoin network</text>
+
+		<!-- after the date: the open lock and the people -->
+		<g transform="translate(670 78)">
+			<path d="M-9 0 v-13 a9 9 0 0 1 18 0 v2" class="shackle open" />
+			<rect x="-15" y="0" width="30" height="22" rx="5" class="lock open" />
+			<circle cy="11" r="3.5" class="keyhole" />
+		</g>
+		<g class="people" transform="translate(670 140)">
+			<g transform="translate(-28 0)"><circle r="13" class="p1" /><circle cy="-3.5" r="3.6" class="face" /><path d="M-7 8.5 a7 5.5 0 0 1 14 0 z" class="face" /></g>
+			<g transform="translate(0 0)"><circle r="13" class="p2" /><circle cy="-3.5" r="3.6" class="face" /><path d="M-7 8.5 a7 5.5 0 0 1 14 0 z" class="face" /></g>
+			<g transform="translate(28 0)"><circle r="13" class="p3" /><circle cy="-3.5" r="3.6" class="face" /><path d="M-7 8.5 a7 5.5 0 0 1 14 0 z" class="face" /></g>
+		</g>
+		<text x="670" y="176" class="label strong" text-anchor="middle">The people you chose</text>
+	</svg>
+	<figcaption>
+		Renewing is your regular "I am still here". If one day you stop, the date arrives and the group can recover
+		everything. Before the date, nobody can open it: not the group, and not us.
+	</figcaption>
+</figure>
+
+<style>
+	.dc-diagram {
+		margin: 1.5rem 0 0;
+		overflow-x: auto;
+	}
+	svg {
+		display: block;
+		width: 100%;
+		min-width: 34rem;
+		height: auto;
+		max-width: 46rem;
+		margin-inline: auto;
+		font-family: var(--sl-font-system, system-ui, sans-serif);
+	}
+	.label {
+		font-size: 15px;
+		fill: var(--sl-color-gray-2);
+	}
+	.label.head {
+		font-family: var(--dc-display);
+		font-weight: 700;
+		fill: var(--sl-color-white);
+	}
+	.label.strong {
+		font-weight: 600;
+		fill: var(--sl-color-white);
+	}
+	.label.small {
+		font-size: 13px;
+		fill: var(--sl-color-gray-3);
+	}
+	.track {
+		stroke: var(--sl-color-gray-5);
+		stroke-width: 8;
+		stroke-linecap: round;
+	}
+	.closed {
+		stroke: var(--sl-color-accent);
+		stroke-width: 8;
+		stroke-linecap: round;
+	}
+	.open {
+		stroke: var(--dc-teal);
+		stroke-width: 8;
+		stroke-linecap: round;
+	}
+	.point {
+		fill: var(--sl-color-bg);
+		stroke: var(--sl-color-accent);
+		stroke-width: 3;
+	}
+	.arrow {
+		fill: none;
+		stroke: var(--sl-color-gray-3);
+		stroke-width: 2;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+	.tick {
+		stroke: var(--sl-color-gray-3);
+		stroke-width: 2;
+		stroke-dasharray: 4 4;
+	}
+	.lock {
+		fill: var(--sl-color-accent);
+	}
+	.lock.open {
+		fill: var(--dc-teal);
+	}
+	.shackle {
+		fill: none;
+		stroke: var(--sl-color-accent);
+		stroke-width: 4;
+	}
+	.shackle.open {
+		stroke: var(--dc-teal);
+	}
+	.keyhole {
+		fill: var(--sl-color-bg);
+	}
+	.p1 { fill: var(--dc-cyan); }
+	.p2 { fill: var(--dc-magenta); }
+	.p3 { fill: var(--dc-yellow); }
+	.face {
+		fill: #fff;
+	}
+	figcaption {
+		max-width: 46rem;
+		margin: 0.75rem auto 0;
+		font-size: var(--sl-text-sm);
+		color: var(--sl-color-gray-3);
+		text-align: center;
+	}
+</style>

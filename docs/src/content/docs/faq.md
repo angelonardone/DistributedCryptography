@@ -18,8 +18,18 @@ No. The application runs **on your machine** and your browser is only its screen
 
 ### Who holds my keys?
 
-You do, and only you. They are created on your computer and stored there, encrypted with your password. We never
-receive them, so we cannot move your money, and we cannot give your keys to anybody.
+You do, and only you. They are created on your computer and stored there, encrypted with your password, or they
+are created and kept on [Ruby](/wallet/ruby/), our hardware key. We never receive them, so we cannot move your
+money, and we cannot give your keys to anybody.
+
+### Do I need a hardware wallet?
+
+No. A wallet whose keys are in a file on your computer, protected by your password, is enough for most people.
+
+If you want the keys out of the computer, **Ruby** is our own hardware key: a small device with a screen and three
+buttons, built on an M5Stack Basic board that costs about USD 40. Ruby creates your words on its own screen,
+keeps the keys, and signs every payment after you check it on the device. A Ruby wallet does everything a
+software wallet does, backups with people you trust and shared wallets included. See [Ruby hardware key](/wallet/ruby/).
 
 ### Which systems does it run on?
 
@@ -59,7 +69,8 @@ valid, but different and empty, wallet. See [Restore a wallet](/wallet/restore/)
 2. **Your password.** Keep it in a different place from the words.
 3. **A copy of your wallet folder**, for your encrypted notes, files and passwords.
 
-The first two bring back your bitcoin and your identity. The third brings back the things you stored.
+The first two bring back your bitcoin and your identity. The third brings back the things you stored. With a
+[Ruby wallet](/wallet/ruby/) the words are the ones Ruby showed you, and you also need Ruby's PIN to use the device.
 
 ### Can I restore my wallet in other software?
 

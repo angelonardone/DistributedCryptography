@@ -11,9 +11,9 @@ can do alone. The jobs are:
 | [Consensus Backup](/groups/consensus-backup/) (in the app: *Wallet Backup*) | A backup of your wallet that a minimum number of members must agree to restore (patent pending) |
 | [Time-Encrypted Vault](/groups/time-encrypted-vault/) | A backup that can only be opened after a date you keep renewing: inheritance and business continuity (patent pending) |
 | [Delegated Multi Signature Wallet](/groups/delegated-multisignature/) | A bitcoin wallet you can always spend from alone, and that K of the N people you choose can also spend from, built on Taproot |
-| [Advanced Delegated Multi Signature Wallet](/groups/advanced-delegated-multisignature/) (in 0.925: *Delegated Multi Signature 2*) | The same, but the K members sign online at the same time (MuSig2): every payment carries one single signature |
+| [Advanced Delegated Multi Signature Wallet](/groups/advanced-delegated-multisignature/) | The same, but the K members sign online at the same time (MuSig2): every payment carries one single signature |
 | [Multi Signature Wallet](/groups/multi-signature/) | A Taproot bitcoin wallet where everybody, the creator included, is an equal signer and K of the N must sign each payment |
-| [Advanced Multi Signature Wallet](/groups/advanced-multi-signature/) (in 0.925: *Multi Signature 2*) | The same, but the K signers sign online at the same time (MuSig2): every payment carries one single signature |
+| [Advanced Multi Signature Wallet](/groups/advanced-multi-signature/) | The same, but the K signers sign online at the same time (MuSig2): every payment carries one single signature |
 | [Legacy Multi Signature Wallet](/groups/legacy-multisignature/) | A classic multisignature wallet where K of N equal members must approve each payment, compatible with other software |
 | [Shared passwords](/groups/shared-passwords/) (in the app: *Encrypted Passwords*) | A password vault where you decide which member sees which password |
 | [Group Chat](/groups/group-chat/) | A chat of several people, everyone with everyone, encrypted and signed |

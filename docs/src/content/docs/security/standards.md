@@ -6,20 +6,18 @@ description: The Bitcoin standards (BIPs) and the other published standards the 
 The wallet follows the published Bitcoin standards, so your coins are never tied to our software: your words,
 your backups and your group wallets can be opened by other wallets that follow the same standards.
 
-Items marked **(next release)** come with the next release of the application.
-
 ## Wallets and keys
 
 | Standard | What it is | Where the wallet uses it |
 |---|---|---|
-| [BIP 32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) | Hierarchical deterministic wallets | Every key of a wallet comes from one seed. The wallet file keeps only that seed, encrypted **(next release)** |
+| [BIP 32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) | Hierarchical deterministic wallets | Every key of a wallet comes from one seed. The wallet file keeps only that seed, encrypted |
 | [BIP 39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) | The list of words (mnemonic) that creates the keys | Create and restore a wallet, in English or Spanish; the optional password is the BIP39 passphrase |
 | [BIP 86](https://github.com/bitcoin/bips/blob/master/bip-0086.mediawiki) | Taproot single-key accounts | **Our default** wallet type |
 | [BIP 84](https://github.com/bitcoin/bips/blob/master/bip-0084.mediawiki) | Native SegWit (P2WPKH) accounts | Wallet type |
 | [BIP 49](https://github.com/bitcoin/bips/blob/master/bip-0049.mediawiki) | SegWit nested in P2SH accounts | Wallet type |
 | [BIP 44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) | The legacy format of deterministic wallets | Wallet type |
 | [BIP 48](https://github.com/bitcoin/bips/blob/master/bip-0048.mediawiki) | Keys for multisignature wallets | The keys of each member of a [Legacy Multi Signature Wallet](/groups/legacy-multisignature/) |
-| [BIP 85](https://github.com/bitcoin/bips/blob/master/bip-0085.mediawiki) | Child seeds made from a master seed | [Hot wallets](/wallet/ruby-hot-wallets/) made by Ruby from its words **(next release)** |
+| [BIP 85](https://github.com/bitcoin/bips/blob/master/bip-0085.mediawiki) | Child seeds made from a master seed | [Hot wallets](/wallet/ruby-hot-wallets/) made by Ruby from its words |
 | [SLIP-132](https://github.com/satoshilabs/slips/blob/master/slip-0132.md) | `ypub` / `zpub` key formats | The extended keys of BIP49 and BIP84 wallets |
 | Wallet Import Format (WIF) | Single legacy keys | Import a single key |
 | Brain wallets | A key made from a phrase | Classic brain wallets can be imported; not recommended. The [Advance Brain Wallet](/wallet/advance-brain-wallet/) makes its key with Argon2id |
@@ -28,7 +26,7 @@ Items marked **(next release)** come with the next release of the application.
 
 | Standard | What it is | Where the wallet uses it |
 |---|---|---|
-| [BIP 93 (codex32)](https://github.com/bitcoin/bips/blob/master/bip-0093.mediawiki) | Splitting a seed into shares, each with a strong checksum | [Consensus Backup](/groups/consensus-backup/) and [Time-Encrypted Vault](/groups/time-encrypted-vault/) split the wallet seed; a [Ruby](/wallet/ruby/) splits its own seed **(next release)** |
+| [BIP 93 (codex32)](https://github.com/bitcoin/bips/blob/master/bip-0093.mediawiki) | Splitting a seed into shares, each with a strong checksum | [Consensus Backup](/groups/consensus-backup/) and [Time-Encrypted Vault](/groups/time-encrypted-vault/) split the wallet seed; a [Ruby](/wallet/ruby/) splits its own seed |
 | COLDCARD backup files | Encrypted backups of a COLDCARD | Restore a wallet from a COLDCARD backup |
 
 ## Transactions and addresses

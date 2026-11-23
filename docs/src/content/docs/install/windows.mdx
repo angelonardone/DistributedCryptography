@@ -5,16 +5,30 @@ description: Download the Windows installer, check the file and start the wallet
 
 import YouTube from '../../../components/YouTube.astro';
 import Sha256 from '../../../components/Sha256.astro';
-import { Steps } from '@astrojs/starlight/components';
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 import { downloadUrl, files } from '../../../downloads';
+
+There is one download for most PCs (Intel or AMD processor) and one for Windows on ARM (Snapdragon and other ARM
+processors). To know which one you have, open **Settings > System > About**: **System type** says
+**x64-based processor** or **ARM-based processor**.
 
 <Steps>
 
-1. **Download** the installer of the current version:
+1. **Download** the installer of the current version for your PC:
+
+   <Tabs syncKey="windows">
+   <TabItem label="Intel or AMD (x64)">
    <a href={downloadUrl(files.windowsSetup)}>{files.windowsSetup}</a>
+   </TabItem>
+   <TabItem label="ARM">
+   <a href={downloadUrl(files.windowsArmSetup)}>{files.windowsArmSetup}</a>
+   </TabItem>
+   </Tabs>
 
 2. **Check the file.** Open a command prompt in the folder where you saved it and run:
 
+   <Tabs syncKey="windows">
+   <TabItem label="Intel or AMD (x64)">
    ```powershell
    certutil -hashfile DistributedCryptography-Windows-x64-Setup.exe SHA256
    ```
@@ -22,6 +36,17 @@ import { downloadUrl, files } from '../../../downloads';
    The result must be the same as this value:
 
    <Sha256 file={files.windowsSetup} />
+   </TabItem>
+   <TabItem label="ARM">
+   ```powershell
+   certutil -hashfile DistributedCryptography-Windows-arm64-Setup.exe SHA256
+   ```
+
+   The result must be the same as this value:
+
+   <Sha256 file={files.windowsArmSetup} />
+   </TabItem>
+   </Tabs>
 
    If it is different, do not use the file. Download it again.
 
@@ -53,7 +78,11 @@ To uninstall, use **Settings > Apps** in Windows.
 ## Without the installer
 
 The same application is also published as a plain zip file, for example to put it on a USB drive or to
-[publish it with IIS](/install/iis/): <a href={downloadUrl(files.windowsZip)}>{files.windowsZip}</a>
+[publish it with IIS](/install/iis/):
+
+<Tabs syncKey="windows">
+<TabItem label="Intel or AMD (x64)">
+<a href={downloadUrl(files.windowsZip)}>{files.windowsZip}</a>
 
 Check it the same way before you use it:
 
@@ -64,6 +93,21 @@ certutil -hashfile DistributedCryptography-Windows-x64.zip SHA256
 The result must be the same as this value:
 
 <Sha256 file={files.windowsZip} />
+</TabItem>
+<TabItem label="ARM">
+<a href={downloadUrl(files.windowsArmZip)}>{files.windowsArmZip}</a>
+
+Check it the same way before you use it:
+
+```powershell
+certutil -hashfile DistributedCryptography-Windows-arm64.zip SHA256
+```
+
+The result must be the same as this value:
+
+<Sha256 file={files.windowsArmZip} />
+</TabItem>
+</Tabs>
 
 Then unzip it to a folder of your choice and start it with `Start.bat`.
 

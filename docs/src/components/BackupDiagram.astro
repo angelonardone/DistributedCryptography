@@ -1,0 +1,164 @@
+---
+// How a Consensus Backup works, drawn: the secret of the vault is split into 5 pieces, one per person;
+// any 3 of them bring the vault back, 2 alone learn nothing. Used on the home page.
+// Colours: the people are the colours of the logo; everything else follows the theme.
+---
+
+<figure class="dc-diagram not-content">
+	<svg viewBox="0 0 800 310" role="img" aria-labelledby="dc-backup-title" xmlns="http://www.w3.org/2000/svg">
+		<title id="dc-backup-title">The secret of your vault is split into five pieces, one for each person you trust. Any three of them together bring the vault back. Two alone learn nothing.</title>
+		<defs>
+			<marker id="dc-arrow-grey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+				<path d="M0 0 L10 5 L0 10 z" class="m-grey" />
+			</marker>
+			<marker id="dc-arrow-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+				<path d="M0 0 L10 5 L0 10 z" class="m-accent" />
+			</marker>
+		</defs>
+
+		<text x="270" y="30" class="label head">1. Split into 5 pieces</text>
+		<text x="600" y="30" class="label head" text-anchor="middle">2. Any 3 bring it back</text>
+
+		<!-- the vault -->
+		<g transform="translate(40 120)">
+			<rect x="0" y="0" width="96" height="96" rx="18" class="vault" />
+			<circle cx="48" cy="48" r="22" class="dial" />
+			<circle cx="48" cy="48" r="6" class="dot" />
+			<rect x="82" y="30" width="6" height="36" rx="3" class="dot" />
+		</g>
+		<text x="88" y="245" class="label strong" text-anchor="middle">Your vault</text>
+
+		<!-- the five pieces -->
+		<g class="pieces">
+			<path d="M140 168 C 240 168, 260 62, 356 62" />
+			<path d="M140 168 C 240 168, 260 115, 356 115" />
+			<path d="M140 168 L 356 168" />
+			<path d="M140 168 C 240 168, 260 221, 356 221" />
+			<path d="M140 168 C 240 168, 260 274, 356 274" />
+		</g>
+
+		<!-- the people -->
+		<g class="people">
+			<g transform="translate(380 62)"><circle r="20" class="p1" /><circle cy="-5" r="5.5" class="face" /><path d="M-10.5 13 a10.5 8 0 0 1 21 0 z" class="face" /><g transform="translate(16 -14)"><circle r="8" class="yes" /><path d="M-3.5 0 l2.5 2.5 l4.5 -5" class="tick" /></g></g>
+			<g transform="translate(380 115)"><circle r="20" class="p2" /><circle cy="-5" r="5.5" class="face" /><path d="M-10.5 13 a10.5 8 0 0 1 21 0 z" class="face" /></g>
+			<g transform="translate(380 168)"><circle r="20" class="p3" /><circle cy="-5" r="5.5" class="face" /><path d="M-10.5 13 a10.5 8 0 0 1 21 0 z" class="face" /><g transform="translate(16 -14)"><circle r="8" class="yes" /><path d="M-3.5 0 l2.5 2.5 l4.5 -5" class="tick" /></g></g>
+			<g transform="translate(380 221)"><circle r="20" class="p4" /><circle cy="-5" r="5.5" class="face" /><path d="M-10.5 13 a10.5 8 0 0 1 21 0 z" class="face" /><g transform="translate(16 -14)"><circle r="8" class="yes" /><path d="M-3.5 0 l2.5 2.5 l4.5 -5" class="tick" /></g></g>
+			<g transform="translate(380 274)"><circle r="20" class="p5" /><circle cy="-5" r="5.5" class="face" /><path d="M-10.5 13 a10.5 8 0 0 1 21 0 z" class="face" /></g>
+		</g>
+
+		<!-- three of them agree -->
+		<g class="agree">
+			<path d="M404 62 C 500 62, 520 168, 616 168" />
+			<path d="M404 168 L 616 168" />
+			<path d="M404 221 C 500 221, 520 168, 616 168" />
+		</g>
+
+		<!-- the vault, back -->
+		<g transform="translate(620 120)">
+			<rect x="0" y="0" width="96" height="96" rx="18" class="vault back" />
+			<circle cx="48" cy="48" r="22" class="dial" />
+			<circle cx="48" cy="48" r="6" class="dot" />
+			<rect x="82" y="30" width="6" height="36" rx="3" class="dot" />
+		</g>
+		<text x="668" y="245" class="label strong" text-anchor="middle">Back, on any computer</text>
+		<text x="668" y="266" class="label small" text-anchor="middle">bitcoin, contacts, groups, passwords</text>
+	</svg>
+	<figcaption>
+		Five people, any three of them. You choose the people, how many pieces each one holds and how many are
+		needed. Fewer than that learn nothing at all, and you are warned the moment someone starts.
+	</figcaption>
+</figure>
+
+<style>
+	.dc-diagram {
+		margin: 1.5rem 0 0;
+		overflow-x: auto;
+	}
+	svg {
+		display: block;
+		width: 100%;
+		min-width: 34rem;
+		height: auto;
+		max-width: 46rem;
+		margin-inline: auto;
+		font-family: var(--sl-font-system, system-ui, sans-serif);
+	}
+	.label {
+		font-size: 15px;
+		fill: var(--sl-color-gray-2);
+	}
+	.label.head {
+		font-family: var(--dc-display);
+		font-weight: 700;
+		fill: var(--sl-color-white);
+	}
+	.label.strong {
+		font-weight: 600;
+		fill: var(--sl-color-white);
+	}
+	.label.small {
+		font-size: 13px;
+		fill: var(--sl-color-gray-3);
+	}
+	.vault {
+		fill: var(--sl-color-gray-6);
+		stroke: var(--sl-color-accent);
+		stroke-width: 3;
+	}
+	.vault.back {
+		fill: var(--sl-color-accent-low);
+	}
+	.dial {
+		fill: none;
+		stroke: var(--sl-color-accent);
+		stroke-width: 3;
+	}
+	.dot {
+		fill: var(--sl-color-accent);
+	}
+	.pieces path {
+		fill: none;
+		stroke: var(--sl-color-gray-4);
+		stroke-width: 2;
+		marker-end: url(#dc-arrow-grey);
+	}
+	.agree path {
+		fill: none;
+		stroke: var(--sl-color-accent);
+		stroke-width: 3;
+		marker-end: url(#dc-arrow-accent);
+	}
+	.m-grey {
+		fill: var(--sl-color-gray-4);
+	}
+	.m-accent {
+		fill: var(--sl-color-accent);
+	}
+	.p1 { fill: var(--dc-cyan); }
+	.p2 { fill: var(--dc-magenta); }
+	.p3 { fill: var(--dc-yellow); }
+	.p4 { fill: var(--dc-teal); }
+	.p5 { fill: var(--dc-blue); }
+	.face {
+		fill: #fff;
+	}
+	.yes {
+		fill: var(--sl-color-accent);
+		stroke: var(--sl-color-bg);
+		stroke-width: 2;
+	}
+	.tick {
+		fill: none;
+		stroke: #fff;
+		stroke-width: 2;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+	figcaption {
+		max-width: 46rem;
+		margin: 0.75rem auto 0;
+		font-size: var(--sl-text-sm);
+		color: var(--sl-color-gray-3);
+		text-align: center;
+	}
+</style>

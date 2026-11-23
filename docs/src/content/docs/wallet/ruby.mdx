@@ -3,10 +3,6 @@ title: Ruby hardware key
 description: Keep the keys of your wallet on Ruby, our hardware key for a cheap ESP32 board. Ruby signs every payment; the computer never sees the words.
 ---
 
-:::note
-Ruby wallets come with version 0.926 of the application.
-:::
-
 **Ruby** is the hardware key of Distributed Cryptography: our own firmware, based on Blockstream's Jade and
 **Bitcoin only**, running on a cheap generic ESP32 board. You do not need a Blockstream device (a retail Jade only
 runs firmware signed by Blockstream, so it cannot run Ruby).
@@ -46,7 +42,8 @@ and to test, on TestNet or with small amounts.
   [github.com/angelonardone/Ruby](https://github.com/angelonardone/Ruby) (branch `m5stack-basic`), and written to
   the board over USB with Espressif's `esptool`. A ready-made firmware and writing it from the application are
   planned. Ruby has its own version numbers since **ruby-1.0.0** (the first one that keeps the wallet's seed, needed
-  by the [Consensus Backup](/groups/consensus-backup/#with-a-ruby-wallet) of a Ruby wallet).
+  by the [Consensus Backup](/groups/consensus-backup/#with-a-ruby-wallet) of a Ruby wallet); **ruby-1.0.1** also
+  signs the bounty of a [Time-Encrypted Vault](/groups/time-encrypted-vault/#with-a-ruby-wallet).
 - A **USB cable** between the board and the computer that runs Distributed Cryptography.
 
 ### Ruby's buttons
@@ -74,7 +71,7 @@ The application looks for Ruby by itself; **Find Ruby** searches again if you pl
 - [Create a wallet with Ruby](/wallet/ruby-create/), step by step.
 - [Restore a Ruby wallet](/wallet/ruby-restore/) from its words, typed on a Ruby.
 - [Make hot wallets](/wallet/ruby-hot-wallets/): everyday software wallets made by Ruby from its words (BIP85),
-  for small amounts (from the next release).
+  for small amounts.
 - [Use Ruby in a Smart Group](#smart-groups-with-ruby): Legacy, Delegated, Multi Signature, the two Advanced
   (MuSig2) wallets and Group Chat.
 
@@ -101,9 +98,7 @@ says *The payment was declined on Ruby*: nothing is sent, and the Send page stay
 
 ## Smart Groups with Ruby
 
-:::note[Next release]
-Ruby wallets in Smart Groups come with the next release of the application, and need the current Ruby firmware.
-:::
+Ruby wallets in Smart Groups need the current Ruby firmware (ruby-1.0.1).
 
 A Ruby wallet takes part in a group like any other wallet: it is invited, accepts and is activated in the same way,
 and nothing is asked on Ruby for that (the group needs only public keys, which Ruby gave the wallet when it was
@@ -118,7 +113,7 @@ opened). The difference comes when you pay: **no password is asked, and Ruby sho
 | [Advanced Multi Signature](/groups/advanced-multi-signature/#with-a-ruby-wallet) (MuSig2) | create the group or be a signer in the signing rooms |
 | [Group Chat](/groups/group-chat/) | everything: nothing is asked on Ruby |
 | [Consensus Backup](/groups/consensus-backup/#with-a-ruby-wallet) | back up a Ruby wallet (**Ruby splits its own seed**, firmware ruby-1.0.0), or restore any backed-up wallet onto a new Ruby |
-| [Time-Encrypted Vault](/groups/time-encrypted-vault/) | the owner's wallet can be a Ruby wallet (Ruby splits its seed), and the restore group can recover it onto a new Ruby; a Ruby member cannot collect the **bounty** yet |
+| [Time-Encrypted Vault](/groups/time-encrypted-vault/) | [everything](/groups/time-encrypted-vault/#with-a-ruby-wallet): be the owner (Ruby splits its seed, and signs when the bounty is moved to a new date or taken back), a member of the restore group (it can recover the wallet onto a new Ruby), or a member of the bounty group who collects the **bounty** on Ruby (firmware ruby-1.0.1) |
 
 ### The first time: register the group on Ruby
 
@@ -183,7 +178,7 @@ The same words also bring back every [hot wallet](/wallet/ruby-hot-wallets/#a-lo
 Ruby wallet, by its number.
 
 Besides the words, people you trust can hold a [Consensus Backup](/groups/consensus-backup/#with-a-ruby-wallet) of
-a Ruby wallet (from the next release): Ruby splits its seed itself, and the wallet can be restored onto a new Ruby.
+a Ruby wallet: Ruby splits its seed itself, and the wallet can be restored onto a new Ruby.
 
 :::danger[Do not type the words into the computer]
 The whole point of a hardware key is that the words, and with them the master key, never leave the device. To
@@ -214,6 +209,4 @@ describes what they do on a Jade.
 
 ## Not yet with Ruby
 
-- **The bounty of a Time-Encrypted Vault:** a member of the bounty group with a Ruby wallet cannot collect it yet;
-  use a software wallet in the bounty group.
 - **Bluetooth:** Ruby works over USB only, for now.

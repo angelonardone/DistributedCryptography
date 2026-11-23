@@ -80,7 +80,7 @@ carry data they cannot read. See [What our servers can see](/security/privacy/).
 [Split a secret](/offline/split-a-secret/) use **Shamir's secret sharing**: a secret is divided into shares, a
 minimum number of shares rebuilds it, and any smaller number reveals nothing at all.
 
-From the next release, Consensus Backup and the Time-Encrypted Vault split the wallet **seed** with
+Consensus Backup and the Time-Encrypted Vault split the wallet **seed** with
 [codex32 (BIP93)](https://github.com/bitcoin/bips/blob/master/bip-0093.mediawiki), the Bitcoin standard for
 Shamir sharing of a seed: every share has a strong checksum, so a damaged or wrong share is detected. A Ruby
 wallet splits its seed on Ruby itself. *Split a secret* keeps the general Shamir sharing, for any text. All the

@@ -10,11 +10,6 @@ import { Steps } from '@astrojs/starlight/components';
 The Time-Encrypted Vault is patent pending. See [License and patents](/reference/license/#patent-pending).
 :::
 
-:::caution[If you activated a vault with a version before 0.923]
-**Renew its restore date after you update** (*Change Restore Date*): that rewrites the backup in the form that
-this version restores.
-:::
-
 **What happens when the person with all the passwords cannot log in?**
 
 Business owners, freelancers and families manage countless digital accounts: bank portals, crypto wallets,
@@ -130,17 +125,14 @@ Open **Online → Smart Groups** in your own wallet and click **Accept Invitatio
 On activation your wallet secret is split on your computer, and every piece is encrypted for the member who
 keeps it.
 
-:::note[Next release: codex32 shares and Ruby wallets]
-From the next release the vault protects the wallet's **seed**, split with
+:::note[codex32 shares and Ruby wallets]
+The vault protects the wallet's **seed**, split with
 [codex32 (BIP93)](https://github.com/bitcoin/bips/blob/master/bip-0093.mediawiki), as in a
 [Consensus Backup](/groups/consensus-backup/): every share has a checksum, the minimum of the restore group can be
 at most 9 votes and the whole restore group at most 31.
 
-The owner can also be a [Ruby wallet](/wallet/ruby/) (firmware ruby-1.0.0 or later): on activation **Ruby** shows
-*Time Vault — Split the wallet seed* and every member of the restore group with their key, and splits the seed
-itself. The seed never appears on the computer. The restore group can recover the wallet as a software wallet or
-onto a new Ruby, as described in
-[Restore to a Ruby](/groups/consensus-backup/#restore-to-a-ruby-members).
+Every member of the vault, and the owner, can also use a [Ruby wallet](/wallet/ruby/): see
+[With a Ruby wallet](#with-a-ruby-wallet).
 :::
 
 ## 7. Fund the bounty (owner)
@@ -222,8 +214,8 @@ Before the restore date the bitcoin network rejects this payment, so there is no
    ![The button Create recovered wallet](../../../assets/screens/tev/18-create-recovered-wallet.png)
 
 4. Type a **name** for the recovered wallet and a **new password**, twice. Click **Restore Wallet**.
-   (From the next release you also choose where the keys live: **Software**, or a new
-   [Ruby](/groups/consensus-backup/#restore-to-a-ruby-members).)
+   You also choose where the keys live: **Software**, or a new
+   [Ruby](/groups/consensus-backup/#restore-to-a-ruby-members).
 
    ![The name and the new password of the recovered wallet](../../../assets/screens/tev/19-recovered-wallet-form.png)
 
@@ -240,6 +232,28 @@ It is the owner's wallet: the same addresses, the same bitcoin, the same user na
 
 If **Restore Wallet** is not there yet, the bounty has not been collected, or its payment is not on the
 blockchain yet. Go back to the wallets page and open the wallet again a little later.
+
+## With a Ruby wallet
+
+A Time-Encrypted Vault with Ruby wallets needs Ruby firmware **ruby-1.0.1** or later.
+
+Anyone in a vault can use a [Ruby wallet](/wallet/ruby/):
+
+- **The owner.** On activation, and again on every **Change Restore Date**, Ruby shows *Time Vault — Split the
+  wallet seed* and then each member of the restore group with the beginning and the end of their key. Ruby splits the
+  seed itself: it never appears on the computer. Moving the bounty to the address of a new date, or taking it back
+  with **Send**, is confirmed on Ruby instead of with the password.
+- **A member of the restore group.** Nothing is asked on Ruby: **Restore Wallet** works as with a software wallet.
+  The member who creates the recovered wallet can put it on a new Ruby, as described in
+  [Restore to a Ruby](/groups/consensus-backup/#restore-to-a-ruby-members).
+- **A member of the bounty group.** In the **Bounty Wallet** tab the button says **Send Coins (confirm on Ruby)**
+  and no password is asked. Ruby shows the address that receives the bounty and the amount (go on with the arrow),
+  then the fee (confirm with ✓). Ruby signs only the bounty of this vault, with its own key; the network still
+  refuses the payment before the restore date.
+
+  | | |
+  |---|---|
+  | ![Ruby shows Output 1/1: the address that receives the bounty and the amount](../../../assets/screens/ruby/bounty-01-ruby-output.png) | ![Ruby shows Send Transaction with the fee, and the confirm button](../../../assets/screens/ruby/bounty-02-ruby-fee.png) |
 
 ## What you are trusting
 

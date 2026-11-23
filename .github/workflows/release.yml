@@ -54,7 +54,8 @@ jobs:
           PLATFORMS: ${{ inputs.platforms || 'all' }}
         run: |
           ALL='[
-            {"name": "Windows-x64",      "group": "windows", "os": "windows-latest",   "rid": "win-x64"},
+            {"name": "Windows-x64",      "group": "windows", "os": "windows-latest",   "rid": "win-x64",   "arch": "x64"},
+            {"name": "Windows-arm64",    "group": "windows", "os": "windows-11-arm",   "rid": "win-arm64", "arch": "arm64"},
             {"name": "Mac-AppleSilicon", "group": "mac",     "os": "macos-15",         "rid": "osx-arm64"},
             {"name": "Mac-Intel",        "group": "mac",     "os": "macos-15-intel",   "rid": "osx-x64"},
             {"name": "Linux-x64",        "group": "linux",   "os": "ubuntu-24.04",     "rid": "linux-x64"},
@@ -70,7 +71,7 @@ jobs:
 
   # ---------------------------------------------------------------------------------------------------------
   # The installers of one platform, built and tested on a machine of that platform
-  #   Windows: -Setup.exe (installer) and .zip (portable, also for IIS)
+  #   Windows: -Setup.exe (installer) and .zip (portable, also for IIS), for x64 and for ARM64
   #   Mac:     .dmg with DistributedCryptography.app
   #   Linux:   .tar.gz
   # ---------------------------------------------------------------------------------------------------------
@@ -129,11 +130,20 @@ jobs:
 
           case "$GROUP" in
             windows)
-              7z a -tzip -mx=7 "dist/$PACKAGE_NAME.zip" "$APP_NAME" > /dev/null
+              if command -v 7z > /dev/null; then
+                7z a -tzip -mx=7 "dist/$PACKAGE_NAME.zip" "$APP_NAME" > /dev/null
+              else
+                powershell -NoProfile -Command "Compress-Archive -Path '$APP_NAME' -DestinationPath 'dist/$PACKAGE_NAME.zip'"
+              fi
 
-              # Inno Setup comes with the Windows build machines
+              # Inno Setup comes with the x64 build machines; the ARM64 ones may not have it
               ISCC="$(command -v iscc || echo '/c/Program Files (x86)/Inno Setup 6/ISCC.exe')"
+              if [ ! -f "$ISCC" ]; then
+                choco install innosetup -y --no-progress > /dev/null
+                ISCC='/c/Program Files (x86)/Inno Setup 6/ISCC.exe'
+              fi
               MSYS_NO_PATHCONV=1 MSYS2_ARG_CONV_EXCL='*' "$ISCC" /Q "/DAppVersion=$VERSION" \
+                "/DAppArch=${{ matrix.arch }}" "/DOutputName=$PACKAGE_NAME-Setup" \
                 "/DSourceDir=$(cygpath -w "$PWD/$APP_NAME")" "/DOutputDir=$(cygpath -w "$PWD/dist")" \
                 packaging/windows/installer.iss
               ;;
@@ -256,6 +266,8 @@ jobs:
             echo "|---|---|"
             echo "| Windows (64-bit), installer | [$APP_NAME-Windows-x64-Setup.exe]($BASE/$APP_NAME-Windows-x64-Setup.exe) |"
             echo "| Windows (64-bit), without installer | [$APP_NAME-Windows-x64.zip]($BASE/$APP_NAME-Windows-x64.zip) |"
+            echo "| Windows on ARM (Snapdragon and other ARM64 PCs), installer | [$APP_NAME-Windows-arm64-Setup.exe]($BASE/$APP_NAME-Windows-arm64-Setup.exe) |"
+            echo "| Windows on ARM, without installer | [$APP_NAME-Windows-arm64.zip]($BASE/$APP_NAME-Windows-arm64.zip) |"
             echo "| Mac, Apple Silicon (M1 and later) | [$APP_NAME-Mac-AppleSilicon.dmg]($BASE/$APP_NAME-Mac-AppleSilicon.dmg) |"
             echo "| Mac, Intel | [$APP_NAME-Mac-Intel.dmg]($BASE/$APP_NAME-Mac-Intel.dmg) |"
             echo "| Linux (64-bit) | [$APP_NAME-Linux-x64.tar.gz]($BASE/$APP_NAME-Linux-x64.tar.gz) |"

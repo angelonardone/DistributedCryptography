@@ -118,7 +118,6 @@ reserves its address for everybody, so two members never give the same address t
 requests encrypted with the key of the group: it cannot read them, it cannot even tell that they are payment
 requests, and it does not know who the members are. Only
 the member who made a request, or the creator of the group, can cancel it: the other members do not see **Cancel**.
-It works in the groups created with version 0.926 or later.
 :::
 
 ![The Wallet Balance tab of the group with its receiving address and the button Send](../../../assets/screens/multisig/05-wallet-balance.png)
@@ -188,10 +187,6 @@ tr(musig(xpubA/*,xpubB/*,xpubC/*),{sortedmulti_a(2,xpubA/*,xpubB/*),...})
 and rebuild every address without Distributed Cryptography.
 
 ## With a Ruby wallet
-
-:::note[Next release]
-Ruby wallets in Multi Signature groups come with the next release of the application.
-:::
 
 A [Ruby wallet](/wallet/ruby/) can **create** the group or be one of its **signers**. Creating, accepting and
 activating are the same as above (the creator activates with the password of the wallet file; nothing is asked on

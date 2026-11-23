@@ -114,8 +114,8 @@ The backup holds the root of your wallet, so a restored wallet has everything th
 your user name, and your place in your other groups.
 :::
 
-:::note[Next release: codex32 shares]
-From the next release the secret that is split is the wallet's **seed** (the root of BIP32), and it is split with
+:::note[codex32 shares]
+The secret that is split is the wallet's **seed** (the root of BIP32), and it is split with
 [codex32 (BIP93)](https://github.com/bitcoin/bips/blob/master/bip-0093.mediawiki), the standard for sharing a seed.
 Every share carries a strong checksum, so a damaged or wrong share is detected instead of giving a wrong wallet.
 codex32 sets two limits: the **minimum** can be at most **9** votes, and all the members together at most
@@ -148,10 +148,7 @@ codex32 sets two limits: the **minimum** can be at most **9** votes, and all the
 
 ## With a Ruby wallet
 
-:::note[Next release]
-Consensus Backup with Ruby comes with the next release of the application, and needs Ruby firmware
-**ruby-1.0.0** or later.
-:::
+Consensus Backup with Ruby needs Ruby firmware **ruby-1.0.0** or later.
 
 ### Back up a Ruby wallet (owner)
 

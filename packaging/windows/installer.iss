@@ -1,6 +1,10 @@
 ; Installer for Windows (Inno Setup 6). Built by the release workflow:
 ;
-;   iscc /DAppVersion=0.923 /DSourceDir=<folder with the built application> /DOutputDir=<folder> installer.iss
+;   iscc /DAppVersion=1.000 /DAppArch=x64 /DOutputName=DistributedCryptography-Windows-x64-Setup
+;        /DSourceDir=<folder with the built application> /DOutputDir=<folder> installer.iss
+;
+; AppArch is x64 or arm64: the processor the application was built for. Both installers have the same AppId
+; because they install the same application, so either one replaces the other.
 ;
 ; It installs for the current user only, without administrator rights: the wallet writes temporary files in
 ; its own folder, so it must not live under "Program Files".
@@ -15,6 +19,20 @@
 #endif
 #ifndef OutputDir
   #define OutputDir "."
+#endif
+#ifndef AppArch
+  #define AppArch "x64"
+#endif
+#ifndef OutputName
+  #define OutputName "DistributedCryptography-Windows-" + AppArch + "-Setup"
+#endif
+#if AppArch == "x64"
+  ; x64compatible also accepts Windows 11 on ARM, which runs x64 programs
+  #define ArchAllowed "x64compatible"
+#elif AppArch == "arm64"
+  #define ArchAllowed "arm64"
+#else
+  #error AppArch must be x64 or arm64
 #endif
 
 #define AppName "Distributed Cryptography"
@@ -35,8 +53,8 @@ DefaultDirName={autopf}\DistributedCryptography
 DefaultGroupName={#AppName}
 DisableProgramGroupPage=yes
 DisableDirPage=auto
-ArchitecturesAllowed=x64compatible
-ArchitecturesInstallIn64BitMode=x64compatible
+ArchitecturesAllowed={#ArchAllowed}
+ArchitecturesInstallIn64BitMode={#ArchAllowed}
 MinVersion=10.0
 SetupIconFile=DistributedCryptography.ico
 UninstallDisplayIcon={app}\DistributedCryptography.ico
@@ -45,7 +63,7 @@ WizardStyle=modern
 Compression=lzma2/max
 SolidCompression=yes
 OutputDir={#OutputDir}
-OutputBaseFilename=DistributedCryptography-Windows-x64-Setup
+OutputBaseFilename={#OutputName}
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

@@ -30,7 +30,7 @@ needs it.
 
    ![The HSM page with the derivation path and the Activate box](../../../assets/screens/offline/hsm-01-page.png)
 
-3. *Next release:* the page shows the **API key** of the HSM. Click **Copy API key** and keep it with the program that will
+3. The page shows the **API key** of the HSM. Click **Copy API key** and keep it with the program that will
    call the HSM, then click **Done**. The key is shown **only this once**.
 
    ![The API key shown once, with Copy API key and Done](../../../assets/screens/offline/hsm-02-api-key.png)
@@ -46,16 +46,11 @@ are covered by the same words and the same backups.
 To turn it off, clear **Activate** and save. The API key is deleted with it: turning the HSM on again makes a new
 one.
 
-The application runs **one HSM at a time**: the one of the last wallet opened with its HSM turned on. *Next release:*
-the HSM page of another wallet does not change it. Regenerating that wallet's key, changing its options or turning its
+The application runs **one HSM at a time**: the one of the last wallet opened with its HSM turned on. The
+HSM page of another wallet does not change it. Regenerating that wallet's key, changing its options or turning its
 HSM off leaves the running HSM and its key as they are.
 
 ## The API key
-
-:::note[Next release]
-The API key comes with the next release of the application. Up to version 0.926 the HSM service has no
-authentication: anyone who can reach the port can ask it to sign.
-:::
 
 Every call to the HSM must carry its API key, **including the ones that only use public keys** (`getPubKey`,
 `encrypt`, `encryptToPubKey`). Without it the HSM answers `"error": "Unauthorized"` and does nothing.

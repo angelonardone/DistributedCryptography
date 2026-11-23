@@ -16,6 +16,8 @@ export const downloadUrl = (file: string) => `https://github.com/${repo}/release
 export const files = {
 	windowsSetup: 'DistributedCryptography-Windows-x64-Setup.exe',
 	windowsZip: 'DistributedCryptography-Windows-x64.zip',
+	windowsArmSetup: 'DistributedCryptography-Windows-arm64-Setup.exe',
+	windowsArmZip: 'DistributedCryptography-Windows-arm64.zip',
 	macAppleSilicon: 'DistributedCryptography-Mac-AppleSilicon.dmg',
 	macIntel: 'DistributedCryptography-Mac-Intel.dmg',
 	linuxX64: 'DistributedCryptography-Linux-x64.tar.gz',

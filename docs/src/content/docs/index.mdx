@@ -1,10 +1,10 @@
 ---
-title: Self-custody, without being alone
-description: A self-custody digital vault and Bitcoin wallet that runs on your own computer. The people you trust help you recover it, approve payments with you and inherit it - remotely, right inside the app.
+title: A vault for your digital life. Self-custody, without being alone.
+description: Distributed Cryptography is a vault for your bitcoin, documents, passwords and secrets that runs on your own computer, with the keys on your PC or on Ruby, our hardware key. The people you trust can recover it, approve payments with you and inherit it. Patent-pending Consensus Backup and Time-Encrypted Vault.
 template: splash
 hero:
-  title: Self-custody,<br />without being alone.
-  tagline: A digital vault and Bitcoin wallet that runs on your own computer. Your keys never leave it. The people you trust can help you recover it, approve payments with you and inherit it, from wherever they are, right inside the app.
+  title: A vault for your digital life.<br />Self-custody,<br />without being alone.
+  tagline: Your bitcoin, your documents, your passwords and your secrets, locked on your own computer or on Ruby, our hardware key. Nobody else holds the key. And if one day you cannot open it, the people you trust can, together, exactly as you decided.
   image:
     file: ../../assets/logo.svg
   actions:
@@ -12,7 +12,7 @@ hero:
       link: /install/
       icon: right-arrow
     - text: See how it works
-      link: '#how-it-works'
+      link: '#the-key-stays-with-you-and-you-are-never-the-only-one-who-can-get-it-back'
       variant: minimal
     - text: Source code
       link: https://github.com/angelonardone/DistributedCryptography
@@ -20,84 +20,252 @@ hero:
       variant: minimal
 ---
 
-import { Card, CardGrid, LinkCard, LinkButton, Steps } from '@astrojs/starlight/components';
+import { Card, CardGrid, LinkButton, Steps, Icon } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import Compare from '../../components/Compare.astro';
-import signatures from '../../assets/screens/delegated/15-broadcast.png';
+import BackupDiagram from '../../components/BackupDiagram.astro';
+import VaultTimeline from '../../components/VaultTimeline.astro';
+import rubyPhoto from '../../assets/screens/ruby/ruby-m5stack.png';
 
-<p class="dc-kicker">The difference</p>
+<ul class="dc-proof not-content">
+	<li>Runs on your own computer</li>
+	<li>Patent-pending recovery</li>
+	<li>Public source code</li>
+	<li>Free for individuals and small companies</li>
+</ul>
 
-## Everyone approves from their own app. Nothing to pass around.
+<p class="dc-kicker">The problem</p>
+
+## Every vault has the same weak point: the key
 
 <p class="dc-lead">
-	Sharing a backup, co-signing a payment or leaving an inheritance usually means exporting files, carrying them
-	from one wallet to the next and hoping everybody knows the procedure. Here, each person simply opens their
-	app.
+	Everything that matters to you is now digital: your money, your papers, your passwords, the keys to your
+	accounts, your conversations. Where is it, and who can open it?
 </p>
+
+<div class="dc-why not-content">
+	<div class="dc-why-item">
+		<p class="dc-why-label">In a cloud</p>
+		<p class="dc-why-title">A company keeps your things, and the key</p>
+		<p>They can read what you store, lose it, lock you out or hand it over. Your digital life depends on their rules, their security and their survival.</p>
+	</div>
+	<div class="dc-why-item">
+		<p class="dc-why-label">In a safe only you can open</p>
+		<p class="dc-why-title">You keep the key, and every risk</p>
+		<p>Bitcoin, encrypted files, a password manager: nobody else can get in. But a forgotten password, a fire or an accident locks everything forever, for you and for the people who depend on you.</p>
+	</div>
+	<div class="dc-why-item is-us">
+		<p class="dc-why-label">With Distributed Cryptography</p>
+		<p class="dc-why-title">You keep the key. The people you trust can still bring it back.</p>
+		<p>Only together, only as many of them as you decided, and only when you allowed it. Nobody else: not them alone, not us. That is what our patent-pending Consensus Backup and Time-Encrypted Vault do.</p>
+	</div>
+</div>
+
+<p class="dc-kicker">What goes in</p>
+
+## One vault for everything that is yours
+
+<p class="dc-lead">
+	It runs on your Windows, Mac or Linux computer, or on your own server. Everything in it is encrypted with keys
+	that come from one secret, so one backup covers it all.
+</p>
+
+<div class="dc-things not-content">
+	<div class="dc-thing">
+		<p class="dc-thing-title"><Icon name="star" size="1.3rem" /> Bitcoin</p>
+		<p>A complete wallet for real bitcoin, and shared wallets for a family, a company or a club, where payments need the approval of several people.</p>
+	</div>
+	<div class="dc-thing">
+		<p class="dc-thing-title"><Icon name="document" size="1.3rem" /> Documents and files</p>
+		<p>Scans of your papers, contracts, backups of other keys, encrypted on your own disk, of any size. Send a file to one person so that only they can open it, by any channel.</p>
+	</div>
+	<div class="dc-thing">
+		<p class="dc-thing-title"><Icon name="padlock" size="1.3rem" /> Passwords and codes</p>
+		<p>A password manager that also gives you the 6-digit codes of your authenticators, and a backup of those authenticators in case you lose the phone.</p>
+	</div>
+	<div class="dc-thing">
+		<p class="dc-thing-title"><Icon name="pencil" size="1.3rem" /> Private notes</p>
+		<p>Instructions for your family, account details, anything you would not leave in a plain file. Each note is a separate encrypted file.</p>
+	</div>
+	<div class="dc-thing">
+		<p class="dc-thing-title"><Icon name="comment" size="1.3rem" /> Conversations</p>
+		<p>Chat with one person or with a group, encrypted from end to end and signed, so nobody can write in another member's name. No phone number, no e-mail.</p>
+	</div>
+	<div class="dc-thing">
+		<p class="dc-thing-title"><Icon name="approve-check-circle" size="1.3rem" /> Shared passwords</p>
+		<p>A password vault for a family or a team, where you decide, password by password, who can see which one, and take it back when someone leaves.</p>
+	</div>
+</div>
+
+<p class="dc-kicker">The safety net</p>
+
+## The key stays with you, and you are never the only one who can get it back
+
+<p class="dc-lead">
+	Two mechanisms, invented here, turn the people you trust into a safety net. Each of them acts from their own
+	app, wherever they are. Nobody has to understand how it works: they open the app and approve.
+</p>
+
+<div class="dc-mechanism">
+
+### Consensus Backup <span class="dc-badge">Patent pending</span>
+
+Your vault can be recovered by people you choose, but **only if enough of them agree**. The secret of your vault
+is cut into pieces and each piece is encrypted for one person. You decide how many pieces are needed: five people
+and any three of them, for example. Two alone learn nothing. You are warned the moment someone starts a restore,
+and you can stop it.
+
+<BackupDiagram />
+
+On any computer, the recovered vault brings back your bitcoin, your identity, your contacts and all your groups,
+with their shared wallets, backups and passwords. [How Consensus Backup works](/groups/consensus-backup/)
+
+</div>
+
+<div class="dc-mechanism">
+
+### Time-Encrypted Vault <span class="dc-badge">Patent pending</span>
+
+**What happens when the person with all the passwords cannot log in?** Business owners, freelancers and families
+manage countless accounts, wallets and documents. A Time-Encrypted Vault is the plan: it stays closed while you keep
+renewing a date, and if you stop, the people you chose can open it after that date. Not before. The date is enforced
+by the Bitcoin network itself, so nobody can open it early: not the group, and not us.
+
+<VaultTimeline />
+
+It is estate planning, disaster recovery and access control in one, and you keep custody the whole time: no lawyers,
+no notary, and no third party holding your keys. [How the Time-Encrypted Vault works](/groups/time-encrypted-vault/)
+
+</div>
+
+<p class="dc-kicker">Shared control</p>
+
+## Money that several people control, each from their own app
+
+<p class="dc-lead">
+	A shared wallet puts bitcoin under the control of a group: a family, the partners of a company, the board of a
+	club. You choose who is in it and how many must agree. Nobody passes files around.
+</p>
+
+<CardGrid>
+	<Card title="Let others pay when you cannot" icon="puzzle">
+		**Delegated Multi Signature Wallet.** You keep paying alone, and the people you chose can also pay, as long as
+		enough of them agree. For a business that must keep running, or for the day you are in hospital.
+
+		[How it works](/groups/delegated-multisignature/)
+	</Card>
+	<Card title="Require agreement for every payment" icon="approve-check">
+		**Multi Signature Wallet.** Nobody pays alone, not even the person who created it: every payment needs, say,
+		three of the five members. A company treasury, a family fund, a club.
+
+		[How it works](/groups/multi-signature/)
+	</Card>
+	<Card title="One signature, whatever the size of the group" icon="rocket">
+		**Advanced wallets.** The signers approve online at the same time, in a few minutes, and the payment looks on
+		the blockchain like the payment of one single person: the cheapest and most private there is.
+
+		[How it works](/groups/advanced-multi-signature/)
+	</Card>
+	<Card title="Everyone approves from their own app" icon="laptop">
+		No files to export, carry and import. Each person opens their app, finds the request waiting, checks it and
+		approves it with their password, or with a button on Ruby. The last approval sends the payment.
+
+		[All the kinds of groups](/groups/)
+	</Card>
+</CardGrid>
 
 <Compare oldLabel="The usual way" newLabel="With Distributed Cryptography">
 <Fragment slot="old">
 <ol>
-	<li>One person prepares the transaction and exports it as a file.</li>
-	<li>The file goes to the first signer by e-mail, USB stick or QR code.</li>
-	<li>That signer imports it into their own wallet, signs, and exports it again.</li>
-	<li>It goes on to the next signer. And the next.</li>
-	<li>Someone collects the signatures, combines them and sends the payment.</li>
+	<li>One person prepares the payment and exports it as a file.</li>
+	<li>The file goes to the first person by e-mail, USB stick or QR code.</li>
+	<li>That person loads it into their own program, approves it, and exports it again.</li>
+	<li>On to the next person. And the next.</li>
+	<li>Somebody gathers all the approvals, puts them together and sends the payment.</li>
 </ol>
-<p class="note">Everyone needs the same tools and the same know-how, and nobody can see where it got stuck.</p>
+<p class="note">Everyone needs the same programs and the same know-how, and nobody can see where it got stuck.</p>
 </Fragment>
 <Fragment slot="new">
 <ol>
 	<li><strong>You start the payment</strong> in the app.</li>
-	<li><strong>Each signer opens their own app</strong>, finds the request waiting, checks it and approves with their password.</li>
+	<li><strong>Each person opens their own app</strong>, finds the request waiting, checks it and approves it.</li>
 	<li><strong>The last approval sends it</strong> to the network.</li>
 </ol>
-<p class="note">No files to move, no meeting to arrange. Requests travel end-to-end encrypted, and everyone sees who has already signed.</p>
+<p class="note">Requests travel encrypted from end to end, and everyone sees who has already approved. The same for recovering a vault and for an inheritance.</p>
 </Fragment>
 </Compare>
 
-It is the same for **recovering a vault** and for **an inheritance**: the people you chose approve from their own
-computers, in another city or another country, whenever they open the app. The app does the rest.
+<p class="dc-kicker">For a company</p>
 
-<figure class="dc-figure">
-	<Image src={signatures} loading="eager" alt="The Signatures tab of a group: two members have signed a payment and the app shows the message Transaction broadcast" />
-	<figcaption>Two people signed this payment, each from their own computer. The second signature sent it. Nobody exchanged a file.</figcaption>
+## Your company's digital assets, with the controls of a board
+
+<p class="dc-lead">
+	The treasury, the contracts, the formulas, the passwords of the systems: the things a company cannot afford to
+	lose, to leak, or to leave in the hands of one person.
+</p>
+
+<div class="dc-cols not-content">
+	<div class="dc-col">
+		<p class="dc-col-title">No single person pays</p>
+		<p>A treasury where three of the five partners approve every payment, each from their own computer, or a reserve the director spends alone and the partners can reach when the director is away.</p>
+	</div>
+	<div class="dc-col">
+		<p class="dc-col-title">Continuity when someone is gone</p>
+		<p>A Time-Encrypted Vault names the people who recover everything if the person who holds it all cannot log in, and the Bitcoin network keeps it closed until the date you set.</p>
+	</div>
+	<div class="dc-col">
+		<p class="dc-col-title">Confidential documents stay in-house</p>
+		<p>Contracts, designs and keys encrypted on your own machines, and sent person to person as files only the receiver can open. No cloud you do not control.</p>
+	</div>
+	<div class="dc-col">
+		<p class="dc-col-title">Passwords of the team, one by one</p>
+		<p>The owner of the vault decides which member sees which password, and takes it back when someone leaves. A member never sees the rest, not even in the stored data.</p>
+	</div>
+	<div class="dc-col">
+		<p class="dc-col-title">On your own server</p>
+		<p>Install it on a Windows or Linux server and your people open their vaults from their own computers. Or let each one run it on their PC. Your data never passes through us.</p>
+	</div>
+	<div class="dc-col">
+		<p class="dc-col-title">A signing service for your own programs</p>
+		<p>The HSM turns a vault into a service your systems call to sign and decrypt, protected by an API key, while the keys never leave it. Run it on a dedicated device or container.</p>
+	</div>
+</div>
+
+<p class="dc-note">The code is public, so your security team can audit it or build it themselves. Free for companies with fewer than 100 people and less than USD 1 million of revenue; larger companies need a <a href="/reference/license/">commercial license</a>.</p>
+
+<p class="dc-kicker">Where your keys live</p>
+
+## On your computer, or on Ruby, our hardware key
+
+<p class="dc-lead">
+	Your keys are the secret that opens the vault and controls your bitcoin. There are only two places they can be,
+	and both are yours. Never on our servers.
+</p>
+
+<div class="dc-keys">
+<div class="dc-keys-cards">
+	<Card title="On your computer" icon="laptop">
+		The app runs on your Windows, Mac or Linux computer, not on ours. Your keys are created there and stay there,
+		locked in a file with your password. Simple, and nothing to buy.
+
+		[Create a wallet](/wallet/create/)
+	</Card>
+	<Card title="On Ruby, our hardware key" icon="padlock">
+		**Ruby** is a small device with a screen and three buttons. It creates your secret words and shows them only on
+		its own screen, it keeps the keys inside, and it signs every payment after you check the amount on the device.
+		A computer full of malware still cannot spend your bitcoin: Ruby would ask you first.
+
+		[Ruby hardware key](/wallet/ruby/)
+	</Card>
+</div>
+<figure class="dc-keys-photo">
+	<Image src={rubyPhoto} loading="lazy" alt="Ruby running on an M5Stack Basic: a small black box with a colour screen that says Ready, and three buttons" />
+	<figcaption>Ruby runs on the M5Stack Basic, a board sold all over the world for about USD 40. Its firmware is public, like the rest of our code.</figcaption>
 </figure>
+</div>
 
-<p class="dc-kicker">What it is for</p>
-
-## What self-custody alone cannot do
-
-<CardGrid>
-	<Card title="Recover your vault with people you trust" icon="heart">
-		**Consensus Backup** splits the master key of your vault among friends, family or company officers. Nobody can
-		restore it alone. Enough of them together can, each from their own app, and you are told as soon as someone
-		starts.
-
-		On any computer, your bitcoin comes back with everything you keep online: your contacts and all your groups,
-		with their shared wallets, backups and passwords.
-
-		[How Consensus Backup works](/groups/consensus-backup/)
-	</Card>
-	<Card title="Plan for the day you are not there" icon="clock">
-		A **Time-Encrypted Vault** stays closed while you keep renewing it. If you stop, the group you chose can open
-		it after the date you set. No lawyers, no notary and no third party holding your keys.
-
-		[How the Time-Encrypted Vault works](/groups/time-encrypted-vault/)
-	</Card>
-	<Card title="Let others pay when you cannot" icon="puzzle">
-		With a **Delegated Multi Signature Wallet** you keep paying alone, and K of the N people you trust can pay without you.
-		Built on Taproot: lower fees, and the blockchain shows only the people who signed.
-
-		[How Delegated Multi Signature Wallet works](/groups/delegated-multisignature/)
-	</Card>
-	<Card title="Require agreement for every payment" icon="approve-check">
-		With a **Legacy Multi Signature Wallet** nobody pays alone: K of the N members approve each payment. The app collects
-		the signatures for you; there is nothing to export or combine.
-
-		[How Legacy Multi Signature Wallet works](/groups/legacy-multisignature/)
-	</Card>
-</CardGrid>
+A Ruby wallet does everything a software wallet does: backups with the people you trust, shared wallets, chat,
+encrypted files. **Everything on this page works with both.**
 
 <p class="dc-kicker">Three steps</p>
 
@@ -105,11 +273,11 @@ computers, in another city or another country, whenever they open the app. The a
 
 <Steps>
 
-1. **Install it on your own computer.** Windows, Mac, Linux or Docker. Create your vault: the keys are made
-   there and stay there, encrypted with your password.
+1. **Install it on your own computer.** Windows, Mac, Linux or Docker. Create your vault, with the keys in a file on
+   that computer or on Ruby. The offline tools work from this moment, with no connection.
 
-2. **Connect with the people you trust.** You log in anonymously, with a key of your wallet instead of your name
-   or e-mail, and add them as contacts.
+2. **Connect with the people you trust.** You log in without giving a name or an e-mail: the app identifies you
+   with a key of your own vault. Add them as contacts.
 
 3. **Create a Smart Group.** Choose who is in it and how many of them must agree. From then on, every backup,
    payment and recovery is an approval in their app.
@@ -120,49 +288,36 @@ computers, in another city or another country, whenever they open the app. The a
 
 ## You hold the keys. We cannot.
 
-<CardGrid>
-	<Card title="Your keys stay on your computer" icon="padlock">
-		The app runs on your PC or server, not on ours. There is no account to open and nothing to hand over.
-	</Card>
-	<Card title="We cannot read what you store" icon="approve-check-circle">
-		Everything is encrypted on your computer before it leaves it. Our servers only deliver messages they cannot
-		open. [What our servers can see](/security/privacy/)
-	</Card>
-	<Card title="Public source code" icon="github">
-		Anyone can read it, audit it or [build it themselves](/install/build-from-source/).
-	</Card>
-	<Card title="Standard Bitcoin" icon="open-book">
-		Published standards only: BIP 32, 39, 44, 49, 84, 86, 341 and 342, with Argon2id and AES-256-GCM. Your money
-		does not depend on our software. [The standards we use](/security/standards/)
-	</Card>
-</CardGrid>
-
-<p class="dc-kicker">And also</p>
-
-## More than a Bitcoin wallet
-
-<CardGrid>
-	<Card title="Encrypt more than bitcoin" icon="document">
-		Encrypted notes, files, passwords and authenticator backups, a secret splitter and QR codes. They all work
-		offline, on your computer. [Offline tools](/offline/)
-	</Card>
-	<Card title="Talk and share in private" icon="comment">
-		End-to-end encrypted chat and files between users, and a password vault where you decide which member sees
-		which password. [Online features](/online/)
-	</Card>
-</CardGrid>
+<div class="dc-cols not-content">
+	<div class="dc-col">
+		<p class="dc-col-title">Nothing of yours is on our servers</p>
+		<p>The app runs on your computer. There is no account to open, nothing to upload and nothing to hand over. If our servers disappeared, your bitcoin and your files would not be affected.</p>
+	</div>
+	<div class="dc-col">
+		<p class="dc-col-title">We cannot read what we carry</p>
+		<p>Invitations, approvals and messages are encrypted on your computer for the person who must read them. Our servers only deliver data they cannot open. <a href="/security/privacy/">What our servers can see</a></p>
+	</div>
+	<div class="dc-col">
+		<p class="dc-col-title">Public source code</p>
+		<p>Anyone can read it, audit it or <a href="/install/build-from-source/">build it themselves</a>. The Ruby firmware too.</p>
+	</div>
+	<div class="dc-col">
+		<p class="dc-col-title">Standard Bitcoin, not our invention</p>
+		<p>Your wallet follows the published Bitcoin standards, so your words and your bitcoin can be used with other wallets too. Your money does not depend on our software. <a href="/security/standards/">The standards we use</a></p>
+	</div>
+</div>
 
 <div class="dc-cta">
 
 ## Start in a few minutes
 
-It installs on the computer you already have. Create a vault, try the offline tools, then invite the first person
-you trust.
+It installs on the computer you already have. Create a vault, keep your first documents and passwords in it, then
+invite the first person you trust.
 
 <div class="dc-cta-actions">
 	<LinkButton href="/install/" icon="right-arrow">Install the app</LinkButton>
-	<LinkButton href="/wallet/create/" variant="secondary">Create your first wallet</LinkButton>
-	<LinkButton href="/faq/" variant="minimal">Questions and answers</LinkButton>
+	<LinkButton href="/wallet/create/" variant="secondary">Create your first vault</LinkButton>
+	<LinkButton href="/videos/" variant="minimal">Watch the videos</LinkButton>
 </div>
 
 </div>
