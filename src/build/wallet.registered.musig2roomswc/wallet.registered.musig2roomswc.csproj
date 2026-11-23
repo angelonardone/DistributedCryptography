@@ -68,6 +68,7 @@
 		<Compile Include = "$(WebDirectory)\nbitcoin\createkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwalletinfo.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\walletfilepath.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getaccountkeypath.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\connect.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\approveactionsetextkey.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\restgetchallenge.cs" />
@@ -101,6 +102,7 @@
 		<Compile Include = "$(WebDirectory)\wallet\getselectedcoins.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\hmacsha256hex.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getserverbaseurl.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\disconnect.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\searchinalladdress.cs" />

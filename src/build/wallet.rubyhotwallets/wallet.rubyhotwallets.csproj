@@ -1,0 +1,71 @@
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
+	
+	
+	<PropertyGroup>
+		<AssemblyName>wallet.rubyhotwallets</AssemblyName>
+		<TargetFramework>$(TargetFramework)</TargetFramework>
+		<OutputType>Library</OutputType>
+		<GenerateDependencyFile>false</GenerateDependencyFile>
+		<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+		<PostgresqlSupport>false</PostgresqlSupport>
+		<OfficeSupport>false</OfficeSupport>
+		<MailSupport>false</MailSupport>
+		<GrpcClientSupport>false</GrpcClientSupport>
+		<PdfLibrary></PdfLibrary>
+		<SAPErpSupport>false</SAPErpSupport>
+		<PDFSupport>false</PDFSupport>
+		<SearchSupport>false</SearchSupport>
+	</PropertyGroup>
+
+	<ItemGroup>
+
+        <ProjectReference Include="..\GeneXus.Programs.Common\GeneXus.Programs.Common.csproj" >
+            <OutputItemType>$(CommonOutputItemType)</OutputItemType>
+        </ProjectReference>
+
+	</ItemGroup>
+
+	<ItemGroup>
+
+        <Reference Include="GeneXus" >
+            <HintPath>$(WebBinDirectory)\GeneXus.dll</HintPath>
+        </Reference>
+        <Reference Include="Google.Authenticator" >
+            <HintPath>$(WebBinDirectory)\Google.Authenticator.dll</HintPath>
+        </Reference>
+        <Reference Include="GxInternetLib" >
+            <HintPath>$(WebBinDirectory)\GxInternetLib.dll</HintPath>
+        </Reference>
+        <Reference Include="DistricutedCryptographyLib" >
+            <HintPath>$(WebBinDirectory)\DistricutedCryptographyLib.dll</HintPath>
+        </Reference>
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include = "$(WebDirectory)\wallet\getwalletsdir.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\createrubyhotwallet.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getrubyhotwallets.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcrypto\argon2encryption.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\checkwalletcreation.cs" />
+		<Compile Include = "$(WebDirectory)\nbitcoin\createextkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getappdatadir.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\safefilename.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\iswalletopen.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\readallwalletsinfo.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwalletinfo.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\readwallet.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\islocalrequest.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\readallwallets.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\checkhotwalletnumber.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\rubyhotwallets.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\createwalletfiles.cs" />
+
+	</ItemGroup>
+
+	<Import Project="..\DotNetCoreBaseProject.targets"/>	
+</Project>
+

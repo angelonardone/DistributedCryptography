@@ -1,30 +1,61 @@
 openapi: 3.0.0
+# Written by hand (tools/release/HSM.rest.yaml in the private repository): the release script copies it over the file
+# GeneXus generates, which knows nothing about the API key. Keep it in step with the API object HSM.rest and with
+# HsmManager (DistricutedCryptographyLib).
 info:
-  title: "rest"
-  description: "rest"
-  version: "20261108192610"
+  title: "Distributed Cryptography HSM"
+  description: |
+    Signing and decryption service of a Distributed Cryptography wallet. The keys never leave the wallet.
+
+    **Every operation needs the API key of the HSM** (Off-line > HSM in the wallet), sent in one of two ways:
+
+    * **Bearer**: header `Authorization: Bearer <api key>`. Refused when the HSM has *Accept HMAC-signed requests only (no Bearer)* on.
+    * **HMAC**: the key itself is not sent. Three headers instead:
+      * `X-HSM-Timestamp`: the time of the request, Unix seconds (UTC). It must be within 5 minutes of the HSM clock.
+      * `X-HSM-Nonce`: 16 to 128 characters `A-Z a-z 0-9 - _`, different in every request (a nonce is accepted once).
+      * `X-HSM-Signature`: `hex(HMAC-SHA256(key = UTF-8 of the api key, data = UTF-8 of StringToSign))`, where
+        `StringToSign` is these lines joined with `\n` (no `\n` at the end):
+
+        ```
+        DC-HSM-HMAC-SHA256
+        <operation>            getPubKey | encrypt | encryptToPubKey | decrypt | sign | SignSchnorr
+        <X-HSM-Timestamp>
+        <X-HSM-Nonce>
+        hex(SHA-256(UTF-8 of the 1st parameter))
+        hex(SHA-256(UTF-8 of the 2nd parameter))
+        ```
+
+        Parameters, in this order: getPubKey `indexKey`; encrypt `message, indexKey`; encryptToPubKey
+        `message, publicKey`; decrypt `encryptedMessage, indexKey`; sign and SignSchnorr `message, indexKey`.
+        `indexKey` is written in decimal (`0`, `7`); always send it. Hex is lowercase.
+
+    A request without a valid API key answers HTTP 200 with `"error": "Unauthorized"` and no result.
+    `"error": "HSM not active"` means the HSM is not running: open the wallet once after turning it on.
+  version: "2"
 servers:
-  - url: http://localhost:5000//HSM/rest
+  - url: http://localhost:5000/HSM/rest
+security:
+  - bearer: []
+  - hmacTimestamp: []
+    hmacNonce: []
+    hmacSignature: []
 paths:
   /getPubKey:
     get:
       tags:
-       - hsm-rest
+        - hsm-rest
       operationId: "HSM.rest.getPubKey"
-      summary: "getPubKey"
+      summary: "Public key of the HSM key indexKey"
       parameters:
-        - name: "Indexkey"
+        - name: "indexKey"
           in: query
           required: false
           schema:
             type: "integer"
             format: "int32"
-            
-            
-      
       responses:
         200:
-          description: "Successful operation"
+          description: "The public key (compressed, hex), or an error"
           content:
             application/json:
               schema:
@@ -35,19 +66,18 @@ paths:
   /encrypt:
     post:
       tags:
-       - hsm-rest
+        - hsm-rest
       operationId: "HSM.rest.encrypt"
-      summary: "encrypt"
+      summary: "Encrypt a message to the HSM key indexKey (ECIES, BIE1)"
       requestBody:
-        required: false
+        required: true
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/encryptInput"
-      
       responses:
         200:
-          description: "Successful operation"
+          description: "The encrypted message, or an error"
           content:
             application/json:
               schema:
@@ -58,19 +88,18 @@ paths:
   /encryptToPubKey:
     post:
       tags:
-       - hsm-rest
+        - hsm-rest
       operationId: "HSM.rest.encryptToPubKey"
-      summary: "encryptToPubKey"
+      summary: "Encrypt a message to any public key (ECIES, BIE1)"
       requestBody:
-        required: false
+        required: true
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/encryptToPubKeyInput"
-      
       responses:
         200:
-          description: "Successful operation"
+          description: "The encrypted message, or an error"
           content:
             application/json:
               schema:
@@ -81,19 +110,18 @@ paths:
   /decrypt:
     post:
       tags:
-       - hsm-rest
+        - hsm-rest
       operationId: "HSM.rest.decrypt"
-      summary: "decrypt"
+      summary: "Decrypt a message encrypted to the HSM key indexKey"
       requestBody:
-        required: false
+        required: true
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/decryptInput"
-      
       responses:
         200:
-          description: "Successful operation"
+          description: "The message, or an error"
           content:
             application/json:
               schema:
@@ -104,19 +132,18 @@ paths:
   /sign:
     post:
       tags:
-       - hsm-rest
+        - hsm-rest
       operationId: "HSM.rest.sign"
-      summary: "sign"
+      summary: "Compact ECDSA signature of double-SHA256(UTF-8 of message) with the HSM key indexKey"
       requestBody:
-        required: false
+        required: true
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/signInput"
-      
       responses:
         200:
-          description: "Successful operation"
+          description: "The signature (hex), or an error"
           content:
             application/json:
               schema:
@@ -127,19 +154,18 @@ paths:
   /SignSchnorr:
     post:
       tags:
-       - hsm-rest
+        - hsm-rest
       operationId: "HSM.rest.SignSchnorr"
-      summary: "SignSchnorr"
+      summary: "BIP340 Schnorr signature (Taproot key spend) of double-SHA256(UTF-8 of message) with the HSM key indexKey"
       requestBody:
-        required: false
+        required: true
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/SignSchnorrInput"
-      
       responses:
         200:
-          description: "Successful operation"
+          description: "The signature (hex), or an error"
           content:
             application/json:
               schema:
@@ -148,6 +174,26 @@ paths:
           description: "Not found"
 
 components:
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      description: "The API key of the HSM. Refused when the HSM requires HMAC-signed requests."
+    hmacTimestamp:
+      type: apiKey
+      in: header
+      name: X-HSM-Timestamp
+      description: "HMAC: Unix seconds (UTC), within 5 minutes of the HSM clock."
+    hmacNonce:
+      type: apiKey
+      in: header
+      name: X-HSM-Nonce
+      description: "HMAC: 16 to 128 characters A-Z a-z 0-9 - _, never repeated."
+    hmacSignature:
+      type: apiKey
+      in: header
+      name: X-HSM-Signature
+      description: "HMAC: hex(HMAC-SHA256(api key, StringToSign)); see the description of this API."
   schemas:
     getPubKeyOutput:
       properties:
@@ -155,42 +201,7 @@ components:
           type: "string"
         error:
           type: "string"
-
-    encryptOutput:
-      properties:
-        encryptedMessage:
-          type: "string"
-        error:
-          type: "string"
-
-    encryptToPubKeyOutput:
-      properties:
-        encryptedMessage:
-          type: "string"
-        error:
-          type: "string"
-
-    decryptOutput:
-      properties:
-        message:
-          type: "string"
-        error:
-          type: "string"
-
-    signOutput:
-      properties:
-        signature:
-          type: "string"
-        error:
-          type: "string"
-
-    SignSchnorrOutput:
-      properties:
-        signature:
-          type: "string"
-        error:
-          type: "string"
-
+          description: "Empty when it worked; Unauthorized; HSM not active"
     encryptInput:
       properties:
         message:
@@ -198,14 +209,24 @@ components:
         indexKey:
           type: "integer"
           format: "int32"
-
+    encryptOutput:
+      properties:
+        encryptedMessage:
+          type: "string"
+        error:
+          type: "string"
     encryptToPubKeyInput:
       properties:
         message:
           type: "string"
         publicKey:
           type: "string"
-
+    encryptToPubKeyOutput:
+      properties:
+        encryptedMessage:
+          type: "string"
+        error:
+          type: "string"
     decryptInput:
       properties:
         encryptedMessage:
@@ -213,7 +234,12 @@ components:
         indexKey:
           type: "integer"
           format: "int32"
-
+    decryptOutput:
+      properties:
+        message:
+          type: "string"
+        error:
+          type: "string"
     signInput:
       properties:
         message:
@@ -221,7 +247,12 @@ components:
         indexKey:
           type: "integer"
           format: "int32"
-
+    signOutput:
+      properties:
+        signature:
+          type: "string"
+        error:
+          type: "string"
     SignSchnorrInput:
       properties:
         message:
@@ -229,4 +260,9 @@ components:
         indexKey:
           type: "integer"
           format: "int32"
-
+    SignSchnorrOutput:
+      properties:
+        signature:
+          type: "string"
+        error:
+          type: "string"

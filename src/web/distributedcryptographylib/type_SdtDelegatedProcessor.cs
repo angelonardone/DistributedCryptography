@@ -143,6 +143,23 @@ namespace GeneXus.Programs.distributedcryptographylib {
          return returnsignspend ;
       }
 
+      public string signspendwithruby( string gxTp_bundleJson ,
+                                       string gxTp_device ,
+                                       string gxTp_receivingExtPubKey ,
+                                       string gxTp_changeExtPubKey ,
+                                       int gxTp_finalPercent ,
+                                       string gxTp_networkType )
+      {
+         string returnsignspendwithruby;
+         if ( DistributedCryptographyLib_DelegatedProcessor_externalReference == null )
+         {
+            DistributedCryptographyLib_DelegatedProcessor_externalReference = new DistricutedCryptographyLib.DelegatedProcessor();
+         }
+         returnsignspendwithruby = "";
+         returnsignspendwithruby = (string)(DistributedCryptographyLib_DelegatedProcessor_externalReference.SignSpendWithRuby(gxTp_bundleJson, gxTp_device, gxTp_receivingExtPubKey, gxTp_changeExtPubKey, gxTp_finalPercent, gxTp_networkType));
+         return returnsignspendwithruby ;
+      }
+
       public string finalizespend( string gxTp_bundleJson ,
                                    int gxTp_percent ,
                                    string gxTp_networkType )
@@ -190,6 +207,27 @@ namespace GeneXus.Programs.distributedcryptographylib {
          returnownerspend = "";
          returnownerspend = (string)(DistributedCryptographyLib_DelegatedProcessor_externalReference.OwnerSpend(gxTp_utxosJson, gxTp_sendTo, gxTp_amountBtc, gxTp_changeAddr, gxTp_feeBtc, gxTp_sendAll, gxTp_receivingExtPrivKey, gxTp_changeExtPrivKey, gxTp_networkType));
          return returnownerspend ;
+      }
+
+      public string ownerspendwithruby( string gxTp_utxosJson ,
+                                        string gxTp_sendTo ,
+                                        string gxTp_amountBtc ,
+                                        string gxTp_changeAddr ,
+                                        string gxTp_feeBtc ,
+                                        bool gxTp_sendAll ,
+                                        string gxTp_device ,
+                                        string gxTp_receivingExtPubKey ,
+                                        string gxTp_changeExtPubKey ,
+                                        string gxTp_networkType )
+      {
+         string returnownerspendwithruby;
+         if ( DistributedCryptographyLib_DelegatedProcessor_externalReference == null )
+         {
+            DistributedCryptographyLib_DelegatedProcessor_externalReference = new DistricutedCryptographyLib.DelegatedProcessor();
+         }
+         returnownerspendwithruby = "";
+         returnownerspendwithruby = (string)(DistributedCryptographyLib_DelegatedProcessor_externalReference.OwnerSpendWithRuby(gxTp_utxosJson, gxTp_sendTo, gxTp_amountBtc, gxTp_changeAddr, gxTp_feeBtc, gxTp_sendAll, gxTp_device, gxTp_receivingExtPubKey, gxTp_changeExtPubKey, gxTp_networkType));
+         return returnownerspendwithruby ;
       }
 
       public Object ExternalInstance

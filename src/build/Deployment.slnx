@@ -73,6 +73,7 @@
   <Project Path="wallet.registered.wwcontacts/wallet.registered.wwcontacts.csproj" />
   <Project Path="wallet.restorewallet/wallet.restorewallet.csproj" />
   <Project Path="wallet.returntowallets/wallet.returntowallets.csproj" />
+  <Project Path="wallet.rubyhotwallets/wallet.rubyhotwallets.csproj" />
   <Project Path="wallet.sendcoins/wallet.sendcoins.csproj" />
   <Project Path="wallet.showauthenticatorpin/wallet.showauthenticatorpin.csproj" />
   <Project Path="wallet.showextendedkey/wallet.showextendedkey.csproj" />

@@ -76,6 +76,7 @@ namespace GeneXus.Programs.wallet {
          new GeneXus.Programs.wallet.setextkey(context ).execute(  AV11extKeyInfo) ;
          AV11extKeyInfo = AV17rubyPublic.gxTpr_Bip48;
          new GeneXus.Programs.wallet.setextkeybip48(context ).execute(  AV11extKeyInfo) ;
+         new GeneXus.Programs.wallet.setmasterfingerprint(context ).execute(  AV17rubyPublic.gxTpr_Fingerprint) ;
          GXt_char1 = AV9error;
          new GeneXus.Programs.wallet.rubykeyinfofromextkey(context ).execute(  AV16rubyKeys.gxTpr_Jsonfiles, out  AV15keyInfo, out  GXt_char1) ;
          AV9error = GXt_char1;
@@ -142,7 +143,7 @@ namespace GeneXus.Programs.wallet {
             new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet3) ;
             AV18wallet = GXt_SdtWallet3;
             AV13HsmManager.clear();
-            AV14initOk = AV13HsmManager.initialize(AV16rubyKeys.gxTpr_Hsm, AV18wallet.gxTpr_Networktype);
+            AV14initOk = AV13HsmManager.initialize(AV16rubyKeys.gxTpr_Hsm, AV18wallet.gxTpr_Networktype, AV12HSMconfigSDT.gxTpr_Apikey, AV12HSMconfigSDT.gxTpr_Requirehmac);
             if ( ! AV14initOk )
             {
                AV9error = "There is a problem initializing the HSM module";

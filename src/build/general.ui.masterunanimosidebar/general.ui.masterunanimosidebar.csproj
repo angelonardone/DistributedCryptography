@@ -62,6 +62,7 @@
 		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getlogindistcrypt.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\walletfilepath.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwalletinfo.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
 		<Compile Include = "$(WebDirectory)\general\ui\sidebaritemsoneaddressdp.cs" />

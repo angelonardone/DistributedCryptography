@@ -40,6 +40,9 @@ namespace GeneXus.Programs.wallet
 
 			gxTv_SdtWalletInfo_Keystorage = "";
 
+			gxTv_SdtWalletInfo_Hotwalletof = "";
+
+
 		}
 
 		public SdtWalletInfo(IGxContext context)
@@ -83,6 +86,12 @@ namespace GeneXus.Programs.wallet
 
 
 			AddObjectProperty("KeyStorage", gxTpr_Keystorage, false);
+
+
+			AddObjectProperty("HotWalletOf", gxTpr_Hotwalletof, false);
+
+
+			AddObjectProperty("HotWalletNumber", gxTpr_Hotwalletnumber, false);
 
 			return;
 		}
@@ -185,6 +194,38 @@ namespace GeneXus.Programs.wallet
 
 
 
+
+		[SoapElement(ElementName="HotWalletOf")]
+		[XmlElement(ElementName="HotWalletOf")]
+		public string gxTpr_Hotwalletof
+		{
+			get {
+				return gxTv_SdtWalletInfo_Hotwalletof; 
+			}
+			set {
+				gxTv_SdtWalletInfo_Hotwalletof = value;
+				SetDirty("Hotwalletof");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="HotWalletNumber")]
+		[XmlElement(ElementName="HotWalletNumber")]
+		public int gxTpr_Hotwalletnumber
+		{
+			get {
+				return gxTv_SdtWalletInfo_Hotwalletnumber; 
+			}
+			set {
+				gxTv_SdtWalletInfo_Hotwalletnumber = value;
+				SetDirty("Hotwalletnumber");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -212,6 +253,8 @@ namespace GeneXus.Programs.wallet
 			gxTv_SdtWalletInfo_Networktype = "";
 
 			gxTv_SdtWalletInfo_Keystorage = "";
+			gxTv_SdtWalletInfo_Hotwalletof = "";
+
 			return  ;
 		}
 
@@ -237,6 +280,12 @@ namespace GeneXus.Programs.wallet
 		 
 
 		protected string gxTv_SdtWalletInfo_Keystorage;
+		 
+
+		protected string gxTv_SdtWalletInfo_Hotwalletof;
+		 
+
+		protected int gxTv_SdtWalletInfo_Hotwalletnumber;
 		 
 
 
@@ -339,6 +388,34 @@ namespace GeneXus.Programs.wallet
 			}
 			set { 
 				 sdt.gxTpr_Keystorage = value;
+			}
+		}
+
+		[JsonPropertyName("HotWalletOf")]
+		[JsonPropertyOrder(6)]
+		[DataMember(Name="HotWalletOf", Order=6)]
+		public  string gxTpr_Hotwalletof
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Hotwalletof);
+
+			}
+			set { 
+				 sdt.gxTpr_Hotwalletof = value;
+			}
+		}
+
+		[JsonPropertyName("HotWalletNumber")]
+		[JsonPropertyOrder(7)]
+		[DataMember(Name="HotWalletNumber", Order=7)]
+		public  string gxTpr_Hotwalletnumber
+		{
+			get { 
+				return StringUtil.LTrim( StringUtil.Str( (decimal) sdt.gxTpr_Hotwalletnumber, 9, 0));
+
+			}
+			set { 
+				sdt.gxTpr_Hotwalletnumber = (int) NumberUtil.Val( value, ".");
 			}
 		}
 

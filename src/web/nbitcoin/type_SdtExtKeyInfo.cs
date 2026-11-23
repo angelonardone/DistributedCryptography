@@ -44,6 +44,8 @@ namespace GeneXus.Programs.nbitcoin
 
 			gxTv_SdtExtKeyInfo_Encryptedwif = "";
 
+			gxTv_SdtExtKeyInfo_Seed = "";
+
 		}
 
 		public SdtExtKeyInfo(IGxContext context)
@@ -92,6 +94,9 @@ namespace GeneXus.Programs.nbitcoin
 			{
 				AddObjectProperty("Extended", gxTv_SdtExtKeyInfo_Extended, false);
 			}
+
+			AddObjectProperty("Seed", gxTpr_Seed, false);
+
 			return;
 		}
 		#endregion
@@ -231,6 +236,22 @@ namespace GeneXus.Programs.nbitcoin
 		}
 
 
+
+		[SoapElement(ElementName="Seed")]
+		[XmlElement(ElementName="Seed")]
+		public string gxTpr_Seed
+		{
+			get {
+				return gxTv_SdtExtKeyInfo_Seed; 
+			}
+			set {
+				gxTv_SdtExtKeyInfo_Seed = value;
+				SetDirty("Seed");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -261,6 +282,7 @@ namespace GeneXus.Programs.nbitcoin
 
 			gxTv_SdtExtKeyInfo_Extended_N = true;
 
+			gxTv_SdtExtKeyInfo_Seed = "";
 			return  ;
 		}
 
@@ -290,6 +312,9 @@ namespace GeneXus.Programs.nbitcoin
 		protected bool gxTv_SdtExtKeyInfo_Extended_N;
 		protected SdtExtKeyInfo_Extended gxTv_SdtExtKeyInfo_Extended = null; 
 
+
+		protected string gxTv_SdtExtKeyInfo_Seed;
+		 
 
 
 		#endregion
@@ -410,6 +435,20 @@ namespace GeneXus.Programs.nbitcoin
 				sdt.gxTpr_Extended = value.sdt;
 			}
 
+		}
+
+		[JsonPropertyName("Seed")]
+		[JsonPropertyOrder(7)]
+		[DataMember(Name="Seed", Order=7)]
+		public  string gxTpr_Seed
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Seed);
+
+			}
+			set { 
+				 sdt.gxTpr_Seed = value;
+			}
 		}
 
 

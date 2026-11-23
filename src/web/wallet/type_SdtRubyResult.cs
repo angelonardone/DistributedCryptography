@@ -164,6 +164,12 @@ namespace GeneXus.Programs.wallet
 			{
 				AddObjectProperty("devices", gxTv_SdtRubyResult_Devices, false);
 			}
+
+			AddObjectProperty("cancelled", gxTpr_Cancelled, false);
+
+
+			AddObjectProperty("hasWallet", gxTpr_Haswallet, false);
+
 			return;
 		}
 		#endregion
@@ -577,6 +583,38 @@ namespace GeneXus.Programs.wallet
 		}
 
 
+
+		[SoapElement(ElementName="cancelled")]
+		[XmlElement(ElementName="cancelled")]
+		public bool gxTpr_Cancelled
+		{
+			get {
+				return gxTv_SdtRubyResult_Cancelled; 
+			}
+			set {
+				gxTv_SdtRubyResult_Cancelled = value;
+				SetDirty("Cancelled");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="hasWallet")]
+		[XmlElement(ElementName="hasWallet")]
+		public bool gxTpr_Haswallet
+		{
+			get {
+				return gxTv_SdtRubyResult_Haswallet; 
+			}
+			set {
+				gxTv_SdtRubyResult_Haswallet = value;
+				SetDirty("Haswallet");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -624,6 +662,8 @@ namespace GeneXus.Programs.wallet
 
 
 			gxTv_SdtRubyResult_Devices_N = true;
+
+
 
 			return  ;
 		}
@@ -701,6 +741,12 @@ namespace GeneXus.Programs.wallet
 		protected bool gxTv_SdtRubyResult_Devices_N;
 		protected GXBaseCollection<SdtRubyResult_devicesItem> gxTv_SdtRubyResult_Devices = null; 
 
+
+		protected bool gxTv_SdtRubyResult_Cancelled;
+		 
+
+		protected bool gxTv_SdtRubyResult_Haswallet;
+		 
 
 
 		#endregion
@@ -1038,6 +1084,36 @@ namespace GeneXus.Programs.wallet
 			}
 			set {
 				value.LoadCollection(sdt.gxTpr_Devices);
+			}
+		}
+
+		[JsonPropertyName("cancelled")]
+		[JsonPropertyOrder(22)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
+		[DataMember(Name="cancelled", Order=22)]
+		public bool gxTpr_Cancelled
+		{
+			get { 
+				return sdt.gxTpr_Cancelled;
+
+			}
+			set { 
+				sdt.gxTpr_Cancelled = value;
+			}
+		}
+
+		[JsonPropertyName("hasWallet")]
+		[JsonPropertyOrder(23)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
+		[DataMember(Name="hasWallet", Order=23)]
+		public bool gxTpr_Haswallet
+		{
+			get { 
+				return sdt.gxTpr_Haswallet;
+
+			}
+			set { 
+				sdt.gxTpr_Haswallet = value;
 			}
 		}
 

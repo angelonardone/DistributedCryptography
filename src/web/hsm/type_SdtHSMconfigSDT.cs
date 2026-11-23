@@ -32,6 +32,9 @@ namespace GeneXus.Programs.hsm
 		public SdtHSMconfigSDT( )
 		{
 			/* Constructor for serialization */
+			gxTv_SdtHSMconfigSDT_Apikey = "";
+
+
 		}
 
 		public SdtHSMconfigSDT(IGxContext context)
@@ -61,6 +64,12 @@ namespace GeneXus.Programs.hsm
 		{
 			AddObjectProperty("isActive", gxTpr_Isactive, false);
 
+
+			AddObjectProperty("apiKey", gxTpr_Apikey, false);
+
+
+			AddObjectProperty("requireHmac", gxTpr_Requirehmac, false);
+
 			return;
 		}
 		#endregion
@@ -77,6 +86,38 @@ namespace GeneXus.Programs.hsm
 			set {
 				gxTv_SdtHSMconfigSDT_Isactive = value;
 				SetDirty("Isactive");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="apiKey")]
+		[XmlElement(ElementName="apiKey")]
+		public string gxTpr_Apikey
+		{
+			get {
+				return gxTv_SdtHSMconfigSDT_Apikey; 
+			}
+			set {
+				gxTv_SdtHSMconfigSDT_Apikey = value;
+				SetDirty("Apikey");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="requireHmac")]
+		[XmlElement(ElementName="requireHmac")]
+		public bool gxTpr_Requirehmac
+		{
+			get {
+				return gxTv_SdtHSMconfigSDT_Requirehmac; 
+			}
+			set {
+				gxTv_SdtHSMconfigSDT_Requirehmac = value;
+				SetDirty("Requirehmac");
 			}
 		}
 
@@ -103,6 +144,8 @@ namespace GeneXus.Programs.hsm
 
 		public void initialize( )
 		{
+			gxTv_SdtHSMconfigSDT_Apikey = "";
+
 			return  ;
 		}
 
@@ -113,6 +156,12 @@ namespace GeneXus.Programs.hsm
 		#region Declaration
 
 		protected bool gxTv_SdtHSMconfigSDT_Isactive;
+		 
+
+		protected string gxTv_SdtHSMconfigSDT_Apikey;
+		 
+
+		protected bool gxTv_SdtHSMconfigSDT_Requirehmac;
 		 
 
 
@@ -144,6 +193,35 @@ namespace GeneXus.Programs.hsm
 			}
 			set { 
 				sdt.gxTpr_Isactive = value;
+			}
+		}
+
+		[JsonPropertyName("apiKey")]
+		[JsonPropertyOrder(1)]
+		[DataMember(Name="apiKey", Order=1)]
+		public  string gxTpr_Apikey
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Apikey);
+
+			}
+			set { 
+				 sdt.gxTpr_Apikey = value;
+			}
+		}
+
+		[JsonPropertyName("requireHmac")]
+		[JsonPropertyOrder(2)]
+		[JsonConverter(typeof(BoolStringJsonConverter))]
+		[DataMember(Name="requireHmac", Order=2)]
+		public bool gxTpr_Requirehmac
+		{
+			get { 
+				return sdt.gxTpr_Requirehmac;
+
+			}
+			set { 
+				sdt.gxTpr_Requirehmac = value;
 			}
 		}
 

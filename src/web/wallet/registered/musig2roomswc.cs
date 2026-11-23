@@ -664,14 +664,14 @@ namespace GeneXus.Programs.wallet.registered {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavOwnerpassword_Internalname+"\"", "", "div");
+            GxWebStd.gx_div_start( context, "", edtavOwnerpassword_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavOwnerpassword_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
             GxWebStd.gx_label_element( context, edtavOwnerpassword_Internalname, "Enter password", "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 47,'" + sPrefix + "',false,'" + sGXsfl_96_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavOwnerpassword_Internalname, StringUtil.RTrim( AV38ownerPassword), StringUtil.RTrim( context.localUtil.Format( AV38ownerPassword, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,47);\""+" "+"data-gx-password-reveal"+" ", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavOwnerpassword_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavOwnerpassword_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, -1, 0, 0, 0, 0, -1, true, "", "start", true, "", "HLP_Wallet/registered/MuSig2RoomsWC.htm");
+            GxWebStd.gx_single_line_edit( context, edtavOwnerpassword_Internalname, StringUtil.RTrim( AV38ownerPassword), StringUtil.RTrim( context.localUtil.Format( AV38ownerPassword, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,47);\""+" "+"data-gx-password-reveal"+" ", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavOwnerpassword_Jsonclick, 0, "Attribute", "", "", "", "", edtavOwnerpassword_Visible, edtavOwnerpassword_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, -1, 0, 0, 0, 0, -1, true, "", "start", true, "", "HLP_Wallet/registered/MuSig2RoomsWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1062,6 +1062,23 @@ namespace GeneXus.Programs.wallet.registered {
                                  }
                               }
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "'NEW PAYMENT'") == 0 )
+                           {
+                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
+                              {
+                                 STRUP3T0( ) ;
+                              }
+                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+                              {
+                                 context.wbHandled = 1;
+                                 if ( ! wbErr )
+                                 {
+                                    dynload_actions( ) ;
+                                    /* Execute user event: 'New payment' */
+                                    E113T2 ();
+                                 }
+                              }
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "'OPEN ROOM'") == 0 )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
@@ -1075,7 +1092,7 @@ namespace GeneXus.Programs.wallet.registered {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: 'Open room' */
-                                    E113T2 ();
+                                    E123T2 ();
                                  }
                               }
                            }
@@ -1092,7 +1109,7 @@ namespace GeneXus.Programs.wallet.registered {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: 'Estimate fee' */
-                                    E123T2 ();
+                                    E133T2 ();
                                  }
                               }
                            }
@@ -1109,7 +1126,7 @@ namespace GeneXus.Programs.wallet.registered {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: 'Pay alone' */
-                                    E133T2 ();
+                                    E143T2 ();
                                  }
                               }
                            }
@@ -1126,7 +1143,7 @@ namespace GeneXus.Programs.wallet.registered {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: 'Refresh rooms' */
-                                    E143T2 ();
+                                    E153T2 ();
                                  }
                               }
                            }
@@ -1143,7 +1160,7 @@ namespace GeneXus.Programs.wallet.registered {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: 'Here' */
-                                    E153T2 ();
+                                    E163T2 ();
                                  }
                               }
                            }
@@ -1160,7 +1177,24 @@ namespace GeneXus.Programs.wallet.registered {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: 'Sign now' */
-                                    E163T2 ();
+                                    E173T2 ();
+                                 }
+                              }
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "'SIGN'") == 0 )
+                           {
+                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
+                              {
+                                 STRUP3T0( ) ;
+                              }
+                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+                              {
+                                 context.wbHandled = 1;
+                                 if ( ! wbErr )
+                                 {
+                                    dynload_actions( ) ;
+                                    /* Execute user event: 'Sign' */
+                                    E183T2 ();
                                  }
                               }
                            }
@@ -1177,7 +1211,7 @@ namespace GeneXus.Programs.wallet.registered {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: 'Confirm sign' */
-                                    E173T2 ();
+                                    E193T2 ();
                                  }
                               }
                            }
@@ -1194,7 +1228,7 @@ namespace GeneXus.Programs.wallet.registered {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: 'Cancel form' */
-                                    E183T2 ();
+                                    E203T2 ();
                                  }
                               }
                            }
@@ -1211,7 +1245,7 @@ namespace GeneXus.Programs.wallet.registered {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: 'Leave' */
-                                    E193T2 ();
+                                    E213T2 ();
                                  }
                               }
                            }
@@ -1228,7 +1262,7 @@ namespace GeneXus.Programs.wallet.registered {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: 'Send chat' */
-                                    E203T2 ();
+                                    E223T2 ();
                                  }
                               }
                            }
@@ -1244,7 +1278,7 @@ namespace GeneXus.Programs.wallet.registered {
                                  if ( ! wbErr )
                                  {
                                     dynload_actions( ) ;
-                                    E213T2 ();
+                                    E233T2 ();
                                  }
                               }
                            }
@@ -1329,7 +1363,7 @@ namespace GeneXus.Programs.wallet.registered {
                                           GX_FocusControl = edtavCtlroomid_Internalname;
                                           AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
                                           /* Execute user event: Start */
-                                          E223T2 ();
+                                          E243T2 ();
                                        }
                                     }
                                  }
@@ -1344,7 +1378,7 @@ namespace GeneXus.Programs.wallet.registered {
                                           GX_FocusControl = edtavCtlroomid_Internalname;
                                           AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
                                           /* Execute user event: Refresh */
-                                          E233T2 ();
+                                          E253T2 ();
                                        }
                                     }
                                  }
@@ -1359,7 +1393,7 @@ namespace GeneXus.Programs.wallet.registered {
                                           GX_FocusControl = edtavCtlroomid_Internalname;
                                           AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
                                           /* Execute user event: Gridrooms.Load */
-                                          E243T2 ();
+                                          E263T2 ();
                                        }
                                     }
                                  }
@@ -1374,7 +1408,7 @@ namespace GeneXus.Programs.wallet.registered {
                                           GX_FocusControl = edtavCtlroomid_Internalname;
                                           AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
                                           /* Execute user event: 'Open' */
-                                          E253T2 ();
+                                          E273T2 ();
                                        }
                                     }
                                  }
@@ -1588,7 +1622,7 @@ namespace GeneXus.Programs.wallet.registered {
          }
          wbStart = 96;
          /* Execute user event: Refresh */
-         E233T2 ();
+         E253T2 ();
          nGXsfl_96_idx = 1;
          sGXsfl_96_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_96_idx), 4, 0), 4, "0");
          SubsflControlProps_962( ) ;
@@ -1608,14 +1642,14 @@ namespace GeneXus.Programs.wallet.registered {
          {
             SubsflControlProps_962( ) ;
             /* Execute user event: Gridrooms.Load */
-            E243T2 ();
+            E263T2 ();
             if ( ( subGridrooms_Islastpage == 0 ) && ( GRIDROOMS_nCurrentRecord > 0 ) && ( GRIDROOMS_nGridOutOfScope == 0 ) && ( nGXsfl_96_idx == 1 ) )
             {
                GRIDROOMS_nCurrentRecord = 0;
                GRIDROOMS_nGridOutOfScope = 1;
                subgridrooms_firstpage( ) ;
                /* Execute user event: Gridrooms.Load */
-               E243T2 ();
+               E263T2 ();
             }
             wbEnd = 96;
             WB3T0( ) ;
@@ -1783,7 +1817,7 @@ namespace GeneXus.Programs.wallet.registered {
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E223T2 ();
+         E243T2 ();
          context.wbGlbDoneStart = 1;
          nDoneStart = 1;
          /* After Start, stand alone formulas. */
@@ -1793,17 +1827,9 @@ namespace GeneXus.Programs.wallet.registered {
             /* Read saved SDTs. */
             ajax_req_read_hidden_sdt(cgiGet( sPrefix+"Lines"), AV7lines);
             ajax_req_read_hidden_sdt(cgiGet( sPrefix+"vLINES"), AV7lines);
-            ajax_req_read_hidden_sdt(cgiGet( sPrefix+"vSELECTED"), AV42selected);
             /* Read saved values. */
             nRC_GXsfl_96 = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_96"), ".", ","), 18, MidpointRounding.ToEven));
             wcpOAV6groupId = StringUtil.StrToGuid( cgiGet( sPrefix+"wcpOAV6groupId"));
-            AV13formOpen = StringUtil.StrToBool( cgiGet( sPrefix+"vFORMOPEN"));
-            AssignAttri(sPrefix, false, "AV13formOpen", AV13formOpen);
-            AV43selectedRoomId = StringUtil.StrToGuid( cgiGet( sPrefix+"vSELECTEDROOMID"));
-            AV10signRoomId = StringUtil.StrToGuid( cgiGet( sPrefix+"vSIGNROOMID"));
-            AV30ownerAlone = StringUtil.StrToBool( cgiGet( sPrefix+"vOWNERALONE"));
-            AssignAttri(sPrefix, false, "AV30ownerAlone", AV30ownerAlone);
-            GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vOWNERALONE", GetSecureSignedToken( sPrefix, AV30ownerAlone, context));
             GRIDROOMS_nFirstRecordOnPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"GRIDROOMS_nFirstRecordOnPage"), ".", ","), 18, MidpointRounding.ToEven));
             GRIDROOMS_nEOF = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"GRIDROOMS_nEOF"), ".", ","), 18, MidpointRounding.ToEven));
             nRC_GXsfl_96 = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_96"), ".", ","), 18, MidpointRounding.ToEven));
@@ -1889,11 +1915,11 @@ namespace GeneXus.Programs.wallet.registered {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E223T2 ();
+         E243T2 ();
          if (returnInSub) return;
       }
 
-      protected void E223T2( )
+      protected void E243T2( )
       {
          /* Start Routine */
          returnInSub = false;
@@ -1910,7 +1936,7 @@ namespace GeneXus.Programs.wallet.registered {
          if (returnInSub) return;
       }
 
-      protected void E233T2( )
+      protected void E253T2( )
       {
          if ( gx_refresh_fired )
          {
@@ -1989,6 +2015,14 @@ namespace GeneXus.Programs.wallet.registered {
             AssignProp(sPrefix, false, bttSignnow_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttSignnow_Visible), 5, 0), true);
             bttSign_Visible = (AV42selected.gxTpr_Cansign ? 1 : 0);
             AssignProp(sPrefix, false, bttSign_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttSign_Visible), 5, 0), true);
+            GXt_SdtWalletInfo1 = AV20walletInfo;
+            new GeneXus.Programs.wallet.getwalletinfo(context ).execute( out  GXt_SdtWalletInfo1) ;
+            AV20walletInfo = GXt_SdtWalletInfo1;
+            if ( StringUtil.StrCmp(AV20walletInfo.gxTpr_Keystorage, "Ruby") == 0 )
+            {
+               bttSign_Caption = "Sign on Ruby";
+               AssignProp(sPrefix, false, bttSign_Internalname, "Caption", bttSign_Caption, true);
+            }
             bttAbort_Visible = (AV42selected.gxTpr_Canabort ? 1 : 0);
             AssignProp(sPrefix, false, bttAbort_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttAbort_Visible), 5, 0), true);
             AV39chatLogView = AV42selected.gxTpr_Chatlog;
@@ -2011,7 +2045,7 @@ namespace GeneXus.Programs.wallet.registered {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV42selected", AV42selected);
       }
 
-      private void E243T2( )
+      private void E263T2( )
       {
          /* Gridrooms_Load Routine */
          returnInSub = false;
@@ -2054,7 +2088,7 @@ namespace GeneXus.Programs.wallet.registered {
          /*  Sending Event outputs  */
       }
 
-      protected void E253T2( )
+      protected void E273T2( )
       {
          AV46GXV1 = (int)(nGXsfl_96_idx+GRIDROOMS_nFirstRecordOnPage);
          if ( ( AV46GXV1 > 0 ) && ( AV7lines.Count >= AV46GXV1 ) )
@@ -2077,6 +2111,64 @@ namespace GeneXus.Programs.wallet.registered {
       }
 
       protected void E113T2( )
+      {
+         /* 'New payment' Routine */
+         returnInSub = false;
+         AV16sendAllCoins = false;
+         AssignAttri(sPrefix, false, "AV16sendAllCoins", AV16sendAllCoins);
+         AV17sendCoins = 0;
+         AssignAttri(sPrefix, false, "AV17sendCoins", StringUtil.LTrimStr( AV17sendCoins, 16, 8));
+         AV18sendTo = "";
+         AssignAttri(sPrefix, false, "AV18sendTo", AV18sendTo);
+         AV12description = "";
+         AssignAttri(sPrefix, false, "AV12description", AV12description);
+         AV38ownerPassword = "";
+         AssignAttri(sPrefix, false, "AV38ownerPassword", AV38ownerPassword);
+         AV33userFee = 0;
+         AssignAttri(sPrefix, false, "AV33userFee", StringUtil.LTrimStr( AV33userFee, 16, 8));
+         AV29manualFee = 0;
+         AssignAttri(sPrefix, false, "AV29manualFee", StringUtil.LTrimStr( AV29manualFee, 16, 8));
+         divNewtable_Visible = 1;
+         AssignProp(sPrefix, false, divNewtable_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divNewtable_Visible), 5, 0), true);
+         if ( AV30ownerAlone )
+         {
+            lblTbnew_Caption = "Pay alone: amount, destination and description; then Estimate fee, choose the fee and sign with your password.";
+            AssignProp(sPrefix, false, lblTbnew_Internalname, "Caption", lblTbnew_Caption, true);
+            bttOpenroom_Visible = 0;
+            AssignProp(sPrefix, false, bttOpenroom_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttOpenroom_Visible), 5, 0), true);
+            bttEstimatefee_Visible = 1;
+            AssignProp(sPrefix, false, bttEstimatefee_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttEstimatefee_Visible), 5, 0), true);
+            GXt_SdtWalletInfo1 = AV20walletInfo;
+            new GeneXus.Programs.wallet.getwalletinfo(context ).execute( out  GXt_SdtWalletInfo1) ;
+            AV20walletInfo = GXt_SdtWalletInfo1;
+            if ( StringUtil.StrCmp(AV20walletInfo.gxTpr_Keystorage, "Ruby") == 0 )
+            {
+               lblTbnew_Caption = "Pay alone: amount, destination and description; then Estimate fee, choose the fee and confirm the payment on Ruby.";
+               AssignProp(sPrefix, false, lblTbnew_Internalname, "Caption", lblTbnew_Caption, true);
+               edtavOwnerpassword_Visible = 0;
+               AssignProp(sPrefix, false, edtavOwnerpassword_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavOwnerpassword_Visible), 5, 0), true);
+            }
+         }
+         else
+         {
+            lblTbnew_Caption = "New payment session: the other members see it in their own wallet for 15 minutes and join it online. The fee is the network's when the signing starts.";
+            AssignProp(sPrefix, false, lblTbnew_Internalname, "Caption", lblTbnew_Caption, true);
+            bttOpenroom_Visible = 1;
+            AssignProp(sPrefix, false, bttOpenroom_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttOpenroom_Visible), 5, 0), true);
+            bttEstimatefee_Visible = 0;
+            AssignProp(sPrefix, false, bttEstimatefee_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttEstimatefee_Visible), 5, 0), true);
+         }
+         divOwnerfeetable_Visible = 0;
+         AssignProp(sPrefix, false, divOwnerfeetable_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divOwnerfeetable_Visible), 5, 0), true);
+         /* Execute user subroutine: 'SHOW FORM' */
+         S122 ();
+         if (returnInSub) return;
+         /*  Sending Event outputs  */
+         cmbavUserfee.CurrentValue = StringUtil.Trim( StringUtil.Str( AV33userFee, 16, 8));
+         AssignProp(sPrefix, false, cmbavUserfee_Internalname, "Values", cmbavUserfee.ToJavascriptSource(), true);
+      }
+
+      protected void E123T2( )
       {
          /* 'Open room' Routine */
          returnInSub = false;
@@ -2114,7 +2206,7 @@ namespace GeneXus.Programs.wallet.registered {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV42selected", AV42selected);
       }
 
-      protected void E123T2( )
+      protected void E133T2( )
       {
          /* 'Estimate fee' Routine */
          returnInSub = false;
@@ -2127,35 +2219,35 @@ namespace GeneXus.Programs.wallet.registered {
             AssignAttri(sPrefix, false, "AV5error", AV5error);
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV5error)) )
             {
-               GXt_char1 = AV5error;
-               GXt_int2 = (short)(AV23economicalBlocks);
-               new GeneXus.Programs.wallet.getestimatesmartfee(context ).execute(  AV34virtualSize,  60,  "economical", out  AV24economicalFee, out  GXt_int2, out  GXt_char1) ;
-               AV23economicalBlocks = GXt_int2;
+               GXt_char2 = AV5error;
+               GXt_int3 = (short)(AV23economicalBlocks);
+               new GeneXus.Programs.wallet.getestimatesmartfee(context ).execute(  AV34virtualSize,  60,  "economical", out  AV24economicalFee, out  GXt_int3, out  GXt_char2) ;
+               AV23economicalBlocks = GXt_int3;
                AssignAttri(sPrefix, false, "AV24economicalFee", StringUtil.LTrimStr( AV24economicalFee, 16, 8));
                AssignAttri(sPrefix, false, "AV23economicalBlocks", StringUtil.LTrimStr( (decimal)(AV23economicalBlocks), 10, 0));
-               AV5error = GXt_char1;
+               AV5error = GXt_char2;
                AssignAttri(sPrefix, false, "AV5error", AV5error);
             }
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV5error)) )
             {
-               GXt_char1 = AV5error;
-               GXt_int2 = (short)(AV31standarBlocks);
-               new GeneXus.Programs.wallet.getestimatesmartfee(context ).execute(  AV34virtualSize,  6,  "conservative", out  AV32standardFee, out  GXt_int2, out  GXt_char1) ;
-               AV31standarBlocks = GXt_int2;
+               GXt_char2 = AV5error;
+               GXt_int3 = (short)(AV31standarBlocks);
+               new GeneXus.Programs.wallet.getestimatesmartfee(context ).execute(  AV34virtualSize,  6,  "conservative", out  AV32standardFee, out  GXt_int3, out  GXt_char2) ;
+               AV31standarBlocks = GXt_int3;
                AssignAttri(sPrefix, false, "AV32standardFee", StringUtil.LTrimStr( AV32standardFee, 16, 8));
                AssignAttri(sPrefix, false, "AV31standarBlocks", StringUtil.LTrimStr( (decimal)(AV31standarBlocks), 10, 0));
-               AV5error = GXt_char1;
+               AV5error = GXt_char2;
                AssignAttri(sPrefix, false, "AV5error", AV5error);
             }
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV5error)) )
             {
-               GXt_char1 = AV5error;
-               GXt_int2 = (short)(AV26fastestBlocks);
-               new GeneXus.Programs.wallet.getestimatesmartfee(context ).execute(  AV34virtualSize,  1,  "conservative", out  AV27fastestFee, out  GXt_int2, out  GXt_char1) ;
-               AV26fastestBlocks = GXt_int2;
+               GXt_char2 = AV5error;
+               GXt_int3 = (short)(AV26fastestBlocks);
+               new GeneXus.Programs.wallet.getestimatesmartfee(context ).execute(  AV34virtualSize,  1,  "conservative", out  AV27fastestFee, out  GXt_int3, out  GXt_char2) ;
+               AV26fastestBlocks = GXt_int3;
                AssignAttri(sPrefix, false, "AV27fastestFee", StringUtil.LTrimStr( AV27fastestFee, 16, 8));
                AssignAttri(sPrefix, false, "AV26fastestBlocks", StringUtil.LTrimStr( (decimal)(AV26fastestBlocks), 10, 0));
-               AV5error = GXt_char1;
+               AV5error = GXt_char2;
                AssignAttri(sPrefix, false, "AV5error", AV5error);
             }
             if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV5error)) )
@@ -2179,7 +2271,7 @@ namespace GeneXus.Programs.wallet.registered {
          AssignProp(sPrefix, false, cmbavUserfee_Internalname, "Values", cmbavUserfee.ToJavascriptSource(), true);
       }
 
-      protected void E133T2( )
+      protected void E143T2( )
       {
          /* 'Pay alone' Routine */
          returnInSub = false;
@@ -2189,14 +2281,25 @@ namespace GeneXus.Programs.wallet.registered {
          }
          else
          {
-            GXt_int2 = AV28groupType;
-            new GeneXus.Programs.wallet.registered.setgroupeditwallet(context ).execute(  AV6groupId, out  GXt_int2) ;
-            AV28groupType = GXt_int2;
+            GXt_int3 = AV28groupType;
+            new GeneXus.Programs.wallet.registered.setgroupeditwallet(context ).execute(  AV6groupId, out  GXt_int3) ;
+            AV28groupType = GXt_int3;
             new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
-            GXt_char1 = AV5error;
-            new GeneXus.Programs.wallet.approvespendingkeys(context ).execute(  AV38ownerPassword, out  GXt_char1) ;
-            AV5error = GXt_char1;
-            AssignAttri(sPrefix, false, "AV5error", AV5error);
+            GXt_SdtWalletInfo1 = AV20walletInfo;
+            new GeneXus.Programs.wallet.getwalletinfo(context ).execute( out  GXt_SdtWalletInfo1) ;
+            AV20walletInfo = GXt_SdtWalletInfo1;
+            if ( StringUtil.StrCmp(AV20walletInfo.gxTpr_Keystorage, "Ruby") == 0 )
+            {
+               AV5error = "";
+               AssignAttri(sPrefix, false, "AV5error", AV5error);
+            }
+            else
+            {
+               GXt_char2 = AV5error;
+               new GeneXus.Programs.wallet.approvespendingkeys(context ).execute(  AV38ownerPassword, out  GXt_char2) ;
+               AV5error = GXt_char2;
+               AssignAttri(sPrefix, false, "AV5error", AV5error);
+            }
             AV38ownerPassword = "";
             AssignAttri(sPrefix, false, "AV38ownerPassword", AV38ownerPassword);
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV5error)) )
@@ -2232,7 +2335,7 @@ namespace GeneXus.Programs.wallet.registered {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV42selected", AV42selected);
       }
 
-      protected void E143T2( )
+      protected void E153T2( )
       {
          /* 'Refresh rooms' Routine */
          returnInSub = false;
@@ -2250,7 +2353,7 @@ namespace GeneXus.Programs.wallet.registered {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV42selected", AV42selected);
       }
 
-      protected void E153T2( )
+      protected void E163T2( )
       {
          /* 'Here' Routine */
          returnInSub = false;
@@ -2273,7 +2376,7 @@ namespace GeneXus.Programs.wallet.registered {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV42selected", AV42selected);
       }
 
-      protected void E163T2( )
+      protected void E173T2( )
       {
          /* 'Sign now' Routine */
          returnInSub = false;
@@ -2281,7 +2384,17 @@ namespace GeneXus.Programs.wallet.registered {
          AssignAttri(sPrefix, false, "AV5error", AV5error);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV5error)) )
          {
-            this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"success",(string)"Signing started",(string)"Every signer can now press Sign with password: 3 minutes"}, true);
+            GXt_SdtWalletInfo1 = AV20walletInfo;
+            new GeneXus.Programs.wallet.getwalletinfo(context ).execute( out  GXt_SdtWalletInfo1) ;
+            AV20walletInfo = GXt_SdtWalletInfo1;
+            if ( StringUtil.StrCmp(AV20walletInfo.gxTpr_Keystorage, "Ruby") == 0 )
+            {
+               this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"success",(string)"Signing started","Every signer can now sign: 3 minutes. Press Sign on Ruby and confirm the payment on Ruby"}, true);
+            }
+            else
+            {
+               this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"success",(string)"Signing started",(string)"Every signer can now press Sign with password: 3 minutes"}, true);
+            }
          }
          /* Execute user subroutine: 'SHOW ERROR' */
          S142 ();
@@ -2300,32 +2413,68 @@ namespace GeneXus.Programs.wallet.registered {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV42selected", AV42selected);
       }
 
-      protected void E173T2( )
+      protected void E183T2( )
+      {
+         /* 'Sign' Routine */
+         returnInSub = false;
+         AV10signRoomId = AV43selectedRoomId;
+         AssignAttri(sPrefix, false, "AV10signRoomId", AV10signRoomId.ToString());
+         GXt_SdtWalletInfo1 = AV20walletInfo;
+         new GeneXus.Programs.wallet.getwalletinfo(context ).execute( out  GXt_SdtWalletInfo1) ;
+         AV20walletInfo = GXt_SdtWalletInfo1;
+         if ( StringUtil.StrCmp(AV20walletInfo.gxTpr_Keystorage, "Ruby") == 0 )
+         {
+            /* Execute user subroutine: 'SIGN' */
+            S152 ();
+            if (returnInSub) return;
+            /* Execute user subroutine: 'SHOW ERROR' */
+            S142 ();
+            if (returnInSub) return;
+            /* Execute user subroutine: 'SHOW LIST' */
+            S112 ();
+            if (returnInSub) return;
+         }
+         else
+         {
+            AV14password = "";
+            AssignAttri(sPrefix, false, "AV14password", AV14password);
+            lblTbsign_Caption = "Sign the payment "+StringUtil.Trim( AV42selected.gxTpr_Description)+" ("+StringUtil.Trim( AV42selected.gxTpr_Amounttext)+" to "+StringUtil.Trim( AV42selected.gxTpr_Sendto)+") with your password:";
+            AssignProp(sPrefix, false, lblTbsign_Internalname, "Caption", lblTbsign_Caption, true);
+            divSigntable_Visible = 1;
+            AssignProp(sPrefix, false, divSigntable_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divSigntable_Visible), 5, 0), true);
+            /* Execute user subroutine: 'SHOW FORM' */
+            S122 ();
+            if (returnInSub) return;
+         }
+         /*  Sending Event outputs  */
+         if ( gx_BV96 )
+         {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV7lines", AV7lines);
+            nGXsfl_96_bak_idx = nGXsfl_96_idx;
+            gxgrGridrooms_refresh( subGridrooms_Rows, AV6groupId, AV30ownerAlone, AV43selectedRoomId, AV42selected, AV7lines, AV16sendAllCoins, sPrefix) ;
+            nGXsfl_96_idx = nGXsfl_96_bak_idx;
+            sGXsfl_96_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_96_idx), 4, 0), 4, "0");
+            SubsflControlProps_962( ) ;
+         }
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV42selected", AV42selected);
+      }
+
+      protected void E193T2( )
       {
          /* 'Confirm sign' Routine */
          returnInSub = false;
          new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
-         GXt_char1 = AV5error;
-         new GeneXus.Programs.wallet.approvespendingkeys(context ).execute(  AV14password, out  GXt_char1) ;
-         AV5error = GXt_char1;
+         GXt_char2 = AV5error;
+         new GeneXus.Programs.wallet.approvespendingkeys(context ).execute(  AV14password, out  GXt_char2) ;
+         AV5error = GXt_char2;
          AssignAttri(sPrefix, false, "AV5error", AV5error);
          AV14password = "";
          AssignAttri(sPrefix, false, "AV14password", AV14password);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV5error)) )
          {
-            new GeneXus.Programs.wallet.registered.musig2roomsign(context ).execute(  AV6groupId,  AV10signRoomId, out  AV44txId, out  AV5error) ;
-            AssignAttri(sPrefix, false, "AV5error", AV5error);
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV5error)) )
-            {
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44txId)) )
-               {
-                  this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"success",(string)"Signature sent","Your signature was sent to the other signers. The payment is sent to the network with the last signature"}, true);
-               }
-               else
-               {
-                  this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"success",(string)"Transaction broadcast","The payment was signed by every signer and submitted to the network: "+StringUtil.Trim( AV44txId)}, true);
-               }
-            }
+            /* Execute user subroutine: 'SIGN' */
+            S152 ();
+            if (returnInSub) return;
          }
          new GeneXus.Programs.wallet.cleanprivatekeys(context ).execute( ) ;
          /* Execute user subroutine: 'SHOW ERROR' */
@@ -2347,7 +2496,26 @@ namespace GeneXus.Programs.wallet.registered {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV42selected", AV42selected);
       }
 
-      protected void E183T2( )
+      protected void S152( )
+      {
+         /* 'SIGN' Routine */
+         returnInSub = false;
+         new GeneXus.Programs.wallet.registered.musig2roomsign(context ).execute(  AV6groupId,  AV10signRoomId, out  AV44txId, out  AV5error) ;
+         AssignAttri(sPrefix, false, "AV5error", AV5error);
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV5error)) )
+         {
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44txId)) )
+            {
+               this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"success",(string)"Signature sent","Your signature was sent to the other signers. The payment is sent to the network with the last signature"}, true);
+            }
+            else
+            {
+               this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "ShowMsg", new Object[] {(string)"success",(string)"Transaction broadcast","The payment was signed by every signer and submitted to the network: "+StringUtil.Trim( AV44txId)}, true);
+            }
+         }
+      }
+
+      protected void E203T2( )
       {
          /* 'Cancel form' Routine */
          returnInSub = false;
@@ -2371,7 +2539,7 @@ namespace GeneXus.Programs.wallet.registered {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV42selected", AV42selected);
       }
 
-      protected void E193T2( )
+      protected void E213T2( )
       {
          /* 'Leave' Routine */
          returnInSub = false;
@@ -2394,7 +2562,7 @@ namespace GeneXus.Programs.wallet.registered {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV42selected", AV42selected);
       }
 
-      protected void E203T2( )
+      protected void E223T2( )
       {
          /* 'Send chat' Routine */
          returnInSub = false;
@@ -2425,7 +2593,7 @@ namespace GeneXus.Programs.wallet.registered {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV42selected", AV42selected);
       }
 
-      protected void E213T2( )
+      protected void E233T2( )
       {
          /* GlobalEvents_Receivechat Routine */
          returnInSub = false;
@@ -2478,12 +2646,12 @@ namespace GeneXus.Programs.wallet.registered {
          returnInSub = false;
          AV22checked = false;
          AssignAttri(sPrefix, false, "AV22checked", AV22checked);
-         GXt_SdtWalletInfo3 = AV20walletInfo;
-         new GeneXus.Programs.wallet.getwalletinfo(context ).execute( out  GXt_SdtWalletInfo3) ;
-         AV20walletInfo = GXt_SdtWalletInfo3;
-         GXt_int2 = AV28groupType;
-         new GeneXus.Programs.wallet.registered.setgroupeditwallet(context ).execute(  AV6groupId, out  GXt_int2) ;
-         AV28groupType = GXt_int2;
+         GXt_SdtWalletInfo1 = AV20walletInfo;
+         new GeneXus.Programs.wallet.getwalletinfo(context ).execute( out  GXt_SdtWalletInfo1) ;
+         AV20walletInfo = GXt_SdtWalletInfo1;
+         GXt_int3 = AV28groupType;
+         new GeneXus.Programs.wallet.registered.setgroupeditwallet(context ).execute(  AV6groupId, out  GXt_int3) ;
+         AV28groupType = GXt_int3;
          GXt_decimal4 = AV19totalBalance;
          new GeneXus.Programs.wallet.getbalancefromhistorywithbalance(context ).execute( out  GXt_decimal4) ;
          AV19totalBalance = GXt_decimal4;
@@ -2510,9 +2678,9 @@ namespace GeneXus.Programs.wallet.registered {
          }
          else
          {
-            GXt_char1 = AV5error;
-            new GeneXus.Programs.nbitcoin.isaddressvalid(context ).execute(  AV18sendTo,  AV20walletInfo.gxTpr_Networktype, out  GXt_char1) ;
-            AV5error = GXt_char1;
+            GXt_char2 = AV5error;
+            new GeneXus.Programs.nbitcoin.isaddressvalid(context ).execute(  AV18sendTo,  AV20walletInfo.gxTpr_Networktype, out  GXt_char2) ;
+            AV5error = GXt_char2;
             AssignAttri(sPrefix, false, "AV5error", AV5error);
             if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV5error)) )
             {
@@ -2602,7 +2770,7 @@ namespace GeneXus.Programs.wallet.registered {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 129,'" + sPrefix + "',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttSign_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(96), 2, 0)+","+"null"+");", "Sign with password", bttSign_Jsonclick, 7, "Sign with password", "", StyleString, ClassString, bttSign_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+"e263t1_client"+"'", TempTags, "", 2, "HLP_Wallet/registered/MuSig2RoomsWC.htm");
+            GxWebStd.gx_button_ctrl( context, bttSign_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(96), 2, 0)+","+"null"+");", bttSign_Caption, bttSign_Jsonclick, 5, "Sign with password", "", StyleString, ClassString, bttSign_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'SIGN\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Wallet/registered/MuSig2RoomsWC.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 131,'" + sPrefix + "',false,'',0)\"";
@@ -2633,7 +2801,7 @@ namespace GeneXus.Programs.wallet.registered {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 91,'" + sPrefix + "',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttNewpayment_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(96), 2, 0)+","+"null"+");", bttNewpayment_Caption, bttNewpayment_Jsonclick, 7, "New payment", "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+"e273t1_client"+"'", TempTags, "", 2, "HLP_Wallet/registered/MuSig2RoomsWC.htm");
+            GxWebStd.gx_button_ctrl( context, bttNewpayment_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(96), 2, 0)+","+"null"+");", bttNewpayment_Caption, bttNewpayment_Jsonclick, 5, "New payment", "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'NEW PAYMENT\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Wallet/registered/MuSig2RoomsWC.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 93,'" + sPrefix + "',false,'',0)\"";
@@ -2916,7 +3084,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202611814232468", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20261123854370", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2932,7 +3100,7 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wallet/registered/musig2roomswc.js", "?202611814232468", false, true, false);
+         context.AddJavascriptSource("wallet/registered/musig2roomswc.js", "?20261123854370", false, true, false);
          context.AddJavascriptSource("web-extension/gx-web-extensions.js", "", false, true, false);
          /* End function include_jscripts */
       }
@@ -3330,6 +3498,7 @@ namespace GeneXus.Programs.wallet.registered {
          edtavChattext_Jsonclick = "";
          edtavChattext_Enabled = 1;
          tblChatinputtable_Visible = 1;
+         bttSign_Caption = "Sign with password";
          bttNewpayment_Caption = "New payment";
          edtavChatlogview_Enabled = 1;
          lblTbroomwaiting_Caption = "TBRoomWaiting";
@@ -3345,6 +3514,7 @@ namespace GeneXus.Programs.wallet.registered {
          divSigntable_Visible = 1;
          edtavOwnerpassword_Jsonclick = "";
          edtavOwnerpassword_Enabled = 1;
+         edtavOwnerpassword_Visible = 1;
          edtavManualfee_Jsonclick = "";
          edtavManualfee_Enabled = 1;
          cmbavUserfee_Jsonclick = "";
@@ -3381,45 +3551,45 @@ namespace GeneXus.Programs.wallet.registered {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""}]""");
-         setEventMetadata("REFRESH",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
-         setEventMetadata("GRIDROOMS.LOAD","""{"handler":"E243T2","iparms":[{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"}]""");
+         setEventMetadata("REFRESH",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"SIGN","prop":"Caption"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
+         setEventMetadata("GRIDROOMS.LOAD","""{"handler":"E263T2","iparms":[{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"}]""");
          setEventMetadata("GRIDROOMS.LOAD",""","oparms":[{"av":"AV45mark","fld":"vMARK","type":"svchar"},{"av":"AV41open","fld":"vOPEN","type":"svchar"}]}""");
-         setEventMetadata("'OPEN'","""{"handler":"E253T2","iparms":[{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"sPrefix","type":"char"}]""");
-         setEventMetadata("'OPEN'",""","oparms":[{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
-         setEventMetadata("'NEW PAYMENT'","""{"handler":"E273T1","iparms":[{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"}]""");
-         setEventMetadata("'NEW PAYMENT'",""","oparms":[{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV17sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV18sendTo","fld":"vSENDTO","type":"char"},{"av":"AV12description","fld":"vDESCRIPTION","type":"svchar"},{"av":"AV38ownerPassword","fld":"vOWNERPASSWORD","type":"char"},{"av":"cmbavUserfee"},{"av":"AV33userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV29manualFee","fld":"vMANUALFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"divNewtable_Visible","ctrl":"NEWTABLE","prop":"Visible"},{"av":"lblTbnew_Caption","ctrl":"TBNEW","prop":"Caption"},{"ctrl":"OPENROOM","prop":"Visible"},{"ctrl":"ESTIMATEFEE","prop":"Visible"},{"av":"divOwnerfeetable_Visible","ctrl":"OWNERFEETABLE","prop":"Visible"},{"av":"AV13formOpen","fld":"vFORMOPEN","type":"boolean"},{"av":"divListtable_Visible","ctrl":"LISTTABLE","prop":"Visible"}]}""");
-         setEventMetadata("'OPEN ROOM'","""{"handler":"E113T2","iparms":[{"av":"AV22checked","fld":"vCHECKED","type":"boolean"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV17sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV18sendTo","fld":"vSENDTO","type":"char"},{"av":"AV12description","fld":"vDESCRIPTION","type":"svchar"},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"sPrefix","type":"char"}]""");
-         setEventMetadata("'OPEN ROOM'",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV22checked","fld":"vCHECKED","type":"boolean"},{"av":"AV17sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV13formOpen","fld":"vFORMOPEN","type":"boolean"},{"av":"divNewtable_Visible","ctrl":"NEWTABLE","prop":"Visible"},{"av":"divSigntable_Visible","ctrl":"SIGNTABLE","prop":"Visible"},{"av":"divListtable_Visible","ctrl":"LISTTABLE","prop":"Visible"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
-         setEventMetadata("'ESTIMATE FEE'","""{"handler":"E123T2","iparms":[{"av":"AV22checked","fld":"vCHECKED","type":"boolean"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV17sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV18sendTo","fld":"vSENDTO","type":"char"},{"av":"AV12description","fld":"vDESCRIPTION","type":"svchar"},{"av":"cmbavUserfee"},{"av":"AV33userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV24economicalFee","fld":"vECONOMICALFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV23economicalBlocks","fld":"vECONOMICALBLOCKS","pic":"ZZZZZZZZZ9","type":"int"},{"av":"AV32standardFee","fld":"vSTANDARDFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV31standarBlocks","fld":"vSTANDARBLOCKS","pic":"ZZZZZZZZZ9","type":"int"},{"av":"AV27fastestFee","fld":"vFASTESTFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV26fastestBlocks","fld":"vFASTESTBLOCKS","pic":"ZZZZZZZZZ9","type":"int"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"}]""");
+         setEventMetadata("'OPEN'","""{"handler":"E273T2","iparms":[{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"sPrefix","type":"char"}]""");
+         setEventMetadata("'OPEN'",""","oparms":[{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"SIGN","prop":"Caption"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
+         setEventMetadata("'NEW PAYMENT'","""{"handler":"E113T2","iparms":[{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"}]""");
+         setEventMetadata("'NEW PAYMENT'",""","oparms":[{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV17sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV18sendTo","fld":"vSENDTO","type":"char"},{"av":"AV12description","fld":"vDESCRIPTION","type":"svchar"},{"av":"AV38ownerPassword","fld":"vOWNERPASSWORD","type":"char"},{"av":"cmbavUserfee"},{"av":"AV33userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV29manualFee","fld":"vMANUALFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"divNewtable_Visible","ctrl":"NEWTABLE","prop":"Visible"},{"av":"edtavOwnerpassword_Visible","ctrl":"vOWNERPASSWORD","prop":"Visible"},{"av":"lblTbnew_Caption","ctrl":"TBNEW","prop":"Caption"},{"ctrl":"OPENROOM","prop":"Visible"},{"ctrl":"ESTIMATEFEE","prop":"Visible"},{"av":"divOwnerfeetable_Visible","ctrl":"OWNERFEETABLE","prop":"Visible"},{"av":"AV13formOpen","fld":"vFORMOPEN","type":"boolean"},{"av":"divListtable_Visible","ctrl":"LISTTABLE","prop":"Visible"}]}""");
+         setEventMetadata("'OPEN ROOM'","""{"handler":"E123T2","iparms":[{"av":"AV22checked","fld":"vCHECKED","type":"boolean"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV17sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV18sendTo","fld":"vSENDTO","type":"char"},{"av":"AV12description","fld":"vDESCRIPTION","type":"svchar"},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"sPrefix","type":"char"}]""");
+         setEventMetadata("'OPEN ROOM'",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV22checked","fld":"vCHECKED","type":"boolean"},{"av":"AV17sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV13formOpen","fld":"vFORMOPEN","type":"boolean"},{"av":"divNewtable_Visible","ctrl":"NEWTABLE","prop":"Visible"},{"av":"divSigntable_Visible","ctrl":"SIGNTABLE","prop":"Visible"},{"av":"divListtable_Visible","ctrl":"LISTTABLE","prop":"Visible"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"SIGN","prop":"Caption"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
+         setEventMetadata("'ESTIMATE FEE'","""{"handler":"E133T2","iparms":[{"av":"AV22checked","fld":"vCHECKED","type":"boolean"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV17sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV18sendTo","fld":"vSENDTO","type":"char"},{"av":"AV12description","fld":"vDESCRIPTION","type":"svchar"},{"av":"cmbavUserfee"},{"av":"AV33userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV24economicalFee","fld":"vECONOMICALFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV23economicalBlocks","fld":"vECONOMICALBLOCKS","pic":"ZZZZZZZZZ9","type":"int"},{"av":"AV32standardFee","fld":"vSTANDARDFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV31standarBlocks","fld":"vSTANDARBLOCKS","pic":"ZZZZZZZZZ9","type":"int"},{"av":"AV27fastestFee","fld":"vFASTESTFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV26fastestBlocks","fld":"vFASTESTBLOCKS","pic":"ZZZZZZZZZ9","type":"int"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"}]""");
          setEventMetadata("'ESTIMATE FEE'",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV23economicalBlocks","fld":"vECONOMICALBLOCKS","pic":"ZZZZZZZZZ9","type":"int"},{"av":"AV24economicalFee","fld":"vECONOMICALFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV31standarBlocks","fld":"vSTANDARBLOCKS","pic":"ZZZZZZZZZ9","type":"int"},{"av":"AV32standardFee","fld":"vSTANDARDFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV26fastestBlocks","fld":"vFASTESTBLOCKS","pic":"ZZZZZZZZZ9","type":"int"},{"av":"AV27fastestFee","fld":"vFASTESTFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"cmbavUserfee"},{"av":"AV33userFee","fld":"vUSERFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"divOwnerfeetable_Visible","ctrl":"OWNERFEETABLE","prop":"Visible"},{"ctrl":"ESTIMATEFEE","prop":"Visible"},{"av":"AV22checked","fld":"vCHECKED","type":"boolean"},{"av":"AV17sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"}]}""");
-         setEventMetadata("'PAY ALONE'","""{"handler":"E133T2","iparms":[{"av":"AV29manualFee","fld":"vMANUALFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV38ownerPassword","fld":"vOWNERPASSWORD","type":"char"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV17sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV18sendTo","fld":"vSENDTO","type":"char"},{"av":"AV12description","fld":"vDESCRIPTION","type":"svchar"},{"av":"AV21broadcast","fld":"vBROADCAST","type":"boolean"},{"av":"AV25errorTitle","fld":"vERRORTITLE","type":"char"},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"sPrefix","type":"char"}]""");
-         setEventMetadata("'PAY ALONE'",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV38ownerPassword","fld":"vOWNERPASSWORD","type":"char"},{"av":"AV25errorTitle","fld":"vERRORTITLE","type":"char"},{"av":"AV21broadcast","fld":"vBROADCAST","type":"boolean"},{"av":"AV13formOpen","fld":"vFORMOPEN","type":"boolean"},{"av":"divNewtable_Visible","ctrl":"NEWTABLE","prop":"Visible"},{"av":"divSigntable_Visible","ctrl":"SIGNTABLE","prop":"Visible"},{"av":"divListtable_Visible","ctrl":"LISTTABLE","prop":"Visible"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
-         setEventMetadata("'REFRESH ROOMS'","""{"handler":"E143T2","iparms":[{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"sPrefix","type":"char"}]""");
-         setEventMetadata("'REFRESH ROOMS'",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
-         setEventMetadata("'HERE'","""{"handler":"E153T2","iparms":[{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"sPrefix","type":"char"},{"av":"AV5error","fld":"vERROR","type":"svchar"}]""");
-         setEventMetadata("'HERE'",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
-         setEventMetadata("'SIGN NOW'","""{"handler":"E163T2","iparms":[{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"sPrefix","type":"char"},{"av":"AV5error","fld":"vERROR","type":"svchar"}]""");
-         setEventMetadata("'SIGN NOW'",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
-         setEventMetadata("'SIGN'","""{"handler":"E263T1","iparms":[{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""}]""");
-         setEventMetadata("'SIGN'",""","oparms":[{"av":"AV10signRoomId","fld":"vSIGNROOMID","type":"guid"},{"av":"AV14password","fld":"vPASSWORD","type":"char"},{"av":"lblTbsign_Caption","ctrl":"TBSIGN","prop":"Caption"},{"av":"divSigntable_Visible","ctrl":"SIGNTABLE","prop":"Visible"},{"av":"AV13formOpen","fld":"vFORMOPEN","type":"boolean"},{"av":"divListtable_Visible","ctrl":"LISTTABLE","prop":"Visible"}]}""");
-         setEventMetadata("'CONFIRM SIGN'","""{"handler":"E173T2","iparms":[{"av":"AV14password","fld":"vPASSWORD","type":"char"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV10signRoomId","fld":"vSIGNROOMID","type":"guid"},{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"sPrefix","type":"char"}]""");
-         setEventMetadata("'CONFIRM SIGN'",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV14password","fld":"vPASSWORD","type":"char"},{"av":"AV13formOpen","fld":"vFORMOPEN","type":"boolean"},{"av":"divNewtable_Visible","ctrl":"NEWTABLE","prop":"Visible"},{"av":"divSigntable_Visible","ctrl":"SIGNTABLE","prop":"Visible"},{"av":"divListtable_Visible","ctrl":"LISTTABLE","prop":"Visible"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
-         setEventMetadata("'CANCEL FORM'","""{"handler":"E183T2","iparms":[{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"sPrefix","type":"char"}]""");
-         setEventMetadata("'CANCEL FORM'",""","oparms":[{"av":"AV14password","fld":"vPASSWORD","type":"char"},{"av":"AV38ownerPassword","fld":"vOWNERPASSWORD","type":"char"},{"av":"AV13formOpen","fld":"vFORMOPEN","type":"boolean"},{"av":"divNewtable_Visible","ctrl":"NEWTABLE","prop":"Visible"},{"av":"divSigntable_Visible","ctrl":"SIGNTABLE","prop":"Visible"},{"av":"divListtable_Visible","ctrl":"LISTTABLE","prop":"Visible"},{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
-         setEventMetadata("'LEAVE'","""{"handler":"E193T2","iparms":[{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"sPrefix","type":"char"},{"av":"AV5error","fld":"vERROR","type":"svchar"}]""");
-         setEventMetadata("'LEAVE'",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
-         setEventMetadata("'SEND CHAT'","""{"handler":"E203T2","iparms":[{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"sPrefix","type":"char"},{"av":"AV36chatText","fld":"vCHATTEXT","type":"char"},{"av":"AV5error","fld":"vERROR","type":"svchar"}]""");
-         setEventMetadata("'SEND CHAT'",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV36chatText","fld":"vCHATTEXT","type":"char"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
-         setEventMetadata("GLOBALEVENTS.RECEIVECHAT","""{"handler":"E213T2","iparms":[{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"sPrefix","type":"char"},{"av":"AV13formOpen","fld":"vFORMOPEN","type":"boolean"}]""");
-         setEventMetadata("GLOBALEVENTS.RECEIVECHAT",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
+         setEventMetadata("'PAY ALONE'","""{"handler":"E143T2","iparms":[{"av":"AV29manualFee","fld":"vMANUALFEE","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV38ownerPassword","fld":"vOWNERPASSWORD","type":"char"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"AV17sendCoins","fld":"vSENDCOINS","pic":"ZZZZZZ9.99999999","type":"decimal"},{"av":"AV18sendTo","fld":"vSENDTO","type":"char"},{"av":"AV12description","fld":"vDESCRIPTION","type":"svchar"},{"av":"AV21broadcast","fld":"vBROADCAST","type":"boolean"},{"av":"AV25errorTitle","fld":"vERRORTITLE","type":"char"},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"sPrefix","type":"char"}]""");
+         setEventMetadata("'PAY ALONE'",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV38ownerPassword","fld":"vOWNERPASSWORD","type":"char"},{"av":"AV25errorTitle","fld":"vERRORTITLE","type":"char"},{"av":"AV21broadcast","fld":"vBROADCAST","type":"boolean"},{"av":"AV13formOpen","fld":"vFORMOPEN","type":"boolean"},{"av":"divNewtable_Visible","ctrl":"NEWTABLE","prop":"Visible"},{"av":"divSigntable_Visible","ctrl":"SIGNTABLE","prop":"Visible"},{"av":"divListtable_Visible","ctrl":"LISTTABLE","prop":"Visible"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"SIGN","prop":"Caption"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
+         setEventMetadata("'REFRESH ROOMS'","""{"handler":"E153T2","iparms":[{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"sPrefix","type":"char"}]""");
+         setEventMetadata("'REFRESH ROOMS'",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"SIGN","prop":"Caption"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
+         setEventMetadata("'HERE'","""{"handler":"E163T2","iparms":[{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"sPrefix","type":"char"},{"av":"AV5error","fld":"vERROR","type":"svchar"}]""");
+         setEventMetadata("'HERE'",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"SIGN","prop":"Caption"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
+         setEventMetadata("'SIGN NOW'","""{"handler":"E173T2","iparms":[{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"sPrefix","type":"char"},{"av":"AV5error","fld":"vERROR","type":"svchar"}]""");
+         setEventMetadata("'SIGN NOW'",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"SIGN","prop":"Caption"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
+         setEventMetadata("'SIGN'","""{"handler":"E183T2","iparms":[{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV10signRoomId","fld":"vSIGNROOMID","type":"guid"},{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"sPrefix","type":"char"}]""");
+         setEventMetadata("'SIGN'",""","oparms":[{"av":"AV10signRoomId","fld":"vSIGNROOMID","type":"guid"},{"av":"AV14password","fld":"vPASSWORD","type":"char"},{"av":"lblTbsign_Caption","ctrl":"TBSIGN","prop":"Caption"},{"av":"divSigntable_Visible","ctrl":"SIGNTABLE","prop":"Visible"},{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV13formOpen","fld":"vFORMOPEN","type":"boolean"},{"av":"divNewtable_Visible","ctrl":"NEWTABLE","prop":"Visible"},{"av":"divListtable_Visible","ctrl":"LISTTABLE","prop":"Visible"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"SIGN","prop":"Caption"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
+         setEventMetadata("'CONFIRM SIGN'","""{"handler":"E193T2","iparms":[{"av":"AV14password","fld":"vPASSWORD","type":"char"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV10signRoomId","fld":"vSIGNROOMID","type":"guid"},{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"sPrefix","type":"char"}]""");
+         setEventMetadata("'CONFIRM SIGN'",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV14password","fld":"vPASSWORD","type":"char"},{"av":"AV13formOpen","fld":"vFORMOPEN","type":"boolean"},{"av":"divNewtable_Visible","ctrl":"NEWTABLE","prop":"Visible"},{"av":"divSigntable_Visible","ctrl":"SIGNTABLE","prop":"Visible"},{"av":"divListtable_Visible","ctrl":"LISTTABLE","prop":"Visible"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"SIGN","prop":"Caption"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
+         setEventMetadata("'CANCEL FORM'","""{"handler":"E203T2","iparms":[{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"sPrefix","type":"char"}]""");
+         setEventMetadata("'CANCEL FORM'",""","oparms":[{"av":"AV14password","fld":"vPASSWORD","type":"char"},{"av":"AV38ownerPassword","fld":"vOWNERPASSWORD","type":"char"},{"av":"AV13formOpen","fld":"vFORMOPEN","type":"boolean"},{"av":"divNewtable_Visible","ctrl":"NEWTABLE","prop":"Visible"},{"av":"divSigntable_Visible","ctrl":"SIGNTABLE","prop":"Visible"},{"av":"divListtable_Visible","ctrl":"LISTTABLE","prop":"Visible"},{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"SIGN","prop":"Caption"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
+         setEventMetadata("'LEAVE'","""{"handler":"E213T2","iparms":[{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"sPrefix","type":"char"},{"av":"AV5error","fld":"vERROR","type":"svchar"}]""");
+         setEventMetadata("'LEAVE'",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"SIGN","prop":"Caption"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
+         setEventMetadata("'SEND CHAT'","""{"handler":"E223T2","iparms":[{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"sPrefix","type":"char"},{"av":"AV36chatText","fld":"vCHATTEXT","type":"char"},{"av":"AV5error","fld":"vERROR","type":"svchar"}]""");
+         setEventMetadata("'SEND CHAT'",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV36chatText","fld":"vCHATTEXT","type":"char"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"SIGN","prop":"Caption"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
+         setEventMetadata("GLOBALEVENTS.RECEIVECHAT","""{"handler":"E233T2","iparms":[{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"},{"av":"sPrefix","type":"char"},{"av":"AV13formOpen","fld":"vFORMOPEN","type":"boolean"}]""");
+         setEventMetadata("GLOBALEVENTS.RECEIVECHAT",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"SIGN","prop":"Caption"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
          setEventMetadata("GRIDROOMS_FIRSTPAGE","""{"handler":"subgridrooms_firstpage","iparms":[{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"}]""");
-         setEventMetadata("GRIDROOMS_FIRSTPAGE",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
+         setEventMetadata("GRIDROOMS_FIRSTPAGE",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"SIGN","prop":"Caption"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
          setEventMetadata("GRIDROOMS_PREVPAGE","""{"handler":"subgridrooms_previouspage","iparms":[{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"}]""");
-         setEventMetadata("GRIDROOMS_PREVPAGE",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
+         setEventMetadata("GRIDROOMS_PREVPAGE",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"SIGN","prop":"Caption"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
          setEventMetadata("GRIDROOMS_NEXTPAGE","""{"handler":"subgridrooms_nextpage","iparms":[{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"}]""");
-         setEventMetadata("GRIDROOMS_NEXTPAGE",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
+         setEventMetadata("GRIDROOMS_NEXTPAGE",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"SIGN","prop":"Caption"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
          setEventMetadata("GRIDROOMS_LASTPAGE","""{"handler":"subgridrooms_lastpage","iparms":[{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"GRIDROOMS_nEOF","type":"int"},{"av":"subGridrooms_Rows","ctrl":"GRIDROOMS","prop":"Rows"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"sPrefix","type":"char"},{"av":"AV6groupId","fld":"vGROUPID","type":"guid"},{"av":"AV30ownerAlone","fld":"vOWNERALONE","hsh":true,"type":"boolean"},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV16sendAllCoins","fld":"vSENDALLCOINS","type":"boolean"}]""");
-         setEventMetadata("GRIDROOMS_LASTPAGE",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
+         setEventMetadata("GRIDROOMS_LASTPAGE",""","oparms":[{"av":"AV5error","fld":"vERROR","type":"svchar"},{"av":"AV7lines","fld":"vLINES","grid":96,"type":""},{"av":"nGXsfl_96_idx","ctrl":"GRID","prop":"GridCurrRow","grid":96},{"av":"GRIDROOMS_nFirstRecordOnPage","type":"int"},{"av":"nRC_GXsfl_96","ctrl":"GRIDROOMS","prop":"GridRC","grid":96,"type":"int"},{"av":"lblTbempty_Caption","ctrl":"TBEMPTY","prop":"Caption"},{"av":"AV42selected","fld":"vSELECTED","hsh":true,"type":""},{"av":"AV43selectedRoomId","fld":"vSELECTEDROOMID","type":"guid"},{"av":"lblTbroomtitle_Caption","ctrl":"TBROOMTITLE","prop":"Caption"},{"av":"lblTbroomstate_Caption","ctrl":"TBROOMSTATE","prop":"Caption"},{"av":"lblTbroompeople_Caption","ctrl":"TBROOMPEOPLE","prop":"Caption"},{"av":"lblTbroomwaiting_Caption","ctrl":"TBROOMWAITING","prop":"Caption"},{"ctrl":"HERE","prop":"Visible"},{"ctrl":"SIGNNOW","prop":"Visible"},{"ctrl":"SIGN","prop":"Visible"},{"ctrl":"SIGN","prop":"Caption"},{"ctrl":"ABORT","prop":"Visible"},{"av":"AV39chatLogView","fld":"vCHATLOGVIEW","type":"vchar"},{"av":"tblChatinputtable_Visible","ctrl":"CHATINPUTTABLE","prop":"Visible"},{"av":"divRoomtable_Visible","ctrl":"ROOMTABLE","prop":"Visible"}]}""");
          setEventMetadata("VALIDV_GXV2","""{"handler":"Validv_Gxv2","iparms":[]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Open","iparms":[]}""");
          return  ;
@@ -3479,12 +3649,12 @@ namespace GeneXus.Programs.wallet.registered {
          AV41open = "";
          AV36chatText = "";
          AV37oneLine = new GeneXus.Programs.wallet.registered.SdtMuSig2RoomLine(context);
+         AV20walletInfo = new GeneXus.Programs.wallet.SdtWalletInfo(context);
          GridroomsRow = new GXWebRow();
          AV15roomId = Guid.Empty;
          AV44txId = "";
-         AV20walletInfo = new GeneXus.Programs.wallet.SdtWalletInfo(context);
-         GXt_SdtWalletInfo3 = new GeneXus.Programs.wallet.SdtWalletInfo(context);
-         GXt_char1 = "";
+         GXt_SdtWalletInfo1 = new GeneXus.Programs.wallet.SdtWalletInfo(context);
+         GXt_char2 = "";
          bttSendchat_Jsonclick = "";
          bttHere_Jsonclick = "";
          bttSignnow_Jsonclick = "";
@@ -3527,7 +3697,7 @@ namespace GeneXus.Programs.wallet.registered {
       private short gxcookieaux ;
       private short subGridrooms_Backcolorstyle ;
       private short AV28groupType ;
-      private short GXt_int2 ;
+      private short GXt_int3 ;
       private short nGXWrapped ;
       private short subGridrooms_Backstyle ;
       private short subGridrooms_Titlebackstyle ;
@@ -3553,6 +3723,7 @@ namespace GeneXus.Programs.wallet.registered {
       private int edtavDescription_Enabled ;
       private int divOwnerfeetable_Visible ;
       private int edtavManualfee_Enabled ;
+      private int edtavOwnerpassword_Visible ;
       private int edtavOwnerpassword_Enabled ;
       private int divSigntable_Visible ;
       private int edtavPassword_Enabled ;
@@ -3570,9 +3741,9 @@ namespace GeneXus.Programs.wallet.registered {
       private int bttAbort_Visible ;
       private int tblChatinputtable_Visible ;
       private int nGXsfl_96_bak_idx=1 ;
+      private int bttOpenroom_Visible ;
       private int bttEstimatefee_Visible ;
       private int edtavChattext_Enabled ;
-      private int bttOpenroom_Visible ;
       private int idxLst ;
       private int subGridrooms_Backcolor ;
       private int subGridrooms_Allbackcolor ;
@@ -3679,10 +3850,12 @@ namespace GeneXus.Programs.wallet.registered {
       private string bttHere_Internalname ;
       private string bttSignnow_Internalname ;
       private string bttSign_Internalname ;
+      private string bttSign_Caption ;
       private string bttAbort_Internalname ;
       private string tblChatinputtable_Internalname ;
+      private string bttOpenroom_Internalname ;
       private string bttEstimatefee_Internalname ;
-      private string GXt_char1 ;
+      private string GXt_char2 ;
       private string edtavChattext_Jsonclick ;
       private string bttSendchat_Internalname ;
       private string bttSendchat_Jsonclick ;
@@ -3701,7 +3874,6 @@ namespace GeneXus.Programs.wallet.registered {
       private string bttCancelsign_Internalname ;
       private string bttCancelsign_Jsonclick ;
       private string tblNewbuttons_Internalname ;
-      private string bttOpenroom_Internalname ;
       private string bttOpenroom_Jsonclick ;
       private string bttEstimatefee_Jsonclick ;
       private string bttCancelnew_Internalname ;
@@ -3757,7 +3929,7 @@ namespace GeneXus.Programs.wallet.registered {
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtMuSig2RoomLine> AV7lines ;
       private GeneXus.Programs.wallet.registered.SdtMuSig2RoomLine AV37oneLine ;
       private GeneXus.Programs.wallet.SdtWalletInfo AV20walletInfo ;
-      private GeneXus.Programs.wallet.SdtWalletInfo GXt_SdtWalletInfo3 ;
+      private GeneXus.Programs.wallet.SdtWalletInfo GXt_SdtWalletInfo1 ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

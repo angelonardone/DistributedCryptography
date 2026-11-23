@@ -46,7 +46,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include = "$(WebDirectory)\wallet\registered\deriveaddresssfordelegated.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getextkey.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\getelectrumconfigfornetworktype.cs" />
 		<Compile Include = "$(WebDirectory)\sudodb\savetolocaldb.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\broadcast_transaction.cs" />
@@ -88,7 +88,7 @@
 		<Compile Include = "$(WebDirectory)\wallet\cleanprivatekeys.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\logintoserver.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccsignmsg.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getaddresscontext.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\deriveaddresssfordelegated.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\estimatedelegatedvsize.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\updatetransactionsaftercoinsent.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\removeprivatenames.cs" />
@@ -98,6 +98,7 @@
 		<Compile Include = "$(WebDirectory)\sudodb\savetransaction.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\postsendmessage.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getspendablebalance.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getaddresscontext.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\hmacsha256hex.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\markinalladdressasused.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
@@ -122,7 +123,6 @@
 		<Compile Include = "$(WebDirectory)\wallet\registered\sendcoinsdelegated.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\sethistorywithbalance.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\reversehexstring.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getextkey.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjsonto.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getestimatesmartfee.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\updategroupandsendlegacypsbt.cs" />

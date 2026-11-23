@@ -45,6 +45,8 @@ namespace GeneXus.Programs.wallet.registered
 
 			gxTv_SdtGroup_SDT_otherGroup_Extpubkeytimebountyreceiving = "";
 
+			gxTv_SdtGroup_SDT_otherGroup_Extpubkeymultisigaccount = "";
+
 		}
 
 		public SdtGroup_SDT_otherGroup(IGxContext context)
@@ -94,6 +96,9 @@ namespace GeneXus.Programs.wallet.registered
 
 
 			AddObjectProperty("extPubKeyTimeBountyReceiving", gxTpr_Extpubkeytimebountyreceiving, false);
+
+
+			AddObjectProperty("extPubKeyMultiSigAccount", gxTpr_Extpubkeymultisigaccount, false);
 
 			return;
 		}
@@ -228,6 +233,22 @@ namespace GeneXus.Programs.wallet.registered
 
 
 
+
+		[SoapElement(ElementName="extPubKeyMultiSigAccount")]
+		[XmlElement(ElementName="extPubKeyMultiSigAccount")]
+		public string gxTpr_Extpubkeymultisigaccount
+		{
+			get {
+				return gxTv_SdtGroup_SDT_otherGroup_Extpubkeymultisigaccount; 
+			}
+			set {
+				gxTv_SdtGroup_SDT_otherGroup_Extpubkeymultisigaccount = value;
+				SetDirty("Extpubkeymultisigaccount");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -255,6 +276,7 @@ namespace GeneXus.Programs.wallet.registered
 			gxTv_SdtGroup_SDT_otherGroup_Extpubkeymultisigreceiving = "";
 			gxTv_SdtGroup_SDT_otherGroup_Extpubkeymultisigchange = "";
 			gxTv_SdtGroup_SDT_otherGroup_Extpubkeytimebountyreceiving = "";
+			gxTv_SdtGroup_SDT_otherGroup_Extpubkeymultisigaccount = "";
 			return  ;
 		}
 
@@ -286,6 +308,9 @@ namespace GeneXus.Programs.wallet.registered
 		 
 
 		protected string gxTv_SdtGroup_SDT_otherGroup_Extpubkeytimebountyreceiving;
+		 
+
+		protected string gxTv_SdtGroup_SDT_otherGroup_Extpubkeymultisigaccount;
 		 
 
 
@@ -415,6 +440,20 @@ namespace GeneXus.Programs.wallet.registered
 			}
 			set { 
 				 sdt.gxTpr_Extpubkeytimebountyreceiving = value;
+			}
+		}
+
+		[JsonPropertyName("extPubKeyMultiSigAccount")]
+		[JsonPropertyOrder(8)]
+		[DataMember(Name="extPubKeyMultiSigAccount", Order=8)]
+		public  string gxTpr_Extpubkeymultisigaccount
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Extpubkeymultisigaccount);
+
+			}
+			set { 
+				 sdt.gxTpr_Extpubkeymultisigaccount = value;
 			}
 		}
 

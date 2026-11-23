@@ -137,7 +137,6 @@ namespace GeneXus.Programs.wallet {
             if (true) return;
          }
          AV11extendeSecretAndAuthenticator.gxTpr_Networktype = AV13networkType;
-         AV11extendeSecretAndAuthenticator.gxTpr_Extendedprivatekey = "";
          AV11extendeSecretAndAuthenticator.gxTpr_Authenticatorbase32 = StringUtil.Trim( AV8authenticatorBase32);
          AV11extendeSecretAndAuthenticator.gxTpr_Oraclekey = AV16rubyOracle.gxTpr_Oraclekey;
          AV19wallet.gxTpr_Walletname = AV20walletName;

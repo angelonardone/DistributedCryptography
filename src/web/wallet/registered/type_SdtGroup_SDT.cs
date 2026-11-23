@@ -51,6 +51,8 @@ namespace GeneXus.Programs.wallet.registered
 
 			gxTv_SdtGroup_SDT_Restorestoppeddatetime = (DateTime)(DateTime.MinValue);
 
+			gxTv_SdtGroup_SDT_Extpubkeymultisigaccount = "";
+
 		}
 
 		public SdtGroup_SDT(IGxContext context)
@@ -185,6 +187,9 @@ namespace GeneXus.Programs.wallet.registered
 			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
 			AddObjectProperty("restoreStoppedDateTime", sDateCnv, false);
 
+
+
+			AddObjectProperty("extPubKeyMultiSigAccount", gxTpr_Extpubkeymultisigaccount, false);
 
 			return;
 		}
@@ -631,6 +636,22 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 
+
+		[SoapElement(ElementName="extPubKeyMultiSigAccount")]
+		[XmlElement(ElementName="extPubKeyMultiSigAccount")]
+		public string gxTpr_Extpubkeymultisigaccount
+		{
+			get {
+				return gxTv_SdtGroup_SDT_Extpubkeymultisigaccount; 
+			}
+			set {
+				gxTv_SdtGroup_SDT_Extpubkeymultisigaccount = value;
+				SetDirty("Extpubkeymultisigaccount");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -678,6 +699,7 @@ namespace GeneXus.Programs.wallet.registered
 			gxTv_SdtGroup_SDT_Restoresigneddatetime = (DateTime)(DateTime.MinValue);
 
 			gxTv_SdtGroup_SDT_Restorestoppeddatetime = (DateTime)(DateTime.MinValue);
+			gxTv_SdtGroup_SDT_Extpubkeymultisigaccount = "";
 			datetime_STZ = (DateTime)(DateTime.MinValue);
 			sDateCnv = "";
 			sNumToPad = "";
@@ -758,6 +780,9 @@ namespace GeneXus.Programs.wallet.registered
 		 
 
 		protected DateTime gxTv_SdtGroup_SDT_Restorestoppeddatetime;
+		 
+
+		protected string gxTv_SdtGroup_SDT_Extpubkeymultisigaccount;
 		 
 
 
@@ -1100,6 +1125,20 @@ namespace GeneXus.Programs.wallet.registered
 			}
 			set { 
 				sdt.gxTpr_Restorestoppeddatetime = DateTimeUtil.CToT2(value,context);
+			}
+		}
+
+		[JsonPropertyName("extPubKeyMultiSigAccount")]
+		[JsonPropertyOrder(22)]
+		[DataMember(Name="extPubKeyMultiSigAccount", Order=22)]
+		public  string gxTpr_Extpubkeymultisigaccount
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Extpubkeymultisigaccount);
+
+			}
+			set { 
+				 sdt.gxTpr_Extpubkeymultisigaccount = value;
 			}
 		}
 

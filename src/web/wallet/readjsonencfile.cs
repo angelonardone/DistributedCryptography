@@ -84,26 +84,57 @@ namespace GeneXus.Programs.wallet {
          if ( AV18file.Exists() )
          {
             AV16json_enc.FromJSonFile(AV18file, null);
-            GXt_char1 = AV13error;
-            new GeneXus.Programs.distributedcryptographylib.decryptjson(context ).execute(  AV16json_enc.gxTpr_Encryptedtext,  AV16json_enc.gxTpr_Encryptedkey, out  AV8clearText, out  GXt_char1) ;
-            AV13error = GXt_char1;
-            if ( StringUtil.StrCmp(AV8clearText, "_empty_") == 0 )
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV16json_enc.gxTpr_Encryptedkey)) )
             {
-               AV8clearText = "";
+               /* Execute user subroutine: 'CREATE EMPTY FILE' */
+               S111 ();
+               if ( returnInSub )
+               {
+                  cleanup();
+                  if (true) return;
+               }
+            }
+            else
+            {
+               GXt_char1 = AV13error;
+               new GeneXus.Programs.distributedcryptographylib.decryptjson(context ).execute(  AV16json_enc.gxTpr_Encryptedtext,  AV16json_enc.gxTpr_Encryptedkey, out  AV8clearText, out  GXt_char1) ;
+               AV13error = GXt_char1;
+               if ( StringUtil.StrCmp(AV8clearText, "_empty_") == 0 )
+               {
+                  AV8clearText = "";
+               }
             }
          }
          else
          {
-            GXt_char1 = AV13error;
-            GXt_char2 = AV16json_enc.gxTpr_Encryptedkey;
-            GXt_char3 = AV16json_enc.gxTpr_Encryptedtext;
-            new GeneXus.Programs.distributedcryptographylib.encryptjson(context ).execute(  "_empty_",  "", out  GXt_char2, out  GXt_char3, out  GXt_char1) ;
-            AV16json_enc.gxTpr_Encryptedkey = GXt_char2;
-            AV16json_enc.gxTpr_Encryptedtext = GXt_char3;
-            AV13error = GXt_char1;
-            AV18file.WriteAllText(AV16json_enc.ToJSonString(false, true), "");
+            /* Execute user subroutine: 'CREATE EMPTY FILE' */
+            S111 ();
+            if ( returnInSub )
+            {
+               cleanup();
+               if (true) return;
+            }
          }
          cleanup();
+      }
+
+      protected void S111( )
+      {
+         /* 'CREATE EMPTY FILE' Routine */
+         returnInSub = false;
+         AV8clearText = "";
+         AV16json_enc = new GeneXus.Programs.wallet.SdtSDT_Json_Enc(context);
+         GXt_char1 = AV13error;
+         GXt_char2 = AV16json_enc.gxTpr_Encryptedkey;
+         GXt_char3 = AV16json_enc.gxTpr_Encryptedtext;
+         new GeneXus.Programs.distributedcryptographylib.encryptjson(context ).execute(  "_empty_",  "", out  GXt_char2, out  GXt_char3, out  GXt_char1) ;
+         AV16json_enc.gxTpr_Encryptedkey = GXt_char2;
+         AV16json_enc.gxTpr_Encryptedtext = GXt_char3;
+         AV13error = GXt_char1;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) && ! String.IsNullOrEmpty(StringUtil.RTrim( AV16json_enc.gxTpr_Encryptedkey)) )
+         {
+            AV18file.WriteAllText(AV16json_enc.ToJSonString(false, true), "");
+         }
       }
 
       public override void cleanup( )
@@ -134,6 +165,7 @@ namespace GeneXus.Programs.wallet {
       private string GXt_char1 ;
       private string GXt_char2 ;
       private string GXt_char3 ;
+      private bool returnInSub ;
       private string AV8clearText ;
       private string AV19fullPath ;
       private GxFile AV18file ;

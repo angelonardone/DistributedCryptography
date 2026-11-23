@@ -88,12 +88,20 @@ namespace GeneXus.Programs.wallet.registered {
          {
             AV16isDelegatedOwner = true;
          }
+         AV36signButton = "Sign with password";
+         GXt_SdtWalletInfo4 = AV37walletInfo;
+         new GeneXus.Programs.wallet.getwalletinfo(context ).execute( out  GXt_SdtWalletInfo4) ;
+         AV37walletInfo = GXt_SdtWalletInfo4;
+         if ( StringUtil.StrCmp(AV37walletInfo.gxTpr_Keystorage, "Ruby") == 0 )
+         {
+            AV36signButton = "Sign on Ruby";
+         }
          new GeneXus.Programs.wallet.registered.readmusig2rooms(context ).execute(  AV13group_sdt.gxTpr_Othergroup.gxTpr_Referencegroupid, out  AV30rooms) ;
          AV30rooms.Sort("createdUnix");
-         AV36GXV1 = 1;
-         while ( AV36GXV1 <= AV30rooms.Count )
+         AV38GXV1 = 1;
+         while ( AV38GXV1 <= AV30rooms.Count )
          {
-            AV29room = ((GeneXus.Programs.wallet.registered.SdtMuSig2Room)AV30rooms.Item(AV36GXV1));
+            AV29room = ((GeneXus.Programs.wallet.registered.SdtMuSig2Room)AV30rooms.Item(AV38GXV1));
             AV11expired = false;
             if ( ( StringUtil.StrCmp(AV29room.gxTpr_State, "gathering") == 0 ) && ( AV25now > AV29room.gxTpr_Gatherdeadlineunix ) )
             {
@@ -114,13 +122,13 @@ namespace GeneXus.Programs.wallet.registered {
             }
             AV31roomLine = new GeneXus.Programs.wallet.registered.SdtMuSig2RoomLine(context);
             AV31roomLine.gxTpr_Roomid = AV29room.gxTpr_Roomid;
-            GXt_dtime4 = AV9createdAt;
-            new GeneXus.Programs.distributedcrypto.unixtimetolocaldatetime(context ).execute(  AV29room.gxTpr_Createdunix, out  GXt_dtime4) ;
-            AV9createdAt = GXt_dtime4;
+            GXt_dtime5 = AV9createdAt;
+            new GeneXus.Programs.distributedcrypto.unixtimetolocaldatetime(context ).execute(  AV29room.gxTpr_Createdunix, out  GXt_dtime5) ;
+            AV9createdAt = GXt_dtime5;
             AV31roomLine.gxTpr_Created = context.localUtil.TToC( AV9createdAt, 8, 5, 1, 2, "/", ":", " ");
-            GXt_char5 = "";
-            new GeneXus.Programs.wallet.registered.getmemberdisplayname(context ).execute(  AV29room.gxTpr_Initiator, out  GXt_char5) ;
-            AV31roomLine.gxTpr_Openedby = GXt_char5;
+            GXt_char6 = "";
+            new GeneXus.Programs.wallet.registered.getmemberdisplayname(context ).execute(  AV29room.gxTpr_Initiator, out  GXt_char6) ;
+            AV31roomLine.gxTpr_Openedby = GXt_char6;
             AV31roomLine.gxTpr_Description = AV29room.gxTpr_Description;
             if ( AV29room.gxTpr_Sendall )
             {
@@ -150,10 +158,10 @@ namespace GeneXus.Programs.wallet.registered {
             AV26people = "";
             AV35signerNames = "";
             AV24names = (GxSimpleCollection<string>)(GxRegex.Split(AV29room.gxTpr_Signers,","));
-            AV37GXV2 = 1;
-            while ( AV37GXV2 <= AV24names.Count )
+            AV39GXV2 = 1;
+            while ( AV39GXV2 <= AV24names.Count )
             {
-               AV23name = ((string)AV24names.Item(AV37GXV2));
+               AV23name = ((string)AV24names.Item(AV39GXV2));
                if ( ! String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV23name))) )
                {
                   if ( StringUtil.StringSearch( AV29room.gxTpr_Noncesmap, "\""+StringUtil.Trim( AV23name)+"\":", 1) == 0 )
@@ -164,16 +172,16 @@ namespace GeneXus.Programs.wallet.registered {
                   {
                      AV26people += ", ";
                   }
-                  GXt_char5 = AV26people;
-                  new GeneXus.Programs.wallet.registered.getmemberdisplayname(context ).execute(  StringUtil.Trim( AV23name), out  GXt_char5) ;
-                  AV26people += GXt_char5;
+                  GXt_char6 = AV26people;
+                  new GeneXus.Programs.wallet.registered.getmemberdisplayname(context ).execute(  StringUtil.Trim( AV23name), out  GXt_char6) ;
+                  AV26people += GXt_char6;
                   if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV35signerNames)) )
                   {
                      AV35signerNames += ", ";
                   }
-                  GXt_char5 = AV35signerNames;
-                  new GeneXus.Programs.wallet.registered.getmemberdisplayname(context ).execute(  StringUtil.Trim( AV23name), out  GXt_char5) ;
-                  AV35signerNames += GXt_char5;
+                  GXt_char6 = AV35signerNames;
+                  new GeneXus.Programs.wallet.registered.getmemberdisplayname(context ).execute(  StringUtil.Trim( AV23name), out  GXt_char6) ;
+                  AV35signerNames += GXt_char6;
                   if ( StringUtil.StringSearch( AV29room.gxTpr_Partialsmap, "\""+StringUtil.Trim( AV23name)+"\":", 1) > 0 )
                   {
                      AV26people += " - signed";
@@ -190,25 +198,25 @@ namespace GeneXus.Programs.wallet.registered {
                      }
                   }
                }
-               AV37GXV2 = (int)(AV37GXV2+1);
+               AV39GXV2 = (int)(AV39GXV2+1);
             }
             AV28presentPeople = "";
             AV24names = (GxSimpleCollection<string>)(GxRegex.Split(AV29room.gxTpr_Present,","));
-            AV38GXV3 = 1;
-            while ( AV38GXV3 <= AV24names.Count )
+            AV40GXV3 = 1;
+            while ( AV40GXV3 <= AV24names.Count )
             {
-               AV23name = ((string)AV24names.Item(AV38GXV3));
+               AV23name = ((string)AV24names.Item(AV40GXV3));
                if ( ! String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV23name))) )
                {
                   if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV28presentPeople)) )
                   {
                      AV28presentPeople += ", ";
                   }
-                  GXt_char5 = AV28presentPeople;
-                  new GeneXus.Programs.wallet.registered.getmemberdisplayname(context ).execute(  StringUtil.Trim( AV23name), out  GXt_char5) ;
-                  AV28presentPeople += GXt_char5;
+                  GXt_char6 = AV28presentPeople;
+                  new GeneXus.Programs.wallet.registered.getmemberdisplayname(context ).execute(  StringUtil.Trim( AV23name), out  GXt_char6) ;
+                  AV28presentPeople += GXt_char6;
                }
-               AV38GXV3 = (int)(AV38GXV3+1);
+               AV40GXV3 = (int)(AV40GXV3+1);
             }
             if ( StringUtil.StrCmp(AV29room.gxTpr_State, "gathering") == 0 )
             {
@@ -219,10 +227,10 @@ namespace GeneXus.Programs.wallet.registered {
                AV27timeLeft = NumberUtil.Int( (long)(Math.Round((AV29room.gxTpr_Signdeadlineunix-AV25now)/ (decimal)(1000), 18, MidpointRounding.ToEven)));
             }
             AV34waiting = "";
-            AV39GXV4 = 1;
-            while ( AV39GXV4 <= AV13group_sdt.gxTpr_Contact.Count )
+            AV41GXV4 = 1;
+            while ( AV41GXV4 <= AV13group_sdt.gxTpr_Contact.Count )
             {
-               AV32groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV13group_sdt.gxTpr_Contact.Item(AV39GXV4));
+               AV32groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV13group_sdt.gxTpr_Contact.Item(AV41GXV4));
                AV33memberName = StringUtil.Trim( AV32groupContact.gxTpr_Contactusername);
                if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV33memberName)) && ! ( ( AV13group_sdt.gxTpr_Grouptype == 80 ) && ( AV32groupContact.gxTpr_Contactid == AV32groupContact.gxTpr_Contactgroupid ) ) )
                {
@@ -232,12 +240,12 @@ namespace GeneXus.Programs.wallet.registered {
                      {
                         AV34waiting += ", ";
                      }
-                     GXt_char5 = AV34waiting;
-                     new GeneXus.Programs.wallet.registered.getmemberdisplayname(context ).execute(  AV33memberName, out  GXt_char5) ;
-                     AV34waiting += GXt_char5;
+                     GXt_char6 = AV34waiting;
+                     new GeneXus.Programs.wallet.registered.getmemberdisplayname(context ).execute(  AV33memberName, out  GXt_char6) ;
+                     AV34waiting += GXt_char6;
                   }
                }
-               AV39GXV4 = (int)(AV39GXV4+1);
+               AV41GXV4 = (int)(AV41GXV4+1);
             }
             AV31roomLine.gxTpr_Chatlog = AV29room.gxTpr_Chatlog;
             if ( StringUtil.StrCmp(AV29room.gxTpr_State, "gathering") == 0 )
@@ -264,7 +272,7 @@ namespace GeneXus.Programs.wallet.registered {
             {
                if ( AV8allNonces )
                {
-                  AV31roomLine.gxTpr_Statetext = "Signing: every signer must now press Sign with password; "+StringUtil.Trim( StringUtil.Str( (decimal)(AV27timeLeft), 18, 0))+" s left. Fee "+StringUtil.Trim( StringUtil.Str( AV29room.gxTpr_Feebtc, 16, 8))+" BTC ("+StringUtil.Trim( StringUtil.Str( (decimal)(AV29room.gxTpr_Vsize), 18, 0))+" vB)";
+                  AV31roomLine.gxTpr_Statetext = "Signing: every signer must now sign (you: press "+AV36signButton+"); "+StringUtil.Trim( StringUtil.Str( (decimal)(AV27timeLeft), 18, 0))+" s left. Fee "+StringUtil.Trim( StringUtil.Str( AV29room.gxTpr_Feebtc, 16, 8))+" BTC ("+StringUtil.Trim( StringUtil.Str( (decimal)(AV29room.gxTpr_Vsize), 18, 0))+" vB)";
                }
                else
                {
@@ -299,7 +307,7 @@ namespace GeneXus.Programs.wallet.registered {
                AV31roomLine.gxTpr_People = "";
             }
             AV19lines.Add(AV31roomLine, 1);
-            AV36GXV1 = (int)(AV36GXV1+1);
+            AV38GXV1 = (int)(AV38GXV1+1);
          }
          cleanup();
       }
@@ -323,13 +331,16 @@ namespace GeneXus.Programs.wallet.registered {
          AV12externalUserPublic = new GeneXus.Programs.distcrypt.SdtExternalUserPublic(context);
          GXt_SdtExternalUserPublic2 = new GeneXus.Programs.distcrypt.SdtExternalUserPublic(context);
          AV20me = "";
+         AV36signButton = "";
+         AV37walletInfo = new GeneXus.Programs.wallet.SdtWalletInfo(context);
+         GXt_SdtWalletInfo4 = new GeneXus.Programs.wallet.SdtWalletInfo(context);
          AV30rooms = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtMuSig2Room>( context, "MuSig2Room", "distributedcryptography");
          AV29room = new GeneXus.Programs.wallet.registered.SdtMuSig2Room(context);
          AV18jsonText = "";
          AV21muSig2Processor = new GeneXus.Programs.distributedcryptographylib.SdtMuSig2Processor(context);
          AV31roomLine = new GeneXus.Programs.wallet.registered.SdtMuSig2RoomLine(context);
          AV9createdAt = (DateTime)(DateTime.MinValue);
-         GXt_dtime4 = (DateTime)(DateTime.MinValue);
+         GXt_dtime5 = (DateTime)(DateTime.MinValue);
          AV26people = "";
          AV35signerNames = "";
          AV24names = new GxSimpleCollection<string>();
@@ -338,21 +349,21 @@ namespace GeneXus.Programs.wallet.registered {
          AV34waiting = "";
          AV32groupContact = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem(context);
          AV33memberName = "";
-         GXt_char5 = "";
+         GXt_char6 = "";
          /* GeneXus formulas. */
       }
 
-      private int AV36GXV1 ;
-      private int AV37GXV2 ;
-      private int AV38GXV3 ;
-      private int AV39GXV4 ;
+      private int AV38GXV1 ;
+      private int AV39GXV2 ;
+      private int AV40GXV3 ;
+      private int AV41GXV4 ;
       private long AV25now ;
       private long GXt_int3 ;
       private long AV27timeLeft ;
       private string AV10error ;
-      private string GXt_char5 ;
+      private string GXt_char6 ;
       private DateTime AV9createdAt ;
-      private DateTime GXt_dtime4 ;
+      private DateTime GXt_dtime5 ;
       private bool AV16isDelegatedOwner ;
       private bool AV11expired ;
       private bool AV15iAmHere ;
@@ -361,6 +372,7 @@ namespace GeneXus.Programs.wallet.registered {
       private bool AV8allNonces ;
       private string AV18jsonText ;
       private string AV20me ;
+      private string AV36signButton ;
       private string AV26people ;
       private string AV35signerNames ;
       private string AV23name ;
@@ -373,6 +385,8 @@ namespace GeneXus.Programs.wallet.registered {
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT GXt_SdtGroup_SDT1 ;
       private GeneXus.Programs.distcrypt.SdtExternalUserPublic AV12externalUserPublic ;
       private GeneXus.Programs.distcrypt.SdtExternalUserPublic GXt_SdtExternalUserPublic2 ;
+      private GeneXus.Programs.wallet.SdtWalletInfo AV37walletInfo ;
+      private GeneXus.Programs.wallet.SdtWalletInfo GXt_SdtWalletInfo4 ;
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtMuSig2Room> AV30rooms ;
       private GeneXus.Programs.wallet.registered.SdtMuSig2Room AV29room ;
       private GeneXus.Programs.distributedcryptographylib.SdtMuSig2Processor AV21muSig2Processor ;

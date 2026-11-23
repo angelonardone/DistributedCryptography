@@ -288,6 +288,27 @@ namespace GeneXus.Programs.distributedcryptographylib {
 
       }
 
+      public string gxTpr_Extpubkeymultisigaccount
+      {
+         get {
+            if ( DistributedCryptographyLib_GroupSDT_externalReference == null )
+            {
+               DistributedCryptographyLib_GroupSDT_externalReference = new DistricutedCryptographyLib.GroupSDT();
+            }
+            return DistributedCryptographyLib_GroupSDT_externalReference.ExtPubKeyMultiSigAccount ;
+         }
+
+         set {
+            if ( DistributedCryptographyLib_GroupSDT_externalReference == null )
+            {
+               DistributedCryptographyLib_GroupSDT_externalReference = new DistricutedCryptographyLib.GroupSDT();
+            }
+            DistributedCryptographyLib_GroupSDT_externalReference.ExtPubKeyMultiSigAccount = value;
+            SetDirty("Extpubkeymultisigaccount");
+         }
+
+      }
+
       public short gxTpr_Subgrouptype
       {
          get {

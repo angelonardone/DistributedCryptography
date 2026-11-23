@@ -33,6 +33,9 @@
  	<Compile Include="$(WebDirectory)\distcrypt\type_SdtServerParameters.cs" />
  	<Compile Include="$(WebDirectory)\distcrypt\type_SdtServerUserInfo.cs" />
  	<Compile Include="$(WebDirectory)\distributedcrypto\type_SdtdateTimeToUnixTimeTestSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\distributedcryptographylib\type_SdtCodex32Mask.cs" />
+ 	<Compile Include="$(WebDirectory)\distributedcryptographylib\type_SdtCodex32Seed.cs" />
+ 	<Compile Include="$(WebDirectory)\distributedcryptographylib\type_SdtCodex32Shares.cs" />
  	<Compile Include="$(WebDirectory)\electrum\type_SdtConnection.cs" />
  	<Compile Include="$(WebDirectory)\electrum\type_SdtConnectionParameters_ConnectionParametersItem.cs" />
  	<Compile Include="$(WebDirectory)\electrum\type_SdtelectrumRespBroadcastTran.cs" />
@@ -63,6 +66,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtGxUsedIn.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtGXUsedToItem.cs" />
  	<Compile Include="$(WebDirectory)\hsm\type_SdtHSMconfigSDT.cs" />
+ 	<Compile Include="$(WebDirectory)\hsm\type_SdtHSMcredentialsSDT.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtLinkList_LinkItem.cs" />
  	<Compile Include="$(WebDirectory)\type_Sdtlogin__postInput.cs" />
  	<Compile Include="$(WebDirectory)\type_Sdtlogin__postOutput.cs" />
@@ -164,9 +168,13 @@
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtQueuedNostrEvent.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtWalletBackupView.cs" />
  	<Compile Include="$(WebDirectory)\wallet\registered\type_SdtWalletBackupView_ContactItem.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtRubyChildMnemonic.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtRubyInput.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtRubyResult.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtRubyResult_devicesItem.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtRubySeedSplit.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtRubySeedSplit_contactsItem.cs" />
+ 	<Compile Include="$(WebDirectory)\wallet\type_SdtRubySeedSplitContact.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtSDTAddressHistory.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtSDT_Json_Enc.cs" />
  	<Compile Include="$(WebDirectory)\wallet\type_SdtSDT_ReturnAddresses_SDT_ReturnAddressesItem.cs" />

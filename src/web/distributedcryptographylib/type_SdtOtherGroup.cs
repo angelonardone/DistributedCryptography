@@ -183,6 +183,27 @@ namespace GeneXus.Programs.distributedcryptographylib {
 
       }
 
+      public string gxTpr_Extpubkeymultisigaccount
+      {
+         get {
+            if ( DistributedCryptographyLib_OtherGroup_externalReference == null )
+            {
+               DistributedCryptographyLib_OtherGroup_externalReference = new DistricutedCryptographyLib.OtherGroup();
+            }
+            return DistributedCryptographyLib_OtherGroup_externalReference.ExtPubKeyMultiSigAccount ;
+         }
+
+         set {
+            if ( DistributedCryptographyLib_OtherGroup_externalReference == null )
+            {
+               DistributedCryptographyLib_OtherGroup_externalReference = new DistricutedCryptographyLib.OtherGroup();
+            }
+            DistributedCryptographyLib_OtherGroup_externalReference.ExtPubKeyMultiSigAccount = value;
+            SetDirty("Extpubkeymultisigaccount");
+         }
+
+      }
+
       public string gxTpr_Extpubkeytimebountyreceiving
       {
          get {

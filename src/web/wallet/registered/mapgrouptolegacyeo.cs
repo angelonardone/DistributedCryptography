@@ -70,11 +70,13 @@ namespace GeneXus.Programs.wallet.registered {
          {
             AV10groupEO.gxTpr_Extpubkeymultisigreceiving = AV9group_sdt.gxTpr_Extpubkeymultisigreceiving;
             AV10groupEO.gxTpr_Extpubkeymultisigchange = AV9group_sdt.gxTpr_Extpubkeymultisigchange;
+            AV10groupEO.gxTpr_Extpubkeymultisigaccount = AV9group_sdt.gxTpr_Extpubkeymultisigaccount;
          }
          else
          {
             AV10groupEO.gxTpr_Extpubkeymultisigreceiving = AV9group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeymultisigreceiving;
             AV10groupEO.gxTpr_Extpubkeymultisigchange = AV9group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeymultisigchange;
+            AV10groupEO.gxTpr_Extpubkeymultisigaccount = AV9group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeymultisigaccount;
          }
          AV10groupEO.gxTpr_Groupname = AV9group_sdt.gxTpr_Groupname;
          AV10groupEO.gxTpr_Minimumshares = AV9group_sdt.gxTpr_Minimumshares;
@@ -88,6 +90,7 @@ namespace GeneXus.Programs.wallet.registered {
                AV8contactEO.gxTpr_Contactusername = AV11oneContact.gxTpr_Contactusername;
                AV8contactEO.gxTpr_Extpubkeymultisigreceiving = AV11oneContact.gxTpr_Extpubkeymultisigreceiving;
                AV8contactEO.gxTpr_Extpubkeymultisigchange = AV11oneContact.gxTpr_Extpubkeymultisigchange;
+               AV8contactEO.gxTpr_Extpubkeymultisigaccount = AV11oneContact.gxTpr_Extpubkeymultisigaccount;
                AV10groupEO.gxTpr_Contact.Add(AV8contactEO, 0);
             }
             AV12GXV1 = (int)(AV12GXV1+1);

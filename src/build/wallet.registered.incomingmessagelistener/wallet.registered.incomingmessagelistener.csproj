@@ -76,6 +76,7 @@
 		<Compile Include = "$(WebDirectory)\wallet\registered\getmemberdisplayname.cs" />
 		<Compile Include = "$(WebDirectory)\nostr\processrecivedfromnostr.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\recordsentoutputs.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\registered\incomingmessagelistener.cs" />
 		<Compile Include = "$(WebDirectory)\desktopappservicesrestdeletemesagepost.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\updaterestoreongroup.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
@@ -102,7 +103,7 @@
 		<Compile Include = "$(WebDirectory)\wallet\registered\getgroupidbyreference.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\hmacsha256hex.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getserverbaseurl.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\registered\incomingmessagelistener.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\disconnect.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\hextotext.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\isosunix.cs" />

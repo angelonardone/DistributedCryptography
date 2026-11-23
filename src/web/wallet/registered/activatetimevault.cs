@@ -147,14 +147,45 @@ namespace GeneXus.Programs.wallet.registered {
          }
          AV14extendeSecretAndAuthenticator.FromJSonString(AV9clearText, null);
          AV9clearText = "";
-         GXt_char4 = AV13error;
-         new GeneXus.Programs.shamirss.createshares(context ).execute(  StringUtil.Trim( AV14extendeSecretAndAuthenticator.gxTpr_Extendedprivatekey),  2,  2, out  AV25shares, ref  GXt_char4) ;
-         AV13error = GXt_char4;
-         AV14extendeSecretAndAuthenticator = new GeneXus.Programs.wallet.SdtExtendeSecretAndAuthenticator(context);
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
+         AV33rubySeedSplit = new GeneXus.Programs.wallet.SdtRubySeedSplit(context);
+         if ( StringUtil.StrCmp(AV28wallet.gxTpr_Keystorage, "Ruby") == 0 )
          {
-            cleanup();
-            if (true) return;
+            AV14extendeSecretAndAuthenticator = new GeneXus.Programs.wallet.SdtExtendeSecretAndAuthenticator(context);
+            GXt_SdtGroup_SDT1 = AV10data_group_sdt;
+            new GeneXus.Programs.wallet.registered.getlocalgroupbyid(context ).execute(  AV15group_sdt.gxTpr_Datagroupid, out  GXt_SdtGroup_SDT1) ;
+            AV10data_group_sdt = GXt_SdtGroup_SDT1;
+            GXt_char4 = AV13error;
+            new GeneXus.Programs.wallet.splitseedonruby(context ).execute(  "vault",  AV10data_group_sdt, out  AV33rubySeedSplit, out  GXt_char4) ;
+            AV13error = GXt_char4;
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
+            {
+               cleanup();
+               if (true) return;
+            }
+            AV25shares.Clear();
+            AV25shares.Add("", 0);
+            AV25shares.Add(StringUtil.Trim( AV33rubySeedSplit.gxTpr_Masked), 0);
+            AV33rubySeedSplit.gxTpr_Masked = "";
+         }
+         else
+         {
+            AV31codex32Mask.FromJSonString(AV32codex32Processor.maskseed(StringUtil.Trim( AV14extendeSecretAndAuthenticator.gxTpr_Seed)), null);
+            AV14extendeSecretAndAuthenticator = new GeneXus.Programs.wallet.SdtExtendeSecretAndAuthenticator(context);
+            if ( ! AV31codex32Mask.gxTpr_Success )
+            {
+               AV13error = StringUtil.Trim( AV31codex32Mask.gxTpr_Error);
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
+               {
+                  AV13error = "We couldn't split the wallet seed";
+               }
+               AV31codex32Mask = new GeneXus.Programs.distributedcryptographylib.SdtCodex32Mask(context);
+               cleanup();
+               if (true) return;
+            }
+            AV25shares.Clear();
+            AV25shares.Add(StringUtil.Trim( AV31codex32Mask.gxTpr_Pad), 0);
+            AV25shares.Add(StringUtil.Trim( AV31codex32Mask.gxTpr_Masked), 0);
+            AV31codex32Mask = new GeneXus.Programs.distributedcryptographylib.SdtCodex32Mask(context);
          }
          AV11EncryptionResult = AV12EncryptionService.encrypt(((string)AV25shares.Item(2)), "");
          if ( ! AV11EncryptionResult.gxTpr_Success )
@@ -164,9 +195,10 @@ namespace GeneXus.Programs.wallet.registered {
             if (true) return;
          }
          GXt_char4 = AV13error;
-         new GeneXus.Programs.wallet.registered.tevactivatedatagroup(context ).execute(  AV15group_sdt.gxTpr_Datagroupid,  ((string)AV25shares.Item(1)),  AV11EncryptionResult.gxTpr_Ciphertext, out  GXt_char4) ;
+         new GeneXus.Programs.wallet.registered.tevactivatedatagroup(context ).execute(  AV15group_sdt.gxTpr_Datagroupid,  ((string)AV25shares.Item(1)),  AV11EncryptionResult.gxTpr_Ciphertext,  AV33rubySeedSplit, out  GXt_char4) ;
          AV13error = GXt_char4;
          AV25shares.Clear();
+         AV33rubySeedSplit = new GeneXus.Programs.wallet.SdtRubySeedSplit(context);
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
          {
             cleanup();
@@ -205,10 +237,10 @@ namespace GeneXus.Programs.wallet.registered {
             cleanup();
             if (true) return;
          }
-         AV32GXV1 = 1;
-         while ( AV32GXV1 <= AV23sdt_addressess.Count )
+         AV35GXV1 = 1;
+         while ( AV35GXV1 <= AV23sdt_addressess.Count )
          {
-            AV24sdt_oneAddress = ((GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem)AV23sdt_addressess.Item(AV32GXV1));
+            AV24sdt_oneAddress = ((GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem)AV23sdt_addressess.Item(AV35GXV1));
             if ( AV24sdt_oneAddress.gxTpr_Creationsequence == AV19newTimeConstrain.gxTpr_Sequence )
             {
                AV19newTimeConstrain.gxTpr_Address = StringUtil.Trim( AV24sdt_oneAddress.gxTpr_Address);
@@ -216,7 +248,7 @@ namespace GeneXus.Programs.wallet.registered {
                AV19newTimeConstrain.gxTpr_Encryptedkey = AV8bount_group_sdt.gxTpr_Encpassword;
                if (true) break;
             }
-            AV32GXV1 = (int)(AV32GXV1+1);
+            AV35GXV1 = (int)(AV35GXV1+1);
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV19newTimeConstrain.gxTpr_Address)) )
          {
@@ -304,15 +336,15 @@ namespace GeneXus.Programs.wallet.registered {
          /* 'REPLACE NEWEST' Routine */
          returnInSub = false;
          AV18keepTimeConstrains.Clear();
-         AV33GXV2 = 1;
-         while ( AV33GXV2 <= AV27timeConstrains.Count )
+         AV36GXV2 = 1;
+         while ( AV36GXV2 <= AV27timeConstrains.Count )
          {
-            AV20oneTimeConstrain = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem)AV27timeConstrains.Item(AV33GXV2));
+            AV20oneTimeConstrain = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem)AV27timeConstrains.Item(AV36GXV2));
             if ( ! ( AV20oneTimeConstrain.gxTpr_Sequence == AV19newTimeConstrain.gxTpr_Sequence ) )
             {
                AV18keepTimeConstrains.Add((GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem)(AV20oneTimeConstrain.Clone()), 0);
             }
-            AV33GXV2 = (int)(AV33GXV2+1);
+            AV36GXV2 = (int)(AV36GXV2+1);
          }
          AV18keepTimeConstrains.Add((GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem)(AV19newTimeConstrain.Clone()), 0);
          AV27timeConstrains = (GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem>)(AV18keepTimeConstrains.Clone());
@@ -340,7 +372,11 @@ namespace GeneXus.Programs.wallet.registered {
          GXt_SdtWallet3 = new GeneXus.Programs.wallet.SdtWallet(context);
          AV9clearText = "";
          AV14extendeSecretAndAuthenticator = new GeneXus.Programs.wallet.SdtExtendeSecretAndAuthenticator(context);
+         AV33rubySeedSplit = new GeneXus.Programs.wallet.SdtRubySeedSplit(context);
+         AV10data_group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
          AV25shares = new GxSimpleCollection<string>();
+         AV31codex32Mask = new GeneXus.Programs.distributedcryptographylib.SdtCodex32Mask(context);
+         AV32codex32Processor = new GeneXus.Programs.distributedcryptographylib.SdtCodex32Processor(context);
          AV11EncryptionResult = new GeneXus.Programs.distributedcryptographylib.SdtEncryptionResult(context);
          AV12EncryptionService = new GeneXus.Programs.distributedcryptographylib.SdtEncryptionService(context);
          AV8bount_group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
@@ -351,7 +387,6 @@ namespace GeneXus.Programs.wallet.registered {
          AV23sdt_addressess = new GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem>( context, "SDT_AddressessItem", "distributedcryptography");
          AV24sdt_oneAddress = new GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem(context);
          AV17grpupId = Guid.Empty;
-         AV10data_group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
          GXt_SdtGroup_SDT1 = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
          GXt_char4 = "";
          AV18keepTimeConstrains = new GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem>( context, "Group_SDT.TimeConstrainItem", "distributedcryptography");
@@ -360,8 +395,8 @@ namespace GeneXus.Programs.wallet.registered {
          Gx_date = DateTimeUtil.Today( context);
       }
 
-      private int AV32GXV1 ;
-      private int AV33GXV2 ;
+      private int AV35GXV1 ;
+      private int AV36GXV2 ;
       private string AV21password ;
       private string AV13error ;
       private string GXt_char4 ;
@@ -379,7 +414,11 @@ namespace GeneXus.Programs.wallet.registered {
       private GeneXus.Programs.wallet.SdtWallet AV28wallet ;
       private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet3 ;
       private GeneXus.Programs.wallet.SdtExtendeSecretAndAuthenticator AV14extendeSecretAndAuthenticator ;
+      private GeneXus.Programs.wallet.SdtRubySeedSplit AV33rubySeedSplit ;
+      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV10data_group_sdt ;
       private GxSimpleCollection<string> AV25shares ;
+      private GeneXus.Programs.distributedcryptographylib.SdtCodex32Mask AV31codex32Mask ;
+      private GeneXus.Programs.distributedcryptographylib.SdtCodex32Processor AV32codex32Processor ;
       private GeneXus.Programs.distributedcryptographylib.SdtEncryptionResult AV11EncryptionResult ;
       private GeneXus.Programs.distributedcryptographylib.SdtEncryptionService AV12EncryptionService ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV8bount_group_sdt ;
@@ -389,7 +428,6 @@ namespace GeneXus.Programs.wallet.registered {
       private GeneXus.Programs.wallet.SdtStoredTransactions AV26storedTransactions ;
       private GXBaseCollection<GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem> AV23sdt_addressess ;
       private GeneXus.Programs.nbitcoin.SdtSDT_Addressess_SDT_AddressessItem AV24sdt_oneAddress ;
-      private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV10data_group_sdt ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT GXt_SdtGroup_SDT1 ;
       private GXBaseCollection<GeneXus.Programs.wallet.registered.SdtGroup_SDT_TimeConstrainItem> AV18keepTimeConstrains ;
       private bool aP3_wasActive ;

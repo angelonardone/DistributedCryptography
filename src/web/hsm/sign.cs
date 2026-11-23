@@ -78,7 +78,10 @@ namespace GeneXus.Programs.hsm {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV14signature = AV9HsmManager.sign(AV12message, AV10index);
+         GXt_char1 = AV15credentials;
+         new GeneXus.Programs.hsm.getcredentials(context ).execute( out  GXt_char1) ;
+         AV15credentials = GXt_char1;
+         AV14signature = AV9HsmManager.sign(AV15credentials, AV12message, AV10index);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV14signature)) )
          {
             AV8error = AV9HsmManager.getlasterror();
@@ -100,6 +103,8 @@ namespace GeneXus.Programs.hsm {
       {
          AV14signature = "";
          AV8error = "";
+         AV15credentials = "";
+         GXt_char1 = "";
          AV9HsmManager = new GeneXus.Programs.hsm.SdtHsmManager(context);
          /* GeneXus formulas. */
       }
@@ -107,6 +112,8 @@ namespace GeneXus.Programs.hsm {
       private short AV10index ;
       private string AV14signature ;
       private string AV8error ;
+      private string AV15credentials ;
+      private string GXt_char1 ;
       private string AV12message ;
       private GeneXus.Programs.hsm.SdtHsmManager AV9HsmManager ;
       private string aP2_signature ;

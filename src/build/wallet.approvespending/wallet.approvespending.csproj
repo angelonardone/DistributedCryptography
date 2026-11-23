@@ -57,6 +57,7 @@
 		<Compile Include = "$(WebDirectory)\wallet\setextkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\approveactionsetextkey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\readwallet.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getaccountkeypath.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\approvespending.cs" />
 
 	</ItemGroup>

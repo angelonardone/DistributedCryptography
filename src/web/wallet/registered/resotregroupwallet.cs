@@ -53,6 +53,8 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected override void createObjects( )
       {
+         radavKeystorage = new GXRadio();
+         cmbavRubydevice = new GXCombobox();
       }
 
       protected void INITWEB( )
@@ -266,6 +268,7 @@ namespace GeneXus.Programs.wallet.registered {
          send_integrity_footer_hashes( ) ;
          GxWebStd.gx_hidden_field( context, "vGROUPID", AV30groupId.ToString());
          GxWebStd.gx_hidden_field( context, "gxhash_vGROUPID", GetSecureSignedToken( "", AV30groupId, context));
+         GxWebStd.gx_hidden_field( context, "vERROR", StringUtil.RTrim( AV6error));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -376,14 +379,75 @@ namespace GeneXus.Programs.wallet.registered {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+radavKeystorage_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, "", "Where the keys of the new wallet live", "col-sm-3 AttributeLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
+            /* Radio button */
+            ClassString = "Attribute";
+            StyleString = "";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 13,'',false,'',0)\"";
+            GxWebStd.gx_radio_ctrl( context, radavKeystorage, radavKeystorage_Internalname, StringUtil.RTrim( AV33keyStorage), "", 1, 1, 1, 1, StyleString, ClassString, "", "", 0, radavKeystorage_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", TempTags+" onclick="+"\""+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,13);\"", "HLP_Wallet/registered/ResotreGroupWallet.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", cmbavRubydevice.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbavRubydevice_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, cmbavRubydevice_Internalname, "Ruby device", "col-sm-3 AttributeLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 18,'',false,'',0)\"";
+            /* ComboBox */
+            GxWebStd.gx_combobox_ctrl1( context, cmbavRubydevice, cmbavRubydevice_Internalname, StringUtil.RTrim( AV34rubyDevice), 1, cmbavRubydevice_Jsonclick, 0, "'"+""+"'"+",false,"+"'"+""+"'", "svchar", "", cmbavRubydevice.Visible, cmbavRubydevice.Enabled, 0, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,18);\"", "", true, 0, "HLP_Wallet/registered/ResotreGroupWallet.htm");
+            cmbavRubydevice.CurrentValue = StringUtil.RTrim( AV34rubyDevice);
+            AssignProp("", false, cmbavRubydevice_Internalname, "Values", (string)(cmbavRubydevice.ToJavascriptSource()), true);
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 20,'',false,'',0)\"";
+            ClassString = "Button";
+            StyleString = "";
+            GxWebStd.gx_button_ctrl( context, bttFindruby_Internalname, "", "Find Ruby", bttFindruby_Jsonclick, 5, "Find Ruby", "", StyleString, ClassString, bttFindruby_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'FIND RUBY\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Wallet/registered/ResotreGroupWallet.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblRubyhelp_Internalname, "When you press Restore Wallet, the recovered wallet goes to Ruby. Use a new Ruby or one reset: a Ruby holds one wallet. Ruby shows the fingerprint of the recovered wallet: accept it only if it is the same as the one below, then choose its PIN on Ruby. The password protects this wallet file.", "", "", lblRubyhelp_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", lblRubyhelp_Visible, 1, 0, 0, "HLP_Wallet/registered/ResotreGroupWallet.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblRubyfingerprint_Internalname, lblRubyfingerprint_Caption, "", "", lblRubyfingerprint_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", lblRubyfingerprint_Visible, 1, 0, 0, "HLP_Wallet/registered/ResotreGroupWallet.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavNewpass_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
             GxWebStd.gx_label_element( context, edtavNewpass_Internalname, "Password", "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 13,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavNewpass_Internalname, StringUtil.RTrim( AV13newPass), StringUtil.RTrim( context.localUtil.Format( AV13newPass, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,13);\""+" "+"data-gx-password-reveal"+" ", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavNewpass_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavNewpass_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, -1, 0, 0, 0, 0, -1, true, "", "start", true, "", "HLP_Wallet/registered/ResotreGroupWallet.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 31,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavNewpass_Internalname, StringUtil.RTrim( AV13newPass), StringUtil.RTrim( context.localUtil.Format( AV13newPass, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,31);\""+" "+"data-gx-password-reveal"+" ", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavNewpass_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavNewpass_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, -1, 0, 0, 0, 0, -1, true, "", "start", true, "", "HLP_Wallet/registered/ResotreGroupWallet.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -399,8 +463,8 @@ namespace GeneXus.Programs.wallet.registered {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 18,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavNewpassconfirm_Internalname, StringUtil.RTrim( AV14newPassConfirm), StringUtil.RTrim( context.localUtil.Format( AV14newPassConfirm, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,18);\""+" "+"data-gx-password-reveal"+" ", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavNewpassconfirm_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavNewpassconfirm_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, -1, 0, 0, 0, 0, -1, true, "", "start", true, "", "HLP_Wallet/registered/ResotreGroupWallet.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 36,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavNewpassconfirm_Internalname, StringUtil.RTrim( AV14newPassConfirm), StringUtil.RTrim( context.localUtil.Format( AV14newPassConfirm, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,36);\""+" "+"data-gx-password-reveal"+" ", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavNewpassconfirm_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavNewpassconfirm_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, -1, 0, 0, 0, 0, -1, true, "", "start", true, "", "HLP_Wallet/registered/ResotreGroupWallet.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -409,14 +473,14 @@ namespace GeneXus.Programs.wallet.registered {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 21,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 39,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttRestorewallet_Internalname, "", "Restore Wallet", bttRestorewallet_Jsonclick, 5, "Restore Wallet", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'RESTORE WALLET\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Wallet/registered/ResotreGroupWallet.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "end", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 23,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 41,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttCancel_Internalname, "", "Cancel and Close", bttCancel_Jsonclick, 5, "Cancel and Close", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'CANCEL AND CLOSE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Wallet/registered/ResotreGroupWallet.htm");
@@ -484,26 +548,46 @@ namespace GeneXus.Programs.wallet.registered {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "START") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: Start */
+                              E111M2 ();
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "VKEYSTORAGE.CONTROLVALUECHANGED") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              E121M2 ();
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "'FIND RUBY'") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: 'Find Ruby' */
+                              E131M2 ();
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "'RESTORE WALLET'") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: 'Restore Wallet' */
-                              E111M2 ();
+                              E141M2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "'CANCEL AND CLOSE'") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: 'Cancel and Close' */
-                              E121M2 ();
+                              E151M2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Load */
-                              E131M2 ();
+                              E161M2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                            {
@@ -603,6 +687,18 @@ namespace GeneXus.Programs.wallet.registered {
 
       protected void fix_multi_value_controls( )
       {
+         AV33keyStorage = StringUtil.RTrim( AV33keyStorage);
+         AssignAttri("", false, "AV33keyStorage", AV33keyStorage);
+         if ( cmbavRubydevice.ItemCount > 0 )
+         {
+            AV34rubyDevice = cmbavRubydevice.getValidValue(AV34rubyDevice);
+            AssignAttri("", false, "AV34rubyDevice", AV34rubyDevice);
+         }
+         if ( context.isAjaxRequest( ) )
+         {
+            cmbavRubydevice.CurrentValue = StringUtil.RTrim( AV34rubyDevice);
+            AssignProp("", false, cmbavRubydevice_Internalname, "Values", cmbavRubydevice.ToJavascriptSource(), true);
+         }
       }
 
       public void Refresh( )
@@ -630,7 +726,7 @@ namespace GeneXus.Programs.wallet.registered {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E131M2 ();
+            E161M2 ();
             WB1M0( ) ;
          }
       }
@@ -648,6 +744,10 @@ namespace GeneXus.Programs.wallet.registered {
       {
          /* Before Start, stand alone formulas. */
          before_start_formulas( ) ;
+         /* Execute Start event if defined. */
+         context.wbGlbDoneStart = 0;
+         /* Execute user event: Start */
+         E111M2 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
@@ -657,6 +757,11 @@ namespace GeneXus.Programs.wallet.registered {
             /* Read variables values. */
             AV17walletName = cgiGet( edtavWalletname_Internalname);
             AssignAttri("", false, "AV17walletName", AV17walletName);
+            AV33keyStorage = cgiGet( radavKeystorage_Internalname);
+            AssignAttri("", false, "AV33keyStorage", AV33keyStorage);
+            cmbavRubydevice.CurrentValue = cgiGet( cmbavRubydevice_Internalname);
+            AV34rubyDevice = cgiGet( cmbavRubydevice_Internalname);
+            AssignAttri("", false, "AV34rubyDevice", AV34rubyDevice);
             AV13newPass = cgiGet( edtavNewpass_Internalname);
             AssignAttri("", false, "AV13newPass", AV13newPass);
             AV14newPassConfirm = cgiGet( edtavNewpassconfirm_Internalname);
@@ -671,7 +776,122 @@ namespace GeneXus.Programs.wallet.registered {
          }
       }
 
+      protected void GXStart( )
+      {
+         /* Execute user event: Start */
+         E111M2 ();
+         if (returnInSub) return;
+      }
+
       protected void E111M2( )
+      {
+         /* Start Routine */
+         returnInSub = false;
+         AV33keyStorage = "Software";
+         AssignAttri("", false, "AV33keyStorage", AV33keyStorage);
+         /* Execute user subroutine: 'SHOW KEY STORAGE' */
+         S112 ();
+         if (returnInSub) return;
+      }
+
+      protected void E121M2( )
+      {
+         /* Keystorage_Controlvaluechanged Routine */
+         returnInSub = false;
+         /* Execute user subroutine: 'SHOW KEY STORAGE' */
+         S112 ();
+         if (returnInSub) return;
+         if ( StringUtil.StrCmp(AV33keyStorage, "Ruby") == 0 )
+         {
+            /* Execute user subroutine: 'FIND RUBY' */
+            S122 ();
+            if (returnInSub) return;
+            new GeneXus.Programs.wallet.registered.getgroupbackupfingerprint(context ).execute(  AV30groupId, out  AV31fingerprint, out  AV6error) ;
+            AssignAttri("", false, "AV6error", AV6error);
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV6error)) )
+            {
+               lblRubyfingerprint_Caption = "Ruby will show the fingerprint "+StringUtil.Trim( AV31fingerprint)+". Accept it on Ruby only if it is the same.";
+               AssignProp("", false, lblRubyfingerprint_Internalname, "Caption", lblRubyfingerprint_Caption, true);
+            }
+            else
+            {
+               lblRubyfingerprint_Caption = "";
+               AssignProp("", false, lblRubyfingerprint_Internalname, "Caption", lblRubyfingerprint_Caption, true);
+               GX_msglist.addItem(AV6error);
+            }
+         }
+         /*  Sending Event outputs  */
+         cmbavRubydevice.CurrentValue = StringUtil.RTrim( AV34rubyDevice);
+         AssignProp("", false, cmbavRubydevice_Internalname, "Values", cmbavRubydevice.ToJavascriptSource(), true);
+      }
+
+      protected void E131M2( )
+      {
+         /* 'Find Ruby' Routine */
+         returnInSub = false;
+         /* Execute user subroutine: 'FIND RUBY' */
+         S122 ();
+         if (returnInSub) return;
+         /*  Sending Event outputs  */
+         cmbavRubydevice.CurrentValue = StringUtil.RTrim( AV34rubyDevice);
+         AssignProp("", false, cmbavRubydevice_Internalname, "Values", cmbavRubydevice.ToJavascriptSource(), true);
+      }
+
+      protected void S112( )
+      {
+         /* 'SHOW KEY STORAGE' Routine */
+         returnInSub = false;
+         if ( StringUtil.StrCmp(AV33keyStorage, "Ruby") == 0 )
+         {
+            cmbavRubydevice.Visible = 1;
+            AssignProp("", false, cmbavRubydevice_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(cmbavRubydevice.Visible), 5, 0), true);
+            bttFindruby_Visible = 1;
+            AssignProp("", false, bttFindruby_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttFindruby_Visible), 5, 0), true);
+            lblRubyhelp_Visible = 1;
+            AssignProp("", false, lblRubyhelp_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(lblRubyhelp_Visible), 5, 0), true);
+            lblRubyfingerprint_Visible = 1;
+            AssignProp("", false, lblRubyfingerprint_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(lblRubyfingerprint_Visible), 5, 0), true);
+         }
+         else
+         {
+            cmbavRubydevice.Visible = 0;
+            AssignProp("", false, cmbavRubydevice_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(cmbavRubydevice.Visible), 5, 0), true);
+            bttFindruby_Visible = 0;
+            AssignProp("", false, bttFindruby_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttFindruby_Visible), 5, 0), true);
+            lblRubyhelp_Visible = 0;
+            AssignProp("", false, lblRubyhelp_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(lblRubyhelp_Visible), 5, 0), true);
+            lblRubyfingerprint_Visible = 0;
+            AssignProp("", false, lblRubyfingerprint_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(lblRubyfingerprint_Visible), 5, 0), true);
+         }
+      }
+
+      protected void S122( )
+      {
+         /* 'FIND RUBY' Routine */
+         returnInSub = false;
+         cmbavRubydevice.removeAllItems();
+         AV36rubyResult.FromJSonString(AV35rubyProcessor.finddevices(), null);
+         AV32i = 1;
+         while ( AV32i <= AV36rubyResult.gxTpr_Devices.Count )
+         {
+            cmbavRubydevice.addItem(StringUtil.Trim( ((GeneXus.Programs.wallet.SdtRubyResult_devicesItem)AV36rubyResult.gxTpr_Devices.Item(AV32i)).gxTpr_Device), "Ruby on "+StringUtil.Trim( ((GeneXus.Programs.wallet.SdtRubyResult_devicesItem)AV36rubyResult.gxTpr_Devices.Item(AV32i)).gxTpr_Device)+" ("+StringUtil.Trim( ((GeneXus.Programs.wallet.SdtRubyResult_devicesItem)AV36rubyResult.gxTpr_Devices.Item(AV32i)).gxTpr_State)+")", 0);
+            AV32i = (short)(AV32i+1);
+         }
+         cmbavRubydevice.addItem("tcp:127.0.0.1:30121", "Ruby emulator (tcp:127.0.0.1:30121)", 0);
+         if ( AV36rubyResult.gxTpr_Devices.Count == 0 )
+         {
+            AV34rubyDevice = "tcp:127.0.0.1:30121";
+            AssignAttri("", false, "AV34rubyDevice", AV34rubyDevice);
+            this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"warning",(string)"No Ruby found on USB",(string)"Connect a new Ruby (or one reset) and press Find Ruby, or use the emulator"}, true);
+         }
+         else
+         {
+            AV34rubyDevice = StringUtil.Trim( ((GeneXus.Programs.wallet.SdtRubyResult_devicesItem)AV36rubyResult.gxTpr_Devices.Item(1)).gxTpr_Device);
+            AssignAttri("", false, "AV34rubyDevice", AV34rubyDevice);
+         }
+      }
+
+      protected void E141M2( )
       {
          /* 'Restore Wallet' Routine */
          returnInSub = false;
@@ -699,9 +919,19 @@ namespace GeneXus.Programs.wallet.registered {
                   }
                   else
                   {
-                     GXt_char1 = AV6error;
-                     new GeneXus.Programs.wallet.registered.createwalletfromgroupbackup(context ).execute(  AV30groupId,  AV17walletName,  AV13newPass, out  GXt_char1) ;
-                     AV6error = GXt_char1;
+                     if ( StringUtil.StrCmp(AV33keyStorage, "Ruby") == 0 )
+                     {
+                        /* Execute user subroutine: 'RESTORE ON RUBY' */
+                        S132 ();
+                        if (returnInSub) return;
+                     }
+                     else
+                     {
+                        GXt_char1 = AV6error;
+                        new GeneXus.Programs.wallet.registered.createwalletfromgroupbackup(context ).execute(  AV30groupId,  AV17walletName,  AV13newPass, out  GXt_char1) ;
+                        AV6error = GXt_char1;
+                        AssignAttri("", false, "AV6error", AV6error);
+                     }
                      AV13newPass = "";
                      AssignAttri("", false, "AV13newPass", AV13newPass);
                      AV14newPassConfirm = "";
@@ -732,7 +962,33 @@ namespace GeneXus.Programs.wallet.registered {
          /*  Sending Event outputs  */
       }
 
-      protected void E121M2( )
+      protected void S132( )
+      {
+         /* 'RESTORE ON RUBY' Routine */
+         returnInSub = false;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13newPass)) )
+         {
+            AV6error = "The password is mandatory for a Ruby wallet: it protects the wallet file and the oracle of your PIN";
+            AssignAttri("", false, "AV6error", AV6error);
+         }
+         else
+         {
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV34rubyDevice)) )
+            {
+               AV6error = "Please choose the Ruby device (press Find Ruby)";
+               AssignAttri("", false, "AV6error", AV6error);
+            }
+            else
+            {
+               GXt_char1 = AV6error;
+               new GeneXus.Programs.wallet.registered.createrubywalletfromgroupbackup(context ).execute(  AV30groupId,  AV17walletName,  AV34rubyDevice,  AV13newPass, out  GXt_char1) ;
+               AV6error = GXt_char1;
+               AssignAttri("", false, "AV6error", AV6error);
+            }
+         }
+      }
+
+      protected void E151M2( )
       {
          /* 'Cancel and Close' Routine */
          returnInSub = false;
@@ -748,7 +1004,7 @@ namespace GeneXus.Programs.wallet.registered {
       {
       }
 
-      protected void E131M2( )
+      protected void E161M2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -796,7 +1052,7 @@ namespace GeneXus.Programs.wallet.registered {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202611814253028", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202611238561989", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -812,18 +1068,34 @@ namespace GeneXus.Programs.wallet.registered {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("wallet/registered/resotregroupwallet.js", "?202611814253028", false, true, false);
+         context.AddJavascriptSource("wallet/registered/resotregroupwallet.js", "?202611238561989", false, true, false);
          /* End function include_jscripts */
       }
 
       protected void init_web_controls( )
       {
+         radavKeystorage.Name = "vKEYSTORAGE";
+         radavKeystorage.WebTags = "";
+         radavKeystorage.addItem("Software", "Software (the password protects the keys)", 0);
+         radavKeystorage.addItem("Ruby", "Ruby hardware key", 0);
+         cmbavRubydevice.Name = "vRUBYDEVICE";
+         cmbavRubydevice.WebTags = "";
+         if ( cmbavRubydevice.ItemCount > 0 )
+         {
+            AV34rubyDevice = cmbavRubydevice.getValidValue(AV34rubyDevice);
+            AssignAttri("", false, "AV34rubyDevice", AV34rubyDevice);
+         }
          /* End function init_web_controls */
       }
 
       protected void init_default_properties( )
       {
          edtavWalletname_Internalname = "vWALLETNAME";
+         radavKeystorage_Internalname = "vKEYSTORAGE";
+         cmbavRubydevice_Internalname = "vRUBYDEVICE";
+         bttFindruby_Internalname = "FINDRUBY";
+         lblRubyhelp_Internalname = "RUBYHELP";
+         lblRubyfingerprint_Internalname = "RUBYFINGERPRINT";
          edtavNewpass_Internalname = "vNEWPASS";
          edtavNewpassconfirm_Internalname = "vNEWPASSCONFIRM";
          bttRestorewallet_Internalname = "RESTOREWALLET";
@@ -844,6 +1116,14 @@ namespace GeneXus.Programs.wallet.registered {
          edtavNewpassconfirm_Enabled = 1;
          edtavNewpass_Jsonclick = "";
          edtavNewpass_Enabled = 1;
+         lblRubyfingerprint_Caption = " ";
+         lblRubyfingerprint_Visible = 1;
+         lblRubyhelp_Visible = 1;
+         bttFindruby_Visible = 1;
+         cmbavRubydevice_Jsonclick = "";
+         cmbavRubydevice.Enabled = 1;
+         cmbavRubydevice.Visible = 1;
+         radavKeystorage_Jsonclick = "";
          edtavWalletname_Enabled = 1;
          Form.Headerrawhtml = "";
          Form.Background = "";
@@ -863,10 +1143,15 @@ namespace GeneXus.Programs.wallet.registered {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV30groupId","fld":"vGROUPID","hsh":true,"type":"guid"}]}""");
-         setEventMetadata("'RESTORE WALLET'","""{"handler":"E111M2","iparms":[{"av":"AV17walletName","fld":"vWALLETNAME","type":"char"},{"av":"AV13newPass","fld":"vNEWPASS","type":"char"},{"av":"AV14newPassConfirm","fld":"vNEWPASSCONFIRM","type":"char"},{"av":"AV30groupId","fld":"vGROUPID","hsh":true,"type":"guid"}]""");
-         setEventMetadata("'RESTORE WALLET'",""","oparms":[{"av":"AV13newPass","fld":"vNEWPASS","type":"char"},{"av":"AV14newPassConfirm","fld":"vNEWPASSCONFIRM","type":"char"}]}""");
-         setEventMetadata("'CANCEL AND CLOSE'","""{"handler":"E121M2","iparms":[]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"radavKeystorage"},{"av":"AV33keyStorage","fld":"vKEYSTORAGE","type":"char"},{"av":"AV30groupId","fld":"vGROUPID","hsh":true,"type":"guid"}]}""");
+         setEventMetadata("VKEYSTORAGE.CONTROLVALUECHANGED","""{"handler":"E121M2","iparms":[{"av":"radavKeystorage"},{"av":"AV33keyStorage","fld":"vKEYSTORAGE","type":"char"},{"av":"AV30groupId","fld":"vGROUPID","hsh":true,"type":"guid"}]""");
+         setEventMetadata("VKEYSTORAGE.CONTROLVALUECHANGED",""","oparms":[{"av":"AV6error","fld":"vERROR","type":"char"},{"av":"lblRubyfingerprint_Caption","ctrl":"RUBYFINGERPRINT","prop":"Caption"},{"av":"cmbavRubydevice"},{"ctrl":"FINDRUBY","prop":"Visible"},{"av":"lblRubyhelp_Visible","ctrl":"RUBYHELP","prop":"Visible"},{"av":"lblRubyfingerprint_Visible","ctrl":"RUBYFINGERPRINT","prop":"Visible"},{"av":"AV34rubyDevice","fld":"vRUBYDEVICE","type":"svchar"}]}""");
+         setEventMetadata("'FIND RUBY'","""{"handler":"E131M2","iparms":[]""");
+         setEventMetadata("'FIND RUBY'",""","oparms":[{"av":"cmbavRubydevice"},{"av":"AV34rubyDevice","fld":"vRUBYDEVICE","type":"svchar"}]}""");
+         setEventMetadata("'RESTORE WALLET'","""{"handler":"E141M2","iparms":[{"av":"AV17walletName","fld":"vWALLETNAME","type":"char"},{"av":"AV13newPass","fld":"vNEWPASS","type":"char"},{"av":"AV14newPassConfirm","fld":"vNEWPASSCONFIRM","type":"char"},{"av":"radavKeystorage"},{"av":"AV33keyStorage","fld":"vKEYSTORAGE","type":"char"},{"av":"AV30groupId","fld":"vGROUPID","hsh":true,"type":"guid"},{"av":"AV6error","fld":"vERROR","type":"char"},{"av":"cmbavRubydevice"},{"av":"AV34rubyDevice","fld":"vRUBYDEVICE","type":"svchar"}]""");
+         setEventMetadata("'RESTORE WALLET'",""","oparms":[{"av":"AV6error","fld":"vERROR","type":"char"},{"av":"AV13newPass","fld":"vNEWPASS","type":"char"},{"av":"AV14newPassConfirm","fld":"vNEWPASSCONFIRM","type":"char"}]}""");
+         setEventMetadata("'CANCEL AND CLOSE'","""{"handler":"E151M2","iparms":[]}""");
+         setEventMetadata("VALIDV_KEYSTORAGE","""{"handler":"Validv_Keystorage","iparms":[]}""");
          return  ;
       }
 
@@ -888,6 +1173,7 @@ namespace GeneXus.Programs.wallet.registered {
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
+         AV6error = "";
          GX_FocusControl = "";
          Form = new GXWebForm();
          sPrefix = "";
@@ -895,6 +1181,11 @@ namespace GeneXus.Programs.wallet.registered {
          ClassString = "";
          StyleString = "";
          AV17walletName = "";
+         AV33keyStorage = "";
+         AV34rubyDevice = "";
+         bttFindruby_Jsonclick = "";
+         lblRubyhelp_Jsonclick = "";
+         lblRubyfingerprint_Jsonclick = "";
          AV13newPass = "";
          AV14newPassConfirm = "";
          bttRestorewallet_Jsonclick = "";
@@ -903,9 +1194,11 @@ namespace GeneXus.Programs.wallet.registered {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
-         AV6error = "";
-         GXt_char1 = "";
+         AV31fingerprint = "";
+         AV36rubyResult = new GeneXus.Programs.wallet.SdtRubyResult(context);
+         AV35rubyProcessor = new GeneXus.Programs.distributedcryptographylib.SdtRubyProcessor(context);
          AV24webSession = context.GetSession();
+         GXt_char1 = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          /* GeneXus formulas. */
@@ -918,8 +1211,12 @@ namespace GeneXus.Programs.wallet.registered {
       private short wbStart ;
       private short nDonePA ;
       private short gxcookieaux ;
+      private short AV32i ;
       private short nGXWrapped ;
       private int edtavWalletname_Enabled ;
+      private int bttFindruby_Visible ;
+      private int lblRubyhelp_Visible ;
+      private int lblRubyfingerprint_Visible ;
       private int edtavNewpass_Enabled ;
       private int edtavNewpassconfirm_Enabled ;
       private int idxLst ;
@@ -929,6 +1226,7 @@ namespace GeneXus.Programs.wallet.registered {
       private string FormProcess ;
       private string bodyStyle ;
       private string GXKey ;
+      private string AV6error ;
       private string GX_FocusControl ;
       private string sPrefix ;
       private string divMaintable_Internalname ;
@@ -937,6 +1235,18 @@ namespace GeneXus.Programs.wallet.registered {
       private string ClassString ;
       private string StyleString ;
       private string AV17walletName ;
+      private string radavKeystorage_Internalname ;
+      private string AV33keyStorage ;
+      private string radavKeystorage_Jsonclick ;
+      private string cmbavRubydevice_Internalname ;
+      private string cmbavRubydevice_Jsonclick ;
+      private string bttFindruby_Internalname ;
+      private string bttFindruby_Jsonclick ;
+      private string lblRubyhelp_Internalname ;
+      private string lblRubyhelp_Jsonclick ;
+      private string lblRubyfingerprint_Internalname ;
+      private string lblRubyfingerprint_Caption ;
+      private string lblRubyfingerprint_Jsonclick ;
       private string edtavNewpass_Internalname ;
       private string AV13newPass ;
       private string edtavNewpass_Jsonclick ;
@@ -951,7 +1261,7 @@ namespace GeneXus.Programs.wallet.registered {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
-      private string AV6error ;
+      private string AV31fingerprint ;
       private string GXt_char1 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
@@ -961,11 +1271,16 @@ namespace GeneXus.Programs.wallet.registered {
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private bool AV26walletRestored ;
+      private string AV34rubyDevice ;
       private Guid AV30groupId ;
       private Guid wcpOAV30groupId ;
       private IGxSession AV24webSession ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
+      private GXRadio radavKeystorage ;
+      private GXCombobox cmbavRubydevice ;
+      private GeneXus.Programs.wallet.SdtRubyResult AV36rubyResult ;
+      private GeneXus.Programs.distributedcryptographylib.SdtRubyProcessor AV35rubyProcessor ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

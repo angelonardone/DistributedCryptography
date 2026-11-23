@@ -124,6 +124,7 @@ namespace GeneXus.Programs.wallet.registered {
                      new GeneXus.Programs.wallet.registered.removeprivatenames(context ).execute( ref  AV17oneGroup) ;
                      AV17oneGroup.gxTpr_Othergroup.gxTpr_Extpubkeymultisigreceiving = AV12group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeymultisigreceiving;
                      AV17oneGroup.gxTpr_Othergroup.gxTpr_Extpubkeymultisigchange = AV12group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeymultisigchange;
+                     AV17oneGroup.gxTpr_Othergroup.gxTpr_Extpubkeymultisigaccount = AV12group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeymultisigaccount;
                      AV17oneGroup.gxTpr_Othergroup.gxTpr_Extpubkeytimebountyreceiving = AV12group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeytimebountyreceiving;
                      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV12group_sdt.gxTpr_Othergroup.gxTpr_Encpassword))) )
                      {

@@ -59,6 +59,8 @@ namespace GeneXus.Programs.wallet.registered
 
 			gxTv_SdtGroup_SDT_ContactItem_Restoresigneddatetime = (DateTime)(DateTime.MinValue);
 
+			gxTv_SdtGroup_SDT_ContactItem_Extpubkeymultisigaccount = "";
+
 		}
 
 		public SdtGroup_SDT_ContactItem(IGxContext context)
@@ -208,6 +210,9 @@ namespace GeneXus.Programs.wallet.registered
 			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
 			AddObjectProperty("restoreSignedDateTime", sDateCnv, false);
 
+
+
+			AddObjectProperty("extPubKeyMultiSigAccount", gxTpr_Extpubkeymultisigaccount, false);
 
 			return;
 		}
@@ -621,6 +626,22 @@ namespace GeneXus.Programs.wallet.registered
 		}
 
 
+
+		[SoapElement(ElementName="extPubKeyMultiSigAccount")]
+		[XmlElement(ElementName="extPubKeyMultiSigAccount")]
+		public string gxTpr_Extpubkeymultisigaccount
+		{
+			get {
+				return gxTv_SdtGroup_SDT_ContactItem_Extpubkeymultisigaccount; 
+			}
+			set {
+				gxTv_SdtGroup_SDT_ContactItem_Extpubkeymultisigaccount = value;
+				SetDirty("Extpubkeymultisigaccount");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -663,6 +684,7 @@ namespace GeneXus.Programs.wallet.registered
 			gxTv_SdtGroup_SDT_ContactItem_Musigsignatures_N = true;
 
 			gxTv_SdtGroup_SDT_ContactItem_Restoresigneddatetime = (DateTime)(DateTime.MinValue);
+			gxTv_SdtGroup_SDT_ContactItem_Extpubkeymultisigaccount = "";
 			datetime_STZ = (DateTime)(DateTime.MinValue);
 			sDateCnv = "";
 			sNumToPad = "";
@@ -739,6 +761,9 @@ namespace GeneXus.Programs.wallet.registered
 		protected GXBaseCollection<GeneXus.Programs.wallet.registered.SdtMuSigSignatures> gxTv_SdtGroup_SDT_ContactItem_Musigsignatures = null;  
 
 		protected DateTime gxTv_SdtGroup_SDT_ContactItem_Restoresigneddatetime;
+		 
+
+		protected string gxTv_SdtGroup_SDT_ContactItem_Extpubkeymultisigaccount;
 		 
 
 
@@ -1057,6 +1082,20 @@ namespace GeneXus.Programs.wallet.registered
 			}
 			set { 
 				sdt.gxTpr_Restoresigneddatetime = DateTimeUtil.CToT2(value,context);
+			}
+		}
+
+		[JsonPropertyName("extPubKeyMultiSigAccount")]
+		[JsonPropertyOrder(21)]
+		[DataMember(Name="extPubKeyMultiSigAccount", Order=21)]
+		public  string gxTpr_Extpubkeymultisigaccount
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Extpubkeymultisigaccount);
+
+			}
+			set { 
+				 sdt.gxTpr_Extpubkeymultisigaccount = value;
 			}
 		}
 

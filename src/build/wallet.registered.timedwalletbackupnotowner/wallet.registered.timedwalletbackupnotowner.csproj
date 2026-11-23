@@ -61,7 +61,7 @@
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwalletinfo.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\walletfilepath.cs" />
-		<Compile Include = "$(WebDirectory)\openapicommon\guidtojsonformat.cs" />
+		<Compile Include = "$(WebDirectory)\electrum\get_history.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\connect.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\restgetchallenge.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\getmemberdisplayname.cs" />
@@ -70,6 +70,7 @@
 		<Compile Include = "$(WebDirectory)\openapicommon\callapionce.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\getdefaultelectrumconfig.cs" />
+		<Compile Include = "$(WebDirectory)\openapicommon\guidtojsonformat.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getlogindistcrypt.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\logintoserver.cs" />
@@ -77,14 +78,11 @@
 		<Compile Include = "$(WebDirectory)\wallet\registered\sendgroupaccess.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\getunixtimemilisecondsutc.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\removeprivatenames.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\sha256.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\hmacsha256hex.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\getgroupeditview.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\sealmessage.cs" />
-		<Compile Include = "$(WebDirectory)\electrum\get_history.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\callapi.cs" />
-		<Compile Include = "$(WebDirectory)\shamirss\combineshares.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getserverparameters.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\messageenvelopetext.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\setexternaluser.cs" />

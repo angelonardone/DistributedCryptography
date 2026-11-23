@@ -47,6 +47,7 @@
 		<Compile Include = "$(WebDirectory)\hsm\signschnorr.cs" />
 		<Compile Include = "$(WebDirectory)\hsm\encrypttopubkey.cs" />
 		<Compile Include = "$(WebDirectory)\hsm\encrypt.cs" />
+		<Compile Include = "$(WebDirectory)\hsm\getcredentials.cs" />
 		<Compile Include = "$(WebDirectory)\hsm\rest.cs" />
 		<Compile Include = "$(WebDirectory)\hsm\getpubkey.cs" />
 		<Compile Include = "$(WebDirectory)\hsm\decrypt.cs" />

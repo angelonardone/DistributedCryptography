@@ -57,7 +57,6 @@
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getkey.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getdefaultserverparameters.cs" />
-		<Compile Include = "$(WebDirectory)\nbitcoin\sha256.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\getnewesttimeconstrain.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getlogindistcrypt.cs" />
@@ -79,6 +78,7 @@
 		<Compile Include = "$(WebDirectory)\wallet\registered\sendgroupaccess.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\varchartojsonformat.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\registered\approverestoredate.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\splitseedonruby.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\cleanprivatekeys.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\signwithgroupskey.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setkey.cs" />
@@ -89,7 +89,6 @@
 		<Compile Include = "$(WebDirectory)\wallet\registered\tevactivatedatagroup.cs" />
 		<Compile Include = "$(WebDirectory)\openapicommon\processserver.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getserverbaseurl.cs" />
-		<Compile Include = "$(WebDirectory)\shamirss\createshares.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\walletfilepath.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\restgetchallenge.cs" />

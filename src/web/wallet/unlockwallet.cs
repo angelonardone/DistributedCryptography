@@ -182,37 +182,50 @@ namespace GeneXus.Programs.wallet {
                      new GeneXus.Programs.distributedcrypto.argon2encryption(context ).execute(  20,  AV27password,  AV29wallet.gxTpr_Encryptedsecret, out  AV9clearText, ref  GXt_char6) ;
                      AV13error = GXt_char6;
                      AV14extendeSecretAndAuthenticator.FromJSonString(AV9clearText, null);
+                     AV9clearText = "";
                      if ( StringUtil.StrCmp(AV14extendeSecretAndAuthenticator.gxTpr_Networktype, "MainNet") == 0 )
                      {
-                        AV26kpBIP86 = "m/86'/0'/0'";
                         AV25kpBIP48 = "m/48'/0'/0'/1'";
                      }
                      else if ( StringUtil.StrCmp(AV14extendeSecretAndAuthenticator.gxTpr_Networktype, "TestNet") == 0 )
                      {
-                        AV26kpBIP86 = "m/86'/1'/0'";
                         AV25kpBIP48 = "m/48'/1'/0'/1'";
                      }
                      else
                      {
-                        AV26kpBIP86 = "m/86'/1'/0'";
                         AV25kpBIP48 = "m/48'/1'/0'/1'";
                      }
-                     AV16extKeyCreate.gxTpr_Extendedprivatekey = AV14extendeSecretAndAuthenticator.gxTpr_Extendedprivatekey;
-                     if ( StringUtil.StrCmp(AV29wallet.gxTpr_Wallettype, "BIP86") == 0 )
-                     {
-                        AV16extKeyCreate.gxTpr_Keypath = AV26kpBIP86;
-                     }
-                     else
-                     {
-                        AV16extKeyCreate.gxTpr_Keypath = "";
-                     }
-                     AV16extKeyCreate.gxTpr_Createextkeytype = 70;
+                     AV16extKeyCreate.gxTpr_Seed = AV14extendeSecretAndAuthenticator.gxTpr_Seed;
+                     GXt_char6 = "";
+                     new GeneXus.Programs.wallet.getaccountkeypath(context ).execute(  AV29wallet.gxTpr_Wallettype,  AV14extendeSecretAndAuthenticator.gxTpr_Networktype, out  GXt_char6) ;
+                     AV16extKeyCreate.gxTpr_Keypath = GXt_char6;
+                     AV16extKeyCreate.gxTpr_Createextkeytype = 50;
                      AV16extKeyCreate.gxTpr_Networktype = AV14extendeSecretAndAuthenticator.gxTpr_Networktype;
                      AV29wallet.gxTpr_Networktype = AV14extendeSecretAndAuthenticator.gxTpr_Networktype;
                      new GeneXus.Programs.wallet.setwallet(context ).execute(  AV29wallet) ;
-                     GXt_char6 = AV13error;
-                     new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV16extKeyCreate,  "", out  AV18extKeyInfo, out  GXt_char6) ;
-                     AV13error = GXt_char6;
+                     if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
+                     {
+                        if ( String.IsNullOrEmpty(StringUtil.RTrim( AV14extendeSecretAndAuthenticator.gxTpr_Seed)) )
+                        {
+                           AV13error = "This wallet file has no seed: it was created before 2026-11-19. Create it again from its words (Restore Wallet)";
+                        }
+                        else
+                        {
+                           GXt_char6 = AV13error;
+                           new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV16extKeyCreate,  "", out  AV18extKeyInfo, out  GXt_char6) ;
+                           AV13error = GXt_char6;
+                        }
+                     }
+                     else
+                     {
+                        /* Execute user subroutine: 'COULD NOT DECRYPT' */
+                        S111 ();
+                        if ( returnInSub )
+                        {
+                           cleanup();
+                           if (true) return;
+                        }
+                     }
                      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
                      {
                         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14extendeSecretAndAuthenticator.gxTpr_Authenticatorbase32)) )
@@ -221,10 +234,10 @@ namespace GeneXus.Programs.wallet {
                            if ( ! AV21isValid )
                            {
                               AV13error = "Error validating Authenticator";
-                              AV16extKeyCreate.gxTpr_Extendedprivatekey = "";
+                              AV16extKeyCreate.gxTpr_Seed = "";
                               AV18extKeyInfo.gxTpr_Privatekey = "";
                               AV9clearText = "";
-                              AV14extendeSecretAndAuthenticator.gxTpr_Extendedprivatekey = "";
+                              AV14extendeSecretAndAuthenticator.gxTpr_Seed = "";
                            }
                         }
                         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) || String.IsNullOrEmpty(StringUtil.RTrim( AV18extKeyInfo.gxTpr_Privatekey)) )
@@ -242,9 +255,9 @@ namespace GeneXus.Programs.wallet {
                            new GeneXus.Programs.wallet.setextkey(context ).execute(  AV18extKeyInfo) ;
                            if ( StringUtil.StrCmp(AV29wallet.gxTpr_Wallettype, "BIP86") == 0 )
                            {
-                              AV17extKeyCreateBIP48.gxTpr_Extendedprivatekey = AV14extendeSecretAndAuthenticator.gxTpr_Extendedprivatekey;
+                              AV17extKeyCreateBIP48.gxTpr_Seed = AV14extendeSecretAndAuthenticator.gxTpr_Seed;
                               AV17extKeyCreateBIP48.gxTpr_Keypath = AV25kpBIP48;
-                              AV17extKeyCreateBIP48.gxTpr_Createextkeytype = 70;
+                              AV17extKeyCreateBIP48.gxTpr_Createextkeytype = 50;
                               AV17extKeyCreateBIP48.gxTpr_Networktype = AV14extendeSecretAndAuthenticator.gxTpr_Networktype;
                               GXt_char6 = AV8auxError;
                               new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV17extKeyCreateBIP48,  "", out  AV19extKeyInfoBIP48, out  GXt_char6) ;
@@ -262,6 +275,17 @@ namespace GeneXus.Programs.wallet {
                                  AV19extKeyInfoBIP48.gxTpr_Extended.gxTpr_Privatekeytaproot = "";
                                  new GeneXus.Programs.wallet.setextkeybip48(context ).execute(  AV19extKeyInfoBIP48) ;
                               }
+                              AV17extKeyCreateBIP48.gxTpr_Keypath = "";
+                              AV19extKeyInfoBIP48 = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
+                              GXt_char6 = AV8auxError;
+                              new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV17extKeyCreateBIP48,  "", out  AV19extKeyInfoBIP48, out  GXt_char6) ;
+                              AV8auxError = GXt_char6;
+                              if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8auxError)) )
+                              {
+                                 new GeneXus.Programs.wallet.setmasterfingerprint(context ).execute(  AV19extKeyInfoBIP48.gxTpr_Extended.gxTpr_Fingerprint) ;
+                              }
+                              AV17extKeyCreateBIP48 = new GeneXus.Programs.nbitcoin.SdtExtKeyCreate(context);
+                              AV19extKeyInfoBIP48 = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
                            }
                            AV12emptyKeyInfo.gxTpr_Privatekey = "";
                            new GeneXus.Programs.wallet.setdefaultjasonkey(context ).execute(  AV12emptyKeyInfo) ;
@@ -351,7 +375,6 @@ namespace GeneXus.Programs.wallet {
          GXt_char4 = "";
          AV9clearText = "";
          AV14extendeSecretAndAuthenticator = new GeneXus.Programs.wallet.SdtExtendeSecretAndAuthenticator(context);
-         AV26kpBIP86 = "";
          AV25kpBIP48 = "";
          AV16extKeyCreate = new GeneXus.Programs.nbitcoin.SdtExtKeyCreate(context);
          AV28TwoFactorAuthenticator = new GeneXus.Programs.googleauthenticator.SdtTwoFactorAuthenticator(context);
@@ -368,7 +391,6 @@ namespace GeneXus.Programs.wallet {
       private string AV27password ;
       private string AV10code ;
       private string GXt_char4 ;
-      private string AV26kpBIP86 ;
       private string AV25kpBIP48 ;
       private string AV8auxError ;
       private string GXt_char6 ;

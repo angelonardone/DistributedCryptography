@@ -40,18 +40,20 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
-		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccenctrypt.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getextkey.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\savejsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcryptographylib\encryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getwallet.cs" />
+		<Compile Include = "$(WebDirectory)\hsm\savehsmsettings.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\walletfilepath.cs" />
-		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\readjsonencfile.cs" />
 		<Compile Include = "$(WebDirectory)\hsm\hsmconfig.cs" />
+		<Compile Include = "$(WebDirectory)\hsm\gethsmsettings.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\walletfilepath.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\decryptjson.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getdfaultjasonkey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\setlastjasonencritpedkey.cs" />
+		<Compile Include = "$(WebDirectory)\hsm\regeneratehsmapikey.cs" />
 
 	</ItemGroup>
 

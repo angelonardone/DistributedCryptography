@@ -76,16 +76,16 @@ namespace GeneXus.Programs.wallet.registered {
          AV10group_sdt = GXt_SdtGroup_SDT1;
          new GeneXus.Programs.wallet.registered.readmusig2rooms(context ).execute(  AV10group_sdt.gxTpr_Othergroup.gxTpr_Referencegroupid, out  AV18rooms) ;
          AV9found = false;
-         AV29GXV1 = 1;
-         while ( AV29GXV1 <= AV18rooms.Count )
+         AV33GXV1 = 1;
+         while ( AV33GXV1 <= AV18rooms.Count )
          {
-            AV16room = ((GeneXus.Programs.wallet.registered.SdtMuSig2Room)AV18rooms.Item(AV29GXV1));
+            AV16room = ((GeneXus.Programs.wallet.registered.SdtMuSig2Room)AV18rooms.Item(AV33GXV1));
             if ( AV16room.gxTpr_Roomid == AV17roomId )
             {
                AV9found = true;
                if (true) break;
             }
-            AV29GXV1 = (int)(AV29GXV1+1);
+            AV33GXV1 = (int)(AV33GXV1+1);
          }
          if ( ! AV9found || ! ( StringUtil.StrCmp(AV16room.gxTpr_State, "signing") == 0 ) )
          {
@@ -106,23 +106,38 @@ namespace GeneXus.Programs.wallet.registered {
          }
          AV25prevTxs = "{";
          AV26sessionData.FromJSonString(AV16room.gxTpr_Sessionjson, null);
-         AV30GXV2 = 1;
-         while ( AV30GXV2 <= AV26sessionData.gxTpr_Inputs.Count )
+         AV34GXV2 = 1;
+         while ( AV34GXV2 <= AV26sessionData.gxTpr_Inputs.Count )
          {
-            AV27sessionInput = ((GeneXus.Programs.wallet.registered.SdtMuSig2SessionData_InputsItem)AV26sessionData.gxTpr_Inputs.Item(AV30GXV2));
+            AV27sessionInput = ((GeneXus.Programs.wallet.registered.SdtMuSig2SessionData_InputsItem)AV26sessionData.gxTpr_Inputs.Item(AV34GXV2));
             if ( StringUtil.StringSearch( AV25prevTxs, "\""+StringUtil.Trim( AV27sessionInput.gxTpr_Txid)+"\"", 1) == 0 )
             {
-               GXt_char3 = AV21electrumError;
-               new GeneXus.Programs.electrum.get_transaction(context ).execute(  StringUtil.Trim( AV27sessionInput.gxTpr_Txid),  20, out  AV24messageResponse, out  GXt_char3) ;
-               AV21electrumError = GXt_char3;
-               AV22electrumTx.FromJSonString(AV24messageResponse, null);
+               AV32tries = 0;
+               AV22electrumTx = new GeneXus.Programs.electrum.SdtelectrumRespGetTransactionId(context);
+               while ( ( AV32tries < 3 ) && String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV22electrumTx.gxTpr_Result.gxTpr_Hex))) )
+               {
+                  if ( AV32tries > 0 )
+                  {
+                     GXt_char3 = AV30disconnectError;
+                     new GeneXus.Programs.electrum.disconnect(context ).execute( out  GXt_char3) ;
+                     AV30disconnectError = GXt_char3;
+                     AV31electrumConnection = new GeneXus.Programs.electrum.SdtConnection(context);
+                     new GeneXus.Programs.electrum.setelectrumconnid(context ).execute(  AV31electrumConnection) ;
+                  }
+                  AV32tries = (short)(AV32tries+1);
+                  GXt_char3 = AV21electrumError;
+                  new GeneXus.Programs.electrum.get_transaction(context ).execute(  StringUtil.Trim( AV27sessionInput.gxTpr_Txid),  20, out  AV24messageResponse, out  GXt_char3) ;
+                  AV21electrumError = GXt_char3;
+                  AV22electrumTx = new GeneXus.Programs.electrum.SdtelectrumRespGetTransactionId(context);
+                  AV22electrumTx.FromJSonString(AV24messageResponse, null);
+               }
                if ( ! ( StringUtil.StrCmp(AV25prevTxs, "{") == 0 ) )
                {
                   AV25prevTxs += ",";
                }
                AV25prevTxs += "\"" + StringUtil.Trim( AV27sessionInput.gxTpr_Txid) + "\":\"" + StringUtil.Trim( AV22electrumTx.gxTpr_Result.gxTpr_Hex) + "\"";
             }
-            AV30GXV2 = (int)(AV30GXV2+1);
+            AV34GXV2 = (int)(AV34GXV2+1);
          }
          AV25prevTxs += "}";
          AV13jsonText = AV14muSig2Processor.verifycoins(AV16room.gxTpr_Sessionjson, AV25prevTxs, AV20walletInfo.gxTpr_Networktype);
@@ -134,13 +149,31 @@ namespace GeneXus.Programs.wallet.registered {
             cleanup();
             if (true) return;
          }
-         AV13jsonText = AV14muSig2Processor.createnonces(AV16room.gxTpr_Sessionjson, StringUtil.Trim( AV10group_sdt.gxTpr_Extpubkeymultisigreceiving), StringUtil.Trim( AV10group_sdt.gxTpr_Extpubkeymultisigchange), AV20walletInfo.gxTpr_Networktype);
-         AV19roundResult.FromJSonString(AV13jsonText, null);
-         if ( ! AV19roundResult.gxTpr_Success )
+         if ( StringUtil.StrCmp(AV20walletInfo.gxTpr_Keystorage, "Ruby") == 0 )
          {
-            AV8error = AV19roundResult.gxTpr_Error;
-            cleanup();
-            if (true) return;
+            GXt_SdtWallet4 = AV29wallet;
+            new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet4) ;
+            AV29wallet = GXt_SdtWallet4;
+            AV13jsonText = AV14muSig2Processor.createnonceswithruby(AV16room.gxTpr_Sessionjson, StringUtil.Trim( AV29wallet.gxTpr_Rubydevice), StringUtil.Trim( AV10group_sdt.gxTpr_Extpubkeymultisigreceiving), StringUtil.Trim( AV10group_sdt.gxTpr_Extpubkeymultisigchange), AV20walletInfo.gxTpr_Networktype);
+            AV19roundResult.FromJSonString(AV13jsonText, null);
+            if ( ! AV19roundResult.gxTpr_Success )
+            {
+               AV8error = "Ruby could not join the signing: " + AV19roundResult.gxTpr_Error;
+               new GeneXus.Programs.wallet.registered.sendmusig2roommessage(context ).execute(  AV12groupId,  AV17roomId,  "abort",  AV8error, out  AV23errorAbort) ;
+               cleanup();
+               if (true) return;
+            }
+         }
+         else
+         {
+            AV13jsonText = AV14muSig2Processor.createnonces(AV16room.gxTpr_Sessionjson, StringUtil.Trim( AV10group_sdt.gxTpr_Extpubkeymultisigreceiving), StringUtil.Trim( AV10group_sdt.gxTpr_Extpubkeymultisigchange), AV20walletInfo.gxTpr_Networktype);
+            AV19roundResult.FromJSonString(AV13jsonText, null);
+            if ( ! AV19roundResult.gxTpr_Success )
+            {
+               AV8error = AV19roundResult.gxTpr_Error;
+               cleanup();
+               if (true) return;
+            }
          }
          GXt_char3 = AV8error;
          new GeneXus.Programs.wallet.registered.sendmusig2roommessage(context ).execute(  AV12groupId,  AV17roomId,  "nonces",  AV19roundResult.gxTpr_Publicnonces, out  GXt_char3) ;
@@ -172,20 +205,26 @@ namespace GeneXus.Programs.wallet.registered {
          AV25prevTxs = "";
          AV26sessionData = new GeneXus.Programs.wallet.registered.SdtMuSig2SessionData(context);
          AV27sessionInput = new GeneXus.Programs.wallet.registered.SdtMuSig2SessionData_InputsItem(context);
+         AV22electrumTx = new GeneXus.Programs.electrum.SdtelectrumRespGetTransactionId(context);
+         AV30disconnectError = "";
+         AV31electrumConnection = new GeneXus.Programs.electrum.SdtConnection(context);
          AV21electrumError = "";
          AV24messageResponse = "";
-         AV22electrumTx = new GeneXus.Programs.electrum.SdtelectrumRespGetTransactionId(context);
          AV13jsonText = "";
          AV28verify = new GeneXus.Programs.wallet.registered.SdtMuSig2VsizeResult(context);
          AV23errorAbort = "";
+         AV29wallet = new GeneXus.Programs.wallet.SdtWallet(context);
+         GXt_SdtWallet4 = new GeneXus.Programs.wallet.SdtWallet(context);
          AV19roundResult = new GeneXus.Programs.wallet.registered.SdtMuSig2RoundResult(context);
          GXt_char3 = "";
          /* GeneXus formulas. */
       }
 
-      private int AV29GXV1 ;
-      private int AV30GXV2 ;
+      private short AV32tries ;
+      private int AV33GXV1 ;
+      private int AV34GXV2 ;
       private string AV8error ;
+      private string AV30disconnectError ;
       private string AV21electrumError ;
       private string AV23errorAbort ;
       private string GXt_char3 ;
@@ -207,7 +246,10 @@ namespace GeneXus.Programs.wallet.registered {
       private GeneXus.Programs.wallet.registered.SdtMuSig2SessionData AV26sessionData ;
       private GeneXus.Programs.wallet.registered.SdtMuSig2SessionData_InputsItem AV27sessionInput ;
       private GeneXus.Programs.electrum.SdtelectrumRespGetTransactionId AV22electrumTx ;
+      private GeneXus.Programs.electrum.SdtConnection AV31electrumConnection ;
       private GeneXus.Programs.wallet.registered.SdtMuSig2VsizeResult AV28verify ;
+      private GeneXus.Programs.wallet.SdtWallet AV29wallet ;
+      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet4 ;
       private GeneXus.Programs.wallet.registered.SdtMuSig2RoundResult AV19roundResult ;
       private string aP2_error ;
    }

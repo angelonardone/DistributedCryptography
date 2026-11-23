@@ -159,6 +159,7 @@ namespace GeneXus.Programs.nbitcoin {
                 seed = NBitcoin.DataEncoders.Encoders.Hex.DecodeData(tempSeed);
                /* User Code */
                 privateExtKey = NBitcoin.ExtKey.CreateFromSeed(seed);
+               AV12keyInfo.gxTpr_Seed = StringUtil.Lower( StringUtil.Trim( AV17seed));
                if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13keyPath)) )
                {
                   /* User Code */
@@ -283,13 +284,21 @@ namespace GeneXus.Programs.nbitcoin {
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV16password)) )
                {
                   /* User Code */
-                   privateExtKey = mnemo.DeriveExtKey();
+                   seed = mnemo.DeriveSeed();
                }
                else
                {
                   /* User Code */
-                   privateExtKey = mnemo.DeriveExtKey(password);
+                   seed = mnemo.DeriveSeed(password);
                }
+               /* User Code */
+                privateExtKey = NBitcoin.ExtKey.CreateFromSeed(seed);
+               /* User Code */
+                AV17seed = NBitcoin.DataEncoders.Encoders.Hex.EncodeData(seed);
+               /* User Code */
+                System.Array.Clear(seed, 0, seed.Length);
+               AV12keyInfo.gxTpr_Seed = AV17seed;
+               AV17seed = "";
                if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13keyPath)) )
                {
                   /* User Code */

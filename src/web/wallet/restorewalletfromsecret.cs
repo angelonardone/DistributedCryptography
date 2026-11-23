@@ -270,7 +270,7 @@ namespace GeneXus.Programs.wallet {
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
             {
                AV12extendeSecretAndAuthenticator.gxTpr_Networktype = AV19networkType;
-               AV12extendeSecretAndAuthenticator.gxTpr_Extendedprivatekey = StringUtil.Trim( AV14extKeyInfo.gxTpr_Extended.gxTpr_Privatekey);
+               AV12extendeSecretAndAuthenticator.gxTpr_Seed = AV14extKeyInfo.gxTpr_Seed;
                AV12extendeSecretAndAuthenticator.gxTpr_Authenticatorbase32 = StringUtil.Trim( AV8authenticatorBase32);
                AV23wallet.gxTpr_Walletname = AV24walletName;
                AV23wallet.gxTpr_Networktype = AV19networkType;

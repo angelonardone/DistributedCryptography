@@ -78,7 +78,10 @@ namespace GeneXus.Programs.hsm {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV12message = AV10HsmManager.decrypt(AV8encryptedMessage, AV11index);
+         GXt_char1 = AV14credentials;
+         new GeneXus.Programs.hsm.getcredentials(context ).execute( out  GXt_char1) ;
+         AV14credentials = GXt_char1;
+         AV12message = AV10HsmManager.decrypt(AV14credentials, AV8encryptedMessage, AV11index);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV12message)) )
          {
             AV9error = AV10HsmManager.getlasterror();
@@ -100,12 +103,16 @@ namespace GeneXus.Programs.hsm {
       {
          AV12message = "";
          AV9error = "";
+         AV14credentials = "";
+         GXt_char1 = "";
          AV10HsmManager = new GeneXus.Programs.hsm.SdtHsmManager(context);
          /* GeneXus formulas. */
       }
 
       private short AV11index ;
       private string AV9error ;
+      private string AV14credentials ;
+      private string GXt_char1 ;
       private string AV8encryptedMessage ;
       private string AV12message ;
       private GeneXus.Programs.hsm.SdtHsmManager AV10HsmManager ;

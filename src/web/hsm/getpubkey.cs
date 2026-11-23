@@ -73,7 +73,10 @@ namespace GeneXus.Programs.hsm {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV9pubKey = AV10HsmManager.getpublickey(AV8index);
+         GXt_char1 = AV12credentials;
+         new GeneXus.Programs.hsm.getcredentials(context ).execute( out  GXt_char1) ;
+         AV12credentials = GXt_char1;
+         AV9pubKey = AV10HsmManager.getpublickey(AV12credentials, AV8index);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9pubKey)) )
          {
             AV11error = AV10HsmManager.getlasterror();
@@ -95,6 +98,8 @@ namespace GeneXus.Programs.hsm {
       {
          AV9pubKey = "";
          AV11error = "";
+         AV12credentials = "";
+         GXt_char1 = "";
          AV10HsmManager = new GeneXus.Programs.hsm.SdtHsmManager(context);
          /* GeneXus formulas. */
       }
@@ -102,6 +107,8 @@ namespace GeneXus.Programs.hsm {
       private short AV8index ;
       private string AV9pubKey ;
       private string AV11error ;
+      private string AV12credentials ;
+      private string GXt_char1 ;
       private GeneXus.Programs.hsm.SdtHsmManager AV10HsmManager ;
       private string aP1_pubKey ;
       private string aP2_error ;

@@ -191,7 +191,7 @@ namespace GeneXus.Programs.wallet {
                   AV22wallet.gxTpr_Networktype = AV17networkType;
                   AV22wallet.gxTpr_Wallettype = "BIP86";
                   AV12extendeSecretAndAuthenticator.gxTpr_Networktype = AV17networkType;
-                  AV12extendeSecretAndAuthenticator.gxTpr_Extendedprivatekey = StringUtil.Trim( AV14extKeyInfo.gxTpr_Extended.gxTpr_Privatekey);
+                  AV12extendeSecretAndAuthenticator.gxTpr_Seed = AV14extKeyInfo.gxTpr_Seed;
                   AV12extendeSecretAndAuthenticator.gxTpr_Authenticatorbase32 = StringUtil.Trim( AV8authenticatorBase32);
                   AV22wallet.gxTpr_Useauthenticator = (bool)(!String.IsNullOrEmpty(StringUtil.RTrim( AV8authenticatorBase32)));
                   GXt_char1 = AV11error;

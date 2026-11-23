@@ -40,36 +40,41 @@ namespace GeneXus.Programs.wallet.registered {
       public void execute( Guid aP0_groupId ,
                            string aP1_secret1 ,
                            string aP2_encryptedSecret2 ,
-                           out string aP3_error )
+                           GeneXus.Programs.wallet.SdtRubySeedSplit aP3_rubySeedSplit ,
+                           out string aP4_error )
       {
          this.AV18groupId = aP0_groupId;
          this.AV23secret1 = aP1_secret1;
          this.AV12encryptedSecret2 = aP2_encryptedSecret2;
+         this.AV28rubySeedSplit = aP3_rubySeedSplit;
          this.AV13error = "" ;
          initialize();
          ExecuteImpl();
-         aP3_error=this.AV13error;
+         aP4_error=this.AV13error;
       }
 
       public string executeUdp( Guid aP0_groupId ,
                                 string aP1_secret1 ,
-                                string aP2_encryptedSecret2 )
+                                string aP2_encryptedSecret2 ,
+                                GeneXus.Programs.wallet.SdtRubySeedSplit aP3_rubySeedSplit )
       {
-         execute(aP0_groupId, aP1_secret1, aP2_encryptedSecret2, out aP3_error);
+         execute(aP0_groupId, aP1_secret1, aP2_encryptedSecret2, aP3_rubySeedSplit, out aP4_error);
          return AV13error ;
       }
 
       public void executeSubmit( Guid aP0_groupId ,
                                  string aP1_secret1 ,
                                  string aP2_encryptedSecret2 ,
-                                 out string aP3_error )
+                                 GeneXus.Programs.wallet.SdtRubySeedSplit aP3_rubySeedSplit ,
+                                 out string aP4_error )
       {
          this.AV18groupId = aP0_groupId;
          this.AV23secret1 = aP1_secret1;
          this.AV12encryptedSecret2 = aP2_encryptedSecret2;
+         this.AV28rubySeedSplit = aP3_rubySeedSplit;
          this.AV13error = "" ;
          SubmitImpl();
-         aP3_error=this.AV13error;
+         aP4_error=this.AV13error;
       }
 
       protected override void ExecutePrivate( )
@@ -87,16 +92,16 @@ namespace GeneXus.Programs.wallet.registered {
          }
          AV20hasContactEmptyShares = false;
          AV10totalUserShares = 0;
-         AV26GXV1 = 1;
-         while ( AV26GXV1 <= AV15group_sdt.gxTpr_Contact.Count )
+         AV30GXV1 = 1;
+         while ( AV30GXV1 <= AV15group_sdt.gxTpr_Contact.Count )
          {
-            AV17groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV15group_sdt.gxTpr_Contact.Item(AV26GXV1));
+            AV17groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV15group_sdt.gxTpr_Contact.Item(AV30GXV1));
             AV10totalUserShares = (short)(AV10totalUserShares+(AV17groupContact.gxTpr_Numshares));
             if ( AV17groupContact.gxTpr_Numshares == 0 )
             {
                AV20hasContactEmptyShares = true;
             }
-            AV26GXV1 = (int)(AV26GXV1+1);
+            AV30GXV1 = (int)(AV30GXV1+1);
          }
          if ( AV20hasContactEmptyShares || ( AV10totalUserShares < AV15group_sdt.gxTpr_Minimumshares ) || ( AV15group_sdt.gxTpr_Minimumshares < 2 ) )
          {
@@ -104,40 +109,68 @@ namespace GeneXus.Programs.wallet.registered {
             cleanup();
             if (true) return;
          }
-         GXt_char2 = AV13error;
-         new GeneXus.Programs.shamirss.createshares(context ).execute(  AV23secret1,  AV10totalUserShares,  AV15group_sdt.gxTpr_Minimumshares, out  AV24shares, ref  GXt_char2) ;
-         AV13error = GXt_char2;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
+         if ( AV28rubySeedSplit.gxTpr_Success )
          {
-            cleanup();
-            if (true) return;
-         }
-         AV8assignShares = 1;
-         AV27GXV2 = 1;
-         while ( AV27GXV2 <= AV15group_sdt.gxTpr_Contact.Count )
-         {
-            AV17groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV15group_sdt.gxTpr_Contact.Item(AV27GXV2));
-            AV25userShares.Clear();
-            AV9i = 1;
-            while ( AV9i <= AV17groupContact.gxTpr_Numshares )
+            if ( ! ( AV28rubySeedSplit.gxTpr_Contacts.Count == AV15group_sdt.gxTpr_Contact.Count ) )
             {
-               AV25userShares.Add(((string)AV24shares.Item(AV8assignShares)), 0);
-               AV8assignShares = (short)(AV8assignShares+1);
-               AV9i = (short)(AV9i+1);
-            }
-            GXt_char2 = AV13error;
-            GXt_char3 = AV17groupContact.gxTpr_Contactencryptedkey;
-            GXt_char4 = AV17groupContact.gxTpr_Contactencryptedtext;
-            new GeneXus.Programs.distributedcryptographylib.encryptjsonto(context ).execute(  AV25userShares.ToJSonString(false),  StringUtil.Trim( AV17groupContact.gxTpr_Contactuserpubkey), out  GXt_char3, out  GXt_char4, out  GXt_char2) ;
-            AV17groupContact.gxTpr_Contactencryptedkey = GXt_char3;
-            AV17groupContact.gxTpr_Contactencryptedtext = GXt_char4;
-            AV13error = GXt_char2;
-            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
-            {
+               AV13error = "Ruby split the vault among another number of contacts";
                cleanup();
                if (true) return;
             }
-            AV27GXV2 = (int)(AV27GXV2+1);
+            AV8assignShares = 1;
+            AV31GXV2 = 1;
+            while ( AV31GXV2 <= AV15group_sdt.gxTpr_Contact.Count )
+            {
+               AV17groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV15group_sdt.gxTpr_Contact.Item(AV31GXV2));
+               AV29rubySeedSplitPart = ((GeneXus.Programs.wallet.SdtRubySeedSplit_contactsItem)AV28rubySeedSplit.gxTpr_Contacts.Item(AV8assignShares));
+               AV17groupContact.gxTpr_Contactencryptedkey = StringUtil.Trim( AV29rubySeedSplitPart.gxTpr_Encryptedkey);
+               AV17groupContact.gxTpr_Contactencryptedtext = StringUtil.Trim( AV29rubySeedSplitPart.gxTpr_Encryptedtext);
+               AV8assignShares = (short)(AV8assignShares+1);
+               AV31GXV2 = (int)(AV31GXV2+1);
+            }
+         }
+         else
+         {
+            AV27codex32Shares.FromJSonString(AV26codex32Processor.splitseed(StringUtil.Trim( AV23secret1), AV15group_sdt.gxTpr_Minimumshares, AV10totalUserShares), null);
+            if ( ! AV27codex32Shares.gxTpr_Success )
+            {
+               AV13error = StringUtil.Trim( AV27codex32Shares.gxTpr_Error);
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
+               {
+                  AV13error = "We couldn't split the first part of the vault";
+               }
+               cleanup();
+               if (true) return;
+            }
+            AV24shares = (GxSimpleCollection<string>)(AV27codex32Shares.gxTpr_Shares.Clone());
+            AV27codex32Shares = new GeneXus.Programs.distributedcryptographylib.SdtCodex32Shares(context);
+            AV8assignShares = 1;
+            AV32GXV3 = 1;
+            while ( AV32GXV3 <= AV15group_sdt.gxTpr_Contact.Count )
+            {
+               AV17groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV15group_sdt.gxTpr_Contact.Item(AV32GXV3));
+               AV25userShares.Clear();
+               AV9i = 1;
+               while ( AV9i <= AV17groupContact.gxTpr_Numshares )
+               {
+                  AV25userShares.Add(((string)AV24shares.Item(AV8assignShares)), 0);
+                  AV8assignShares = (short)(AV8assignShares+1);
+                  AV9i = (short)(AV9i+1);
+               }
+               GXt_char2 = AV13error;
+               GXt_char3 = AV17groupContact.gxTpr_Contactencryptedkey;
+               GXt_char4 = AV17groupContact.gxTpr_Contactencryptedtext;
+               new GeneXus.Programs.distributedcryptographylib.encryptjsonto(context ).execute(  AV25userShares.ToJSonString(false),  StringUtil.Trim( AV17groupContact.gxTpr_Contactuserpubkey), out  GXt_char3, out  GXt_char4, out  GXt_char2) ;
+               AV17groupContact.gxTpr_Contactencryptedkey = GXt_char3;
+               AV17groupContact.gxTpr_Contactencryptedtext = GXt_char4;
+               AV13error = GXt_char2;
+               if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
+               {
+                  cleanup();
+                  if (true) return;
+               }
+               AV32GXV3 = (int)(AV32GXV3+1);
+            }
          }
          AV15group_sdt.gxTpr_Encryptedtextshare = AV12encryptedSecret2;
          GXt_SdtExternalUserPublic5 = AV14externalUserPublic;
@@ -165,10 +198,10 @@ namespace GeneXus.Programs.wallet.registered {
             if (true) return;
          }
          AV16group_sdt_temp.gxTpr_Othergroup.gxTpr_Signature = StringUtil.Trim( AV21message_signature.gxTpr_Signature);
-         AV28GXV3 = 1;
-         while ( AV28GXV3 <= AV15group_sdt.gxTpr_Contact.Count )
+         AV33GXV4 = 1;
+         while ( AV33GXV4 <= AV15group_sdt.gxTpr_Contact.Count )
          {
-            AV17groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV15group_sdt.gxTpr_Contact.Item(AV28GXV3));
+            AV17groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV15group_sdt.gxTpr_Contact.Item(AV33GXV4));
             if ( (DateTime.MinValue==AV17groupContact.gxTpr_Contactinvitationsent) )
             {
                AV17groupContact.gxTpr_Contactinvitationsent = DateTimeUtil.Now( context);
@@ -195,7 +228,7 @@ namespace GeneXus.Programs.wallet.registered {
                   if (true) return;
                }
             }
-            AV28GXV3 = (int)(AV28GXV3+1);
+            AV33GXV4 = (int)(AV33GXV4+1);
          }
          AV15group_sdt.gxTpr_Isactive = true;
          GXt_char4 = AV13error;
@@ -226,6 +259,9 @@ namespace GeneXus.Programs.wallet.registered {
          AV15group_sdt = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
          GXt_SdtGroup_SDT1 = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
          AV17groupContact = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem(context);
+         AV29rubySeedSplitPart = new GeneXus.Programs.wallet.SdtRubySeedSplit_contactsItem(context);
+         AV27codex32Shares = new GeneXus.Programs.distributedcryptographylib.SdtCodex32Shares(context);
+         AV26codex32Processor = new GeneXus.Programs.distributedcryptographylib.SdtCodex32Processor(context);
          AV24shares = new GxSimpleCollection<string>();
          AV25userShares = new GxSimpleCollection<string>();
          GXt_char2 = "";
@@ -244,9 +280,10 @@ namespace GeneXus.Programs.wallet.registered {
       private short AV10totalUserShares ;
       private short AV8assignShares ;
       private short AV9i ;
-      private int AV26GXV1 ;
-      private int AV27GXV2 ;
-      private int AV28GXV3 ;
+      private int AV30GXV1 ;
+      private int AV31GXV2 ;
+      private int AV32GXV3 ;
+      private int AV33GXV4 ;
       private long GXt_int6 ;
       private string AV13error ;
       private string GXt_char2 ;
@@ -257,9 +294,13 @@ namespace GeneXus.Programs.wallet.registered {
       private string AV12encryptedSecret2 ;
       private Guid AV18groupId ;
       private Guid AV19grpupId ;
+      private GeneXus.Programs.wallet.SdtRubySeedSplit AV28rubySeedSplit ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV15group_sdt ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT GXt_SdtGroup_SDT1 ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV17groupContact ;
+      private GeneXus.Programs.wallet.SdtRubySeedSplit_contactsItem AV29rubySeedSplitPart ;
+      private GeneXus.Programs.distributedcryptographylib.SdtCodex32Shares AV27codex32Shares ;
+      private GeneXus.Programs.distributedcryptographylib.SdtCodex32Processor AV26codex32Processor ;
       private GxSimpleCollection<string> AV24shares ;
       private GxSimpleCollection<string> AV25userShares ;
       private GeneXus.Programs.distcrypt.SdtExternalUserPublic AV14externalUserPublic ;
@@ -268,7 +309,7 @@ namespace GeneXus.Programs.wallet.registered {
       private GeneXus.Programs.wallet.registered.SdtMessage_signature AV21message_signature ;
       private GeneXus.Programs.nostr.SdtSDT_message AV22sdt_message ;
       private GeneXus.Programs.wallet.registered.SdtContact_SDT AV11contact ;
-      private string aP3_error ;
+      private string aP4_error ;
    }
 
 }

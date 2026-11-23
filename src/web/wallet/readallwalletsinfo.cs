@@ -76,6 +76,8 @@ namespace GeneXus.Programs.wallet {
             AV9walletInfo.gxTpr_Networktype = AV8wallet.gxTpr_Networktype;
             AV9walletInfo.gxTpr_Walletreadbalanceonstart = AV8wallet.gxTpr_Walletreadbalanceonstart;
             AV9walletInfo.gxTpr_Keystorage = AV8wallet.gxTpr_Keystorage;
+            AV9walletInfo.gxTpr_Hotwalletof = AV8wallet.gxTpr_Hotwalletof;
+            AV9walletInfo.gxTpr_Hotwalletnumber = AV8wallet.gxTpr_Hotwalletnumber;
             AV10walletList.Add(AV9walletInfo, 0);
             AV12GXV1 = (int)(AV12GXV1+1);
          }

@@ -32,13 +32,13 @@ namespace GeneXus.Programs.wallet
 		public SdtExtendeSecretAndAuthenticator( )
 		{
 			/* Constructor for serialization */
-			gxTv_SdtExtendeSecretAndAuthenticator_Extendedprivatekey = "";
-
 			gxTv_SdtExtendeSecretAndAuthenticator_Authenticatorbase32 = "";
 
 			gxTv_SdtExtendeSecretAndAuthenticator_Networktype = "";
 
 			gxTv_SdtExtendeSecretAndAuthenticator_Oraclekey = "";
+
+			gxTv_SdtExtendeSecretAndAuthenticator_Seed = "";
 
 		}
 
@@ -67,9 +67,6 @@ namespace GeneXus.Programs.wallet
 
 		public override void ToJSON(bool includeState)
 		{
-			AddObjectProperty("ExtendedPrivateKey", gxTpr_Extendedprivatekey, false);
-
-
 			AddObjectProperty("AuthenticatorBase32", gxTpr_Authenticatorbase32, false);
 
 
@@ -78,27 +75,14 @@ namespace GeneXus.Programs.wallet
 
 			AddObjectProperty("OracleKey", gxTpr_Oraclekey, false);
 
+
+			AddObjectProperty("Seed", gxTpr_Seed, false);
+
 			return;
 		}
 		#endregion
 
 		#region Properties
-
-		[SoapElement(ElementName="ExtendedPrivateKey")]
-		[XmlElement(ElementName="ExtendedPrivateKey")]
-		public string gxTpr_Extendedprivatekey
-		{
-			get {
-				return gxTv_SdtExtendeSecretAndAuthenticator_Extendedprivatekey; 
-			}
-			set {
-				gxTv_SdtExtendeSecretAndAuthenticator_Extendedprivatekey = value;
-				SetDirty("Extendedprivatekey");
-			}
-		}
-
-
-
 
 		[SoapElement(ElementName="AuthenticatorBase32")]
 		[XmlElement(ElementName="AuthenticatorBase32")]
@@ -147,6 +131,22 @@ namespace GeneXus.Programs.wallet
 
 
 
+
+		[SoapElement(ElementName="Seed")]
+		[XmlElement(ElementName="Seed")]
+		public string gxTpr_Seed
+		{
+			get {
+				return gxTv_SdtExtendeSecretAndAuthenticator_Seed; 
+			}
+			set {
+				gxTv_SdtExtendeSecretAndAuthenticator_Seed = value;
+				SetDirty("Seed");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -168,10 +168,10 @@ namespace GeneXus.Programs.wallet
 
 		public void initialize( )
 		{
-			gxTv_SdtExtendeSecretAndAuthenticator_Extendedprivatekey = "";
 			gxTv_SdtExtendeSecretAndAuthenticator_Authenticatorbase32 = "";
 			gxTv_SdtExtendeSecretAndAuthenticator_Networktype = "";
 			gxTv_SdtExtendeSecretAndAuthenticator_Oraclekey = "";
+			gxTv_SdtExtendeSecretAndAuthenticator_Seed = "";
 			return  ;
 		}
 
@@ -181,9 +181,6 @@ namespace GeneXus.Programs.wallet
 
 		#region Declaration
 
-		protected string gxTv_SdtExtendeSecretAndAuthenticator_Extendedprivatekey;
-		 
-
 		protected string gxTv_SdtExtendeSecretAndAuthenticator_Authenticatorbase32;
 		 
 
@@ -191,6 +188,9 @@ namespace GeneXus.Programs.wallet
 		 
 
 		protected string gxTv_SdtExtendeSecretAndAuthenticator_Oraclekey;
+		 
+
+		protected string gxTv_SdtExtendeSecretAndAuthenticator_Seed;
 		 
 
 
@@ -210,23 +210,9 @@ namespace GeneXus.Programs.wallet
 		}
 
 		#region Rest Properties
-		[JsonPropertyName("ExtendedPrivateKey")]
-		[JsonPropertyOrder(0)]
-		[DataMember(Name="ExtendedPrivateKey", Order=0)]
-		public  string gxTpr_Extendedprivatekey
-		{
-			get { 
-				return StringUtil.RTrim( sdt.gxTpr_Extendedprivatekey);
-
-			}
-			set { 
-				 sdt.gxTpr_Extendedprivatekey = value;
-			}
-		}
-
 		[JsonPropertyName("AuthenticatorBase32")]
-		[JsonPropertyOrder(1)]
-		[DataMember(Name="AuthenticatorBase32", Order=1)]
+		[JsonPropertyOrder(0)]
+		[DataMember(Name="AuthenticatorBase32", Order=0)]
 		public  string gxTpr_Authenticatorbase32
 		{
 			get { 
@@ -239,8 +225,8 @@ namespace GeneXus.Programs.wallet
 		}
 
 		[JsonPropertyName("NetworkType")]
-		[JsonPropertyOrder(2)]
-		[DataMember(Name="NetworkType", Order=2)]
+		[JsonPropertyOrder(1)]
+		[DataMember(Name="NetworkType", Order=1)]
 		public  string gxTpr_Networktype
 		{
 			get { 
@@ -253,8 +239,8 @@ namespace GeneXus.Programs.wallet
 		}
 
 		[JsonPropertyName("OracleKey")]
-		[JsonPropertyOrder(3)]
-		[DataMember(Name="OracleKey", Order=3)]
+		[JsonPropertyOrder(2)]
+		[DataMember(Name="OracleKey", Order=2)]
 		public  string gxTpr_Oraclekey
 		{
 			get { 
@@ -263,6 +249,20 @@ namespace GeneXus.Programs.wallet
 			}
 			set { 
 				 sdt.gxTpr_Oraclekey = value;
+			}
+		}
+
+		[JsonPropertyName("Seed")]
+		[JsonPropertyOrder(3)]
+		[DataMember(Name="Seed", Order=3)]
+		public  string gxTpr_Seed
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Seed);
+
+			}
+			set { 
+				 sdt.gxTpr_Seed = value;
 			}
 		}
 

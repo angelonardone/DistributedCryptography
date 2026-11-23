@@ -113,6 +113,23 @@ namespace GeneXus.Programs.distributedcryptographylib {
          return returnsignlegacyspend ;
       }
 
+      public string signlegacyspendwithruby( string gxTp_bundleJson ,
+                                             string gxTp_device ,
+                                             string gxTp_receivingExtPubKey ,
+                                             string gxTp_changeExtPubKey ,
+                                             int gxTp_finalPercent ,
+                                             string gxTp_networkType )
+      {
+         string returnsignlegacyspendwithruby;
+         if ( DistributedCryptographyLib_GroupProcessor_externalReference == null )
+         {
+            DistributedCryptographyLib_GroupProcessor_externalReference = new DistricutedCryptographyLib.GroupProcessor();
+         }
+         returnsignlegacyspendwithruby = "";
+         returnsignlegacyspendwithruby = (string)(DistributedCryptographyLib_GroupProcessor_externalReference.SignLegacySpendWithRuby(gxTp_bundleJson, gxTp_device, gxTp_receivingExtPubKey, gxTp_changeExtPubKey, gxTp_finalPercent, gxTp_networkType));
+         return returnsignlegacyspendwithruby ;
+      }
+
       public string finalizelegacyspend( string gxTp_bundleJson ,
                                          int gxTp_percent ,
                                          string gxTp_networkType )

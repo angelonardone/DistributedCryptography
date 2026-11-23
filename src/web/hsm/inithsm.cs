@@ -81,17 +81,19 @@ namespace GeneXus.Programs.hsm {
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV18error)) )
             {
                AV55HsmManager.clear();
-               AV56initOk = AV55HsmManager.initialize(AV22extKeyInfo.gxTpr_Extended.gxTpr_Privatekeytaproot, AV59wallet.gxTpr_Networktype);
+               AV56initOk = AV55HsmManager.initialize(AV22extKeyInfo.gxTpr_Extended.gxTpr_Privatekeytaproot, AV59wallet.gxTpr_Networktype, AV58HSMconfigSDT.gxTpr_Apikey, AV58HSMconfigSDT.gxTpr_Requirehmac);
                if ( ! AV56initOk )
                {
-                  AV18error = "There is a problem initializing the HSM moduel";
+                  AV18error = "There is a problem initializing the HSM module: " + AV55HsmManager.getlasterror();
                }
             }
             else
             {
                GX_msglist.addItem("Error creating HSM Extended Key: "+AV18error);
             }
+            AV22extKeyInfo = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
          }
+         AV58HSMconfigSDT = new GeneXus.Programs.hsm.SdtHSMconfigSDT(context);
          cleanup();
       }
 

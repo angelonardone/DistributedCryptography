@@ -128,6 +128,75 @@ namespace GeneXus.Programs.distributedcryptographylib {
          return returnownerspend ;
       }
 
+      public string ownerspendwithruby( string gxTp_utxosJson ,
+                                        string gxTp_sendTo ,
+                                        string gxTp_amountBtc ,
+                                        string gxTp_changeAddr ,
+                                        string gxTp_feeBtc ,
+                                        bool gxTp_sendAll ,
+                                        string gxTp_device ,
+                                        string gxTp_receivingExtPubKey ,
+                                        string gxTp_changeExtPubKey ,
+                                        string gxTp_networkType )
+      {
+         string returnownerspendwithruby;
+         if ( DistributedCryptographyLib_MuSig2Processor_externalReference == null )
+         {
+            DistributedCryptographyLib_MuSig2Processor_externalReference = new DistricutedCryptographyLib.MuSig2Processor();
+         }
+         returnownerspendwithruby = "";
+         returnownerspendwithruby = (string)(DistributedCryptographyLib_MuSig2Processor_externalReference.OwnerSpendWithRuby(gxTp_utxosJson, gxTp_sendTo, gxTp_amountBtc, gxTp_changeAddr, gxTp_feeBtc, gxTp_sendAll, gxTp_device, gxTp_receivingExtPubKey, gxTp_changeExtPubKey, gxTp_networkType));
+         return returnownerspendwithruby ;
+      }
+
+      public string createnonceswithruby( string gxTp_sessionJson ,
+                                          string gxTp_device ,
+                                          string gxTp_myReceivingExtPubKey ,
+                                          string gxTp_myChangeExtPubKey ,
+                                          string gxTp_networkType )
+      {
+         string returncreatenonceswithruby;
+         if ( DistributedCryptographyLib_MuSig2Processor_externalReference == null )
+         {
+            DistributedCryptographyLib_MuSig2Processor_externalReference = new DistricutedCryptographyLib.MuSig2Processor();
+         }
+         returncreatenonceswithruby = "";
+         returncreatenonceswithruby = (string)(DistributedCryptographyLib_MuSig2Processor_externalReference.CreateNoncesWithRuby(gxTp_sessionJson, gxTp_device, gxTp_myReceivingExtPubKey, gxTp_myChangeExtPubKey, gxTp_networkType));
+         return returncreatenonceswithruby ;
+      }
+
+      public string registergroupwithruby( string gxTp_device ,
+                                           string gxTp_myReceivingExtPubKey ,
+                                           string gxTp_myChangeExtPubKey ,
+                                           string gxTp_networkType )
+      {
+         string returnregistergroupwithruby;
+         if ( DistributedCryptographyLib_MuSig2Processor_externalReference == null )
+         {
+            DistributedCryptographyLib_MuSig2Processor_externalReference = new DistricutedCryptographyLib.MuSig2Processor();
+         }
+         returnregistergroupwithruby = "";
+         returnregistergroupwithruby = (string)(DistributedCryptographyLib_MuSig2Processor_externalReference.RegisterGroupWithRuby(gxTp_device, gxTp_myReceivingExtPubKey, gxTp_myChangeExtPubKey, gxTp_networkType));
+         return returnregistergroupwithruby ;
+      }
+
+      public string signwithruby( string gxTp_sessionJson ,
+                                  string gxTp_publicNoncesJson ,
+                                  string gxTp_device ,
+                                  string gxTp_myReceivingExtPubKey ,
+                                  string gxTp_myChangeExtPubKey ,
+                                  string gxTp_networkType )
+      {
+         string returnsignwithruby;
+         if ( DistributedCryptographyLib_MuSig2Processor_externalReference == null )
+         {
+            DistributedCryptographyLib_MuSig2Processor_externalReference = new DistricutedCryptographyLib.MuSig2Processor();
+         }
+         returnsignwithruby = "";
+         returnsignwithruby = (string)(DistributedCryptographyLib_MuSig2Processor_externalReference.SignWithRuby(gxTp_sessionJson, gxTp_publicNoncesJson, gxTp_device, gxTp_myReceivingExtPubKey, gxTp_myChangeExtPubKey, gxTp_networkType));
+         return returnsignwithruby ;
+      }
+
       public string buildsession( string gxTp_utxosJson ,
                                   string gxTp_sendTo ,
                                   string gxTp_amountBtc ,

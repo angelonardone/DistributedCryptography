@@ -147,17 +147,17 @@ namespace GeneXus.Programs.wallet.registered {
       {
          /* 'LOOK FOR OTHERS SHARES' Routine */
          returnInSub = false;
-         AV36GXV1 = 1;
-         while ( AV36GXV1 <= AV15group_sdt.gxTpr_Contact.Count )
+         AV38GXV1 = 1;
+         while ( AV38GXV1 <= AV15group_sdt.gxTpr_Contact.Count )
          {
-            AV19groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV15group_sdt.gxTpr_Contact.Item(AV36GXV1));
+            AV19groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV15group_sdt.gxTpr_Contact.Item(AV38GXV1));
             if ( StringUtil.StrCmp(StringUtil.Trim( AV19groupContact.gxTpr_Contactusername), StringUtil.Trim( AV14externalUserPublic.gxTpr_Userinfo.gxTpr_Username)) != 0 )
             {
                AV10contactFound = false;
-               AV37GXV2 = 1;
-               while ( AV37GXV2 <= AV16group_sdt_my.gxTpr_Contact.Count )
+               AV39GXV2 = 1;
+               while ( AV39GXV2 <= AV16group_sdt_my.gxTpr_Contact.Count )
                {
-                  AV20groupContactMy = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV16group_sdt_my.gxTpr_Contact.Item(AV37GXV2));
+                  AV20groupContactMy = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV16group_sdt_my.gxTpr_Contact.Item(AV39GXV2));
                   if ( StringUtil.StrCmp(AV20groupContactMy.gxTpr_Contactusername, AV19groupContact.gxTpr_Contactusername) == 0 )
                   {
                      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV20groupContactMy.gxTpr_Cleartextshare)) )
@@ -175,19 +175,19 @@ namespace GeneXus.Programs.wallet.registered {
                         {
                            AV33sharesToRecoverTemp.Clear();
                            AV33sharesToRecoverTemp.FromJSonString(AV20groupContactMy.gxTpr_Cleartextshare, null);
-                           AV38GXV3 = 1;
-                           while ( AV38GXV3 <= AV33sharesToRecoverTemp.Count )
+                           AV40GXV3 = 1;
+                           while ( AV40GXV3 <= AV33sharesToRecoverTemp.Count )
                            {
-                              AV26oneShare = ((string)AV33sharesToRecoverTemp.Item(AV38GXV3));
+                              AV26oneShare = ((string)AV33sharesToRecoverTemp.Item(AV40GXV3));
                               AV32sharesToRecover.Add(AV26oneShare, 0);
-                              AV38GXV3 = (int)(AV38GXV3+1);
+                              AV40GXV3 = (int)(AV40GXV3+1);
                            }
                         }
                         AV10contactFound = true;
                         if (true) break;
                      }
                   }
-                  AV37GXV2 = (int)(AV37GXV2+1);
+                  AV39GXV2 = (int)(AV39GXV2+1);
                }
                if ( ! AV10contactFound )
                {
@@ -200,12 +200,12 @@ namespace GeneXus.Programs.wallet.registered {
                      {
                         AV33sharesToRecoverTemp.Clear();
                         AV33sharesToRecoverTemp.FromJSonString(AV18group_sdt_temp.gxTpr_Cleartextshare, null);
-                        AV39GXV4 = 1;
-                        while ( AV39GXV4 <= AV33sharesToRecoverTemp.Count )
+                        AV41GXV4 = 1;
+                        while ( AV41GXV4 <= AV33sharesToRecoverTemp.Count )
                         {
-                           AV26oneShare = ((string)AV33sharesToRecoverTemp.Item(AV39GXV4));
+                           AV26oneShare = ((string)AV33sharesToRecoverTemp.Item(AV41GXV4));
                            AV32sharesToRecover.Add(AV26oneShare, 0);
-                           AV39GXV4 = (int)(AV39GXV4+1);
+                           AV41GXV4 = (int)(AV41GXV4+1);
                         }
                      }
                   }
@@ -215,7 +215,7 @@ namespace GeneXus.Programs.wallet.registered {
                   }
                }
             }
-            AV36GXV1 = (int)(AV36GXV1+1);
+            AV38GXV1 = (int)(AV38GXV1+1);
          }
       }
 
@@ -223,10 +223,10 @@ namespace GeneXus.Programs.wallet.registered {
       {
          /* 'UNENCRYPT MY SHARES AND COMBINE WITH OTHERS' Routine */
          returnInSub = false;
-         AV40GXV5 = 1;
-         while ( AV40GXV5 <= AV15group_sdt.gxTpr_Contact.Count )
+         AV42GXV5 = 1;
+         while ( AV42GXV5 <= AV15group_sdt.gxTpr_Contact.Count )
          {
-            AV19groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV15group_sdt.gxTpr_Contact.Item(AV40GXV5));
+            AV19groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV15group_sdt.gxTpr_Contact.Item(AV42GXV5));
             if ( StringUtil.StrCmp(StringUtil.Trim( AV19groupContact.gxTpr_Contactusername), StringUtil.Trim( AV14externalUserPublic.gxTpr_Userinfo.gxTpr_Username)) == 0 )
             {
                GXt_char3 = AV11error;
@@ -242,18 +242,22 @@ namespace GeneXus.Programs.wallet.registered {
                   if (returnInSub) return;
                   AV33sharesToRecoverTemp.Clear();
                   AV33sharesToRecoverTemp.FromJSonString(AV16group_sdt_my.gxTpr_Cleartextshare, null);
-                  AV41GXV6 = 1;
-                  while ( AV41GXV6 <= AV33sharesToRecoverTemp.Count )
+                  AV43GXV6 = 1;
+                  while ( AV43GXV6 <= AV33sharesToRecoverTemp.Count )
                   {
-                     AV26oneShare = ((string)AV33sharesToRecoverTemp.Item(AV41GXV6));
+                     AV26oneShare = ((string)AV33sharesToRecoverTemp.Item(AV43GXV6));
                      AV32sharesToRecover.Add(AV26oneShare, 0);
-                     AV41GXV6 = (int)(AV41GXV6+1);
+                     AV43GXV6 = (int)(AV43GXV6+1);
                   }
                   if ( ( AV15group_sdt.gxTpr_Minimumshares > 1 ) && ( AV32sharesToRecover.Count >= AV15group_sdt.gxTpr_Minimumshares ) )
                   {
-                     GXt_char3 = AV11error;
-                     new GeneXus.Programs.shamirss.combineshares(context ).execute(  AV32sharesToRecover, out  AV28recoveredSecret, out  GXt_char3) ;
-                     AV11error = GXt_char3;
+                     AV37codex32Seed.FromJSonString(AV36codex32Processor.combineseed(AV32sharesToRecover.ToJSonString(false)), null);
+                     AV28recoveredSecret = StringUtil.Trim( AV37codex32Seed.gxTpr_Seed);
+                     if ( ! AV37codex32Seed.gxTpr_Success )
+                     {
+                        AV11error = StringUtil.Trim( AV37codex32Seed.gxTpr_Error);
+                     }
+                     AV37codex32Seed = new GeneXus.Programs.distributedcryptographylib.SdtCodex32Seed(context);
                      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) && ! String.IsNullOrEmpty(StringUtil.RTrim( AV28recoveredSecret)) )
                      {
                         AV16group_sdt_my.gxTpr_Numofsharesreached = true;
@@ -263,7 +267,7 @@ namespace GeneXus.Programs.wallet.registered {
                   }
                }
             }
-            AV40GXV5 = (int)(AV40GXV5+1);
+            AV42GXV5 = (int)(AV42GXV5+1);
          }
       }
 
@@ -272,16 +276,16 @@ namespace GeneXus.Programs.wallet.registered {
          /* 'RECORD MY SIGNATURE' Routine */
          returnInSub = false;
          AV10contactFound = false;
-         AV42GXV7 = 1;
-         while ( AV42GXV7 <= AV16group_sdt_my.gxTpr_Contact.Count )
+         AV44GXV7 = 1;
+         while ( AV44GXV7 <= AV16group_sdt_my.gxTpr_Contact.Count )
          {
-            AV20groupContactMy = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV16group_sdt_my.gxTpr_Contact.Item(AV42GXV7));
+            AV20groupContactMy = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV16group_sdt_my.gxTpr_Contact.Item(AV44GXV7));
             if ( StringUtil.StrCmp(StringUtil.Trim( AV20groupContactMy.gxTpr_Contactusername), StringUtil.Trim( AV14externalUserPublic.gxTpr_Userinfo.gxTpr_Username)) == 0 )
             {
                AV20groupContactMy.gxTpr_Restoresigneddatetime = AV16group_sdt_my.gxTpr_Restoresigneddatetime;
                AV10contactFound = true;
             }
-            AV42GXV7 = (int)(AV42GXV7+1);
+            AV44GXV7 = (int)(AV44GXV7+1);
          }
          if ( ! AV10contactFound )
          {
@@ -314,10 +318,10 @@ namespace GeneXus.Programs.wallet.registered {
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
          {
             AV18group_sdt_temp.gxTpr_Othergroup.gxTpr_Signature = StringUtil.Trim( AV23message_signature.gxTpr_Signature);
-            AV43GXV8 = 1;
-            while ( AV43GXV8 <= AV15group_sdt.gxTpr_Contact.Count )
+            AV45GXV8 = 1;
+            while ( AV45GXV8 <= AV15group_sdt.gxTpr_Contact.Count )
             {
-               AV19groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV15group_sdt.gxTpr_Contact.Item(AV43GXV8));
+               AV19groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV15group_sdt.gxTpr_Contact.Item(AV45GXV8));
                if ( ! ( StringUtil.StrCmp(StringUtil.Trim( AV19groupContact.gxTpr_Contactusername), StringUtil.Trim( AV14externalUserPublic.gxTpr_Userinfo.gxTpr_Username)) == 0 ) )
                {
                   AV30sdt_message.gxTpr_Id = Guid.NewGuid( );
@@ -338,7 +342,7 @@ namespace GeneXus.Programs.wallet.registered {
                      if (true) break;
                   }
                }
-               AV43GXV8 = (int)(AV43GXV8+1);
+               AV45GXV8 = (int)(AV45GXV8+1);
             }
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11error)) )
             {
@@ -364,16 +368,16 @@ namespace GeneXus.Programs.wallet.registered {
          AV17group_sdt_owner.gxTpr_Cleartextshare = "";
          AV8allContacts.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "contacts.enc", out  AV13errorOwner), null);
          AV27ownerContact = new GeneXus.Programs.wallet.registered.SdtContact_SDT(context);
-         AV44GXV9 = 1;
-         while ( AV44GXV9 <= AV8allContacts.Count )
+         AV46GXV9 = 1;
+         while ( AV46GXV9 <= AV8allContacts.Count )
          {
-            AV9contact = ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV8allContacts.Item(AV44GXV9));
+            AV9contact = ((GeneXus.Programs.wallet.registered.SdtContact_SDT)AV8allContacts.Item(AV46GXV9));
             if ( StringUtil.StrCmp(StringUtil.Trim( AV9contact.gxTpr_Username), StringUtil.Trim( AV16group_sdt_my.gxTpr_Othergroup.gxTpr_Referenceusernname)) == 0 )
             {
                AV27ownerContact = (GeneXus.Programs.wallet.registered.SdtContact_SDT)(AV9contact.Clone());
                if (true) break;
             }
-            AV44GXV9 = (int)(AV44GXV9+1);
+            AV46GXV9 = (int)(AV46GXV9+1);
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV27ownerContact.gxTpr_Username)) )
          {
@@ -441,6 +445,8 @@ namespace GeneXus.Programs.wallet.registered {
          AV18group_sdt_temp = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
          AV31share = "";
          AV34userShares = new GxSimpleCollection<string>();
+         AV37codex32Seed = new GeneXus.Programs.distributedcryptographylib.SdtCodex32Seed(context);
+         AV36codex32Processor = new GeneXus.Programs.distributedcryptographylib.SdtCodex32Processor(context);
          AV28recoveredSecret = "";
          AV25oneGroupContact = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem(context);
          AV23message_signature = new GeneXus.Programs.wallet.registered.SdtMessage_signature(context);
@@ -456,15 +462,15 @@ namespace GeneXus.Programs.wallet.registered {
          /* GeneXus formulas. */
       }
 
-      private int AV36GXV1 ;
-      private int AV37GXV2 ;
-      private int AV38GXV3 ;
-      private int AV39GXV4 ;
-      private int AV40GXV5 ;
-      private int AV41GXV6 ;
-      private int AV42GXV7 ;
-      private int AV43GXV8 ;
-      private int AV44GXV9 ;
+      private int AV38GXV1 ;
+      private int AV39GXV2 ;
+      private int AV40GXV3 ;
+      private int AV41GXV4 ;
+      private int AV42GXV5 ;
+      private int AV43GXV6 ;
+      private int AV44GXV7 ;
+      private int AV45GXV8 ;
+      private int AV46GXV9 ;
       private long GXt_int5 ;
       private string AV35warning ;
       private string AV11error ;
@@ -492,6 +498,8 @@ namespace GeneXus.Programs.wallet.registered {
       private GxSimpleCollection<string> AV33sharesToRecoverTemp ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV18group_sdt_temp ;
       private GxSimpleCollection<string> AV34userShares ;
+      private GeneXus.Programs.distributedcryptographylib.SdtCodex32Seed AV37codex32Seed ;
+      private GeneXus.Programs.distributedcryptographylib.SdtCodex32Processor AV36codex32Processor ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem AV25oneGroupContact ;
       private GeneXus.Programs.wallet.registered.SdtMessage_signature AV23message_signature ;
       private GeneXus.Programs.nostr.SdtSDT_message AV30sdt_message ;

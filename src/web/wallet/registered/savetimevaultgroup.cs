@@ -127,6 +127,18 @@ namespace GeneXus.Programs.wallet.registered {
                cleanup();
                if (true) return;
             }
+            if ( AV8minimumShares > 9 )
+            {
+               AV11error = "The \"Minimum amount of votes to recover the secret\" can be at most 9";
+               cleanup();
+               if (true) return;
+            }
+            if ( AV9totalUserShares > 31 )
+            {
+               AV11error = "All the contacts together can have at most 31 votes";
+               cleanup();
+               if (true) return;
+            }
             if ( AV18hasContactEmptyShares )
             {
                AV11error = "Each contact must have at least one (1) vote";

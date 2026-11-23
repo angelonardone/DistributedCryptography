@@ -139,6 +139,59 @@ namespace GeneXus.Programs.distributedcryptographylib {
          return returngetutilitykeys ;
       }
 
+      public string getchildmnemonic( string gxTp_device ,
+                                      int gxTp_index )
+      {
+         string returngetchildmnemonic;
+         if ( DistributedCryptographyLib_RubyProcessor_externalReference == null )
+         {
+            DistributedCryptographyLib_RubyProcessor_externalReference = new DistricutedCryptographyLib.RubyProcessor();
+         }
+         returngetchildmnemonic = "";
+         returngetchildmnemonic = (string)(DistributedCryptographyLib_RubyProcessor_externalReference.GetChildMnemonic(gxTp_device, gxTp_index));
+         return returngetchildmnemonic ;
+      }
+
+      public string seedsplit( string gxTp_device ,
+                               string gxTp_mode ,
+                               int gxTp_threshold ,
+                               string gxTp_contactsJson )
+      {
+         string returnseedsplit;
+         if ( DistributedCryptographyLib_RubyProcessor_externalReference == null )
+         {
+            DistributedCryptographyLib_RubyProcessor_externalReference = new DistricutedCryptographyLib.RubyProcessor();
+         }
+         returnseedsplit = "";
+         returnseedsplit = (string)(DistributedCryptographyLib_RubyProcessor_externalReference.SeedSplit(gxTp_device, gxTp_mode, gxTp_threshold, gxTp_contactsJson));
+         return returnseedsplit ;
+      }
+
+      public string seedfingerprint( string gxTp_seedHex )
+      {
+         string returnseedfingerprint;
+         if ( DistributedCryptographyLib_RubyProcessor_externalReference == null )
+         {
+            DistributedCryptographyLib_RubyProcessor_externalReference = new DistricutedCryptographyLib.RubyProcessor();
+         }
+         returnseedfingerprint = "";
+         returnseedfingerprint = (string)(DistributedCryptographyLib_RubyProcessor_externalReference.SeedFingerprint(gxTp_seedHex));
+         return returnseedfingerprint ;
+      }
+
+      public string restoreseed( string gxTp_device ,
+                                 string gxTp_seedHex )
+      {
+         string returnrestoreseed;
+         if ( DistributedCryptographyLib_RubyProcessor_externalReference == null )
+         {
+            DistributedCryptographyLib_RubyProcessor_externalReference = new DistricutedCryptographyLib.RubyProcessor();
+         }
+         returnrestoreseed = "";
+         returnrestoreseed = (string)(DistributedCryptographyLib_RubyProcessor_externalReference.RestoreSeed(gxTp_device, gxTp_seedHex));
+         return returnrestoreseed ;
+      }
+
       public string signtransaction( string gxTp_device ,
                                      string gxTp_networkType ,
                                      string gxTp_inputsJson ,
@@ -158,6 +211,21 @@ namespace GeneXus.Programs.distributedcryptographylib {
          returnsigntransaction = "";
          returnsigntransaction = (string)(DistributedCryptographyLib_RubyProcessor_externalReference.SignTransaction(gxTp_device, gxTp_networkType, gxTp_inputsJson, gxTp_sendTo, gxTp_amountBtc, gxTp_changeTo, gxTp_changeChain, gxTp_changeIndex, gxTp_feeBtc, gxTp_sendAll));
          return returnsigntransaction ;
+      }
+
+      public string signtimebounty( string gxTp_device ,
+                                    string gxTp_networkType ,
+                                    string gxTp_txHex ,
+                                    string gxTp_inputsJson )
+      {
+         string returnsigntimebounty;
+         if ( DistributedCryptographyLib_RubyProcessor_externalReference == null )
+         {
+            DistributedCryptographyLib_RubyProcessor_externalReference = new DistricutedCryptographyLib.RubyProcessor();
+         }
+         returnsigntimebounty = "";
+         returnsigntimebounty = (string)(DistributedCryptographyLib_RubyProcessor_externalReference.SignTimeBounty(gxTp_device, gxTp_networkType, gxTp_txHex, gxTp_inputsJson));
+         return returnsigntimebounty ;
       }
 
       public Object ExternalInstance

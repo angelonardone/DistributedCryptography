@@ -141,6 +141,8 @@ namespace GeneXus.Programs.wallet.registered {
                   if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9error)) )
                   {
                      AV14group_sdt.gxTpr_Extpubkeymultisigchange = AV12extPubKeyInfo.gxTpr_Publickey;
+                     new GeneXus.Programs.wallet.registered.getlegacyaccountorigin(context ).execute( out  AV25accountOrigin) ;
+                     AV14group_sdt.gxTpr_Extpubkeymultisigaccount = AV25accountOrigin;
                   }
                   else
                   {
@@ -160,6 +162,7 @@ namespace GeneXus.Programs.wallet.registered {
          AV14group_sdt.gxTpr_Isactive = true;
          AV14group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeymultisigreceiving = AV14group_sdt.gxTpr_Extpubkeymultisigreceiving;
          AV14group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeymultisigchange = AV14group_sdt.gxTpr_Extpubkeymultisigchange;
+         AV14group_sdt.gxTpr_Othergroup.gxTpr_Extpubkeymultisigaccount = AV14group_sdt.gxTpr_Extpubkeymultisigaccount;
          AV14group_sdt.gxTpr_Othergroup.gxTpr_Referenceusernname = StringUtil.Trim( AV10externalUserPublic.gxTpr_Userinfo.gxTpr_Username);
          if ( ( AV14group_sdt.gxTpr_Grouptype == 30 ) || ( AV14group_sdt.gxTpr_Grouptype == 60 ) || ( AV14group_sdt.gxTpr_Grouptype == 80 ) || ( AV14group_sdt.gxTpr_Grouptype == 90 ) )
          {
@@ -181,12 +184,13 @@ namespace GeneXus.Programs.wallet.registered {
          AV15group_sdt_temp.gxTpr_Othergroup.gxTpr_Referencegroupid = AV14group_sdt.gxTpr_Othergroup.gxTpr_Referencegroupid;
          AV15group_sdt_temp.gxTpr_Othergroup.gxTpr_Extpubkeymultisigreceiving = AV14group_sdt.gxTpr_Extpubkeymultisigreceiving;
          AV15group_sdt_temp.gxTpr_Othergroup.gxTpr_Extpubkeymultisigchange = AV14group_sdt.gxTpr_Extpubkeymultisigchange;
+         AV15group_sdt_temp.gxTpr_Othergroup.gxTpr_Extpubkeymultisigaccount = AV14group_sdt.gxTpr_Extpubkeymultisigaccount;
          AV15group_sdt_temp.gxTpr_Othergroup.gxTpr_Encpassword = AV14group_sdt.gxTpr_Othergroup.gxTpr_Encpassword;
          AV13firstInvitationSent = (DateTime)(DateTime.MinValue);
-         AV25GXV1 = 1;
-         while ( AV25GXV1 <= AV14group_sdt.gxTpr_Contact.Count )
+         AV26GXV1 = 1;
+         while ( AV26GXV1 <= AV14group_sdt.gxTpr_Contact.Count )
          {
-            AV16groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV14group_sdt.gxTpr_Contact.Item(AV25GXV1));
+            AV16groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV14group_sdt.gxTpr_Contact.Item(AV26GXV1));
             if ( (DateTime.MinValue==AV16groupContact.gxTpr_Contactinvitationsent) )
             {
                AV16groupContact.gxTpr_Contactinvitationsent = DateTimeUtil.Now( context);
@@ -196,7 +200,7 @@ namespace GeneXus.Programs.wallet.registered {
             {
                AV13firstInvitationSent = AV16groupContact.gxTpr_Contactinvitationsent;
             }
-            AV25GXV1 = (int)(AV25GXV1+1);
+            AV26GXV1 = (int)(AV26GXV1+1);
          }
          AV20oneGroupContact = new GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem(context);
          AV20oneGroupContact.gxTpr_Contactid = AV14group_sdt.gxTpr_Groupid;
@@ -205,16 +209,17 @@ namespace GeneXus.Programs.wallet.registered {
          AV20oneGroupContact.gxTpr_Contactuserpubkey = StringUtil.Trim( AV10externalUserPublic.gxTpr_Groupskeyinfo.gxTpr_Publickey);
          AV20oneGroupContact.gxTpr_Extpubkeymultisigreceiving = AV14group_sdt.gxTpr_Extpubkeymultisigreceiving;
          AV20oneGroupContact.gxTpr_Extpubkeymultisigchange = AV14group_sdt.gxTpr_Extpubkeymultisigchange;
+         AV20oneGroupContact.gxTpr_Extpubkeymultisigaccount = AV14group_sdt.gxTpr_Extpubkeymultisigaccount;
          AV20oneGroupContact.gxTpr_Contactinvitationsent = AV13firstInvitationSent;
          AV20oneGroupContact.gxTpr_Contactinvitacionaccepted = DateTimeUtil.Now( context);
          AV20oneGroupContact.gxTpr_Contactinvisent = true;
          AV14group_sdt.gxTpr_Contact.Add(AV20oneGroupContact, 0);
-         AV26GXV2 = 1;
-         while ( AV26GXV2 <= AV14group_sdt.gxTpr_Contact.Count )
+         AV27GXV2 = 1;
+         while ( AV27GXV2 <= AV14group_sdt.gxTpr_Contact.Count )
          {
-            AV20oneGroupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV14group_sdt.gxTpr_Contact.Item(AV26GXV2));
+            AV20oneGroupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV14group_sdt.gxTpr_Contact.Item(AV27GXV2));
             AV15group_sdt_temp.gxTpr_Contact.Add((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)(AV20oneGroupContact.Clone()), 0);
-            AV26GXV2 = (int)(AV26GXV2+1);
+            AV27GXV2 = (int)(AV27GXV2+1);
          }
          new GeneXus.Programs.wallet.registered.removeprivatenames(context ).execute( ref  AV15group_sdt_temp) ;
          AV19message_signature.gxTpr_Username = StringUtil.Trim( AV10externalUserPublic.gxTpr_Userinfo.gxTpr_Username);
@@ -231,10 +236,10 @@ namespace GeneXus.Programs.wallet.registered {
             if (true) return;
          }
          AV15group_sdt_temp.gxTpr_Othergroup.gxTpr_Signature = StringUtil.Trim( AV19message_signature.gxTpr_Signature);
-         AV27GXV3 = 1;
-         while ( AV27GXV3 <= AV14group_sdt.gxTpr_Contact.Count )
+         AV28GXV3 = 1;
+         while ( AV28GXV3 <= AV14group_sdt.gxTpr_Contact.Count )
          {
-            AV16groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV14group_sdt.gxTpr_Contact.Item(AV27GXV3));
+            AV16groupContact = ((GeneXus.Programs.wallet.registered.SdtGroup_SDT_ContactItem)AV14group_sdt.gxTpr_Contact.Item(AV28GXV3));
             if ( ! ( AV16groupContact.gxTpr_Contactid == AV16groupContact.gxTpr_Contactgroupid ) )
             {
                AV21sdt_message.gxTpr_Id = Guid.NewGuid( );
@@ -256,7 +261,7 @@ namespace GeneXus.Programs.wallet.registered {
                   if (true) return;
                }
             }
-            AV27GXV3 = (int)(AV27GXV3+1);
+            AV28GXV3 = (int)(AV28GXV3+1);
          }
          GXt_char7 = AV9error;
          new GeneXus.Programs.wallet.registered.updategroup(context ).execute(  AV14group_sdt,  StringUtil.Trim( AV14group_sdt.gxTpr_Othergroup.gxTpr_Encpassword), out  AV18grpupId, out  GXt_char7) ;
@@ -293,6 +298,7 @@ namespace GeneXus.Programs.wallet.registered {
          AV12extPubKeyInfo = new GeneXus.Programs.nbitcoin.SdtExtPubKeyInfo(context);
          AV11extKeyInfoRootBIP48 = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
          GXt_SdtExtKeyInfo4 = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
+         AV25accountOrigin = "";
          AV23addressResult = new GeneXus.Programs.wallet.registered.SdtDelegatedAddressResult(context);
          GXt_SdtDelegatedAddressResult6 = new GeneXus.Programs.wallet.registered.SdtDelegatedAddressResult(context);
          AV15group_sdt_temp = new GeneXus.Programs.wallet.registered.SdtGroup_SDT(context);
@@ -308,14 +314,15 @@ namespace GeneXus.Programs.wallet.registered {
          /* GeneXus formulas. */
       }
 
-      private int AV25GXV1 ;
-      private int AV26GXV2 ;
-      private int AV27GXV3 ;
+      private int AV26GXV1 ;
+      private int AV27GXV2 ;
+      private int AV28GXV3 ;
       private long GXt_int8 ;
       private string AV9error ;
       private string GXt_char5 ;
       private string GXt_char7 ;
       private DateTime AV13firstInvitationSent ;
+      private string AV25accountOrigin ;
       private Guid AV17groupId ;
       private Guid AV18grpupId ;
       private GeneXus.Programs.wallet.registered.SdtGroup_SDT AV14group_sdt ;

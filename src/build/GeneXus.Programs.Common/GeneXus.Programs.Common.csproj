@@ -43,6 +43,7 @@
 		<Compile Include = "$(WebDirectory)\wallet\gxdomainconstants.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gxdomainmessagetype.cs" />
 		<Compile Include = "$(WebDirectory)\electrum\gxdomainconnectiontype.cs" />
+		<Compile Include = "$(WebDirectory)\distributedcryptographylib\type_SdtCodex32Processor.cs" />
 		<Compile Include = "$(WebDirectory)\nostr\gxdomainkindtype.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\gxdomainencryptaction.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\gxdomainwalletrestoremethod.cs" />

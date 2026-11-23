@@ -44,6 +44,7 @@
 
 	<ItemGroup>
 		<Compile Include = "$(WebDirectory)\nbitcoin\eccdecrypt.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\setmasterfingerprint.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\getexternaluser.cs" />
 		<Compile Include = "$(WebDirectory)\distributedcrypto\argon2encryption.cs" />
 		<Compile Include = "$(WebDirectory)\nostr\settnostrconnectionid.cs" />
@@ -87,6 +88,7 @@
 		<Compile Include = "$(WebDirectory)\wallet\registered\readcontactchat.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setlogindistcrypt.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\setfileenckey.cs" />
+		<Compile Include = "$(WebDirectory)\wallet\getaccountkeypath.cs" />
 		<Compile Include = "$(WebDirectory)\distcrypt\createandsaveexternaluser.cs" />
 		<Compile Include = "$(WebDirectory)\nbitcoin\parse_serialized_extended_key.cs" />
 		<Compile Include = "$(WebDirectory)\wallet\rubysetsessionkeys.cs" />

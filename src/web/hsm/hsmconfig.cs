@@ -53,6 +53,7 @@ namespace GeneXus.Programs.hsm {
       protected override void createObjects( )
       {
          chkavActivate = new GXCheckbox();
+         chkavRequirehmac = new GXCheckbox();
       }
 
       protected void INITWEB( )
@@ -209,6 +210,7 @@ namespace GeneXus.Programs.hsm {
          {
             enableOutput();
          }
+         context.AddJavascriptSource("UserControls/Wallet.UC_Clipboard_v1Render.js", "", false, true, false);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -256,14 +258,9 @@ namespace GeneXus.Programs.hsm {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vHSMCONFIGSDT", AV12HSMconfigSDT);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vHSMCONFIGSDT", AV12HSMconfigSDT);
-         }
+         GxWebStd.gx_boolean_hidden_field( context, "vSAVEDACTIVATE", AV19savedActivate);
+         GxWebStd.gx_boolean_hidden_field( context, "vHASAPIKEY", AV17hasApiKey);
+         GxWebStd.gx_boolean_hidden_field( context, "vSAVEDREQUIREHMAC", AV20savedRequireHmac);
       }
 
       public override void RenderHtmlCloseForm( )
@@ -391,18 +388,114 @@ namespace GeneXus.Programs.hsm {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+chkavRequirehmac_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, chkavRequirehmac_Internalname, "Accept HMAC-signed requests only (no Bearer)", "col-sm-3 AttributeLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
+            /* Check box */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 18,'',false,'',0)\"";
+            ClassString = "Attribute";
+            StyleString = "";
+            GxWebStd.gx_checkbox_ctrl( context, chkavRequirehmac_Internalname, StringUtil.BoolToStr( AV18requireHmac), "", "Accept HMAC-signed requests only (no Bearer)", 1, chkavRequirehmac.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(18, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,18);\"");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 16,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 21,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttSave_Internalname, "", "Save", bttSave_Jsonclick, 5, "Save", "", StyleString, ClassString, bttSave_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'SAVE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_HSM/HSMconfig.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 18,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 23,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttCancel_Internalname, "", "Cancel", bttCancel_Jsonclick, 7, "Cancel", "", StyleString, ClassString, bttCancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"e11341_client"+"'", TempTags, "", 2, "HLP_HSM/HSMconfig.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblTbnoapikey_Internalname, "This HSM has no API key yet, so it refuses every call. Click Regenerate API key.", "", "", lblTbnoapikey_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", lblTbnoapikey_Visible, 1, 0, 0, "HLP_HSM/HSMconfig.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'',false,'',0)\"";
+            ClassString = "Button";
+            StyleString = "";
+            GxWebStd.gx_button_ctrl( context, bttRegenerateapikey_Internalname, "", "Regenerate API key", bttRegenerateapikey_Jsonclick, 5, "Regenerate API key", "", StyleString, ClassString, bttRegenerateapikey_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'REGENERATE API KEY\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_HSM/HSMconfig.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divApikeytable_Internalname, divApikeytable_Visible, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblTbapikey_Internalname, "The API key of the HSM. Copy it now and keep it with the program that calls the HSM: it is not shown again. If you lose it, regenerate it.", "", "", lblTbapikey_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_HSM/HSMconfig.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavApikeyshown_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, edtavApikeyshown_Internalname, "API key", "col-sm-3 AttributeLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
+            /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 40,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavApikeyshown_Internalname, StringUtil.RTrim( AV16apiKeyShown), StringUtil.RTrim( context.localUtil.Format( AV16apiKeyShown, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,40);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavApikeyshown_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavApikeyshown_Enabled, 0, "text", "", 64, "chr", 1, "row", 64, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_HSM/HSMconfig.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 43,'',false,'',0)\"";
+            ClassString = "Button";
+            StyleString = "";
+            GxWebStd.gx_button_ctrl( context, bttCopyapikey_Internalname, "", "Copy API key", bttCopyapikey_Jsonclick, 7, "Copy API key", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"e12341_client"+"'", TempTags, "", 2, "HLP_HSM/HSMconfig.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 45,'',false,'',0)\"";
+            ClassString = "Button";
+            StyleString = "";
+            GxWebStd.gx_button_ctrl( context, bttDone_Internalname, "", "Done", bttDone_Jsonclick, 7, "Done", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"e13341_client"+"'", TempTags, "", 2, "HLP_HSM/HSMconfig.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* User Defined Control */
+            ucUc_clipboard_v11.Render(context, "wallet.uc_clipboard_v1", Uc_clipboard_v11_Internalname, "UC_CLIPBOARD_V11Container");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -472,21 +565,28 @@ namespace GeneXus.Programs.hsm {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Start */
-                              E12342 ();
+                              E14342 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "'SAVE'") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: 'Save' */
-                              E13342 ();
+                              E15342 ();
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "'REGENERATE API KEY'") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: 'Regenerate API key' */
+                              E16342 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Load */
-                              E14342 ();
+                              E17342 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                            {
@@ -588,6 +688,8 @@ namespace GeneXus.Programs.hsm {
       {
          AV6activate = StringUtil.StrToBool( StringUtil.BoolToStr( AV6activate));
          AssignAttri("", false, "AV6activate", AV6activate);
+         AV18requireHmac = StringUtil.StrToBool( StringUtil.BoolToStr( AV18requireHmac));
+         AssignAttri("", false, "AV18requireHmac", AV18requireHmac);
       }
 
       public void Refresh( )
@@ -605,6 +707,8 @@ namespace GeneXus.Programs.hsm {
          /* GeneXus formulas. */
          edtavHsmderivationpath_Enabled = 0;
          AssignProp("", false, edtavHsmderivationpath_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavHsmderivationpath_Enabled), 5, 0), true);
+         edtavApikeyshown_Enabled = 0;
+         AssignProp("", false, edtavApikeyshown_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavApikeyshown_Enabled), 5, 0), true);
       }
 
       protected void RF342( )
@@ -617,7 +721,7 @@ namespace GeneXus.Programs.hsm {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E14342 ();
+            E17342 ();
             WB340( ) ;
          }
       }
@@ -630,6 +734,8 @@ namespace GeneXus.Programs.hsm {
       {
          edtavHsmderivationpath_Enabled = 0;
          AssignProp("", false, edtavHsmderivationpath_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavHsmderivationpath_Enabled), 5, 0), true);
+         edtavApikeyshown_Enabled = 0;
+         AssignProp("", false, edtavApikeyshown_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavApikeyshown_Enabled), 5, 0), true);
          fix_multi_value_controls( ) ;
       }
 
@@ -640,19 +746,26 @@ namespace GeneXus.Programs.hsm {
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E12342 ();
+         E14342 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
             /* Read saved SDTs. */
-            ajax_req_read_hidden_sdt(cgiGet( "vHSMCONFIGSDT"), AV12HSMconfigSDT);
             /* Read saved values. */
+            AV20savedRequireHmac = StringUtil.StrToBool( cgiGet( "vSAVEDREQUIREHMAC"));
+            AssignAttri("", false, "AV20savedRequireHmac", AV20savedRequireHmac);
+            AV19savedActivate = StringUtil.StrToBool( cgiGet( "vSAVEDACTIVATE"));
+            AssignAttri("", false, "AV19savedActivate", AV19savedActivate);
             /* Read variables values. */
             AV5hsmDerivationPath = cgiGet( edtavHsmderivationpath_Internalname);
             AssignAttri("", false, "AV5hsmDerivationPath", AV5hsmDerivationPath);
             AV6activate = StringUtil.StrToBool( cgiGet( chkavActivate_Internalname));
             AssignAttri("", false, "AV6activate", AV6activate);
+            AV18requireHmac = StringUtil.StrToBool( cgiGet( chkavRequirehmac_Internalname));
+            AssignAttri("", false, "AV18requireHmac", AV18requireHmac);
+            AV16apiKeyShown = cgiGet( edtavApikeyshown_Internalname);
+            AssignAttri("", false, "AV16apiKeyShown", AV16apiKeyShown);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -666,24 +779,23 @@ namespace GeneXus.Programs.hsm {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E12342 ();
+         E14342 ();
          if (returnInSub) return;
       }
 
-      protected void E12342( )
+      protected void E14342( )
       {
          /* Start Routine */
          returnInSub = false;
-         GXt_SdtExtKeyInfo1 = AV7extKeyInfo;
-         new GeneXus.Programs.wallet.getextkey(context ).execute( out  GXt_SdtExtKeyInfo1) ;
-         AV7extKeyInfo = GXt_SdtExtKeyInfo1;
-         GXt_SdtWallet2 = AV11wallet;
-         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet2) ;
-         AV11wallet = GXt_SdtWallet2;
+         GXt_SdtWallet1 = AV11wallet;
+         new GeneXus.Programs.wallet.getwallet(context ).execute( out  GXt_SdtWallet1) ;
+         AV11wallet = GXt_SdtWallet1;
          bttSave_Visible = 0;
          AssignProp("", false, bttSave_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttSave_Visible), 5, 0), true);
          bttCancel_Visible = 0;
          AssignProp("", false, bttCancel_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttCancel_Visible), 5, 0), true);
+         divApikeytable_Visible = 0;
+         AssignProp("", false, divApikeytable_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divApikeytable_Visible), 5, 0), true);
          if ( StringUtil.StrCmp(AV11wallet.gxTpr_Networktype, "MainNet") == 0 )
          {
             AV5hsmDerivationPath = "m/86'/0'/0'" + "/" + "6000'";
@@ -702,60 +814,115 @@ namespace GeneXus.Programs.hsm {
          else
          {
             AV13error = "Network Type not sopported";
-            AssignAttri("", false, "AV13error", AV13error);
          }
-         AV12HSMconfigSDT.FromJSonString(new GeneXus.Programs.wallet.readjsonencfile(context).executeUdp(  "hsm.dat", out  AV13error), null);
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
-         {
-            AV6activate = AV12HSMconfigSDT.gxTpr_Isactive;
-            AssignAttri("", false, "AV6activate", AV6activate);
-         }
-         else
+         new GeneXus.Programs.hsm.gethsmsettings(context ).execute( out  AV6activate, out  AV18requireHmac, out  AV17hasApiKey, out  AV13error) ;
+         AssignAttri("", false, "AV6activate", AV6activate);
+         AssignAttri("", false, "AV18requireHmac", AV18requireHmac);
+         AssignAttri("", false, "AV17hasApiKey", AV17hasApiKey);
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
          {
             GX_msglist.addItem(AV13error);
          }
+         AV19savedActivate = AV6activate;
+         AssignAttri("", false, "AV19savedActivate", AV19savedActivate);
+         AV20savedRequireHmac = AV18requireHmac;
+         AssignAttri("", false, "AV20savedRequireHmac", AV20savedRequireHmac);
+         /* Execute user subroutine: 'SHOW STATE' */
+         S112 ();
+         if (returnInSub) return;
       }
 
-      protected void E13342( )
+      protected void E15342( )
       {
          /* 'Save' Routine */
          returnInSub = false;
-         AV12HSMconfigSDT.gxTpr_Isactive = AV6activate;
-         GXt_char3 = AV13error;
-         new GeneXus.Programs.wallet.savejsonencfile(context ).execute(  "hsm.dat",  AV12HSMconfigSDT.ToJSonString(false, true), out  GXt_char3) ;
-         AV13error = GXt_char3;
-         AssignAttri("", false, "AV13error", AV13error);
+         new GeneXus.Programs.hsm.savehsmsettings(context ).execute(  AV6activate,  AV18requireHmac, out  AV16apiKeyShown, out  AV13error) ;
+         AssignAttri("", false, "AV16apiKeyShown", AV16apiKeyShown);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
          {
+            AV19savedActivate = AV6activate;
+            AssignAttri("", false, "AV19savedActivate", AV19savedActivate);
+            AV20savedRequireHmac = AV18requireHmac;
+            AssignAttri("", false, "AV20savedRequireHmac", AV20savedRequireHmac);
             bttSave_Visible = 0;
             AssignProp("", false, bttSave_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttSave_Visible), 5, 0), true);
             bttCancel_Visible = 0;
             AssignProp("", false, bttCancel_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttCancel_Visible), 5, 0), true);
-            if ( AV12HSMconfigSDT.gxTpr_Isactive )
+            if ( AV6activate )
             {
-               this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"success",(string)"HSM Ready ",(string)"Pleas, login to Activate"}, true);
-               CallWebObject(formatLink("wallet.returntowallets") );
-               context.wjLocDisableFrm = 1;
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV16apiKeyShown)) )
+               {
+                  this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"success",(string)"HSM saved",(string)""}, true);
+               }
+               else
+               {
+                  AV17hasApiKey = true;
+                  AssignAttri("", false, "AV17hasApiKey", AV17hasApiKey);
+                  divApikeytable_Visible = 1;
+                  AssignProp("", false, divApikeytable_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divApikeytable_Visible), 5, 0), true);
+                  this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"success",(string)"HSM Ready",(string)"Copy the API key, then open the wallet again to start the HSM"}, true);
+               }
             }
             else
             {
-               this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"warning",(string)"HSM De-activated ",(string)"De-Activated"}, true);
-               AV15HsmManager.clear();
+               AV17hasApiKey = false;
+               AssignAttri("", false, "AV17hasApiKey", AV17hasApiKey);
+               AV16apiKeyShown = "";
+               AssignAttri("", false, "AV16apiKeyShown", AV16apiKeyShown);
+               divApikeytable_Visible = 0;
+               AssignProp("", false, divApikeytable_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divApikeytable_Visible), 5, 0), true);
+               this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"warning",(string)"HSM De-activated",(string)"De-Activated"}, true);
             }
+            /* Execute user subroutine: 'SHOW STATE' */
+            S112 ();
+            if (returnInSub) return;
          }
          else
          {
             GX_msglist.addItem(AV13error);
          }
          /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV12HSMconfigSDT", AV12HSMconfigSDT);
+      }
+
+      protected void E16342( )
+      {
+         /* 'Regenerate API key' Routine */
+         returnInSub = false;
+         new GeneXus.Programs.hsm.regeneratehsmapikey(context ).execute( out  AV16apiKeyShown, out  AV13error) ;
+         AssignAttri("", false, "AV16apiKeyShown", AV16apiKeyShown);
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13error)) )
+         {
+            AV17hasApiKey = true;
+            AssignAttri("", false, "AV17hasApiKey", AV17hasApiKey);
+            divApikeytable_Visible = 1;
+            AssignProp("", false, divApikeytable_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divApikeytable_Visible), 5, 0), true);
+            this.executeExternalObjectMethod("", false, "GlobalEvents", "ShowMsg", new Object[] {(string)"success",(string)"New API key",(string)"The old API key no longer works"}, true);
+            /* Execute user subroutine: 'SHOW STATE' */
+            S112 ();
+            if (returnInSub) return;
+         }
+         else
+         {
+            GX_msglist.addItem(AV13error);
+         }
+         /*  Sending Event outputs  */
+      }
+
+      protected void S112( )
+      {
+         /* 'SHOW STATE' Routine */
+         returnInSub = false;
+         bttRegenerateapikey_Visible = (AV19savedActivate ? 1 : 0);
+         AssignProp("", false, bttRegenerateapikey_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttRegenerateapikey_Visible), 5, 0), true);
+         lblTbnoapikey_Visible = (AV19savedActivate&&!AV17hasApiKey ? 1 : 0);
+         AssignProp("", false, lblTbnoapikey_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(lblTbnoapikey_Visible), 5, 0), true);
       }
 
       protected void nextLoad( )
       {
       }
 
-      protected void E14342( )
+      protected void E17342( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -800,7 +967,7 @@ namespace GeneXus.Programs.hsm {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202611814253659", true, true, false);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202611238562485", true, true, false);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -816,7 +983,8 @@ namespace GeneXus.Programs.hsm {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true, false);
-         context.AddJavascriptSource("hsm/hsmconfig.js", "?202611814253659", false, true, false);
+         context.AddJavascriptSource("hsm/hsmconfig.js", "?202611238562485", false, true, false);
+         context.AddJavascriptSource("UserControls/Wallet.UC_Clipboard_v1Render.js", "", false, true, false);
          /* End function include_jscripts */
       }
 
@@ -829,6 +997,13 @@ namespace GeneXus.Programs.hsm {
          chkavActivate.CheckedValue = "false";
          AV6activate = StringUtil.StrToBool( StringUtil.BoolToStr( AV6activate));
          AssignAttri("", false, "AV6activate", AV6activate);
+         chkavRequirehmac.Name = "vREQUIREHMAC";
+         chkavRequirehmac.WebTags = "";
+         chkavRequirehmac.Caption = "Accept HMAC-signed requests only (no Bearer)";
+         AssignProp("", false, chkavRequirehmac_Internalname, "TitleCaption", chkavRequirehmac.Caption, true);
+         chkavRequirehmac.CheckedValue = "false";
+         AV18requireHmac = StringUtil.StrToBool( StringUtil.BoolToStr( AV18requireHmac));
+         AssignAttri("", false, "AV18requireHmac", AV18requireHmac);
          /* End function init_web_controls */
       }
 
@@ -836,8 +1011,17 @@ namespace GeneXus.Programs.hsm {
       {
          edtavHsmderivationpath_Internalname = "vHSMDERIVATIONPATH";
          chkavActivate_Internalname = "vACTIVATE";
+         chkavRequirehmac_Internalname = "vREQUIREHMAC";
          bttSave_Internalname = "SAVE";
          bttCancel_Internalname = "CANCEL";
+         lblTbnoapikey_Internalname = "TBNOAPIKEY";
+         bttRegenerateapikey_Internalname = "REGENERATEAPIKEY";
+         lblTbapikey_Internalname = "TBAPIKEY";
+         edtavApikeyshown_Internalname = "vAPIKEYSHOWN";
+         bttCopyapikey_Internalname = "COPYAPIKEY";
+         bttDone_Internalname = "DONE";
+         divApikeytable_Internalname = "APIKEYTABLE";
+         Uc_clipboard_v11_Internalname = "UC_CLIPBOARD_V11";
          divMaintable_Internalname = "MAINTABLE";
          Form.Internalname = "FORM";
       }
@@ -850,9 +1034,16 @@ namespace GeneXus.Programs.hsm {
             disableJsOutput();
          }
          init_default_properties( ) ;
+         chkavRequirehmac.Caption = "Accept HMAC-signed requests only (no Bearer)";
          chkavActivate.Caption = "Activate";
+         edtavApikeyshown_Jsonclick = "";
+         edtavApikeyshown_Enabled = 1;
+         divApikeytable_Visible = 1;
+         bttRegenerateapikey_Visible = 1;
+         lblTbnoapikey_Visible = 1;
          bttCancel_Visible = 1;
          bttSave_Visible = 1;
+         chkavRequirehmac.Enabled = 1;
          chkavActivate.Enabled = 1;
          edtavHsmderivationpath_Enabled = 1;
          Form.Headerrawhtml = "";
@@ -873,11 +1064,16 @@ namespace GeneXus.Programs.hsm {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV6activate","fld":"vACTIVATE","type":"boolean"}]}""");
-         setEventMetadata("'SAVE'","""{"handler":"E13342","iparms":[{"av":"AV6activate","fld":"vACTIVATE","type":"boolean"},{"av":"AV12HSMconfigSDT","fld":"vHSMCONFIGSDT","type":""}]""");
-         setEventMetadata("'SAVE'",""","oparms":[{"av":"AV12HSMconfigSDT","fld":"vHSMCONFIGSDT","type":""},{"av":"AV13error","fld":"vERROR","type":"char"},{"ctrl":"SAVE","prop":"Visible"},{"ctrl":"CANCEL","prop":"Visible"}]}""");
-         setEventMetadata("'CANCEL'","""{"handler":"E11341","iparms":[{"av":"AV12HSMconfigSDT","fld":"vHSMCONFIGSDT","type":""}]""");
-         setEventMetadata("'CANCEL'",""","oparms":[{"av":"AV6activate","fld":"vACTIVATE","type":"boolean"},{"ctrl":"SAVE","prop":"Visible"},{"ctrl":"CANCEL","prop":"Visible"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV6activate","fld":"vACTIVATE","type":"boolean"},{"av":"AV18requireHmac","fld":"vREQUIREHMAC","type":"boolean"}]}""");
+         setEventMetadata("'SAVE'","""{"handler":"E15342","iparms":[{"av":"AV6activate","fld":"vACTIVATE","type":"boolean"},{"av":"AV18requireHmac","fld":"vREQUIREHMAC","type":"boolean"},{"av":"AV19savedActivate","fld":"vSAVEDACTIVATE","type":"boolean"},{"av":"AV17hasApiKey","fld":"vHASAPIKEY","type":"boolean"}]""");
+         setEventMetadata("'SAVE'",""","oparms":[{"av":"AV16apiKeyShown","fld":"vAPIKEYSHOWN","type":"char"},{"av":"AV19savedActivate","fld":"vSAVEDACTIVATE","type":"boolean"},{"av":"AV20savedRequireHmac","fld":"vSAVEDREQUIREHMAC","type":"boolean"},{"ctrl":"SAVE","prop":"Visible"},{"ctrl":"CANCEL","prop":"Visible"},{"av":"AV17hasApiKey","fld":"vHASAPIKEY","type":"boolean"},{"av":"divApikeytable_Visible","ctrl":"APIKEYTABLE","prop":"Visible"},{"ctrl":"REGENERATEAPIKEY","prop":"Visible"},{"av":"lblTbnoapikey_Visible","ctrl":"TBNOAPIKEY","prop":"Visible"}]}""");
+         setEventMetadata("'REGENERATE API KEY'","""{"handler":"E16342","iparms":[{"av":"AV19savedActivate","fld":"vSAVEDACTIVATE","type":"boolean"},{"av":"AV17hasApiKey","fld":"vHASAPIKEY","type":"boolean"}]""");
+         setEventMetadata("'REGENERATE API KEY'",""","oparms":[{"av":"AV16apiKeyShown","fld":"vAPIKEYSHOWN","type":"char"},{"av":"AV17hasApiKey","fld":"vHASAPIKEY","type":"boolean"},{"av":"divApikeytable_Visible","ctrl":"APIKEYTABLE","prop":"Visible"},{"ctrl":"REGENERATEAPIKEY","prop":"Visible"},{"av":"lblTbnoapikey_Visible","ctrl":"TBNOAPIKEY","prop":"Visible"}]}""");
+         setEventMetadata("'COPY API KEY'","""{"handler":"E12341","iparms":[{"av":"AV16apiKeyShown","fld":"vAPIKEYSHOWN","type":"char"}]}""");
+         setEventMetadata("'DONE'","""{"handler":"E13341","iparms":[]""");
+         setEventMetadata("'DONE'",""","oparms":[{"av":"AV16apiKeyShown","fld":"vAPIKEYSHOWN","type":"char"},{"av":"divApikeytable_Visible","ctrl":"APIKEYTABLE","prop":"Visible"}]}""");
+         setEventMetadata("'CANCEL'","""{"handler":"E11341","iparms":[{"av":"AV19savedActivate","fld":"vSAVEDACTIVATE","type":"boolean"},{"av":"AV20savedRequireHmac","fld":"vSAVEDREQUIREHMAC","type":"boolean"}]""");
+         setEventMetadata("'CANCEL'",""","oparms":[{"av":"AV6activate","fld":"vACTIVATE","type":"boolean"},{"av":"AV18requireHmac","fld":"vREQUIREHMAC","type":"boolean"},{"ctrl":"SAVE","prop":"Visible"},{"ctrl":"CANCEL","prop":"Visible"}]}""");
          return  ;
       }
 
@@ -898,7 +1094,6 @@ namespace GeneXus.Programs.hsm {
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
-         AV12HSMconfigSDT = new GeneXus.Programs.hsm.SdtHSMconfigSDT(context);
          GX_FocusControl = "";
          Form = new GXWebForm();
          sPrefix = "";
@@ -908,21 +1103,25 @@ namespace GeneXus.Programs.hsm {
          AV5hsmDerivationPath = "";
          bttSave_Jsonclick = "";
          bttCancel_Jsonclick = "";
+         lblTbnoapikey_Jsonclick = "";
+         bttRegenerateapikey_Jsonclick = "";
+         lblTbapikey_Jsonclick = "";
+         AV16apiKeyShown = "";
+         bttCopyapikey_Jsonclick = "";
+         bttDone_Jsonclick = "";
+         ucUc_clipboard_v11 = new GXUserControl();
          sEvt = "";
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
-         AV7extKeyInfo = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
-         GXt_SdtExtKeyInfo1 = new GeneXus.Programs.nbitcoin.SdtExtKeyInfo(context);
          AV11wallet = new GeneXus.Programs.wallet.SdtWallet(context);
-         GXt_SdtWallet2 = new GeneXus.Programs.wallet.SdtWallet(context);
+         GXt_SdtWallet1 = new GeneXus.Programs.wallet.SdtWallet(context);
          AV13error = "";
-         GXt_char3 = "";
-         AV15HsmManager = new GeneXus.Programs.hsm.SdtHsmManager(context);
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          /* GeneXus formulas. */
          edtavHsmderivationpath_Enabled = 0;
+         edtavApikeyshown_Enabled = 0;
       }
 
       private short nGotPars ;
@@ -936,6 +1135,10 @@ namespace GeneXus.Programs.hsm {
       private int edtavHsmderivationpath_Enabled ;
       private int bttSave_Visible ;
       private int bttCancel_Visible ;
+      private int lblTbnoapikey_Visible ;
+      private int bttRegenerateapikey_Visible ;
+      private int divApikeytable_Visible ;
+      private int edtavApikeyshown_Enabled ;
       private int idxLst ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
@@ -952,33 +1155,50 @@ namespace GeneXus.Programs.hsm {
       private string StyleString ;
       private string AV5hsmDerivationPath ;
       private string chkavActivate_Internalname ;
+      private string chkavRequirehmac_Internalname ;
       private string bttSave_Internalname ;
       private string bttSave_Jsonclick ;
       private string bttCancel_Internalname ;
       private string bttCancel_Jsonclick ;
+      private string lblTbnoapikey_Internalname ;
+      private string lblTbnoapikey_Jsonclick ;
+      private string bttRegenerateapikey_Internalname ;
+      private string bttRegenerateapikey_Jsonclick ;
+      private string divApikeytable_Internalname ;
+      private string lblTbapikey_Internalname ;
+      private string lblTbapikey_Jsonclick ;
+      private string edtavApikeyshown_Internalname ;
+      private string AV16apiKeyShown ;
+      private string edtavApikeyshown_Jsonclick ;
+      private string bttCopyapikey_Internalname ;
+      private string bttCopyapikey_Jsonclick ;
+      private string bttDone_Internalname ;
+      private string bttDone_Jsonclick ;
+      private string Uc_clipboard_v11_Internalname ;
       private string sEvt ;
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
       private string AV13error ;
-      private string GXt_char3 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
+      private bool AV19savedActivate ;
+      private bool AV17hasApiKey ;
+      private bool AV20savedRequireHmac ;
       private bool wbLoad ;
       private bool AV6activate ;
+      private bool AV18requireHmac ;
       private bool Rfr0gs ;
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
+      private GXUserControl ucUc_clipboard_v11 ;
       private GXWebForm Form ;
       private IGxDataStore dsDefault ;
       private GXCheckbox chkavActivate ;
-      private GeneXus.Programs.hsm.SdtHSMconfigSDT AV12HSMconfigSDT ;
-      private GeneXus.Programs.nbitcoin.SdtExtKeyInfo AV7extKeyInfo ;
-      private GeneXus.Programs.nbitcoin.SdtExtKeyInfo GXt_SdtExtKeyInfo1 ;
+      private GXCheckbox chkavRequirehmac ;
       private GeneXus.Programs.wallet.SdtWallet AV11wallet ;
-      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet2 ;
-      private GeneXus.Programs.hsm.SdtHsmManager AV15HsmManager ;
+      private GeneXus.Programs.wallet.SdtWallet GXt_SdtWallet1 ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

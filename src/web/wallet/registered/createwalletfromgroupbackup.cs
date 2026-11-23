@@ -93,8 +93,8 @@ namespace GeneXus.Programs.wallet.registered {
          AV15networkType = AV8currentWallet.gxTpr_Networktype;
          AV11extKeyCreate.gxTpr_Keypath = "";
          AV11extKeyCreate.gxTpr_Networktype = AV15networkType;
-         AV11extKeyCreate.gxTpr_Createextkeytype = 70;
-         AV11extKeyCreate.gxTpr_Extendedprivatekey = StringUtil.Trim( AV13group_sdt.gxTpr_Cleartextshare);
+         AV11extKeyCreate.gxTpr_Createextkeytype = 50;
+         AV11extKeyCreate.gxTpr_Seed = StringUtil.Trim( AV13group_sdt.gxTpr_Cleartextshare);
          GXt_char1 = AV9error;
          new GeneXus.Programs.nbitcoin.createextkey(context ).execute(  AV11extKeyCreate,  "", out  AV12extKeyInfo, out  GXt_char1) ;
          AV9error = GXt_char1;
@@ -102,7 +102,7 @@ namespace GeneXus.Programs.wallet.registered {
          {
             AV10extendeSecretAndAuthenticator.gxTpr_Networktype = AV15networkType;
             AV10extendeSecretAndAuthenticator.gxTpr_Authenticatorbase32 = "";
-            AV10extendeSecretAndAuthenticator.gxTpr_Extendedprivatekey = StringUtil.Trim( AV12extKeyInfo.gxTpr_Extended.gxTpr_Privatekey);
+            AV10extendeSecretAndAuthenticator.gxTpr_Seed = AV12extKeyInfo.gxTpr_Seed;
             GXt_char1 = AV9error;
             GXt_char4 = AV17wallet.gxTpr_Encryptedsecret;
             new GeneXus.Programs.distributedcrypto.argon2encryption(context ).execute(  10,  AV16newPass,  AV10extendeSecretAndAuthenticator.ToJSonString(false, true), out  GXt_char4, ref  GXt_char1) ;

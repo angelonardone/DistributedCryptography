@@ -109,6 +109,7 @@ namespace GeneXus.Programs.wallet.registered {
                            AV19groupContact.gxTpr_Contactgroupencpassword = AV12group_sdt.gxTpr_Encpassword;
                            AV19groupContact.gxTpr_Extpubkeymultisigreceiving = AV12group_sdt.gxTpr_Extpubkeymultisigreceiving;
                            AV19groupContact.gxTpr_Extpubkeymultisigchange = AV12group_sdt.gxTpr_Extpubkeymultisigchange;
+                           AV19groupContact.gxTpr_Extpubkeymultisigaccount = AV12group_sdt.gxTpr_Extpubkeymultisigaccount;
                            AV19groupContact.gxTpr_Extpubkeytimebountyreceiving = AV12group_sdt.gxTpr_Extpubkeytimebountyreceiving;
                         }
                         AV23GXV3 = (int)(AV23GXV3+1);
