@@ -38,7 +38,7 @@ your backups and your group wallets can be opened by other wallets that follow t
 | [BIP 340](https://github.com/bitcoin/bips/blob/master/bip-0340.mediawiki) | Schnorr signatures |
 | [BIP 341](https://github.com/bitcoin/bips/blob/master/bip-0341.mediawiki), [BIP 342](https://github.com/bitcoin/bips/blob/master/bip-0342.mediawiki) | Taproot: spends by the key or by one script of a tree, and the validation of Taproot scripts |
 | [BIP 65](https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki) | Time locks (`OP_CHECKLOCKTIMEVERIFY`): the bounty of a [Time-Encrypted Vault](/groups/time-encrypted-vault/) cannot be collected before its date |
-| [BIP 125](https://github.com/bitcoin/bips/blob/master/bip-0125.mediawiki) | Replace-by-fee: in group payments a higher fee level, signed in advance, can replace a lower one |
+| [BIP 125](https://github.com/bitcoin/bips/blob/master/bip-0125.mediawiki) | Replace-by-fee: every payment of the personal wallet may be replaced, so its fee can be [increased or the payment cancelled](/wallet/fees/) while it is not in a block; in group payments a higher fee level, signed in advance, can replace a lower one |
 | [BIP 21](https://github.com/bitcoin/bips/blob/master/bip-0021.mediawiki) | `bitcoin:` payment links and QR codes, with amount and label |
 
 ## Multisignature

@@ -66,6 +66,7 @@ export default defineConfig({
 					items: [
 						{ label: 'Create a wallet', slug: 'wallet/create' },
 						{ label: 'Restore a wallet', slug: 'wallet/restore' },
+						{ label: 'Increase the fee or cancel', slug: 'wallet/fees', badge: nextRelease },
 						{ label: 'Advance Brain Wallet', slug: 'wallet/advance-brain-wallet' },
 						{ label: 'Choose your servers', slug: 'wallet/servers' },
 					],
