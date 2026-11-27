@@ -66,12 +66,21 @@ export default defineConfig({
 					items: [
 						{ label: 'Create a wallet', slug: 'wallet/create' },
 						{ label: 'Restore a wallet', slug: 'wallet/restore' },
+						{ label: 'Advance Brain Wallet', slug: 'wallet/advance-brain-wallet' },
+						{ label: 'Choose your servers', slug: 'wallet/servers' },
+					],
+				},
+				{
+					// 2026-11-27: Ruby, Trezor and Jade together (the Ruby pages keep their wallet/ addresses)
+					label: 'Hardware keys',
+					items: [
+						{ label: 'Why a hardware key, and which one', slug: 'hardware-keys' },
 						{ label: 'Ruby hardware key', slug: 'wallet/ruby' },
 						{ label: 'Create a wallet with Ruby', slug: 'wallet/ruby-create' },
 						{ label: 'Restore a Ruby wallet', slug: 'wallet/ruby-restore' },
 						{ label: 'Hot wallets from Ruby', slug: 'wallet/ruby-hot-wallets' },
-						{ label: 'Advance Brain Wallet', slug: 'wallet/advance-brain-wallet' },
-						{ label: 'Choose your servers', slug: 'wallet/servers' },
+						{ label: 'Trezor', slug: 'hardware-keys/trezor', badge: nextRelease },
+						{ label: 'Jade', slug: 'hardware-keys/jade', badge: nextRelease },
 					],
 				},
 				{

@@ -1,0 +1,192 @@
+---
+title: Hardware keys
+description: What a hardware key is, why it protects your bitcoin, and how Ruby, Trezor and Jade work with Distributed Cryptography. A full comparison of what each one can do.
+---
+
+A **hardware key** (also called a *hardware wallet*) is a small device that keeps the words of your wallet and its
+spending keys **inside itself**. It signs your payments inside itself too. The computer sends it the payment and gets
+back the signature, never the keys.
+
+Distributed Cryptography works with three hardware keys:
+
+| | |
+|---|---|
+| [**Ruby**](/wallet/ruby/) | Our own firmware, based on Blockstream's Jade, on a cheap M5Stack board (about USD 40). It can do everything the application can do. |
+| [**Trezor**](/hardware-keys/trezor/) | The Trezor Model T, Safe 3 and Safe 5, with their official firmware. |
+| [**Jade**](/hardware-keys/jade/) | The Blockstream Jade, with its official firmware. |
+
+:::note[Trezor and Jade are coming in the next release]
+Ruby is in the current download. Trezor and Jade wallets come in the next release. They were tested with the
+official emulators of both devices; tests with physical devices come next.
+:::
+
+## Why a hardware key matters
+
+A computer runs many programs, reads email and opens web pages. If malware gets in, it can read what is on the
+disk and in memory, and it can change what you see on the screen.
+
+**A software wallet** keeps its words in the wallet file, encrypted with your password. To pay, the wallet uses the
+keys on the computer. Malware that waits for you to open the wallet, or that records your password, can take them,
+and with them your bitcoin.
+
+**A hardware key** changes three things:
+
+- **The keys never reach the computer.** The words are made, written down and typed (to restore) **on the device**.
+  Malware on the computer has nothing to steal that can spend.
+- **You check the payment on the device.** The device shows the address, the amount and the fee on its own screen,
+  and nothing is signed until you confirm there. Malware can change what the computer shows, not what the device
+  shows. **Always check the device's screen.**
+- **A PIN that can only be tried a few times.** A stolen device asks for its PIN, and after a few wrong PINs it
+  erases its keys. Your words bring the wallet back.
+
+So a hardware key is the best place for the bitcoin you want to keep safe. A software wallet is still fine for small
+amounts.
+
+## What stays on the computer: the utility keys
+
+Distributed Cryptography does much more than pay: it logs you in to the server without a user name or password,
+encrypts your chats, files and notes, and works with your Smart Groups. Asking the device for each of those would
+mean a confirmation every few seconds.
+
+So, when a hardware key wallet is opened, the device gives the application a few **utility keys** for those features.
+They come from the device's own words, so they are always the same, and **they cannot spend**. They live on the
+computer while the wallet is open, as in any wallet. If malware took them, it could read your messages and files,
+**but not move your bitcoin**: every payment still needs the device.
+
+Each device gives the utility keys in its own way (see [How each one works](#how-each-one-works)). That is why the
+same words in a software wallet give the same bitcoin addresses, but not the same chats, files or server user.
+
+## How each one works
+
+### Ruby
+
+[Ruby](/wallet/ruby/) is our own firmware. We added to it everything the application needs, so a Ruby wallet can
+do everything a software wallet can, including every Smart Group.
+
+- **Connection:** USB, as a serial port.
+- **PIN:** Ruby protects its words with the PIN plus a secret kept by a *blind oracle*. In a Ruby wallet that oracle
+  lives **inside your wallet file**: no server is involved, and Ruby alone, without the wallet file and its password,
+  is useless.
+- **Utility keys:** Ruby gives them when you type the PIN, with a command we added to the firmware.
+- **Smart Groups:** Ruby signs every group type. It registers a group the first time it pays from it, so it recognises
+  the group's change. When a group payment offers extra fee levels, Ruby asks once for all of them.
+- **Backup:** Ruby can split its own seed for a [Consensus Backup](/groups/consensus-backup/#with-a-ruby-wallet), and
+  a backed-up wallet can be restored onto a new Ruby.
+
+:::caution[Ruby is still for testing]
+Today's Ruby firmware is a development build, without secure boot or flash encryption. Use it to learn and test, on
+TestNet or with small amounts. See [Ruby hardware key](/wallet/ruby/).
+:::
+
+### Trezor
+
+A [Trezor wallet](/hardware-keys/trezor/) uses a Trezor as it comes from the factory, with its official firmware.
+
+- **Connection:** USB, through **Trezor Suite**, the official Trezor application, which must be open. Trezor Suite and
+  Distributed Cryptography can use the Trezor at the same time.
+- **PIN:** the Trezor checks it **by itself**, on its own screen. No oracle and no internet.
+- **Utility keys:** the Trezor computes a secret from its words for Distributed Cryptography, without showing
+  anything. The utility keys come from that secret, every time the wallet is opened.
+- **Smart Groups:** the official firmware signs Taproot payments only the simple way (one key). So a Trezor can be a
+  member of a **Legacy Multi Signature Wallet**, but cannot sign for the Taproot group wallets. It never gives its
+  seed, so it cannot be backed up in a group: its backup is its words.
+
+### Jade
+
+A [Jade wallet](/hardware-keys/jade/) uses a Blockstream Jade as it comes from the factory, with its official
+firmware. Ruby is a fork of this firmware, so they talk the same way, but the official Jade has none of the
+additions we made to Ruby.
+
+- **Connection:** USB, as a serial port. Close Blockstream Green while you use it: only one program can use the port.
+- **PIN:** the Jade checks it with a *blind oracle*, and you choose which one when you create the wallet:
+  - **Blockstream's oracle**, the one the Jade comes with. It needs internet at every unlock, and the Jade keeps
+    working with Blockstream Green and other wallets.
+  - **The oracle of your wallet**, inside the wallet file, as Ruby does. No internet, but the Jade must be reset first,
+    and then only that wallet file can unlock it.
+- **Utility keys:** when the wallet is created, the Jade exports a set of 24 words made from its own words (BIP85),
+  for this purpose only. It asks you to confirm that **once**. The application keeps them in the wallet file,
+  encrypted with the wallet password.
+- **Smart Groups:** the same as Trezor. It can be a member of a **Legacy Multi Signature Wallet** (it registers the
+  group the first time), but cannot sign for the Taproot group wallets, and it cannot be backed up in a group.
+
+## Comparison
+
+### The device
+
+| | Ruby | Trezor | Jade |
+|---|---|---|---|
+| Firmware | ours, open source, based on Jade | the official Trezor firmware | the official Blockstream firmware |
+| Devices | M5Stack Basic Core v2.7 (about USD 40) | Model T, Safe 3, Safe 5. Model One: unlock it in Trezor Suite first. Safe 7: not yet | Blockstream Jade |
+| Connection | USB | USB, with Trezor Suite open | USB, with Blockstream Green closed |
+| Where the PIN is checked | Ruby + an oracle inside your wallet file | on the Trezor | Jade + Blockstream's oracle (internet) or an oracle inside your wallet file |
+| Internet to open the wallet | no | no | only with Blockstream's oracle |
+| Wallets of the application on one device | one | several (one per wallet type) | several with Blockstream's oracle; one with the wallet's oracle |
+| Utility keys | given by Ruby at every unlock | computed by the Trezor at every unlock, nothing shown | 24 words exported once, at creation (confirmed on the Jade) |
+| Your backup | the words alone (no passphrase) | the words alone (no passphrase) | the words alone (no passphrase) |
+| Ready for | testing: development firmware | next release | next release |
+
+### Wallet types
+
+| Wallet type | Ruby | Trezor | Jade |
+|---|---|---|---|
+| BIP86 (Taproot, addresses `bc1p…`) | yes | yes (the default) | yes (the default) |
+| BIP84 (native SegWit, `bc1q…`) | — | yes | yes |
+| BIP49 (SegWit in P2SH, `3…`) | — | yes | yes |
+| BIP44 (Legacy, `1…`) | — | yes | yes |
+
+The same Trezor or Jade can have several wallets side by side, one per type: they share the words, not the
+addresses.
+
+The online features, the Smart Groups and the off-line tools need a BIP86 wallet, except for Trezor and Jade: a
+Trezor or Jade wallet of **any** type can log in, have contacts, chat, be in a group and use the off-line tools. A
+software wallet of another type only receives and pays. (A Legacy Multi Signature Wallet is the exception: it needs a
+BIP86 wallet, on any device.)
+
+### In your wallet
+
+| | Ruby | Trezor | Jade |
+|---|---|---|---|
+| Receive and pay, the payment checked and confirmed on the device | yes | yes | yes |
+| Decline a payment on the device | yes | yes | yes |
+| Increase the fee or cancel a payment not yet in a block | yes | yes | yes |
+| [Anonymous login](/online/), [contacts](/online/contacts/), [chat](/online/chat/), [send encrypted files](/online/send-files/) | yes | yes | yes |
+| [Off-line tools](/offline/): encrypted notes, files and passwords, authenticators, HSM | yes | yes | yes |
+| [Hot wallets](/wallet/ruby-hot-wallets/) made from the device's words | yes | — | — |
+
+### Smart Groups
+
+| Group | Ruby | Trezor | Jade |
+|---|---|---|---|
+| [Consensus Backup](/groups/consensus-backup/): back up **this** wallet | yes: Ruby splits its own seed | — the Trezor never gives its seed | — the Jade never gives its seed |
+| [Consensus Backup](/groups/consensus-backup/): keep **somebody else's** backup, as a member | yes | yes | yes |
+| [Consensus Backup](/groups/consensus-backup/): restore a backed-up wallet **onto the device** | yes, onto a new Ruby | — | — |
+| [Time-Encrypted Vault](/groups/time-encrypted-vault/): the owner | yes | — | — |
+| [Time-Encrypted Vault](/groups/time-encrypted-vault/): a member of the restore group | yes | yes | yes |
+| [Time-Encrypted Vault](/groups/time-encrypted-vault/): a member of the bounty group | yes | — | — |
+| [Legacy Multi Signature Wallet](/groups/legacy-multisignature/) | yes | yes, BIP86 wallets | yes, BIP86 wallets |
+| [Delegated Multi Signature Wallet](/groups/delegated-multisignature/) | yes | — | — |
+| [Advanced Delegated Multi Signature Wallet](/groups/advanced-delegated-multisignature/) | yes | — | — |
+| [Multi Signature Wallet](/groups/multi-signature/) | yes | — | — |
+| [Advanced Multi Signature Wallet](/groups/advanced-multi-signature/) | yes | — | — |
+| [Shared passwords](/groups/shared-passwords/) | yes | yes | yes |
+| [Group Chat](/groups/group-chat/) | yes | yes | yes |
+| A group payment with extra fee levels | one confirmation for all the levels | one confirmation per level | one confirmation per level |
+
+A member who keeps somebody else's backup, or who is in a restore group, is **asked nothing on the device**: those
+shares are opened with the utility keys. The wallet that is recovered is the owner's wallet: a software wallet, or a
+Ruby. The member's own device does not hold it.
+
+When a Trezor or Jade wallet tries to create or join a group that its device cannot sign, the application stops at
+once and says why. Nothing is half done.
+
+### Which one to choose
+
+- **You already have a Trezor or a Jade:** use it. Your payments and your Legacy Multi Signature Wallets are signed on
+  it, and everything else in the application works.
+- **You want every Smart Group on a hardware key** (the Taproot group wallets, a backup of the hardware key wallet
+  itself, the bounty of a Time-Encrypted Vault): only Ruby does that today.
+- **You want the cheapest device:** Ruby, on a USD 40 board. Until its signed firmware is out, use it for learning and
+  small amounts.
+
+Whatever you choose, **your words are your backup**. Write them on paper, keep them where only you can reach them,
+and never type them into a computer.
