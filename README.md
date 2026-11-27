@@ -40,7 +40,8 @@ The wallet supports the following standards (details and where each one is used:
 * Key Derivation for Single Key P2TR Outputs [(BIP 86)](https://github.com/bitcoin/bips/blob/master/bip-0086.mediawiki) ~ <b>our default mode</b>
 * Derivation schemes [BIP 44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki), [BIP 49](https://github.com/bitcoin/bips/blob/master/bip-0049.mediawiki) and [BIP 84](https://github.com/bitcoin/bips/blob/master/bip-0084.mediawiki), with [SLIP-132](https://github.com/satoshilabs/slips/blob/master/slip-0132.md) `ypub`/`zpub` keys
 * Multisignature keys [(BIP 48)](https://github.com/bitcoin/bips/blob/master/bip-0048.mediawiki)
-* Child seeds [(BIP 85)](https://github.com/bitcoin/bips/blob/master/bip-0085.mediawiki): hot wallets made by the Ruby hardware key from its words
+* Child seeds [(BIP 85)](https://github.com/bitcoin/bips/blob/master/bip-0085.mediawiki): hot wallets made by the Ruby hardware key from its words; the utility keys of a Jade wallet
+* [SLIP-11](https://github.com/satoshilabs/slips/blob/master/slip-0011.md) values computed by a Trezor: the utility keys of a Trezor wallet
 * Wallet Import Format (WIF) for legacy individual keys, and classic Brain Wallets (not recommended)
 
 **Backups**
@@ -52,7 +53,7 @@ The wallet supports the following standards (details and where each one is used:
 * Bech32 and bech32m addresses [(BIP 173)](https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki), [(BIP 350)](https://github.com/bitcoin/bips/blob/master/bip-0350.mediawiki)
 * Schnorr signatures [(BIP 340)](https://github.com/bitcoin/bips/blob/master/bip-0340.mediawiki) and Taproot ([BIP 341](https://github.com/bitcoin/bips/blob/master/bip-0341.mediawiki) and [BIP 342](https://github.com/bitcoin/bips/blob/master/bip-0342.mediawiki)): multiple spending paths (key and scripts)
 * Time locks [(BIP 65)](https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki) for the bounty of the Time-Encrypted Vault
-* Replace-by-fee [(BIP 125)](https://github.com/bitcoin/bips/blob/master/bip-0125.mediawiki) for the fee levels signed in advance in group payments
+* Replace-by-fee [(BIP 125)](https://github.com/bitcoin/bips/blob/master/bip-0125.mediawiki): increase the fee of a payment or cancel it, and the fee levels signed in advance in group payments
 * `bitcoin:` payment links and QR codes [(BIP 21)](https://github.com/bitcoin/bips/blob/master/bip-0021.mediawiki)
 
 **Multisignature**

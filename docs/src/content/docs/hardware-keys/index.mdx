@@ -15,9 +15,9 @@ Distributed Cryptography works with three hardware keys:
 | [**Trezor**](/hardware-keys/trezor/) | The Trezor Model T, Safe 3 and Safe 5, with their official firmware. |
 | [**Jade**](/hardware-keys/jade/) | The Blockstream Jade, with its official firmware. |
 
-:::note[Trezor and Jade are coming in the next release]
-Ruby is in the current download. Trezor and Jade wallets come in the next release. They were tested with the
-official emulators of both devices; tests with physical devices come next.
+:::caution[Trezor and Jade: tested with the emulators]
+Trezor and Jade wallets are in the application since version 1.010. They were tested with the official emulators of
+both devices, not yet with physical devices. Try them with a small amount first.
 :::
 
 ## Why a hardware key matters
@@ -123,7 +123,7 @@ additions we made to Ruby.
 | Wallets of the application on one device | one | several (one per wallet type) | several with Blockstream's oracle; one with the wallet's oracle |
 | Utility keys | given by Ruby at every unlock | computed by the Trezor at every unlock, nothing shown | 24 words exported once, at creation (confirmed on the Jade) |
 | Your backup | the words alone (no passphrase) | the words alone (no passphrase) | the words alone (no passphrase) |
-| Ready for | testing: development firmware | next release | next release |
+| Ready for | testing: development firmware | since version 1.010, tested with the emulator | since version 1.010, tested with the emulator |
 
 ### Wallet types
 

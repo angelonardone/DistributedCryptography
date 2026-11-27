@@ -17,8 +17,9 @@ your backups and your group wallets can be opened by other wallets that follow t
 | [BIP 49](https://github.com/bitcoin/bips/blob/master/bip-0049.mediawiki) | SegWit nested in P2SH accounts | Wallet type |
 | [BIP 44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) | The legacy format of deterministic wallets | Wallet type |
 | [BIP 48](https://github.com/bitcoin/bips/blob/master/bip-0048.mediawiki) | Keys for multisignature wallets | The keys of each member of a [Legacy Multi Signature Wallet](/groups/legacy-multisignature/) |
-| [BIP 85](https://github.com/bitcoin/bips/blob/master/bip-0085.mediawiki) | Child seeds made from a master seed | [Hot wallets](/wallet/ruby-hot-wallets/) made by Ruby from its words |
+| [BIP 85](https://github.com/bitcoin/bips/blob/master/bip-0085.mediawiki) | Child seeds made from a master seed | [Hot wallets](/wallet/ruby-hot-wallets/) made by Ruby from its words; the utility keys of a [Jade wallet](/hardware-keys/jade/) |
 | [SLIP-132](https://github.com/satoshilabs/slips/blob/master/slip-0132.md) | `ypub` / `zpub` key formats | The extended keys of BIP49 and BIP84 wallets |
+| [SLIP-11](https://github.com/satoshilabs/slips/blob/master/slip-0011.md) | Symmetric encryption of values on a hardware wallet | The utility keys of a [Trezor wallet](/hardware-keys/trezor/), computed by the Trezor when the wallet is opened |
 | Wallet Import Format (WIF) | Single legacy keys | Import a single key |
 | Brain wallets | A key made from a phrase | Classic brain wallets can be imported; not recommended. The [Advance Brain Wallet](/wallet/advance-brain-wallet/) makes its key with Argon2id |
 

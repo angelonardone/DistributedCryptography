@@ -66,7 +66,7 @@ export default defineConfig({
 					items: [
 						{ label: 'Create a wallet', slug: 'wallet/create' },
 						{ label: 'Restore a wallet', slug: 'wallet/restore' },
-						{ label: 'Increase the fee or cancel', slug: 'wallet/fees', badge: nextRelease },
+						{ label: 'Increase the fee or cancel', slug: 'wallet/fees' },
 						{ label: 'Advance Brain Wallet', slug: 'wallet/advance-brain-wallet' },
 						{ label: 'Choose your servers', slug: 'wallet/servers' },
 					],
@@ -80,8 +80,8 @@ export default defineConfig({
 						{ label: 'Create a wallet with Ruby', slug: 'wallet/ruby-create' },
 						{ label: 'Restore a Ruby wallet', slug: 'wallet/ruby-restore' },
 						{ label: 'Hot wallets from Ruby', slug: 'wallet/ruby-hot-wallets' },
-						{ label: 'Trezor', slug: 'hardware-keys/trezor', badge: nextRelease },
-						{ label: 'Jade', slug: 'hardware-keys/jade', badge: nextRelease },
+						{ label: 'Trezor', slug: 'hardware-keys/trezor' },
+						{ label: 'Jade', slug: 'hardware-keys/jade' },
 					],
 				},
 				{
