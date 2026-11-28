@@ -61,7 +61,7 @@ factory reset also brings back Blockstream's oracle.
    shows it with its state: *READY* (unlocked), *LOCKED* (has a PIN) or *UNINIT* (new). If the list is empty, connect
    the Jade, close Blockstream Green and click **Find Jade**.
 
-3. Choose the **Type of wallet**: **BIP86 (Taproot)** (the default, and the one for Legacy Multi Signature groups),
+3. Choose the **Type of wallet**: **BIP86 (Taproot)** (the default),
    BIP84 (native SegWit), BIP49 (SegWit in P2SH) or BIP44 (Legacy).
 
 4. Choose the **PIN oracle of the Jade**: Blockstream's, or the one of this wallet. With the second one the page
@@ -143,7 +143,7 @@ A Jade wallet of **any** type can log in, have contacts and be in a group. What 
 
 | Group | A Jade wallet |
 |---|---|
-| [Legacy Multi Signature Wallet](/groups/legacy-multisignature/) | be a member or the owner, if the wallet is **BIP86**. Joining asks nothing on the Jade. The first payment **registers** the group on the Jade (it shows the group and each signer; confirm with ✓), so the Jade recognises the group's change. Each payment is confirmed once per fee level |
+| [Legacy Multi Signature Wallet](/groups/legacy-multisignature/) | be a member or the owner, with a wallet of any type. Each member must use a device of their own: two wallets of the same Jade (for example its BIP84 and its BIP86 wallets) have the same keys for these groups, so they can not both be in one group. Joining asks nothing on the Jade. The first payment **registers** the group on the Jade (it shows the group and each signer; confirm with ✓), so the Jade recognises the group's change. Each payment is confirmed once per fee level |
 | [Group Chat](/groups/group-chat/), [Shared passwords](/groups/shared-passwords/) | yes |
 | [Consensus Backup](/groups/consensus-backup/), [Time-Encrypted Vault](/groups/time-encrypted-vault/) restore group | keep **somebody else's** backup, as a member. Nothing is asked on the Jade |
 | Delegated, Multi Signature and the two Advanced wallets | no: the official firmware signs Taproot only the simple way |
